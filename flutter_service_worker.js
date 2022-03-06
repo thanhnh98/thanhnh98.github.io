@@ -6,8 +6,8 @@ const RESOURCES = {
   "favicon-16x16.png": "1f5314bb365462ba312ca096ab8dc14c",
 "version.json": "fc4a4cbbb9b61af76710aa6de5c13fdb",
 "favicon.ico": "8c6bd57e611ecb3b9e5bcb005c61cf7f",
-"index.html": "0212b191d965f62bdc39600bcf496753",
-"/": "0212b191d965f62bdc39600bcf496753",
+"index.html": "4ef3572609660b9492cb4860f792af90",
+"/": "4ef3572609660b9492cb4860f792af90",
 "apple-icon.png": "f15b0db4fe1d6de0d4041e1b5e4e6cc4",
 "apple-icon-144x144.png": "fa091bde5c1cd810ff3ca105f862f354",
 "android-icon-192x192.png": "75b53e90a49ccf80bbb73fc73fa693fd",
@@ -50,11 +50,7 @@ const RESOURCES = {
 "apple-icon-72x72.png": "1f58eeab4ea5f616bf26b3e2da07163a",
 "apple-icon-120x120.png": "c557477f5318ac2cb0f9b780e93976de",
 "favicon-32x32.png": "cade1bac38fa359fc3cb551ea6e444c0",
-"ms-icon-70x70.png": "96c78ab320961120c09cc3fac792cee1",
-"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
-"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
-"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
-"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
+"ms-icon-70x70.png": "96c78ab320961120c09cc3fac792cee1"
 };
 
 // The application shell files that are downloaded before a service worker can
