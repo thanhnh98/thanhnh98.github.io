@@ -6,14 +6,14 @@ const RESOURCES = {
   "favicon-16x16.png": "1f5314bb365462ba312ca096ab8dc14c",
 "version.json": "d25ec18b7fe75bca1158c4e056f5e907",
 "favicon.ico": "8c6bd57e611ecb3b9e5bcb005c61cf7f",
-"index.html": "cdbccc7945c11d49b67b5b3125a44cc1",
-"/": "cdbccc7945c11d49b67b5b3125a44cc1",
+"index.html": "fa47ef1adcd877de912aa0a2017aeb65",
+"/": "fa47ef1adcd877de912aa0a2017aeb65",
 "apple-icon.png": "f15b0db4fe1d6de0d4041e1b5e4e6cc4",
 "apple-icon-144x144.png": "fa091bde5c1cd810ff3ca105f862f354",
 "android-icon-192x192.png": "75b53e90a49ccf80bbb73fc73fa693fd",
 "apple-icon-precomposed.png": "f15b0db4fe1d6de0d4041e1b5e4e6cc4",
 "apple-icon-114x114.png": "a2a92f12fe760a93f0b8bcbe683d6612",
-"main.dart.js": "1f2ac259da245dd388aca27517c48936",
+"main.dart.js": "23cf58893935347c9fcbb5738a655943",
 "ms-icon-310x310.png": "1f3691202509488ab4118dae753bc206",
 "ms-icon-144x144.png": "fa091bde5c1cd810ff3ca105f862f354",
 "apple-icon-57x57.png": "e7078bb7d3522dd1d8b06e5a76b4eefb",
@@ -33,17 +33,25 @@ const RESOURCES = {
 "apple-icon-76x76.png": "d89fd6998e9a3b65848e6606465e10fe",
 "apple-icon-60x60.png": "c994669b9bfad21d116a73ede85bf812",
 "manifest%202.json": "b58fcfa7628c9205cb11a1b2c3e8f99a",
-"assets/AssetManifest.json": "e35ece8136eec576adff323471229bf0",
-"assets/NOTICES": "acfb986b120ea24d2553d5ab091dc6c7",
+"assets/AssetManifest.json": "e751d5b7c52f11f176ae03d5e35698dd",
+"assets/NOTICES": "acbabaffb5664ca3672cc36d5a23ca35",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81",
+"assets/shaders/ink_sparkle.frag": "729a9447077b7ec92b41781bab15831f",
+"assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/assets/chplay.png": "dc6d34239efe6e011b684db3a8376c9b",
-"assets/assets/android.json": "07ef8b1880f403db7bec40bdb2c31f95",
-"assets/assets/github.png": "1bf386f9c07a7ce0ccfd56c43db4035b",
+"assets/assets/android.json": "6a93359898656160cb62de9b9eae6d70",
+"assets/assets/chplay_thumb.png": "87f43639c37335bfd8372c07d48e2339",
+"assets/assets/github.png": "ef7a02b69836dc8b6a732a54c4200dcb",
+"assets/assets/android.png": "1201025e89f82810d1bab5c6e55a31b8",
+"assets/assets/github_thumb.png": "9c2c6287d8ad72655b2d80af052a5c12",
+"assets/assets/img_bg.jpg": "a8c018c6fa1a3ee47a6760874d7e0d49",
+"assets/assets/placeholder.png": "9ca149283b4a0516f52e0203d56e38ce",
 "assets/assets/linkedin.png": "6a909d9c816ef65966127a242f6e29e7",
 "assets/assets/profile.png": "737cd1ced03f483ef202d6ab34f78d27",
 "assets/assets/profile_full.jpg": "de17a2853f7dba39e83657e1ba7ed996",
+"assets/assets/img_black_bg.jpg": "6499fbceda30cc9de9d688205cad4fb0",
+"assets/assets/linked_in.png": "35c2b43383593a0d3d348d19e4c42059",
 "assets/assets/bg.jpg": "caee88dd8997150feb2993ce79f24fb5",
 "browserconfig.xml": "653d077300a12f09a69caeea7a8947f8",
 "android-icon-144x144.png": "fa091bde5c1cd810ff3ca105f862f354",
@@ -56,10 +64,8 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/",
-"main.dart.js",
+  "main.dart.js",
 "index.html",
-"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
@@ -158,9 +164,11 @@ self.addEventListener("fetch", (event) => {
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache.
+        // lazily populate the cache only if the resource was successfully fetched.
         return response || fetch(event.request).then((response) => {
-          cache.put(event.request, response.clone());
+          if (response && Boolean(response.ok)) {
+            cache.put(event.request, response.clone());
+          }
           return response;
         });
       })
