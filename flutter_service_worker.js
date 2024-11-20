@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
 const RESOURCES = {"favicon-16x16.png": "cae674bb8ac8878f032b6aa6472c7d94",
-"flutter_bootstrap.js": "9c20178c8f715ce2da1e9f4ccced0b8c",
+"flutter_bootstrap.js": "18de572029da135377f07dc3479e939b",
 "version.json": "878e83788e8c51feea66f8d68a9cde27",
 "favicon.ico": "e34a1e29c0a1341b75502571e2be3a35",
 "index.html": "318e159fa16dfe4026bd923b28927d3c",
@@ -12,7 +12,7 @@ const RESOURCES = {"favicon-16x16.png": "cae674bb8ac8878f032b6aa6472c7d94",
 "android-chrome-192x192.png": "052470bdc8b6da7537edbc9f43c5ef5b",
 "apple-touch-icon.png": "98afb146f511453b02d4f96e8ec3acc1",
 "CNAME": "8c8ce1042536ef52b466a715c3158340",
-"main.dart.js": "d97642141d1796a9fc646f4f3a3613f3",
+"main.dart.js": "32eb1af97cc76fa45f78b0afdbbcdc9f",
 "flutter.js": "f393d3c16b631f36852323de8e583132",
 "favicon.png": "06ed110a8afa3bee5cd97b0ff0adae11",
 "android-chrome-512x512.png": "06c17ea79bf0d340658c7f4746b430ca",
