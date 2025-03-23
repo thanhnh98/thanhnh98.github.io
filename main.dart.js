@@ -84361,7 +84361,7 @@ A.au_.prototype={
 $1(a){},
 $S:31}
 A.atY.prototype={
-$0(){A.xj("https://apps.apple.com/vn/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990")},
+$0(){A.xj("https://apps.apple.com/vn/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone")},
 $S:0}
 A.atQ.prototype={
 $2(a,b){return B.d.Wr(A.aL_("MMMM yyyy",b).mg(a),A.d3("\\b\\w",!0,!1),new A.atP())},
