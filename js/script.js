@@ -1,12 +1,13 @@
 // Sắp Tết 2026 - Enhanced Countdown and Calendar
 
 // Tết dates for the next few years (Vietnamese Lunar New Year)
+// Set to 00:00:00 Vietnam time (UTC+7)
 const tetDates = {
-    2025: new Date('2025-01-29'), // Tết Ất Tỵ
-    2026: new Date('2026-02-17'), // Tết Bính Ngọ
-    2027: new Date('2027-02-06'), // Tết Đinh Mùi
-    2028: new Date('2028-01-26'), // Tết Mậu Thân
-    2029: new Date('2029-02-13'), // Tết Kỷ Dậu
+    2025: new Date('2025-01-29T00:00:00+07:00'), // Tết Ất Tỵ
+    2026: new Date('2026-02-17T00:00:00+07:00'), // Tết Bính Ngọ
+    2027: new Date('2027-02-06T00:00:00+07:00'), // Tết Đinh Mùi
+    2028: new Date('2028-01-26T00:00:00+07:00'), // Tết Mậu Thân
+    2029: new Date('2029-02-13T00:00:00+07:00'), // Tết Kỷ Dậu
 };
 
 // Calendar state
