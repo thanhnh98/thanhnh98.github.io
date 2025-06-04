@@ -790,4 +790,13 @@ footer::after {
     .download-buttons {
         justify-content: center;
     }
+    
+    .app-store-links {
+        display: flex;
+        gap: 24px;
+    }
+
+    .author-bottom {
+        color: #8B0000;
+    }
 }
