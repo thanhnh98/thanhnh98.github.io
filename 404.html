@@ -1,24 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script>
-        // Redirect to the homepage after a short delay
-        setTimeout(function () {
-            window.location.href = "/";
-        }, 5000); // Redirect in 1 second
-    </script>
+    <title>404 - Trang không tìm thấy | Sắp Tết 2026</title>
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/favicon/favicon.png">
+    <style>
+        .error-404 {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .error-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .error-number {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            color: var(--color-text-primary);
+            margin: 1rem 0;
+            font-weight: 700;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin: 1.5rem 0 2rem;
+            line-height: 1.6;
+        }
+        
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .home-icon {
+            font-size: 1.2rem;
+        }
+        
+        .tet-decoration {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 768px) {
+            .error-number {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 1.5rem;
+            }
+            
+            .error-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+            
+            .tet-decoration {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Bạn ơi không tìm thấy trang này 😢</h1>
-<p>Trở về trang chủ sau 5s</p>
-<p>
-    Tải <b>Sắp Tết 2026</b> tại
-    <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank">
-        ĐÂY
-    </a> 🎉
-</p>
+    <div class="error-404">
+        <div class="tet-decoration">🧧</div>
+        <div class="error-container">
+            <h1 class="error-number">404</h1>
+            <h2 class="error-title">Trang không tìm thấy</h2>
+            <p class="error-message">
+                Xin lỗi! Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.<br>
+                Hãy quay về trang chủ để tiếp tục đếm ngược đến Tết Nguyên Đán 2026!
+            </p>
+            <a href="/" class="home-button">
+                <span class="home-icon">🏠</span>
+                Về trang chủ
+            </a>
+        </div>
+    </div>
 </body>
 </html>

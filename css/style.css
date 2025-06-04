@@ -1,0 +1,793 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background: var(--color-background-primary);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header Styles */
+header {
+    background: var(--color-header-bg);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(220, 20, 60, 0.3);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+header h1 a {
+    color: var(--color-text-header);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--color-text-header);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Main Content */
+main {
+    padding: 2rem 0;
+}
+
+/* Countdown Section */
+.countdown-section {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
+    position: relative;
+}
+
+.countdown-section::before {
+    content: '🎊';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.countdown-section::after {
+    content: '🎋';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.countdown-section h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tet Date Display Styling */
+.tet-date-display {
+    text-align: center;
+    margin: 1.5rem 0 2rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(70, 130, 180, 0.1) 0%, rgba(46, 139, 87, 0.1) 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(70, 130, 180, 0.2);
+    box-shadow: 0 4px 15px rgba(70, 130, 180, 0.1);
+}
+
+.tet-date-display p {
+    margin: 0.5rem 0;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: linear-gradient(45deg, #4682B4, #2E8B57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tet-date-display .tet-date-solar {
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.8;
+    color: var(--color-text-secondary) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--color-text-secondary) !important;
+}
+
+/* Timer Styles */
+#countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.timer-box {
+    background: var(--color-timer-bg);
+    color: var(--color-timer-text);
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px var(--color-timer-shadow);
+    border: 3px solid var(--color-timer-border);
+    transition: all 0.3s ease;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.timer-box:hover::before {
+    left: 100%;
+}
+
+.timer-box:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 12px 35px var(--color-timer-shadow);
+}
+
+.time-value {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    font-family: var(--font-accent);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.time-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Tet Greeting */
+.tet-greeting {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 69, 0, 0.1) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 3rem 0;
+    text-align: center;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 69, 0, 0.1);
+    position: relative;
+}
+
+.tet-greeting::before {
+    content: '🧧';
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 1.5rem;
+    opacity: 0.4;
+}
+
+.tet-greeting::after {
+    content: '🏮';
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.4;
+}
+
+.tet-greeting h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tet-greeting p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+}
+
+/* Calendar Widget */
+.calendar-widget {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--color-calendar-bg);
+    border-radius: 25px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(70, 130, 180, 0.15), 0 0 25px rgba(46, 139, 87, 0.1);
+    border: 3px solid rgba(70, 130, 180, 0.2);
+    position: relative;
+}
+
+.calendar-widget::before {
+    content: '📅';
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 1.5rem;
+    opacity: 0.4;
+}
+
+.calendar-widget::after {
+    content: '🏮';
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.4;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-header button {
+    background: var(--color-button-primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+}
+
+.calendar-header button:hover {
+    background: var(--color-button-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+.calendar-header h3 {
+    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(220, 20, 60, 0.2));
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.calendar-day-header {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.8) 0%, rgba(255, 140, 0, 0.7) 100%) !important;
+    color: #8B4513 !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem;
+    padding: 1rem 0.5rem !important;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.calendar-day-header:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 140, 0, 0.8) 100%) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.calendar-day {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.2rem 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.calendar-day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+}
+
+.calendar-day:hover {
+    background: linear-gradient(135deg, rgba(255, 248, 220, 0.9) 0%, rgba(255, 235, 205, 0.8) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.calendar-day:hover::before {
+    opacity: 1;
+}
+
+.calendar-day.selected {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.8) 0%, rgba(220, 20, 60, 0.7) 100%) !important;
+    color: white !important;
+    transform: scale(1.08);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), 0 0 20px rgba(220, 20, 60, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-day .solar-date {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #8B4513;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+.calendar-day .lunar-date {
+    font-size: 0.75rem;
+    color: #CD853F;
+    font-weight: 500;
+    opacity: 0.8;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.calendar-day.selected .solar-date {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 700;
+}
+
+.calendar-day.selected .lunar-date {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    opacity: 1;
+}
+
+.calendar-day.other-month {
+    color: #bbb;
+    opacity: 0.5;
+}
+
+.lunar-info {
+    max-width: 650px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(255, 248, 220, 0.95) 0%, rgba(255, 235, 205, 0.9) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15), 0 5px 15px rgba(220, 20, 60, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    text-align: center;
+    position: relative;
+}
+
+.lunar-info::before {
+    content: '🧧';
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.4;
+}
+
+.lunar-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lunar-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+}
+
+/* Features Section */
+.features-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--color-background-secondary) 0%, var(--color-background-accent) 100%);
+}
+
+.features-section h2 {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(220, 20, 60, 0.2);
+    border-color: var(--color-accent-primary);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.feature-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.feature-card p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* App Section */
+.app-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
+}
+
+.app-section h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.app-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.app-info h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.app-info p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--color-button-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+}
+
+.download-btn:hover {
+    background: var(--color-button-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.download-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Footer */
+footer {
+    background: var(--color-footer-bg);
+    color: var(--color-text-header);
+    padding: 3rem 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #FFD700, #FF4500, #DC143C, #B22222, #8B0000, #B22222, #DC143C, #FF4500, #FFD700);
+    background-size: 200% 100%;
+    animation: borderFlow 3s linear infinite;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+footer::after {
+    content: '🧧 💰';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #FFD700, #FF4500, #DC143C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-section ul li a:hover {
+    color: #FFD700;
+    transform: translateX(5px);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD700 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.social-links a:hover {
+    background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+    transform: translateY(-3px) scale(1.1);
+    border-color: #FFD700;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .countdown-section h2 {
+        font-size: 2rem;
+    }
+    
+    #countdown-timer {
+        gap: 1rem;
+    }
+    
+    .timer-box {
+        min-width: 100px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .app-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .download-buttons {
+        justify-content: center;
+    }
+}

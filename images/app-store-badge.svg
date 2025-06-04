@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120" height="40" viewBox="0 0 120 40">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#007aff"/>
+      <stop offset="1" stop-color="#007aff"/>
+    </linearGradient>
+  </defs>
+  <g id="App_Store_Badge" data-name="App Store Badge" transform="translate(-10 -10)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="120" height="40" rx="2" transform="translate(10 10)" fill="#000"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(10 10)">
+      <path id="Path_1" data-name="Path 1" d="M30.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_2" data-name="Path 2" d="M20.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_3" data-name="Path 3" d="M10.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_4" data-name="Path 4" d="M0,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_5" data-name="Path 5" d="M40.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_6" data-name="Path 6" d="M50.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_7" data-name="Path 7" d="M60.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_8" data-name="Path 8" d="M70.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_9" data-name="Path 9" d="M80.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_10" data-name="Path 10" d="M90.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_11" data-name="Path 11" d="M100.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <path id="Path_12" data-name="Path 12" d="M110.5,17.5c0-2.5,1.5-4,3.5-4.5,0.5-0.5,1.5-0.5,2.5-0.5,2.5,0,4.5,1.5,5,4,0,0.5,0,1.5-0.5,2.5-0.5,0.5-1.5,0.5-2.5,0.5-2.5,0-4.5-1.5-5-4Z" transform="translate(-10 -10)" fill="#fff"/>
+      <text id="Download_on_the" data-name="Download on the" transform="translate(40 18)" fill="#fff" font-size="8" font-family="Roboto-Medium, Roboto" font-weight="500"><tspan x="0" y="0">Download on the</tspan></text>
+      <text id="App_Store" data-name="App Store" transform="translate(40 30)" fill="#fff" font-size="14" font-family="Roboto-Medium, Roboto" font-weight="500"><tspan x="0" y="0">App Store</tspan></text>
+    </g>
+  </g>
+</svg>

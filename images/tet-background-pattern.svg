@@ -1,0 +1,23 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="300" height="300" fill="#FFF8E1"/>
+
+<!-- Peach Blossom -->
+<g opacity="0.3">
+<path d="M150 50 C160 30, 180 30, 190 50 C210 60, 210 80, 190 90 C180 110, 160 110, 150 90 C130 80, 130 60, 150 50Z" fill="#FFCDD2"/>
+<path d="M150 50 C160 30, 180 30, 190 50 C210 60, 210 80, 190 90 C180 110, 160 110, 150 90 C130 80, 130 60, 150 50Z" stroke="#E57373" stroke-width="2"/>
+</g>
+
+<!-- Kumquat Leaf -->
+<g opacity="0.3" transform="translate(50 150)">
+<path d="M50 0 C60 20, 60 40, 50 60 C40 80, 20 80, 10 60 C0 40, 0 20, 10 0 C20 -20, 40 -20, 50 0Z" fill="#A5D6A7"/>
+<path d="M50 0 C60 20, 60 40, 50 60 C40 80, 20 80, 10 60 C0 40, 0 20, 10 0 C20 -20, 40 -20, 50 0Z" stroke="#66BB6A" stroke-width="2"/>
+</g>
+
+<!-- Firecracker -->
+<g opacity="0.3" transform="translate(200 200)">
+<rect x="0" y="0" width="20" height="60" rx="5" fill="#EF5350"/>
+<rect x="5" y="-10" width="10" height="15" rx="2" fill="#FFEB3B"/>
+<circle cx="10" cy="-10" r="3" fill="#FFC107"/>
+</g>
+
+</svg>
