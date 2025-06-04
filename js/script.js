@@ -90,6 +90,7 @@ function generateCalendar(date) {
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
     const startingDayOfWeek = firstDay.getDay();
+    const today = new Date();
     
     const calendarGrid = document.getElementById('calendar-grid');
     const currentMonthElement = document.getElementById('current-month');
@@ -126,6 +127,24 @@ function generateCalendar(date) {
         const dayElement = document.createElement('div');
         dayElement.className = 'calendar-day';
         
+        const currentDate = new Date(year, month, day);
+        
+        // Check if this is today
+        const isToday = currentDate.toDateString() === today.toDateString();
+        
+        // Check if this is a Tet date
+        const isTetDate = Object.values(tetDates).some(tetDate => 
+            currentDate.toDateString() === tetDate.toDateString()
+        );
+        
+        // Add special classes
+        if (isToday) {
+            dayElement.classList.add('today');
+        }
+        if (isTetDate) {
+            dayElement.classList.add('tet-date');
+        }
+        
         // Create solar date element
         const solarDate = document.createElement('div');
         solarDate.className = 'solar-date';
@@ -136,7 +155,6 @@ function generateCalendar(date) {
         lunarDate.className = 'lunar-date';
         
         // Calculate lunar date (simplified calculation)
-        const currentDate = new Date(year, month, day);
         const lunarInfo = calculateLunarDate(currentDate);
         
         // Format lunar date display
@@ -144,6 +162,14 @@ function generateCalendar(date) {
             lunarDate.textContent = `${lunarInfo.day}/${lunarInfo.month}`;
         } else {
             lunarDate.textContent = lunarInfo.day;
+        }
+        
+        // Add Tet indicator if it's a Tet date
+        if (isTetDate) {
+            const tetIndicator = document.createElement('div');
+            tetIndicator.className = 'tet-indicator';
+            tetIndicator.textContent = '🧧';
+            dayElement.appendChild(tetIndicator);
         }
         
         dayElement.appendChild(solarDate);
@@ -163,6 +189,16 @@ function generateCalendar(date) {
         });
         
         calendarGrid.appendChild(dayElement);
+    }
+    
+    // Auto-select today if it's in the current month
+    if (year === today.getFullYear() && month === today.getMonth()) {
+        const todayElement = document.querySelector('.calendar-day.today');
+        if (todayElement && !selectedDate) {
+            todayElement.classList.add('selected');
+            selectedDate = new Date(today);
+            updateLunarInfo(selectedDate);
+        }
     }
 }
 
@@ -248,7 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update Tet date display
     updateTetDateDisplay();
     
-    // Initialize calendar
+    // Initialize calendar with today's date
+    const today = new Date();
+    currentCalendarDate = new Date(today.getFullYear(), today.getMonth(), 1);
     generateCalendar(currentCalendarDate);
     
     // Add event listeners for calendar navigation
