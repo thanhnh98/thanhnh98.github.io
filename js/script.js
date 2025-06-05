@@ -866,7 +866,7 @@ function initializeLogoScrollToTop() {
             
             // Check if we're on the home page
             const currentPath = window.location.pathname;
-            const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
+            const isHomePage = currentPath === '/' || currentPath === '/index' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
             
             if (isHomePage) {
                 // If on home page, smooth scroll to top
@@ -875,8 +875,8 @@ function initializeLogoScrollToTop() {
                     behavior: 'smooth'
                 });
             } else {
-                // If on other page, navigate to home page
-                window.location.href = 'index.html';
+                // If on other page, navigate to home page with clean URL
+                window.location.href = '/';
             }
         });
         // Add cursor pointer style

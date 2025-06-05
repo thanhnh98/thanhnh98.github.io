@@ -5,9 +5,10 @@ class Router {
     constructor() {
         this.routes = {
             '/': 'index.html',
-            '/index.html': 'index.html',
-            '/mon-an-tet.html': 'mon-an-tet.html',
-            '/mon-an-tet': 'mon-an-tet.html'
+            '/index': 'index.html',
+            '/index.html': 'index.html', // Keep for backward compatibility
+            '/mon-an-tet': 'mon-an-tet.html',
+            '/mon-an-tet.html': 'mon-an-tet.html' // Keep for backward compatibility
         };
         
         this.init();
@@ -19,11 +20,29 @@ class Router {
             this.handleRoute(window.location.pathname);
         });
         
-        // Handle initial page load
+        // Handle initial page load and clean URL
         this.handleRoute(window.location.pathname);
+        this.cleanUrl();
         
         // Handle navigation clicks
         this.setupNavigationHandlers();
+    }
+    
+    cleanUrl() {
+        const currentPath = window.location.pathname;
+        let cleanPath = currentPath;
+        
+        // Remove .html extension and redirect to clean URL
+        if (currentPath.endsWith('.html')) {
+            if (currentPath === '/index.html') {
+                cleanPath = '/';
+            } else {
+                cleanPath = currentPath.replace('.html', '');
+            }
+            
+            // Update URL without page reload
+            history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
     }
     
     handleRoute(path) {
@@ -32,7 +51,13 @@ class Router {
         
         // Check if route exists
         if (this.routes[cleanPath]) {
-            // Route exists, no need to redirect if already on correct page
+            // Route exists, load the corresponding HTML file if needed
+            const targetFile = this.routes[cleanPath];
+            const currentFile = this.getCurrentPageFile();
+            
+            if (targetFile !== currentFile) {
+                window.location.href = targetFile + window.location.search + window.location.hash;
+            }
             return;
         } else {
             // Route doesn't exist, show 404
@@ -40,19 +65,30 @@ class Router {
         }
     }
     
-    show404() {
-        // Only redirect to 404 if not already on 404 page
-        if (!window.location.pathname.includes('404.html')) {
-            window.location.href = '/404.html';
+    getCurrentPageFile() {
+        const path = window.location.pathname;
+        if (path === '/' || path === '/index' || path === '/index.html') {
+            return 'index.html';
         }
+        return path.split('/').pop() || 'index.html';
     }
     
     navigate(path) {
-        // Update browser history
-        history.pushState(null, '', path);
+        // Clean the path (remove .html extension)
+        let cleanPath = path;
+        if (path.endsWith('.html')) {
+            if (path === '/index.html' || path === 'index.html') {
+                cleanPath = '/';
+            } else {
+                cleanPath = path.replace('.html', '');
+            }
+        }
+        
+        // Update browser history with clean URL
+        history.pushState(null, '', cleanPath);
         
         // Handle the route
-        this.handleRoute(path);
+        this.handleRoute(cleanPath);
     }
     
     setupNavigationHandlers() {
@@ -73,9 +109,10 @@ class Router {
                     return; // Let default behavior handle anchor links
                 }
                 
-                // Handle page navigation
-                if (href.includes('.html')) {
-                    // Let default behavior handle HTML file navigation
+                // Handle page navigation with clean URLs
+                if (href.includes('.html') && !href.includes('#')) {
+                    e.preventDefault();
+                    this.navigate(href);
                     return;
                 }
             }
