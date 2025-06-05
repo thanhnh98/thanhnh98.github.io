@@ -3,7 +3,7 @@
 A comprehensive, responsive website featuring countdown timer to Vietnamese Lunar New Year (Tết) 2026, lunar calendar, and traditional Tết features.
 
 ## Features
-
+- Run Code: python3 -m http.server 8000/npx http-server -p 8000 --cors
 - **Real-time Countdown Timer**: Displays days, hours, minutes, and seconds until Tết 2026
 - **Lunar Calendar**: Interactive calendar with lunar date information
 - **Tết Features**: Lucky wheel, traditional foods, and cultural information
