@@ -8,8 +8,13 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="assets/favicon/favicon.png">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
         .error-404 {
-            min-height: 100vh;
+            min-height: calc(100vh - 80px); /* Adjust for header height */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -48,9 +53,9 @@
         }
         
         .error-message {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--color-text-secondary);
-            margin: 1.5rem 0 2rem;
+            margin: 1.5rem 0;
             line-height: 1.6;
         }
         
@@ -66,32 +71,46 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .home-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-            color: white;
-        }
-        
-        .home-icon {
-            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
         .tet-decoration {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
             font-size: 3rem;
-            opacity: 0.3;
             animation: float 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        .tet-decoration:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .tet-decoration:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .tet-decoration:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 2s;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
         
         @media (max-width: 768px) {
@@ -101,6 +120,10 @@
             
             .error-title {
                 font-size: 1.5rem;
+            }
+            
+            .error-message {
+                font-size: 1rem;
             }
             
             .error-container {
@@ -115,8 +138,13 @@
     </style>
 </head>
 <body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+    
     <div class="error-404">
         <div class="tet-decoration">🧧</div>
+        <div class="tet-decoration">🎋</div>
+        <div class="tet-decoration">🏮</div>
         <div class="error-container">
             <h1 class="error-number">404</h1>
             <h2 class="error-title">Trang không tìm thấy</h2>
@@ -139,13 +167,21 @@
             </div>
         </div>
     </div>
-    <!-- Add before closing body tag -->
+    
+    <!-- Scripts -->
+    <script src="js/header-loader.js"></script>
     <script src="js/navigation.js"></script>
     <script>
-        // Handle direct URL access to non-existent routes
-        document.addEventListener('DOMContentLoaded', function() {
-            // If this is a direct access to a non-existent route,
-            // the 404 page will be shown automatically by GitHub Pages
+        // Load header and initialize navigation
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load header
+            const headerLoader = new HeaderLoader();
+            await headerLoader.loadHeader();
+            
+            // Initialize navigation
+            const router = new Router();
+            const navMenu = new NavigationMenu();
+            
             console.log('404 page loaded for:', window.location.pathname);
         });
     </script>
