@@ -85,6 +85,12 @@ nav a:hover {
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
+nav a.active {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    font-weight: 700;
+}
+
 /* Main Content */
 main {
     padding: 2rem 0;
@@ -1237,6 +1243,35 @@ footer::after {
 }
 
 /* Responsive Design */
+/* Desktop styles */
+@media (min-width: 1024px) {
+    nav ul {
+        gap: 2rem;
+    }
+    
+    nav a {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    header .container {
+        padding: 0 3rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+    nav ul {
+        gap: 1.5rem;
+    }
+    
+    nav a {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;

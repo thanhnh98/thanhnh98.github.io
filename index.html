@@ -58,23 +58,8 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-brand">
-                <img src="assets/images/ic_app.webp" alt="Sắp Tết 2026" class="app-icon">
-                <h1><a href="#">Sắp Tết 2026</a></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#countdown">🎊 Đếm Ngược</a></li>
-                    <li><a href="#events">🎉 Sự Kiện</a></li>
-                    <li><a href="#calendar">📅 Lịch Âm</a></li>
-                    <li><a href="#features">🎋 Tính Năng</a></li>
-                    <li><a href="#app">📱 Ứng Dụng</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-container"></div>
 
     <!-- Music Player -->
     <!-- <div class="music-player">
@@ -270,7 +255,7 @@
                         <h3>Lì Xì May Mắn</h3>
                         <p>Tính năng quay số may mắn, nhận lì xì và lời chúc Tết.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" onclick="window.location.href='mon-an-tet.html'" style="cursor: pointer;">
                         <div class="feature-icon">🍑</div>
                         <h3>Món Ăn Tết</h3>
                         <p>Khám phá các món ăn truyền thống và ý nghĩa của chúng trong dịp Tết.</p>
@@ -366,6 +351,8 @@
 
     <script src="js/resources.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/header-loader.js"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
