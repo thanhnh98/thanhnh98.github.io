@@ -40,6 +40,9 @@ class HeaderLoader {
             // Add navigation event listeners
             this.addNavigationListeners();
             
+            // Add mobile menu toggle listener
+            this.addMobileMenuListener();
+            
         } catch (error) {
             console.error('Error loading header:', error);
             // Fallback: keep existing header if loading fails
@@ -60,11 +63,36 @@ class HeaderLoader {
         const navLinks = document.querySelectorAll('nav a');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                // Update active state immediately for better UX
+                // Remove active class from all links
                 navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
+                // Add active class to clicked link
+                e.target.classList.add('active');
+                
+                // Close mobile menu on link click
+                const nav = document.querySelector('nav');
+                if (nav) {
+                    nav.classList.remove('mobile-menu-open');
+                }
             });
         });
+    }
+    
+    addMobileMenuListener() {
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        if (mobileToggle && nav) {
+            mobileToggle.addEventListener('click', () => {
+                nav.classList.toggle('mobile-menu-open');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('header') && nav.classList.contains('mobile-menu-open')) {
+                    nav.classList.remove('mobile-menu-open');
+                }
+            });
+        }
     }
 
     // Method to update active state when hash changes

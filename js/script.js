@@ -857,41 +857,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Logo click to scroll to top functionality
 function initializeLogoScrollToTop() {
-    // Add click event to logo image
-    const logoImg = document.querySelector('.header-brand .app-icon');
-    if (logoImg) {
-        logoImg.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        // Add cursor pointer style
-        logoImg.style.cursor = 'pointer';
-    }
-    
-    // Add click event to logo text/link
-    const logoLink = document.querySelector('.header-brand h1 a');
-    if (logoLink) {
-        logoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-    
     // Add click event to entire header brand area
     const headerBrand = document.querySelector('.header-brand');
     if (headerBrand) {
         headerBrand.addEventListener('click', function(e) {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            e.stopPropagation();
+            
+            // Check if we're on the home page
+            const currentPath = window.location.pathname;
+            const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
+            
+            if (isHomePage) {
+                // If on home page, smooth scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                // If on other page, navigate to home page
+                window.location.href = 'index.html';
+            }
         });
         // Add cursor pointer style
         headerBrand.style.cursor = 'pointer';

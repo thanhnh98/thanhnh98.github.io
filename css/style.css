@@ -24,30 +24,63 @@ body {
 }
 
 /* Header Styles */
+#header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
 header {
     background: var(--color-header-bg);
     padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    position: relative;
+    width: 100%;
     box-shadow: 0 2px 20px rgba(220, 20, 60, 0.3);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text-header);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure body has top padding to account for fixed header */
+body {
+    padding-top: 80px;
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 4rem;
 }
 
 .header-brand {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex: 1;
+    min-width: none;
 }
 
 .app-icon {
-    width: 50px;
-    height: 50px;
+    width: 64px;
+    height: 64px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
@@ -59,6 +92,7 @@ header h1 a {
     font-size: 2.5rem;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
 }
 
 nav ul {
@@ -77,6 +111,8 @@ nav a {
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    display: inline-block;
+    white-space: nowrap;
 }
 
 nav a:hover {
@@ -1278,14 +1314,49 @@ footer::after {
     }
     
     header .container {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-header-bg);
+        box-shadow: 0 4px 20px rgba(220, 20, 60, 0.3);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    nav.mobile-menu-open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
     }
     
     nav ul {
         flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+        gap: 0;
+        padding: 1rem 0;
+    }
+    
+    nav a {
+        display: block;
+        padding: 1rem 2rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    nav a:last-child {
+        border-bottom: none;
     }
     
     .countdown-section h2 {

@@ -140,5 +140,15 @@
             </div>
         </div>
     </div>
+    <!-- Add before closing body tag -->
+    <script src="js/navigation.js"></script>
+    <script>
+        // Handle direct URL access to non-existent routes
+        document.addEventListener('DOMContentLoaded', function() {
+            // If this is a direct access to a non-existent route,
+            // the 404 page will be shown automatically by GitHub Pages
+            console.log('404 page loaded for:', window.location.pathname);
+        });
+    </script>
 </body>
 </html>
