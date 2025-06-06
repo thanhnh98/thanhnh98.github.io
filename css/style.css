@@ -93,6 +93,8 @@ header h1 a {
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 nav ul {
@@ -138,6 +140,218 @@ main {
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 50%, #ffa8a8 100%);
     position: relative;
     overflow: hidden;
+}
+
+/* Games Section */
+.games-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.games-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="20">🎮</text></svg>') repeat;
+    opacity: 0.1;
+    animation: float 20s ease-in-out infinite;
+}
+
+.games-section h2 {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: var(--font-heading);
+}
+
+.games-carousel-container {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.games-carousel-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.games-carousel-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.games-carousel-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.games-carousel-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.games-carousel {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    width: max-content;
+    min-width: 100%;
+}
+
+.games-section .game-item {
+    min-width: 320px;
+    max-width: 320px;
+    height: 280px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.games-section .game-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.games-section .game-item:hover::before {
+    left: 100%;
+}
+
+.games-section .game-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.games-section .game-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+
+.games-section .game-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.games-section .game-item:hover .game-avatar {
+    transform: scale(1.1);
+}
+
+.games-section .game-item:hover .game-avatar-img {
+    transform: scale(1.05);
+}
+
+.games-section .game-info {
+    flex: 1;
+    width: 100%;
+}
+
+.games-section .game-info h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.games-section .game-info p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.games-section .game-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.games-section .game-status::before {
+    content: '🎯';
+    font-size: 1rem;
+}
+
+.games-section .game-item:hover .game-status {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.games-carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.games-carousel-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.games-carousel-btn:hover {
+    background: white;
+    color: #667eea;
+    transform: scale(1.1);
 }
 
 .events-section::before {
@@ -1317,10 +1531,30 @@ footer::after {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        gap: 1rem;
+    }
+    
+    .header-brand {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+    }
+    
+    .app-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    header h1 a {
+        font-size: 1.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .mobile-menu-toggle {
         display: block;
+        flex-shrink: 0;
     }
     
     nav {
@@ -1398,6 +1632,63 @@ footer::after {
 
     .author-bottom {
         color: #8B0000;
+    }
+    
+    /* Games Section Mobile */
+    .games-section {
+        padding: 3rem 0;
+    }
+    
+    .games-section h2 {
+        font-size: 2rem;
+    }
+    
+    .games-carousel-container {
+        border-radius: 15px;
+        margin: 0 1rem;
+    }
+    
+    .games-carousel {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .games-section .game-item {
+        min-width: 280px;
+        max-width: 280px;
+        height: 260px;
+        padding: 1.5rem;
+    }
+    
+    .games-section .game-avatar {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 0.8rem;
+    }
+    
+    .games-section .game-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .games-section .game-info p {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .games-section .game-status {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .games-carousel-controls {
+        margin-top: 1.5rem;
+    }
+    
+    .games-carousel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
     }
 }
 

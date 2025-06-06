@@ -8,7 +8,9 @@ class Router {
             '/index': 'index.html',
             '/index.html': 'index.html', // Keep for backward compatibility
             '/mon-an-tet': 'mon-an-tet.html',
-            '/mon-an-tet.html': 'mon-an-tet.html' // Keep for backward compatibility
+            '/mon-an-tet.html': 'mon-an-tet.html', // Keep for backward compatibility
+            '/tro-choi-tet': 'tro-choi-tet.html',
+            '/tro-choi-tet.html': 'tro-choi-tet.html' // Keep for backward compatibility
         };
         
         this.init();
@@ -453,3 +455,6 @@ navigationStyles.textContent = `
 `;
 
 document.head.appendChild(navigationStyles);
+
+// Initialize router
+const router = new Router();

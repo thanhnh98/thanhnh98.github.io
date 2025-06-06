@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò Chơi Tết - Game Nối Chữ | Sắp Tết 2026</title>
+    <meta name="description" content="🎮 Chơi game Nối Chữ Tết cùng bạn bè! Thử thách trí tuệ với từ vựng tiếng Việt trong không khí Tết Nguyên Đán. Game miễn phí, vui nhộn và bổ ích.">
+    <meta name="keywords" content="game nối chữ, trò chơi Tết, game Việt Nam, từ vựng tiếng Việt, game online, Tết 2026">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saptet.vn/tro-choi-tet">
+    <meta property="og:title" content="Trò Chơi Tết - Game Nối Chữ | Sắp Tết 2026">
+    <meta property="og:description" content="🎮 Chơi game Nối Chữ Tết cùng bạn bè! Thử thách trí tuệ với từ vựng tiếng Việt trong không khí Tết Nguyên Đán.">
+    <meta property="og:image" content="https://saptet.vn/android-chrome-512x512.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/game.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3395045728500314" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-container"></div>
+
+    <main>
+        <section class="game-hero">
+            <div class="container">
+                <div class="game-header">
+                    <h1>🎮 Trò Chơi Tết</h1>
+                    <p class="game-subtitle">Khám phá những trò chơi truyền thống và hiện đại trong không khí Tết Nguyên Đán!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="games-overview">
+            <div class="container">
+                <h2>🎯 Trò Chơi Tết</h2>
+                <div class="games-grid">
+                    <div class="game-item active" data-game="noi-chu" onclick="scrollToGame()">
+                        <div class="game-avatar">
+                            <img src="assets/images/img_word_game.png" alt="Game Nối Chữ" class="game-avatar-img">
+                        </div>
+                        <h3>Nối Chữ</h3>
+                        <p>Thử thách trí tuệ với từ vựng tiếng Việt trong không khí Tết Nguyên Đán</p>
+                        <span class="game-status">Chơi ngay</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-container" id="noi-chu-game">
+            <div class="container">
+                <div class="game-section-header">
+                    <h2>🔤 Trò Chơi Nối Chữ</h2>
+                    <p>Thử thách trí tuệ với từ vựng tiếng Việt trong không khí Tết Nguyên Đán!</p>
+                </div>
+                <div class="game-board">
+                    <!-- Game Stats -->
+                    <div class="game-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Điểm số:</span>
+                            <span id="player-score" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Máy:</span>
+                            <span id="computer-score" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Lượt:</span>
+                            <span id="current-turn" class="stat-value">Bạn</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Thời gian:</span>
+                            <span id="timer-display" class="stat-value timer">60s</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sai:</span>
+                            <span id="mistakes-display" class="stat-value mistakes">0/3</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Gợi ý:</span>
+                            <span id="hints-display" class="stat-value hints">3/3</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Kỷ lục:</span>
+                            <span id="highest-score" class="stat-value record">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Game Area -->
+                    <div class="game-area">
+                        <div class="word-chain">
+                            <h3>Chuỗi từ hiện tại:</h3>
+                            <div id="word-chain-display" class="word-chain-list">
+                                <span class="start-word">Bắt đầu game để chơi!</span>
+                            </div>
+                        </div>
+
+                        <div class="current-word-section">
+                            <div class="current-word-display">
+                                <h4>Từ hiện tại:</h4>
+                                <div id="current-word" class="current-word">---</div>
+                                <div class="word-info">
+                                    <span>Từ tiếp theo phải bắt đầu bằng từ: </span>
+                                    <span id="next-word" class="next-word">---</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-section">
+                            <div class="input-group">
+                                <input type="text" id="word-input" placeholder="Nhập từ của bạn..." autocomplete="off">
+                                <button id="submit-word" class="submit-btn">Gửi</button>
+                            </div>
+                            <div class="game-controls">
+                                <button id="start-game" class="control-btn start-btn">🎮 Bắt đầu game</button>
+                                <button id="reset-game" class="control-btn reset-btn">🔄 Chơi lại</button>
+                                <button id="hint-btn" class="control-btn hint-btn">💡 Gợi ý</button>
+                                <button id="history-btn" class="control-btn history-btn">📊 Lịch sử</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Game Messages -->
+                    <div id="game-messages" class="game-messages"></div>
+
+                    <!-- Computer Thinking Animation -->
+                    <div id="computer-thinking" class="computer-thinking" style="display: none;">
+                        <div class="thinking-animation">
+                            <span>🤖</span>
+                            <span>Máy đang suy nghĩ</span>
+                            <div class="dots">
+                                <span>.</span>
+                                <span>.</span>
+                                <span>.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Rules -->
+                <div class="game-rules">
+                    <h3>📋 Luật chơi</h3>
+                    <ul>
+                        <li>🎯 Mục tiêu: Nối từ sao cho từ cuối của cụm từ trước là từ đầu của cụm từ sau</li>
+                        <li>⏰ Bạn có 60 giây để nghĩ ra từ tiếp theo</li>
+                        <li>🚫 Không được lặp lại từ đã sử dụng</li>
+                        <li>✅ Từ phải có trong từ điển tiếng Việt</li>
+                        <li>❌ Bạn được phép sai tối đa 3 lần</li>
+                        <li>🎮 Game bắt đầu khi bạn nhập từ đầu tiên</li>
+                        <li>🏆 Hết thời gian hoặc sai quá 3 lần sẽ thua</li>
+                        <li>💯 Mỗi từ hợp lệ được 10 điểm</li>
+                        <li>💡 Bạn có 3 lượt gợi ý miễn phí</li>
+                    </ul>
+                </div>
+                
+                <!-- Game History -->
+                <div class="game-history-section">
+                    <div id="game-history" class="game-history">
+                        <p>Chưa có lịch sử game nào.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- History Popup -->
+    <div id="history-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>📊 Lịch sử trò chơi</h3>
+                <button id="close-history" class="close-btn">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div id="history-list" class="history-list">
+                    <p>Chưa có lịch sử game nào.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-container"></div>
+
+    <!-- Game Scripts -->
+    <script src="js/header-loader.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/word-chain-game.js"></script>
+    
+    <script>
+        function scrollToGame() {
+            const gameContainer = document.getElementById('noi-chu-game');
+            if (gameContainer) {
+                gameContainer.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    </script>
+</body>
+</html>

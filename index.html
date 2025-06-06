@@ -181,6 +181,32 @@
             </div>
         </section>
 
+        <!-- Games Section -->
+        <section id="games" class="games-section">
+            <div class="container">
+                <h2>🎮 Trò Chơi Tết</h2>
+                <div class="games-carousel-container">
+                    <div class="games-carousel">
+                        <div class="game-item" onclick="window.location.href='tro-choi-tet.html#noi-chu-game'">
+                            <div class="game-avatar">
+                                <img src="assets/images/img_word_game.png" alt="Nối Chữ" class="game-avatar-img">
+                            </div>
+                            <div class="game-info">
+                                <h3>Nối Chữ</h3>
+                                <p>Trò chơi nối từ truyền thống với những câu đố thú vị về Tết</p>
+                            </div>
+                            <button class="game-status">Chơi ngay</button>
+                        </div>
+                        <!-- Có thể thêm nhiều game khác ở đây -->
+                    </div>
+                </div>
+                <div class="games-carousel-controls">
+                    <button class="games-carousel-btn" onclick="scrollGamesCarousel('left')">‹</button>
+                    <button class="games-carousel-btn" onclick="scrollGamesCarousel('right')">›</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Event Countdown Modal -->
         <div id="event-modal" class="event-modal">
             <div class="modal-content">
@@ -353,6 +379,7 @@
     <script src="js/script.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
+    <script src="js/games-carousel.js"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
