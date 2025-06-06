@@ -18,7 +18,8 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: none;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -65,16 +66,18 @@ body {
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 4rem;
+    padding-left: 5%;
+    padding-right: 2rem;
 }
 
 .header-brand {
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex: 1;
+    flex: none;
     min-width: none;
 }
 
@@ -95,6 +98,10 @@ header h1 a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+nav {
+    margin-left: auto;
 }
 
 nav ul {
@@ -1532,6 +1539,7 @@ footer::after {
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        padding-left: 1rem;
     }
     
     .header-brand {
@@ -1558,6 +1566,7 @@ footer::after {
     }
     
     nav {
+        margin-left: 0;
         position: absolute;
         top: 100%;
         left: 0;
