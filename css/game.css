@@ -293,6 +293,29 @@
     color: white;
 }
 
+.sound-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: relative;
+}
+
+.sound-btn.muted {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    opacity: 0.7;
+}
+
+.sound-btn.muted::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 80%;
+    background: #dc3545;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 1px;
+}
+
 .control-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -849,15 +872,17 @@
 .game-history-section {
     margin-top: 30px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     border: 2px solid #ffd93d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .game-history h4 {
-    color: #ffd93d;
+    color: #333;
     margin-bottom: 15px;
     font-size: 1.2em;
+    font-weight: 600;
 }
 
 .history-list {
@@ -866,11 +891,12 @@
 }
 
 .history-item {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     padding: 12px;
     margin-bottom: 10px;
     border-left: 4px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .history-item.player {
@@ -890,23 +916,23 @@
 
 .history-result {
     font-weight: bold;
-    color: #fff;
+    color: #333;
 }
 
 .history-date {
     font-size: 0.9em;
-    color: #ccc;
+    color: #666;
 }
 
 .history-details {
     display: flex;
     gap: 15px;
     font-size: 0.9em;
-    color: #ddd;
+    color: #555;
 }
 
 .history-details span {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
     padding: 4px 8px;
     border-radius: 5px;
 }
@@ -1003,7 +1029,8 @@
 }
 
 /* Game End Popup Styles */
-.game-popup {
+.game-popup,
+.game-end-popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -1161,5 +1188,130 @@
     
     .popup-btn {
         width: 100%;
+    }
+}
+
+/* Sound Notification Dialog Styles */
+.sound-notification-content {
+    max-width: 500px;
+    text-align: center;
+}
+
+.sound-notification-body {
+    padding: 2rem;
+}
+
+.sound-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.sound-message {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.sound-question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 2rem;
+}
+
+.sound-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.sound-control-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.enable-btn {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.disable-btn {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+}
+
+.sound-control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.dont-ask-again {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #667eea;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: #667eea;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .sound-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sound-control-btn {
+        width: 100%;
+        max-width: 250px;
     }
 }

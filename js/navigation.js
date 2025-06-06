@@ -330,6 +330,12 @@ class ErrorHandler {
 
 // Initialize all navigation components when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Prevent multiple initialization
+    if (window.navigationInitialized) {
+        return;
+    }
+    window.navigationInitialized = true;
+    
     // Only initialize router on pages that need it
     if (!window.location.pathname.includes('404.html')) {
         new Router();
@@ -455,6 +461,3 @@ navigationStyles.textContent = `
 `;
 
 document.head.appendChild(navigationStyles);
-
-// Initialize router
-const router = new Router();

@@ -330,6 +330,17 @@ function initializeMusicPlayer() {
     }
 }
 
+// Navigation helper functions
+function navigateToGame(url) {
+    // Use direct navigation for game pages to avoid router conflicts
+    window.location.href = url;
+}
+
+function navigateToPage(url) {
+    // Use direct navigation for pages to avoid router conflicts
+    window.location.href = url;
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Start countdown
@@ -370,6 +381,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize events carousel
     initializeEventsCarousel();
 });
+
+// Make navigation functions globally available
+window.navigateToGame = navigateToGame;
+window.navigateToPage = navigateToPage;
 
 // Function to get next occurrence of an event (this year or next year)
 function getNextEventDate(month, day, currentYear = null) {

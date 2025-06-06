@@ -33,13 +33,17 @@ class WordChainGame {
         this.sounds.background.loop = true;
         this.sounds.background.volume = 0.3;
         
+        // Sound settings
+        this.soundEnabled = this.loadSoundSettings();
+        this.soundNotificationShown = this.loadSoundNotificationSettings();
+        
         this.loadWords();
         this.initializeElements();
         this.setupEventListeners();
         this.setupBeforeUnloadWarning();
         
-        // Play background music when entering the game page
-        this.playBackgroundMusic();
+        // Show sound notification if not shown before
+        this.checkAndShowSoundNotification();
     }
     
     async loadWords() {
@@ -81,7 +85,12 @@ class WordChainGame {
             gameHistoryDisplay: document.getElementById('game-history'),
             historyPopup: document.getElementById('history-popup'),
             historyList: document.getElementById('history-list'),
-            closeHistoryBtn: document.getElementById('close-history')
+            closeHistoryBtn: document.getElementById('close-history'),
+            soundToggleBtn: document.getElementById('sound-toggle'),
+            soundNotification: document.getElementById('sound-notification'),
+            enableSoundBtn: document.getElementById('enable-sound'),
+            disableSoundBtn: document.getElementById('disable-sound'),
+            dontAskAgainCheckbox: document.getElementById('dont-ask-again')
         };
     }
     
@@ -92,6 +101,9 @@ class WordChainGame {
         this.elements.hintBtn.addEventListener('click', () => this.showHint());
         this.elements.historyBtn.addEventListener('click', () => this.showHistoryPopup());
         this.elements.closeHistoryBtn.addEventListener('click', () => this.hideHistoryPopup());
+        this.elements.soundToggleBtn.addEventListener('click', () => this.toggleSound());
+        this.elements.enableSoundBtn.addEventListener('click', () => this.enableSound());
+        this.elements.disableSoundBtn.addEventListener('click', () => this.disableSound());
         
         this.elements.wordInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -154,10 +166,12 @@ class WordChainGame {
     }
     
     playBackgroundMusic() {
-        try {
-            this.sounds.background.play();
-        } catch (error) {
-            console.log('Background music error:', error);
+        if (this.soundEnabled) {
+            try {
+                this.sounds.background.play();
+            } catch (error) {
+                console.log('Background music error:', error);
+            }
         }
     }
     
@@ -540,11 +554,12 @@ class WordChainGame {
         popup.className = 'game-end-popup';
         
         let title, message, emoji, reasonText = '';
+        let contentClass = 'popup-content';
         if (winner === 'player') {
             title = 'Chúc Mừng!';
             message = 'Bạn đã thắng!';
             emoji = '🎉';
-            popup.classList.add('win');
+            contentClass += ' win';
             if (reason === 'no_words') {
                 reasonText = 'Máy không tìm được từ nào!';
             }
@@ -552,7 +567,7 @@ class WordChainGame {
             title = 'Game Over!';
             message = 'Bạn đã thua!';
             emoji = '😔';
-            popup.classList.add('lose');
+            contentClass += ' lose';
             if (reason === 'timeout') {
                 reasonText = 'Hết thời gian!';
             } else if (reason === 'mistakes') {
@@ -567,7 +582,7 @@ class WordChainGame {
         }
         
         popup.innerHTML = `
-            <div class="popup-content">
+            <div class="${contentClass}">
                 <div class="popup-emoji">${emoji}</div>
                 <h2>${title}</h2>
                 <p>${message}</p>
@@ -803,6 +818,95 @@ class WordChainGame {
                 popup.parentNode.removeChild(popup);
             }
         }, 5000);
+    }
+    
+    // Sound management methods
+    loadSoundSettings() {
+        const saved = localStorage.getItem('wordChainSoundEnabled');
+        return saved !== null ? JSON.parse(saved) : true; // Default to enabled
+    }
+    
+    saveSoundSettings() {
+        localStorage.setItem('wordChainSoundEnabled', JSON.stringify(this.soundEnabled));
+    }
+    
+    loadSoundNotificationSettings() {
+        const saved = localStorage.getItem('wordChainSoundNotificationShown');
+        return saved !== null ? JSON.parse(saved) : false;
+    }
+    
+    saveSoundNotificationSettings() {
+        localStorage.setItem('wordChainSoundNotificationShown', JSON.stringify(this.soundNotificationShown));
+    }
+    
+    checkAndShowSoundNotification() {
+        if (!this.soundNotificationShown) {
+            this.showSoundNotification();
+        } else {
+            this.updateSoundButtonState();
+            if (this.soundEnabled) {
+                this.playBackgroundMusic();
+            }
+        }
+    }
+    
+    showSoundNotification() {
+        this.elements.soundNotification.style.display = 'flex';
+    }
+    
+    hideSoundNotification() {
+        this.elements.soundNotification.style.display = 'none';
+        
+        // Save notification preference if checkbox is checked
+        if (this.elements.dontAskAgainCheckbox.checked) {
+            this.soundNotificationShown = true;
+            this.saveSoundNotificationSettings();
+        }
+    }
+    
+    enableSound() {
+        this.soundEnabled = true;
+        this.saveSoundSettings();
+        this.updateSoundButtonState();
+        this.hideSoundNotification();
+        this.playBackgroundMusic();
+    }
+    
+    disableSound() {
+        this.soundEnabled = false;
+        this.saveSoundSettings();
+        this.updateSoundButtonState();
+        this.hideSoundNotification();
+        this.stopBackgroundMusic();
+    }
+    
+    toggleSound() {
+        if (this.soundEnabled) {
+            this.soundEnabled = false;
+            this.stopBackgroundMusic();
+        } else {
+            this.soundEnabled = true;
+            this.playBackgroundMusic();
+        }
+        this.saveSoundSettings();
+        this.updateSoundButtonState();
+    }
+    
+    updateSoundButtonState() {
+        if (this.soundEnabled) {
+            this.elements.soundToggleBtn.classList.remove('muted');
+            this.elements.soundToggleBtn.textContent = '🔊 Âm thanh';
+        } else {
+            this.elements.soundToggleBtn.classList.add('muted');
+            this.elements.soundToggleBtn.textContent = '🔇 Âm thanh';
+        }
+    }
+    
+    playSound(soundName) {
+        if (this.soundEnabled && this.sounds[soundName]) {
+            this.sounds[soundName].currentTime = 0;
+            this.sounds[soundName].play().catch(e => console.log('Sound play failed:', e));
+        }
     }
 }
 

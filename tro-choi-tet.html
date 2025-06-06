@@ -127,6 +127,7 @@
                                 <button id="reset-game" class="control-btn reset-btn">🔄 Chơi lại</button>
                                 <button id="hint-btn" class="control-btn hint-btn">💡 Gợi ý</button>
                                 <button id="history-btn" class="control-btn history-btn">📊 Lịch sử</button>
+                                <button id="sound-toggle" class="control-btn sound-btn">🔊 Âm thanh</button>
                             </div>
                         </div>
                     </div>
@@ -184,6 +185,33 @@
             <div class="popup-body">
                 <div id="history-list" class="history-list">
                     <p>Chưa có lịch sử game nào.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Notification Dialog -->
+    <div id="sound-notification" class="popup-overlay" style="display: none;">
+        <div class="popup-content sound-notification-content">
+            <div class="popup-header">
+                <h3>🔊 Thông báo âm thanh</h3>
+            </div>
+            <div class="popup-body">
+                <div class="sound-notification-body">
+                    <div class="sound-icon">🎵</div>
+                    <p class="sound-message">Trò chơi này có âm thanh nền và hiệu ứng âm thanh để tăng trải nghiệm chơi game.</p>
+                    <p class="sound-question">Bạn có muốn bật âm thanh không?</p>
+                    <div class="sound-controls">
+                        <button id="enable-sound" class="sound-control-btn enable-btn">🔊 Bật âm thanh</button>
+                        <button id="disable-sound" class="sound-control-btn disable-btn">🔇 Tắt âm thanh</button>
+                    </div>
+                    <div class="dont-ask-again">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="dont-ask-again">
+                            <span class="checkmark"></span>
+                            Không hỏi lại lần sau
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
