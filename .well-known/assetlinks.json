@@ -1,0 +1,12 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.thanh_nguyen.tet_count_down",
+            "sha256_cert_fingerprints": [
+                "D4:98:4C:E8:F3:25:8A:3D:7D:F9:CE:8D:CE:48:D0:7E:13:8E:2B:8A:D2:E1:47:B6:25:02:A7:5E:79:FB:00:1A"
+            ]
+        }
+    }
+]

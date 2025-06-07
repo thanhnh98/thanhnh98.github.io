@@ -1,0 +1,26 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": ["TEAMID.com.saptet.app"],
+                "components": [
+                    {
+                        "/": "*",
+                        "comment": "Matches any URL"
+                    },
+                    {
+                        "/mon-an-tet": "*",
+                        "comment": "Matches food pages"
+                    },
+                    {
+                        "/tro-choi-tet": "*",
+                        "comment": "Matches game pages"
+                    }
+                ]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": ["TEAMID.com.saptet.app"]
+    }
+}
