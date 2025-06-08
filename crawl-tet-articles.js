@@ -200,6 +200,17 @@ function updateBlogHTML(articles) {
                 <!-- Pagination -->
                 <div class="pagination">
                     <a href="https://vnexpress.net/tag/tet-co-truyen-99667" class="page-btn" target="_blank" rel="noopener noreferrer">Xem thêm bài viết về Tết ›</a>
+                </div>
+                
+                <!-- VNExpress Copyright Watermark -->
+                <div class="vnexpress-watermark">
+                    <p>
+                        <i class="fas fa-info-circle"></i>
+                        Bản quyền các bài báo được tham khảo từ 
+                        <a href="https://vnexpress.net" target="_blank" rel="noopener">
+                            <strong>VNExpress.net</strong>
+                        </a>
+                    </p>
                 </div>`;
       
       blogContent = beforeGrid + newBlogGrid + afterGrid;

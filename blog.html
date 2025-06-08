@@ -278,6 +278,17 @@
                 <div class="pagination">
                     <a href="https://vnexpress.net/tag/tet-co-truyen-99667" class="page-btn" target="_blank" rel="noopener noreferrer">Xem thêm bài viết về Tết ›</a>
                 </div>
+                
+                <!-- VNExpress Copyright Watermark -->
+                <div class="vnexpress-watermark">
+                    <p>
+                        <i class="fas fa-info-circle"></i>
+                        Bản quyền các bài báo được tham khảo từ 
+                        <a href="https://vnexpress.net" target="_blank" rel="noopener">
+                            <strong>VNExpress.net</strong>
+                        </a>
+                    </p>
+                </div>
             </div>
         </section>
     </main>
@@ -293,7 +304,7 @@
     <style>
         .blog-hero {
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            padding: 6rem 0 4rem;
+            padding: 3rem 0 3rem;
             text-align: center;
             color: white;
             position: relative;
@@ -332,7 +343,7 @@
         }
         
         .blog-content {
-            padding: 4rem 0;
+            padding: 2rem 0;
             background: var(--color-background-secondary);
         }
         
@@ -468,6 +479,51 @@
         .page-btn.active {
             background: var(--color-primary);
             color: white;
+        }
+        
+        /* VNExpress Watermark Styles */
+        .vnexpress-watermark {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--color-primary);
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .vnexpress-watermark p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .vnexpress-watermark i {
+            color: var(--color-primary);
+            font-size: 1rem;
+        }
+        
+        .vnexpress-watermark a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .vnexpress-watermark a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .vnexpress-watermark p {
+                flex-direction: column;
+                gap: 0.3rem;
+                font-size: 0.85rem;
+            }
         }
         
         @media (max-width: 768px) {
