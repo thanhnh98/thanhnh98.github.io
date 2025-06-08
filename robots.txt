@@ -1,0 +1,37 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://saptet.vn/sitemap.xml
+
+# Disallow crawling of admin or private directories if any
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all search engines to crawl the site
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# Crawl-delay (optional - set to 1 second to be respectful)
+Crawl-delay: 1

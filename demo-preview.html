@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Crawler Results - Sắp Tết Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ee5a24;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .articles {
+            padding: 2rem;
+        }
+        
+        .article-item {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .article-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .article-header {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category {
+            background: #ee5a24;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .article-content {
+            padding: 1.5rem;
+        }
+        
+        .article-summary {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ee5a24;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .article-link:hover {
+            color: #c44569;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .timestamp {
+            background: #34495e;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-family: monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎋 Demo Crawler Results</h1>
+            <p>Kết quả crawl dữ liệu từ VNExpress về Tết cổ truyền</p>
+        </div>
+        
+        <div class="timestamp">
+            Generated at: 13:44:52 8/6/2025
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Tổng bài viết</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Có mô tả đầy đủ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Links hợp lệ</div>
+            </div>
+        </div>
+        
+        <div class="articles">
+            <h2 style="margin-bottom: 1.5rem; color: #2c3e50;">📰 Danh sách bài viết</h2>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Văn Hóa</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">Vì sao mâm cỗ cúng Tết cổ truyền không có thịt bò?</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">Mâm cỗ cúng ngày Tết truyền thống có gà, heo... nhưng không có món từ thịt bò. Lý do xuất phát từ nền văn minh lúa nước.</p>
+                    <a href="https://vnexpress.net/vi-sao-mam-co-cung-tet-co-truyen-khong-co-thit-bo-4225091.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Tin Tức</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">Mai nở rộ trước Tết</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">TP HCMHơn 20 ngày trước Tết Nguyên đán nhưng nhiều vườn mai ở quận 12, TP Thủ Đức đã đồng loạt nở rộ khiến chủ vườn thiệt hại.</p>
+                    <a href="https://vnexpress.net/mai-no-ro-truoc-tet-4223002.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Tin Tức</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">Chợ chuối nhộn nhịp ngày cận Tết</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">Quảng TrịTừ 20 tháng Chạp đến 30 Tết, chợ chuối Tân Long (huyện Hướng Hoá) tấp nập người mua bán.</p>
+                    <a href="https://vnexpress.net/cho-chuoi-nhon-nhip-ngay-can-tet-4045242.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Tin Tức</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">Món may mắn ngày Tết của các nước châu Á</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">Mâm cơm ngày đầu năm mới được người dân các nước châu Á coi trọng và chăm chút, từng món ăn đều có ý nghĩa riêng.</p>
+                    <a href="https://vnexpress.net/mon-may-man-ngay-tet-cua-cac-nuoc-chau-a-4041297.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Văn Hóa</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">Người Nhật ở Mỹ níu giữ phong vị tết cổ truyền</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">Dù sống ở Mỹ, gia đình Sasaki luôn giữ thói quen cùng nhau chuẩn bị mâm cỗ tết truyền thống Nhật Bản trong hơn một thế kỷ qua.</p>
+                    <a href="https://vnexpress.net/nguoi-nhat-o-my-niu-giu-phong-vi-tet-co-truyen-4034330.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Tin Tức</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">Người Việt ở Trung Quốc về quê ngày sát Tết</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">Những người Việt học tập và làm ăn ở Quảng Tây, tỉnh giáp biên giới Việt - Trung, không vội về sớm vì đường sá thuận tiện.</p>
+                    <a href="https://vnexpress.net/nguoi-viet-o-trung-quoc-ve-que-ngay-sat-tet-3877509.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="article-item">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="category">Tin Tức</span>
+                        <span class="date">08/06/2025</span>
+                    </div>
+                    <h3 class="article-title">4 loại bánh đặc trưng ngày Tết của người Hoa ở Sài Gòn</h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-summary">Bánh tài lộc, bánh phát tài, bánh tổ, bánh đường được dùng để trang trí ban thờ ngày Tết truyền thống của người Hoa.</p>
+                    <a href="https://vnexpress.net/4-loai-banh-dac-trung-ngay-tet-cua-nguoi-hoa-o-sai-gon-3875771.html" target="_blank" rel="noopener" class="article-link">
+                        Đọc bài viết gốc →
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="footer">
+            <p>🎋 <strong>Sắp Tết Blog Crawler</strong> - Tự động cập nhật nội dung từ VNExpress</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Made with ❤️ by Sắp Tết Team</p>
+        </div>
+    </div>
+</body>
+</html>

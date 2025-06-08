@@ -1,0 +1,40 @@
+{
+  "name": "saptet-blog-crawler",
+  "version": "1.0.0",
+  "description": "Script crawl dữ liệu blog Tết từ VNExpress và cập nhật vào website",
+  "main": "crawl-tet-articles.js",
+  "scripts": {
+    "crawl": "node crawl-tet-articles.js",
+    "crawl:dev": "node --inspect crawl-tet-articles.js",
+    "install-deps": "npm install",
+    "test": "node -e \"console.log('Test script - crawling functionality')\""
+  },
+  "keywords": [
+    "tet",
+    "blog",
+    "crawler",
+    "vnexpress",
+    "vietnamese",
+    "lunar-new-year"
+  ],
+  "author": "Sắp Tết Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanhnh98/thanhnh98.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thanhnh98/thanhnh98.github.io/issues"
+  },
+  "homepage": "https://saptet.vn"
+}

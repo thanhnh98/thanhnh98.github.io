@@ -2,7 +2,7 @@
     "applinks": {
         "details": [
             {
-                "appIDs": ["TEAMID.com.saptet.app"],
+                "appIDs": ["TEAMID.com.thanh_nguyen.tet_count_down"],
                 "components": [
                     {
                         "/": "*",
@@ -21,6 +21,6 @@
         ]
     },
     "webcredentials": {
-        "apps": ["TEAMID.com.saptet.app"]
+        "apps": ["TEAMID.com.thanh_nguyen.tet_count_down"]
     }
 }

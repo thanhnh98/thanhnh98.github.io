@@ -341,6 +341,129 @@ function navigateToPage(url) {
     window.location.href = url;
 }
 
+// Social Share Functions
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent('Sắp Tết 2026 - Đếm Ngược Đến Tết Nguyên Đán!');
+    const description = encodeURIComponent('🎊 Cùng đếm ngược đến Tết Nguyên Đán 2026! Xem lịch vạn niên, tra cứu ngày tốt xấu theo âm lịch. 🏮');
+    
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title} - ${description}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function shareOnZalo() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent('Sắp Tết 2026 - Đếm Ngược Đến Tết!');
+    
+    const shareUrl = `https://zalo.me/share/link?url=${url}&title=${title}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function shareOnMessenger() {
+    const url = encodeURIComponent(window.location.href);
+    
+    const shareUrl = `https://www.facebook.com/dialog/send?link=${url}&app_id=YOUR_APP_ID&redirect_uri=${url}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function copyLink() {
+    const url = window.location.href;
+    
+    if (navigator.clipboard && window.isSecureContext) {
+        // Use modern clipboard API
+        navigator.clipboard.writeText(url).then(() => {
+            showCopySuccess();
+        }).catch(() => {
+            fallbackCopyTextToClipboard(url);
+        });
+    } else {
+        // Fallback for older browsers
+        fallbackCopyTextToClipboard(url);
+    }
+}
+
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    
+    // Avoid scrolling to bottom
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            showCopySuccess();
+        } else {
+            alert('Không thể sao chép link. Vui lòng sao chép thủ công: ' + text);
+        }
+    } catch (err) {
+        alert('Không thể sao chép link. Vui lòng sao chép thủ công: ' + text);
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+function showCopySuccess() {
+    const copyBtn = document.querySelector('.share-btn.copy-link');
+    if (copyBtn) {
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<span>✅</span> Đã sao chép!';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.classList.remove('copied');
+        }, 2000);
+    }
+    
+    // Show toast notification
+    showToast('Đã sao chép link vào clipboard!');
+}
+
+function showToast(message) {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        z-index: 10000;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 300);
+    }, 3000);
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Start countdown

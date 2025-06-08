@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-06-08T06:44:52.668Z",
+  "duration": 0.178,
+  "source": "https://vnexpress.net/tag/tet-co-truyen-99667",
+  "stats": {
+    "total": 7,
+    "categories": 2,
+    "categoryStats": {
+      "Văn Hóa": 2,
+      "Tin Tức": 5
+    },
+    "avgSummaryLength": 117,
+    "validLinksPercent": 100
+  },
+  "articles": [
+    {
+      "title": "Vì sao mâm cỗ cúng Tết cổ truyền không có thịt bò?",
+      "link": "https://vnexpress.net/vi-sao-mam-co-cung-tet-co-truyen-khong-co-thit-bo-4225091.html",
+      "summary": "Mâm cỗ cúng ngày Tết truyền thống có gà, heo... nhưng không có món từ thịt bò. Lý do xuất phát từ nền văn minh lúa nước.",
+      "category": "Văn Hóa",
+      "date": "08/06/2025"
+    },
+    {
+      "title": "Mai nở rộ trước Tết",
+      "link": "https://vnexpress.net/mai-no-ro-truoc-tet-4223002.html",
+      "summary": "TP HCMHơn 20 ngày trước Tết Nguyên đán nhưng nhiều vườn mai ở quận 12, TP Thủ Đức đã đồng loạt nở rộ khiến chủ vườn thiệt hại.",
+      "category": "Tin Tức",
+      "date": "08/06/2025"
+    },
+    {
+      "title": "Chợ chuối nhộn nhịp ngày cận Tết",
+      "link": "https://vnexpress.net/cho-chuoi-nhon-nhip-ngay-can-tet-4045242.html",
+      "summary": "Quảng TrịTừ 20 tháng Chạp đến 30 Tết, chợ chuối Tân Long (huyện Hướng Hoá) tấp nập người mua bán.",
+      "category": "Tin Tức",
+      "date": "08/06/2025"
+    },
+    {
+      "title": "Món may mắn ngày Tết của các nước châu Á",
+      "link": "https://vnexpress.net/mon-may-man-ngay-tet-cua-cac-nuoc-chau-a-4041297.html",
+      "summary": "Mâm cơm ngày đầu năm mới được người dân các nước châu Á coi trọng và chăm chút, từng món ăn đều có ý nghĩa riêng.",
+      "category": "Tin Tức",
+      "date": "08/06/2025"
+    },
+    {
+      "title": "Người Nhật ở Mỹ níu giữ phong vị tết cổ truyền",
+      "link": "https://vnexpress.net/nguoi-nhat-o-my-niu-giu-phong-vi-tet-co-truyen-4034330.html",
+      "summary": "Dù sống ở Mỹ, gia đình Sasaki luôn giữ thói quen cùng nhau chuẩn bị mâm cỗ tết truyền thống Nhật Bản trong hơn một thế kỷ qua.",
+      "category": "Văn Hóa",
+      "date": "08/06/2025"
+    },
+    {
+      "title": "Người Việt ở Trung Quốc về quê ngày sát Tết",
+      "link": "https://vnexpress.net/nguoi-viet-o-trung-quoc-ve-que-ngay-sat-tet-3877509.html",
+      "summary": "Những người Việt học tập và làm ăn ở Quảng Tây, tỉnh giáp biên giới Việt - Trung, không vội về sớm vì đường sá thuận tiện.",
+      "category": "Tin Tức",
+      "date": "08/06/2025"
+    },
+    {
+      "title": "4 loại bánh đặc trưng ngày Tết của người Hoa ở Sài Gòn",
+      "link": "https://vnexpress.net/4-loai-banh-dac-trung-ngay-tet-cua-nguoi-hoa-o-sai-gon-3875771.html",
+      "summary": "Bánh tài lộc, bánh phát tài, bánh tổ, bánh đường được dùng để trang trí ban thờ ngày Tết truyền thống của người Hoa.",
+      "category": "Tin Tức",
+      "date": "08/06/2025"
+    }
+  ]
+}

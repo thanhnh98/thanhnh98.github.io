@@ -1861,3 +1861,113 @@ footer::after {
     font-weight: bold;
     color: #666;
 }
+
+/* Social Share Styles */
+.social-share {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.social-share h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 0.9rem;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.share-btn.facebook {
+    background: #1877f2;
+    color: white;
+}
+
+.share-btn.facebook:hover {
+    background: #166fe5;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+}
+
+.share-btn.zalo {
+    background: #0068ff;
+    color: white;
+}
+
+.share-btn.zalo:hover {
+    background: #0056d6;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 104, 255, 0.4);
+}
+
+.share-btn.messenger {
+    background: #00b2ff;
+    color: white;
+}
+
+.share-btn.messenger:hover {
+    background: #0099e6;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 178, 255, 0.4);
+}
+
+.share-btn.copy-link {
+    background: #6c757d;
+    color: white;
+}
+
+.share-btn.copy-link:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+}
+
+.share-btn.copy-link.copied {
+    background: #28a745;
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .share-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .share-btn {
+        width: 200px;
+    }
+    
+    .social-share {
+        margin-top: 2rem;
+        padding: 1.5rem;
+    }
+}
