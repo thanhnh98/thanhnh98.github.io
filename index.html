@@ -415,7 +415,7 @@
     </main>
     
     <!-- Ads Section -->
-    <section class="ads-section">
+    <section class="ads-section" id="ads-section" style="display: none;">
         <div class="container">
             <div class="ads-container">
                 <ins class="adsbygoogle"
@@ -425,7 +425,26 @@
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
                 <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        // Silently handle ads loading errors
+                    }
+                    
+                    // Show ads section only when ads are loaded
+                    setTimeout(function() {
+                        try {
+                            const adElement = document.querySelector('.adsbygoogle');
+                            const adsSection = document.getElementById('ads-section');
+                            
+                            if (adElement && adElement.innerHTML.trim() !== '' && 
+                                adElement.offsetHeight > 0 && adElement.offsetWidth > 0) {
+                                adsSection.style.display = 'block';
+                            }
+                        } catch (e) {
+                            // Silently handle any errors during ads visibility check
+                        }
+                    }, 2000);
                 </script>
             </div>
         </div>
