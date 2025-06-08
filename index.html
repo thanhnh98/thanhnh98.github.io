@@ -185,24 +185,7 @@
                 </div>
                 <p class="tet-greeting">Chúc Mừng Năm Mới!</p>
                 
-                <!-- Social Share Buttons -->
-                <div class="social-share">
-                    <h3>Chia sẻ với bạn bè:</h3>
-                    <div class="share-buttons">
-                        <a href="javascript:void(0)" onclick="shareOnFacebook()" class="share-btn facebook" aria-label="Chia sẻ lên Facebook">
-                            <span>📘</span> Facebook
-                        </a>
-                        <a href="javascript:void(0)" onclick="shareOnZalo()" class="share-btn zalo" aria-label="Chia sẻ lên Zalo">
-                            <span>💬</span> Zalo
-                        </a>
-                        <a href="javascript:void(0)" onclick="shareOnMessenger()" class="share-btn messenger" aria-label="Chia sẻ lên Messenger">
-                            <span>💌</span> Messenger
-                        </a>
-                        <a href="javascript:void(0)" onclick="copyLink()" class="share-btn copy-link" aria-label="Sao chép liên kết">
-                            <span>🔗</span> Sao chép link
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </section>
 
@@ -516,11 +499,15 @@
     </footer> -->
 
     <script src="js/resources.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/header-loader.js"></script>
-    <script src="js/games-carousel.js"></script>
-    <script src="js/universal-links.js"></script>
+<script src="js/script.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/header-loader.js"></script>
+<script src="js/games-carousel.js"></script>
+<script src="js/universal-links.js"></script>
+<script src="js/faq-modal.js"></script>
+
+
+
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
@@ -547,3 +534,142 @@
     </script>
 </body>
 </html>
+<!-- 
+<div class="tet-traditions">
+    <h3>Top 5 phong tục Tết không thể thiếu</h3>
+    <ol>
+        <li>Trang trí nhà cửa với hoa đào, hoa mai</li>
+        <li>Gói bánh chưng, bánh tét</li>
+        <li>Lì xì cho trẻ em</li>
+        <li>Thăm viếng họ hàng, bạn bè</li>
+        <li>Cúng ông bà tổ tiên</li>
+    </ol>
+</div> -->
+
+<!-- FAQ Section với Popup -->
+<section class="faq-section">
+    <div class="container">
+        <h2>🎊 Câu hỏi thường gặp về Tết 2026</h2>
+        <p class="faq-subtitle">Khám phá những điều thú vị về Tết Nguyên Đán</p>
+        
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Tết Nguyên Đán 2026 là ngày nào?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Tết Nguyên Đán 2026 rơi vào ngày 17 tháng 2 năm 2026 (âm lịch mùng 1 tháng Giêng năm Bính Ngọ)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Tết 2026 là năm con gì?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Tết 2026 là năm Bính Ngọ (năm con Ngựa) theo lịch âm Việt Nam."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Những phong tục truyền thống nào cần chuẩn bị cho Tết?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Dọn dẹp nhà cửa, mua sắm đồ Tết, chuẩn bị bánh chưng, thịt đông, mứt Tết, trang trí nhà với hoa đào, mai và câu đối."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Tại sao phải dọn dẹp nhà cửa trước Tết?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Theo quan niệm dân gian, dọn dẹp nhà cửa giúp xua đuổi vận xui, đón may mắn và tài lộc vào nhà trong năm mới."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Món ăn truyền thống nào không thể thiếu trong mâm cơm Tết?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bánh chưng, thịt đông, dưa hành, củ kiệu, chả lụa và các món mứt Tết như mứt dừa, mứt gừng."
+                    }
+                }
+            ]
+        }
+        </script>
+        
+        <div class="faq-grid">
+            <div class="faq-card" onclick="openFaqModal('faq1')">
+                <div class="faq-icon">🗓️</div>
+                <h3>Tết 2026 là ngày nào?</h3>
+                <p>Thời gian chính xác của Tết Nguyên Đán</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq2')">
+                <div class="faq-icon">🐎</div>
+                <h3>Năm 2026 là năm con gì?</h3>
+                <p>Tìm hiểu về con giáp năm 2026</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq3')">
+                <div class="faq-icon">🏮</div>
+                <h3>Phong tục chuẩn bị Tết</h3>
+                <p>Những việc cần làm trước Tết</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq4')">
+                <div class="faq-icon">🧹</div>
+                <h3>Tại sao phải dọn nhà?</h3>
+                <p>Ý nghĩa của việc dọn dẹp nhà cửa</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq5')">
+                <div class="faq-icon">🍽️</div>
+                <h3>Món ăn truyền thống Tết</h3>
+                <p>Những món không thể thiếu trong mâm cơm</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq6')">
+                <div class="faq-icon">🎁</div>
+                <h3>Lì xì và quà Tết</h3>
+                <p>Truyền thống tặng quà và lì xì</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq7')">
+                <div class="faq-icon">🌸</div>
+                <h3>Hoa trang trí Tết</h3>
+                <p>Ý nghĩa của hoa đào, mai, quất</p>
+                <div class="faq-arrow">→</div>
+            </div>
+            
+            <div class="faq-card" onclick="openFaqModal('faq8')">
+                <div class="faq-icon">🎊</div>
+                <h3>Hoạt động vui chơi Tết</h3>
+                <p>Trò chơi và hoạt động trong dịp Tết</p>
+                <div class="faq-arrow">→</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Modal -->
+<div id="faqModal" class="faq-modal">
+    <div class="faq-modal-content">
+        <div class="faq-modal-header">
+            <h3 id="faqModalTitle"></h3>
+            <span class="faq-close" onclick="closeFaqModal()">&times;</span>
+        </div>
+        <div class="faq-modal-body">
+            <div id="faqModalContent"></div>
+        </div>
+    </div>
+</div>

@@ -578,130 +578,180 @@ main {
     backdrop-filter: blur(5px);
 }
 
-.modal-content {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-    margin: 5% auto;
-    padding: 3rem;
-    border-radius: 25px;
+.faq-modal-content {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 20px;
     width: 90%;
     max-width: 600px;
-    position: relative;
+    max-height: 90vh;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    color: white;
-    text-align: center;
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.close-modal:hover {
-    transform: scale(1.2);
-    color: #ffcccc;
-}
-
-.modal-header {
-    margin-bottom: 2rem;
-}
-
-.modal-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.modal-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-family: var(--font-heading);
-}
-
-.modal-countdown {
-    margin-top: 2rem;
-}
-
-#modal-countdown-timer {
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+    border: 3px solid var(--color-secondary);
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-#modal-countdown-timer .timer-box {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 1.5rem;
-    min-width: 100px;
-    backdrop-filter: blur(10px);
-}
-
-#modal-countdown-timer .time-value {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: bold;
+.faq-modal-header {
+    background: var(--color-header-bg);
     color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-#modal-countdown-timer .time-label {
-    display: block;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.5rem;
+.faq-modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="headerPattern" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse"><polygon points="7.5,0 15,7.5 7.5,15 0,7.5" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23headerPattern)"/></svg>') repeat;
+    opacity: 0.3;
 }
 
-.modal-date {
-    font-size: 1.5rem;
+.faq-modal-header h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-close {
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.modal-description {
-    font-size: 1.2rem;
-    opacity: 0.9;
+.faq-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.faq-modal-body {
+    padding: 2rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    font-size: 1.1rem;
+    overflow-y: auto;
+    flex: 1;
+    max-height: calc(90vh - 120px);
+}
+
+.faq-modal-body h4 {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.faq-modal-body ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.faq-modal-body li {
+    margin: 0.5rem 0;
+    color: var(--color-text-secondary);
+}
+
+.faq-modal-body .highlight {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #FFA500 100%);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .events-carousel {
-        gap: 1rem;
+    .faq-section h2 {
+        font-size: 2.2rem;
     }
     
-    .event-card {
-        min-width: 250px;
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .faq-card {
         padding: 1.5rem;
     }
     
-    .event-icon {
-        font-size: 2.5rem;
-    }
-    
-    .event-card h3 {
-        font-size: 1.3rem;
-    }
-    
-    .modal-content {
-        margin: 10% auto;
-        padding: 2rem;
+    .faq-modal-content {
         width: 95%;
+        margin: 5% auto;
+        max-height: 85vh;
     }
     
-    #modal-countdown-timer {
-        gap: 1rem;
+    .faq-modal-header {
+        padding: 1rem 1.5rem;
+        flex-shrink: 0;
     }
     
-    #modal-countdown-timer .timer-box {
-        min-width: 80px;
+    .faq-modal-header h3 {
+        font-size: 1.4rem;
+    }
+    
+    .faq-modal-body {
+        padding: 1.5rem;
+        font-size: 1rem;
+        max-height: calc(85vh - 100px);
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-section {
+        padding: 3rem 0;
+    }
+    
+    .faq-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .faq-card {
         padding: 1rem;
     }
     
-    #modal-countdown-timer .time-value {
-        font-size: 2rem;
+    .faq-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .faq-modal-body {
+        padding: 1rem;
     }
 }
 
@@ -785,7 +835,7 @@ main {
 /* Countdown Section */
 .countdown-section {
     text-align: center;
-    padding: 4rem 0;
+    padding: 5rem 0;
     background: linear-gradient(135deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
     position: relative;
 }
@@ -1862,65 +1912,296 @@ footer::after {
     color: #666;
 }
 
-/* Social Share Styles */
-.social-share {
-    margin-top: 3rem;
+
+
+/* FAQ Section Styles */
+.faq-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
+    position: relative;
+}
+
+.faq-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tetPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23tetPattern)"/></svg>') repeat;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.faq-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.faq-section h2 {
     text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-.social-share h3 {
-    color: white;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
     font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.share-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+.faq-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 3rem;
+    font-style: italic;
 }
 
-.share-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(230, 0, 38, 0.1);
+    cursor: pointer;
     transition: all 0.3s ease;
     border: 2px solid transparent;
-    font-size: 0.9rem;
-    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.faq-card:hover::before {
+    left: 100%;
+}
+
+.faq-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(230, 0, 38, 0.2);
+    border-color: var(--color-secondary);
+}
+
+.faq-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.faq-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.faq-card p {
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.faq-arrow {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-card:hover .faq-arrow {
+    transform: translateX(5px);
+}
+
+/* FAQ Modal Styles */
+.faq-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.faq-modal-content {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+    border: 3px solid var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-modal-header {
+    background: var(--color-header-bg);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.faq-modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="headerPattern" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse"><polygon points="7.5,0 15,7.5 7.5,15 0,7.5" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23headerPattern)"/></svg>') repeat;
+    opacity: 0.3;
+}
+
+.faq-modal-header h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-close {
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.share-btn.facebook {
-    background: #1877f2;
+.faq-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.faq-modal-body {
+    padding: 2rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+    font-size: 1.1rem;
+    overflow-y: auto;
+    flex: 1;
+    max-height: calc(90vh - 120px);
+}
+
+.faq-modal-body h4 {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.faq-modal-body ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.faq-modal-body li {
+    margin: 0.5rem 0;
+    color: var(--color-text-secondary);
+}
+
+.faq-modal-body .highlight {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #FFA500 100%);
     color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-weight: bold;
 }
 
-.share-btn.facebook:hover {
-    background: #166fe5;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+/* FAQ Responsive Design */
+@media (max-width: 768px) {
+    .faq-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .faq-card {
+        padding: 1.5rem;
+    }
+    
+    .faq-modal-content {
+        width: 95%;
+        margin: 5% auto;
+        max-height: 85vh;
+    }
+    
+    .faq-modal-header {
+        padding: 1rem 1.5rem;
+        flex-shrink: 0;
+    }
+    
+    .faq-modal-header h3 {
+        font-size: 1.4rem;
+    }
+    
+    .faq-modal-body {
+        padding: 1.5rem;
+        font-size: 1rem;
+        max-height: calc(85vh - 100px);
+    }
 }
 
-.share-btn.zalo {
-    background: #0068ff;
-    color: white;
-}
-
-.share-btn.zalo:hover {
-    background: #0056d6;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 104, 255, 0.4);
+@media (max-width: 480px) {
+    .faq-section {
+        padding: 3rem 0;
+    }
+    
+    .faq-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .faq-card {
+        padding: 1rem;
+    }
+    
+    .faq-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .faq-modal-body {
+        padding: 1rem;
+    }
 }
 
 .share-btn.messenger {
