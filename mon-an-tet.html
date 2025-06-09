@@ -200,6 +200,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin-top: 2rem;  /* Thêm dòng này */
             margin-bottom: 2rem;
         }
         
@@ -420,5 +421,19 @@
     </section>
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
+    
+    <!-- Fix Back to Home button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
