@@ -619,23 +619,131 @@
     <script>
       // Share website function for ads fallback
       function shareWebsite() {
-        if (navigator.share) {
-          navigator.share({
-            title: "Sắp Tết 2026 - Đếm Ngược Tết",
-            text: "Cùng đếm ngược đến Tết Nguyên Đán 2026! Xem lịch vạn niên, chơi game và khám phá văn hóa Tết.",
-            url: window.location.href,
+        const shareData = {
+          title: "🎊 Sắp Tết 2026 - Đếm Ngược Đến Tết Nguyên Đán | Lịch Âm Dương Việt Nam 🏮",
+          text: "🎊 Đếm ngược đến Tết Nguyên Đán 2026! Xem lịch vạn niên, tra cứu giờ hoàng đạo, ngày tốt xấu theo âm lịch. Thưởng thức không khí Tết với nhạc xuân và tính năng độc đáo. Cùng khám phá văn hóa Tết truyền thống Việt Nam! 🏮",
+          url: window.location.href
+        };
+
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+          navigator.share(shareData).catch(err => {
+            console.log('Error sharing:', err);
+            fallbackShare();
           });
         } else {
-          // Fallback for browsers that don't support Web Share API
-          const url = encodeURIComponent(window.location.href);
-          const text = encodeURIComponent(
-            "Cùng đếm ngược đến Tết Nguyên Đán 2026! Xem lịch vạn niên, chơi game và khám phá văn hóa Tết."
-          );
-          window.open(
-            `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
-            "_blank"
-          );
+          fallbackShare();
         }
+      }
+
+      function fallbackShare() {
+        // Create a more comprehensive sharing experience
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent("🎊 Sắp Tết 2026 - Đếm Ngược Đến Tết Nguyên Đán");
+        const description = encodeURIComponent("🎊 Đếm ngược đến Tết Nguyên Đán 2026! Xem lịch vạn niên, tra cứu giờ hoàng đạo, ngày tốt xấu theo âm lịch. Thưởng thức không khí Tết với nhạc xuân và tính năng độc đáo. Cùng khám phá văn hóa Tết truyền thống Việt Nam! 🏮");
+        
+        // Show sharing options
+        const shareModal = document.createElement('div');
+        shareModal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 10000;
+          backdrop-filter: blur(5px);
+        `;
+        
+        shareModal.innerHTML = `
+          <div style="
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          ">
+            <h3 style="margin: 0 0 1.5rem 0; color: var(--color-primary);">📱 Chia sẻ Sắp Tết</h3>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${description}" 
+                 target="_blank" 
+                 style="
+                   background: #1877F2;
+                   color: white;
+                   padding: 0.8rem 1.5rem;
+                   border-radius: 8px;
+                   text-decoration: none;
+                   font-weight: 600;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 0.5rem;
+                 "
+                 onclick="document.body.removeChild(this.closest('div').parentElement)">
+                📘 Facebook
+              </a>
+              <a href="https://twitter.com/intent/tweet?url=${url}&text=${title}%20-%20${description}" 
+                 target="_blank" 
+                 style="
+                   background: #1DA1F2;
+                   color: white;
+                   padding: 0.8rem 1.5rem;
+                   border-radius: 8px;
+                   text-decoration: none;
+                   font-weight: 600;
+                   display: inline-flex;
+                   align-items: center;
+                   gap: 0.5rem;
+                 "
+                 onclick="document.body.removeChild(this.closest('div').parentElement)">
+                🐦 Twitter
+              </a>
+              <button onclick="
+                navigator.clipboard.writeText('${decodeURIComponent(url)}').then(() => {
+                  alert('✅ Đã copy link vào clipboard!');
+                  document.body.removeChild(this.parentElement.parentElement.parentElement);
+                });
+              " style="
+                background: #25D366;
+                color: white;
+                padding: 0.8rem 1.5rem;
+                border-radius: 8px;
+                border: none;
+                font-weight: 600;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+              ">
+                📋 Copy Link
+              </button>
+            </div>
+            <button onclick="document.body.removeChild(this.parentElement.parentElement)" 
+                    style="
+                      background: #f0f0f0;
+                      border: none;
+                      padding: 0.8rem 1.5rem;
+                      border-radius: 8px;
+                      margin-top: 1rem;
+                      cursor: pointer;
+                      font-weight: 600;
+                    ">
+              ❌ Đóng
+            </button>
+          </div>
+        `;
+        
+        document.body.appendChild(shareModal);
+        
+        // Close modal when clicking outside
+        shareModal.addEventListener('click', (e) => {
+          if (e.target === shareModal) {
+            document.body.removeChild(shareModal);
+          }
+        });
       }
     </script>
 

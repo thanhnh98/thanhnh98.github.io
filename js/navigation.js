@@ -275,13 +275,13 @@ class ErrorHandler {
         // Handle JavaScript errors
         window.addEventListener('error', (e) => {
             console.error('JavaScript Error:', e.error);
-            this.showErrorMessage('Đã xảy ra lỗi. Vui lòng tải lại trang.');
+            // this.showErrorMessage('Đã xảy ra lỗi. Vui lòng tải lại trang.');
         });
         
         // Handle unhandled promise rejections
         window.addEventListener('unhandledrejection', (e) => {
             console.error('Unhandled Promise Rejection:', e.reason);
-            this.showErrorMessage('Đã xảy ra lỗi kết nối. Vui lòng thử lại.');
+            // this.showErrorMessage('Đã xảy ra lỗi kết nối. Vui lòng thử lại.');
         });
     }
     
