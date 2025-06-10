@@ -1282,7 +1282,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
 .calendar-header button {
@@ -1318,10 +1319,10 @@ main {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+    gap: 8px;
     border-radius: 15px;
     overflow: hidden;
-    padding: 4px;
+    padding: 8px;
 }
 
 .calendar-day-header {
@@ -1350,19 +1351,20 @@ main {
 
 .calendar-day {
     background: rgba(255, 255, 255, 0.95);
-    padding: 1.2rem 0.8rem;
+    padding: 1.5rem 1rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 85px;
+    min-height: 95px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 12px;
     position: relative;
     border: 1px solid rgba(255, 215, 0, 0.1);
+    margin: 2px;
 }
 
 .calendar-day::before {
@@ -2787,5 +2789,180 @@ footer::after {
     #eventModalCountdownTimer .countdown-label {
         font-size: 0.6rem;
         margin-top: 0.2rem;
+    }
+}
+
+/* Calendar Responsive Design */
+@media (max-width: 768px) {
+    .calendar-section {
+        padding: 3rem 0;
+        margin-top: 2rem;
+    }
+    
+    .calendar-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .calendar-widget {
+        max-width: 100%;
+        margin: 0 1rem;
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+    
+    .calendar-header {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .calendar-header button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        width: 140px;
+        position: relative;
+    }
+    
+    .calendar-header h3 {
+        font-size: 1.5rem;
+        flex: 1;
+        text-align: center;
+        margin: 0 1rem;
+    }
+    
+    .calendar-grid {
+        gap: 6px;
+        padding: 6px;
+    }
+    
+    .calendar-day-header {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.3rem !important;
+        min-height: 40px;
+    }
+    
+    .calendar-day {
+        padding: 1rem 0.6rem;
+        min-height: 75px;
+        border-radius: 10px;
+        margin: 1px;
+    }
+    
+    .calendar-day .solar-date {
+        font-size: 1rem;
+        margin-bottom: 1px;
+    }
+    
+    .calendar-day .lunar-date {
+        font-size: 0.7rem;
+        margin-top: 1px;
+    }
+    
+    .lunar-info {
+        max-width: 100%;
+        margin: 0 1rem;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .lunar-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .lunar-info p {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-section {
+        padding: 2rem 0;
+        margin-top: 1rem;
+    }
+    
+    .calendar-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .calendar-widget {
+        margin: 0 0.5rem;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .calendar-header {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .calendar-header button {
+        padding: 0.7rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 10px;
+        width: 110px;
+    }
+    
+    .calendar-header h3 {
+        font-size: 1.3rem;
+        margin: 0 0.5rem;
+    }
+    
+    .calendar-grid {
+        gap: 4px;
+        padding: 4px;
+    }
+    
+    .calendar-day-header {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.2rem !important;
+        min-height: 35px;
+    }
+    
+    .calendar-day {
+        padding: 0.8rem 0.5rem;
+        min-height: 65px;
+        border-radius: 8px;
+        margin: 1px;
+    }
+    
+    .calendar-day .solar-date {
+        font-size: 0.9rem;
+        margin-bottom: 1px;
+    }
+    
+    .calendar-day .lunar-date {
+        font-size: 0.65rem;
+        margin-top: 1px;
+    }
+    
+    .lunar-info {
+        margin: 0 0.5rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 12px;
+    }
+    
+    .lunar-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .lunar-info p {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
+    }
+    
+    .tet-indicator {
+        font-size: 0.7rem;
+        top: 1px;
+        right: 1px;
     }
 }
