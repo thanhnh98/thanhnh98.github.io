@@ -190,6 +190,7 @@ main {
     backdrop-filter: blur(10px);
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    user-select: none;
 }
 
 .games-carousel-container::-webkit-scrollbar {
@@ -394,6 +395,7 @@ main {
     backdrop-filter: blur(10px);
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    user-select: none;
 }
 
 .events-carousel-container::-webkit-scrollbar {

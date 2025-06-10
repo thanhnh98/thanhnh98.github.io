@@ -308,6 +308,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 15px;
+            user-select: none;
         }
         
         .carousel-track {
@@ -315,6 +316,7 @@
             transition: transform 0.3s ease;
             gap: 20px;
             padding: 10px 0;
+            user-select: none;
         }
         
         .dish-card {
@@ -334,6 +336,126 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             text-decoration: none;
             color: inherit;
+        }
+        
+        /* Recipe content styling */
+        .ingredients-list, .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .ingredients-list li, .tips-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .ingredients-list li:before {
+            content: "🥄";
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .tips-list li:before {
+            content: "💡";
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .instructions-list {
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+        
+        .instructions-list li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color, #667eea);
+            position: relative;
+        }
+        
+        .instructions-list li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            background: var(--primary-color, #667eea);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .instructions-list h4 {
+            margin: 0 0 10px 0;
+            color: var(--primary-color, #667eea);
+            font-size: 16px;
+        }
+        
+        .instructions-list p {
+            margin: 0 0 10px 0;
+            line-height: 1.6;
+        }
+        
+        .instructions-list small {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .instruction-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .nutrition-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .nutrition-info p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nutrition-info h4 {
+            color: var(--primary-color, #667eea);
+            margin: 15px 0 10px 0;
+            font-size: 16px;
+        }
+        
+        .nutrition-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .nutrition-info li {
+            padding: 5px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nutrition-info li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 8px;
         }
         
         .dish-card-image {
@@ -665,30 +787,123 @@
         
         // Load dish data
         async function loadDishData(dishId) {
-            // Check if foodRecipeData exists (from food-modal.js)
+            try {
+                // Try to load data from JSON file first
+                const response = await fetch(`data/foods/${dishId}.json`);
+                if (response.ok) {
+                    const jsonData = await response.json();
+                    
+                    // Cache the image URL
+                    if (!window.dishImageCache) {
+                        window.dishImageCache = {};
+                    }
+                    window.dishImageCache[dishId] = jsonData.image;
+                    
+                    // Format ingredients from JSON
+                    let ingredientsHtml = '';
+                    if (jsonData.ingredients && Array.isArray(jsonData.ingredients)) {
+                        ingredientsHtml = '<ul class="ingredients-list">';
+                        jsonData.ingredients.forEach(ingredient => {
+                            if (typeof ingredient === 'object') {
+                                ingredientsHtml += `<li><strong>${ingredient.name}</strong>: ${ingredient.amount}${ingredient.note ? ` (${ingredient.note})` : ''}</li>`;
+                            } else {
+                                ingredientsHtml += `<li>${ingredient}</li>`;
+                            }
+                        });
+                        ingredientsHtml += '</ul>';
+                    }
+                    
+                    // Format instructions from JSON
+                    let instructionsHtml = '';
+                    if (jsonData.instructions && Array.isArray(jsonData.instructions)) {
+                        instructionsHtml = '<ol class="instructions-list">';
+                        jsonData.instructions.forEach(instruction => {
+                            if (typeof instruction === 'object') {
+                                instructionsHtml += `<li>`;
+                                if (instruction.title) {
+                                    instructionsHtml += `<h4>${instruction.title}</h4>`;
+                                }
+                                instructionsHtml += `<p>${instruction.description}</p>`;
+                                if (instruction.time) {
+                                    instructionsHtml += `<small><strong>Thời gian:</strong> ${instruction.time}</small>`;
+                                }
+                                if (instruction.tips) {
+                                    instructionsHtml += `<div class="instruction-tip"><strong>Mẹo:</strong> ${instruction.tips}</div>`;
+                                }
+                                instructionsHtml += `</li>`;
+                            } else {
+                                instructionsHtml += `<li>${instruction}</li>`;
+                            }
+                        });
+                        instructionsHtml += '</ol>';
+                    }
+                    
+                    // Format tips from JSON
+                    let tipsHtml = '';
+                    if (jsonData.tips && Array.isArray(jsonData.tips)) {
+                        tipsHtml = '<ul class="tips-list">';
+                        jsonData.tips.forEach(tip => {
+                            tipsHtml += `<li>${tip}</li>`;
+                        });
+                        tipsHtml += '</ul>';
+                    }
+                    
+                    // Format nutrition from JSON
+                    let nutritionHtml = '';
+                    if (jsonData.nutrition) {
+                        nutritionHtml = '<div class="nutrition-info">';
+                        if (jsonData.nutrition.calories) {
+                            nutritionHtml += `<p><strong>Calories:</strong> ${jsonData.nutrition.calories}</p>`;
+                        }
+                        if (jsonData.nutrition.protein) {
+                            nutritionHtml += `<p><strong>Protein:</strong> ${jsonData.nutrition.protein}</p>`;
+                        }
+                        if (jsonData.nutrition.fat) {
+                            nutritionHtml += `<p><strong>Chất béo:</strong> ${jsonData.nutrition.fat}</p>`;
+                        }
+                        if (jsonData.nutrition.carbohydrates) {
+                            nutritionHtml += `<p><strong>Carbohydrate:</strong> ${jsonData.nutrition.carbohydrates}</p>`;
+                        }
+                        if (jsonData.nutrition.fiber) {
+                            nutritionHtml += `<p><strong>Chất xơ:</strong> ${jsonData.nutrition.fiber}</p>`;
+                        }
+                        if (jsonData.nutrition.benefits && Array.isArray(jsonData.nutrition.benefits)) {
+                            nutritionHtml += '<h4>Lợi ích sức khỏe:</h4><ul>';
+                            jsonData.nutrition.benefits.forEach(benefit => {
+                                nutritionHtml += `<li>${benefit}</li>`;
+                            });
+                            nutritionHtml += '</ul>';
+                        }
+                        nutritionHtml += '</div>';
+                    }
+                    
+                    const dish = {
+                        id: dishId,
+                        name: jsonData.name || getDishNameFromId(dishId),
+                        emoji: getDishEmojiFromId(dishId),
+                        subtitle: jsonData.description || getDishSubtitleFromId(dishId),
+                        prepTime: jsonData.prep_time || getDishPrepTimeFromId(dishId),
+                        cookTime: jsonData.cooking_time || getDishCookTimeFromId(dishId),
+                        servings: jsonData.servings || getDishServingsFromId(dishId),
+                        region: jsonData.primary_region || getDishRegionFromId(dishId),
+                        colors: getDishColorsFromId(dishId),
+                        image: jsonData.image,
+                        ingredients: ingredientsHtml || '<p>Thông tin nguyên liệu sẽ được cập nhật sớm...</p>',
+                        instructions: instructionsHtml || '<p>Hướng dẫn chi tiết sẽ được cập nhật sớm...</p>',
+                        tips: tipsHtml || '<p>Các mẹo hay sẽ được cập nhật sớm...</p>',
+                        nutrition: nutritionHtml || '<p>Thông tin dinh dưỡng sẽ được cập nhật sớm...</p>'
+                    };
+                    
+                    return dish;
+                }
+            } catch (error) {
+                console.log(`Could not load JSON data for ${dishId}:`, error);
+            }
+            
+            // Fallback to old method if JSON loading fails
             if (typeof foodRecipeData !== 'undefined' && foodRecipeData[dishId]) {
                 const dishData = foodRecipeData[dishId];
                 
-                // Try to load image from JSON data
-                let imageUrl = getDishImageFromId(dishId); // fallback
-                try {
-                    const response = await fetch(`data/foods/${dishId}.json`);
-                    if (response.ok) {
-                        const jsonData = await response.json();
-                        if (jsonData.image) {
-                            imageUrl = jsonData.image;
-                            // Cache the image URL
-                            if (!window.dishImageCache) {
-                                window.dishImageCache = {};
-                            }
-                            window.dishImageCache[dishId] = jsonData.image;
-                        }
-                    }
-                } catch (error) {
-                    console.log(`Could not load JSON data for ${dishId}:`, error);
-                }
-                
-                // Parse the HTML content to extract structured data
                 const dish = {
                     id: dishId,
                     name: getDishNameFromId(dishId),
@@ -699,10 +914,10 @@
                     servings: getDishServingsFromId(dishId),
                     region: getDishRegionFromId(dishId),
                     colors: getDishColorsFromId(dishId),
-                    image: imageUrl, // Use loaded image URL
-                    ingredients: dishData.ingredients || '',
-                    instructions: dishData.steps || '',
-                    tips: dishData.tips || '',
+                    image: getDishImageFromId(dishId),
+                    ingredients: dishData.ingredients || '<p>Thông tin nguyên liệu sẽ được cập nhật sớm...</p>',
+                    instructions: dishData.steps || '<p>Hướng dẫn chi tiết sẽ được cập nhật sớm...</p>',
+                    tips: dishData.tips || '<p>Các mẹo hay sẽ được cập nhật sớm...</p>',
                     nutrition: generateNutritionInfo(dishId)
                 };
                 
@@ -1116,8 +1331,9 @@
             const track = document.getElementById('carouselTrack');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
+            const container = document.querySelector('.carousel-container');
             
-            if (!track || !prevBtn || !nextBtn) {
+            if (!track || !prevBtn || !nextBtn || !container) {
                 return;
             }
             
@@ -1160,6 +1376,98 @@
                 
                 updateCarousel();
             });
+            
+            // Add touch/swipe support for mobile and desktop
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let isDragging = false;
+            
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false;
+                track.style.cursor = 'grabbing';
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.style.transform ? parseInt(track.style.transform.match(/-?\d+/)[0]) : 0;
+                e.preventDefault();
+            });
+            
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                track.style.cursor = 'grab';
+            });
+            
+            track.addEventListener('mouseup', (e) => {
+                isDown = false;
+                track.style.cursor = 'grab';
+                
+                // Prevent click events if dragging occurred
+                if (isDragging) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+            
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                isDragging = true;
+                
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 2;
+                const newTranslateX = scrollLeft + walk;
+                
+                // Constrain movement within bounds
+                const minTranslateX = -maxIndex * cardWidth;
+                const maxTranslateX = 0;
+                const constrainedX = Math.max(minTranslateX, Math.min(maxTranslateX, newTranslateX));
+                
+                track.style.transform = `translateX(${constrainedX}px)`;
+                
+                // Update current index based on position
+                currentIndex = Math.round(-constrainedX / cardWidth);
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
+            });
+            
+            // Touch events for mobile
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - track.offsetLeft;
+                scrollLeft = track.style.transform ? parseInt(track.style.transform.match(/-?\d+/)[0]) : 0;
+                isDragging = false;
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                isDragging = true;
+                
+                const x = e.touches[0].pageX - track.offsetLeft;
+                const walk = (x - startX) * 2;
+                const newTranslateX = scrollLeft + walk;
+                
+                // Constrain movement within bounds
+                const minTranslateX = -maxIndex * cardWidth;
+                const maxTranslateX = 0;
+                const constrainedX = Math.max(minTranslateX, Math.min(maxTranslateX, newTranslateX));
+                
+                track.style.transform = `translateX(${constrainedX}px)`;
+                
+                // Update current index based on position
+                currentIndex = Math.round(-constrainedX / cardWidth);
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
+            });
+            
+            track.addEventListener('touchend', (e) => {
+                // Prevent click events if dragging occurred
+                if (isDragging) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+            
+            // Set initial cursor style
+            track.style.cursor = 'grab';
             
             // Initial update
             updateCarousel();

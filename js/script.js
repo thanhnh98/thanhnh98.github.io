@@ -486,6 +486,7 @@ function initializeEventsCarousel() {
     const carousel = document.getElementById('events-carousel');
     const prevBtn = document.getElementById('carousel-prev');
     const nextBtn = document.getElementById('carousel-next');
+    const container = document.querySelector('.events-carousel-container');
     const modal = document.getElementById('event-modal');
     const closeModal = document.querySelector('.close-modal');
     
@@ -494,13 +495,17 @@ function initializeEventsCarousel() {
     
     // Carousel navigation
     if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             scrollCarousel('prev');
         });
     }
     
     if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             scrollCarousel('next');
         });
     }
@@ -530,6 +535,54 @@ function initializeEventsCarousel() {
     // Smooth scrolling behavior for carousel
     if (carousel) {
         carousel.style.scrollBehavior = 'smooth';
+    }
+    
+    // Add touch/swipe support for mobile and desktop
+    if (container) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            container.style.cursor = 'grabbing';
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+            e.preventDefault();
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+        
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+        
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            container.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Touch events for mobile
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
+        
+        container.addEventListener('touchmove', (e) => {
+            const x = e.touches[0].pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            container.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Set initial cursor style
+        container.style.cursor = 'grab';
     }
 }
 
