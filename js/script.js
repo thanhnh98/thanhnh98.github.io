@@ -213,7 +213,7 @@ function calculateLunarDate(solarDate) {
     
     return {
         day: lunarInfo.day,
-        month: lunarInfo.month - 1 // Convert to 0-based index for array access
+        month: lunarInfo.month // Keep 1-based month index
     };
 }
 
@@ -230,8 +230,40 @@ function getJulianDayNumber(date) {
     return day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
 }
 
-// Convert solar date to lunar date using Vietnamese lunar calendar
+// Import lunar-calendar library for accurate calculations
+// Note: This requires the lunar-calendar npm package to be installed
 function solarToLunar(solarDate) {
+    try {
+        // Use lunar-calendar library for accurate conversion
+        if (typeof require !== 'undefined') {
+            const lunar = require('lunar-calendar');
+            const result = lunar.solarToLunar(
+                solarDate.getFullYear(),
+                solarDate.getMonth() + 1, // lunar-calendar expects 1-based month
+                solarDate.getDate()
+            );
+            
+            return {
+                day: result.lunarDay,
+                month: result.lunarMonth,
+                isLeapMonth: result.lunarLeapMonth === result.lunarMonth,
+                leapMonth: result.lunarLeapMonth,
+                zodiac: result.zodiac,
+                ganZhiYear: result.GanZhiYear,
+                ganZhiMonth: result.GanZhiMonth,
+                ganZhiDay: result.GanZhiDay
+            };
+        }
+    } catch (error) {
+        console.warn('lunar-calendar library not available, using fallback calculation:', error.message);
+    }
+    
+    // Fallback calculation for browser environment or when library is not available
+    return solarToLunarFallback(solarDate);
+}
+
+// Fallback lunar calendar calculation
+function solarToLunarFallback(solarDate) {
     const year = solarDate.getFullYear();
     const month = solarDate.getMonth() + 1;
     const day = solarDate.getDate();
@@ -240,18 +272,21 @@ function solarToLunar(solarDate) {
     const lunarYearData = {
         2025: {
             tetDate: new Date(2025, 0, 29), // Jan 29, 2025
-            monthDays: [30, 29, 30, 29, 29, 30, 29, 30, 29, 30, 30, 29], // Regular months + leap month 6
-            leapMonth: 6 // Leap month 6
+            monthDays: [30, 29, 30, 29, 29, 30, 29, 30, 29, 30, 30, 29], // 12 regular months with correct days
+            leapMonth: 6, // Leap month 6
+            leapMonthDays: 29 // Days in leap month
         },
         2024: {
             tetDate: new Date(2024, 1, 10), // Feb 10, 2024
             monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
-            leapMonth: null
+            leapMonth: null,
+            leapMonthDays: 0
         },
         2026: {
             tetDate: new Date(2026, 1, 17), // Feb 17, 2026
             monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
-            leapMonth: null
+            leapMonth: null,
+            leapMonthDays: 0
         }
     };
     
@@ -262,7 +297,8 @@ function solarToLunar(solarDate) {
         yearData = {
             tetDate: calculateTetDate(year),
             monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
-            leapMonth: null
+            leapMonth: null,
+            leapMonthDays: 0
         };
     }
     
@@ -273,31 +309,40 @@ function solarToLunar(solarDate) {
     let lunarDay = 1;
     
     if (daysDiff >= 0) {
-        // After Tet
+        // After Tet - calculation with proper leap month handling
         let remainingDays = daysDiff;
         let monthIndex = 0;
+        let isLeapMonth = false;
         
-        while (remainingDays >= yearData.monthDays[monthIndex]) {
-            remainingDays -= yearData.monthDays[monthIndex];
-            monthIndex++;
-            
-            // Handle leap month
-            if (yearData.leapMonth && monthIndex === yearData.leapMonth) {
-                lunarMonth = yearData.leapMonth;
-                if (remainingDays >= 29) { // Leap month typically has 29 days
-                    remainingDays -= 29;
-                    monthIndex++;
+        // Month-by-month calculation with leap month support
+        while (remainingDays > 0 && monthIndex < yearData.monthDays.length) {
+            // Check if current month has enough days
+            if (remainingDays >= yearData.monthDays[monthIndex]) {
+                remainingDays -= yearData.monthDays[monthIndex];
+                monthIndex++;
+                
+                // Handle leap month after the regular month
+                if (yearData.leapMonth && monthIndex === yearData.leapMonth && remainingDays >= 0) {
+                    if (remainingDays >= yearData.leapMonthDays) {
+                        // We're past the leap month, continue to next regular month
+                        remainingDays -= yearData.leapMonthDays;
+                    } else {
+                        // We're in the leap month
+                        isLeapMonth = true;
+                        break;
+                    }
                 }
-            }
-            
-            if (monthIndex >= yearData.monthDays.length) {
-                // Move to next year
+            } else {
                 break;
             }
-            
-            lunarMonth = monthIndex + 1;
         }
         
+        // Determine the final month and day
+        if (isLeapMonth) {
+            lunarMonth = yearData.leapMonth; // Leap month number
+        } else {
+            lunarMonth = monthIndex + 1;
+        }
         lunarDay = remainingDays + 1;
     } else {
         // Before Tet (previous lunar year)
