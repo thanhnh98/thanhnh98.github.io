@@ -294,6 +294,165 @@
         body.loaded {
             opacity: 1;
         }
+        
+        /* Dishes Carousel */
+        .recipe-section.other-dishes {
+            border-left-color: #28a745;
+        }
+        
+        .dishes-carousel {
+            margin-top: 20px;
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        
+        .dish-card {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .dish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .dish-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+        
+        .dish-card-content {
+            padding: 20px;
+        }
+        
+        .dish-card-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            line-height: 1.3;
+        }
+        
+        .dish-card-description {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .dish-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+            color: #888;
+        }
+        
+        .dish-card-region {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev-btn {
+            left: -25px;
+        }
+        
+        .next-btn {
+            right: -25px;
+        }
+        
+        .carousel-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .carousel-btn:disabled:hover {
+            transform: translateY(-50%);
+        }
+        
+        /* Responsive Carousel */
+        @media (max-width: 768px) {
+            .dish-card {
+                flex: 0 0 250px;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .prev-btn {
+                left: -20px;
+            }
+            
+            .next-btn {
+                right: -20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dish-card {
+                flex: 0 0 220px;
+            }
+            
+            .carousel-track {
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -380,6 +539,20 @@
                     <p>Đang tải thông tin dinh dưỡng...</p>
                 </div>
             </div>
+            
+            <!-- Món ăn khác -->
+            <div class="recipe-section other-dishes">
+                <h2>🍽️ Khám phá món ăn khác</h2>
+                <div class="dishes-carousel">
+                    <div class="carousel-container">
+                        <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Dishes will be loaded here -->
+                        </div>
+                        <button class="carousel-btn next-btn" id="nextBtn">›</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -464,13 +637,24 @@
             document.getElementById('servings').textContent = dish.servings || '-';
             document.getElementById('region').textContent = dish.region || '-';
             
-            // Update image
+            // Update image with improved error handling
             const dishImage = document.getElementById('dish-image');
-            dishImage.src = `assets/images/foods/${dish.id}.jpg`;
             dishImage.alt = `${dish.name} truyền thống`;
-            dishImage.onerror = function() {
-                this.src = `https://via.placeholder.com/600x400/${dish.colors?.primary?.replace('#', '') || '667eea'}/ffffff?text=${encodeURIComponent(dish.name)}`;
-            };
+            
+            // Try to load image with better error handling
+            console.log('Loading image for dish:', dish.name, 'with sources:', [
+                dish.image,
+                `assets/images/foods/${dish.id}.jpg`,
+                `assets/${dish.image || ''}`,
+                `https://via.placeholder.com/600x400/${dish.colors?.primary?.replace('#', '') || '667eea'}/ffffff?text=${encodeURIComponent(dish.name)}`
+            ]);
+            
+            loadImageSafely(dishImage, [
+                dish.image, // First try the image from JSON data (could be URL or relative path)
+                `assets/images/foods/${dish.id}.jpg`, // Fallback to local assets
+                `assets/${dish.image || ''}`, // Try assets prefix if image is relative path
+                `https://via.placeholder.com/600x400/${dish.colors?.primary?.replace('#', '') || '667eea'}/ffffff?text=${encodeURIComponent(dish.name)}` // Final fallback
+            ]);
             
             // Update content sections
             document.getElementById('ingredients-content').innerHTML = dish.ingredients || '<p>Thông tin nguyên liệu sẽ được cập nhật sớm...</p>';
@@ -480,10 +664,29 @@
         }
         
         // Load dish data
-        function loadDishData(dishId) {
+        async function loadDishData(dishId) {
             // Check if foodRecipeData exists (from food-modal.js)
             if (typeof foodRecipeData !== 'undefined' && foodRecipeData[dishId]) {
                 const dishData = foodRecipeData[dishId];
+                
+                // Try to load image from JSON data
+                let imageUrl = getDishImageFromId(dishId); // fallback
+                try {
+                    const response = await fetch(`data/foods/${dishId}.json`);
+                    if (response.ok) {
+                        const jsonData = await response.json();
+                        if (jsonData.image) {
+                            imageUrl = jsonData.image;
+                            // Cache the image URL
+                            if (!window.dishImageCache) {
+                                window.dishImageCache = {};
+                            }
+                            window.dishImageCache[dishId] = jsonData.image;
+                        }
+                    }
+                } catch (error) {
+                    console.log(`Could not load JSON data for ${dishId}:`, error);
+                }
                 
                 // Parse the HTML content to extract structured data
                 const dish = {
@@ -496,6 +699,7 @@
                     servings: getDishServingsFromId(dishId),
                     region: getDishRegionFromId(dishId),
                     colors: getDishColorsFromId(dishId),
+                    image: imageUrl, // Use loaded image URL
                     ingredients: dishData.ingredients || '',
                     instructions: dishData.steps || '',
                     tips: dishData.tips || '',
@@ -564,6 +768,54 @@
                 'banh-khot': 'Món ăn vặt đặc trưng miền Nam, giòn tan hấp dẫn'
             };
             return subtitles[id] || 'Món ăn truyền thống Việt Nam';
+        }
+        
+        function getDishImageFromId(id) {
+            // Try to get image URL from JSON data first
+            try {
+                // Check if we have cached data
+                if (window.dishImageCache && window.dishImageCache[id]) {
+                    return window.dishImageCache[id];
+                }
+                
+                // Initialize cache if not exists
+                if (!window.dishImageCache) {
+                    window.dishImageCache = {};
+                }
+                
+                // Fetch image URL from JSON data asynchronously
+                fetch(`data/foods/${id}.json`)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('JSON not found');
+                    })
+                    .then(data => {
+                        if (data.image) {
+                            window.dishImageCache[id] = data.image;
+                            // Update the image if it's already rendered
+                            const dishImage = document.getElementById('dish-image');
+                            if (dishImage && dishImage.src.includes('ic_app.webp')) {
+                                loadImageSafely(dishImage, [
+                                    data.image,
+                                    `assets/images/foods/${id}.jpg`,
+                                    `assets/images/ic_app.webp`
+                                ]);
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.log(`Could not load image for ${id}:`, error);
+                        window.dishImageCache[id] = `assets/images/ic_app.webp`;
+                    });
+                
+                // Return placeholder immediately while loading
+                return `assets/images/ic_app.webp`;
+            } catch (error) {
+                console.log(`Error getting image for ${id}:`, error);
+                return `assets/images/ic_app.webp`;
+            }
         }
         
         function getDishPrepTimeFromId(id) {
@@ -675,7 +927,7 @@
         }
         
         // Initialize page
-        function initializePage() {
+        async function initializePage() {
             const dishId = getDishIdFromUrl();
             
             if (!dishId) {
@@ -683,7 +935,7 @@
                 return;
             }
             
-            const dish = loadDishData(dishId);
+            const dish = await loadDishData(dishId);
             
             if (!dish) {
                 showError();
@@ -694,9 +946,223 @@
             updateMetaTags(dish);
             updatePageColors(dish);
             renderDishContent(dish);
+            loadOtherDishes(dishId);
             
             // Show main content
             showMainContent();
+        }
+        
+        // Load other dishes for carousel
+        async function loadOtherDishes(currentDishId) {
+            const dishFiles = [
+                'banh-chung', 'banh-tet', 'thit-kho-tau', 'nem-ran', 
+                'xoi-gac', 'canh-kho-qua-nhoi-thit', 'dua-hau', 'mut-tet'
+            ];
+            
+            const otherDishes = [];
+            
+            for (const dishId of dishFiles) {
+                if (dishId !== currentDishId) {
+                    try {
+                        const response = await fetch(`data/foods/${dishId}.json`);
+                        if (response.ok) {
+                            const dish = await response.json();
+                            otherDishes.push(dish);
+                        }
+                    } catch (error) {
+                        console.log(`Could not load ${dishId}:`, error);
+                    }
+                }
+            }
+            
+            renderDishesCarousel(otherDishes);
+            initializeCarousel();
+        }
+        
+        // Render dishes carousel
+        function renderDishesCarousel(dishes) {
+            const carouselTrack = document.getElementById('carouselTrack');
+            
+            if (!carouselTrack || dishes.length === 0) {
+                return;
+            }
+            
+            carouselTrack.innerHTML = dishes.map(dish => {
+                const cardId = `dish-card-${dish.id}`;
+                return `
+                    <a href="chi-tiet-mon-an.html?id=${dish.id}" class="dish-card" id="${cardId}">
+                        <img alt="${dish.name}" class="dish-card-image" data-dish-id="${dish.id}">
+                        <div class="dish-card-content">
+                            <h3 class="dish-card-title">${dish.name}</h3>
+                            <p class="dish-card-description">${dish.description}</p>
+                            <div class="dish-card-meta">
+                                <span class="dish-card-time">⏱️ ${dish.cookingTime || '-'}</span>
+                                <span class="dish-card-region">${dish.primaryRegion || 'Cả nước'}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+            
+            // Load images for carousel cards
+             dishes.forEach(dish => {
+                 const img = carouselTrack.querySelector(`img[data-dish-id="${dish.id}"]`);
+                 if (img) {
+                     loadImageSafely(img, [
+                         dish.image, // First try the image from JSON data
+                         `assets/images/foods/${dish.id}.jpg`, // Fallback to local assets
+                         `assets/${dish.image || ''}` // Try assets prefix if needed
+                     ]);
+                 }
+             });
+        }
+        
+        // Safe image loading function
+         function loadImageSafely(imgElement, imageSources) {
+             console.log('loadImageSafely called with:', imgElement, imageSources);
+             if (!imgElement || !imageSources || imageSources.length === 0) {
+                 console.log('Invalid parameters for loadImageSafely');
+                 return;
+             }
+             
+             // Filter out invalid sources and normalize paths
+             const validSources = imageSources
+                 .filter(src => 
+                     src && 
+                     typeof src === 'string' && 
+                     src.trim() !== '' && 
+                     src !== 'undefined' && 
+                     src !== 'null'
+                 )
+                 .map(src => {
+                     const trimmedSrc = src.trim();
+                     
+                     // If it's already a full URL (http/https), return as is
+                     if (trimmedSrc.startsWith('http://') || trimmedSrc.startsWith('https://')) {
+                         return trimmedSrc;
+                     }
+                     
+                     // If it starts with 'assets/', return as is (relative to root)
+                     if (trimmedSrc.startsWith('assets/')) {
+                         return trimmedSrc;
+                     }
+                     
+                     // If it starts with 'images/', prepend 'assets/'
+                     if (trimmedSrc.startsWith('images/')) {
+                         return `assets/${trimmedSrc}`;
+                     }
+                     
+                     // For other relative paths, try as is first
+                     return trimmedSrc;
+                 })
+                 .filter((src, index, arr) => arr.indexOf(src) === index); // Remove duplicates
+             
+             if (validSources.length === 0) {
+                 // Hide image if no valid sources
+                 imgElement.style.display = 'none';
+                 return;
+             }
+             
+             let currentIndex = 0;
+             
+             function tryLoadImage() {
+                 console.log('tryLoadImage called, currentIndex:', currentIndex, 'validSources.length:', validSources.length);
+                 if (currentIndex >= validSources.length) {
+                     // All sources failed, hide image
+                     console.log('All image sources failed, hiding image');
+                     imgElement.style.display = 'none';
+                     return;
+                 }
+                 
+                 const currentSrc = validSources[currentIndex];
+                 console.log('Trying to load image source:', currentSrc);
+                 
+                 // Create a new image to test loading
+                 const testImg = new Image();
+                 
+                 // Set timeout for loading (10 seconds)
+                 const timeoutId = setTimeout(() => {
+                     testImg.onload = null;
+                     testImg.onerror = null;
+                     currentIndex++;
+                     tryLoadImage();
+                 }, 10000);
+                 
+                 testImg.onload = function() {
+                     clearTimeout(timeoutId);
+                     console.log('Image loaded successfully:', currentSrc);
+                     // Image loaded successfully
+                     imgElement.src = currentSrc;
+                     imgElement.style.display = 'block';
+                 };
+                 
+                 testImg.onerror = function() {
+                     clearTimeout(timeoutId);
+                     console.log('Image failed to load:', currentSrc);
+                     // Current source failed, try next
+                     currentIndex++;
+                     tryLoadImage();
+                 };
+                 
+                 // Start loading
+                 testImg.src = currentSrc;
+             }
+             
+             tryLoadImage();
+         }
+        
+        // Initialize carousel functionality
+        function initializeCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (!track || !prevBtn || !nextBtn) {
+                return;
+            }
+            
+            let currentIndex = 0;
+            const cardWidth = 300; // 280px + 20px gap
+            const visibleCards = Math.floor(track.parentElement.offsetWidth / cardWidth);
+            const totalCards = track.children.length;
+            const maxIndex = Math.max(0, totalCards - visibleCards);
+            
+            function updateCarousel() {
+                const translateX = -currentIndex * cardWidth;
+                track.style.transform = `translateX(${translateX}px)`;
+                
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const newVisibleCards = Math.floor(track.parentElement.offsetWidth / cardWidth);
+                const newMaxIndex = Math.max(0, totalCards - newVisibleCards);
+                
+                if (currentIndex > newMaxIndex) {
+                    currentIndex = newMaxIndex;
+                }
+                
+                updateCarousel();
+            });
+            
+            // Initial update
+            updateCarousel();
         }
         
         function showMainContent() {
@@ -718,6 +1184,18 @@
             
             // Add loaded class for transition
             document.body.classList.add('loaded');
+        });
+        
+        // Handle carousel dish clicks with smooth transition
+        document.addEventListener('click', function(e) {
+            const dishCard = e.target.closest('.dish-card');
+            if (dishCard) {
+                e.preventDefault();
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = dishCard.href;
+                }, 300);
+            }
         });
         
         // Back button functionality

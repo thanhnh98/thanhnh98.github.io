@@ -2,7 +2,7 @@
   "id": "banh-chung",
   "name": "Bánh Chưng",
   "description": "Bánh chưng là món ăn truyền thống không thể thiếu trong ngày Tết của người Việt, được làm từ gạo nếp, đậu xanh, thịt heo và gói trong lá dong. Bánh có hình vuông tượng trưng cho đất, thể hiện lòng biết ơn với trời đất và tổ tiên.",
-  "image": "images/banh-chung.jpg",
+  "image": "https://file.hstatic.net/200000721249/file/cach_lam_xoi_gac_ngon_truyen_thong_057944fe704d4a1281d2bac99be41c4f.jpg",
   "category": "Bánh truyền thống",
   "regions": ["Miền Bắc", "Miền Trung", "Miền Nam"],
   "primaryRegion": "Miền Bắc",
