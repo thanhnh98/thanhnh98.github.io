@@ -1,0 +1,140 @@
+{
+  "id": "ga-luoc",
+  "name": "Gà Luộc",
+  "description": "Gà luộc là món ăn thiêng liêng, biểu tượng của sự sung túc và may mắn trong văn hóa Việt Nam. Món ăn này không thể thiếu trong mâm cỗ Tết, thể hiện lòng thành kính với tổ tiên và mong muốn một năm mới đầy đủ, no ấm.",
+  "image": "https://i.pinimg.com/736x/98/92/bf/9892bf62bf6d1a7532c8932cca966817.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Cả nước",
+  "cooking_time": "1 tiếng",
+  "prep_time": "20 phút",
+  "difficulty": "Dễ",
+  "servings": "6-8 người",
+  "calories": "165 calo/100g",
+  "origin": "Gà luộc là món ăn truyền thống có từ rất lâu đời trong văn hóa Việt Nam, được sử dụng trong các dịp lễ tết quan trọng như cúng tổ tiên, cưới hỏi và đặc biệt là Tết Nguyên đán.",
+  "symbolism": "Gà luộc tượng trưng cho sự sung túc, đầy đủ và may mắn. Trong quan niệm dân gian, gà là loài vật thiêng liêng, có khả năng báo hiệu bình minh và xua đuổi tà ma. Việc dâng gà luộc lên bàn thờ tổ tiên thể hiện lòng thành kính và mong muốn được phù hộ.",
+  "ingredients": [
+    {
+      "name": "Gà ta",
+      "amount": "1 con (1.5-2kg)",
+      "note": "Chọn gà ta tươi, thịt chắc, da vàng"
+    },
+    {
+      "name": "Gừng",
+      "amount": "50g",
+      "note": "Gừng già, cạo sạch vỏ"
+    },
+    {
+      "name": "Hành tây",
+      "amount": "1 củ",
+      "note": "Hành tây to, bóc vỏ"
+    },
+    {
+      "name": "Muối",
+      "amount": "2 thìa cà phê",
+      "note": "Muối tinh"
+    },
+    {
+      "name": "Rượu trắng",
+      "amount": "2 thìa canh",
+      "note": "Rượu trắng 29 độ"
+    },
+    {
+      "name": "Lá chanh",
+      "amount": "5-7 lá",
+      "note": "Lá chanh tươi, rửa sạch"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế gà",
+      "description": "Làm sạch gà, cắt bỏ móng, nhổ lông tơ. Chà xát toàn thân gà với muối và rượu trắng, để 15 phút cho thấm gia vị.",
+      "time": "15 phút",
+      "tips": "Dùng muối chà xát sẽ giúp da gà săn chắc và có màu đẹp khi luộc"
+    },
+    {
+      "step": 2,
+      "title": "Chuẩn bị nước luộc",
+      "description": "Đun sôi nước trong nồi lớn, cho gừng đập dập, hành tây và lá chanh vào nước. Nước phải ngập hoàn toàn con gà.",
+      "time": "10 phút",
+      "tips": "Gừng và hành tây giúp khử mùi tanh, lá chanh tạo hương thơm tự nhiên"
+    },
+    {
+      "step": 3,
+      "title": "Luộc gà",
+      "description": "Cho gà vào nồi nước sôi, đậy nắp và đun với lửa vừa trong 45-50 phút. Thỉnh thoảng lật gà để chín đều.",
+      "time": "45-50 phút",
+      "tips": "Không nên đun lửa quá to để tránh da gà bị nứt"
+    },
+    {
+      "step": 4,
+      "title": "Kiểm tra độ chín",
+      "description": "Dùng đũa chọc vào phần thịt đùi, nếu nước chảy ra trong suốt là gà đã chín. Vớt gà ra để ráo nước.",
+      "time": "2 phút",
+      "tips": "Có thể ngâm gà vào nước đá lạnh 5 phút để da gà săn chắc và có màu đẹp"
+    },
+    {
+      "step": 5,
+      "title": "Hoàn thành",
+      "description": "Để gà nguội hoàn toàn rồi cắt miếng vừa ăn. Xếp đẹp ra đĩa, trang trí với rau thơm và chấm với nước mắm gừng.",
+      "time": "10 phút",
+      "tips": "Cắt gà khi đã nguội sẽ giữ được hình dáng đẹp và thịt không bị nát"
+    }
+  ],
+  "tips": [
+    "Chọn gà ta tươi, thịt chắc để có món gà luộc ngon nhất",
+    "Luộc gà với lửa vừa để da không bị nứt và thịt chín đều",
+    "Có thể thêm một ít nghệ vào nước luộc để gà có màu vàng đẹp",
+    "Nước luộc gà có thể dùng để nấu cháo hoặc canh rất ngon",
+    "Bảo quản gà luộc trong tủ lạnh và sử dụng trong vòng 2-3 ngày"
+  ],
+  "nutrition": {
+    "calories": "165 calo/100g",
+    "protein": "31g",
+    "fat": "3.6g",
+    "carbohydrates": "0g",
+    "fiber": "0g",
+    "sodium": "70mg",
+    "benefits": [
+      "Giàu protein chất lượng cao, tốt cho cơ bắp",
+      "Ít chất béo, phù hợp cho người ăn kiêng",
+      "Chứa vitamin B6, B12 tốt cho hệ thần kinh",
+      "Cung cấp selenium, tăng cường miễn dịch",
+      "Dễ tiêu hóa, phù hợp cho mọi lứa tuổi"
+    ]
+  },
+  "cultural_significance": {
+    "tet_meaning": "Gà luộc là món ăn thiêng liêng không thể thiếu trong mâm cỗ Tết, thể hiện sự sung túc và lòng thành kính với tổ tiên.",
+    "preparation_time": "Thường được chuẩn bị vào ngày 30 Tết để dâng cúng giao thừa",
+    "serving_tradition": "Gà luộc được bày trí nguyên con trên mâm cúng, sau đó mới cắt ra để gia đình cùng thưởng thức",
+    "regional_variations": {
+      "north": "Miền Bắc thường luộc gà với gừng và lá chanh",
+      "central": "Miền Trung có thể thêm sả và lá lốt",
+      "south": "Miền Nam thường thêm nghệ để gà có màu vàng đẹp"
+    }
+  },
+  "serving_suggestions": [
+    {
+      "name": "Nước chấm gừng",
+      "ingredients": "Nước mắm, gừng, chanh, đường, ớt",
+      "description": "Nước chấm truyền thống, chua cay đậm đà"
+    },
+    {
+      "name": "Muối tiêu chanh",
+      "ingredients": "Muối, tiêu, chanh tươi",
+      "description": "Đơn giản nhưng làm nổi bật vị ngọt của thịt gà"
+    },
+    {
+      "name": "Rau thơm",
+      "ingredients": "Rau răm, ngò gai, kinh giới",
+      "description": "Ăn kèm để tăng hương vị và cân bằng dinh dưỡng"
+    }
+  ],
+  "storage": {
+    "refrigerator": "2-3 ngày trong tủ lạnh ở nhiệt độ 4°C",
+    "freezer": "1 tháng trong tủ đông ở nhiệt độ -18°C",
+    "room_temperature": "Không nên để quá 2 giờ ở nhiệt độ phòng",
+    "reheating": "Hấp lại hoặc luộc nhanh trong nước sôi 2-3 phút"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "id": "hu-tieu-nam-vang",
+  "name": "Hủ Tiếu Nam Vang",
+  "description": "Hủ tiếu Nam Vang là món ăn đặc trưng miền Nam với hương vị thanh ngọt đặc biệt. Nước dùng trong vắt được ninh từ xương heo, tôm khô kết hợp với bánh hủ tiếu dai ngon, tôm tươi, thịt heo và gan heo tạo nên một món ăn hấp dẫn.",
+  "image": "https://i.pinimg.com/736x/c7/cc/7e/c7cc7e1f51fe68fac7fe95ae4c55afd7.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Nam"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "2 tiếng",
+  "prep_time": "45 phút",
+  "difficulty": "Trung bình",
+  "servings": "4-6 người",
+  "calories": "380 calo/tô",
+  "origin": "Hủ tiếu Nam Vang có nguồn gốc từ người Hoa ở Campuchia (Nam Vang - Phnom Penh), sau đó du nhập vào miền Nam Việt Nam và trở thành món ăn đặc trưng của vùng đất này, đặc biệt phổ biến ở Sài Gòn và các tỉnh miền Tây.",
+  "symbolism": "Hủ tiếu Nam Vang thể hiện sự giao thoa văn hóa ẩm thực giữa Việt Nam, Trung Quốc và Campuchia. Món ăn mang ý nghĩa của sự hòa hợp, thịnh vượng và là biểu tượng của ẩm thực đường phố miền Nam.",
+  "ingredients": [
+    {
+      "name": "Xương heo",
+      "amount": "1kg",
+      "note": "Xương ống, xương sườn heo"
+    },
+    {
+      "name": "Thịt heo",
+      "amount": "300g",
+      "note": "Thịt ba chỉ, thịt nạc"
+    },
+    {
+      "name": "Gan heo",
+      "amount": "200g",
+      "note": "Gan heo tươi"
+    },
+    {
+      "name": "Tôm tươi",
+      "amount": "300g",
+      "note": "Tôm to, tươi ngon"
+    },
+    {
+      "name": "Bánh hủ tiếu",
+      "amount": "500g",
+      "note": "Bánh hủ tiếu tươi"
+    },
+    {
+      "name": "Tôm khô",
+      "amount": "50g",
+      "note": "Tôm khô loại ngon"
+    },
+    {
+      "name": "Mực khô",
+      "amount": "2 con",
+      "note": "Mực khô nhỏ"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "5 củ",
+      "note": "Hành tím tươi"
+    },
+    {
+      "name": "Tỏi",
+      "amount": "1 củ",
+      "note": "Tỏi tươi"
+    },
+    {
+      "name": "Đường phèn",
+      "amount": "2 thìa canh",
+      "note": "Đường phèn hoặc đường cát"
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "3 thìa canh",
+      "note": "Nước mắm ngon"
+    },
+    {
+      "name": "Muối",
+      "amount": "1 thìa cà phê",
+      "note": "Muối tinh"
+    },
+    {
+      "name": "Tiêu",
+      "amount": "1/2 thìa cà phê",
+      "note": "Tiêu xay"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế nguyên liệu",
+      "description": "Rửa sạch xương heo, chần qua nước sôi. Thái thịt heo thành miếng vừa ăn. Rửa sạch tôm, bóc vỏ. Ngâm tôm khô và mực khô cho mềm.",
+      "time": "30 phút",
+      "tips": "Tôm khô và mực khô ngâm mềm sẽ dễ xay và tạo vị ngọt cho nước dùng"
+    },
+    {
+      "step": 2,
+      "title": "Ninh nước dùng",
+      "description": "Cho xương heo vào nồi lớn, đổ nước ngập. Đun sôi rồi hạ lửa nhỏ ninh 1.5-2 tiếng cho nước dùng ngọt.",
+      "time": "1.5-2 tiếng",
+      "tips": "Ninh lửa nhỏ để nước dùng trong và ngọt tự nhiên"
+    },
+    {
+      "step": 3,
+      "title": "Làm nước dùng đặc trưng",
+      "description": "Xay nhuyễn tôm khô và mực khô đã ngâm. Phi thơm hành tím, tỏi, cho tôm mực xay vào đảo thơm rồi cho vào nước dùng.",
+      "time": "20 phút",
+      "tips": "Tôm khô và mực khô tạo nên hương vị đặc trưng của hủ tiếu Nam Vang"
+    },
+    {
+      "step": 4,
+      "title": "Nấu thịt và tôm",
+      "description": "Cho thịt heo vào nước dùng nấu chín. Luộc tôm tươi và gan heo riêng, thái lát mỏng.",
+      "time": "15 phút",
+      "tips": "Gan heo không nên nấu quá lâu để tránh bị dai"
+    },
+    {
+      "step": 5,
+      "title": "Nêm nếm",
+      "description": "Nêm nước dùng với nước mắm, đường, muối, tiêu cho vừa khẩu vị. Nước dùng phải có vị ngọt thanh, không quá mặn.",
+      "time": "5 phút",
+      "tips": "Hủ tiếu Nam Vang có vị ngọt thanh đặc trưng, không cay"
+    },
+    {
+      "step": 6,
+      "title": "Hoàn thành",
+      "description": "Trụng bánh hủ tiếu qua nước sôi, cho vào tô. Xếp thịt heo, tôm, gan lên trên, chan nước dùng nóng. Rắc hành lá, ngò.",
+      "time": "5 phút",
+      "tips": "Bánh hủ tiếu phải được trụng vừa đủ để giữ độ dai"
+    }
+  ],
+  "tips": [
+    "Tôm khô và mực khô là linh hồn tạo vị ngọt đặc trưng",
+    "Nước dùng phải trong vắt và có vị ngọt thanh",
+    "Không nên nêm quá mặn, để giữ vị ngọt tự nhiên",
+    "Có thể thêm cua đồng để tăng vị ngọt",
+    "Ăn nóng ngay khi vừa chan nước dùng"
+  ],
+  "nutrition": {
+    "calories": "380 calo/tô",
+    "protein": "26g",
+    "fat": "10g",
+    "carbohydrates": "42g",
+    "fiber": "2g",
+    "sodium": "1100mg",
+    "benefits": [
+      "Giàu protein từ tôm, thịt heo và gan",
+      "Cung cấp carbohydrate từ bánh hủ tiếu",
+      "Tôm cung cấp omega-3 tốt cho tim mạch",
+      "Gan heo giàu sắt, tốt cho máu",
+      "Nước dùng thanh mát, dễ tiêu hóa"
+    ]
+  },
+  "cultural_significance": {
+    "tet_meaning": "Hủ tiếu Nam Vang thường được thưởng thức vào sáng Tết, mang ý nghĩa khởi đầu năm mới với bữa ăn nhẹ nhàng và may mắn.",
+    "preparation_time": "Thường được chuẩn bị từ sáng sớm để có nước dùng tươi ngon",
+    "serving_tradition": "Ăn nóng hổi, thường là bữa sáng hoặc bữa trưa nhẹ",
+    "regional_variations": {
+      "saigon_style": "Hủ tiếu Sài Gòn có thêm nhiều loại thịt và hải sản",
+      "mekong_style": "Miền Tây thường thêm cua đồng và các loại rau thủy sinh",
+      "cambodian_origin": "Phiên bản gốc Campuchia có vị ngọt đậm đà hơn"
+    }
+  },
+  "serving_suggestions": [
+    {
+      "name": "Rau thơm miền Nam",
+      "ingredients": "Giá đỗ, rau muống, ngò gai, húng quế",
+      "description": "Rau thơm tươi ăn kèm tăng hương vị"
+    },
+    {
+      "name": "Nước mắm pha",
+      "ingredients": "Nước mắm, chanh, đường, ớt",
+      "description": "Nước chấm chua ngọt đặc trưng miền Nam"
+    },
+    {
+      "name": "Tương ớt",
+      "ingredients": "Tương ớt Việt Nam",
+      "description": "Chấm thêm cho người thích vị cay nhẹ"
+    }
+  ],
+  "storage": {
+    "refrigerator": "Nước dùng có thể bảo quản 2-3 ngày trong tủ lạnh",
+    "freezer": "Có thể đông lạnh nước dùng 2 tuần",
+    "room_temperature": "Không nên để ở nhiệt độ phòng quá 2 giờ",
+    "reheating": "Đun sôi lại nước dùng trước khi sử dụng"
+  }
+}

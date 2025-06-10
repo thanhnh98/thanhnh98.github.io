@@ -1,0 +1,167 @@
+{
+  "id": "mang-kho-thit",
+  "name": "Măng Khô Thịt",
+  "description": "Măng khô thịt là món ăn truyền thống đặc trưng của miền Bắc Việt Nam, thường xuất hiện trong mâm cơm ngày Tết. Măng khô được ninh cùng thịt heo tạo nên hương vị đậm đà, thơm ngon và mang ý nghĩa tốt lành cho năm mới.",
+  "image": "https://i.pinimg.com/736x/56/0a/9a/560a9a5dffdd4d1a4c2c48357cd303e9.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Bắc", "Miền Trung"],
+  "primary_region": "Miền Bắc",
+  "cooking_time": "1.5 tiếng",
+  "prep_time": "30 phút",
+  "difficulty": "Trung bình",
+  "servings": "4-6 người",
+  "calories": "280 calo/phần",
+  "origin": "Măng khô thịt có nguồn gốc từ miền Bắc Việt Nam, được tạo ra từ nhu cầu bảo quản măng tươi qua mùa đông. Món ăn này thể hiện sự khéo léo của người Việt trong việc chế biến và bảo quản thực phẩm theo mùa.",
+  "symbolism": "Măng khô thịt tượng trưng cho sự bền vững, lâu dài và thịnh vượng. Măng mọc lên cao thể hiện ước muốn gia đình phát triển, con cháu thành đạt. Món ăn này mang ý nghĩa cầu chúc một năm mới tốt lành.",
+  "ingredients": [
+    {
+      "name": "Măng khô",
+      "amount": "300g",
+      "note": "Măng khô loại ngon, không mốc"
+    },
+    {
+      "name": "Thịt heo ba chỉ",
+      "amount": "500g",
+      "note": "Thịt ba chỉ có da, thái miếng vừa"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "5 củ",
+      "note": "Hành tím tươi, bóc vỏ"
+    },
+    {
+      "name": "Tỏi",
+      "amount": "3 tép",
+      "note": "Tỏi tươi, băm nhuyễn"
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "3 thìa canh",
+      "note": "Nước mắm ngon"
+    },
+    {
+      "name": "Đường",
+      "amount": "2 thìa canh",
+      "note": "Đường cát trắng hoặc đường phèn"
+    },
+    {
+      "name": "Tiêu",
+      "amount": "1/2 thìa cà phê",
+      "note": "Tiêu xay"
+    },
+    {
+      "name": "Dầu ăn",
+      "amount": "2 thìa canh",
+      "note": "Dầu ăn để phi thơm"
+    },
+    {
+      "name": "Nước dùng",
+      "amount": "500ml",
+      "note": "Nước dùng heo hoặc nước lọc"
+    },
+    {
+      "name": "Hành lá",
+      "amount": "2 cây",
+      "note": "Hành lá thái nhỏ để trang trí"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế măng khô",
+      "description": "Ngâm măng khô trong nước ấm 2-3 tiếng cho mềm. Rửa sạch nhiều lần để loại bỏ bụi bẩn và mùi hăng. Vắt khô nước, thái sợi vừa.",
+      "time": "3 tiếng",
+      "tips": "Ngâm măng khô đủ lâu để mềm và dễ nấu, rửa kỹ để loại bỏ mùi hăng"
+    },
+    {
+      "step": 2,
+      "title": "Sơ chế thịt",
+      "description": "Thịt heo rửa sạch, thái miếng vuông vừa ăn. Ướp thịt với chút nước mắm, tiêu trong 15 phút.",
+      "time": "15 phút",
+      "tips": "Thái thịt vừa miệng để dễ ăn và thấm gia vị"
+    },
+    {
+      "step": 3,
+      "title": "Phi thơm gia vị",
+      "description": "Làm nóng dầu trong chảo, phi thơm hành tím và tỏi băm cho vàng thơm.",
+      "time": "5 phút",
+      "tips": "Phi gia vị với lửa nhỏ để không bị cháy"
+    },
+    {
+      "step": 4,
+      "title": "Xào thịt",
+      "description": "Cho thịt vào chảo xào với lửa lớn cho thịt săn lại và có màu đẹp. Nêm nước mắm, đường.",
+      "time": "10 phút",
+      "tips": "Xào thịt với lửa lớn để thịt không bị ra nước"
+    },
+    {
+      "step": 5,
+      "title": "Nấu măng với thịt",
+      "description": "Cho măng khô đã sơ chế vào chảo, đảo đều với thịt. Đổ nước dùng vào, đun sôi rồi hạ lửa nhỏ ninh 1 tiếng.",
+      "time": "1 tiếng",
+      "tips": "Ninh lửa nhỏ để măng mềm và thấm vị thịt"
+    },
+    {
+      "step": 6,
+      "title": "Hoàn thành",
+      "description": "Nêm nếm lại gia vị cho vừa khẩu vị. Rắc tiêu, hành lá lên trên. Tắt bếp và dọn ra đĩa.",
+      "time": "5 phút",
+      "tips": "Món ăn có vị ngọt đậm đà, măng mềm và thấm vị thịt"
+    }
+  ],
+  "tips": [
+    "Ngâm măng khô đủ lâu và rửa kỹ để loại bỏ mùi hăng",
+    "Ninh lửa nhỏ để măng mềm và thấm vị",
+    "Có thể thêm nấm hương để tăng hương vị",
+    "Nêm vị ngọt đậm đà đặc trưng của món ăn miền Bắc",
+    "Có thể nấu trước 1 ngày để măng thấm vị hơn"
+  ],
+  "nutrition": {
+    "calories": "280 calo/phần",
+    "protein": "22g",
+    "fat": "15g",
+    "carbohydrates": "12g",
+    "fiber": "8g",
+    "sodium": "900mg",
+    "benefits": [
+      "Măng khô giàu chất xơ, tốt cho tiêu hóa",
+      "Protein từ thịt heo giúp xây dựng cơ bắp",
+      "Ít calo, phù hợp cho người ăn kiêng",
+      "Chứa kali, tốt cho tim mạch",
+      "Vitamin B từ thịt heo tốt cho hệ thần kinh"
+    ]
+  },
+  "cultural_significance": {
+    "tet_meaning": "Măng khô thịt là món ăn truyền thống trong mâm cơm Tết miền Bắc, tượng trưng cho sự phát triển và thịnh vượng. Măng mọc cao thể hiện ước muốn gia đình ngày càng thành đạt.",
+    "preparation_time": "Thường được chuẩn bị từ ngày 29 Tết để có thời gian ninh kỹ",
+    "serving_tradition": "Ăn nóng với cơm trắng, thường là món chính trong bữa cơm gia đình",
+    "regional_variations": {
+      "north": "Miền Bắc nấu với vị ngọt đậm đà, thường thêm nấm hương",
+      "central": "Miền Trung có thể thêm ớt để tăng độ cay",
+      "south": "Miền Nam ít phổ biến, thường thay bằng các món khác"
+    }
+  },
+  "serving_suggestions": [
+    {
+      "name": "Cơm trắng",
+      "ingredients": "Cơm tẻ nóng",
+      "description": "Ăn kèm với cơm trắng nóng để thưởng thức trọn vẹn hương vị"
+    },
+    {
+      "name": "Dưa chua",
+      "ingredients": "Dưa chua, cà pháo",
+      "description": "Ăn kèm để giải ngấy và cân bằng vị"
+    },
+    {
+      "name": "Canh rau",
+      "ingredients": "Canh cải, canh rau muống",
+      "description": "Canh rau thanh mát để cân bằng bữa ăn"
+    }
+  ],
+  "storage": {
+    "refrigerator": "3-4 ngày trong tủ lạnh ở nhiệt độ 4°C",
+    "freezer": "1 tháng trong tủ đông ở nhiệt độ -18°C",
+    "room_temperature": "Không nên để quá 4 giờ ở nhiệt độ phòng",
+    "reheating": "Hâm nóng lại trên bếp với lửa nhỏ, có thể thêm chút nước"
+  }
+}
