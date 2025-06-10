@@ -421,12 +421,11 @@
                 <div class="app-coming-soon">
                   <h4>📱 Ứng dụng di động</h4>
                   <p>
-                    Ứng dụng Sắp Tết đang được phát triển và sẽ sớm có mặt trên
+                    Ứng dụng Sắp Tết đã có mặt trên
                     App Store và Google Play.
                   </p>
                   <p>
-                    Hãy bookmark website này để không bỏ lỡ thông báo khi ứng
-                    dụng ra mắt!
+                    Hãy bookmark website này để không bỏ lỡ thông báo mới nhất từ ứng dụng nhé!
                   </p>
                 </div>
               </div>
@@ -877,6 +876,46 @@
     </div>
     <div class="faq-modal-body">
       <div id="faqModalContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Event Modal -->
+<div id="eventModal" class="faq-modal">
+  <div class="faq-modal-content">
+    <div class="faq-modal-header">
+      <h3 id="eventModalTitle">🎊 Sự Kiện</h3>
+      <span class="faq-close" onclick="closeEventModal()">&times;</span>
+    </div>
+    <div class="faq-modal-body">
+      <div id="eventModalContent">
+        <div class="event-modal-countdown">
+          <h4>⏰ Đếm ngược đến sự kiện</h4>
+          <div id="eventModalCountdownTimer">
+            <div class="countdown-item">
+              <span class="countdown-value" id="eventModalDays">00</span>
+              <span class="countdown-label">Ngày</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="eventModalHours">00</span>
+              <span class="countdown-label">Giờ</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="eventModalMinutes">00</span>
+              <span class="countdown-label">Phút</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="eventModalSeconds">00</span>
+              <span class="countdown-label">Giây</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-modal-info">
+          <div class="event-modal-icon" id="eventModalIcon">🏮</div>
+          <p class="event-modal-date" id="eventModalDate"></p>
+          <p class="event-modal-description" id="eventModalDescription"></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

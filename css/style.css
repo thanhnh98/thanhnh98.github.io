@@ -425,7 +425,7 @@ main {
 .event-card {
     min-width: 280px;
     max-width: 280px;
-    height: 200px;
+    height: 240px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 1.5rem;
@@ -537,6 +537,93 @@ main {
     font-size: 0.9rem;
     opacity: 0.9;
     margin: 0;
+}
+
+/* Event Countdown Timer */
+.event-countdown {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 35px;
+}
+
+.countdown-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1;
+    color: inherit;
+}
+
+.countdown-label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin-top: 2px;
+    color: inherit;
+}
+
+/* Responsive for Event Countdown */
+@media (max-width: 768px) {
+    .event-card {
+        height: 220px;
+        min-width: 250px;
+        max-width: 250px;
+        padding: 1.2rem;
+    }
+    
+    .event-countdown {
+        gap: 0.3rem;
+        padding: 0.4rem;
+        margin: 0.4rem 0;
+    }
+    
+    .countdown-item {
+        min-width: 30px;
+    }
+    
+    .countdown-value {
+        font-size: 1rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-card {
+        height: 200px;
+        min-width: 220px;
+        max-width: 220px;
+        padding: 1rem;
+    }
+    
+    .event-countdown {
+        gap: 0.2rem;
+        padding: 0.3rem;
+    }
+    
+    .countdown-item {
+        min-width: 25px;
+    }
+    
+    .countdown-value {
+        font-size: 0.9rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.6rem;
+    }
 }
 
 .carousel-controls {
@@ -2517,5 +2604,180 @@ footer::after {
     .social-share {
         margin-top: 2rem;
         padding: 1.5rem;
+    }
+}
+
+/* Event Modal Styles */
+.event-modal-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.event-modal-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.event-modal-date {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.event-modal-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.event-modal-countdown {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.event-modal-countdown h4 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+#eventModalCountdownTimer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#eventModalCountdownTimer .countdown-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 1.2rem 0.8rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#eventModalCountdownTimer .countdown-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+#eventModalCountdownTimer .countdown-value {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+#eventModalCountdownTimer .countdown-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Event Modal Responsive */
+@media (max-width: 768px) {
+    .event-modal-icon {
+        font-size: 4rem;
+    }
+    
+    .event-modal-date {
+        font-size: 1.2rem;
+    }
+    
+    .event-modal-description {
+        font-size: 1rem;
+    }
+    
+    .event-modal-countdown {
+        padding: 1.5rem;
+    }
+    
+    .event-modal-countdown h4 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    #eventModalCountdownTimer {
+        gap: 0.8rem;
+        max-width: 400px;
+    }
+    
+    #eventModalCountdownTimer .countdown-item {
+        padding: 1rem 0.6rem;
+    }
+    
+    #eventModalCountdownTimer .countdown-value {
+        font-size: 1.8rem;
+    }
+    
+    #eventModalCountdownTimer .countdown-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-modal-info {
+        padding: 1rem;
+    }
+    
+    .event-modal-icon {
+        font-size: 3.5rem;
+    }
+    
+    .event-modal-date {
+        font-size: 1.1rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .event-modal-countdown {
+        padding: 1rem;
+    }
+    
+    .event-modal-countdown h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    #eventModalCountdownTimer {
+        gap: 0.5rem;
+        max-width: 320px;
+    }
+    
+    #eventModalCountdownTimer .countdown-item {
+        padding: 0.8rem 0.4rem;
+    }
+    
+    #eventModalCountdownTimer .countdown-value {
+        font-size: 1.5rem;
+    }
+    
+    #eventModalCountdownTimer .countdown-label {
+        font-size: 0.7rem;
+        margin-top: 0.3rem;
     }
 }

@@ -479,6 +479,8 @@ const eventsData = {
 let currentEventIndex = 0;
 let carouselInterval;
 let modalCountdownInterval;
+let eventCountdownInterval;
+let eventModalCountdownInterval;
 
 function initializeEventsCarousel() {
     const carousel = document.getElementById('events-carousel');
@@ -558,17 +560,77 @@ function updateEventCards() {
             <div class="event-icon">${data.icon}</div>
             <h3>${data.name}</h3>
             <p class="event-date">${eventDate.toLocaleDateString('vi-VN')}</p>
+            <div class="event-countdown" data-target="${eventDate.getTime()}">
+                <div class="countdown-item">
+                    <span class="countdown-value days">00</span>
+                    <span class="countdown-label">Ngày</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value hours">00</span>
+                    <span class="countdown-label">Giờ</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value minutes">00</span>
+                    <span class="countdown-label">Phút</span>
+                </div>
+            </div>
             <p class="event-desc">${data.description}</p>
         `;
         
-        // Remove click event - no longer open modal when clicking event cards
-        // card.addEventListener('click', () => {
-        //     scrollCardToCenter(card);
-        //     openEventModal(key);
-        // });
+        card.addEventListener('click', () => {
+            scrollCardToCenter(card);
+            openEventModal(key);
+        });
         
         carousel.appendChild(card);
     });
+    
+    // Start countdown timers for all events
+    startEventCountdowns();
+}
+
+// Function to update countdown timers for all event cards
+function updateEventCountdowns() {
+    const eventCards = document.querySelectorAll('.event-countdown');
+    
+    eventCards.forEach(countdown => {
+        const targetTime = parseInt(countdown.getAttribute('data-target'));
+        const now = new Date().getTime();
+        const distance = targetTime - now;
+        
+        const daysElement = countdown.querySelector('.days');
+        const hoursElement = countdown.querySelector('.hours');
+        const minutesElement = countdown.querySelector('.minutes');
+        
+        if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            
+            if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+            if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+            if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+        } else {
+            // Event has passed
+            if (daysElement) daysElement.textContent = '00';
+            if (hoursElement) hoursElement.textContent = '00';
+            if (minutesElement) minutesElement.textContent = '00';
+        }
+    });
+}
+
+// Function to start countdown timers for events
+function startEventCountdowns() {
+    // Clear any existing interval
+    if (eventCountdownInterval) {
+        clearInterval(eventCountdownInterval);
+    }
+    
+    // Update immediately
+    updateEventCountdowns();
+    
+    // Update every second
+    eventCountdownInterval = setInterval(updateEventCountdowns, 1000);
 }
 
 function scrollCarousel(direction) {
@@ -598,46 +660,35 @@ function scrollCardToCenter(card) {
     });
 }
 
-function openEventModal(eventType) {
-    const eventData = eventsData[eventType];
-    if (!eventData) return;
+function openEventModal(eventKey) {
+    const event = eventsData[eventKey];
+    if (!event) return;
     
-    const modal = document.getElementById('event-modal');
-    if (!modal) return;
+    const modal = document.getElementById('eventModal');
+    const title = document.getElementById('eventModalTitle');
+    const icon = document.getElementById('eventModalIcon');
+    const date = document.getElementById('eventModalDate');
+    const description = document.getElementById('eventModalDescription');
+    const modalContent = modal.querySelector('.faq-modal-content');
     
-    const modalContent = modal.querySelector('.modal-content');
-    const modalIcon = document.getElementById('modal-icon');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDate = document.getElementById('modal-date');
-    const modalDescription = document.getElementById('modal-description');
+    const eventDate = event.getDate();
     
-    if (!modalContent || !modalIcon || !modalTitle || !modalDate || !modalDescription) return;
+    title.textContent = `${event.icon} ${event.name}`;
+    icon.textContent = event.icon;
+    date.textContent = eventDate.toLocaleDateString('vi-VN');
+    description.textContent = event.description;
     
-    const eventDate = eventData.getDate();
+    // Apply event theme color to modal
+    if (modalContent && event.background) {
+        modalContent.style.background = event.background;
+        modalContent.style.color = 'white';
+    }
     
-    // Update modal content
-    modalIcon.textContent = eventData.icon;
-    modalTitle.textContent = eventData.name;
-    modalDate.textContent = eventDate.toLocaleDateString('vi-VN');
-    modalDescription.textContent = eventData.description;
-    modalContent.style.background = eventData.background;
-    
-    // Show modal
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
     
-    // Remove countdown functionality - no longer start countdown for this event
-    // startModalCountdown(eventDate); // Commented out to remove countdown
-    
-    // Add entrance animation
-    modalContent.style.transform = 'scale(0.7)';
-    modalContent.style.opacity = '0';
-    
-    setTimeout(() => {
-        modalContent.style.transition = 'all 0.3s ease';
-        modalContent.style.transform = 'scale(1)';
-        modalContent.style.opacity = '1';
-    }, 10);
+    // Start countdown for this specific event
+    startEventModalCountdown(eventDate);
 }
 
 function closeEventModal() {
@@ -900,3 +951,74 @@ function initializeLogoScrollToTop() {
         headerBrand.style.cursor = 'pointer';
     }
 }
+
+// Event Modal Functions
+function closeEventModal() {
+    const modal = document.getElementById('eventModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    // Clear the countdown interval
+    if (eventModalCountdownInterval) {
+        clearInterval(eventModalCountdownInterval);
+        eventModalCountdownInterval = null;
+    }
+}
+
+function startEventModalCountdown(eventDateStr) {
+    // Clear existing interval
+    if (eventModalCountdownInterval) {
+        clearInterval(eventModalCountdownInterval);
+    }
+    
+    function updateModalCountdown() {
+        const eventDate = new Date(eventDateStr);
+        const now = new Date();
+        const timeDiff = eventDate - now;
+        
+        if (timeDiff <= 0) {
+            document.getElementById('eventModalDays').textContent = '00';
+            document.getElementById('eventModalHours').textContent = '00';
+            document.getElementById('eventModalMinutes').textContent = '00';
+            document.getElementById('eventModalSeconds').textContent = '00';
+            return;
+        }
+        
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+        document.getElementById('eventModalDays').textContent = days.toString().padStart(2, '0');
+        document.getElementById('eventModalHours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('eventModalMinutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('eventModalSeconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Update immediately
+    updateModalCountdown();
+    
+    // Update every second
+    eventModalCountdownInterval = setInterval(updateModalCountdown, 1000);
+}
+
+// Event listeners for closing modal
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('eventModal');
+    
+    if (modal) {
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeEventModal();
+            }
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+            closeEventModal();
+        }
+    });
+});
