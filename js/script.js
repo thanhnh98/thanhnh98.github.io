@@ -503,27 +503,27 @@ function initializeEventsCarousel() {
         });
     }
     
-    // Modal close events
-    if (closeModal) {
-        closeModal.addEventListener('click', closeEventModal);
-    }
-    
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeEventModal();
-            }
-        });
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (modal && modal.style.display === 'block') {
-            if (e.key === 'Escape') {
-                closeEventModal();
-            }
-        }
-    });
+    // Remove all modal event listeners - no longer use event modal
+    // if (closeModal) {
+    //     closeModal.addEventListener('click', closeEventModal);
+    // }
+
+    // if (modal) {
+    //     modal.addEventListener('click', (e) => {
+    //         if (e.target === modal) {
+    //             closeEventModal();
+    //         }
+    //     });
+    // }
+
+    // // Keyboard navigation
+    // document.addEventListener('keydown', (e) => {
+    //     if (modal && modal.style.display === 'block') {
+    //         if (e.key === 'Escape') {
+    //             closeEventModal();
+    //         }
+    //     }
+    // });
     
     // Smooth scrolling behavior for carousel
     if (carousel) {
@@ -561,11 +561,11 @@ function updateEventCards() {
             <p class="event-desc">${data.description}</p>
         `;
         
-        // Add click event with smooth scroll to center
-        card.addEventListener('click', () => {
-            scrollCardToCenter(card);
-            openEventModal(key);
-        });
+        // Remove click event - no longer open modal when clicking event cards
+        // card.addEventListener('click', () => {
+        //     scrollCardToCenter(card);
+        //     openEventModal(key);
+        // });
         
         carousel.appendChild(card);
     });
@@ -626,8 +626,8 @@ function openEventModal(eventType) {
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
     
-    // Start countdown for this event
-    startModalCountdown(eventDate);
+    // Remove countdown functionality - no longer start countdown for this event
+    // startModalCountdown(eventDate); // Commented out to remove countdown
     
     // Add entrance animation
     modalContent.style.transform = 'scale(0.7)';
