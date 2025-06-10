@@ -52,6 +52,12 @@ const foodRecipeData = {
                     <li>Nấu lửa đều, không để cạn nước</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('banh-chung')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'banh-tet': {
@@ -106,6 +112,12 @@ const foodRecipeData = {
                     <li>Nấu lửa nhỏ để bánh chín đều</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('banh-tet')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'thit-kho-tau': {
@@ -159,6 +171,12 @@ const foodRecipeData = {
                     <li>Kho lửa nhỏ để thịt mềm, nước sốt đặc</li>
                     <li>Nêm nếm vị trong quá trình kho</li>
                 </ul>
+            </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('thit-kho-tau')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
             </div>
         `
     },
@@ -215,6 +233,12 @@ const foodRecipeData = {
                     <li>Ăn kèm bún, rau sống và nước chấm</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('nem-ran')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'xoi-gac': {
@@ -267,6 +291,12 @@ const foodRecipeData = {
                     <li>Không cho quá nhiều nước gấc sẽ bị nhão</li>
                     <li>Hấp xôi bằng nồi hấp sẽ dẻo hơn</li>
                 </ul>
+            </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('xoi-gac')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
             </div>
         `
     },
@@ -323,6 +353,12 @@ const foodRecipeData = {
                     <li>Ăn kèm muối tiêu chanh hoặc gừng</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('ga-luoc')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'canh-kho-qua': {
@@ -378,6 +414,12 @@ const foodRecipeData = {
                     <li>Nấu vừa tới để khổ qua không bị nát</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('canh-kho-qua')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'mang-kho-thit': {
@@ -432,6 +474,12 @@ const foodRecipeData = {
                     <li>Kho lửa nhỏ để măng thấm vị</li>
                     <li>Để qua đêm sẽ ngon hơn</li>
                 </ul>
+            </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('mang-kho-thit')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
             </div>
         `
     },
@@ -495,6 +543,12 @@ const foodRecipeData = {
                     <li>Mứt ngon khi có độ ngọt vừa phải</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('mut-tet')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'pho-bo': {
@@ -553,6 +607,12 @@ const foodRecipeData = {
                     <li>Nước dùng phải đủ nóng để chín thịt</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('pho-bo')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'bun-bo-hue': {
@@ -610,6 +670,12 @@ const foodRecipeData = {
                     <li>Ăn kèm nhiều rau sống</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('bun-bo-hue')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     },
     'hu-tieu-nam-vang': {
@@ -665,6 +731,12 @@ const foodRecipeData = {
                     <li>Hành phi giòn tạo hương thơm</li>
                     <li>Ăn kèm tương ớt Sriracha</li>
                 </ul>
+            </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('hu-tieu-nam-vang')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
             </div>
         `
     },
@@ -725,6 +797,12 @@ const foodRecipeData = {
                     <li>Ăn nóng với nước chấm chua ngọt</li>
                 </ul>
             </div>
+            
+            <div class="recipe-detail-button">
+                <button onclick="navigateToDetailPage('banh-khot')" class="detail-btn">
+                    📖 Xem chi tiết đầy đủ
+                </button>
+            </div>
         `
     }
 };
@@ -781,6 +859,21 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+// Function điều hướng đến trang chi tiết với animation
+function navigateToDetailPage(foodId) {
+    // Thêm animation fade out
+    document.body.style.transition = 'opacity 0.3s ease-out';
+    document.body.style.opacity = '0';
+    
+    // Đóng modal trước khi chuyển trang
+    closeFoodModal();
+    
+    // Chuyển trang sau khi animation hoàn thành
+    setTimeout(() => {
+        window.location.href = `chi-tiet-mon-an.html?id=${foodId}`;
+    }, 300);
+}
+
 // Thêm hiệu ứng hover cho food cards
 document.addEventListener('DOMContentLoaded', function() {
     const foodCards = document.querySelectorAll('.food-card');
@@ -794,4 +887,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
+    
+    // Animation fade in khi trang load
+    document.body.style.opacity = '1';
 });

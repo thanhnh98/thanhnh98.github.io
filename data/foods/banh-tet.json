@@ -1,0 +1,182 @@
+{
+  "id": "banh-tet",
+  "name": "Bánh Tét",
+  "description": "Bánh tét là món ăn truyền thống đặc trưng của miền Nam Việt Nam, được làm từ gạo nếp, đậu xanh, thịt heo và gói trong lá chuối. Bánh có hình trụ dài, tượng trưng cho sự đoàn tụ và ấm no của gia đình trong ngày Tết.",
+  "image": "images/banh-tet.jpg",
+  "category": "Bánh truyền thống",
+  "regions": ["Miền Nam", "Miền Trung"],
+  "primaryRegion": "Miền Nam",
+  "cookingTime": "8-10 giờ",
+  "difficulty": "Khó",
+  "servings": "6-8 người",
+  "calories": "300 kcal/100g",
+  "origin": {
+    "legend": "Theo truyền thuyết, bánh tét có nguồn gốc từ thời vua Quang Trung đánh đuổi quân Thanh vào Tết năm Kỷ Dậu 1789. Một quân lính đã dâng lên vua loại bánh hình trụ do vợ ở quê làm. Vua ăn thấy ngon và đặt tên là 'bánh tét' để ghi nhớ chiến thắng và tình cảm gia đình.",
+    "historicalPeriod": "Thời Tây Sơn (1789)",
+    "culturalInfluence": "Sản phẩm của sự giao thoa văn hóa Việt-Chăm, chịu ảnh hưởng từ tín ngưỡng phồn thực và hình tượng Linga của thần Shiva"
+  },
+  "symbolism": {
+    "shape": "Hình trụ dài tượng trưng cho sự sinh sôi, phồn thực",
+    "meaning": "Sự đoàn tụ, ấm no của gia đình, tình thương của mẹ dành cho con",
+    "tetSignificance": "Biểu tượng của Tết miền Nam, thể hiện mong muốn sum vầy và thịnh vượng"
+  },
+  "ingredients": [
+    {
+      "name": "Gạo nếp",
+      "amount": "1 kg",
+      "note": "Có thể dùng nếp trắng, nếp cẩm hoặc nhuộm màu tự nhiên"
+    },
+    {
+      "name": "Đậu xanh đã tách vỏ",
+      "amount": "400g",
+      "note": "Đậu xanh vàng óng, hạt đều"
+    },
+    {
+      "name": "Thịt heo ba chỉ",
+      "amount": "300g",
+      "note": "Thịt có mỡ, cắt miếng dài"
+    },
+    {
+      "name": "Lá chuối",
+      "amount": "15-20 lá",
+      "note": "Lá tươi, xanh mướt, rửa sạch"
+    },
+    {
+      "name": "Dây lạt tre hoặc dây nilon",
+      "amount": "Đủ dùng",
+      "note": "Để buộc bánh"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "2-3 củ",
+      "note": "Băm nhỏ"
+    },
+    {
+      "name": "Tiêu đen",
+      "amount": "1 thìa cà phê",
+      "note": "Xay nhuyễn"
+    },
+    {
+      "name": "Muối",
+      "amount": "1.5 thìa cà phê",
+      "note": ""
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "1.5 thìa canh",
+      "note": ""
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Chuẩn bị nguyên liệu",
+      "description": "Vo sạch gạo nếp, ngâm 8-10 tiếng. Đậu xanh ngâm 2 tiếng, hấp chín và giã nhuyễn. Thịt heo cắt miếng dài, ướp với gia vị trong 30 phút.",
+      "time": "10 tiếng"
+    },
+    {
+      "step": 2,
+      "title": "Chuẩn bị lá chuối",
+      "description": "Rửa sạch lá chuối, lau khô. Có thể chần qua nước sôi để lá mềm và dễ gói hơn.",
+      "time": "30 phút"
+    },
+    {
+      "step": 3,
+      "title": "Gói bánh",
+      "description": "Trải lá chuối, cho nếp, đậu xanh, thịt, lại đậu xanh và nếp. Gói chặt thành hình trụ dài và buộc bằng dây lạt.",
+      "time": "2-3 tiếng"
+    },
+    {
+      "step": 4,
+      "title": "Luộc bánh",
+      "description": "Xếp bánh vào nồi, đổ nước ngập bánh. Luộc 8-10 tiếng với lửa vừa, thường xuyên thêm nước sôi.",
+      "time": "8-10 tiếng"
+    },
+    {
+      "step": 5,
+      "title": "Hoàn thành",
+      "description": "Vớt bánh ra, để ráo. Dùng dây lạt để cắt bánh thành từng khúc khi ăn.",
+      "time": "30 phút"
+    }
+  ],
+  "tips": [
+    "Gói bánh phải chặt để không bị tung khi luộc",
+    "Luộc bánh bằng lửa vừa, không để cạn nước",
+    "Dùng dây lạt để cắt bánh sẽ đẹp và đều hơn",
+    "Có thể chiên bánh tét để có vị giòn rụm",
+    "Ăn kèm với củ kiệu, dưa chua để giảm độ ngậy"
+  ],
+  "nutrition": {
+    "calories": "300 kcal/100g",
+    "carbohydrates": "62g",
+    "protein": "7g",
+    "fat": "5g",
+    "fiber": "2g",
+    "benefits": [
+      "Cung cấp năng lượng dồi dào từ gạo nếp",
+      "Protein từ thịt heo và đậu xanh",
+      "Chất xơ từ đậu xanh hỗ trợ tiêu hóa",
+      "Vitamin B từ gạo nếp"
+    ]
+  },
+  "culturalNotes": [
+    "Bánh tét là biểu tượng của Tết miền Nam",
+    "Thường được cúng trên bàn thờ tổ tiên",
+    "Có hai loại: bánh tét chay (cúng) và bánh tét mặn (ăn)",
+    "Việc gói bánh tét là hoạt động sum vầy của gia đình",
+    "Thể hiện sự giao thoa văn hóa Việt-Chăm"
+  ],
+  "variations": [
+    {
+      "name": "Bánh tét lá cẩm",
+      "description": "Bánh có màu tím từ lá cẩm, đặc sản Cần Thơ"
+    },
+    {
+      "name": "Bánh tét lá dứa",
+      "description": "Bánh có màu xanh từ lá dứa, hương thơm đặc trưng"
+    },
+    {
+      "name": "Bánh tét trà cuôn",
+      "description": "Bánh có màu xanh đậm từ lá ngót, đặc sản Trà Vinh"
+    },
+    {
+      "name": "Bánh tét nhân chuối",
+      "description": "Bánh có nhân chuối sứ chín, vị ngọt tự nhiên"
+    },
+    {
+      "name": "Bánh tét ngũ sắc",
+      "description": "Bánh có 5 màu tượng trưng ngũ hành"
+    }
+  ],
+  "servingSuggestions": [
+    "Ăn với củ kiệu (dưa chua)",
+    "Kèm thịt kho tàu",
+    "Có thể chiên với chút dầu ăn",
+    "Ăn cùng chả lụa, giò thủ",
+    "Uống trà xanh để giảm độ ngậy"
+  ],
+  "storage": {
+    "roomTemperature": "3-5 ngày",
+    "refrigerator": "7-10 ngày",
+    "freezer": "1 tháng",
+    "notes": "Bảo quản trong túi nilon hoặc hộp kín. Có thể hâm nóng bằng lò vi sóng hoặc hấp lại."
+  },
+  "regionalSpecialties": [
+    {
+      "region": "Trà Vinh",
+      "specialty": "Bánh tét trà cuôn với màu xanh đậm từ lá ngót"
+    },
+    {
+      "region": "Cần Thơ",
+      "specialty": "Bánh tét lá cẩm với màu tím lãng mạn"
+    },
+    {
+      "region": "Vĩnh Long",
+      "specialty": "Bánh tét ngũ sắc với nhiều màu sắc"
+    },
+    {
+      "region": "Tiền Giang",
+      "specialty": "Bánh tét Hội Gia truyền thống"
+    }
+  ]
+}

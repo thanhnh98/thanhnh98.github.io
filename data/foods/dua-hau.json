@@ -1,0 +1,97 @@
+{
+  "id": "dua-hau",
+  "name": "Dưa Hấu",
+  "description": "Dưa hấu là loại trái cây không thể thiếu trong dịp Tết của mỗi gia đình Việt. Với ruột đỏ tượng trưng cho may mắn và tài lộc, dưa hấu thường được chưng trên bàn thờ trong những ngày đầu năm mới.",
+  "image": "images/dua-hau.jpg",
+  "category": "Trái cây",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "Không cần nấu",
+  "difficulty": "Dễ",
+  "servings": "6-8 người",
+  "calories": "46 calo/154g",
+  "origin": "Dưa hấu có nguồn gốc từ Tây Phi, được du nhập vào Việt Nam từ lâu đời và trở thành một phần không thể thiếu trong văn hóa Tết truyền thống.",
+  "symbolism": "Dưa hấu tượng trưng cho sự viên mãn, may mắn và tài lộc. Hình dáng tròn trịa biểu thị sự đoàn viên, ruột đỏ mang ý nghĩa cầu tài lộc, vỏ xanh thể hiện sự hi vọng và niềm vui ẩn chứa bên trong.",
+  "ingredients": [
+    {
+      "name": "Dưa hấu tươi",
+      "amount": "1 quả",
+      "note": "Chọn quả tròn trịa, vỏ xanh đậm, có vân rõ nét"
+    }
+  ],
+  "selection_tips": [
+    "Chọn quả có hình dáng cân đối, tròn trịa, không bị méo mó",
+    "Vỏ dưa căng bóng, màu xanh đậm với các sọc song song rõ ràng",
+    "Cuống dưa khô, héo và teo nhỏ (dấu hiệu chín tự nhiên)",
+    "Núm dưa nhỏ và lõm sâu vào trong (dưa càng ngọt)",
+    "Đáy dưa có màu vàng đậm (phần tiếp xúc với đất)",
+    "Dùng tay vỗ nhẹ, nghe tiếng 'bộp bộp' rõ ràng",
+    "Quả nhỏ nhưng nặng tay (ruột chắc, không xốp)"
+  ],
+  "cultural_notes": [
+    "Dưa hấu gắn liền với truyền thuyết Mai An Tiêm - biểu tượng của ý chí kiên cường, tự lực cánh sinh",
+    "Trong ngày Tết, dưa hấu thường được khắc chữ thư pháp như Phúc, Lộc, Thọ, Cát, Như Ý",
+    "Miếng dưa được chuyền tay trong gia đình với hy vọng mọi người luôn gắn kết yêu thương",
+    "Dưa hấu là thức quả dâng lên tổ tiên thể hiện lòng tôn kính của con cháu",
+    "Đặc biệt phổ biến ở miền Tây Nam Bộ trong dịp Tết"
+  ],
+  "nutrition_facts": {
+    "water_content": "92%",
+    "calories_per_serving": "46 calo/154g",
+    "vitamin_c": "21% nhu cầu hàng ngày",
+    "vitamin_a": "18% nhu cầu hàng ngày",
+    "potassium": "5% nhu cầu hàng ngày",
+    "magnesium": "4% nhu cầu hàng ngày",
+    "antioxidants": "Lycopene, beta-carotene, vitamin C",
+    "amino_acids": "Citrulline"
+  },
+  "health_benefits": [
+    "Cung cấp nhiều nước và vitamin thiết yếu cho cơ thể",
+    "Lycopene giúp cải thiện sức khỏe tim mạch, giảm huyết áp",
+    "Chất chống oxy hóa giúp giảm viêm và stress oxy hóa",
+    "Ngăn ngừa thoái hóa điểm vàng, tốt cho mắt",
+    "Cải thiện tiêu hóa nhờ hàm lượng nước và chất xơ",
+    "Citrulline giúp giảm đau nhức cơ bắp",
+    "Vitamin C và A tốt cho da và tóc"
+  ],
+  "storage_tips": {
+    "whole_watermelon": {
+      "room_temperature": "1 tuần ở nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp",
+      "refrigerator": "Lên đến 2 tháng trong tủ lạnh"
+    },
+    "cut_watermelon": {
+      "with_rind": "1 tuần khi bọc màng bọc thực phẩm",
+      "without_rind": "3-4 ngày trong hộp kín",
+      "frozen": "6 tháng khi đông lạnh (thích hợp làm sinh tố)"
+    },
+    "storage_notes": [
+      "Lót rơm hoặc bìa carton khi để ở nhiệt độ phòng",
+      "Không để chung với thực phẩm có mùi mạnh",
+      "Dưa đã cắt cần bảo quản trong tủ lạnh ngay lập tức"
+    ]
+  },
+  "serving_suggestions": [
+    "Ăn tươi làm món tráng miệng sau bữa cơm Tết",
+    "Cắt thành miếng nhỏ để chia sẻ trong gia đình",
+    "Ép lấy nước uống giải nhiệt",
+    "Làm chè hoa quả kết hợp với các loại trái cây khác",
+    "Trang trí bàn tiệc với các họa tiết khắc chữ"
+  ],
+  "safety_notes": [
+    "Chọn dưa không bị tiêm hóa chất (2 đầu cân xứng, không có lông nhung)",
+    "Trẻ em và người có vấn đề tiêu hóa không nên ăn quá nhiều dưa lạnh",
+    "Rửa sạch vỏ dưa trước khi cắt để tránh nhiễm khuẩn",
+    "Sử dụng dao và thớt sạch khi cắt dưa"
+  ],
+  "regional_specialties": {
+    "mien_nam": "Đặc biệt phổ biến ở miền Tây, thường chưng cả cặp dưa hai bên bàn thờ",
+    "mien_trung": "Thường khắc chữ thư pháp trên vỏ dưa",
+    "mien_bac": "Kết hợp với các loại trái cây khác trong mâm ngũ quả"
+  },
+  "decoration_tips": [
+    "Chọn cặp dưa có kích thước tương đương để đặt hai bên bàn thờ",
+    "Khắc các chữ thư pháp ý nghĩa như Phúc, Lộc, Thọ",
+    "Đặt dưa trên đế gỗ hoặc khay đẹp",
+    "Kết hợp với hoa tươi và các loại trái cây khác"
+  ]
+}

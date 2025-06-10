@@ -1,0 +1,145 @@
+{
+  "id": "xoi-gac",
+  "name": "Xôi Gấc",
+  "description": "Xôi gấc là món ăn truyền thống không thể thiếu trong mâm cỗ Tết Việt Nam. Với màu đỏ thắm tự nhiên từ quả gấc, món xôi này mang ý nghĩa may mắn, phước lành và hạnh phúc viên mãn cho năm mới.",
+  "image": "images/xoi-gac.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Miền Bắc",
+  "cooking_time": "90 phút",
+  "difficulty": "Trung bình",
+  "servings": "6-8 người",
+  "calories": "280 kcal/100g",
+  "origin": "Xôi gấc có nguồn gốc từ miền Bắc Việt Nam và đã trở thành món ăn truyền thống trong các dịp lễ tết, đặc biệt là Tết Nguyên Đán.",
+  "symbolism": "Màu đỏ của gấc tượng trưng cho sự may mắn, phước lành, tươi thắm và hạnh phúc. Đây là màu tự nhiên của đất trời, mang đến sự dung hòa và thuận lợi cho năm mới.",
+  "ingredients": [
+    {
+      "name": "Gạo nếp",
+      "amount": "500g",
+      "note": "Chọn gạo nếp hạt tròn, đều, màu trắng đục"
+    },
+    {
+      "name": "Quả gấc chín",
+      "amount": "1 quả (khoảng 300g)",
+      "note": "Chọn quả đỏ tươi, vỏ mềm, gai đã nở hết"
+    },
+    {
+      "name": "Nước cốt dừa",
+      "amount": "100ml",
+      "note": "Có thể tự làm từ dừa tươi"
+    },
+    {
+      "name": "Muối",
+      "amount": "2 thìa cà phê",
+      "note": "Dùng để ngâm gạo nếp"
+    },
+    {
+      "name": "Đường",
+      "amount": "2 thìa cà phê",
+      "note": "Tùy chọn, thêm khi xôi đã nguội"
+    },
+    {
+      "name": "Dầu ăn",
+      "amount": "3 thìa canh",
+      "note": "Giúp xôi không bị khô"
+    },
+    {
+      "name": "Rượu trắng",
+      "amount": "15ml",
+      "note": "Trộn với thịt gấc để khử mùi tanh"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Chuẩn bị gạo nếp",
+      "description": "Vo sạch gạo nếp, ngâm qua đêm với 2 thìa cà phê muối. Sáng hôm sau vo lại, nhặt sạch sạn và để ráo nước."
+    },
+    {
+      "step": 2,
+      "title": "Sơ chế gấc",
+      "description": "Bổ đôi quả gấc, dùng thìa cạo lấy phần thịt đỏ và hạt. Trộn thịt gấc với rượu trắng, sau đó bóp đều với gạo nếp cho đến khi gạo chuyển màu đỏ đều."
+    },
+    {
+      "step": 3,
+      "title": "Chuẩn bị nước cốt dừa",
+      "description": "Nạo dừa tươi, xay nhuyễn với nước dừa. Đun sôi hỗn hợp 20 phút, lọc lấy 100ml nước cốt dừa, trộn với 3 thìa dầu ăn."
+    },
+    {
+      "step": 4,
+      "title": "Hấp xôi",
+      "description": "Cho gạo nếp đã trộn gấc vào xửng hấp. Hấp 30 phút đầu, sau đó rưới nước cốt dừa lên và trộn đều. Tiếp tục hấp thêm 10-15 phút."
+    },
+    {
+      "step": 5,
+      "title": "Hoàn thiện",
+      "description": "Khi xôi chín mềm, dùng đũa đảo đều cho xôi tơi. Nếu muốn ngọt, đợi xôi nguội rồi thêm đường và trộn đều."
+    },
+    {
+      "step": 6,
+      "title": "Trang trí và bày biện",
+      "description": "Đơm xôi vào khuôn hoặc dùng bát úp ngược ra đĩa tạo hình tròn đẹp mắt. Có thể rắc thêm dừa nạo hoặc đậu xanh."
+    }
+  ],
+  "tips": [
+    "Chọn gấc có cuống to, gai nhỏ đều và thưa để có nhiều thịt gấc",
+    "Thường xuyên lau nước đọng trên nắp nồi để tránh xôi bị nhão",
+    "Không thêm đường khi xôi còn nóng để tránh làm xôi bị nhão",
+    "Có thể thêm sợi dừa tươi khi hấp để tăng hương vị",
+    "Nhặt bỏ hạt gấc sau khi đã bóp đều với gạo nếp"
+  ],
+  "nutrition_facts": {
+    "calories": "280 kcal/100g",
+    "carbohydrates": "58g",
+    "protein": "6g",
+    "fat": "4g",
+    "fiber": "2g",
+    "vitamin_a": "Rất cao từ gấc",
+    "beta_carotene": "Rất cao",
+    "lycopene": "Cao"
+  },
+  "cultural_notes": [
+    "Xôi gấc là món ăn bắt buộc trong mâm cỗ Tết Nguyên Đán",
+    "Màu đỏ của gấc được coi là màu may mắn, mang lại phước lành",
+    "Thường được dâng lên ban thờ tổ tiên trong các dịp lễ tết",
+    "Xuất hiện trong các bữa cúng ngày giỗ, ngày rằm, mùng một",
+    "Được coi là biểu tượng của sự dung hòa và thuận lợi"
+  ],
+  "variations": [
+    {
+      "name": "Xôi gấc 3 tầng",
+      "description": "Có lớp nhân đậu xanh ở giữa, tạo thành 3 lớp màu sắc đẹp mắt"
+    },
+    {
+      "name": "Xôi gấc nước cốt dừa",
+      "description": "Tăng lượng nước cốt dừa để có vị béo ngậy hơn"
+    },
+    {
+      "name": "Xôi gấc đậu xanh",
+      "description": "Trộn thêm đậu xanh nấu chín để tăng dinh dưỡng"
+    }
+  ],
+  "serving_suggestions": [
+    "Ăn kèm với muối vừng và dừa nạo nếu làm xôi ngọt",
+    "Kết hợp với chả giò, chả lụa, thịt rim nếu làm xôi mặn",
+    "Bày trong mâm cỗ cùng với gà luộc, giò lụa, bánh chưng",
+    "Có thể ăn như món tráng miệng trong bữa cơm gia đình"
+  ],
+  "storage": {
+    "room_temperature": "4-6 giờ",
+    "refrigerator": "2-3 ngày",
+    "freezer": "1 tháng",
+    "reheating_tips": "Hấp lại hoặc hâm nóng trong lò vi sóng, có thể thêm chút nước để tránh khô"
+  },
+  "regional_specialties": {
+    "Miền Bắc": "Thường trộn thêm đậu xanh hoặc rắc đường, ít dùng nước cốt dừa",
+    "Miền Trung": "Giữ hương vị truyền thống, tập trung vào màu sắc đỏ đẹp",
+    "Miền Nam": "Thường thêm sợi dừa nạo và nhiều nước cốt dừa, vị béo ngậy hơn"
+  },
+  "health_benefits": [
+    "Gấc chứa nhiều beta-carotene và lycopene, tốt cho mắt và da",
+    "Cung cấp năng lượng từ carbohydrate phức hợp",
+    "Chứa vitamin A cao, tăng cường hệ miễn dịch",
+    "Nước cốt dừa cung cấp chất béo tốt và khoáng chất"
+  ]
+}

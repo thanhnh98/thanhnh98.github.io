@@ -19,6 +19,12 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://saptet.vn/chi-tiet-mon-an.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
 
     <!-- Trang trò chơi Tết -->
     <url>
