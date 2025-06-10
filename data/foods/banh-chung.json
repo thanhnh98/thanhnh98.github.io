@@ -4,22 +4,15 @@
   "description": "Bánh chưng là món ăn truyền thống không thể thiếu trong ngày Tết của người Việt, được làm từ gạo nếp, đậu xanh, thịt heo và gói trong lá dong. Bánh có hình vuông tượng trưng cho đất, thể hiện lòng biết ơn với trời đất và tổ tiên.",
   "image": "https://i.pinimg.com/736x/81/6c/f3/816cf349a2f78632e2f41c0b82588a72.jpg",
   "category": "Bánh truyền thống",
-  "regions": ["Miền Bắc", "Miền Trung", "Miền Nam"],
-  "primaryRegion": "Miền Bắc",
-  "cookingTime": "12-14 giờ",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Miền Bắc",
+  "cooking_time": "12-14 giờ",
+  "prep_time": "2 giờ",
   "difficulty": "Khó",
   "servings": "8-10 người",
   "calories": "320 kcal/100g",
-  "origin": {
-    "legend": "Theo truyền thuyết, bánh chưng được tạo ra bởi Lang Liêu - hoàng tử thứ 18 của vua Hùng thứ 6. Trong giấc mơ, thần nhân đã chỉ bảo Lang Liêu làm bánh hình vuông tượng trưng cho đất và bánh tròn tượng trưng cho trời để dâng lên vua cha.",
-    "historicalPeriod": "Thời Hùng Vương (khoảng 1712-1632 TCN)",
-    "culturalSignificance": "Biểu tượng của nền văn minh lúa nước, thể hiện lòng hiếu thảo với tổ tiên và sự biết ơn với trời đất"
-  },
-  "symbolism": {
-    "shape": "Hình vuông tượng trưng cho đất",
-    "meaning": "Sự hài hòa giữa trời đất, âm dương, thể hiện lòng biết ơn và hiếu thảo",
-    "tetSignificance": "Món ăn thiêng liêng không thể thiếu trên bàn thờ tổ tiên ngày Tết"
-  },
+  "origin": "Theo truyền thuyết, bánh chưng được tạo ra bởi Lang Liêu - hoàng tử thứ 18 của vua Hùng thứ 6 vào thời Hùng Vương (khoảng 1712-1632 TCN). Trong giấc mơ, thần nhân đã chỉ bảo Lang Liêu làm bánh hình vuông tượng trưng cho đất và bánh tròn tượng trưng cho trời để dâng lên vua cha. Bánh chưng là biểu tượng của nền văn minh lúa nước, thể hiện lòng hiếu thảo với tổ tiên và sự biết ơn với trời đất.",
+  "symbolism": "Hình vuông tượng trưng cho đất, thể hiện sự hài hòa giữa trời đất, âm dương, lòng biết ơn và hiếu thảo. Đây là món ăn thiêng liêng không thể thiếu trên bàn thờ tổ tiên ngày Tết.",
   "ingredients": [
     {
       "name": "Gạo nếp",
@@ -106,7 +99,7 @@
     "Có thể rán bánh chưng với chút dầu ăn để có vị thơm béo",
     "Ăn kèm với dưa hành, chả lụa để giảm độ ngậy"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "320 kcal/100g",
     "carbohydrates": "65g",
     "protein": "8g",
@@ -119,7 +112,7 @@
       "Vitamin B từ gạo nếp"
     ]
   },
-  "culturalNotes": [
+  "cultural_notes": [
     "Bánh chưng là biểu tượng thiêng liêng của ngày Tết Việt Nam",
     "Thường được cúng trên bàn thờ tổ tiên",
     "Là món quà biếu Tết ý nghĩa",
@@ -136,16 +129,33 @@
       "description": "Thay thịt heo bằng nấm, đậu phụ hoặc các loại hạt"
     }
   ],
-  "servingSuggestions": [
-    "Ăn với dưa hành (hành muối)",
-    "Kèm chả lụa, giò thủ",
-    "Có thể rán với chút dầu ăn",
-    "Ăn cùng trà xanh để giảm độ ngậy"
+  "serving_suggestions": [
+    {
+      "name": "Dưa hành",
+      "ingredients": "Hành muối, dưa chua",
+      "description": "Ăn kèm để giảm độ ngậy và tăng vị chua ngọt"
+    },
+    {
+      "name": "Chả lụa",
+      "ingredients": "Chả lụa, giò thủ",
+      "description": "Món mặn truyền thống ăn kèm bánh chưng"
+    },
+    {
+      "name": "Bánh chưng rán",
+      "ingredients": "Dầu ăn",
+      "description": "Rán bánh với chút dầu để có vỏ giòn"
+    }
   ],
   "storage": {
     "roomTemperature": "5-7 ngày",
     "refrigerator": "10-14 ngày",
     "freezer": "1-2 tháng",
     "notes": "Bảo quản trong túi nilon hoặc hộp kín. Có thể hâm nóng bằng lò vi sóng hoặc hấp lại."
+  },
+  "regional_specialties": {
+    "hanoi": "Bánh chưng Hà Nội truyền thống với lá dong tươi",
+    "northern_provinces": "Miền Bắc gói bánh chưng vuông vức, đậm đà",
+    "central_vietnam": "Miền Trung có bánh chưng nhỏ hơn, vị nhạt hơn",
+    "mekong_delta": "Miền Tây thường làm bánh chưng to, nhiều nhân"
   }
 }

@@ -131,7 +131,7 @@
     "Có thể thêm cua đồng để tăng vị ngọt",
     "Ăn nóng ngay khi vừa chan nước dùng"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "380 calo/tô",
     "protein": "26g",
     "fat": "10g",
@@ -146,16 +146,25 @@
       "Nước dùng thanh mát, dễ tiêu hóa"
     ]
   },
-  "cultural_significance": {
-    "tet_meaning": "Hủ tiếu Nam Vang thường được thưởng thức vào sáng Tết, mang ý nghĩa khởi đầu năm mới với bữa ăn nhẹ nhàng và may mắn.",
-    "preparation_time": "Thường được chuẩn bị từ sáng sớm để có nước dùng tươi ngon",
-    "serving_tradition": "Ăn nóng hổi, thường là bữa sáng hoặc bữa trưa nhẹ",
-    "regional_variations": {
-      "saigon_style": "Hủ tiếu Sài Gòn có thêm nhiều loại thịt và hải sản",
-      "mekong_style": "Miền Tây thường thêm cua đồng và các loại rau thủy sinh",
-      "cambodian_origin": "Phiên bản gốc Campuchia có vị ngọt đậm đà hơn"
+  "cultural_notes": [
+    "Hủ tiếu Nam Vang thường được thưởng thức vào sáng Tết, mang ý nghĩa khởi đầu năm mới với bữa ăn nhẹ nhàng và may mắn.",
+    "Thường được chuẩn bị từ sáng sớm để có nước dùng tươi ngon.",
+    "Ăn nóng hổi, thường là bữa sáng hoặc bữa trưa nhẹ.",
+    "Hủ tiếu Sài Gòn có thêm nhiều loại thịt và hải sản.",
+    "Phiên bản gốc Campuchia có vị ngọt đậm đà hơn."
+  ],
+  "variations": [
+    {
+      "name": "Hủ tiếu khô",
+      "description": "Phiên bản không nước dùng, trộn với nước mắm pha",
+      "region": "Miền Nam"
+    },
+    {
+      "name": "Hủ tiếu cua đồng",
+      "description": "Thêm cua đồng tươi từ miền Tây",
+      "region": "Miền Tây"
     }
-  },
+  ],
   "serving_suggestions": [
     {
       "name": "Rau thơm miền Nam",
@@ -178,5 +187,10 @@
     "freezer": "Có thể đông lạnh nước dùng 2 tuần",
     "room_temperature": "Không nên để ở nhiệt độ phòng quá 2 giờ",
     "reheating": "Đun sôi lại nước dùng trước khi sử dụng"
+  },
+  "regional_specialties": {
+    "saigon": "Hủ tiếu Sài Gòn có thêm nhiều loại thịt và hải sản phong phú",
+    "mekong": "Miền Tây thường thêm cua đồng và các loại rau thủy sinh tươi ngon",
+    "cambodia": "Phiên bản gốc Campuchia có vị ngọt đậm đà và đặc trưng riêng"
   }
 }

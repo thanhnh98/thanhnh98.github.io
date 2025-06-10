@@ -70,12 +70,26 @@
       "characteristics": "Nổi bật với mứt dừa do nguồn nguyên liệu phong phú"
     }
   },
-  "cultural_significance": [
+  "nutrition_facts": {
+    "calories": "250-350 kcal/100g (tùy loại mứt)",
+    "carbohydrates": "60-80g",
+    "sugar": "55-75g",
+    "fiber": "2-5g",
+    "benefits": [
+      "Cung cấp năng lượng nhanh từ đường tự nhiên",
+      "Vitamin C từ trái cây tươi",
+      "Chất chống oxy hóa từ các loại quả",
+      "Khoáng chất từ nguyên liệu tự nhiên"
+    ]
+  },
+  "cultural_notes": [
     "Mứt Tết là cầu nối gắn kết gia đình trong những ngày đầu năm",
     "Thể hiện nét đẹp văn hóa ẩm thực truyền thống Việt Nam",
     "Mỗi loại mứt mang ý nghĩa phong thủy và tâm linh riêng",
     "Là món quà ý nghĩa để tặng người thân, bạn bè",
-    "Khay mứt Tết thể hiện sự cầu kỳ và tâm huyết của gia chủ"
+    "Khay mứt Tết thể hiện sự cầu kỳ và tâm huyết của gia chủ",
+    "Khay mứt Tết thường có số lượng lẻ (5, 7, 9 loại) theo quan niệm phong thủy",
+    "Màu sắc mứt được chọn lựa kỹ càng: đỏ (may mắn), vàng (tài lộc), trắng (thanh khiết)"
   ],
   "preparation_tips": {
     "general_principles": [
@@ -119,16 +133,41 @@
     "Mứt organic từ nguyên liệu hữu cơ",
     "Mứt đóng gói hiện đại, tiện lợi"
   ],
-  "cultural_notes": [
-    "Khay mứt Tết thường có số lượng lẻ (5, 7, 9 loại) theo quan niệm phong thủy",
-    "Màu sắc mứt được chọn lựa kỹ càng: đỏ (may mắn), vàng (tài lộc), trắng (thanh khiết)",
-    "Việc làm mứt Tết thường được truyền từ mẹ sang con như một nghề thủ công truyền thống",
-    "Mứt Tết không chỉ là món ăn mà còn là tác phẩm nghệ thuật ẩm thực"
+  "variations": [
+    {
+      "name": "Mứt dừa nhiều màu",
+      "description": "Mứt dừa với các màu sắc và hương vị khác nhau như dâu, chanh dây, cà phê"
+    },
+    {
+      "name": "Mứt ít đường",
+      "description": "Phiên bản dành cho người tiểu đường với lượng đường giảm"
+    },
+    {
+      "name": "Mứt organic",
+      "description": "Làm từ nguyên liệu hữu cơ, không chất bảo quản"
+    }
   ],
-  "economic_significance": [
-    "Ngành công nghiệp mứt Tết tạo việc làm cho nhiều lao động",
-    "Là nguồn thu nhập quan trọng cho nông dân trồng trái cây",
-    "Thúc đẩy du lịch ẩm thực và quảng bá văn hóa Việt",
-    "Xuất khẩu mứt Việt Nam ra thị trường quốc tế"
-  ]
+  "serving_suggestions": [
+    {
+      "name": "Trà nóng",
+      "ingredients": "Trà xanh, trà ô long",
+      "description": "Ăn kèm với trà nóng trong những ngày đầu xuân"
+    },
+    {
+      "name": "Bánh quy",
+      "ingredients": "Bánh quy giòn",
+      "description": "Kết hợp với bánh quy để tăng độ giòn"
+    }
+  ],
+  "storage": {
+    "room_temperature": "1-2 tháng trong hộp kín",
+    "refrigerator": "3-4 tháng",
+    "notes": "Bảo quản nơi khô ráo, tránh ẩm mốc, dùng thìa khô khi lấy"
+  },
+  "regional_specialties": {
+    "hanoi": "Mứt gừng và mứt hạt sen truyền thống Hà Nội",
+    "hue": "Mứt me và mứt tắc đặc sản Huế",
+    "saigon": "Mứt dừa nhiều màu sắc và mứt cà chua",
+    "mekong_delta": "Mứt trái cây nhiệt đới phong phú từ miền Tây"
+  }
 }

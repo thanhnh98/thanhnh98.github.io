@@ -158,16 +158,33 @@
     }
   ],
   "serving_suggestions": [
-    "Ăn nóng cùng cơm trắng",
-    "Chấm với nước mắm pha ớt",
-    "Kết hợp với các món khác trong mâm cơm gia đình",
-    "Có thể ăn kèm với rau sống và bánh tráng"
+    {
+      "name": "Cơm trắng",
+      "ingredients": "Cơm tẻ nóng",
+      "description": "Ăn nóng cùng cơm trắng để thưởng thức trọn vẹn hương vị"
+    },
+    {
+      "name": "Nước mắm pha ớt",
+      "ingredients": "Nước mắm, ớt, chanh, đường",
+      "description": "Chấm với nước mắm pha ớt để tăng vị cay nồng"
+    },
+    {
+      "name": "Rau sống",
+      "ingredients": "Rau thơm, bánh tráng",
+      "description": "Ăn kèm với rau sống và bánh tráng theo phong cách miền Nam"
+    },
+    {
+      "name": "Canh chua",
+      "ingredients": "Canh chua cá, canh chua tôm",
+      "description": "Kết hợp với canh chua để cân bằng vị trong bữa cơm"
+    }
   ],
   "storage": {
-    "room_temperature": "2-3 giờ",
-    "refrigerator": "1-2 ngày",
-    "freezer": "Không nên đông lạnh",
-    "reheating_tips": "Đun lại với lửa nhỏ, không đun quá lâu để tránh khổ qua bị nát"
+    "room_temperature": "2-3 giờ ở nhiệt độ phòng, nên ăn ngay khi còn nóng",
+    "refrigerator": "1-2 ngày trong tủ lạnh ở nhiệt độ 4°C, bảo quản trong hộp kín",
+    "freezer": "Không nên đông lạnh vì khổ qua sẽ bị nát và mất độ giòn",
+    "reheating_tips": "Đun lại với lửa nhỏ trong 5-7 phút, không đun quá lâu để tránh khổ qua bị nát. Có thể thêm chút nước dùng nếu cần.",
+    "best_served": "Nên ăn ngay sau khi nấu để thưởng thức hương vị tốt nhất"
   },
   "regional_specialties": {
     "Miền Nam": "Phiên bản gốc với nước dùng ngọt thanh, thường có cá thác lác",

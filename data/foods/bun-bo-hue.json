@@ -136,7 +136,7 @@
     "Chả cua Huế có vị ngọt đặc biệt, khác với chả cua miền Nam",
     "Ăn kèm với rau thơm miền Trung như rau răm, ngò gai"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "420 calo/tô",
     "protein": "28g",
     "fat": "12g",
@@ -151,16 +151,13 @@
       "Mắm ruốc cung cấp canxi và protein"
     ]
   },
-  "cultural_significance": {
-    "tet_meaning": "Bún bò Huế thường được thưởng thức trong dịp Tết, đặc biệt là Tết Đoan Ngọ, mang ý nghĩa xua đuổi tà ma và cầu may mắn.",
-    "preparation_time": "Thường được chuẩn bị từ sáng sớm để có nước dùng ngon nhất",
-    "serving_tradition": "Ăn nóng hổi, cả gia đình quây quần, thể hiện tình đoàn kết",
-    "regional_variations": {
-      "hue_traditional": "Bún bò Huế truyền thống có mắm ruốc và dầu điều đặc trưng",
-      "modern_variations": "Các biến thể hiện đại có thể thêm tôm, cua hoặc các loại thịt khác",
-      "royal_style": "Phiên bản cung đình có thêm nhiều loại thịt quý và gia vị đặc biệt"
-    }
-  },
+  "cultural_notes": [
+    "Bún bò Huế thường được thưởng thức trong dịp Tết, đặc biệt là Tết Đoan Ngọ, mang ý nghĩa xua đuổi tà ma và cầu may mắn.",
+    "Thường được chuẩn bị từ sáng sớm để có nước dùng ngon nhất.",
+    "Ăn nóng hổi, cả gia đình quây quần, thể hiện tình đoàn kết.",
+    "Bún bò Huế truyền thống có mắm ruốc và dầu điều đặc trưng.",
+    "Phiên bản cung đình có thêm nhiều loại thịt quý và gia vị đặc biệt."
+  ],
   "serving_suggestions": [
     {
       "name": "Rau thơm miền Trung",

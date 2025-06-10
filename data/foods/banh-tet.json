@@ -4,22 +4,15 @@
   "description": "Bánh tét là món ăn truyền thống đặc trưng của miền Nam Việt Nam, được làm từ gạo nếp, đậu xanh, thịt heo và gói trong lá chuối. Bánh có hình trụ dài, tượng trưng cho sự đoàn tụ và ấm no của gia đình trong ngày Tết.",
   "image": "https://i.pinimg.com/736x/79/4d/a6/794da6e98b636e619c36efde3ae153da.jpg",
   "category": "Bánh truyền thống",
-  "regions": ["Miền Nam", "Miền Trung"],
-  "primaryRegion": "Miền Nam",
-  "cookingTime": "8-10 giờ",
+  "regional_tags": ["Miền Nam", "Miền Trung"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "8-10 giờ",
+  "prep_time": "1 giờ 30 phút",
   "difficulty": "Khó",
   "servings": "6-8 người",
   "calories": "300 kcal/100g",
-  "origin": {
-    "legend": "Theo truyền thuyết, bánh tét có nguồn gốc từ thời vua Quang Trung đánh đuổi quân Thanh vào Tết năm Kỷ Dậu 1789. Một quân lính đã dâng lên vua loại bánh hình trụ do vợ ở quê làm. Vua ăn thấy ngon và đặt tên là 'bánh tét' để ghi nhớ chiến thắng và tình cảm gia đình.",
-    "historicalPeriod": "Thời Tây Sơn (1789)",
-    "culturalInfluence": "Sản phẩm của sự giao thoa văn hóa Việt-Chăm, chịu ảnh hưởng từ tín ngưỡng phồn thực và hình tượng Linga của thần Shiva"
-  },
-  "symbolism": {
-    "shape": "Hình trụ dài tượng trưng cho sự sinh sôi, phồn thực",
-    "meaning": "Sự đoàn tụ, ấm no của gia đình, tình thương của mẹ dành cho con",
-    "tetSignificance": "Biểu tượng của Tết miền Nam, thể hiện mong muốn sum vầy và thịnh vượng"
-  },
+  "origin": "Theo truyền thuyết, bánh tét có nguồn gốc từ thời vua Quang Trung đánh đuổi quân Thanh vào Tết năm Kỷ Dậu 1789. Một quân lính đã dâng lên vua loại bánh hình trụ do vợ ở quê làm. Vua ăn thấy ngon và đặt tên là 'bánh tét' để ghi nhớ chiến thắng và tình cảm gia đình. Bánh tét là sản phẩm của sự giao thoa văn hóa Việt-Chăm, chịu ảnh hưởng từ tín ngưỡng phồn thực và hình tượng Linga của thần Shiva.",
+  "symbolism": "Hình trụ dài tượng trưng cho sự sinh sôi, phồn thực, đoàn tụ, ấm no của gia đình và tình thương của mẹ dành cho con. Đây là biểu tượng của Tết miền Nam, thể hiện mong muốn sum vầy và thịnh vượng.",
   "ingredients": [
     {
       "name": "Gạo nếp",
@@ -106,7 +99,7 @@
     "Có thể chiên bánh tét để có vị giòn rụm",
     "Ăn kèm với củ kiệu, dưa chua để giảm độ ngậy"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "300 kcal/100g",
     "carbohydrates": "62g",
     "protein": "7g",
@@ -119,7 +112,7 @@
       "Vitamin B từ gạo nếp"
     ]
   },
-  "culturalNotes": [
+  "cultural_notes": [
     "Bánh tét là biểu tượng của Tết miền Nam",
     "Thường được cúng trên bàn thờ tổ tiên",
     "Có hai loại: bánh tét chay (cúng) và bánh tét mặn (ăn)",
@@ -148,12 +141,22 @@
       "description": "Bánh có 5 màu tượng trưng ngũ hành"
     }
   ],
-  "servingSuggestions": [
-    "Ăn với củ kiệu (dưa chua)",
-    "Kèm thịt kho tàu",
-    "Có thể chiên với chút dầu ăn",
-    "Ăn cùng chả lụa, giò thủ",
-    "Uống trà xanh để giảm độ ngậy"
+  "serving_suggestions": [
+    {
+      "name": "Củ kiệu",
+      "ingredients": "Củ kiệu, dưa chua",
+      "description": "Ăn kèm để giảm độ ngậy và tăng vị chua ngọt"
+    },
+    {
+      "name": "Thịt kho tàu",
+      "ingredients": "Thịt ba chỉ, trứng",
+      "description": "Món mặn truyền thống ăn kèm bánh tét"
+    },
+    {
+      "name": "Bánh tét chiên",
+      "ingredients": "Dầu ăn",
+      "description": "Chiên bánh với chút dầu để có vỏ giòn"
+    }
   ],
   "storage": {
     "roomTemperature": "3-5 ngày",
@@ -161,22 +164,10 @@
     "freezer": "1 tháng",
     "notes": "Bảo quản trong túi nilon hoặc hộp kín. Có thể hâm nóng bằng lò vi sóng hoặc hấp lại."
   },
-  "regionalSpecialties": [
-    {
-      "region": "Trà Vinh",
-      "specialty": "Bánh tét trà cuôn với màu xanh đậm từ lá ngót"
-    },
-    {
-      "region": "Cần Thơ",
-      "specialty": "Bánh tét lá cẩm với màu tím lãng mạn"
-    },
-    {
-      "region": "Vĩnh Long",
-      "specialty": "Bánh tét ngũ sắc với nhiều màu sắc"
-    },
-    {
-      "region": "Tiền Giang",
-      "specialty": "Bánh tét Hội Gia truyền thống"
-    }
-  ]
+  "regional_specialties": {
+    "tra_vinh": "Bánh tét trà cuôn với màu xanh đậm từ lá ngót",
+    "can_tho": "Bánh tét lá cẩm với màu tím lãng mạn",
+    "vinh_long": "Bánh tét ngũ sắc với nhiều màu sắc",
+    "tien_giang": "Bánh tét Hội Gia truyền thống"
+  }
 }

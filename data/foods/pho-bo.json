@@ -131,7 +131,7 @@
     "Nước dùng phải nóng hổi khi chan vào tô",
     "Có thể thêm thịt bò tái để tăng độ ngon"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "350 calo/tô",
     "protein": "25g",
     "fat": "8g",
@@ -146,16 +146,13 @@
       "Nước dùng ấm giúp tiêu hóa tốt"
     ]
   },
-  "cultural_significance": {
-    "tet_meaning": "Phở bò thường được thưởng thức vào sáng mùng 1 Tết, mang ý nghĩa khởi đầu năm mới với bữa ăn ấm áp và đầy đủ.",
-    "preparation_time": "Nước dùng phở thường được ninh từ đêm 30 Tết để sáng mùng 1 có thể thưởng thức",
-    "serving_tradition": "Phở bò được ăn nóng hổi, cả gia đình quây quần bên nhau",
-    "regional_variations": {
-      "hanoi": "Phở Hà Nội có nước dùng trong, ít gia vị, tập trung vào vị ngọt tự nhiên",
-      "saigon": "Phở Sài Gòn có nhiều rau thơm, gia vị phong phú hơn",
-      "other_regions": "Các vùng khác có thể thêm riêng các gia vị địa phương"
-    }
-  },
+  "cultural_notes": [
+    "Phở bò thường được thưởng thức vào sáng mùng 1 Tết, mang ý nghĩa khởi đầu năm mới với bữa ăn ấm áp và đầy đủ.",
+    "Nước dùng phở thường được ninh từ đêm 30 Tết để sáng mùng 1 có thể thưởng thức.",
+    "Phở bò được ăn nóng hổi, cả gia đình quây quần bên nhau.",
+    "Phở Hà Nội có nước dùng trong, ít gia vị, tập trung vào vị ngọt tự nhiên.",
+    "Phở Sài Gòn có nhiều rau thơm, gia vị phong phú hơn."
+  ],
   "serving_suggestions": [
     {
       "name": "Rau thơm",

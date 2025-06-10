@@ -116,7 +116,7 @@
     "Nêm vị ngọt đậm đà đặc trưng của món ăn miền Bắc",
     "Có thể nấu trước 1 ngày để măng thấm vị hơn"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "280 calo/phần",
     "protein": "22g",
     "fat": "15g",
@@ -131,16 +131,25 @@
       "Vitamin B từ thịt heo tốt cho hệ thần kinh"
     ]
   },
-  "cultural_significance": {
-    "tet_meaning": "Măng khô thịt là món ăn truyền thống trong mâm cơm Tết miền Bắc, tượng trưng cho sự phát triển và thịnh vượng. Măng mọc cao thể hiện ước muốn gia đình ngày càng thành đạt.",
-    "preparation_time": "Thường được chuẩn bị từ ngày 29 Tết để có thời gian ninh kỹ",
-    "serving_tradition": "Ăn nóng với cơm trắng, thường là món chính trong bữa cơm gia đình",
-    "regional_variations": {
-      "north": "Miền Bắc nấu với vị ngọt đậm đà, thường thêm nấm hương",
-      "central": "Miền Trung có thể thêm ớt để tăng độ cay",
-      "south": "Miền Nam ít phổ biến, thường thay bằng các món khác"
+  "cultural_notes": [
+    "Măng khô thịt là món ăn truyền thống trong mâm cơm Tết miền Bắc, tượng trưng cho sự phát triển và thịnh vượng.",
+    "Măng mọc cao thể hiện ước muốn gia đình ngày càng thành đạt.",
+    "Thường được chuẩn bị từ ngày 29 Tết để có thời gian ninh kỹ.",
+    "Ăn nóng với cơm trắng, thường là món chính trong bữa cơm gia đình.",
+    "Miền Bắc nấu với vị ngọt đậm đà, thường thêm nấm hương."
+  ],
+  "variations": [
+    {
+      "name": "Măng khô thịt nấm hương",
+      "description": "Thêm nấm hương để tăng hương vị umami",
+      "region": "Miền Bắc"
+    },
+    {
+      "name": "Măng khô thịt cay",
+      "description": "Thêm ớt để có vị cay nhẹ",
+      "region": "Miền Trung"
     }
-  },
+  ],
   "serving_suggestions": [
     {
       "name": "Cơm trắng",
@@ -163,5 +172,10 @@
     "freezer": "1 tháng trong tủ đông ở nhiệt độ -18°C",
     "room_temperature": "Không nên để quá 4 giờ ở nhiệt độ phòng",
     "reheating": "Hâm nóng lại trên bếp với lửa nhỏ, có thể thêm chút nước"
+  },
+  "regional_specialties": {
+    "hanoi": "Hà Nội nấu với nước dùng xương heo đậm đà, măng khô mềm",
+    "northern_provinces": "Các tỉnh miền Bắc thường thêm nấm hương và đậu phụ",
+    "central_vietnam": "Miền Trung có thể thêm ớt và các loại gia vị cay nồng"
   }
 }

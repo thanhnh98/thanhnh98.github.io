@@ -379,20 +379,11 @@
         }
         
         .instructions-list li:before {
-            content: counter(step-counter);
-            position: absolute;
-            left: -15px;
-            top: 15px;
-            background: var(--primary-color, #667eea);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
+            display: none;
+        }
+        
+        .instructions-list li {
+            padding-left: 25px;
         }
         
         .instructions-list h4 {

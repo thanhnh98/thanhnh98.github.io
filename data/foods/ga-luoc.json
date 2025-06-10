@@ -89,7 +89,7 @@
     "Nước luộc gà có thể dùng để nấu cháo hoặc canh rất ngon",
     "Bảo quản gà luộc trong tủ lạnh và sử dụng trong vòng 2-3 ngày"
   ],
-  "nutrition": {
+  "nutrition_facts": {
     "calories": "165 calo/100g",
     "protein": "31g",
     "fat": "3.6g",
@@ -104,16 +104,25 @@
       "Dễ tiêu hóa, phù hợp cho mọi lứa tuổi"
     ]
   },
-  "cultural_significance": {
-    "tet_meaning": "Gà luộc là món ăn thiêng liêng không thể thiếu trong mâm cỗ Tết, thể hiện sự sung túc và lòng thành kính với tổ tiên.",
-    "preparation_time": "Thường được chuẩn bị vào ngày 30 Tết để dâng cúng giao thừa",
-    "serving_tradition": "Gà luộc được bày trí nguyên con trên mâm cúng, sau đó mới cắt ra để gia đình cùng thưởng thức",
-    "regional_variations": {
-      "north": "Miền Bắc thường luộc gà với gừng và lá chanh",
-      "central": "Miền Trung có thể thêm sả và lá lốt",
-      "south": "Miền Nam thường thêm nghệ để gà có màu vàng đẹp"
+  "cultural_notes": [
+    "Gà luộc là món ăn thiêng liêng không thể thiếu trong mâm cỗ Tết, thể hiện sự sung túc và lòng thành kính với tổ tiên.",
+    "Thường được chuẩn bị vào ngày 30 Tết để dâng cúng giao thừa.",
+    "Gà luộc được bày trí nguyên con trên mâm cúng, sau đó mới cắt ra để gia đình cùng thưởng thức.",
+    "Miền Bắc thường luộc gà với gừng và lá chanh.",
+    "Miền Nam thường thêm nghệ để gà có màu vàng đẹp."
+  ],
+  "variations": [
+    {
+      "name": "Gà luộc gừng",
+      "description": "Luộc gà với gừng tươi, tạo hương thơm đặc trưng",
+      "region": "Miền Bắc"
+    },
+    {
+      "name": "Gà luộc nghệ",
+      "description": "Thêm nghệ tươi để gà có màu vàng đẹp mắt",
+      "region": "Miền Nam"
     }
-  },
+  ],
   "serving_suggestions": [
     {
       "name": "Nước chấm gừng",
@@ -136,5 +145,10 @@
     "freezer": "1 tháng trong tủ đông ở nhiệt độ -18°C",
     "room_temperature": "Không nên để quá 2 giờ ở nhiệt độ phòng",
     "reheating": "Hấp lại hoặc luộc nhanh trong nước sôi 2-3 phút"
+  },
+  "regional_specialties": {
+    "north": "Gà luộc với gừng và lá chanh, ăn kèm nước chấm gừng",
+    "central": "Gà luộc với sả và lá lốt, có hương vị đặc trưng miền Trung",
+    "south": "Gà luộc nghệ có màu vàng đẹp, ăn kèm muối tiêu chanh"
   }
 }
