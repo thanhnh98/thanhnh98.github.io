@@ -236,28 +236,38 @@ function solarToLunar(solarDate) {
     const month = solarDate.getMonth() + 1;
     const day = solarDate.getDate();
     
-    // Lunar calendar conversion table for accuracy
-    const lunarMonthDays = [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30];
-    
-    // Base lunar new year dates (Tet dates) for reference
-    const tetDates = {
-        2024: new Date(2024, 1, 10), // Feb 10, 2024
-        2025: new Date(2025, 0, 29), // Jan 29, 2025
-        2026: new Date(2026, 1, 17), // Feb 17, 2026
-        2027: new Date(2027, 1, 6),  // Feb 6, 2027
-        2028: new Date(2028, 0, 26), // Jan 26, 2028
-        2023: new Date(2023, 0, 22)  // Jan 22, 2023
+    // Accurate lunar calendar data for specific years
+    const lunarYearData = {
+        2025: {
+            tetDate: new Date(2025, 0, 29), // Jan 29, 2025
+            monthDays: [30, 29, 30, 29, 29, 30, 29, 30, 29, 30, 30, 29], // Regular months + leap month 6
+            leapMonth: 6 // Leap month 6
+        },
+        2024: {
+            tetDate: new Date(2024, 1, 10), // Feb 10, 2024
+            monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+            leapMonth: null
+        },
+        2026: {
+            tetDate: new Date(2026, 1, 17), // Feb 17, 2026
+            monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+            leapMonth: null
+        }
     };
     
-    // Find the closest Tet date
-    let tetDate = tetDates[year];
-    if (!tetDate) {
-        // Fallback calculation for years not in table
-        tetDate = calculateTetDate(year);
+    // Get lunar year data
+    let yearData = lunarYearData[year];
+    if (!yearData) {
+        // Fallback for years not in data
+        yearData = {
+            tetDate: calculateTetDate(year),
+            monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+            leapMonth: null
+        };
     }
     
     // Calculate days from Tet
-    const daysDiff = Math.floor((solarDate - tetDate) / (1000 * 60 * 60 * 24));
+    const daysDiff = Math.floor((solarDate - yearData.tetDate) / (1000 * 60 * 60 * 24));
     
     let lunarMonth = 1;
     let lunarDay = 1;
@@ -265,28 +275,47 @@ function solarToLunar(solarDate) {
     if (daysDiff >= 0) {
         // After Tet
         let remainingDays = daysDiff;
+        let monthIndex = 0;
         
-        while (remainingDays >= lunarMonthDays[(lunarMonth - 1) % 12]) {
-            remainingDays -= lunarMonthDays[(lunarMonth - 1) % 12];
-            lunarMonth++;
-            if (lunarMonth > 12) {
-                lunarMonth = 1;
+        while (remainingDays >= yearData.monthDays[monthIndex]) {
+            remainingDays -= yearData.monthDays[monthIndex];
+            monthIndex++;
+            
+            // Handle leap month
+            if (yearData.leapMonth && monthIndex === yearData.leapMonth) {
+                lunarMonth = yearData.leapMonth;
+                if (remainingDays >= 29) { // Leap month typically has 29 days
+                    remainingDays -= 29;
+                    monthIndex++;
+                }
             }
+            
+            if (monthIndex >= yearData.monthDays.length) {
+                // Move to next year
+                break;
+            }
+            
+            lunarMonth = monthIndex + 1;
         }
+        
         lunarDay = remainingDays + 1;
     } else {
         // Before Tet (previous lunar year)
         let remainingDays = Math.abs(daysDiff);
         lunarMonth = 12;
+        let monthIndex = 11;
         
-        while (remainingDays > lunarMonthDays[(lunarMonth - 1) % 12]) {
-            remainingDays -= lunarMonthDays[(lunarMonth - 1) % 12];
-            lunarMonth--;
-            if (lunarMonth < 1) {
+        while (remainingDays > yearData.monthDays[monthIndex]) {
+            remainingDays -= yearData.monthDays[monthIndex];
+            monthIndex--;
+            if (monthIndex < 0) {
+                monthIndex = 11;
                 lunarMonth = 12;
+            } else {
+                lunarMonth = monthIndex + 1;
             }
         }
-        lunarDay = lunarMonthDays[(lunarMonth - 1) % 12] - remainingDays + 1;
+        lunarDay = yearData.monthDays[monthIndex] - remainingDays + 1;
     }
     
     return {
