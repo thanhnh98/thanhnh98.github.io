@@ -109,6 +109,121 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             border-color: var(--color-accent);
+            cursor: pointer;
+        }
+        
+        .food-recipe-hint {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .food-recipe-hint span {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .food-card:hover .food-recipe-hint {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Food Recipe Modal Styles */
+        .recipe-header {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .recipe-header h4 {
+            color: #dc3545 !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .recipe-steps {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .recipe-steps h4 {
+            color: #28a745 !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .recipe-tips {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff3cd 0%, #fef9e7 100%);
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .recipe-tips h4 {
+            color: #856404 !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .recipe-variations {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .recipe-variations h4 {
+            color: #007bff !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .faq-modal-body ul {
+            margin: 10px 0 !important;
+            padding-left: 20px !important;
+        }
+        
+        .faq-modal-body li {
+            margin: 8px 0 !important;
+            line-height: 1.6 !important;
+            color: #495057 !important;
+        }
+        
+        .faq-modal-body ol {
+            margin: 10px 0 !important;
+            padding-left: 20px !important;
+        }
+        
+        .faq-modal-body ol > li {
+            margin: 15px 0 !important;
+            font-weight: 600 !important;
+            color: #343a40 !important;
+        }
+        
+        .faq-modal-body ol > li > ul {
+            margin-top: 8px !important;
+        }
+        
+        .faq-modal-body ol > li > ul > li {
+            font-weight: normal !important;
+            margin: 5px 0 !important;
+        }
+        
+        .faq-modal-body strong {
+            color: #dc3545 !important;
+            font-weight: 600 !important;
         }
         
         .food-image {
@@ -252,7 +367,7 @@
                 </p>
                 
                 <div class="foods-grid">
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('banh-chung')">
                         <div class="food-image">🥮</div>
                         <div class="food-content">
                             <h3 class="food-title">Bánh Chưng</h3>
@@ -263,10 +378,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Tượng trưng cho đất trời, sự sum vầy của gia đình và lòng biết ơn tổ tiên. Hình vuông của bánh chưng đại diện cho đất.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('banh-tet')">
                         <div class="food-image">🍘</div>
                         <div class="food-content">
                             <h3 class="food-title">Bánh Tét</h3>
@@ -277,10 +395,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Hình tròn của bánh tét tượng trưng cho trời, sự viên mãn và đoàn tụ. Thể hiện mong muốn một năm mới tròn đầy hạnh phúc.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('thit-kho-tau')">
                         <div class="food-image">🍖</div>
                         <div class="food-content">
                             <h3 class="food-title">Thịt Kho Tàu</h3>
@@ -291,10 +412,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Màu đỏ của món ăn tượng trưng cho may mắn, thịnh vượng. Trứng trong món ăn biểu thị sự sinh sôi nảy nở.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('nem-ran')">
                         <div class="food-image">🥟</div>
                         <div class="food-content">
                             <h3 class="food-title">Nem Rán</h3>
@@ -305,10 +429,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Hình dáng giống thỏi vàng, tượng trưng cho sự giàu có, thịnh vượng. Màu vàng óng của nem rán mang lại may mắn.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('xoi-gac')">
                         <div class="food-image">🍚</div>
                         <div class="food-content">
                             <h3 class="food-title">Xôi Gấc</h3>
@@ -319,10 +446,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Màu đỏ rực rỡ tượng trưng cho may mắn, tài lộc và sự thịnh vượng trong năm mới.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('ga-luoc')">
                         <div class="food-image">🐔</div>
                         <div class="food-content">
                             <h3 class="food-title">Gà Luộc</h3>
@@ -333,10 +463,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Tượng trưng cho sự trọn vẹn, đầy đủ. Gà trống còn có ý nghĩa báo hiệu một ngày mới, một năm mới tốt lành.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('canh-kho-qua')">
                         <div class="food-image">🥒</div>
                         <div class="food-content">
                             <h3 class="food-title">Canh Khổ Qua</h3>
@@ -347,10 +480,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Vị đắng của khổ qua tượng trưng cho việc "nuốt đắng" những khó khăn của năm cũ để đón nhận may mắn năm mới.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('mang-kho-thit')">
                         <div class="food-image">🥬</div>
                         <div class="food-content">
                             <h3 class="food-title">Măng Khô Kho Thịt</h3>
@@ -361,10 +497,13 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Măng tre mọc nhanh, tượng trưng cho sự phát triển mạnh mẽ, thịnh vượng và sức sống dồi dào.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="food-card">
+                    <div class="food-card" onclick="openFoodModal('mut-tet')">
                         <div class="food-image">🍑</div>
                         <div class="food-content">
                             <h3 class="food-title">Mứt Tết</h3>
@@ -375,12 +514,97 @@
                                 <h4>Ý nghĩa:</h4>
                                 <p>Vị ngọt của mứt tượng trưng cho một năm mới ngọt ngào, hạnh phúc và những điều tốt đẹp sẽ đến.</p>
                             </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thêm các món ăn theo vùng miền -->
+                    <div class="food-card" onclick="openFoodModal('pho-bo')">
+                        <div class="food-image">🍜</div>
+                        <div class="food-content">
+                            <h3 class="food-title">Phở Bò (Miền Bắc)</h3>
+                            <p class="food-description">
+                                Món phở truyền thống Hà Nội với nước dùng trong, thịt bò tái và bánh phở mềm. Món ăn sáng không thể thiếu ngày Tết.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Tô phở nóng hổi tượng trưng cho sự ấm áp, sum vầy của gia đình trong những ngày đầu năm mới.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('bun-bo-hue')">
+                        <div class="food-image">🌶️</div>
+                        <div class="food-content">
+                            <h3 class="food-title">Bún Bò Huế (Miền Trung)</h3>
+                            <p class="food-description">
+                                Món bún đặc trưng xứ Huế với nước dùng cay nồng, thịt bò và chả cua. Hương vị đậm đà của cố đô.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Màu đỏ của nước dùng tượng trưng cho sự may mắn, thịnh vượng và tinh thần mạnh mẽ của người miền Trung.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('hu-tieu-nam-vang')">
+                        <div class="food-image">🍲</div>
+                        <div class="food-content">
+                            <h3 class="food-title">Hủ Tiếu Nam Vang (Miền Nam)</h3>
+                            <p class="food-description">
+                                Món hủ tiếu đặc trưng miền Nam với nước dùng ngọt thanh, tôm khô, thịt băm và gan heo.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Sự hòa quyện của nhiều nguyên liệu tượng trưng cho sự đoàn kết, hòa thuận trong gia đình.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('banh-khot')">
+                        <div class="food-image">🥞</div>
+                        <div class="food-content">
+                            <h3 class="food-title">Bánh Khọt (Miền Nam)</h3>
+                            <p class="food-description">
+                                Bánh khọt nhỏ xinh với tôm tươi, ăn kèm rau sống và nước chấm chua ngọt đặc trưng miền Tây.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Hình tròn nhỏ xinh tượng trưng cho sự viên mãn, đầy đủ trong từng điều nhỏ bé của cuộc sống.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+    
+    <!-- Food Recipe Modal -->
+    <div id="foodModal" class="faq-modal">
+        <div class="faq-modal-content">
+            <div class="faq-modal-header">
+                <h3 id="foodModalTitle"></h3>
+                <span class="faq-close" onclick="closeFoodModal()">&times;</span>
+            </div>
+            <div class="faq-modal-body">
+                <div id="foodModalContent"></div>
+            </div>
+        </div>
+    </div>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3395045728500314"
     crossorigin="anonymous"></script>
     
@@ -421,6 +645,7 @@
     </section>
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
+    <script src="js/food-modal.js"></script>
     
     <!-- Fix Back to Home button -->
     <script>
