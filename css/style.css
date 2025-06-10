@@ -2610,33 +2610,33 @@ footer::after {
 /* Event Modal Styles */
 .event-modal-info {
     text-align: center;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
 }
 
 .event-modal-icon {
-    font-size: 5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .event-modal-date {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     background: rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
     display: inline-block;
 }
 
 .event-modal-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.4;
     margin-bottom: 0;
     font-weight: 500;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -2644,16 +2644,16 @@ footer::after {
 
 .event-modal-countdown {
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 2rem;
+    border-radius: 15px;
+    padding: 1.2rem;
     text-align: center;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .event-modal-countdown h4 {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
@@ -2661,28 +2661,28 @@ footer::after {
 #eventModalCountdownTimer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 500px;
+    gap: 0.6rem;
+    max-width: 350px;
     margin: 0 auto;
 }
 
 #eventModalCountdownTimer .countdown-item {
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    padding: 1.2rem 0.8rem;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    padding: 0.8rem 0.4rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #eventModalCountdownTimer .countdown-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 #eventModalCountdownTimer .countdown-value {
     display: block;
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     font-weight: 900;
     color: var(--color-primary);
     line-height: 1;
@@ -2691,93 +2691,99 @@ footer::after {
 
 #eventModalCountdownTimer .countdown-label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     color: #555;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
 }
 
 /* Event Modal Responsive */
 @media (max-width: 768px) {
     .event-modal-icon {
-        font-size: 4rem;
+        font-size: 2.5rem;
     }
     
     .event-modal-date {
-        font-size: 1.2rem;
-    }
-    
-    .event-modal-description {
         font-size: 1rem;
     }
     
+    .event-modal-description {
+        font-size: 0.9rem;
+    }
+    
     .event-modal-countdown {
-        padding: 1.5rem;
+        padding: 1rem;
     }
     
     .event-modal-countdown h4 {
-        font-size: 1.3rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
     }
     
     #eventModalCountdownTimer {
-        gap: 0.8rem;
-        max-width: 400px;
+        gap: 0.5rem;
+        max-width: 300px;
     }
     
     #eventModalCountdownTimer .countdown-item {
-        padding: 1rem 0.6rem;
+        padding: 0.7rem 0.3rem;
     }
     
     #eventModalCountdownTimer .countdown-value {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
     
     #eventModalCountdownTimer .countdown-label {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
     }
 }
 
 @media (max-width: 480px) {
     .event-modal-info {
-        padding: 1rem;
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
     }
     
     .event-modal-icon {
-        font-size: 3.5rem;
+        font-size: 2.2rem;
+        margin-bottom: 0.3rem;
     }
     
     .event-modal-date {
-        font-size: 1.1rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+        padding: 0.25rem 0.6rem;
+    }
+    
+    .event-modal-description {
+        font-size: 0.85rem;
     }
     
     .event-modal-countdown {
-        padding: 1rem;
+        padding: 0.8rem;
     }
     
     .event-modal-countdown h4 {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
     }
     
     #eventModalCountdownTimer {
-        gap: 0.5rem;
-        max-width: 320px;
+        gap: 0.4rem;
+        max-width: 280px;
     }
     
     #eventModalCountdownTimer .countdown-item {
-        padding: 0.8rem 0.4rem;
+        padding: 0.6rem 0.2rem;
     }
     
     #eventModalCountdownTimer .countdown-value {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     
     #eventModalCountdownTimer .countdown-label {
-        font-size: 0.7rem;
-        margin-top: 0.3rem;
+        font-size: 0.6rem;
+        margin-top: 0.2rem;
     }
 }
