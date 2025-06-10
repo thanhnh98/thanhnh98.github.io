@@ -281,6 +281,12 @@
             overflow: hidden;
         }
         
+        .food-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .food-image::before {
             content: '';
             position: absolute;
@@ -412,7 +418,9 @@
                 
                 <div class="foods-grid">
                     <div class="food-card" onclick="openFoodModal('banh-chung')">
-                        <div class="food-image">🥮</div>
+                        <div class="food-image">
+                            <img src="" alt="Bánh Chưng" class="food-img" data-dish-id="banh-chung">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Bánh Chưng</h3>
                             <p class="food-description">
@@ -429,7 +437,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('banh-tet')">
-                        <div class="food-image">🍘</div>
+                        <div class="food-image">
+                            <img src="" alt="Bánh Tét" class="food-img" data-dish-id="banh-tet">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Bánh Tét</h3>
                             <p class="food-description">
@@ -446,7 +456,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('thit-kho-tau')">
-                        <div class="food-image">🍖</div>
+                        <div class="food-image">
+                            <img src="" alt="Thịt Kho Tàu" class="food-img" data-dish-id="thit-kho-tau">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Thịt Kho Tàu</h3>
                             <p class="food-description">
@@ -463,7 +475,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('nem-ran')">
-                        <div class="food-image">🥟</div>
+                        <div class="food-image">
+                            <img src="" alt="Nem Rán" class="food-img" data-dish-id="nem-ran">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Nem Rán</h3>
                             <p class="food-description">
@@ -480,7 +494,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('xoi-gac')">
-                        <div class="food-image">🍚</div>
+                        <div class="food-image">
+                            <img src="" alt="Xôi Gấc" class="food-img" data-dish-id="xoi-gac">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Xôi Gấc</h3>
                             <p class="food-description">
@@ -497,7 +513,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('ga-luoc')">
-                        <div class="food-image">🐔</div>
+                        <div class="food-image">
+                            <img src="" alt="Gà Luộc" class="food-img" data-dish-id="ga-luoc">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Gà Luộc</h3>
                             <p class="food-description">
@@ -514,7 +532,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('canh-kho-qua')">
-                        <div class="food-image">🥒</div>
+                        <div class="food-image">
+                            <img src="" alt="Canh Khổ Qua" class="food-img" data-dish-id="canh-kho-qua-nhoi-thit">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Canh Khổ Qua</h3>
                             <p class="food-description">
@@ -531,7 +551,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('mang-kho-thit')">
-                        <div class="food-image">🥬</div>
+                        <div class="food-image">
+                            <img src="" alt="Măng Khô Kho Thịt" class="food-img" data-dish-id="mang-kho-thit">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Măng Khô Kho Thịt</h3>
                             <p class="food-description">
@@ -548,7 +570,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('mut-tet')">
-                        <div class="food-image">🍑</div>
+                        <div class="food-image">
+                            <img src="" alt="Mứt Tết" class="food-img" data-dish-id="mut-tet">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Mứt Tết</h3>
                             <p class="food-description">
@@ -566,7 +590,9 @@
                     
                     <!-- Thêm các món ăn theo vùng miền -->
                     <div class="food-card" onclick="openFoodModal('pho-bo')">
-                        <div class="food-image">🍜</div>
+                        <div class="food-image">
+                            <img src="" alt="Phở Bò" class="food-img" data-dish-id="pho-bo">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Phở Bò (Miền Bắc)</h3>
                             <p class="food-description">
@@ -583,7 +609,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('bun-bo-hue')">
-                        <div class="food-image">🌶️</div>
+                        <div class="food-image">
+                            <img src="" alt="Bún Bò Huế" class="food-img" data-dish-id="bun-bo-hue">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Bún Bò Huế (Miền Trung)</h3>
                             <p class="food-description">
@@ -600,7 +628,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('hu-tieu-nam-vang')">
-                        <div class="food-image">🍲</div>
+                        <div class="food-image">
+                            <img src="" alt="Hủ Tiếu Nam Vang" class="food-img" data-dish-id="hu-tieu-nam-vang">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Hủ Tiếu Nam Vang (Miền Nam)</h3>
                             <p class="food-description">
@@ -617,7 +647,9 @@
                     </div>
                     
                     <div class="food-card" onclick="openFoodModal('banh-khot')">
-                        <div class="food-image">🥞</div>
+                        <div class="food-image">
+                            <img src="" alt="Bánh Khọt" class="food-img" data-dish-id="banh-khot">
+                        </div>
                         <div class="food-content">
                             <h3 class="food-title">Bánh Khọt (Miền Nam)</h3>
                             <p class="food-description">
@@ -702,7 +734,33 @@
                     window.location.href = 'index.html';
                 });
             }
+            
+            // Load images from JSON data
+            loadFoodImages();
         });
+        
+        async function loadFoodImages() {
+            const foodImages = document.querySelectorAll('.food-img');
+            
+            for (const img of foodImages) {
+                const dishId = img.getAttribute('data-dish-id');
+                if (dishId) {
+                    try {
+                        const response = await fetch(`data/foods/${dishId}.json`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.image) {
+                                img.src = data.image;
+                                img.style.display = 'block';
+                            }
+                        }
+                    } catch (error) {
+                        console.log(`Could not load image for ${dishId}:`, error);
+                        // Keep the empty src, will show placeholder
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>

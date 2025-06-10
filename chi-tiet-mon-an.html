@@ -458,6 +458,33 @@
             margin-right: 8px;
         }
         
+        .cultural-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .cultural-list li {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+            padding-left: 45px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #856404;
+        }
+        
+        .cultural-list li::before {
+            content: '🏮';
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            font-size: 18px;
+        }
+        
         .dish-card-image {
             width: 100%;
             height: 180px;
@@ -662,6 +689,14 @@
                 </div>
             </div>
             
+            <!-- Ý nghĩa văn hóa -->
+            <div class="recipe-section cultural">
+                <h2>🏮 Ý nghĩa văn hóa</h2>
+                <div id="cultural-content">
+                    <p>Đang tải thông tin văn hóa...</p>
+                </div>
+            </div>
+            
             <!-- Món ăn khác -->
             <div class="recipe-section other-dishes">
                 <h2>🍽️ Khám phá món ăn khác</h2>
@@ -783,6 +818,7 @@
             document.getElementById('instructions-content').innerHTML = dish.instructions || '<p>Hướng dẫn chi tiết sẽ được cập nhật sớm...</p>';
             document.getElementById('tips-content').innerHTML = dish.tips || '<p>Các mẹo hay sẽ được cập nhật sớm...</p>';
             document.getElementById('nutrition-content').innerHTML = dish.nutrition || '<p>Thông tin dinh dưỡng sẽ được cập nhật sớm...</p>';
+            document.getElementById('cultural-content').innerHTML = dish.cultural || '<p>Thông tin văn hóa sẽ được cập nhật sớm...</p>';
         }
         
         // Load dish data
@@ -850,31 +886,44 @@
                     
                     // Format nutrition from JSON
                     let nutritionHtml = '';
-                    if (jsonData.nutrition) {
+                    if (jsonData.nutrition_facts) {
                         nutritionHtml = '<div class="nutrition-info">';
-                        if (jsonData.nutrition.calories) {
-                            nutritionHtml += `<p><strong>Calories:</strong> ${jsonData.nutrition.calories}</p>`;
+                        if (jsonData.nutrition_facts.calories) {
+                            nutritionHtml += `<p><strong>Calories:</strong> <span>${jsonData.nutrition_facts.calories} kcal</span></p>`;
                         }
-                        if (jsonData.nutrition.protein) {
-                            nutritionHtml += `<p><strong>Protein:</strong> ${jsonData.nutrition.protein}</p>`;
+                        if (jsonData.nutrition_facts.protein) {
+                            nutritionHtml += `<p><strong>Protein:</strong> <span>${jsonData.nutrition_facts.protein}</span></p>`;
                         }
-                        if (jsonData.nutrition.fat) {
-                            nutritionHtml += `<p><strong>Chất béo:</strong> ${jsonData.nutrition.fat}</p>`;
+                        if (jsonData.nutrition_facts.fat) {
+                            nutritionHtml += `<p><strong>Chất béo:</strong> <span>${jsonData.nutrition_facts.fat}</span></p>`;
                         }
-                        if (jsonData.nutrition.carbohydrates) {
-                            nutritionHtml += `<p><strong>Carbohydrate:</strong> ${jsonData.nutrition.carbohydrates}</p>`;
+                        if (jsonData.nutrition_facts.carbohydrates) {
+                            nutritionHtml += `<p><strong>Carbohydrate:</strong> <span>${jsonData.nutrition_facts.carbohydrates}</span></p>`;
                         }
-                        if (jsonData.nutrition.fiber) {
-                            nutritionHtml += `<p><strong>Chất xơ:</strong> ${jsonData.nutrition.fiber}</p>`;
+                        if (jsonData.nutrition_facts.fiber) {
+                            nutritionHtml += `<p><strong>Chất xơ:</strong> <span>${jsonData.nutrition_facts.fiber}</span></p>`;
                         }
-                        if (jsonData.nutrition.benefits && Array.isArray(jsonData.nutrition.benefits)) {
-                            nutritionHtml += '<h4>Lợi ích sức khỏe:</h4><ul>';
-                            jsonData.nutrition.benefits.forEach(benefit => {
-                                nutritionHtml += `<li>${benefit}</li>`;
-                            });
-                            nutritionHtml += '</ul>';
+                        if (jsonData.nutrition_facts.sodium) {
+                            nutritionHtml += `<p><strong>Natri:</strong> <span>${jsonData.nutrition_facts.sodium}</span></p>`;
+                        }
+                        if (jsonData.nutrition_facts.cholesterol) {
+                            nutritionHtml += `<p><strong>Cholesterol:</strong> <span>${jsonData.nutrition_facts.cholesterol}</span></p>`;
                         }
                         nutritionHtml += '</div>';
+                    } else {
+                        nutritionHtml = '<p>Thông tin dinh dưỡng sẽ được cập nhật sớm...</p>';
+                    }
+                    
+                    // Format cultural notes from JSON
+                    let culturalHtml = '';
+                    if (jsonData.cultural_notes && Array.isArray(jsonData.cultural_notes)) {
+                        culturalHtml = '<ul class="cultural-list">';
+                        jsonData.cultural_notes.forEach(note => {
+                            culturalHtml += `<li>${note}</li>`;
+                        });
+                        culturalHtml += '</ul>';
+                    } else {
+                        culturalHtml = '<p>Thông tin văn hóa sẽ được cập nhật sớm...</p>';
                     }
                     
                     const dish = {
@@ -891,7 +940,8 @@
                         ingredients: ingredientsHtml || '<p>Thông tin nguyên liệu sẽ được cập nhật sớm...</p>',
                         instructions: instructionsHtml || '<p>Hướng dẫn chi tiết sẽ được cập nhật sớm...</p>',
                         tips: tipsHtml || '<p>Các mẹo hay sẽ được cập nhật sớm...</p>',
-                        nutrition: nutritionHtml || '<p>Thông tin dinh dưỡng sẽ được cập nhật sớm...</p>'
+                        nutrition: nutritionHtml || '<p>Thông tin dinh dưỡng sẽ được cập nhật sớm...</p>',
+                        cultural: culturalHtml || '<p>Thông tin văn hóa sẽ được cập nhật sớm...</p>'
                     };
                     
                     return dish;
@@ -918,7 +968,8 @@
                     ingredients: dishData.ingredients || '<p>Thông tin nguyên liệu sẽ được cập nhật sớm...</p>',
                     instructions: dishData.steps || '<p>Hướng dẫn chi tiết sẽ được cập nhật sớm...</p>',
                     tips: dishData.tips || '<p>Các mẹo hay sẽ được cập nhật sớm...</p>',
-                    nutrition: generateNutritionInfo(dishId)
+                    nutrition: generateNutritionInfo(dishId),
+                    cultural: '<p>Thông tin văn hóa sẽ được cập nhật sớm...</p>'
                 };
                 
                 return dish;
