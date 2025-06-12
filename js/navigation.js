@@ -126,10 +126,30 @@ class Router {
                     return; // Let default behavior handle anchor links
                 }
                 
+                // Handle anchor links that start with / but contain #
+                if (href.includes('#')) {
+                    const [path, hash] = href.split('#');
+                    // If it's a root path with anchor (like /#events), just scroll to anchor
+                    if (path === '/' || path === '') {
+                        // We're on the home page, just scroll to the anchor
+                        const currentPath = window.location.pathname;
+                        if (currentPath === '/' || currentPath === '/index.html' || currentPath === '/index') {
+                            return; // Let default behavior handle anchor scrolling
+                        } else {
+                            // Navigate to home page with anchor
+                            e.preventDefault();
+                            window.location.href = '/' + (hash ? '#' + hash : '');
+                            return;
+                        }
+                    }
+                    return; // Let default behavior handle other anchor links
+                }
+                
                 // Handle page navigation with clean URLs
                 if (href.includes('.html') && !href.includes('#')) {
                     e.preventDefault();
-                    this.navigate(href);
+                    // For .html files, navigate directly without using router
+                    window.location.href = href;
                     return;
                 }
             }
