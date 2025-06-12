@@ -1,10 +1,10 @@
 // Universal Links Handler
 class UniversalLinksManager {
     constructor() {
-        this.androidPackage = 'com.saptet.app';
+        this.androidPackage = 'com.thanh_nguyen.tet_count_down';
         this.iosAppId = '123456789';
         this.customScheme = 'saptet';
-        this.playStoreUrl = 'https://play.google.com/store/apps/details?id=com.saptet.app';
+        this.playStoreUrl = 'https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down';
         this.appStoreUrl = 'https://apps.apple.com/app/sap-tet/id123456789';
         
         this.init();
@@ -59,23 +59,21 @@ class UniversalLinksManager {
     async checkAppInstalled() {
         try {
             if (this.isIOS()) {
-                // Try to open app with custom scheme
-                const timeout = new Promise(resolve => setTimeout(() => resolve(false), 2000));
-                const appOpen = new Promise(resolve => {
-                    window.location = `${this.customScheme}://`;
-                    setTimeout(() => resolve(true), 500);
+                // Use a safer method that doesn't change window.location
+                return new Promise(resolve => {
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = `${this.customScheme}://`;
+                    document.body.appendChild(iframe);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                        resolve(false);
+                    }, 1000);
                 });
-                
-                return await Promise.race([appOpen, timeout]);
             } else if (this.isAndroid()) {
-                // Android: Try intent URL
-                try {
-                    const intentUrl = `intent://${window.location.host}${window.location.pathname}#Intent;scheme=https;package=${this.androidPackage};end`;
-                    window.location = intentUrl;
-                    return true;
-                } catch (e) {
-                    return false;
-                }
+                // Android: Use intent without changing location
+                return false; // Assume not installed to avoid URL issues
             }
         } catch (e) {
             return false;

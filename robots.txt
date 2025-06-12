@@ -1,12 +1,18 @@
+# Robots.txt for Sắp Tết website
 User-agent: *
 Allow: /
 
+# Disallow crawling of development and temporary files
+Disallow: /demo-*
+Disallow: /*.js$
+Disallow: /crawl-*
+Disallow: /debug-*
+Disallow: /auto-update-*
+Disallow: /package*.json
+Disallow: /.trae/
+
 # Sitemap
 Sitemap: https://saptet.vn/sitemap.xml
-
-# Disallow crawling of admin or private directories if any
-# Disallow: /admin/
-# Disallow: /private/
 
 # Allow all search engines to crawl the site
 # Google

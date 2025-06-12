@@ -10,7 +10,13 @@ class Router {
             '/mon-an-tet': 'mon-an-tet.html',
             '/mon-an-tet.html': 'mon-an-tet.html', // Keep for backward compatibility
             '/tro-choi-tet': 'tro-choi-tet.html',
-            '/tro-choi-tet.html': 'tro-choi-tet.html' // Keep for backward compatibility
+            '/tro-choi-tet.html': 'tro-choi-tet.html', // Keep for backward compatibility
+            '/blog': 'blog.html',
+            '/blog.html': 'blog.html',
+            '/chi-tiet-mon-an': 'chi-tiet-mon-an.html',
+            '/chi-tiet-mon-an.html': 'chi-tiet-mon-an.html',
+            '/404': '404.html',
+            '/404.html': '404.html'
         };
         
         this.init();
@@ -65,6 +71,15 @@ class Router {
             // Route doesn't exist, show 404
             this.show404();
         }
+    }
+    
+    show404() {
+        // Check if we're already on 404 page to prevent redirect loops
+        if (window.location.pathname === '/404.html' || window.location.pathname === '/404') {
+            return;
+        }
+        // Redirect to 404 page
+        window.location.href = '/404.html';
     }
     
     getCurrentPageFile() {
