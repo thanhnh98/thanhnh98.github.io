@@ -59,16 +59,35 @@ const APP_RESOURCES = {
 
 // Function to update app store links dynamically
 function updateAppStoreLinks() {
-    // Update Android app link
-    const androidLink = document.querySelector('a[href="#android-app-link"]');
-    if (androidLink && APP_RESOURCES.appStore.android) {
-        androidLink.href = APP_RESOURCES.appStore.android;
+    // Update Google Play app link
+    const googlePlayBtn = document.getElementById('google-play-btn');
+    if (googlePlayBtn && APP_RESOURCES.appStore.android) {
+        googlePlayBtn.href = APP_RESOURCES.appStore.android;
+        googlePlayBtn.target = '_blank';
+        googlePlayBtn.rel = 'noopener noreferrer';
     }
     
-    // Update iOS app link
-    const iosLink = document.querySelector('a[href="#ios-app-link"]');
-    if (iosLink && APP_RESOURCES.appStore.ios) {
-        iosLink.href = APP_RESOURCES.appStore.ios;
+    // Update App Store link
+    const appStoreBtn = document.getElementById('app-store-btn');
+    if (appStoreBtn && APP_RESOURCES.appStore.ios) {
+        appStoreBtn.href = APP_RESOURCES.appStore.ios;
+        appStoreBtn.target = '_blank';
+        appStoreBtn.rel = 'noopener noreferrer';
+    }
+    
+    // Add click tracking for analytics
+    if (googlePlayBtn) {
+        googlePlayBtn.addEventListener('click', function() {
+            console.log('Google Play button clicked');
+            // Add analytics tracking here if needed
+        });
+    }
+    
+    if (appStoreBtn) {
+        appStoreBtn.addEventListener('click', function() {
+            console.log('App Store button clicked');
+            // Add analytics tracking here if needed
+        });
     }
 }
 
