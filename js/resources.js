@@ -6,7 +6,7 @@ const APP_RESOURCES = {
     // App Store URLs - Update these with your actual app store links
     appStore: {
         android: 'https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down',
-        ios: 'https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990'
+        ios: 'https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone'
     },
     
     // App Information
