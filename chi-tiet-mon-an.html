@@ -1052,10 +1052,11 @@
                         if (response.ok) {
                             return response.json();
                         }
-                        throw new Error('JSON not found');
+                        // Return null instead of throwing error to avoid 404
+                        return null;
                     })
                     .then(data => {
-                        if (data.image) {
+                        if (data && data.image) {
                             window.dishImageCache[id] = data.image;
                             // Update the image if it's already rendered
                             const dishImage = document.getElementById('dish-image');
@@ -1066,6 +1067,9 @@
                                     `assets/images/ic_app.webp`
                                 ]);
                             }
+                        } else {
+                            // Use fallback image if JSON not found
+                            window.dishImageCache[id] = `assets/images/foods/${id}.jpg`;
                         }
                     })
                     .catch(error => {
