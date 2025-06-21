@@ -1198,7 +1198,8 @@
             const dishId = getDishIdFromUrl();
             
             if (!dishId) {
-                showError();
+                // Redirect to mon-an-tet.html if no dish ID provided
+                window.location.href = '/mon-an-tet.html';
                 return;
             }
             
