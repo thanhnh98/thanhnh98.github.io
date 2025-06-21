@@ -14,6 +14,9 @@
     <meta property="og:url" id="og-url" content="https://thanhnh98.github.io/chi-tiet-mon-an.html">
     <meta property="og:type" content="article">
     
+    <!-- Canonical URL - will be updated dynamically -->
+    <link rel="canonical" id="canonical-url" href="https://thanhnh98.github.io/chi-tiet-mon-an.html">
+    
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" id="twitter-title" content="Chi Tiết Món Ăn">
@@ -740,6 +743,9 @@
             document.getElementById('og-description').setAttribute('content', `Hướng dẫn làm ${dish.name} truyền thống chi tiết từ A-Z.`);
             document.getElementById('og-image').setAttribute('content', `https://thanhnh98.github.io/assets/images/foods/${dish.id}.jpg`);
             document.getElementById('og-url').setAttribute('content', `https://thanhnh98.github.io/chi-tiet-mon-an.html?id=${dish.id}`);
+            
+            // Canonical URL
+            document.getElementById('canonical-url').setAttribute('href', `https://thanhnh98.github.io/chi-tiet-mon-an.html?id=${dish.id}`);
             
             // Twitter
             document.getElementById('twitter-title').setAttribute('content', `${dish.name} - Hướng Dẫn Làm Chi Tiết`);
