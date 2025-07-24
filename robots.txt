@@ -2,42 +2,28 @@
 User-agent: *
 Allow: /
 
-# Disallow crawling of development and temporary files
-Disallow: /demo-*
-Disallow: /*.js$
-Disallow: /crawl-*
-Disallow: /debug-*
-Disallow: /auto-update-*
-Disallow: /package*.json
-Disallow: /.trae/
-
 # Sitemap
 Sitemap: https://saptet.vn/sitemap.xml
 
-# Allow all search engines to crawl the site
-# Google
-User-agent: Googlebot
-Allow: /
+# Allow crawling of all content
+Allow: /blog.html
+Allow: /huong-dan-tet.html
+Allow: /mon-an-tet.html
+Allow: /tro-choi-tet.html
 
-# Bing
-User-agent: Bingbot
-Allow: /
+# Allow crawling of assets
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+Allow: /images/
 
-# Yandex
-User-agent: YandexBot
-Allow: /
+# Allow crawling of data
+Allow: /data/
 
-# Baidu
-User-agent: Baiduspider
-Allow: /
+# Disallow crawling of temporary files
+Disallow: /debug-*.js
+Disallow: /demo-*.html
+Disallow: /demo-*.json
 
-# Facebook
-User-agent: facebookexternalhit
-Allow: /
-
-# Twitter
-User-agent: Twitterbot
-Allow: /
-
-# Crawl-delay (optional - set to 1 second to be respectful)
+# Crawl delay for respectful crawling
 Crawl-delay: 1

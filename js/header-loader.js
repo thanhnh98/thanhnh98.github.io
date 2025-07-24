@@ -73,6 +73,17 @@ class HeaderLoader {
                 if (nav) {
                     nav.classList.remove('mobile-menu-open');
                 }
+                
+                // Close expandable menu on link click
+                const navExpandable = document.querySelector('.nav-expandable');
+                if (navExpandable && navExpandable.classList.contains('expanded')) {
+                    navExpandable.classList.remove('expanded');
+                    const seeMoreBtn = document.querySelector('.see-more-btn');
+                    const seeMoreText = seeMoreBtn?.querySelector('.see-more-text');
+                    if (seeMoreText) {
+                        seeMoreText.textContent = 'Xem thêm';
+                    }
+                }
             });
         });
     }
@@ -90,6 +101,39 @@ class HeaderLoader {
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('header') && nav.classList.contains('mobile-menu-open')) {
                     nav.classList.remove('mobile-menu-open');
+                }
+            });
+        }
+        
+        // Add See More button functionality
+        this.addSeeMoreListener();
+    }
+    
+    addSeeMoreListener() {
+        const seeMoreBtn = document.querySelector('.see-more-btn');
+        const navExpandable = document.querySelector('.nav-expandable');
+        
+        if (seeMoreBtn && navExpandable) {
+            seeMoreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                navExpandable.classList.toggle('expanded');
+                
+                // Update button text
+                const seeMoreText = seeMoreBtn.querySelector('.see-more-text');
+                if (seeMoreText) {
+                    seeMoreText.textContent = navExpandable.classList.contains('expanded') ? 'Thu gọn' : 'Xem thêm';
+                }
+            });
+            
+            // Close dropdown when clicking outside on desktop
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.nav-expandable') && navExpandable.classList.contains('expanded')) {
+                    navExpandable.classList.remove('expanded');
+                    const seeMoreText = seeMoreBtn.querySelector('.see-more-text');
+                    if (seeMoreText) {
+                        seeMoreText.textContent = 'Xem thêm';
+                    }
                 }
             });
         }
