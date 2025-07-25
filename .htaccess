@@ -26,6 +26,8 @@ RewriteRule ^tro-choi-tet/?$ /tro-choi-tet.html [NC,L]
 RewriteRule ^mon-an-tet/?$ /mon-an-tet.html [NC,L]
 RewriteRule ^blog/?$ /blog.html [NC,L]
 RewriteRule ^huong-dan-tet/?$ /huong-dan-tet.html [NC,L]
+RewriteRule ^trung-thu/?$ /trung-thu.html [NC,L]
+RewriteRule ^noel/?$ /noel.html [NC,L]
 
 # Custom error pages
 ErrorDocument 404 /404.html
