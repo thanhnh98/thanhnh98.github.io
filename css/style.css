@@ -3466,3 +3466,14 @@ footer::after {
         padding: 1.5rem;
     }
 }
+
+.tet-quiz-section {
+  margin: 3rem 0 2rem 0;
+  padding: 0 0.5rem;
+}
+@media (min-width: 768px) {
+  .tet-quiz-section {
+    margin: 4rem 0 3rem 0;
+    padding: 0 2rem;
+  }
+}

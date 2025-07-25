@@ -75,6 +75,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/pwa.css" />
+    <link rel="stylesheet" href="css/lucky-money-calculator.css" />
+    <link rel="stylesheet" href="css/tet-quiz.css" />
     <!-- Favicon and App Icons -->
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon.png" type="image/png" />
@@ -481,6 +483,17 @@
             </div>
             <div
               class="feature-card"
+              onclick="window.location.href='may-tinh-li-xi.html'"
+              style="cursor: pointer"
+            >
+              <div class="feature-icon">🧮</div>
+              <h3>Máy Tính Lì Xì</h3>
+              <p>
+                Tính toán lì xì thông minh cho từng độ tuổi và mối quan hệ với tính năng số lượng.
+              </p>
+            </div>
+            <div
+              class="feature-card"
               onclick="navigateToPage('mon-an-tet.html')"
               style="cursor: pointer"
             >
@@ -712,6 +725,13 @@
       </div>
     </section> -->
 
+    <!-- Tet Quiz Section Start -->
+    <section id="tet-quiz-section" class="tet-quiz-section">
+      <h2>Quiz Kiến Thức Về Tết Nguyên Đán 2026</h2>
+      <div id="tet-quiz-container" class="tet-quiz-container"></div>
+    </section>
+    <!-- Tet Quiz Section End -->
+
     <!-- Footer will be loaded dynamically -->
     <div id="footer-container"></div>
 
@@ -723,6 +743,8 @@
     <!-- <script src="js/universal-links.js"></script> -->
     <script src="js/faq-modal.js"></script>
     <script src="js/seo-dynamic.js"></script>
+    <script src="js/lucky-money-calculator.js"></script>
+    <script src="js/tet-quiz.js"></script>
 
     <script>
       // Share website function for ads fallback
@@ -1083,10 +1105,6 @@
 <div id="footer-container"></div>
 
 <!-- Scripts -->
-<script src="js/main.js"></script>
-<script src="js/countdown.js"></script>
-<script src="js/faq-modal.js"></script>
-<script src="js/footer.js"></script>
 <script src="js/pwa-install.js"></script>
 
 </body>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy Tính Lì Xì Thông Minh - Sắp Tết 2026</title>
+    <meta name="description" content="🧧 Máy tính lì xì thông minh cho Tết 2026. Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ. Hỗ trợ nhập số lượng và mối quan hệ đầy đủ.">
+    <meta name="keywords" content="máy tính lì xì, lì xì tết, tính lì xì, lì xì 2026, tết nguyên đán, mối quan hệ, độ tuổi">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Máy Tính Lì Xì Thông Minh - Sắp Tết 2026">
+    <meta property="og:description" content="🧧 Máy tính lì xì thông minh cho Tết 2026. Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saptet2026.com/may-tinh-li-xi.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Máy Tính Lì Xì Thông Minh - Sắp Tết 2026">
+    <meta name="twitter:description" content="🧧 Máy tính lì xì thông minh cho Tết 2026. Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/lucky-money-calculator.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#dc2626">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); padding: 4rem 0; text-align: center; color: white;">
+            <div class="container">
+                <h1 style="font-size: 3rem; margin-bottom: 1rem; font-weight: 700;">🧧 Máy Tính Lì Xì Thông Minh</h1>
+                <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ trong dịp Tết Nguyên Đán 2026</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="index.html" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#dc2626'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">🏠 Về trang chủ</a>
+                    <a href="tro-choi-tet.html" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#dc2626'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">🎮 Trò chơi Tết</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="lucky-money-calculator-section">
+            <div class="container">
+                <div class="lucky-money-calculator">
+                    <h3>🧧 Máy Tính Lì Xì Thông Minh</h3>
+                    <p class="calculator-subtitle">Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ</p>
+                    
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="recipient-name">Tên người nhận (tùy chọn):</label>
+                            <input type="text" id="recipient-name" placeholder="Nhập tên hoặc để trống...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="recipient-quantity">Số lượng:</label>
+                            <input type="number" id="recipient-quantity" min="1" value="1" placeholder="Số lượng">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="recipient-age">Tuổi:</label>
+                            <input type="number" id="recipient-age" min="0" max="120" placeholder="Tuổi">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="recipient-relationship">Mối quan hệ:</label>
+                            <select id="recipient-relationship">
+                                <option value="ong_ba">Ông bà</option>
+                                <option value="cha_me">Cha mẹ</option>
+                                <option value="co_chu">Cô chú</option>
+                                <option value="bac_di">Bác dì</option>
+                                <option value="anh_chi">Anh chị</option>
+                                <option value="em">Em</option>
+                                <option value="con">Con</option>
+                                <option value="chau">Cháu</option>
+                                <option value="chat">Chắt</option>
+                                <option value="ban">Bạn</option>
+                                <option value="dong_nghiep">Đồng nghiệp</option>
+                                <option value="nguoi_quen">Người quen</option>
+                                <option value="hang_xom">Hàng xóm</option>
+                                <option value="khac">Khác</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="recipient-amount">Số tiền (VND):</label>
+                            <input type="number" id="recipient-amount" placeholder="Nhập số tiền...">
+                            <small class="suggested-amount" id="suggested-amount"></small>
+                        </div>
+                        
+                        <button class="add-recipient-btn" onclick="luckyMoneyCalculator.addRecipientFromForm()">
+                            ➕ Thêm vào danh sách
+                        </button>
+                    </div>
+                    
+                    <div class="recipients-section">
+                        <h4>📋 Danh sách lì xì</h4>
+                        <div class="recipients-list" id="recipients-list">
+                            <p class="empty-list">Chưa có ai trong danh sách</p>
+                        </div>
+                        
+                        <div class="total-section">
+                            <h4>💰 Tổng cộng: <span id="lucky-money-total">0 VND</span></h4>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="export-btn" onclick="luckyMoneyCalculator.exportList()">
+                                📤 Xuất danh sách
+                            </button>
+                            <button class="clear-btn" onclick="luckyMoneyCalculator.clearList()">
+                                🗑️ Xóa tất cả
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="tips-section">
+                        <h4>💡 Gợi ý lì xì theo độ tuổi và mối quan hệ:</h4>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <h5>👴👵 Ông bà</h5>
+                                <p>500,000 - 2,000,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>👨👩 Cha mẹ</h5>
+                                <p>1,000,000 - 5,000,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>👨‍👩‍👧‍👦 Cô chú, bác dì</h5>
+                                <p>200,000 - 1,000,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>👶 Trẻ em (0-5 tuổi)</h5>
+                                <p>50,000 - 100,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>🧒 Trẻ em (6-10 tuổi)</h5>
+                                <p>100,000 - 200,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>👦 Thanh thiếu niên (11-18 tuổi)</h5>
+                                <p>200,000 - 500,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>👨‍🎓 Sinh viên (19-25 tuổi)</h5>
+                                <p>500,000 - 2,000,000 VND</p>
+                            </div>
+                            <div class="tip-card">
+                                <h5>👨‍💼 Người lớn (26+ tuổi)</h5>
+                                <p>100,000 - 500,000 VND</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" style="padding: 4rem 0; background: linear-gradient(135deg, #fff5f5 0%, #ffe4e4 100%);">
+            <div class="container">
+                <h2 style="text-align: center; color: #dc2626; font-size: 2.5rem; margin-bottom: 3rem;">✨ Tính Năng Nổi Bật</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧮</div>
+                        <h3>Tính Toán Thông Minh</h3>
+                        <p>Tự động gợi ý số tiền phù hợp dựa trên độ tuổi và mối quan hệ</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Mối Quan Hệ Đầy Đủ</h3>
+                        <p>Hỗ trợ tất cả các mối quan hệ từ ông bà đến hàng xóm</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Quản Lý Danh Sách</h3>
+                        <p>Lưu trữ và quản lý danh sách lì xì một cách dễ dàng</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📤</div>
+                        <h3>Xuất Dữ Liệu</h3>
+                        <p>Xuất danh sách ra file CSV để lưu trữ và in ấn</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="tips-section" style="padding: 4rem 0; background: white;">
+            <div class="container">
+                <h2 style="text-align: center; color: #dc2626; font-size: 2.5rem; margin-bottom: 3rem;">💡 Lưu Ý Khi Lì Xì</h2>
+                <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="tip-card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 2rem; border-radius: 15px; text-align: center; border: 2px solid #f59e0b;">
+                        <h5 style="color: #92400e; margin-bottom: 1rem; font-size: 1.2rem;">🎯 Nguyên Tắc Chung</h5>
+                        <p style="color: #78350f; line-height: 1.6;">Lì xì nên phù hợp với khả năng tài chính và mối quan hệ. Không nên quá ít hoặc quá nhiều.</p>
+                    </div>
+                    <div class="tip-card" style="background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%); padding: 2rem; border-radius: 15px; text-align: center; border: 2px solid #3b82f6;">
+                        <h5 style="color: #1e40af; margin-bottom: 1rem; font-size: 1.2rem;">💰 Số Tiền Phù Hợp</h5>
+                        <p style="color: #1e3a8a; line-height: 1.6;">Trẻ em thường nhận ít hơn người lớn. Người thân ruột thịt thường nhận nhiều hơn người quen.</p>
+                    </div>
+                    <div class="tip-card" style="background: linear-gradient(135deg, #dcfce7 0%, #86efac 100%); padding: 2rem; border-radius: 15px; text-align: center; border: 2px solid #16a34a;">
+                        <h5 style="color: #15803d; margin-bottom: 1rem; font-size: 1.2rem;">🎁 Ý Nghĩa Tết</h5>
+                        <p style="color: #166534; line-height: 1.6;">Lì xì không chỉ là tiền mà còn là lời chúc may mắn, sức khỏe và thành công trong năm mới.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/header-loader.js"></script>
+    <script src="js/lucky-money-calculator.js"></script>
+    <script src="js/footer.js"></script>
+</body>
+</html> 

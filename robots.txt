@@ -6,6 +6,7 @@ Allow: /
 Sitemap: https://saptet.vn/sitemap.xml
 
 # Allow crawling of all content
+Allow: /may-tinh-li-xi.html
 Allow: /blog.html
 Allow: /huong-dan-tet.html
 Allow: /mon-an-tet.html
