@@ -114,8 +114,15 @@
                 <!-- Calendar Content -->
                 <div class="calendar-wrapper">
                     <div class="calendar-title">
-                        <h2>Lịch Tháng 8 Năm 2025</h2>
-                        <p>Tháng 8 Dương lịch - Tháng 7 Âm lịch</p>
+                        <button id="prev-month-btn" class="month-nav-btn prev-btn">
+                            <span class="btn-icon">◀</span>
+                        </button>
+                        <div class="title-content">
+                            <h2 id="calendar-title-text">Lịch Tháng 8 Năm 2025</h2>
+                        </div>
+                        <button id="next-month-btn" class="month-nav-btn next-btn">
+                            <span class="btn-icon">▶</span>
+                        </button>
                     </div>
                     <div class="calendar-header">
                         <div class="day-header">CN</div>
@@ -138,13 +145,106 @@
             <div class="container">
                 <div class="info-wrapper">
                     <div class="section-header">
-                        <div class="section-icon">🌙</div>
+                        <div class="section-icon">📅</div>
                         <h3>Thông Tin Ngày Được Chọn</h3>
+                        <p class="section-subtitle">Xem chi tiết thông tin ngày dương lịch và âm lịch</p>
                     </div>
-                    <div id="selected-date-info" class="date-info-content">
+                    
+                    <div class="date-info-content">
                         <div class="info-placeholder">
-                            <div class="placeholder-icon">📅</div>
-                            <p>Chọn một ngày để xem thông tin chi tiết</p>
+                            <div class="placeholder-icon">👆</div>
+                            <p>Chọn một ngày trong lịch để xem thông tin chi tiết</p>
+                        </div>
+                        
+                        <div class="selected-date-info" id="selected-date-info" style="display: none;">
+                            <div class="date-header">
+                                <div class="date-main">
+                                    <div class="date-number" id="selected-date-number">15</div>
+                                    <div class="date-details">
+                                        <div class="date-month-year" id="selected-date-month-year">Tháng 8, 2025</div>
+                                        <div class="date-weekday" id="selected-date-weekday">Thứ Sáu</div>
+                                    </div>
+                                </div>
+                                <div class="date-lunar">
+                                    <div class="lunar-icon">🌙</div>
+                                    <div class="lunar-date" id="selected-lunar-date">15/7</div>
+                                                                            <div class="lunar-year" id="selected-lunar-year">Ất Tỵ</div>
+                                </div>
+                            </div>
+                            
+                            <div class="date-info-grid">
+                                <div class="info-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">🌞</div>
+                                        <h4>Thông Tin Dương Lịch</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="info-item">
+                                            <span class="info-label">Ngày:</span>
+                                            <span class="info-value" id="solar-day">15</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Tháng:</span>
+                                            <span class="info-value" id="solar-month">8</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Năm:</span>
+                                            <span class="info-value" id="solar-year">2025</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Thứ:</span>
+                                            <span class="info-value" id="solar-weekday">Thứ Sáu</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">🌙</div>
+                                        <h4>Thông Tin Âm Lịch</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="info-item">
+                                            <span class="info-label">Ngày:</span>
+                                            <span class="info-value" id="lunar-day">15</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Tháng:</span>
+                                            <span class="info-value" id="lunar-month">7</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Can Chi:</span>
+                                            <span class="info-value" id="lunar-canchi">Ất Tỵ</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Ngũ Hành:</span>
+                                            <span class="info-value" id="lunar-nayin">Hải Trung Kim</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">✨</div>
+                                        <h4>Đánh Giá Ngày</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="day-rating">
+                                            <div class="rating-label">Mức độ tốt:</div>
+                                            <div class="rating-stars" id="day-rating">
+                                                <span class="star">⭐</span>
+                                                <span class="star">⭐</span>
+                                                <span class="star">⭐</span>
+                                                <span class="star">⭐</span>
+                                                <span class="star">⭐</span>
+                                            </div>
+                                        </div>
+                                        <div class="day-description" id="day-description">
+                                            Ngày tốt để xuất hành, cưới hỏi, động thổ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -205,9 +305,9 @@
     <!-- <script src="js/footer.js"></script> -->
     <script src="node_modules/lunar-javascript/dist/lunar.js"></script>
     <script>
-        // Copy calendar functionality from homepage for accuracy
-        let currentYear = 2026;
-        let currentMonth = 0; // January
+        // Calendar navigation variables
+        let currentYear = 2025;
+        let currentMonth = 7; // August (0-indexed)
         let selectedDate = null;
 
         // Tet dates for special highlighting
@@ -219,9 +319,61 @@
 
         // Initialize detailed calendar
         function initDetailedCalendar() {
+            updateCalendarTitle();
             generateDetailedCalendar();
             generateAuspiciousHours();
             generateTraditionalActivities();
+            
+            // Add navigation event listeners
+            document.getElementById('prev-month-btn').addEventListener('click', navigateToPreviousMonth);
+            document.getElementById('next-month-btn').addEventListener('click', navigateToNextMonth);
+        }
+
+        // Update calendar title
+        function updateCalendarTitle() {
+            const monthNames = [
+                'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+            ];
+            
+            document.getElementById('calendar-title-text').textContent = `Lịch ${monthNames[currentMonth]} Năm ${currentYear}`;
+            
+            // Update button states
+            updateNavigationButtons();
+        }
+
+        // Update navigation button states
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-month-btn');
+            const nextBtn = document.getElementById('next-month-btn');
+            
+            // Disable prev button if we're at the earliest month (e.g., January 2020)
+            prevBtn.disabled = (currentYear <= 2020 && currentMonth === 0);
+            
+            // Disable next button if we're at the latest month (e.g., December 2030)
+            nextBtn.disabled = (currentYear >= 2030 && currentMonth === 11);
+        }
+
+        // Navigate to previous month
+        function navigateToPreviousMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            updateCalendarTitle();
+            generateDetailedCalendar();
+        }
+
+        // Navigate to next month
+        function navigateToNextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            updateCalendarTitle();
+            generateDetailedCalendar();
         }
 
 
@@ -230,12 +382,8 @@
             const calendarGrid = document.getElementById('detailed-calendar-grid');
             calendarGrid.innerHTML = '';
 
-            // Fixed year and month for display
-            const displayYear = 2025;
-            const displayMonth = 7; // August (0-indexed)
-            
-            const firstDay = new Date(displayYear, displayMonth, 1);
-            const lastDay = new Date(displayYear, displayMonth + 1, 0);
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
             const daysInMonth = lastDay.getDate();
             const startingDayOfWeek = firstDay.getDay();
             const today = new Date();
@@ -515,113 +663,87 @@
         }
 
         function updateSelectedDateInfo(date) {
-            const infoContainer = document.getElementById('selected-date-info');
+            if (!date) return;
             
-            try {
-                // Use lunar-javascript for detailed information
-                const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
+            const infoContainer = document.getElementById('selected-date-info');
+            const placeholder = document.querySelector('.info-placeholder');
+            
+            if (infoContainer && placeholder) {
+                placeholder.style.display = 'none';
+                infoContainer.style.display = 'block';
                 
-                const solar = Solar.fromYmd(year, month, day);
-                const lunar = solar.getLunar();
+                // Update header info
+                document.getElementById('selected-date-number').textContent = date.getDate();
                 
-                // Get lunar date info
-                let lunarDateDisplay = '';
-                if (lunar.getDay() === 1) {
-                    lunarDateDisplay = `Mùng 1 tháng ${lunar.getMonth()}`;
-                } else {
-                    lunarDateDisplay = `Mùng ${lunar.getDay()}`;
-                }
+                const monthNames = [
+                    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+                ];
+                const weekdays = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
                 
-                infoContainer.innerHTML = `
-                    <div class="date-info-grid">
-                        <div class="info-card">
-                            <div class="info-icon">📅</div>
-                            <div class="info-content">
-                                <h4>Ngày dương lịch</h4>
-                                <p>${date.toLocaleDateString('vi-VN')}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">🌙</div>
-                            <div class="info-content">
-                                <h4>Ngày âm lịch</h4>
-                                <p>${lunarDateDisplay}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">📆</div>
-                            <div class="info-content">
-                                <h4>Thứ</h4>
-                                <p>${getVietnameseWeekday(date.getDay())}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">⭐</div>
-                            <div class="info-content">
-                                <h4>Ngày tốt/xấu</h4>
-                                <p class="${isGoodDay(date) ? 'good-day' : 'bad-day'}">${isGoodDay(date) ? 'Ngày tốt' : 'Ngày xấu'}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">🏮</div>
-                            <div class="info-content">
-                                <h4>Can Chi</h4>
-                                <p>${convertCanChiToVietnamese(lunar.getYearInGanZhi())} ${convertCanChiToVietnamese(lunar.getMonthInGanZhi())} ${convertCanChiToVietnamese(lunar.getDayInGanZhi())}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">🎯</div>
-                            <div class="info-content">
-                                <h4>Hành</h4>
-                                <p>${convertNaYinToVietnamese(lunar.getYearNaYin())}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } catch (error) {
-                // Fallback display using fallback calculation
+                document.getElementById('selected-date-month-year').textContent = 
+                    `${monthNames[date.getMonth()]}, ${date.getFullYear()}`;
+                document.getElementById('selected-date-weekday').textContent = weekdays[date.getDay()];
+                
+                // Update lunar date info
                 const lunarInfo = calculateLunarDate(date);
-                let lunarDateDisplay = '';
-                if (lunarInfo.day === 1) {
-                    lunarDateDisplay = `Mùng 1 tháng ${lunarInfo.month}`;
-                } else {
-                    lunarDateDisplay = `Mùng ${lunarInfo.day}`;
+                document.getElementById('selected-lunar-date').textContent = 
+                    lunarInfo.day === 1 ? `${lunarInfo.day}/${lunarInfo.month}` : lunarInfo.day;
+                
+                // Update solar date info
+                document.getElementById('solar-day').textContent = date.getDate();
+                document.getElementById('solar-month').textContent = date.getMonth() + 1;
+                document.getElementById('solar-year').textContent = date.getFullYear();
+                document.getElementById('solar-weekday').textContent = weekdays[date.getDay()];
+                
+                // Update lunar date info
+                document.getElementById('lunar-day').textContent = lunarInfo.day;
+                document.getElementById('lunar-month').textContent = lunarInfo.month;
+                
+                // Update lunar year (Can Chi)
+                try {
+                    if (typeof Solar !== 'undefined') {
+                        const year = date.getFullYear();
+                        const month = date.getMonth() + 1;
+                        const day = date.getDate();
+                        const solar = Solar.fromYmd(year, month, day);
+                        const lunar = solar.getLunar();
+                        
+                        const canChi = lunar.getYearInGanZhi();
+                        const naYin = lunar.getYearNaYin();
+                        
+                        document.getElementById('lunar-canchi').textContent = canChi || 'N/A';
+                        document.getElementById('lunar-nayin').textContent = naYin || 'N/A';
+                        document.getElementById('selected-lunar-year').textContent = canChi || 'N/A';
+                    }
+                } catch (error) {
+                    console.warn('Error getting lunar year info:', error);
+                    document.getElementById('lunar-canchi').textContent = 'N/A';
+                    document.getElementById('lunar-nayin').textContent = 'N/A';
+                    document.getElementById('selected-lunar-year').textContent = 'N/A';
                 }
                 
-                infoContainer.innerHTML = `
-                    <div class="date-info-grid">
-                        <div class="info-card">
-                            <div class="info-icon">📅</div>
-                            <div class="info-content">
-                                <h4>Ngày dương lịch</h4>
-                                <p>${date.toLocaleDateString('vi-VN')}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">🌙</div>
-                            <div class="info-content">
-                                <h4>Ngày âm lịch</h4>
-                                <p>${lunarDateDisplay}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">📆</div>
-                            <div class="info-content">
-                                <h4>Thứ</h4>
-                                <p>${getVietnameseWeekday(date.getDay())}</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">⭐</div>
-                            <div class="info-content">
-                                <h4>Ngày tốt/xấu</h4>
-                                <p class="${isGoodDay(date) ? 'good-day' : 'bad-day'}">${isGoodDay(date) ? 'Ngày tốt' : 'Ngày xấu'}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                // Update day rating
+                const isGood = isGoodDay(date);
+                const ratingStars = document.getElementById('day-rating');
+                const dayDescription = document.getElementById('day-description');
+                
+                if (ratingStars) {
+                    ratingStars.innerHTML = '';
+                    const starCount = isGood ? 5 : 3;
+                    for (let i = 0; i < 5; i++) {
+                        const star = document.createElement('span');
+                        star.className = 'star';
+                        star.textContent = i < starCount ? '⭐' : '☆';
+                        ratingStars.appendChild(star);
+                    }
+                }
+                
+                if (dayDescription) {
+                    dayDescription.textContent = isGood 
+                        ? 'Ngày tốt để xuất hành, cưới hỏi, động thổ'
+                        : 'Ngày bình thường, có thể thực hiện các việc thường ngày';
+                }
             }
         }
 
