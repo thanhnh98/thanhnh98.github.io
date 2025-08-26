@@ -9,6 +9,52 @@
     border: 2px solid #bfdbfe;
 }
 
+/* Quiz Loading State */
+.quiz-loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-text-secondary);
+}
+
+.quiz-loading p {
+    font-size: 1.1rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Quiz Error State */
+.quiz-error {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-text-secondary);
+}
+
+.quiz-error h3 {
+    color: #dc2626;
+    margin-bottom: 1rem;
+}
+
+.quiz-error p {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.quiz-retry-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.quiz-retry-btn:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+}
+
 .tet-quiz-container h3 {
     color: #1d4ed8;
     font-size: 1.8rem;

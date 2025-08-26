@@ -125,8 +125,27 @@ class TetQuiz {
     }
 
     init() {
-        this.renderQuiz();
-        this.bindEvents();
+        try {
+            console.log('Initializing Tet Quiz...');
+            this.renderQuiz();
+            this.bindEvents();
+            console.log('Tet Quiz initialized successfully');
+        } catch (error) {
+            console.error('Error initializing Tet Quiz:', error);
+            this.showError();
+        }
+    }
+    
+    showError() {
+        if (this.rootElement) {
+            this.rootElement.innerHTML = `
+                <div class="quiz-error">
+                    <h3>⚠️ Không thể tải Quiz</h3>
+                    <p>Đã xảy ra lỗi khi tải Quiz. Vui lòng thử lại sau.</p>
+                    <button onclick="location.reload()" class="quiz-retry-btn">Thử Lại</button>
+                </div>
+            `;
+        }
     }
 
     renderQuiz() {
