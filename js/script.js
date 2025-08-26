@@ -1239,4 +1239,141 @@ document.addEventListener('DOMContentLoaded', function() {
             closeEventModal();
         }
     });
+    
+    // Initialize star bling effects
+    initializeStarBlingEffects();
 });
+
+// Star Bling Effects Functions
+function initializeStarBlingEffects() {
+    // Add random sparkle effects to stars
+    const stars = document.querySelectorAll('.star-bling');
+    const floatingStars = document.querySelectorAll('.floating-star');
+    
+    // Add random sparkle animation delays
+    stars.forEach((star, index) => {
+        // Random animation delay for more natural effect
+        const randomDelay = Math.random() * 3;
+        star.style.animationDelay = `${randomDelay}s`;
+        
+        // Add click effect for interactivity
+        star.addEventListener('click', function() {
+            createSparkleBurst(this);
+        });
+        
+        // Add hover effect
+        star.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.5)';
+            this.style.filter = 'drop-shadow(0 0 20px rgba(255, 215, 0, 1))';
+        });
+        
+        star.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.filter = 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))';
+        });
+    });
+    
+    // Add floating animation to floating stars
+    floatingStars.forEach((star, index) => {
+        const randomDelay = Math.random() * 4;
+        const randomDuration = 4 + Math.random() * 3;
+        star.style.animationDelay = `${randomDelay}s`;
+        star.style.animationDuration = `${randomDuration}s`;
+    });
+    
+    // Create periodic sparkle effects
+    setInterval(() => {
+        const randomStar = stars[Math.floor(Math.random() * stars.length)];
+        if (randomStar) {
+            createMiniSparkle(randomStar);
+        }
+    }, 2000);
+}
+
+function createSparkleBurst(star) {
+    // Create burst effect when star is clicked
+    for (let i = 0; i < 8; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'mini-sparkle';
+        sparkle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+        `;
+        
+        const angle = (i * 45) * Math.PI / 180;
+        const distance = 30;
+        const startX = star.offsetLeft + star.offsetWidth / 2;
+        const startY = star.offsetTop + star.offsetHeight / 2;
+        
+        sparkle.style.left = startX + 'px';
+        sparkle.style.top = startY + 'px';
+        
+        document.body.appendChild(sparkle);
+        
+        // Animate sparkle
+        const animation = sparkle.animate([
+            {
+                transform: 'translate(0, 0) scale(1)',
+                opacity: 1
+            },
+            {
+                transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`,
+                opacity: 0
+            }
+        ], {
+            duration: 1000,
+            easing: 'ease-out'
+        });
+        
+        animation.onfinish = () => {
+            sparkle.remove();
+        };
+    }
+}
+
+function createMiniSparkle(star) {
+    // Create mini sparkle effect
+    const sparkle = document.createElement('div');
+    sparkle.className = 'mini-sparkle';
+    sparkle.style.cssText = `
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #FFA500;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 15;
+        left: ${star.offsetLeft + star.offsetWidth / 2}px;
+        top: ${star.offsetTop + star.offsetHeight / 2}px;
+    `;
+    
+    document.body.appendChild(sparkle);
+    
+    // Animate mini sparkle
+    const animation = sparkle.animate([
+        {
+            transform: 'scale(0)',
+            opacity: 1
+        },
+        {
+            transform: 'scale(1.5)',
+            opacity: 0.8
+        },
+        {
+            transform: 'scale(0)',
+            opacity: 0
+        }
+    ], {
+        duration: 1500,
+        easing: 'ease-in-out'
+    });
+    
+    animation.onfinish = () => {
+        sparkle.remove();
+    };
+}

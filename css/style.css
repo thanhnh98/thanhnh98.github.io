@@ -1167,7 +1167,8 @@ main {
         url('../images/tet-background-pattern.svg') center/cover no-repeat,
         linear-gradient(135deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    min-height: 100vh;
 }
 
 /* Decorative corners */
@@ -1266,6 +1267,15 @@ main {
     box-shadow: 0 4px 15px rgba(70, 130, 180, 0.1);
 }
 
+/* Countdown Section Container */
+.countdown-section .container {
+    position: relative;
+    z-index: 3;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
 .tet-date-display p {
     margin: 0.5rem 0;
     font-family: var(--font-heading);
@@ -1296,7 +1306,7 @@ main {
     margin: 4rem 0;
     flex-wrap: wrap;
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 .timer-box {
@@ -1311,12 +1321,13 @@ main {
     min-width: 160px;
     min-height: 160px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     animation: timerGlow 2s ease-in-out infinite alternate;
+    z-index: 15;
 }
 
 .timer-box::before {
@@ -3616,4 +3627,264 @@ footer::after {
     clip: rect(1px, 1px, 1px, 1px) !important;
     clip-path: inset(50%) !important;
     white-space: nowrap !important;
+}
+
+/* Star Bling Effect for Tet Countdown */
+.star-bling {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 50%, transparent 100%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: starTwinkle 2s ease-in-out infinite;
+    z-index: 5;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    pointer-events: none;
+}
+
+.star-bling:nth-child(1) {
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+    animation-duration: 1.5s;
+}
+
+.star-bling:nth-child(2) {
+    top: 25%;
+    right: 25%;
+    animation-delay: 0.3s;
+    animation-duration: 2.2s;
+}
+
+.star-bling:nth-child(3) {
+    top: 40%;
+    left: 30%;
+    animation-delay: 0.7s;
+    animation-duration: 1.8s;
+}
+
+.star-bling:nth-child(4) {
+    top: 50%;
+    right: 35%;
+    animation-delay: 1.1s;
+    animation-duration: 2.5s;
+}
+
+.star-bling:nth-child(5) {
+    top: 65%;
+    left: 40%;
+    animation-delay: 1.4s;
+    animation-duration: 1.9s;
+}
+
+.star-bling:nth-child(6) {
+    top: 75%;
+    right: 30%;
+    animation-delay: 1.8s;
+    animation-duration: 2.1s;
+}
+
+.star-bling:nth-child(7) {
+    top: 85%;
+    left: 45%;
+    animation-delay: 2.1s;
+    animation-duration: 1.7s;
+}
+
+.star-bling:nth-child(8) {
+    top: 20%;
+    left: 55%;
+    animation-delay: 0.5s;
+    animation-duration: 2.3s;
+}
+
+.star-bling:nth-child(9) {
+    top: 60%;
+    right: 20%;
+    animation-delay: 1.2s;
+    animation-duration: 1.6s;
+}
+
+.star-bling:nth-child(10) {
+    top: 30%;
+    right: 50%;
+    animation-delay: 0.8s;
+    animation-duration: 2.4s;
+}
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(0deg);
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4));
+    }
+    25% {
+        opacity: 0.7;
+        transform: scale(1.1) rotate(90deg);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3) rotate(180deg);
+        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
+    }
+    75% {
+        opacity: 0.8;
+        transform: scale(1.1) rotate(270deg);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+    }
+}
+
+/* Enhanced countdown timer with star effect */
+#countdown-timer {
+    position: relative;
+    overflow: visible;
+    margin: 4rem 2rem;
+}
+
+#countdown-timer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(255, 165, 0, 0.1) 25%, 
+        rgba(255, 215, 0, 0.1) 50%, 
+        rgba(255, 165, 0, 0.1) 75%, 
+        rgba(255, 215, 0, 0.1) 100%);
+    animation: backgroundShimmer 3s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes backgroundShimmer {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateX(100%);
+    }
+}
+
+/* Floating star particles */
+.floating-star {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: floatStar 4s ease-in-out infinite;
+    z-index: 5;
+}
+
+.floating-star:nth-child(odd) {
+    background: #FFA500;
+    animation-duration: 5s;
+}
+
+.floating-star:nth-child(even) {
+    background: #FFD700;
+    animation-duration: 6s;
+}
+
+@keyframes floatStar {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-20px) rotate(90deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40px) rotate(180deg);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-20px) rotate(270deg);
+        opacity: 1;
+    }
+}
+
+/* Responsive star positioning */
+@media (max-width: 768px) {
+    .star-bling {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .star-bling:nth-child(1) { top: 20%; left: 25%; }
+    .star-bling:nth-child(2) { top: 30%; right: 30%; }
+    .star-bling:nth-child(3) { top: 45%; left: 35%; }
+    .star-bling:nth-child(4) { top: 55%; right: 40%; }
+    .star-bling:nth-child(5) { top: 70%; left: 45%; }
+    .star-bling:nth-child(6) { top: 80%; right: 35%; }
+    .star-bling:nth-child(7) { top: 90%; left: 50%; }
+    .star-bling:nth-child(8) { top: 25%; left: 60%; }
+    .star-bling:nth-child(9) { top: 65%; right: 25%; }
+    .star-bling:nth-child(10) { top: 35%; right: 55%; }
+}
+
+/* Mini Sparkle Effects */
+.mini-sparkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 15;
+    animation: sparkleFade 1.5s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Enhanced star hover effects */
+.star-bling:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
+    transition: all 0.3s ease;
+}
+
+/* Countdown timer enhancement with star theme */
+.timer-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 215, 0, 0.2), 
+        transparent);
+    animation: timerShine 3s ease-in-out infinite;
+}
+
+@keyframes timerShine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
