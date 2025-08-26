@@ -43,6 +43,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://saptet.vn/lich-am-duong.html</loc>
+        <lastmod>2026-01-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
         <loc>https://saptet.vn/privacy-policy.html</loc>
         <lastmod>2026-01-15</lastmod>
         <changefreq>yearly</changefreq>
