@@ -1,5 +1,27 @@
 // Service Worker for Sắp Tết PWA
-const CACHE_NAME = 'sap-tet-v1.0.0';
+const CACHE_NAME = 'sap-tet-v1.0.1';
+
+// Invalid subdomains list
+const INVALID_SUBDOMAINS = [
+    'webmail', 'mail', 'admin', 'ftp', 'cpanel', 'whm', 'blog', 'shop', 'store',
+    'api', 'app', 'dev', 'test', 'staging', 'beta', 'alpha', 'demo', 'support',
+    'help', 'docs', 'cdn', 'static', 'assets', 'img', 'images', 'files',
+    'download', 'upload', 'secure', 'ssl', 'vpn', 'remote', 'server', 'db',
+    'database', 'mysql', 'phpmyadmin', 'panel', 'control', 'manage', 'dashboard',
+    'portal', 'login', 'auth', 'user', 'users', 'account', 'accounts', 'profile',
+    'profiles', 'settings', 'config', 'configuration', 'system', 'sys', 'monitor',
+    'monitoring', 'stats', 'statistics', 'analytics', 'logs', 'log', 'backup',
+    'backups', 'restore', 'recovery', 'maintenance', 'maint', 'status', 'health',
+    'ping', 'check', 'verify', 'validate', 'testing', 'qa', 'quality',
+    'preview', 'sandbox', 'playground', 'lab', 'labs', 'experiment',
+    'experiments', 'research', 'development', 'develop', 'build', 'builder',
+    'compile', 'deploy', 'deployment', 'release', 'releases', 'version', 'versions',
+    'v1', 'v2', 'v3', 'v4', 'v5', 'legacy', 'old', 'new', 'latest', 'current',
+    'production', 'prod', 'live', 'public', 'private', 'internal', 'external',
+    'frontend', 'backend', 'client', 'service', 'services', 'microservice',
+    'gateway', 'proxy', 'loadbalancer', 'cache', 'redis', 'memcached', 'elasticsearch',
+    'kibana', 'grafana', 'prometheus', 'jenkins', 'ci', 'cd', 'pipeline', 'workflow'
+];
 const urlsToCache = [
   '/',
   '/index.html',
@@ -58,8 +80,50 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch event - serve cached content when offline
+// Function to check if subdomain is invalid
+function isInvalidSubdomain(url) {
+  try {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname;
+    
+    if (!hostname.includes('saptet.vn')) {
+      return false;
+    }
+    
+    const subdomain = hostname.split('.')[0];
+    const isValidSubdomain = subdomain === 'www' || subdomain === 'saptet';
+    
+    return INVALID_SUBDOMAINS.includes(subdomain) && !isValidSubdomain;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Fetch event - serve cached content when offline and handle subdomain redirects
 self.addEventListener('fetch', event => {
+  // Handle subdomain redirects
+  if (isInvalidSubdomain(event.request.url)) {
+    console.log('Service Worker: Invalid subdomain detected, redirecting to 404');
+    event.respondWith(
+      fetch('/404.html')
+        .then(response => {
+          return new Response(response.body, {
+            status: 404,
+            statusText: 'Not Found',
+            headers: response.headers
+          });
+        })
+        .catch(() => {
+          return new Response('404 - Subdomain not found', {
+            status: 404,
+            statusText: 'Not Found',
+            headers: { 'Content-Type': 'text/html' }
+          });
+        })
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {

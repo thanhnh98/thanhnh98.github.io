@@ -184,8 +184,86 @@
             const router = new Router();
             const navMenu = new NavigationMenu();
             
+            // Handle subdomain redirects
+            handleSubdomainRedirect();
+            
             console.log('404 page loaded for:', window.location.pathname);
         });
+
+        // Function to handle subdomain redirects
+        function handleSubdomainRedirect() {
+            const hostname = window.location.hostname;
+            const protocol = window.location.protocol;
+            
+            // Comprehensive list of invalid subdomains
+            const invalidSubdomains = [
+                'webmail', 'mail', 'admin', 'ftp', 'cpanel', 'whm', 'blog', 'shop', 'store',
+                'api', 'app', 'dev', 'test', 'staging', 'beta', 'alpha', 'demo', 'support',
+                'help', 'docs', 'cdn', 'static', 'assets', 'img', 'images', 'files',
+                'download', 'upload', 'secure', 'ssl', 'vpn', 'remote', 'server', 'db',
+                'database', 'mysql', 'phpmyadmin', 'panel', 'control', 'manage', 'dashboard',
+                'portal', 'login', 'auth', 'user', 'users', 'account', 'accounts', 'profile',
+                'profiles', 'settings', 'config', 'configuration', 'system', 'sys', 'monitor',
+                'monitoring', 'stats', 'statistics', 'analytics', 'logs', 'log', 'backup',
+                'backups', 'restore', 'recovery', 'maintenance', 'maint', 'status', 'health',
+                'ping', 'check', 'verify', 'validate', 'test', 'testing', 'qa', 'quality',
+                'staging', 'preview', 'sandbox', 'playground', 'lab', 'labs', 'experiment',
+                'experiments', 'research', 'development', 'develop', 'build', 'builder',
+                'compile', 'deploy', 'deployment', 'release', 'releases', 'version', 'versions',
+                'v1', 'v2', 'v3', 'v4', 'v5', 'legacy', 'old', 'new', 'latest', 'current',
+                'production', 'prod', 'live', 'public', 'private', 'internal', 'external',
+                'frontend', 'backend', 'client', 'server', 'service', 'services', 'microservice',
+                'gateway', 'proxy', 'loadbalancer', 'cache', 'redis', 'memcached', 'elasticsearch',
+                'kibana', 'grafana', 'prometheus', 'jenkins', 'ci', 'cd', 'pipeline', 'workflow'
+            ];
+            
+            const subdomain = hostname.split('.')[0];
+            const isValidSubdomain = subdomain === 'www' || subdomain === 'saptet';
+            
+            // Check if this is an invalid subdomain
+            if (invalidSubdomains.includes(subdomain) && hostname.includes('saptet.vn') && !isValidSubdomain) {
+                // Show specific message for subdomain redirects
+                const errorMessage = document.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.innerHTML = `
+                        <strong>Subdomain không tồn tại!</strong><br>
+                        Bạn đang truy cập <code>${hostname}</code> - đây không phải là subdomain hợp lệ.<br>
+                        Chỉ có <strong>saptet.vn</strong> là domain chính thức.<br>
+                        Hãy quay về trang chủ để tiếp tục đếm ngược đến Tết Nguyên Đán 2026!
+                    `;
+                }
+                
+                // Auto-redirect to main site after 5 seconds
+                setTimeout(() => {
+                    window.location.href = 'https://saptet.vn/';
+                }, 5000);
+                
+                // Add countdown timer
+                addRedirectCountdown();
+                
+                // Log the invalid subdomain access
+                console.warn(`Invalid subdomain access: ${hostname}`);
+            }
+        }
+
+        // Add countdown timer for redirect
+        function addRedirectCountdown() {
+            const homeButton = document.querySelector('.home-button');
+            if (homeButton) {
+                let countdown = 5;
+                const originalText = homeButton.textContent;
+                
+                const countdownInterval = setInterval(() => {
+                    homeButton.innerHTML = `🏠 Tự động chuyển hướng trong ${countdown}s`;
+                    countdown--;
+                    
+                    if (countdown < 0) {
+                        clearInterval(countdownInterval);
+                        homeButton.innerHTML = originalText;
+                    }
+                }, 1000);
+            }
+        }
     </script>
 </body>
 </html>
