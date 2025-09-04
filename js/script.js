@@ -70,7 +70,7 @@ function updateCountdown() {
         document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         
         // Hide greeting message
-        document.querySelector('.tet-greeting').style.display = 'none';
+        document.querySelector('.tet-greeting').style.display = 'block';
     } else {
         // Tết has arrived!
         document.getElementById('days').textContent = '00';
