@@ -81,6 +81,7 @@ header .container {
     min-width: none;
 }
 
+
 .app-icon {
     width: 64px;
     height: 64px;
@@ -1256,6 +1257,7 @@ main {
     opacity: 0.9;
 }
 
+
 /* Tet Date Display Styling */
 .tet-date-display {
     text-align: center;
@@ -1416,7 +1418,7 @@ main {
     position: relative;
     backdrop-filter: blur(5px);
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--color-primary);
     animation: greetingPulse 4s ease-in-out infinite;
@@ -2434,6 +2436,7 @@ footer::after {
         width: 48px;
         height: 48px;
     }
+    
     
     header h1 a {
         font-size: 1.8rem;
