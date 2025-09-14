@@ -629,6 +629,69 @@ main {
     margin: 0;
 }
 
+/* Event Detail Button Styles */
+/* Event cards are now clickable without detail buttons */
+.event-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading spinner animation */
+.loading-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Special styling for different event types - now using hover effects on cards */
+.event-card[data-event="tet"]:hover {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+}
+
+.event-card[data-event="valentine"]:hover {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+}
+
+.event-card[data-event="women-day"]:hover {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+}
+
+.event-card[data-event="hung-kings"]:hover {
+    background: linear-gradient(135deg, #fff8e1, #ffecb3);
+}
+
+.event-card[data-event="liberation"]:hover {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+}
+
+.event-card[data-event="labor-day"]:hover {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+}
+
+.event-card[data-event="mid-autumn"]:hover {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+}
+
+.event-card[data-event="teachers-day"]:hover {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.event-card[data-event="christmas"]:hover {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+}
+
+.event-card[data-event="new-year"]:hover {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
 /* Event Countdown Timer */
 .event-countdown {
     display: flex;
@@ -671,6 +734,20 @@ main {
         padding: 1.2rem;
     }
     
+    .event-detail-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        bottom: 0.8rem;
+    }
+    
+    .btn-text {
+        font-size: 0.75rem;
+    }
+    
+    .btn-icon {
+        font-size: 0.8rem;
+    }
+    
     .event-countdown {
         gap: 0.3rem;
         padding: 0.4rem;
@@ -696,6 +773,20 @@ main {
         min-width: 220px;
         max-width: 220px;
         padding: 1rem;
+    }
+    
+    .event-detail-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+        bottom: 0.6rem;
+    }
+    
+    .btn-text {
+        font-size: 0.7rem;
+    }
+    
+    .btn-icon {
+        font-size: 0.75rem;
     }
     
     .event-countdown {
@@ -740,6 +831,69 @@ main {
     background: white;
     color: #ff6b6b;
     transform: scale(1.1);
+}
+
+/* Event Modal Detail Button */
+.event-modal-detail-btn {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.5rem auto 0;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.event-modal-detail-btn:hover {
+    background: linear-gradient(135deg, #b71c1c, #d32f2f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+}
+
+.event-modal-detail-btn:active {
+    transform: translateY(0) scale(0.95);
+    transition: all 0.1s ease;
+}
+
+.event-modal-detail-btn .btn-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.event-modal-detail-btn .btn-icon {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+.event-modal-detail-btn:hover .btn-icon {
+    transform: translateX(3px);
+}
+
+/* Shimmer effect for modal button */
+.event-modal-detail-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.event-modal-detail-btn:hover::before {
+    left: 100%;
 }
 
 /* Event Modal */
@@ -977,6 +1131,17 @@ main {
 @keyframes sparkle {
     0%, 100% { opacity: 0.7; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        opacity: 0.9;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.02);
+    }
 }
 
 @keyframes numberPulse {

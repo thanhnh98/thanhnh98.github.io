@@ -1377,3 +1377,241 @@ function createMiniSparkle(star) {
         sparkle.remove();
     };
 }
+
+// Global variable to store current event type
+let currentEventType = null;
+
+// Event detail navigation function (now opens modal instead of direct navigation)
+function navigateToEventDetail(eventType) {
+    currentEventType = eventType;
+    openEventModal(eventType);
+}
+
+// Function to navigate from modal
+function navigateToEventDetailFromModal() {
+    if (!currentEventType) return;
+    
+    // Define the mapping of event types to their detail pages
+    const eventPages = {
+        'tet': 'lich-am-duong.html',
+        'valentine': 'blog.html#valentine',
+        'women-day': 'blog.html#women-day',
+        'hung-kings': 'blog.html#hung-kings',
+        'liberation': 'blog.html#liberation',
+        'labor-day': 'blog.html#labor-day',
+        'mid-autumn': 'trung-thu.html',
+        'teachers-day': 'blog.html#teachers-day',
+        'christmas': 'noel.html',
+        'new-year': 'blog.html#new-year'
+    };
+    
+    // Get the target page for the event type
+    const targetPage = eventPages[currentEventType];
+    
+    if (targetPage) {
+        // Add loading state to button
+        const button = document.getElementById('eventModalDetailBtn');
+        if (button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="btn-text">Đang chuyển...</span><span class="btn-icon loading-spinner">⏳</span>';
+            button.disabled = true;
+            button.style.opacity = '0.8';
+        }
+        
+        // Close modal and navigate after a short delay
+        setTimeout(() => {
+            closeEventModal();
+            window.location.href = targetPage;
+        }, 300);
+    } else {
+        // Fallback to blog page if event type not found
+        console.warn('Event type not found:', currentEventType);
+        closeEventModal();
+        window.location.href = 'blog.html';
+    }
+}
+
+// Event modal functions
+function openEventModal(eventType) {
+    const modal = document.getElementById('eventModal');
+    if (!modal) return;
+    
+    // Event data mapping
+    const eventData = {
+        'tet': {
+            title: 'Tết Nguyên Đán 2025',
+            icon: '🏮',
+            date: '29/01/2025',
+            description: 'Năm Ất Tỵ 2025 - Tết Nguyên Đán',
+            targetDate: new Date('2025-01-29T00:00:00')
+        },
+        'valentine': {
+            title: 'Valentine 2025',
+            icon: '💕',
+            date: '14/02/2025',
+            description: 'Ngày Tình Yêu',
+            targetDate: new Date('2025-02-14T00:00:00')
+        },
+        'women-day': {
+            title: 'Ngày Quốc Tế Phụ Nữ 2025',
+            icon: '🌸',
+            date: '08/03/2025',
+            description: 'Ngày 8/3',
+            targetDate: new Date('2025-03-08T00:00:00')
+        },
+        'hung-kings': {
+            title: 'Giỗ Tổ Hùng Vương 2025',
+            icon: '🏛️',
+            date: '07/04/2025',
+            description: '10/3 Âm Lịch',
+            targetDate: new Date('2025-04-07T00:00:00')
+        },
+        'liberation': {
+            title: 'Ngày Giải Phóng Miền Nam 2025',
+            icon: '🇻🇳',
+            date: '30/04/2025',
+            description: 'Ngày Thống Nhất',
+            targetDate: new Date('2025-04-30T00:00:00')
+        },
+        'labor-day': {
+            title: 'Ngày Quốc Tế Lao Động 2025',
+            icon: '⚒️',
+            date: '01/05/2025',
+            description: 'Ngày 1/5',
+            targetDate: new Date('2025-05-01T00:00:00')
+        },
+        'mid-autumn': {
+            title: 'Tết Trung Thu 2025',
+            icon: '🥮',
+            date: '06/10/2025',
+            description: '15/8 Âm Lịch - Tết Trung Thu',
+            targetDate: new Date('2025-10-06T00:00:00')
+        },
+        'teachers-day': {
+            title: 'Ngày Nhà Giáo Việt Nam 2025',
+            icon: '📚',
+            date: '20/11/2025',
+            description: 'Ngày Nhà Giáo',
+            targetDate: new Date('2025-11-20T00:00:00')
+        },
+        'christmas': {
+            title: 'Noel 2025',
+            icon: '🎄',
+            date: '25/12/2025',
+            description: 'Giáng Sinh - Christmas',
+            targetDate: new Date('2025-12-25T00:00:00')
+        },
+        'new-year': {
+            title: 'Tết Dương Lịch 2026',
+            icon: '🎆',
+            date: '01/01/2026',
+            description: 'Năm Mới - New Year',
+            targetDate: new Date('2026-01-01T00:00:00')
+        }
+    };
+    
+    const event = eventData[eventType];
+    if (!event) return;
+    
+    // Update modal content
+    document.getElementById('eventModalTitle').textContent = event.title;
+    document.getElementById('eventModalIcon').textContent = event.icon;
+    document.getElementById('eventModalDate').textContent = event.date;
+    document.getElementById('eventModalDescription').textContent = event.description;
+    
+    // Reset button
+    const button = document.getElementById('eventModalDetailBtn');
+    if (button) {
+        button.innerHTML = '<span class="btn-text">Xem chi tiết</span><span class="btn-icon">→</span>';
+        button.disabled = false;
+        button.style.opacity = '1';
+    }
+    
+    // Show modal
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Start countdown
+    startEventCountdown(event.targetDate);
+}
+
+function closeEventModal() {
+    const modal = document.getElementById('eventModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function startEventCountdown(targetDate) {
+    const daysEl = document.getElementById('eventModalDays');
+    const hoursEl = document.getElementById('eventModalHours');
+    const minutesEl = document.getElementById('eventModalMinutes');
+    const secondsEl = document.getElementById('eventModalSeconds');
+    
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate.getTime() - now;
+        
+        if (distance < 0) {
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        daysEl.textContent = days.toString().padStart(2, '0');
+        hoursEl.textContent = hours.toString().padStart(2, '0');
+        minutesEl.textContent = minutes.toString().padStart(2, '0');
+        secondsEl.textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    
+    // Store interval ID to clear it when modal closes
+    window.eventCountdownInterval = countdownInterval;
+}
+
+// Add keyboard navigation support for event detail buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listeners to event cards
+    const eventCards = document.querySelectorAll('.event-card');
+    
+    eventCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const eventType = this.getAttribute('data-event');
+            if (eventType) {
+                navigateToEventDetail(eventType);
+            }
+        });
+        
+        // Add hover effect
+        card.style.cursor = 'pointer';
+    });
+    
+    // Close modal when clicking outside
+    const modal = document.getElementById('eventModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeEventModal();
+            }
+        });
+    }
+    
+    // Close modal with escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeEventModal();
+        }
+    });
+});
