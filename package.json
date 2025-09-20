@@ -20,10 +20,13 @@
   "author": "Sắp Tết Team",
   "license": "MIT",
   "dependencies": {
+    "@dqcai/vn-lunar": "^1.0.1",
+    "@kabeep/lunar-date-fns": "^1.1.0",
     "axios": "^1.6.2",
     "cheerio": "^1.0.0-rc.12",
+    "chinese-lunar-calendar": "^1.0.1",
     "lunar-calendar": "^0.1.4",
-    "lunar-javascript": "^1.7.3"
+    "lunar-javascript": "^1.7.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

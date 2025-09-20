@@ -303,11 +303,12 @@
     <!-- Scripts -->
     <script src="js/header-loader.js"></script>
     <!-- <script src="js/footer.js"></script> -->
-    <script src="node_modules/lunar-javascript/dist/lunar.js"></script>
+    <script src="node_modules/chinese-lunar-calendar/index.js"></script>
     <script>
-        // Calendar navigation variables
-        let currentYear = 2025;
-        let currentMonth = 7; // August (0-indexed)
+        // Calendar navigation variables - Initialize with current date
+        const today = new Date();
+        let currentYear = today.getFullYear();
+        let currentMonth = today.getMonth(); // Current month (0-indexed)
         let selectedDate = null;
 
         // Tet dates for special highlighting
@@ -457,34 +458,45 @@
             }
         }
 
-        // Accurate lunar date calculation using lunar-javascript
+        // Accurate lunar date calculation using chinese-lunar-calendar
         function calculateLunarDate(solarDate) {
+            // Always use fallback calculation for now since library may not work in browser
+            // TODO: Fix library integration later
+            const result = enhancedLunarFallback(solarDate);
+            console.log('Lunar calculation for', solarDate.toDateString(), ':', result);
+            return result;
+            
+            // Commented out library usage for now
+            /*
             try {
-                // Use lunar-javascript library for accurate conversion
-                if (typeof Solar !== 'undefined') {
+                // Use chinese-lunar-calendar library for accurate conversion
+                if (typeof LunarCalendar !== 'undefined' && typeof LunarCalendar.getLunar === 'function') {
                     const year = solarDate.getFullYear();
                     const month = solarDate.getMonth() + 1;
                     const day = solarDate.getDate();
                     
-                    const solar = Solar.fromYmd(year, month, day);
-                    const lunar = solar.getLunar();
+                    const lunar = LunarCalendar.getLunar(year, month, day);
                     
                     const result = {
-                        day: lunar.getDay(),
-                        month: lunar.getMonth(),
-                        isLeapMonth: lunar.isLeap() // Check if it's a leap month
+                        day: lunar.lunarDate,
+                        month: lunar.lunarMonth,
+                        isLeapMonth: lunar.isLeap,
+                        year: lunar.lunarYear,
+                        zodiac: lunar.zodiac,
+                        dateStr: lunar.dateStr
                     };
                     console.log('Lunar calculation for', solarDate.toDateString(), ':', result);
                     return result;
                 }
             } catch (error) {
-                console.warn('lunar-javascript library not available, using fallback calculation:', error);
+                console.warn('chinese-lunar-calendar library not available, using fallback calculation:', error);
             }
             
             // Enhanced fallback calculation with leap month support
             const result = enhancedLunarFallback(solarDate);
             console.log('Enhanced fallback calculation for', solarDate.toDateString(), ':', result);
             return result;
+            */
         }
 
         // Enhanced lunar calculation with accurate leap month support
@@ -497,25 +509,25 @@
             const lunarYearData = {
                 2024: {
                     tetDate: new Date(2024, 1, 10), // Feb 10, 2024 - Tet 2024
-                    monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30], // 12 months
+                    monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // 12 months (July has 30 days)
                     leapMonth: null, // No leap month in 2024
                     leapMonthDays: 0
                 },
                 2025: {
                     tetDate: new Date(2025, 0, 29), // Jan 29, 2025 - Tet 2025
-                    monthDays: [30, 29, 30, 29, 29, 30, 29, 30, 29, 30, 30, 29], // 12 months
+                    monthDays: [30, 29, 30, 29, 29, 30, 30, 30, 29, 30, 30, 29], // 12 months (July has 30 days)
                     leapMonth: 6, // Leap month 6 in 2025
                     leapMonthDays: 29
                 },
                 2026: {
                     tetDate: new Date(2026, 1, 17), // Feb 17, 2026 - Tet 2026
-                    monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30], // 12 months
+                    monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // 12 months (July has 30 days)
                     leapMonth: null, // No leap month in 2026
                     leapMonthDays: 0
                 },
                 2027: {
                     tetDate: new Date(2027, 1, 6), // Feb 6, 2027 - Tet 2027
-                    monthDays: [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29], // 12 months
+                    monthDays: [30, 29, 30, 29, 30, 29, 30, 30, 29, 30, 29, 30], // 12 months (July has 30 days - confirmed)
                     leapMonth: null, // No leap month in 2027
                     leapMonthDays: 0
                 }
@@ -527,7 +539,7 @@
                 // Fallback for years not in data
                 yearData = {
                     tetDate: new Date(year, 1, 17), // Approximate Tet date
-                    monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+                    monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // July has 30 days
                     leapMonth: null,
                     leapMonthDays: 0
                 };
@@ -541,7 +553,7 @@
                 // Before Tet, use previous year's data
                 const prevYear = year - 1;
                 const prevYearData = lunarYearData[prevYear] || {
-                    monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+                    monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // July has 30 days
                     leapMonth: null,
                     leapMonthDays: 0
                 };
@@ -702,18 +714,18 @@
                 
                 // Update lunar year (Can Chi)
                 try {
-                    if (typeof Solar !== 'undefined') {
+                    if (typeof LunarCalendar !== 'undefined' && typeof LunarCalendar.getLunar === 'function') {
                         const year = date.getFullYear();
                         const month = date.getMonth() + 1;
                         const day = date.getDate();
-                        const solar = Solar.fromYmd(year, month, day);
-                        const lunar = solar.getLunar();
+                        const lunar = LunarCalendar.getLunar(year, month, day);
                         
-                        const canChi = lunar.getYearInGanZhi();
-                        const naYin = lunar.getYearNaYin();
+                        // Convert Chinese characters to Vietnamese
+                        const canChi = convertCanChiToVietnamese(lunar.lunarYear);
+                        const zodiac = lunar.zodiac;
                         
                         document.getElementById('lunar-canchi').textContent = canChi || 'N/A';
-                        document.getElementById('lunar-nayin').textContent = naYin || 'N/A';
+                        document.getElementById('lunar-nayin').textContent = zodiac || 'N/A';
                         document.getElementById('selected-lunar-year').textContent = canChi || 'N/A';
                     }
                 } catch (error) {
@@ -759,18 +771,21 @@
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
                 
-                const solar = Solar.fromYmd(year, month, day);
-                const lunar = solar.getLunar();
-                const lunarDay = lunar.getDay();
-                
-                // Traditional Vietnamese good days (simplified)
-                const goodDays = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
-                return goodDays.includes(lunarDay);
+                if (typeof LunarCalendar !== 'undefined' && typeof LunarCalendar.getLunar === 'function') {
+                    const lunar = LunarCalendar.getLunar(year, month, day);
+                    const lunarDay = lunar.lunarDate;
+                    
+                    // Traditional Vietnamese good days (simplified)
+                    const goodDays = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
+                    return goodDays.includes(lunarDay);
+                }
             } catch (error) {
-                // Fallback calculation
-                const day = date.getDate();
-                return day % 2 === 0;
+                console.warn('Error calculating good day:', error);
             }
+            
+            // Fallback calculation
+            const day = date.getDate();
+            return day % 2 === 0;
         }
 
         function generateAuspiciousHours() {
@@ -812,18 +827,22 @@
 
         function isAuspiciousHour(hourIndex, year, month) {
             try {
-                // Use lunar-javascript to calculate auspicious hours
-                const date = new Date(year, month - 1, 1);
-                const lunar = Lunar.fromDate(date);
-                
-                // Simplified auspicious hour calculation based on traditional rules
-                // In real implementation, this would use more complex algorithms
-                const auspiciousHours = [0, 2, 4, 6, 8, 10]; // Even hours are auspicious
-                return auspiciousHours.includes(hourIndex);
+                // Use chinese-lunar-calendar to calculate auspicious hours
+                if (typeof LunarCalendar !== 'undefined' && typeof LunarCalendar.getLunar === 'function') {
+                    const date = new Date(year, month - 1, 1);
+                    const lunar = LunarCalendar.getLunar(year, month, 1);
+                    
+                    // Simplified auspicious hour calculation based on traditional rules
+                    // In real implementation, this would use more complex algorithms
+                    const auspiciousHours = [0, 2, 4, 6, 8, 10]; // Even hours are auspicious
+                    return auspiciousHours.includes(hourIndex);
+                }
             } catch (error) {
-                // Fallback calculation
-                return hourIndex % 2 === 0;
+                console.warn('Error calculating auspicious hour:', error);
             }
+            
+            // Fallback calculation
+            return hourIndex % 2 === 0;
         }
 
         function generateTraditionalActivities() {

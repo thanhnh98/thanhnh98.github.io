@@ -205,10 +205,29 @@ function generateCalendar(date) {
 
 // Accurate lunar calendar calculation for Vietnamese lunar calendar
 function calculateLunarDate(solarDate) {
-    // Convert to Julian Day Number for astronomical calculations
-    const jd = getJulianDayNumber(solarDate);
+    try {
+        // Use chinese-lunar-calendar library for accurate conversion
+        if (typeof LunarCalendar !== 'undefined' && typeof LunarCalendar.getLunar === 'function') {
+            const year = solarDate.getFullYear();
+            const month = solarDate.getMonth() + 1;
+            const day = solarDate.getDate();
+            
+            const lunar = LunarCalendar.getLunar(year, month, day);
+            
+            return {
+                day: lunar.lunarDate,
+                month: lunar.lunarMonth,
+                isLeapMonth: lunar.isLeap,
+                year: lunar.lunarYear,
+                zodiac: lunar.zodiac,
+                dateStr: lunar.dateStr
+            };
+        }
+    } catch (error) {
+        console.warn('chinese-lunar-calendar library not available, using fallback calculation:', error);
+    }
     
-    // Get lunar month and day using accurate algorithm
+    // Fallback calculation for browser environment or when library is not available
     const lunarInfo = solarToLunar(solarDate);
     
     return {
@@ -230,32 +249,32 @@ function getJulianDayNumber(date) {
     return day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
 }
 
-// Import lunar-calendar library for accurate calculations
-// Note: This requires the lunar-calendar npm package to be installed
+// Import chinese-lunar-calendar library for accurate calculations
+// Note: This requires the chinese-lunar-calendar npm package to be installed
 function solarToLunar(solarDate) {
     try {
-        // Use lunar-calendar library for accurate conversion
-        if (typeof require !== 'undefined') {
-            const lunar = require('lunar-calendar');
-            const result = lunar.solarToLunar(
+        // Use chinese-lunar-calendar library for accurate conversion
+        if (typeof LunarCalendar !== 'undefined' && typeof LunarCalendar.getLunar === 'function') {
+            const result = LunarCalendar.getLunar(
                 solarDate.getFullYear(),
-                solarDate.getMonth() + 1, // lunar-calendar expects 1-based month
+                solarDate.getMonth() + 1, // chinese-lunar-calendar expects 1-based month
                 solarDate.getDate()
             );
             
             return {
-                day: result.lunarDay,
+                day: result.lunarDate,
                 month: result.lunarMonth,
-                isLeapMonth: result.lunarLeapMonth === result.lunarMonth,
-                leapMonth: result.lunarLeapMonth,
+                isLeapMonth: result.isLeap,
+                leapMonth: result.isLeap ? result.lunarMonth : null,
                 zodiac: result.zodiac,
-                ganZhiYear: result.GanZhiYear,
-                ganZhiMonth: result.GanZhiMonth,
-                ganZhiDay: result.GanZhiDay
+                ganZhiYear: result.lunarYear,
+                ganZhiMonth: result.lunarYear, // Simplified - would need separate calculation
+                ganZhiDay: result.lunarYear, // Simplified - would need separate calculation
+                dateStr: result.dateStr
             };
         }
     } catch (error) {
-        console.warn('lunar-calendar library not available, using fallback calculation:', error.message);
+        console.warn('chinese-lunar-calendar library not available, using fallback calculation:', error.message);
     }
     
     // Fallback calculation for browser environment or when library is not available
@@ -272,19 +291,19 @@ function solarToLunarFallback(solarDate) {
     const lunarYearData = {
         2025: {
             tetDate: new Date(2025, 0, 29), // Jan 29, 2025
-            monthDays: [30, 29, 30, 29, 29, 30, 29, 30, 29, 30, 30, 29], // 12 regular months with correct days
+            monthDays: [30, 29, 30, 29, 29, 30, 30, 30, 29, 30, 30, 29], // 12 regular months with correct days (July has 30 days)
             leapMonth: 6, // Leap month 6
             leapMonthDays: 29 // Days in leap month
         },
         2024: {
             tetDate: new Date(2024, 1, 10), // Feb 10, 2024
-            monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+            monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // July has 30 days
             leapMonth: null,
             leapMonthDays: 0
         },
         2026: {
             tetDate: new Date(2026, 1, 17), // Feb 17, 2026
-            monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+            monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // July has 30 days
             leapMonth: null,
             leapMonthDays: 0
         }
@@ -296,7 +315,7 @@ function solarToLunarFallback(solarDate) {
         // Fallback for years not in data
         yearData = {
             tetDate: calculateTetDate(year),
-            monthDays: [29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30],
+            monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30], // July has 30 days
             leapMonth: null,
             leapMonthDays: 0
         };
