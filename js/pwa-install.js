@@ -117,6 +117,9 @@ class PWAInstaller {
     }
 
     showInstallButton() {
+        // Temporarily disabled - don't show install button
+        return;
+        
         if (!this.isInstalled && this.deferredPrompt) {
             this.createInstallButton();
             this.installButton.style.display = 'flex';
@@ -133,6 +136,9 @@ class PWAInstaller {
     }
 
     addInstallToSupportSection() {
+        // Temporarily disabled - don't add install button to support section
+        return;
+        
         const supportSection = document.querySelector('.support-section');
         if (supportSection && !document.getElementById('support-install-btn')) {
             const buttonContainer = supportSection.querySelector('div[style*="display: flex"]');

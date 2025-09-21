@@ -2846,7 +2846,7 @@ footer::after {
     }
 }
 
-/* Smart App Banner */
+/* Smart App Banner - Temporarily Hidden */
 #smart-app-banner {
     position: fixed;
     top: 0;
@@ -2856,6 +2856,7 @@ footer::after {
     background: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: none; /* Temporarily hidden */
 }
 
 .smart-banner-container {
@@ -4054,5 +4055,174 @@ footer::after {
     }
     100% {
         left: 100%;
+    }
+}
+
+/* Floating Action Button (FAB) Styles */
+.fab-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fab-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 140px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.fab-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.fab-main:hover::before {
+    left: 100%;
+}
+
+.fab-main:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+.fab-icon {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fab-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.fab-tooltip {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.fab-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8);
+}
+
+.fab-container:hover .fab-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* FAB Animation */
+@keyframes fabPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.fab-main {
+    animation: fabPulse 2s ease-in-out infinite;
+}
+
+.fab-main:hover {
+    animation: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .fab-container {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+    
+    .fab-main {
+        padding: 0.8rem 1.2rem;
+        min-width: 120px;
+        font-size: 0.8rem;
+    }
+    
+    .fab-icon {
+        font-size: 1.1rem;
+    }
+    
+    .fab-text {
+        font-size: 0.8rem;
+    }
+    
+    .fab-tooltip {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fab-container {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .fab-main {
+        padding: 0.7rem 1rem;
+        min-width: 100px;
+    }
+    
+    .fab-text {
+        display: none;
+    }
+    
+    .fab-main {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        min-width: auto;
+        padding: 0;
+        justify-content: center;
     }
 }

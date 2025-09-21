@@ -24,13 +24,14 @@
     }
 }
 
-/* PWA Install Button */
+/* PWA Install Button - Temporarily Hidden */
 .pwa-install-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     color: white;
+    display: none; /* Temporarily hidden */
     border: none;
     padding: 12px 20px;
     border-radius: 50px;
