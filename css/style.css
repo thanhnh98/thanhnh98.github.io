@@ -2330,81 +2330,260 @@ footer::after {
     opacity: 0.3;
 }
 
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+
+
+
+
+
+
+
+/* Combined Footer Section */
+.combined-footer-section {
+    background: var(--color-header-bg);
+    padding: 3rem 0;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.combined-footer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>') repeat;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.combined-footer-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.footer-main-content {
     margin-bottom: 2rem;
 }
 
-.footer-section h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #FFD700, #FF4500, #DC143C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
+.footer-app-section {
+    text-align: center;
 }
 
-.footer-section ul {
-    list-style: none;
+.app-header {
+    margin-bottom: 1.5rem;
 }
 
-.footer-section ul li {
+.app-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     margin-bottom: 0.5rem;
 }
 
-.footer-section ul li a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+.app-icon-small {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.footer-section ul li a:hover {
+.app-title {
+    font-size: 1.8rem;
+    font-weight: 700;
     color: #FFD700;
-    transform: translateX(5px);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.social-links {
+.app-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.app-download-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.download-title {
+    font-size: 1.3rem;
+    color: #FFD700;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.download-buttons {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
-.social-links a {
-    display: inline-flex;
+.download-btn {
+    display: inline-block;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.store-badge {
+    display: block;
+    width: 120px;
+    height: 45px;
+    border-radius: 10px;
+}
+
+.app-features {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.footer-social-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.social-section-title {
+    font-size: 1.1rem;
+    color: #FFD700;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.social-links-compact {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-link-compact {
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD700 100%);
-    color: white;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    border-radius: 50%;
-    font-size: 1.2rem;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
 }
 
-.social-links a:hover {
-    background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
-    transform: translateY(-3px) scale(1.1);
-    border-color: #FFD700;
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.3);
+.social-link-compact:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px) scale(1.05);
+    color: #FFD700;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.social-link-compact .social-icon {
+    font-size: 1.2rem;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.7);
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.developer-info {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.app-info {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.7;
+}
+
+.developer-link {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 215, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.developer-link:hover {
+    color: #FF6B35;
+    background: rgba(255, 107, 53, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .combined-footer-section {
+        padding: 2rem 0;
+    }
+    
+    .app-title-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .app-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    .app-icon-small {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .app-download-section {
+        padding: 1.2rem;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+    }
+    
+    .store-badge {
+        width: 140px;
+        height: 50px;
+    }
+    
+    .social-section-title {
+        font-size: 1rem;
+    }
+    
+    .social-links-compact {
+        gap: 0.4rem;
+    }
+    
+    .social-link-compact {
+        width: 44px;
+        height: 44px;
+    }
 }
 
 /* Responsive Design */
