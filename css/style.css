@@ -2339,11 +2339,22 @@ footer::after {
 
 /* Combined Footer Section */
 .combined-footer-section {
-    background: var(--color-header-bg);
+    background: var(--color-footer-bg);
     padding: 3rem 0;
     margin-top: 2rem;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 -4px 20px rgba(220, 20, 60, 0.2);
+    animation: footerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes footerGlow {
+    0% {
+        box-shadow: 0 -4px 20px rgba(220, 20, 60, 0.2);
+    }
+    100% {
+        box-shadow: 0 -4px 30px rgba(220, 20, 60, 0.4), 0 -8px 40px rgba(255, 107, 53, 0.2);
+    }
 }
 
 .combined-footer-section::before {
@@ -2353,8 +2364,8 @@ footer::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>') repeat;
-    opacity: 0.3;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="%23FFD700" opacity="0.15"/><circle cx="5" cy="25" r="1" fill="%23FF6B35" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>') repeat;
+    opacity: 0.4;
     pointer-events: none;
 }
 
@@ -2388,21 +2399,44 @@ footer::after {
     height: 48px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: appIconGlow 3s ease-in-out infinite;
+}
+
+@keyframes appIconGlow {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(220, 20, 60, 0.3), 0 0 15px rgba(255, 215, 0, 0.4);
+        transform: scale(1.05);
+    }
 }
 
 .app-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #FFD700;
+    color: #8B0000;
     margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    animation: titleShimmer 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleShimmer {
+    0% {
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+    100% {
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 107, 53, 0.3);
+    }
 }
 
 .app-description {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #5D4E37;
     line-height: 1.5;
     margin: 0;
+    text-align: center;
 }
 
 .app-download-section {
@@ -2422,18 +2456,104 @@ footer::after {
 
 .download-buttons {
     display: flex;
-    gap: 0.8rem;
+    gap: 1rem;
     justify-content: center;
     margin-bottom: 1rem;
     flex-wrap: wrap;
 }
 
 .download-btn {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid rgba(220, 20, 60, 0.3);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #8B0000;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.2);
+    animation: buttonPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(220, 20, 60, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(220, 20, 60, 0.3), 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    border-color: rgba(220, 20, 60, 0.5);
+}
+
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.btn-subtitle {
+    font-size: 0.75rem;
+    color: #8B0000;
+    margin-bottom: 0.125rem;
+    opacity: 0.8;
+}
+
+.btn-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8B0000;
+}
+
+.btn-badge {
+    display: flex;
+    align-items: center;
+}
+
+.store-badge-img {
+    width: 80px;
+    height: 24px;
+    object-fit: contain;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #8B0000;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.app-features {
+    font-size: 0.85rem;
+    color: #5D4E37;
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    font-weight: 500;
 }
 
 .download-btn:hover {
@@ -2463,9 +2583,10 @@ footer::after {
 
 .social-section-title {
     font-size: 1.1rem;
-    color: #FFD700;
+    color: #8B0000;
     margin-bottom: 1rem;
     font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .social-links-compact {
@@ -2500,28 +2621,52 @@ footer::after {
 
 .social-link-compact .social-icon {
     font-size: 1.2rem;
+    animation: socialSparkle 2s ease-in-out infinite;
+}
+
+.social-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    animation: socialSparkle 2s ease-in-out infinite;
+}
+
+@keyframes socialSparkle {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+    25% {
+        transform: scale(1.1) rotate(5deg);
+        filter: brightness(1.3);
+    }
+    75% {
+        transform: scale(1.05) rotate(-3deg);
+        filter: brightness(1.1);
+    }
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid rgba(220, 20, 60, 0.3);
+    color: #5D4E37;
 }
 
 .developer-info {
     font-size: 1rem;
     margin: 0 0 0.5rem 0;
+    font-weight: 500;
 }
 
 .app-info {
     font-size: 0.9rem;
     margin: 0;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .developer-link {
-    color: #FFD700;
+    color: #8B0000;
     text-decoration: none;
     font-weight: 600;
     padding: 0.2rem 0.5rem;

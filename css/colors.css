@@ -20,7 +20,7 @@
     
     /* Header & Footer */
     --color-header-bg: linear-gradient(135deg, #DC143C 0%, #B22222 50%, #8B0000 100%);
-    --color-footer-bg: linear-gradient(135deg, #8B0000 0%, #B22222 50%, #DC143C 100%);
+    --color-footer-bg: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #FFB3B3 50%, #FFD1D1 75%, #FFE8E8 100%);
     
     /* Button Colors */
     --color-button-primary: linear-gradient(135deg, #FF6B35 0%, #DC143C 100%);

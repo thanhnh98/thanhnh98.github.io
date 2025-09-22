@@ -1,111 +1,125 @@
-<footer>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Footer Component - Sắp Tết</title>
-    <script>
-        // Redirect to homepage if accessed directly
-        if (window.location.pathname.endsWith('footer.html')) {
-            window.location.replace('/index.html');
-        }
-    </script>
-</head>
-<body>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🎊 Sắp Tết 2026</h3>
-                    <p>Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/saptet2026/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                            <span class="social-icon">📘</span>
-                            <span class="social-text">Facebook</span>
-                        </a>
-                        <a href="https://tiktok.com/@saptet" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                            <span class="social-icon">🎵</span>
-                            <span class="social-text">TikTok</span>
-                        </a>
-                        <a href="https://saptet.vn" target="_blank" rel="noopener noreferrer" aria-label="Website">
-                            <span class="social-icon">🌐</span>
-                            <span class="social-text">Website</span>
-                        </a>
-                    </div>
+<section id="footer" class="combined-footer-section">
+    <div class="container">
+        <div class="footer-main-content">
+            <div class="app-info">
+                <div class="app-title-container">
+                    <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-small">
+                    <h2 class="app-title">Sắp Tết - Đếm Ngược Tết 2026</h2>
                 </div>
+                <p class="app-description">Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích</p>
                 
-                <div class="footer-section">
-                    <h4>📱 Tải Ứng Dụng Sắp Tết</h4>
-                    <p class="app-description">Trải nghiệm đầy đủ các tính năng Tết trên điện thoại của bạn!</p>
-                    <div class="footer-app-links">
+                <div class="app-download-section">
+                    <h3 class="download-title">📱 Tải Ứng Dụng</h3>
+                    <div class="download-buttons">
                         <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="app-download-link"
+                           class="download-btn google-play-btn"
                            aria-label="Tải ứng dụng Sắp Tết trên Google Play Store">
-                            <img src="assets/images/google_play.png" 
-                                 alt="Tải Sắp Tết trên Google Play Store" 
-                                 class="store-badge"
-                                 width="120" 
-                                 height="40">
+                            <div class="btn-content">
+                                <div class="btn-text">
+                                    <span class="btn-subtitle">Tải trên</span>
+                                    <span class="btn-title">Google Play</span>
+                                </div>
+                                <div class="btn-badge">
+                                    <img src="assets/images/google_play.png" 
+                                         alt="Google Play" 
+                                         class="store-badge-img">
+                                </div>
+                            </div>
                         </a>
                         <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="app-download-link"
+                           class="download-btn app-store-btn"
                            aria-label="Tải ứng dụng Sắp Tết trên App Store">
-                            <img src="assets/images/apple_store.png" 
-                                 alt="Tải Sắp Tết trên App Store" 
-                                 class="store-badge"
-                                 width="120" 
-                                 height="40">
+                            <div class="btn-content">
+                                <div class="btn-text">
+                                    <span class="btn-subtitle">Tải trên</span>
+                                    <span class="btn-title">App Store</span>
+                                </div>
+                                <div class="btn-badge">
+                                    <img src="assets/images/apple_store.png" 
+                                         alt="App Store" 
+                                         class="store-badge-img">
+                                </div>
+                            </div>
                         </a>
                     </div>
-                    <div class="app-features">
-                        <p class="feature-text">✨ Đếm ngược Tết • Lịch âm dương • Quay số may mắn</p>
-                    </div>
+                    <p class="app-features">✨ Đếm ngược Tết • Lịch âm dương • Tết Nguyên đán 2026</p>
                 </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>Phát triển bởi <a href="https://play.google.com/store/apps/dev?id=5540559479839330036" target="_blank" rel="noopener noreferrer" class="developer-link">TLife</a> | 50K+ Downloads</p>
-                <p>Ứng dụng Sắp Tết - Đếm ngược Tết 2026 | <span class="current-year">2024</span></p>
             </div>
         </div>
         
-        <!-- Structured Data for App Store Links -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "MobileApplication",
-            "name": "Sắp Tết - Đếm ngược Tết 2026",
-            "description": "Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích",
-            "applicationCategory": "LifestyleApplication",
-            "operatingSystem": ["Android", "iOS"],
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "VND"
-            },
-            "downloadUrl": [
-                "https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down",
-                "https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone"
-            ],
-            "screenshot": "assets/images/ic_app.webp",
-            "author": {
-                "@type": "Organization",
-                "name": "TLife",
-                "url": "https://saptet.vn"
-            },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "1250"
-            }
+        <div class="footer-social-section">
+            <h3 class="social-section-title">Cộng Đồng và Hỗ Trợ</h3>
+            <div class="social-links-compact">
+                <a href="https://www.facebook.com/saptet2026/" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-link-compact"
+                   aria-label="Facebook">
+                    <img src="assets/images/facebook.png" alt="Facebook" class="social-icon-img">
+                </a>
+                <a href="https://tiktok.com/@sap.tet" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-link-compact"
+                   aria-label="TikTok">
+                    <img src="assets/images/tiktok.png" alt="TikTok" class="social-icon-img">
+                </a>
+                <a href="https://saptet.vn" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-link-compact"
+                   aria-label="Website">
+                    <span class="social-icon">🌐</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="developer-info">
+                Phát triển bởi <a href="https://play.google.com/store/apps/dev?id=5540559479839330036" 
+                                 target="_blank" 
+                                 rel="noopener noreferrer" 
+                                 class="developer-link">TLife</a>
+            </p>
+            <p class="app-info-footer">
+                Ứng dụng Sắp Tết - Đếm ngược Tết 2026</span>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Structured Data for App Store Links -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Sắp Tết - Đếm ngược Tết 2026",
+        "description": "Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": ["Android", "iOS"],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "VND"
+        },
+        "downloadUrl": [
+            "https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down",
+            "https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone"
+        ],
+        "screenshot": "assets/images/ic_app.webp",
+        "author": {
+            "@type": "Organization",
+            "name": "TLife",
+            "url": "https://saptet.vn"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1250"
         }
-        </script>
-    </footer>
-</body>
-</html>
+    }
+    </script>
+</section>

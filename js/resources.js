@@ -21,20 +21,20 @@ const APP_RESOURCES = {
     features: {
         countdown: 'Đếm ngược chính xác đến Tết Nguyên Đán',
         calendar: 'Lịch âm dương với thông tin ngày tốt xấu',
-        luckyDraw: 'Quay số may mắn và nhận lì xì',
+        luckyDraw: 'Tết Nguyên đán 2026 và lịch vạn niên',
         foods: 'Khám phá món ăn Tết truyền thống'
     },
     
     // Social Media Links (optional)
     socialMedia: {
         facebook: 'https://www.facebook.com/saptet2026/',
-        youtube: 'https://youtube.com/@saptet',
-        tiktok: 'https://tiktok.com/@saptet'
+        youtube: 'https://youtube.com/@sap.tet',
+        tiktok: 'https://tiktok.com/@sap.tet'
     },
     
     // Contact Information
     contact: {
-        email: 'support@saptet.vn',
+        email: 'support@sap.tet.vn',
         website: 'https://saptet.vn'
     },
     
