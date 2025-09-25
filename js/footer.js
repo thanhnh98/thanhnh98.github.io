@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-small">
                                         <h2 class="app-title">Sắp Tết - Đếm Ngược Tết 2026</h2>
                                     </div>
-                                    <p class="app-description">Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích</p>
+                                    <p class="app-description">Ứng dụng đếm ngược Tết Việt Nam và lịch âm dương được yêu thích</p>
                                     
                                     <div class="app-download-section">
                                         <h3 class="download-title">📱 Tải Ứng Dụng</h3>
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 </div>
                                             </a>
                                         </div>
-                                        <p class="app-features">✨ Đếm ngược Tết • Lịch âm dương • Tết Nguyên đán 2026</p>
+                                        <p class="app-features">✨ Đếm ngược Tết Việt Nam • Lịch âm dương • Tết Nguyên đán 2026</p>
                                     </div>
                                 </div>
                             </div>
