@@ -539,7 +539,7 @@ main {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.5s;
 }
 
@@ -637,8 +637,8 @@ main {
 }
 
 .event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 /* Loading spinner animation */
@@ -651,46 +651,7 @@ main {
     100% { transform: rotate(360deg); }
 }
 
-/* Special styling for different event types - now using hover effects on cards */
-.event-card[data-event="tet"]:hover {
-    background: linear-gradient(135deg, #ffebee, #ffcdd2);
-}
-
-.event-card[data-event="valentine"]:hover {
-    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
-}
-
-.event-card[data-event="women-day"]:hover {
-    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
-}
-
-.event-card[data-event="hung-kings"]:hover {
-    background: linear-gradient(135deg, #fff8e1, #ffecb3);
-}
-
-.event-card[data-event="liberation"]:hover {
-    background: linear-gradient(135deg, #ffebee, #ffcdd2);
-}
-
-.event-card[data-event="labor-day"]:hover {
-    background: linear-gradient(135deg, #ffebee, #ffcdd2);
-}
-
-.event-card[data-event="mid-autumn"]:hover {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-}
-
-.event-card[data-event="teachers-day"]:hover {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-}
-
-.event-card[data-event="christmas"]:hover {
-    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-}
-
-.event-card[data-event="new-year"]:hover {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-}
+/* Hover color changes disabled to preserve normal event card colors */
 
 /* Event Countdown Timer */
 .event-countdown {
