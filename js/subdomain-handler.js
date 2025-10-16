@@ -80,15 +80,10 @@ class SubdomainHandler {
         const subdomain = this.getCurrentSubdomain();
         const hostname = window.location.hostname;
         
-        console.warn(`Invalid subdomain access detected: ${hostname}`);
+        console.log(`Invalid subdomain detected: ${hostname}, redirecting to homepage`);
         
-        // Show notification
-        this.showSubdomainNotification(subdomain, hostname);
-        
-        // Auto-redirect after delay
-        setTimeout(() => {
-            window.location.href = `https://${this.mainDomain}/`;
-        }, this.redirectDelay);
+        // Immediate redirect to homepage for all invalid subdomains
+        window.location.href = `https://${this.mainDomain}/`;
         
         return true;
     }
