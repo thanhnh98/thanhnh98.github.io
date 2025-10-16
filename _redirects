@@ -4,8 +4,8 @@
 # Common invalid subdomains - redirect to 404 page
 https://webmail.saptet.vn/* https://saptet.vn/404.html 404!
 http://webmail.saptet.vn/* https://saptet.vn/404.html 404!
-https://mail.saptet.vn/* https://saptet.vn/404.html 404!
-http://mail.saptet.vn/* https://saptet.vn/404.html 404!
+https://mail.saptet.vn/* https://saptet.vn/ 301!
+http://mail.saptet.vn/* https://saptet.vn/ 301!
 https://admin.saptet.vn/* https://saptet.vn/404.html 404!
 http://admin.saptet.vn/* https://saptet.vn/404.html 404!
 https://ftp.saptet.vn/* https://saptet.vn/404.html 404!

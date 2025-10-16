@@ -24,7 +24,7 @@ class SubdomainHandler {
             'kibana', 'grafana', 'prometheus', 'jenkins', 'ci', 'cd', 'pipeline', 'workflow'
         ];
         
-        this.validSubdomains = ['www', 'saptet'];
+        this.validSubdomains = ['www', 'saptet', 'mail'];
         this.mainDomain = 'saptet.vn';
         this.redirectDelay = 5000; // 5 seconds
     }
@@ -43,6 +43,18 @@ class SubdomainHandler {
         return this.invalidSubdomains.includes(subdomain) && !isValidSubdomain;
     }
 
+    // Check if current subdomain should redirect to homepage
+    shouldRedirectToHomepage() {
+        const hostname = window.location.hostname;
+        
+        if (!hostname.includes(this.mainDomain)) {
+            return false;
+        }
+        
+        const subdomain = hostname.split('.')[0];
+        return subdomain === 'mail';
+    }
+
     // Get current subdomain
     getCurrentSubdomain() {
         const hostname = window.location.hostname;
@@ -51,6 +63,16 @@ class SubdomainHandler {
 
     // Handle invalid subdomain redirect
     handleInvalidSubdomain() {
+        // Check if this is a mail subdomain that should redirect to homepage
+        if (this.shouldRedirectToHomepage()) {
+            const hostname = window.location.hostname;
+            console.log(`Mail subdomain detected: ${hostname}, redirecting to homepage`);
+            
+            // Immediate redirect to homepage
+            window.location.href = `https://${this.mainDomain}/`;
+            return true;
+        }
+
         if (!this.isInvalidSubdomain()) {
             return false;
         }
