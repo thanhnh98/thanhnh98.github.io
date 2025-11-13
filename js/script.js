@@ -1431,3 +1431,459 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Share Countdown Section as Image
+// Global functions for share modal
+function showShareModal() {
+    const modal = document.getElementById('share-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function updateSharePreview(imageUrl) {
+    const previewContainer = document.getElementById('share-preview-container');
+    const previewImage = document.getElementById('share-preview-image');
+    
+    if (previewContainer && previewImage && imageUrl) {
+        previewImage.src = imageUrl;
+        previewImage.onload = function() {
+            previewContainer.style.display = 'block';
+        };
+        previewImage.onerror = function() {
+            previewContainer.style.display = 'none';
+        };
+    }
+}
+
+function hideShareModal() {
+    const modal = document.getElementById('share-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        z-index: 10001;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        animation: slideUpToast 0.3s ease;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideDownToast 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 2000);
+}
+
+// Countdown Preview Modal Functions
+function showCountdownPreviewModal() {
+    const modal = document.getElementById('countdown-preview-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function hideCountdownPreviewModal() {
+    const modal = document.getElementById('countdown-preview-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function cloneCountdownSection() {
+    const countdownContentWrapper = document.getElementById('countdown-content-wrapper');
+    const previewWrapper = document.getElementById('countdown-preview-wrapper');
+    
+    if (!countdownContentWrapper || !previewWrapper) return;
+    
+    // Clear previous content
+    previewWrapper.innerHTML = '';
+    
+    // Clone the countdown content wrapper
+    const clone = countdownContentWrapper.cloneNode(true);
+    
+    // Remove share button if exists in clone
+    const clonedShareBtn = clone.querySelector('#share-countdown-btn');
+    if (clonedShareBtn) {
+        clonedShareBtn.remove();
+    }
+    
+    // Remove the 3 lines as requested:
+    // 1. tet-main-greeting
+    const tetMainGreeting = clone.querySelector('.tet-main-greeting');
+    if (tetMainGreeting) {
+        tetMainGreeting.remove();
+    }
+    
+    // 2. h1 with seo-title-hidden
+    const seoTitle = clone.querySelector('h1.seo-title-hidden');
+    if (seoTitle) {
+        seoTitle.remove();
+    }
+    
+    // 3. h2 with "Đếm ngược đến Tết"
+    const h2Title = clone.querySelector('h2');
+    if (h2Title && h2Title.textContent.includes('Đếm ngược đến Tết')) {
+        h2Title.remove();
+    }
+    
+    // Ensure clone has proper styling
+    clone.style.width = '100%';
+    clone.style.maxWidth = '100%';
+    clone.style.margin = '0 auto';
+    clone.style.padding = '1rem';
+    
+    // Remove border, box-shadow and background from tet-date-display
+    const tetDateDisplay = clone.querySelector('.tet-date-display');
+    if (tetDateDisplay) {
+        tetDateDisplay.style.border = 'none';
+        tetDateDisplay.style.boxShadow = 'none';
+        tetDateDisplay.style.background = 'transparent';
+        tetDateDisplay.style.backgroundColor = 'transparent';
+        
+        // Add "Tết chỉ còn..." text after tet-date-display
+        const remainingText = document.createElement('p');
+        remainingText.className = 'tet-remaining-text';
+        remainingText.textContent = 'Tết chỉ còn...';
+        tetDateDisplay.insertAdjacentElement('afterend', remainingText);
+    }
+    
+    // Disable animations in clone
+    const allElements = clone.querySelectorAll('*');
+    allElements.forEach(el => {
+        el.style.animation = 'none';
+        el.style.animationPlayState = 'paused';
+        el.style.transition = 'none';
+    });
+    
+    // Add watermark at the bottom
+    const watermark = document.createElement('div');
+    watermark.className = 'countdown-preview-watermark';
+    watermark.innerHTML = `
+        <p class="watermark-text">Sắp Tết 2026 - Đếm Ngược Tết Nguyên Đán</p>
+        <p class="watermark-url">saptet.vn</p>
+    `;
+    clone.appendChild(watermark);
+    
+    previewWrapper.appendChild(clone);
+}
+
+async function capturePreviewModal() {
+    // Only capture the countdown content wrapper, not the header and buttons
+    const previewWrapper = document.getElementById('countdown-preview-wrapper');
+    if (!previewWrapper) return null;
+    
+    // Wait a moment for rendering
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    try {
+        const canvas = await html2canvas(previewWrapper, {
+            backgroundColor: '#FFF9E6', // Match the background color
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            logging: false,
+            imageTimeout: 20000,
+            removeContainer: false,
+            foreignObjectRendering: false,
+        });
+        
+        return new Promise((resolve) => {
+            canvas.toBlob((blob) => {
+                if (blob && blob.size > 0) {
+                    const url = URL.createObjectURL(blob);
+                    resolve({ blob, url });
+                } else {
+                    resolve(null);
+                }
+            }, 'image/png', 0.95);
+        });
+    } catch (error) {
+        console.error('Error capturing preview modal:', error);
+        return null;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const shareBtn = document.getElementById('share-countdown-btn');
+    const countdownContentWrapper = document.getElementById('countdown-content-wrapper');
+    const countdownSection = document.getElementById('countdown');
+    
+    // Countdown Preview Modal elements
+    const previewModal = document.getElementById('countdown-preview-modal');
+    const previewCloseBtn = document.getElementById('countdown-preview-close');
+    const previewDownloadBtn = document.getElementById('countdown-preview-download');
+    const previewShareBtn = document.getElementById('countdown-preview-share');
+    
+    // Handle share button click - show preview modal
+    if (shareBtn && countdownContentWrapper) {
+        shareBtn.addEventListener('click', async function() {
+            try {
+                // Show loading state
+                shareBtn.disabled = true;
+                shareBtn.innerHTML = '<span class="share-icon">⏳</span><span class="share-text">Đang xử lý...</span>';
+                
+                // Wait for fonts to load
+                if (document.fonts && document.fonts.ready) {
+                    await document.fonts.ready;
+                }
+                
+                // Wait a moment to ensure countdown is updated
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                // Clone and show preview modal
+                cloneCountdownSection();
+                showCountdownPreviewModal();
+                
+                shareBtn.disabled = false;
+                shareBtn.innerHTML = '<span class="share-icon">📤</span><span class="share-text">Chia sẻ</span>';
+            } catch (error) {
+                console.error('Error showing preview:', error);
+                shareBtn.disabled = false;
+                shareBtn.innerHTML = '<span class="share-icon">📤</span><span class="share-text">Chia sẻ</span>';
+            }
+        });
+    }
+    
+    // Handle preview modal close
+    if (previewCloseBtn) {
+        previewCloseBtn.addEventListener('click', hideCountdownPreviewModal);
+    }
+    
+    if (previewModal) {
+        previewModal.addEventListener('click', function(e) {
+            if (e.target === previewModal || e.target.classList.contains('countdown-preview-overlay')) {
+                hideCountdownPreviewModal();
+            }
+        });
+    }
+    
+    // Handle download button
+    if (previewDownloadBtn) {
+        previewDownloadBtn.addEventListener('click', async function() {
+            try {
+                previewDownloadBtn.disabled = true;
+                previewDownloadBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Đang xử lý...</span>';
+                
+                const result = await capturePreviewModal();
+                
+                if (result) {
+                    // Download the image
+                    const link = document.createElement('a');
+                    link.download = `tet-countdown-${Date.now()}.png`;
+                    link.href = result.url;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Clean up
+                    setTimeout(() => {
+                        URL.revokeObjectURL(result.url);
+                    }, 100);
+                    
+                    showToast('✅ Đã tải ảnh xuống!');
+                } else {
+                    showToast('❌ Có lỗi xảy ra khi tạo ảnh');
+                }
+                
+                previewDownloadBtn.disabled = false;
+                previewDownloadBtn.innerHTML = '<span class="btn-icon">📥</span><span class="btn-text">Tải xuống</span>';
+            } catch (error) {
+                console.error('Error downloading image:', error);
+                previewDownloadBtn.disabled = false;
+                previewDownloadBtn.innerHTML = '<span class="btn-icon">📥</span><span class="btn-text">Tải xuống</span>';
+            }
+        });
+    }
+    
+    // Handle share button in preview modal
+    if (previewShareBtn) {
+        previewShareBtn.addEventListener('click', async function() {
+            try {
+                previewShareBtn.disabled = true;
+                previewShareBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Đang xử lý...</span>';
+                
+                const result = await capturePreviewModal();
+                
+                if (result) {
+                    // Store the image for sharing
+                    window.shareImageBlob = result.blob;
+                    window.shareImageUrl = result.url;
+                    
+                    // Update preview in share modal
+                    updateSharePreview(result.url);
+                    
+                    // Hide preview modal and show share modal
+                    hideCountdownPreviewModal();
+                    showShareModal();
+                } else {
+                    showToast('❌ Có lỗi xảy ra khi tạo ảnh');
+                }
+                
+                previewShareBtn.disabled = false;
+                previewShareBtn.innerHTML = '<span class="btn-icon">📤</span><span class="btn-text">Chia sẻ</span>';
+            } catch (error) {
+                console.error('Error sharing image:', error);
+                previewShareBtn.disabled = false;
+                previewShareBtn.innerHTML = '<span class="btn-icon">📤</span><span class="btn-text">Chia sẻ</span>';
+            }
+        });
+    }
+    
+    // Share modal handlers (existing share modal code continues below)
+    
+    function downloadImage(url) {
+        const link = document.createElement('a');
+        link.download = `tet-countdown-${Date.now()}.png`;
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up the URL after a delay
+        setTimeout(() => {
+            URL.revokeObjectURL(url);
+        }, 100);
+    }
+    
+    // Share modal event handlers
+    const shareModal = document.getElementById('share-modal');
+    const shareModalClose = document.getElementById('share-modal-close');
+    const shareDownloadBtn = document.getElementById('share-download-image');
+    const shareOptions = document.querySelectorAll('.share-option');
+    
+    if (shareModalClose) {
+        shareModalClose.addEventListener('click', hideShareModal);
+    }
+    
+    if (shareModal) {
+        shareModal.addEventListener('click', function(e) {
+            if (e.target === shareModal || e.target.classList.contains('share-modal-overlay')) {
+                hideShareModal();
+            }
+        });
+    }
+    
+    // Download image button
+    if (shareDownloadBtn) {
+        shareDownloadBtn.addEventListener('click', function() {
+            if (window.shareImageUrl) {
+                downloadImage(window.shareImageUrl);
+                hideShareModal();
+            }
+        });
+    }
+    
+    // Share options handlers
+    shareOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const shareType = this.getAttribute('data-share');
+            const pageUrl = window.location.href;
+            const pageTitle = encodeURIComponent('🎊 Sắp Tết 2026 - Đếm Ngược Đến Tết Nguyên Đán');
+            const pageText = encodeURIComponent('Cùng đếm ngược đến Tết Bính Ngọ 2026! 🏮');
+            
+            let shareUrl = '';
+            
+            switch(shareType) {
+                case 'copy-link':
+                    // Copy link to clipboard
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(pageUrl).then(() => {
+                            showToast('✅ Đã sao chép liên kết!');
+                            hideShareModal();
+                        }).catch(() => {
+                            // Fallback for older browsers
+                            const textArea = document.createElement('textarea');
+                            textArea.value = pageUrl;
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            showToast('✅ Đã sao chép liên kết!');
+                            hideShareModal();
+                        });
+                    }
+                    return;
+                    
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${pageText}%20${pageUrl}`;
+                    break;
+                    
+                case 'messenger':
+                    shareUrl = `https://www.facebook.com/dialog/send?link=${encodeURIComponent(pageUrl)}&app_id=YOUR_APP_ID`;
+                    // For Messenger, we'll use a simpler approach
+                    shareUrl = `fb-messenger://share?link=${encodeURIComponent(pageUrl)}`;
+                    break;
+                    
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${pageText}`;
+                    break;
+                    
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${pageText}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                // Try to share image if available, otherwise share link
+                if (window.shareImageBlob && shareType !== 'copy-link') {
+                    // For image sharing, we'll open the share URL in a new window
+                    // and the user can manually attach the image
+                    window.open(shareUrl, '_blank', 'width=600,height=400');
+                    hideShareModal();
+                } else {
+                    window.open(shareUrl, '_blank', 'width=600,height=400');
+                    hideShareModal();
+                }
+            }
+        });
+    });
+    
+    // Add toast animations if not already added
+    if (!document.getElementById('toast-animations-style')) {
+        const style = document.createElement('style');
+        style.id = 'toast-animations-style';
+        style.textContent = `
+            @keyframes slideUpToast {
+                from {
+                    transform: translateX(-50%) translateY(100px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideDownToast {
+                from {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(-50%) translateY(100px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+});

@@ -1402,6 +1402,15 @@ main {
     padding: 2rem;
     margin: 0 auto;
     max-width: 1200px;
+    text-align: center;
+}
+
+/* Countdown Content Wrapper - for image capture */
+.countdown-content-wrapper {
+    position: relative;
+    z-index: 5;
+    padding: 2rem 1rem;
+    background: transparent;
 }
 
 .tet-date-display p {
@@ -1548,6 +1557,756 @@ main {
     font-weight: 600;
     color: var(--color-primary);
     animation: greetingPulse 4s ease-in-out infinite;
+}
+
+/* Share Countdown Button */
+.share-countdown-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.2rem 2.5rem;
+    margin: 2rem auto;
+    background: var(--color-button-primary);
+    color: #FFFFFF;
+    border: 3px solid var(--color-timer-border);
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(230, 0, 38, 0.4), 0 0 20px rgba(255, 215, 0, 0.3);
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.share-countdown-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.share-countdown-btn:hover::before {
+    left: 100%;
+}
+
+.share-countdown-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(230, 0, 38, 0.6), 0 0 30px rgba(255, 215, 0, 0.5);
+    border-color: #FFEB3B;
+    background: linear-gradient(135deg, #FF4500 0%, #E60026 100%);
+}
+
+.share-countdown-btn:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.share-countdown-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.share-countdown-btn .share-icon {
+    font-size: 1.5rem;
+    display: inline-block;
+    animation: shareIconPulse 2s ease-in-out infinite;
+}
+
+.share-countdown-btn .share-text {
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.share-countdown-btn .share-text-mobile {
+    display: none;
+}
+
+.share-countdown-btn .share-text-desktop {
+    display: inline;
+}
+
+@keyframes shareIconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Responsive adjustments for share button */
+@media (max-width: 768px) {
+    .share-countdown-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        margin: 1.5rem auto;
+    }
+    
+    .share-countdown-btn .share-icon {
+        font-size: 1.3rem;
+    }
+    
+    .share-countdown-btn .share-text-mobile {
+        display: inline;
+    }
+    
+    .share-countdown-btn .share-text-desktop {
+        display: none;
+    }
+}
+
+/* Custom Share Modal */
+.share-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-modal.active {
+    display: flex;
+}
+
+.share-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.share-modal-content {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: scaleIn 0.3s ease;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.share-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid rgba(230, 0, 38, 0.1);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 50%, rgba(230, 0, 38, 0.05) 100%);
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.share-modal-header::before {
+    content: '🏮';
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.share-modal-header::after {
+    content: '🧧';
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.share-modal-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 auto;
+    font-family: var(--font-heading);
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.share-modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.share-modal-close:hover {
+    background: #f0f0f0;
+    color: var(--color-primary);
+}
+
+.share-options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.share-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem 0.5rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.share-option:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+}
+
+.share-option-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.share-option-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.copy-link-icon {
+    background: #9e9e9e;
+}
+
+.whatsapp-icon {
+    background: #25D366;
+}
+
+.messenger-icon {
+    background: linear-gradient(135deg, #0084FF 0%, #006AFF 100%);
+}
+
+.facebook-icon {
+    background: #1877F2;
+}
+
+.twitter-icon {
+    background: #000000;
+}
+
+.share-option-text {
+    font-size: 0.75rem;
+    color: var(--color-text-primary);
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.share-preview-container {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+}
+
+.share-preview-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.share-download-section {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.share-download-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--color-button-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+}
+
+.share-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 0, 38, 0.3);
+}
+
+.share-download-icon {
+    font-size: 1.25rem;
+}
+
+/* Responsive adjustments for share modal */
+@media (max-width: 768px) {
+    .share-options {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .share-option-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .share-option-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .share-option-text {
+        font-size: 0.7rem;
+    }
+    
+    .share-modal-content {
+        padding: 1.25rem;
+    }
+    
+    .share-preview-container {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .share-preview-image {
+        max-height: 200px;
+    }
+}
+
+/* Countdown Preview Modal */
+.countdown-preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-preview-modal.active {
+    display: flex;
+}
+
+.countdown-preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.countdown-preview-content {
+    position: relative;
+    background: white;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 90vh;
+    border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    animation: scaleIn 0.3s ease;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.countdown-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid rgba(230, 0, 38, 0.1);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 50%, rgba(230, 0, 38, 0.05) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-preview-header::before {
+    content: '🏮';
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.countdown-preview-header::after {
+    content: '🧧';
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.countdown-preview-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 auto;
+    font-family: var(--font-heading);
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.countdown-preview-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.countdown-preview-close:hover {
+    background: #f0f0f0;
+    color: var(--color-primary);
+}
+
+.countdown-preview-wrapper {
+    padding: 2rem;
+    overflow-y: auto;
+    flex: 1;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.countdown-preview-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    background: url('../images/tet-corner-decoration.svg') no-repeat center/contain;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.countdown-preview-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background: url('../images/tet-corner-decoration.svg') no-repeat center/contain;
+    opacity: 0.3;
+    transform: scaleX(-1);
+    pointer-events: none;
+}
+
+.countdown-preview-wrapper .countdown-content-wrapper {
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+}
+
+/* Ensure timer boxes display horizontally in preview */
+.countdown-preview-wrapper #countdown-timer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    margin: 2rem 0;
+}
+
+.countdown-preview-wrapper .timer-box {
+    flex: 0 0 auto;
+    min-width: 140px;
+    min-height: 140px;
+    padding: 2rem 1.5rem;
+}
+
+/* Remove background and border from tet-date-display in sharing popup */
+.countdown-preview-wrapper .tet-date-display {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0 !important;
+    margin: 1rem 0 !important;
+}
+
+.countdown-preview-wrapper .tet-date-display p {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background-clip: unset !important;
+    text-shadow: none !important;
+    margin: 0.5rem 0 !important;
+    line-height: 1.2 !important;
+    color: var(--color-text-primary) !important;
+}
+
+.countdown-preview-wrapper .tet-date-display .tet-date-solar {
+    font-size: 1.3rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Style for "Tết chỉ còn..." text */
+.countdown-preview-wrapper .tet-remaining-text {
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+    color: var(--color-text-primary) !important;
+    text-align: center !important;
+    margin: 1rem 0 0.5rem 0 !important;
+    padding: 0 !important;
+}
+
+/* Watermark style at bottom of preview */
+.countdown-preview-wrapper .countdown-preview-watermark {
+    margin-top: 2rem !important;
+    padding-top: 1.5rem !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+    opacity: 0.6 !important;
+}
+
+.countdown-preview-wrapper .countdown-preview-watermark .watermark-text {
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    color: var(--color-text-secondary) !important;
+    margin: 0 0 0.3rem 0 !important;
+    padding: 0 !important;
+}
+
+.countdown-preview-wrapper .countdown-preview-watermark .watermark-url {
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    color: var(--color-text-secondary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.countdown-preview-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    background: white;
+}
+
+.countdown-preview-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-body);
+    line-height: 1;
+}
+
+.countdown-preview-btn.download-btn {
+    background: #f5f5f5;
+    color: var(--color-text-primary);
+}
+
+.countdown-preview-btn.download-btn:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.countdown-preview-btn.share-btn {
+    background: var(--color-button-primary);
+    color: white;
+}
+
+.countdown-preview-btn.share-btn:hover {
+    background: linear-gradient(135deg, #FF4500 0%, #E60026 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 0, 38, 0.3);
+}
+
+.countdown-preview-btn .btn-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-preview-btn .btn-text {
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .countdown-preview-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .countdown-preview-header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .countdown-preview-header::before,
+    .countdown-preview-header::after {
+        display: none;
+    }
+    
+    .countdown-preview-title {
+        font-size: 1.25rem;
+    }
+    
+    .countdown-preview-wrapper {
+        padding: 1rem;
+    }
+    
+    .countdown-preview-wrapper::before,
+    .countdown-preview-wrapper::after {
+        display: none;
+    }
+    
+    /* Stack timer boxes vertically on mobile */
+    .countdown-preview-wrapper #countdown-timer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .countdown-preview-wrapper .timer-box {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .countdown-preview-actions {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .countdown-preview-btn {
+        width: 100%;
+    }
 }
 
 .tet-greeting::before {
