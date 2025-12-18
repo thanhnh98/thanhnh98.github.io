@@ -84,6 +84,3 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 # Handle common 404s
 /404 /404.html 404!
 /not-found /404.html 404!
-
-# App download page
-/tai-ung-dung /tai-ung-dung.html 200!

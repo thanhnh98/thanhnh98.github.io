@@ -22,8 +22,10 @@ class HeaderLoader {
 
     async loadHeader() {
         try {
-            // Use absolute path to work from any directory level
-            const headerPath = '/components/header.html';
+            // Use absolute URL to work from any directory level
+            // Get the origin (protocol + hostname + port) and construct full URL
+            const origin = window.location.origin;
+            const headerPath = origin + '/components/header.html';
             const response = await fetch(headerPath);
             const headerHTML = await response.text();
             

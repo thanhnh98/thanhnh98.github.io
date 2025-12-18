@@ -12,9 +12,9 @@ RewriteEngine On
 Redirect 301 /index.html /
 
 # Specific route handling for key pages (must come BEFORE general rewrite rule)
-RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L]
 RewriteRule ^may-tinh-li-xi/?$ /may-tinh-li-xi.html [NC,L]
 RewriteRule ^tro-choi-tet/?$ /tro-choi-tet.html [NC,L]
+RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L]
 RewriteRule ^mon-an-tet/?$ /mon-an-tet.html [NC,L]
 RewriteRule ^blog/?$ /blog.html [NC,L]
 RewriteRule ^huong-dan-tet/?$ /huong-dan-tet.html [NC,L]

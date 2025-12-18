@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Tải ứng dụng Sắp Tết 2026 - Đếm ngược Tết Nguyên Đán và lịch âm dương cho iOS và Android">
     <title>Tải Ứng Dụng Sắp Tết 2026 | iOS & Android | Sắp Tết</title>
-    <link rel="stylesheet" href="css/colors.css">
+    <meta name="description" content="Tải ứng dụng Sắp Tết 2026 - Đếm ngược Tết Nguyên Đán và lịch âm dương cho iOS và Android">
+    <meta name="keywords" content="tải ứng dụng Sắp Tết, app Sắp Tết, download app, iOS, Android, Tết 2026">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saptet.vn/tai-ung-dung">
+    <meta property="og:title" content="Tải Ứng Dụng Sắp Tết 2026 | iOS & Android">
+    <meta property="og:description" content="Tải ứng dụng Sắp Tết 2026 - Đếm ngược Tết Nguyên Đán và lịch âm dương cho iOS và Android">
+    <meta property="og:image" content="https://saptet.vn/assets/images/ic_app.webp">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://saptet.vn/tai-ung-dung.html">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/colors.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <style>
         .download-page {
             min-height: 100vh;
@@ -119,47 +138,82 @@
             }
         }
     </style>
+    
+    <!-- Schema Markup for App Download Page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Tải Ứng Dụng Sắp Tết 2026",
+        "description": "Tải ứng dụng Sắp Tết 2026 - Đếm ngược Tết Nguyên Đán và lịch âm dương cho iOS và Android",
+        "url": "https://saptet.vn/tai-ung-dung",
+        "mainEntity": {
+            "@type": "MobileApplication",
+            "name": "Sắp Tết - Đếm ngược Tết 2026",
+            "description": "Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích",
+            "applicationCategory": "LifestyleApplication",
+            "operatingSystem": ["Android", "iOS"],
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "VND"
+            },
+            "downloadUrl": [
+                "https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down",
+                "https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone"
+            ],
+            "screenshot": "assets/images/ic_app.webp",
+            "author": {
+                "@type": "Organization",
+                "name": "TLife",
+                "url": "https://saptet.vn"
+            }
+        }
+    }
+    </script>
 </head>
 <body>
-    <!-- Header Container -->
+    <!-- Header will be loaded dynamically -->
     <div id="header-container"></div>
     
-    <div class="download-page">
-        <div class="download-container">
-            <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-large">
-            <h1 class="download-title">📱 Tải Ứng Dụng Sắp Tết 2026</h1>
-            <p class="download-subtitle">
-                Đếm ngược Tết Nguyên Đán, lịch âm dương và nhiều tính năng thú vị khác
-            </p>
-            
-            <div id="redirecting-message" class="redirecting-message" style="display: none;">
-                <p>🔄 Đang chuyển hướng đến cửa hàng ứng dụng...</p>
-            </div>
-            
-            <div class="download-buttons-container" id="download-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="download-btn-large google-play-btn"
-                   id="android-btn">
-                    <img src="assets/images/google_play.png" alt="Google Play">
-                    <span>Tải trên Google Play</span>
-                </a>
-                <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="download-btn-large app-store-btn"
-                   id="ios-btn">
-                    <img src="assets/images/apple_store.png" alt="App Store">
-                    <span>Tải trên App Store</span>
-                </a>
-            </div>
-            
-            <div class="platform-info" id="platform-info">
-                <p>Chọn nền tảng phù hợp với thiết bị của bạn</p>
+    <main>
+        <div class="download-page">
+            <div class="download-container">
+                <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-large">
+                <h1 class="download-title">📱 Tải Ứng Dụng Sắp Tết 2026</h1>
+                <p class="download-subtitle">
+                    Đếm ngược Tết Nguyên Đán, lịch âm dương và nhiều tính năng thú vị khác
+                </p>
+                
+                <div id="redirecting-message" class="redirecting-message" style="display: none;">
+                    <p>🔄 Đang chuyển hướng đến cửa hàng ứng dụng...</p>
+                </div>
+                
+                <div class="download-buttons-container" id="download-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="download-btn-large google-play-btn"
+                       id="android-btn">
+                        <img src="assets/images/google_play.png" alt="Google Play">
+                        <span>Tải trên Google Play</span>
+                    </a>
+                    <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="download-btn-large app-store-btn"
+                       id="ios-btn">
+                        <img src="assets/images/apple_store.png" alt="App Store">
+                        <span>Tải trên App Store</span>
+                    </a>
+                </div>
+                
+                <div class="platform-info" id="platform-info">
+                    <p>Chọn nền tảng phù hợp với thiết bị của bạn</p>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     
     <!-- Scripts -->
     <script src="js/header-loader.js"></script>
@@ -215,50 +269,6 @@
                 // Add analytics tracking here if needed
             });
         })();
-        
-        // Load header and initialize navigation
-        document.addEventListener('DOMContentLoaded', async function() {
-            // Load header
-            const headerLoader = new HeaderLoader();
-            await headerLoader.loadHeader();
-            
-            // Initialize navigation
-            const router = new Router();
-            const navMenu = new NavigationMenu();
-        });
-    </script>
-    
-    <!-- Schema Markup for App Download Page -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Tải Ứng Dụng Sắp Tết 2026",
-        "description": "Tải ứng dụng Sắp Tết 2026 - Đếm ngược Tết Nguyên Đán và lịch âm dương cho iOS và Android",
-        "url": "https://saptet.vn/tai-ung-dung",
-        "mainEntity": {
-            "@type": "MobileApplication",
-            "name": "Sắp Tết - Đếm ngược Tết 2026",
-            "description": "Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích",
-            "applicationCategory": "LifestyleApplication",
-            "operatingSystem": ["Android", "iOS"],
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "VND"
-            },
-            "downloadUrl": [
-                "https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down",
-                "https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone"
-            ],
-            "screenshot": "assets/images/ic_app.webp",
-            "author": {
-                "@type": "Organization",
-                "name": "TLife",
-                "url": "https://saptet.vn"
-            }
-        }
-    }
     </script>
 </body>
 </html>

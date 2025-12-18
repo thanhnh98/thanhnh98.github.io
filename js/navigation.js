@@ -11,6 +11,9 @@ class Router {
             '/mon-an-tet.html': 'mon-an-tet.html', // Keep for backward compatibility
             '/tro-choi-tet': 'tro-choi-tet.html',
             '/tro-choi-tet.html': 'tro-choi-tet.html', // Keep for backward compatibility
+            '/tai-ung-dung': 'tai-ung-dung/index.html',
+            '/tai-ung-dung/': 'tai-ung-dung/index.html',
+            '/tai-ung-dung.html': 'tai-ung-dung/index.html', // Keep for backward compatibility
             '/blog': 'blog.html',
             '/blog.html': 'blog.html',
             '/chi-tiet-mon-an': 'chi-tiet-mon-an.html',
@@ -57,25 +60,50 @@ class Router {
         // Remove any query parameters or hash
         const cleanPath = path.split('?')[0].split('#')[0];
         
+        // Normalize path (remove trailing slash except for root)
+        let normalizedPath = cleanPath;
+        if (normalizedPath !== '/' && normalizedPath.endsWith('/')) {
+            normalizedPath = normalizedPath.slice(0, -1);
+        }
+        
+        // Special handling for directory routes (like /tai-ung-dung/)
+        // GitHub Pages automatically serves index.html from directories
+        if (normalizedPath === '/tai-ung-dung' || cleanPath === '/tai-ung-dung' || cleanPath === '/tai-ung-dung/') {
+            // Allow directory routes to load naturally, don't redirect
+            // Check if we're already on the correct page
+            const currentFile = this.getCurrentPageFile();
+            if (currentFile === 'tai-ung-dung/index.html' || currentFile === 'index.html' && cleanPath.includes('tai-ung-dung')) {
+                return; // Already on the correct page
+            }
+            // If not on the page yet, let the server handle it naturally
+            return;
+        }
+        
         // Check if route exists
-        if (this.routes[cleanPath]) {
+        if (this.routes[normalizedPath] || this.routes[cleanPath]) {
             // Route exists, load the corresponding HTML file if needed
-            const targetFile = this.routes[cleanPath];
+            const targetFile = this.routes[normalizedPath] || this.routes[cleanPath];
             const currentFile = this.getCurrentPageFile();
             
+            // Only redirect if we're not already on the target file
             if (targetFile !== currentFile) {
                 window.location.href = targetFile + window.location.search + window.location.hash;
             }
             return;
-        } else {
-            // Route doesn't exist, show 404
-            this.show404();
         }
+        
+        // Route doesn't exist, show 404
+        this.show404();
     }
     
     show404() {
         // Check if we're already on 404 page to prevent redirect loops
-        if (window.location.pathname === '/404.html' || window.location.pathname === '/404') {
+        const currentPath = window.location.pathname;
+        if (currentPath === '/404.html' || currentPath === '/404') {
+            return;
+        }
+        // Don't redirect directory routes to 404
+        if (currentPath === '/tai-ung-dung' || currentPath === '/tai-ung-dung/') {
             return;
         }
         // Redirect to 404 page
@@ -86,6 +114,10 @@ class Router {
         const path = window.location.pathname;
         if (path === '/' || path === '/index' || path === '/index.html') {
             return 'index.html';
+        }
+        // Handle directory routes
+        if (path === '/tai-ung-dung' || path === '/tai-ung-dung/') {
+            return 'tai-ung-dung/index.html';
         }
         return path.split('/').pop() || 'index.html';
     }
@@ -372,7 +404,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.navigationInitialized = true;
     
     // Only initialize router on pages that need it
-    if (!window.location.pathname.includes('404.html')) {
+    const currentPath = window.location.pathname;
+    if (!currentPath.includes('404.html') && 
+        currentPath !== '/tai-ung-dung' && 
+        currentPath !== '/tai-ung-dung/') {
         new Router();
     }
     
