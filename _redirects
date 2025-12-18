@@ -1,9 +1,9 @@
 # GitHub Pages redirects for comprehensive subdomain handling
 # Redirect all invalid subdomains to main site
 
-# Common invalid subdomains - redirect to homepage
-https://webmail.saptet.vn/* https://saptet.vn/ 301!
-http://webmail.saptet.vn/* https://saptet.vn/ 301!
+# Common invalid subdomains - redirect to 404 page
+https://webmail.saptet.vn/* https://saptet.vn/404.html 301!
+http://webmail.saptet.vn/* https://saptet.vn/404.html 301!
 https://mail.saptet.vn/* https://saptet.vn/ 301!
 http://mail.saptet.vn/* https://saptet.vn/ 301!
 https://admin.saptet.vn/* https://saptet.vn/ 301!
@@ -84,3 +84,6 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 # Handle common 404s
 /404 /404.html 404!
 /not-found /404.html 404!
+
+# App download page
+/tai-ung-dung /tai-ung-dung.html 200!

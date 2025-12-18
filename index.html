@@ -440,6 +440,51 @@
         </div>
       </section>
 
+      <!-- App Introduction Section -->
+      <section id="app-intro" class="app-intro-section">
+        <div class="container">
+          <div class="app-intro-content">
+            <div class="app-intro-left">
+              <div class="app-icon-banner">
+                <div class="app-icon-wrapper">
+                  <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-main">
+                  <div class="app-icon-badge">Happy 2026</div>
+                </div>
+              </div>
+              <div class="app-title-section">
+                <h2 class="app-title">Sắp Tết</h2>
+                <p class="app-tagline">Ứng dụng TẾT được yêu thích</p>
+                <div class="app-rating">
+                  <span class="star">⭐</span>
+                  <span class="star">⭐</span>
+                  <span class="star">⭐</span>
+                  <span class="star">⭐</span>
+                  <span class="star">⭐</span>
+                </div>
+                <p class="app-developer">by TLife</p>
+              </div>
+            </div>
+            <div class="app-intro-right">
+              <div class="app-screenshots">
+                <div class="app-screenshot-item">
+                  <img src="assets/images/image-b277c8ee-c3ff-44e4-90b0-f8d9dd05bd3f.png" alt="Sắp Tết App - Countdown" class="app-screenshot" loading="lazy">
+                </div>
+                <div class="app-screenshot-item">
+                  <img src="assets/images/image-3cecc9f2-7d9b-43fd-80fb-e679231cc537.png" alt="Sắp Tết App - Memory Game" class="app-screenshot" loading="lazy">
+                </div>
+                <div class="app-screenshot-item">
+                  <img src="assets/images/image-20046f91-c038-4794-948e-5601bec5a081.png" alt="Sắp Tết App - Features" class="app-screenshot" loading="lazy">
+                </div>
+              </div>
+              <a href="/tai-ung-dung.html" class="app-see-more-btn" id="app-explore-btn">
+                <span class="btn-text">Khám phá ngay</span>
+                <span class="btn-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Events Carousel Section -->
       <section id="events" class="events-section">
         <div class="container">
@@ -843,6 +888,38 @@
     <script src="js/lucky-money-calculator.js"></script>
     <script src="js/tet-quiz.js"></script>
     <script src="js/subdomain-handler.js"></script>
+
+    <script>
+      // Platform-based redirect for "Khám phá ngay" button
+      document.addEventListener('DOMContentLoaded', function() {
+        const exploreBtn = document.getElementById('app-explore-btn');
+        if (exploreBtn) {
+          exploreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+            const isAndroid = /android/i.test(userAgent);
+            
+            // App store URLs from resources.js
+            const androidUrl = 'https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down';
+            const iosUrl = 'https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone';
+            const webUrl = '/tai-ung-dung.html';
+            
+            if (isIOS) {
+              // iOS device - redirect to App Store
+              window.location.href = iosUrl;
+            } else if (isAndroid) {
+              // Android device - redirect to Google Play
+              window.location.href = androidUrl;
+            } else {
+              // Web/Desktop - redirect to download page
+              window.location.href = webUrl;
+            }
+          });
+        }
+      });
+    </script>
 
     <script>
       // Share website function for ads fallback

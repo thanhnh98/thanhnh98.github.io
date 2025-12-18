@@ -63,9 +63,18 @@ class SubdomainHandler {
 
     // Handle invalid subdomain redirect
     handleInvalidSubdomain() {
+        const subdomain = this.getCurrentSubdomain();
+        const hostname = window.location.hostname;
+        
+        // Special handling for webmail subdomain - redirect to 404 page
+        if (subdomain === 'webmail' && hostname.includes(this.mainDomain)) {
+            console.log(`Webmail subdomain detected: ${hostname}, redirecting to 404 page`);
+            window.location.href = `https://${this.mainDomain}/404.html`;
+            return true;
+        }
+        
         // Check if this is a mail subdomain that should redirect to homepage
         if (this.shouldRedirectToHomepage()) {
-            const hostname = window.location.hostname;
             console.log(`Mail subdomain detected: ${hostname}, redirecting to homepage`);
             
             // Immediate redirect to homepage
@@ -76,9 +85,6 @@ class SubdomainHandler {
         if (!this.isInvalidSubdomain()) {
             return false;
         }
-
-        const subdomain = this.getCurrentSubdomain();
-        const hostname = window.location.hostname;
         
         console.log(`Invalid subdomain detected: ${hostname}, redirecting to homepage`);
         

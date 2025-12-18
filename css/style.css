@@ -230,6 +230,270 @@ main {
 }
 
 /* Events Carousel Section */
+/* App Introduction Section */
+.app-intro-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #dc143c 0%, #ff6b35 50%, #f7931e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.app-intro-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23FFD700" opacity="0.3"/><circle cx="80" cy="40" r="1.5" fill="%23FFD700" opacity="0.2"/><circle cx="40" cy="80" r="1" fill="%23FFD700" opacity="0.25"/></svg>') repeat;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.app-intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.app-intro-left {
+    text-align: center;
+}
+
+.app-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+.app-icon-main {
+    width: 220px;
+    height: 220px;
+    border-radius: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.app-icon-main:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.app-icon-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #dc143c;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.app-title-section {
+    margin-top: 1.5rem;
+}
+
+.app-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: white;
+    margin: 0.5rem 0;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+.app-tagline {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0.5rem 0 1rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin: 1rem 0;
+}
+
+.app-rating .star {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.app-rating .star:nth-child(1) { animation-delay: 0s; }
+.app-rating .star:nth-child(2) { animation-delay: 0.2s; }
+.app-rating .star:nth-child(3) { animation-delay: 0.4s; }
+.app-rating .star:nth-child(4) { animation-delay: 0.6s; }
+.app-rating .star:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); }
+}
+
+.app-developer {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+    margin-top: 0.5rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.app-intro-right {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.app-screenshots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.app-screenshot-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.app-screenshot-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    z-index: 10;
+}
+
+.app-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.app-features-preview {
+    margin-bottom: 2rem;
+}
+
+.app-features-preview h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.app-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.app-features-list li {
+    padding: 0.8rem 0;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(220, 20, 60, 0.1);
+    transition: all 0.3s ease;
+}
+
+.app-features-list li:last-child {
+    border-bottom: none;
+}
+
+.app-features-list li:hover {
+    padding-left: 1rem;
+    color: var(--color-primary);
+}
+
+.app-see-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.3);
+    width: 100%;
+    text-align: center;
+}
+
+.app-see-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+}
+
+.app-see-more-btn .btn-arrow {
+    transition: transform 0.3s ease;
+    font-size: 1.3rem;
+}
+
+.app-see-more-btn:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+/* Mobile Responsive for App Intro Section */
+@media (max-width: 968px) {
+    .app-intro-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .app-title {
+        font-size: 3rem;
+    }
+    
+    .app-screenshots {
+        grid-template-columns: 1fr;
+    }
+    
+    .app-icon-main {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-intro-section {
+        padding: 3rem 0;
+    }
+    
+    .app-title {
+        font-size: 2.5rem;
+    }
+    
+    .app-tagline {
+        font-size: 1.1rem;
+    }
+    
+    .app-intro-right {
+        padding: 1.5rem;
+    }
+}
+
 .events-section {
     padding: 4rem 0;
     background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 50%, #ffa8a8 100%);

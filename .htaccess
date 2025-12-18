@@ -28,6 +28,7 @@ RewriteRule ^blog/?$ /blog.html [NC,L]
 RewriteRule ^huong-dan-tet/?$ /huong-dan-tet.html [NC,L]
 RewriteRule ^trung-thu/?$ /trung-thu.html [NC,L]
 RewriteRule ^noel/?$ /noel.html [NC,L]
+RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L]
 
 # Custom error pages
 ErrorDocument 404 /404.html
