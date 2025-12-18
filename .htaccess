@@ -8,19 +8,11 @@ RewriteEngine On
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Remove .html extension from URLs
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^.]+)$ $1.html [NC,L]
-
-# Redirect .html URLs to clean URLs (except for direct file access)
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1? [NC,L,R=301]
-
 # Handle specific redirects for common patterns
 Redirect 301 /index.html /
 
-# Specific route handling for key pages
+# Specific route handling for key pages (must come BEFORE general rewrite rule)
+RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L]
 RewriteRule ^may-tinh-li-xi/?$ /may-tinh-li-xi.html [NC,L]
 RewriteRule ^tro-choi-tet/?$ /tro-choi-tet.html [NC,L]
 RewriteRule ^mon-an-tet/?$ /mon-an-tet.html [NC,L]
@@ -28,7 +20,15 @@ RewriteRule ^blog/?$ /blog.html [NC,L]
 RewriteRule ^huong-dan-tet/?$ /huong-dan-tet.html [NC,L]
 RewriteRule ^trung-thu/?$ /trung-thu.html [NC,L]
 RewriteRule ^noel/?$ /noel.html [NC,L]
-RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L]
+
+# Redirect .html URLs to clean URLs (except for direct file access)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1? [NC,L,R=301]
+
+# Remove .html extension from URLs (general rule - must come AFTER specific rules)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.html [NC,L]
 
 # Custom error pages
 ErrorDocument 404 /404.html

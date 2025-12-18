@@ -22,7 +22,9 @@ class HeaderLoader {
 
     async loadHeader() {
         try {
-            const response = await fetch('components/header.html');
+            // Use absolute path to work from any directory level
+            const headerPath = '/components/header.html';
+            const response = await fetch(headerPath);
             const headerHTML = await response.text();
             
             // Insert header into the page
