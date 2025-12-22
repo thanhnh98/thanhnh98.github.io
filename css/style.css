@@ -354,6 +354,51 @@ main {
     font-family: 'Dancing Script', cursive;
 }
 
+.app-download-buttons-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+    align-items: center;
+}
+
+.download-btn-intro {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.8rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.download-btn-intro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(220, 20, 60, 0.6);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+    border-color: rgba(255, 215, 0, 0.6);
+}
+
+.store-badge-img-intro {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.btn-text-intro {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 .app-intro-right {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
@@ -462,6 +507,23 @@ main {
         gap: 2rem;
     }
     
+    .app-download-buttons-intro {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .download-btn-intro {
+        max-width: 200px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .store-badge-img-intro {
+        width: 35px;
+        height: 35px;
+    }
+    
     .app-title {
         font-size: 3rem;
     }
@@ -479,6 +541,17 @@ main {
 @media (max-width: 768px) {
     .app-intro-section {
         padding: 3rem 0;
+    }
+    
+    .app-download-buttons-intro {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .download-btn-intro {
+        max-width: 100%;
+        width: 100%;
+        padding: 0.85rem 1.5rem;
     }
     
     .app-title {
