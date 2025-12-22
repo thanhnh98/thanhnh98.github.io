@@ -1636,6 +1636,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle share button click - show preview modal
     if (shareBtn && countdownContentWrapper) {
+        // Store original button HTML to restore later
+        const originalButtonHTML = shareBtn.innerHTML;
+        
         shareBtn.addEventListener('click', async function() {
             try {
                 // Show loading state
@@ -1654,12 +1657,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 cloneCountdownSection();
                 showCountdownPreviewModal();
                 
+                // Restore original button HTML
                 shareBtn.disabled = false;
-                shareBtn.innerHTML = '<span class="share-icon">📤</span><span class="share-text">Chia sẻ</span>';
+                shareBtn.innerHTML = originalButtonHTML;
             } catch (error) {
                 console.error('Error showing preview:', error);
+                // Restore original button HTML even on error
                 shareBtn.disabled = false;
-                shareBtn.innerHTML = '<span class="share-icon">📤</span><span class="share-text">Chia sẻ</span>';
+                shareBtn.innerHTML = originalButtonHTML;
             }
         });
     }
