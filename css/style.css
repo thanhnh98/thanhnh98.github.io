@@ -236,6 +236,96 @@ main {
     background: linear-gradient(135deg, #dc143c 0%, #ff6b35 50%, #f7931e 100%);
     position: relative;
     overflow: hidden;
+    /* Animation styles inherited from .scroll-section */
+}
+
+/* Override scroll-section styles for app-intro to keep its specific animations */
+.app-intro-section.scroll-section.slide-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.app-intro-section.scroll-section.slide-out {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+}
+
+/* Scroll animations for all sections */
+.scroll-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-section.slide-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-section.slide-out {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+}
+
+/* Staggered animations for section children */
+.scroll-section > .container > *,
+.scroll-section > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-section.slide-in > .container > *,
+.scroll-section.slide-in > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-section.slide-out > .container > *,
+.scroll-section.slide-out > * {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+}
+
+/* Exception for app-intro-section - keep its specific left/right animations */
+.app-intro-section.scroll-section > .container > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.app-intro-section.scroll-section.slide-in > .container > * {
+    opacity: 1;
+    transform: none;
+}
+
+/* Staggered delay for multiple children */
+.scroll-section > .container > *:nth-child(1),
+.scroll-section > *:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.scroll-section > .container > *:nth-child(2),
+.scroll-section > *:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.scroll-section > .container > *:nth-child(3),
+.scroll-section > *:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.scroll-section > .container > *:nth-child(4),
+.scroll-section > *:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.scroll-section > .container > *:nth-child(5),
+.scroll-section > *:nth-child(5) {
+    transition-delay: 0.5s;
 }
 
 .app-intro-section::before {
@@ -261,6 +351,37 @@ main {
 
 .app-intro-left {
     text-align: center;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+}
+
+.app-intro-section.slide-in .app-intro-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.app-intro-section.slide-out .app-intro-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+}
+
+.app-intro-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out 0.4s, transform 0.8s ease-out 0.4s;
+}
+
+.app-intro-section.slide-in .app-intro-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.app-intro-section.slide-out .app-intro-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
 }
 
 .app-icon-wrapper {

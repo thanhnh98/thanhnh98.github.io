@@ -441,7 +441,7 @@
       </section>
 
       <!-- App Introduction Section -->
-      <section id="app-intro" class="app-intro-section">
+      <section id="app-intro" class="app-intro-section scroll-section">
         <div class="container">
           <div class="app-intro-content">
             <div class="app-intro-left">
@@ -504,7 +504,7 @@
       </section>
 
       <!-- Events Carousel Section -->
-      <section id="events" class="events-section">
+      <section id="events" class="events-section scroll-section">
         <div class="container">
           <h2>⏰ Tết 2026 và Các Sự Kiện Trong Năm</h2>
           <!-- <p class="events-subtitle">Đếm ngược đến các sự kiện quan trọng trong năm 2025-2026</p> -->
@@ -580,7 +580,7 @@
       </section>
       <!-- Event Modal removed - no longer needed -->
 
-      <section id="calendar" class="calendar-section">
+      <section id="calendar" class="calendar-section scroll-section">
         <div class="container">
           <h2>Lịch vạn niên</h2>
           <div class="calendar-detail-btn">
@@ -610,7 +610,7 @@
 
 
       <!-- Games Section -->
-      <section id="games" class="games-section">
+      <section id="games" class="games-section scroll-section">
         <div class="container">
           <h2>🎮 Trò Chơi Tết</h2>
           <div class="games-carousel-container">
@@ -656,7 +656,7 @@
 
 
 
-      <section id="features" class="features-section">
+      <section id="features" class="features-section scroll-section">
         <div class="container">
           <h2>Tính Năng Tết</h2>
           <div class="features-grid">
@@ -714,7 +714,7 @@
 
 
       <!-- Tet Culture and Traditions Section -->
-      <section class="tet-culture-section">
+      <section class="tet-culture-section scroll-section">
         <div class="container">
           <h2>🏮 Văn Hóa và Truyền Thống Tết</h2>
           <div class="culture-grid">
@@ -924,6 +924,106 @@
             }
           });
         }
+
+        // Universal scroll animation for all sections with .scroll-section class
+        const scrollSections = document.querySelectorAll('.scroll-section');
+        let lastScrollY = window.scrollY;
+        const sectionStates = new Map();
+
+        // Initialize section states
+        scrollSections.forEach(section => {
+          sectionStates.set(section, {
+            hasAnimated: false,
+            lastScrollY: window.scrollY
+          });
+        });
+
+        // Intersection Observer for better performance
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const section = entry.target;
+            const state = sectionStates.get(section);
+            const currentScrollY = window.scrollY;
+            const isScrollingDown = currentScrollY > state.lastScrollY;
+
+            if (entry.isIntersecting) {
+              // Section is in viewport
+              if (isScrollingDown || !state.hasAnimated) {
+                // Scrolling down or first time - slide in
+                section.classList.remove('slide-out');
+                section.classList.add('slide-in');
+                state.hasAnimated = true;
+              } else if (state.hasAnimated) {
+                // Scrolling up but section still visible - keep it visible
+                section.classList.remove('slide-out');
+                section.classList.add('slide-in');
+              }
+            } else {
+              // Section is out of viewport
+              if (!isScrollingDown && state.hasAnimated) {
+                // Scrolling up past the section - slide out
+                section.classList.remove('slide-in');
+                section.classList.add('slide-out');
+              } else if (isScrollingDown && state.hasAnimated) {
+                // Scrolled past section going down - reset for next time
+                section.classList.remove('slide-in', 'slide-out');
+                state.hasAnimated = false;
+              }
+            }
+
+            state.lastScrollY = currentScrollY;
+            lastScrollY = currentScrollY;
+          });
+        }, observerOptions);
+
+        // Observe all scroll sections
+        scrollSections.forEach(section => {
+          observer.observe(section);
+        });
+
+        // Also track scroll direction for smooth transitions
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const currentScrollY = window.scrollY;
+              const isScrollingDown = currentScrollY > lastScrollY;
+
+              scrollSections.forEach(section => {
+                const state = sectionStates.get(section);
+                const rect = section.getBoundingClientRect();
+                const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isInViewport) {
+                  if (isScrollingDown || !state.hasAnimated) {
+                    section.classList.remove('slide-out');
+                    section.classList.add('slide-in');
+                    state.hasAnimated = true;
+                  }
+                } else {
+                  // Section is out of viewport
+                  if (!isScrollingDown && state.hasAnimated && currentScrollY < state.lastScrollY) {
+                    // Scrolled up past the section
+                    section.classList.remove('slide-in');
+                    section.classList.add('slide-out');
+                  }
+                }
+
+                state.lastScrollY = currentScrollY;
+              });
+
+              lastScrollY = currentScrollY;
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
       });
     </script>
 
@@ -1098,7 +1198,7 @@
 </div> -->
 
 <!-- FAQ Section với Popup -->
-<section class="faq-section">
+<section class="faq-section scroll-section">
   <div class="container">
     <h2>🎊 Câu hỏi thường gặp về Sắp Tết 2026 - Tết Việt Nam - Tết Bính Ngọ 2026 - Tết 2026 Đếm Ngược</h2>
     <p class="faq-subtitle">Khám phá những điều thú vị về Tết Nguyên Đán</p>
@@ -1285,7 +1385,7 @@
 </div>
 
 <!-- SEO Content Section -->
-<section class="seo-content-section" style="background: #f8f9fa; padding: 3rem 0; margin-top: 2rem;">
+<section class="seo-content-section scroll-section" style="background: #f8f9fa; padding: 3rem 0; margin-top: 2rem;">
     <div class="container">
         <div style="max-width: 800px; margin: 0 auto;">
             <h2 class="seo-title-hidden" style="text-align: center; color: var(--color-primary); margin-bottom: 2rem; font-size: 2.5rem;">⏰ Đếm ngược Tết 2026 (Bính Ngọ)</h2>
