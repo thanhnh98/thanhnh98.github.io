@@ -2684,8 +2684,36 @@ main {
 .calendar-section {
     padding: 4rem 0;
     margin-top: 3rem;
-    background: linear-gradient(135deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFEBCD 25%, #FFE4E1 50%, #FFEBCD 75%, #FFF9E6 100%);
+    background-size: 200% 200%;
+    animation: calendarBgShift 10s ease infinite;
     position: relative;
+    overflow: hidden;
+}
+
+.calendar-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: calendarSparkle 20s linear infinite;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+@keyframes calendarBgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes calendarSparkle {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(360deg); }
 }
 
 .calendar-section h2 {
@@ -2693,11 +2721,28 @@ main {
     font-family: var(--font-heading);
     font-size: 3rem;
     margin-bottom: 2rem;
-    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    background: linear-gradient(135deg, #DC143C, #FF4500, #FFD700);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: calendarTitleShimmer 3s linear infinite, calendarTitleGlow 2s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes calendarTitleShimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes calendarTitleGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    }
+    50% { 
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    }
 }
 
 /* Calendar Detail Button */
@@ -2710,21 +2755,50 @@ main {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(135deg, #DC143C, #FF4500, #FFD700);
+    background-size: 200% 200%;
+    animation: detailButtonGradient 3s ease infinite;
     color: white;
     text-decoration: none;
     padding: 0.8rem 1.5rem;
     border-radius: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 4px 15px rgba(220, 20, 60, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-detail-btn .detail-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.calendar-detail-btn .detail-btn:hover::before {
+    left: 100%;
+}
+
+@keyframes detailButtonGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .calendar-detail-btn .detail-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 8px 30px rgba(220, 20, 60, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.4);
+    border-color: rgba(255, 215, 0, 0.6);
 }
 
 .calendar-detail-btn .btn-icon {
@@ -2742,24 +2816,49 @@ main {
     border-radius: 25px;
     padding: 2.5rem;
     position: relative;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.1),
+        0 0 40px rgba(255, 215, 0, 0.1),
+        inset 0 0 20px rgba(255, 215, 0, 0.05);
+    overflow: hidden;
 }
 
 .calendar-widget::before {
-    content: '📅';
+    content: '';
     position: absolute;
-    top: 15px;
-    left: 20px;
-    font-size: 1.5rem;
-    opacity: 0.4;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: widgetSparkle 10s linear infinite;
+    pointer-events: none;
 }
 
 .calendar-widget::after {
-    content: '🏮';
+    content: '🎊 🧧 🏮';
     position: absolute;
     top: 15px;
     right: 20px;
-    font-size: 1.5rem;
-    opacity: 0.4;
+    font-size: 1.2rem;
+    opacity: 0.3;
+    animation: widgetEmojiFloat 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes widgetSparkle {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(30px, 30px) rotate(360deg); }
+}
+
+@keyframes widgetEmojiFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(5deg); }
+    50% { transform: translateY(-10px) rotate(-5deg); }
+    75% { transform: translateY(-5px) rotate(3deg); }
 }
 
 .calendar-header {
@@ -2771,8 +2870,10 @@ main {
 }
 
 .calendar-header button {
-    background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
-    color: #8B4513;
+    background: linear-gradient(135deg, #DC143C, #FF4500, #FFD700);
+    background-size: 200% 200%;
+    animation: buttonGradientShift 3s ease infinite;
+    color: white;
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 15px;
@@ -2781,23 +2882,61 @@ main {
     font-weight: 600;
     transition: all 0.3s ease;
     border: 2px solid rgba(255, 215, 0, 0.3);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    box-shadow: 
+        0 4px 15px rgba(220, 20, 60, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-header button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.calendar-header button:hover::before {
+    left: 100%;
+}
+
+@keyframes buttonGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .calendar-header button:hover {
-    background: linear-gradient(135deg, #FFA500 0%, #FF6347 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 6px 25px rgba(220, 20, 60, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4);
 }
 
 .calendar-header h3 {
     font-size: 1.8rem;
     font-family: var(--font-heading);
-    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    background: linear-gradient(135deg, #DC143C, #FF4500, #FFD700);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 700;
+    animation: headerMonthShimmer 3s linear infinite, headerMonthGlow 2s ease-in-out infinite;
+}
+
+@keyframes headerMonthShimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes headerMonthGlow {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)); }
 }
 
 .calendar-grid {
@@ -2810,27 +2949,50 @@ main {
 }
 
 .calendar-day-header {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.8) 0%, rgba(255, 140, 0, 0.7) 100%) !important;
-    color: #8B4513 !important;
+    background: linear-gradient(135deg, #DC143C, #FF4500) !important;
+    color: white !important;
     font-weight: 700 !important;
     font-size: 0.9rem;
     padding: 1rem 0.5rem !important;
     text-align: center;
     border-radius: 8px;
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 
+        0 2px 8px rgba(220, 20, 60, 0.3),
+        0 0 15px rgba(255, 215, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-day-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: headerShine 3s ease-in-out infinite;
+}
+
+@keyframes headerShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
 }
 
 .calendar-day-header:hover {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 140, 0, 0.8) 100%) !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, #FF4500, #FFD700) !important;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+        0 4px 15px rgba(255, 69, 0, 0.5),
+        0 0 25px rgba(255, 215, 0, 0.4);
 }
 
 /* Calendar Banner */
@@ -3006,16 +3168,99 @@ main {
 }
 
 .calendar-day.today {
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.8) 0%, rgba(40, 167, 69, 0.7) 100%);
+    background: linear-gradient(135deg, #2196F3 0%, #00BCD4 50%, #4CAF50 100%);
+    background-size: 200% 200%;
+    animation: todayGradientShift 3s ease infinite, todayPulse 2s ease-in-out infinite;
     color: white;
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    border: 3px solid rgba(255, 215, 0, 0.8);
+    box-shadow: 
+        0 6px 25px rgba(33, 150, 243, 0.5),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        0 0 60px rgba(33, 150, 243, 0.3);
+    position: relative;
+    z-index: 2;
+    transform: scale(1.05);
+}
+
+.calendar-day.today::before {
+    content: '⭐';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1rem;
+    animation: todayStarRotate 2s linear infinite;
+    z-index: 3;
+}
+
+.calendar-day.today::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FFD700, #FF4500, #FFD700, #2196F3);
+    background-size: 400% 400%;
+    border-radius: 12px;
+    z-index: -1;
+    animation: todayBorderGlow 3s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes todayGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes todayPulse {
+    0%, 100% { 
+        transform: scale(1.05);
+        box-shadow: 
+            0 6px 25px rgba(33, 150, 243, 0.5),
+            0 0 40px rgba(255, 215, 0, 0.4),
+            0 0 60px rgba(33, 150, 243, 0.3);
+    }
+    50% { 
+        transform: scale(1.08);
+        box-shadow: 
+            0 8px 30px rgba(33, 150, 243, 0.7),
+            0 0 50px rgba(255, 215, 0, 0.6),
+            0 0 80px rgba(33, 150, 243, 0.5);
+    }
+}
+
+@keyframes todayStarRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.2); }
+    50% { transform: rotate(180deg) scale(1); }
+    75% { transform: rotate(270deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes todayBorderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .calendar-day.today .solar-date,
 .calendar-day.today .lunar-date {
     color: white;
-    font-weight: 600;
+    font-weight: 700;
+    text-shadow: 
+        1px 1px 3px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.calendar-day.today:hover {
+    transform: scale(1.1);
+    box-shadow: 
+        0 10px 35px rgba(33, 150, 243, 0.7),
+        0 0 60px rgba(255, 215, 0, 0.6),
+        0 0 100px rgba(33, 150, 243, 0.5);
 }
 
 .calendar-day.tet-date {
@@ -3048,24 +3293,62 @@ main {
 .lunar-info {
     max-width: 650px;
     margin: 0 auto;
-    background: linear-gradient(135deg, rgba(255, 248, 220, 0.95) 0%, rgba(255, 235, 205, 0.9) 100%);
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 50%, #FFF9E6 100%);
+    background-size: 200% 200%;
+    animation: lunarBgShift 10s ease infinite;
     border-radius: 20px;
     padding: 2.5rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15), 0 5px 15px rgba(220, 20, 60, 0.1);
+    box-shadow: 
+        0 10px 30px rgba(255, 215, 0, 0.2),
+        0 0 40px rgba(255, 215, 0, 0.1);
     border: 2px solid rgba(255, 215, 0, 0.4);
     text-align: center;
     position: relative;
+    overflow: hidden;
 }
 
 .lunar-info::before {
-    content: '🧧';
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: lunarSparkle 15s linear infinite;
+    pointer-events: none;
+}
+
+.lunar-info::after {
+    content: '🧧 🎊 🏮';
     position: absolute;
     top: 15px;
     right: 20px;
-    font-size: 1.5rem;
-    opacity: 0.4;
+    font-size: 1.2rem;
+    opacity: 0.3;
+    animation: lunarEmojiFloat 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes lunarBgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes lunarSparkle {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(40px, 40px) rotate(360deg); }
+}
+
+@keyframes lunarEmojiFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(5deg); }
+    50% { transform: translateY(-15px) rotate(-5deg); }
+    75% { transform: translateY(-8px) rotate(3deg); }
 }
 
 .lunar-info h3 {
@@ -3073,10 +3356,24 @@ main {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     text-align: center;
-    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-primary));
+    background: linear-gradient(135deg, #DC143C, #FF4500, #FFD700);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: lunarTitleShimmer 3s linear infinite, lunarTitleGlow 2s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes lunarTitleShimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes lunarTitleGlow {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)); }
 }
 
 .lunar-info p {

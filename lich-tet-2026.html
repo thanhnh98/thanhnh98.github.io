@@ -491,17 +491,89 @@
         }
         
         .calendar-day.today {
-            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
-            color: #DC143C;
+            background: linear-gradient(135deg, #2196F3 0%, #00BCD4 50%, #4CAF50 100%);
+            background-size: 200% 200%;
+            animation: todayGradientShift 3s ease infinite, todayPulse 2s ease-in-out infinite;
+            color: white;
             font-weight: 700;
-            border: 2px solid #2196F3;
-            box-shadow: 0 0 15px rgba(33, 150, 243, 0.3);
-            animation: todayPulse 2s ease-in-out infinite;
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 
+                0 6px 25px rgba(33, 150, 243, 0.5),
+                0 0 40px rgba(255, 215, 0, 0.4),
+                0 0 60px rgba(33, 150, 243, 0.3);
+            position: relative;
+            z-index: 2;
+            transform: scale(1.05);
+        }
+        
+        .calendar-day.today::before {
+            content: '⭐';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1rem;
+            animation: todayStarRotate 2s linear infinite;
+            z-index: 3;
+        }
+        
+        .calendar-day.today::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #FFD700, #FF4500, #FFD700, #2196F3);
+            background-size: 400% 400%;
+            border-radius: 12px;
+            z-index: -1;
+            animation: todayBorderGlow 3s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes todayGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         @keyframes todayPulse {
-            0%, 100% { box-shadow: 0 0 15px rgba(33, 150, 243, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(33, 150, 243, 0.5); }
+            0%, 100% { 
+                transform: scale(1.05);
+                box-shadow: 
+                    0 6px 25px rgba(33, 150, 243, 0.5),
+                    0 0 40px rgba(255, 215, 0, 0.4),
+                    0 0 60px rgba(33, 150, 243, 0.3);
+            }
+            50% { 
+                transform: scale(1.08);
+                box-shadow: 
+                    0 8px 30px rgba(33, 150, 243, 0.7),
+                    0 0 50px rgba(255, 215, 0, 0.6),
+                    0 0 80px rgba(33, 150, 243, 0.5);
+            }
+        }
+        
+        @keyframes todayStarRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        @keyframes todayBorderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .calendar-day.today:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 10px 35px rgba(33, 150, 243, 0.7),
+                0 0 60px rgba(255, 215, 0, 0.6),
+                0 0 100px rgba(33, 150, 243, 0.5);
         }
         
         .calendar-day.tet-holiday {
@@ -612,15 +684,46 @@
             margin-bottom: 0.3rem;
         }
         
+        .calendar-day.today .day-number {
+            color: white;
+            font-weight: 800;
+            text-shadow: 
+                1px 1px 3px rgba(0, 0, 0, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
         .calendar-day .lunar-date {
             font-size: 0.8rem;
             opacity: 0.8;
+        }
+        
+        .calendar-day.today .lunar-date {
+            color: white;
+            font-weight: 700;
+            opacity: 1;
+            text-shadow: 
+                1px 1px 2px rgba(0, 0, 0, 0.3),
+                0 0 8px rgba(255, 255, 255, 0.4);
+            position: relative;
+            z-index: 2;
         }
         
         .calendar-day .day-label {
             font-size: 0.7rem;
             margin-top: 0.2rem;
             font-weight: 600;
+        }
+        
+        .calendar-day.today .day-label {
+            color: white;
+            font-weight: 700;
+            text-shadow: 
+                1px 1px 2px rgba(0, 0, 0, 0.3),
+                0 0 8px rgba(255, 255, 255, 0.4);
+            position: relative;
+            z-index: 2;
         }
         
         .legend {
