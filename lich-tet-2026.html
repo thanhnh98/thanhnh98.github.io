@@ -145,15 +145,47 @@
     </script>
     
     <style>
+        /* 
+         * Performance Optimizations Applied:
+         * 1. Reduced simultaneous animations (disabled on mobile, reduced on desktop)
+         * 2. Simplified box-shadows and gradients for better rendering performance
+         * 3. Added will-change and transform: translateZ(0) for GPU acceleration
+         * 4. Used CSS containment (contain: layout style paint) to isolate rendering
+         * 5. Optimized calendar generation with DocumentFragment and requestAnimationFrame
+         * 6. Throttled event handlers to prevent excessive re-renders
+         * 7. Disabled backdrop-filter on mobile (expensive CSS property)
+         * 8. Respects prefers-reduced-motion for accessibility
+         * 9. All transforms use translate3d/translateZ for hardware acceleration
+         */
+        
+        /* Performance optimizations */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Disable animations for users who prefer reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
         .calendar-hero {
             background: linear-gradient(135deg, #DC143C 0%, #FF4500 25%, #FFD700 50%, #FF6347 75%, #DC143C 100%);
             background-size: 200% 200%;
-            animation: gradientShift 8s ease infinite;
+            animation: gradientShift 12s ease infinite;
             padding: 6rem 0 4rem;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
+            will-change: background-position;
+            transform: translateZ(0); /* GPU acceleration */
         }
         
         @keyframes gradientShift {
@@ -172,12 +204,20 @@
             background: url('images/tet-background-pattern.svg') repeat;
             opacity: 0.15;
             z-index: 1;
-            animation: patternMove 20s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+            /* Reduced animation - only on desktop */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-hero::before {
+                animation: patternMove 30s linear infinite;
+            }
         }
         
         @keyframes patternMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(50px, 50px, 0); }
         }
         
         .calendar-hero::after {
@@ -190,15 +230,23 @@
             font-size: 3rem;
             opacity: 0.1;
             z-index: 1;
-            animation: floatEmoji 15s ease-in-out infinite;
             pointer-events: none;
+            will-change: transform;
+            transform: translateZ(0);
+            /* Disable animation on mobile and reduced motion */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-hero::after {
+                animation: floatEmoji 20s ease-in-out infinite;
+            }
         }
         
         @keyframes floatEmoji {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-20px) rotate(5deg); }
-            50% { transform: translateY(-40px) rotate(-5deg); }
-            75% { transform: translateY(-20px) rotate(3deg); }
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            25% { transform: translate3d(0, -20px, 0) rotate(5deg); }
+            50% { transform: translate3d(0, -40px, 0) rotate(-5deg); }
+            75% { transform: translate3d(0, -20px, 0) rotate(3deg); }
         }
         
         .calendar-hero .container {
@@ -211,32 +259,33 @@
             font-weight: 800;
             margin-bottom: 1rem;
             color: #FFD700 !important;
+            /* Simplified text-shadow for better performance */
             text-shadow: 
                 3px 3px 6px rgba(0,0,0,0.5),
-                0 0 30px rgba(255, 215, 0, 0.8),
-                0 0 60px rgba(255, 215, 0, 0.6),
-                0 0 90px rgba(255, 69, 0, 0.4),
-                2px 2px 0px rgba(220, 20, 60, 0.8);
-            animation: titleGlow 2s ease-in-out infinite;
+                0 0 30px rgba(255, 215, 0, 0.8);
             -webkit-text-fill-color: #FFD700;
             background: none;
+            will-change: text-shadow;
+            transform: translateZ(0);
+            /* Reduced animation - only on desktop */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-hero h1 {
+                animation: titleGlow 3s ease-in-out infinite;
+            }
         }
         
         @keyframes titleGlow {
             0%, 100% { 
                 text-shadow: 
                     3px 3px 6px rgba(0,0,0,0.5),
-                    0 0 30px rgba(255, 215, 0, 0.8),
-                    0 0 60px rgba(255, 215, 0, 0.6),
-                    0 0 90px rgba(255, 69, 0, 0.4);
+                    0 0 30px rgba(255, 215, 0, 0.8);
             }
             50% { 
                 text-shadow: 
                     3px 3px 6px rgba(0,0,0,0.5),
-                    0 0 40px rgba(255, 215, 0, 1),
-                    0 0 80px rgba(255, 215, 0, 0.8),
-                    0 0 120px rgba(255, 69, 0, 0.6),
-                    0 0 150px rgba(255, 69, 0, 0.4);
+                    0 0 40px rgba(255, 215, 0, 1);
             }
         }
         
@@ -244,27 +293,32 @@
             font-size: 1.3rem;
             margin-bottom: 2rem;
             color: #FFFFFF !important;
+            /* Simplified text-shadow */
             text-shadow: 
                 2px 2px 4px rgba(0,0,0,0.6),
-                0 0 20px rgba(255, 215, 0, 0.7),
-                0 0 40px rgba(255, 69, 0, 0.5),
-                1px 1px 0px rgba(220, 20, 60, 0.9);
+                0 0 20px rgba(255, 215, 0, 0.7);
             font-weight: 700;
-            animation: fadeInUp 1s ease-out, subtitleGlow 3s ease-in-out infinite;
+            animation: fadeInUp 1s ease-out;
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-hero .subtitle {
+                animation: fadeInUp 1s ease-out, subtitleGlow 4s ease-in-out infinite;
+            }
         }
         
         @keyframes subtitleGlow {
             0%, 100% { 
                 text-shadow: 
                     2px 2px 4px rgba(0,0,0,0.6),
-                    0 0 20px rgba(255, 215, 0, 0.7),
-                    0 0 40px rgba(255, 69, 0, 0.5);
+                    0 0 20px rgba(255, 215, 0, 0.7);
             }
             50% { 
                 text-shadow: 
                     2px 2px 4px rgba(0,0,0,0.6),
-                    0 0 30px rgba(255, 215, 0, 0.9),
-                    0 0 60px rgba(255, 69, 0, 0.7);
+                    0 0 30px rgba(255, 215, 0, 0.9);
             }
         }
         
@@ -287,15 +341,15 @@
             background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 
-                0 10px 30px rgba(0,0,0,0.1),
-                0 0 40px rgba(255, 215, 0, 0.1),
-                inset 0 0 20px rgba(255, 215, 0, 0.05);
+            /* Simplified box-shadow for better performance */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 0 auto 3rem auto;
             max-width: 800px;
             border: 2px solid rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
+            contain: layout style paint; /* CSS containment for performance */
+            transform: translateZ(0);
         }
         
         .calendar-container::before {
@@ -307,13 +361,21 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
             background-size: 30px 30px;
-            animation: sparkle 10s linear infinite;
             pointer-events: none;
+            will-change: transform;
+            transform: translateZ(0);
+            /* Disable animation on mobile */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-container::before {
+                animation: sparkle 15s linear infinite;
+            }
         }
         
         @keyframes sparkle {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(30px, 30px) rotate(360deg); }
+            0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            100% { transform: translate3d(30px, 30px, 0) rotate(360deg); }
         }
         
         .calendar-header {
@@ -330,12 +392,20 @@
             margin-bottom: 1rem;
             font-weight: 700;
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            animation: titlePulse 2s ease-in-out infinite;
+            will-change: transform;
+            transform: translateZ(0);
+            /* Reduced animation */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-title {
+                animation: titlePulse 3s ease-in-out infinite;
+            }
         }
         
         @keyframes titlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { transform: translateZ(0) scale(1); }
+            50% { transform: translateZ(0) scale(1.02); }
         }
         
         .calendar-subtitle {
@@ -452,7 +522,7 @@
             padding: 1rem 0.3rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, background-color 0.2s ease;
             position: relative;
             min-height: 70px;
             display: flex;
@@ -460,6 +530,9 @@
             justify-content: center;
             align-items: center;
             border: 1px solid rgba(255, 215, 0, 0.1);
+            will-change: transform;
+            transform: translateZ(0);
+            contain: layout style paint;
         }
         
         .calendar-day::before {
@@ -471,13 +544,13 @@
             bottom: 0;
             background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
         }
         
         .calendar-day:hover {
             background: linear-gradient(135deg, #FFF9E6, #FFFFFF);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+            transform: translateZ(0) translateY(-2px);
         }
         
         .calendar-day:hover::before {
@@ -493,17 +566,21 @@
         .calendar-day.today {
             background: linear-gradient(135deg, #2196F3 0%, #00BCD4 50%, #4CAF50 100%);
             background-size: 200% 200%;
-            animation: todayGradientShift 3s ease infinite, todayPulse 2s ease-in-out infinite;
             color: white;
             font-weight: 700;
             border: 3px solid rgba(255, 215, 0, 0.8);
-            box-shadow: 
-                0 6px 25px rgba(33, 150, 243, 0.5),
-                0 0 40px rgba(255, 215, 0, 0.4),
-                0 0 60px rgba(33, 150, 243, 0.3);
+            /* Simplified box-shadow */
+            box-shadow: 0 6px 25px rgba(33, 150, 243, 0.5);
             position: relative;
             z-index: 2;
-            transform: scale(1.05);
+            transform: translateZ(0) scale(1.05);
+            will-change: transform, background-position;
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.today {
+                animation: todayGradientShift 4s ease infinite, todayPulse 3s ease-in-out infinite;
+            }
         }
         
         .calendar-day.today::before {
@@ -512,8 +589,15 @@
             top: 5px;
             right: 5px;
             font-size: 1rem;
-            animation: todayStarRotate 2s linear infinite;
             z-index: 3;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.today::before {
+                animation: todayStarRotate 3s linear infinite;
+            }
         }
         
         .calendar-day.today::after {
@@ -527,8 +611,16 @@
             background-size: 400% 400%;
             border-radius: 12px;
             z-index: -1;
-            animation: todayBorderGlow 3s linear infinite;
             opacity: 0.6;
+            will-change: background-position;
+            transform: translateZ(0);
+            /* Disable animation on mobile */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.today::after {
+                animation: todayBorderGlow 4s linear infinite;
+            }
         }
         
         @keyframes todayGradientShift {
@@ -539,27 +631,17 @@
         
         @keyframes todayPulse {
             0%, 100% { 
-                transform: scale(1.05);
-                box-shadow: 
-                    0 6px 25px rgba(33, 150, 243, 0.5),
-                    0 0 40px rgba(255, 215, 0, 0.4),
-                    0 0 60px rgba(33, 150, 243, 0.3);
+                transform: translateZ(0) scale(1.05);
             }
             50% { 
-                transform: scale(1.08);
-                box-shadow: 
-                    0 8px 30px rgba(33, 150, 243, 0.7),
-                    0 0 50px rgba(255, 215, 0, 0.6),
-                    0 0 80px rgba(33, 150, 243, 0.5);
+                transform: translateZ(0) scale(1.08);
             }
         }
         
         @keyframes todayStarRotate {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.2); }
-            50% { transform: rotate(180deg) scale(1); }
-            75% { transform: rotate(270deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
+            0% { transform: translateZ(0) rotate(0deg) scale(1); }
+            50% { transform: translateZ(0) rotate(180deg) scale(1.1); }
+            100% { transform: translateZ(0) rotate(360deg) scale(1); }
         }
         
         @keyframes todayBorderGlow {
@@ -569,23 +651,25 @@
         }
         
         .calendar-day.today:hover {
-            transform: scale(1.1);
-            box-shadow: 
-                0 10px 35px rgba(33, 150, 243, 0.7),
-                0 0 60px rgba(255, 215, 0, 0.6),
-                0 0 100px rgba(33, 150, 243, 0.5);
+            transform: translateZ(0) scale(1.1);
         }
         
         .calendar-day.tet-holiday {
             background: linear-gradient(135deg, #FF6B6B, #FF8E8E, #FFB3B3);
             color: white;
             font-weight: 700;
-            box-shadow: 
-                0 4px 15px rgba(255, 107, 107, 0.4),
-                0 0 20px rgba(255, 107, 107, 0.2);
+            /* Simplified box-shadow */
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
             border: 2px solid rgba(255, 255, 255, 0.3);
-            animation: tetHolidayGlow 2s ease-in-out infinite;
             position: relative;
+            will-change: box-shadow;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.tet-holiday {
+                animation: tetHolidayGlow 3s ease-in-out infinite;
+            }
         }
         
         .calendar-day.tet-holiday::after {
@@ -594,41 +678,49 @@
             top: 5px;
             right: 5px;
             font-size: 0.8rem;
-            animation: sparkleRotate 2s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.tet-holiday::after {
+                animation: sparkleRotate 3s linear infinite;
+            }
         }
         
         @keyframes tetHolidayGlow {
             0%, 100% { 
-                box-shadow: 
-                    0 4px 15px rgba(255, 107, 107, 0.4),
-                    0 0 20px rgba(255, 107, 107, 0.2);
+                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
             }
             50% { 
-                box-shadow: 
-                    0 6px 20px rgba(255, 107, 107, 0.6),
-                    0 0 30px rgba(255, 107, 107, 0.4);
+                box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
             }
         }
         
         @keyframes sparkleRotate {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
+            0% { transform: translateZ(0) rotate(0deg) scale(1); }
+            50% { transform: translateZ(0) rotate(180deg) scale(1.2); }
+            100% { transform: translateZ(0) rotate(360deg) scale(1); }
         }
         
         .calendar-day.tet-main {
             background: linear-gradient(135deg, #FF8C00, #FFA500, #FFD700, #FFA500);
             background-size: 200% 200%;
-            animation: tetMainGradient 3s ease infinite, tetMainPulse 2s ease-in-out infinite;
             color: white;
             font-weight: 800;
-            box-shadow: 
-                0 6px 25px rgba(255, 140, 0, 0.5),
-                0 0 40px rgba(255, 215, 0, 0.4),
-                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            /* Simplified box-shadow */
+            box-shadow: 0 6px 25px rgba(255, 140, 0, 0.5);
             border: 3px solid rgba(255, 255, 255, 0.5);
             position: relative;
             z-index: 1;
+            will-change: transform, background-position;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.tet-main {
+                animation: tetMainGradient 4s ease infinite, tetMainPulse 3s ease-in-out infinite;
+            }
         }
         
         .calendar-day.tet-main::before {
@@ -637,8 +729,15 @@
             top: -5px;
             left: -5px;
             font-size: 1.5rem;
-            animation: confettiFloat 3s ease-in-out infinite;
             z-index: 2;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.tet-main::before {
+                animation: confettiFloat 4s ease-in-out infinite;
+            }
         }
         
         .calendar-day.tet-main::after {
@@ -647,8 +746,15 @@
             bottom: -5px;
             right: -5px;
             font-size: 1.2rem;
-            animation: confettiFloat 3s ease-in-out infinite 1.5s;
             z-index: 2;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .calendar-day.tet-main::after {
+                animation: confettiFloat 4s ease-in-out infinite 2s;
+            }
         }
         
         @keyframes tetMainGradient {
@@ -659,24 +765,18 @@
         
         @keyframes tetMainPulse {
             0%, 100% { 
-                transform: scale(1);
-                box-shadow: 
-                    0 6px 25px rgba(255, 140, 0, 0.5),
-                    0 0 40px rgba(255, 215, 0, 0.4);
+                transform: translateZ(0) scale(1);
             }
             50% { 
-                transform: scale(1.05);
-                box-shadow: 
-                    0 8px 30px rgba(255, 140, 0, 0.7),
-                    0 0 50px rgba(255, 215, 0, 0.6);
+                transform: translateZ(0) scale(1.05);
             }
         }
         
         @keyframes confettiFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(10deg); }
-            50% { transform: translateY(-5px) rotate(-10deg); }
-            75% { transform: translateY(-15px) rotate(5deg); }
+            0%, 100% { transform: translateZ(0) translateY(0) rotate(0deg); }
+            25% { transform: translateZ(0) translateY(-10px) rotate(10deg); }
+            50% { transform: translateZ(0) translateY(-5px) rotate(-10deg); }
+            75% { transform: translateZ(0) translateY(-15px) rotate(5deg); }
         }
         
         .calendar-day .day-number {
@@ -762,17 +862,24 @@
         .holiday-info {
             background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 50%, #FFF9E6 100%);
             background-size: 200% 200%;
-            animation: holidayBgShift 10s ease infinite;
             border-radius: 15px;
             padding: 2rem;
             margin: 2rem auto 0 auto;
             max-width: 800px;
             border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 
-                0 10px 30px rgba(0,0,0,0.1),
-                0 0 40px rgba(255, 215, 0, 0.1);
+            /* Simplified box-shadow */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
+            contain: layout style paint;
+            transform: translateZ(0);
+            will-change: background-position;
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .holiday-info {
+                animation: holidayBgShift 15s ease infinite;
+            }
         }
         
         .holiday-info::before {
@@ -784,8 +891,16 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
-            animation: holidaySparkle 15s linear infinite;
             pointer-events: none;
+            will-change: transform;
+            transform: translateZ(0);
+            /* Disable animation on mobile */
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .holiday-info::before {
+                animation: holidaySparkle 20s linear infinite;
+            }
         }
         
         @keyframes holidayBgShift {
@@ -795,8 +910,8 @@
         }
         
         @keyframes holidaySparkle {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(40px, 40px) rotate(360deg); }
+            0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            100% { transform: translate3d(40px, 40px, 0) rotate(360deg); }
         }
         
         .holiday-info h3 {
@@ -824,9 +939,12 @@
             border-radius: 10px;
             border-left: 4px solid var(--color-primary);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
             overflow: hidden;
+            will-change: transform;
+            transform: translateZ(0);
+            contain: layout style paint;
         }
         
         .holiday-item::before {
@@ -837,7 +955,8 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            transition: left 0.5s ease;
+            transition: left 0.3s ease;
+            pointer-events: none;
         }
         
         .holiday-item:hover::before {
@@ -845,19 +964,22 @@
         }
         
         .holiday-item:hover {
-            transform: translateY(-3px);
+            transform: translateZ(0) translateY(-3px);
             box-shadow: 0 6px 20px rgba(220, 20, 60, 0.2);
-            border-left-width: 6px;
         }
         
         .holiday-item.tet-main {
             border-left-color: #ffd700;
             background: linear-gradient(135deg, #fff9e6, #ffffff, #fff9e6);
             background-size: 200% 100%;
-            animation: tetMainItemBg 3s ease infinite;
-            box-shadow: 
-                0 4px 15px rgba(255, 215, 0, 0.3),
-                0 0 30px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            will-change: background-position;
+        }
+        
+        @media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+            .holiday-item.tet-main {
+                animation: tetMainItemBg 4s ease infinite;
+            }
         }
         
         @keyframes tetMainItemBg {
@@ -867,9 +989,7 @@
         }
         
         .holiday-item.tet-main:hover {
-            box-shadow: 
-                0 6px 25px rgba(255, 215, 0, 0.5),
-                0 0 40px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
         }
         
         .holiday-date {
@@ -903,14 +1023,22 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+            /* backdrop-filter is expensive, only use on desktop */
             z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            will-change: opacity;
+            transform: translateZ(0);
+        }
+        
+        @media (min-width: 769px) {
+            .popup-overlay {
+                backdrop-filter: blur(5px);
+            }
         }
         
         .popup-overlay.show {
@@ -1464,53 +1592,60 @@
         let currentDate = new Date(2026, 1, 1); // Tháng 2, 2026 (tháng bắt đầu từ 0)
 
         function generateCalendar() {
-            const calendarGrid = document.getElementById('calendarGrid');
-            const currentMonthElement = document.getElementById('currentMonth');
-            const holidayList = document.getElementById('holidayList');
-            
-            // Cập nhật tiêu đề tháng
-            currentMonthElement.textContent = `${monthNames[currentDate.getMonth()]}, ${currentDate.getFullYear()}`;
-            
-            // Xóa lịch cũ
-            calendarGrid.innerHTML = '';
-            
-            // Thêm header các ngày trong tuần
-            dayNames.forEach(day => {
-                const dayHeader = document.createElement('div');
-                dayHeader.className = 'calendar-day-header';
-                dayHeader.textContent = day;
-                calendarGrid.appendChild(dayHeader);
+            // Use requestAnimationFrame for better performance
+            requestAnimationFrame(() => {
+                const calendarGrid = document.getElementById('calendarGrid');
+                const currentMonthElement = document.getElementById('currentMonth');
+                const holidayList = document.getElementById('holidayList');
+                
+                // Cập nhật tiêu đề tháng
+                currentMonthElement.textContent = `${monthNames[currentDate.getMonth()]}, ${currentDate.getFullYear()}`;
+                
+                // Use DocumentFragment for better performance
+                const fragment = document.createDocumentFragment();
+                
+                // Thêm header các ngày trong tuần
+                dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header';
+                    dayHeader.textContent = day;
+                    fragment.appendChild(dayHeader);
+                });
+                
+                // Lấy ngày đầu tiên của tháng và số ngày trong tháng
+                const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+                const daysInMonth = lastDay.getDate();
+                const startingDayOfWeek = firstDay.getDay();
+                
+                // Thêm ngày của tháng trước
+                const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 0);
+                for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+                    const day = prevMonth.getDate() - i;
+                    const dayElement = createDayElement(day, true, currentDate.getFullYear(), currentDate.getMonth() - 1);
+                    fragment.appendChild(dayElement);
+                }
+                
+                // Thêm ngày của tháng hiện tại
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = createDayElement(day, false, currentDate.getFullYear(), currentDate.getMonth());
+                    fragment.appendChild(dayElement);
+                }
+                
+                // Thêm ngày của tháng sau để lấp đầy lưới
+                const remainingDays = 42 - (startingDayOfWeek + daysInMonth);
+                for (let day = 1; day <= remainingDays; day++) {
+                    const dayElement = createDayElement(day, true, currentDate.getFullYear(), currentDate.getMonth() + 1);
+                    fragment.appendChild(dayElement);
+                }
+                
+                // Clear and append fragment in one operation
+                calendarGrid.innerHTML = '';
+                calendarGrid.appendChild(fragment);
+                
+                // Cập nhật danh sách ngày lễ
+                updateHolidayList();
             });
-            
-            // Lấy ngày đầu tiên của tháng và số ngày trong tháng
-            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-            const daysInMonth = lastDay.getDate();
-            const startingDayOfWeek = firstDay.getDay();
-            
-            // Thêm ngày của tháng trước
-            const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 0);
-            for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-                const day = prevMonth.getDate() - i;
-                const dayElement = createDayElement(day, true, currentDate.getFullYear(), currentDate.getMonth() - 1);
-                calendarGrid.appendChild(dayElement);
-            }
-            
-            // Thêm ngày của tháng hiện tại
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = createDayElement(day, false, currentDate.getFullYear(), currentDate.getMonth());
-                calendarGrid.appendChild(dayElement);
-            }
-            
-            // Thêm ngày của tháng sau để lấp đầy lưới
-            const remainingDays = 42 - (startingDayOfWeek + daysInMonth);
-            for (let day = 1; day <= remainingDays; day++) {
-                const dayElement = createDayElement(day, true, currentDate.getFullYear(), currentDate.getMonth() + 1);
-                calendarGrid.appendChild(dayElement);
-            }
-            
-            // Cập nhật danh sách ngày lễ
-            updateHolidayList();
         }
 
         function createDayElement(day, isOtherMonth, year, month) {
@@ -1651,18 +1786,32 @@
             document.body.style.overflow = 'auto'; // Khôi phục scroll
         }
 
-        // Event listeners
-        document.getElementById('prevMonth').addEventListener('click', () => {
+        // Throttle function for performance
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        }
+
+        // Event listeners with throttling
+        document.getElementById('prevMonth').addEventListener('click', throttle(() => {
             currentDate.setMonth(currentDate.getMonth() - 1);
             generateCalendar();
             updateNavButtons();
-        });
+        }, 300));
 
-        document.getElementById('nextMonth').addEventListener('click', () => {
+        document.getElementById('nextMonth').addEventListener('click', throttle(() => {
             currentDate.setMonth(currentDate.getMonth() + 1);
             generateCalendar();
             updateNavButtons();
-        });
+        }, 300));
 
         function updateNavButtons() {
             const prevButton = document.getElementById('prevMonth');
