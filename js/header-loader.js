@@ -154,14 +154,34 @@ class HeaderLoader {
     
     // Initialize Lucide icons
     initIcons() {
-        // Wait a bit for DOM to be ready
-        setTimeout(() => {
-            if (typeof lucide !== 'undefined') {
+        // Try multiple times to ensure Lucide is loaded
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        const tryInitIcons = () => {
+            attempts++;
+            
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
                 lucide.createIcons();
-            } else if (typeof initIcons === 'function') {
-                initIcons();
+                return;
             }
-        }, 100);
+            
+            // Fallback to icons.js initIcons function
+            if (typeof initIcons === 'function' && attempts > 2) {
+                initIcons();
+                return;
+            }
+            
+            // Retry if not loaded yet
+            if (attempts < maxAttempts) {
+                setTimeout(tryInitIcons, 100);
+            } else {
+                console.warn('Lucide Icons library not loaded after multiple attempts');
+            }
+        };
+        
+        // Start trying after a short delay
+        setTimeout(tryInitIcons, 50);
     }
 }
 
