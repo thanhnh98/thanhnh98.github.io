@@ -632,23 +632,91 @@
                 
                 <!-- Internal Links for SEO -->
                 <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(220, 20, 60, 0.1);">
-                    <h3 style="color: #DC143C; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700;">🔗 Trang Liên Quan</h3>
+                    <h3 style="color: #DC143C; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="link" style="width: 24px; height: 24px;"></i>
+                        Trang Liên Quan
+                    </h3>
+                    <style>
+                        .related-link-item {
+                            display: flex;
+                            align-items: center;
+                            padding: 1rem;
+                            background: rgba(220, 20, 60, 0.05);
+                            border-radius: 10px;
+                            text-decoration: none;
+                            color: #DC143C;
+                            font-weight: 600;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            border: 2px solid transparent;
+                            position: relative;
+                            overflow: hidden;
+                        }
+                        .related-link-item::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: -100%;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                            transition: left 0.5s ease;
+                        }
+                        .related-link-item:hover {
+                            transform: translateY(-4px) scale(1.02);
+                            background: linear-gradient(135deg, rgba(220, 20, 60, 0.15), rgba(220, 20, 60, 0.08));
+                            border-color: rgba(220, 20, 60, 0.3);
+                            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.2);
+                            color: #B01030;
+                        }
+                        .related-link-item:hover::before {
+                            left: 100%;
+                        }
+                        .related-link-item i {
+                            transition: all 0.3s ease;
+                        }
+                        .related-link-item:hover i {
+                            transform: scale(1.2) rotate(5deg);
+                            color: #B01030;
+                        }
+                        .related-link-item span {
+                            transition: transform 0.3s ease;
+                        }
+                        .related-link-item:hover span {
+                            transform: translateX(4px);
+                        }
+                    </style>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                        <a href="/" style="display: block; padding: 1rem; background: rgba(220, 20, 60, 0.05); border-radius: 10px; text-decoration: none; color: #DC143C; font-weight: 600; transition: all 0.3s ease;">
-                            <span style="font-size: 1.2rem; margin-right: 0.5rem;">⏰</span>
-                            Đếm Ngược Tết 2026
+                        <a href="/" class="related-link-item">
+                            <i data-lucide="timer" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Đếm Ngược Tết 2026</span>
                         </a>
-                        <a href="/lich-tet-2026.html" style="display: block; padding: 1rem; background: rgba(220, 20, 60, 0.05); border-radius: 10px; text-decoration: none; color: #DC143C; font-weight: 600; transition: all 0.3s ease;">
-                            <span style="font-size: 1.2rem; margin-right: 0.5rem;">📅</span>
-                            Lịch Tết 2026
+                        <a href="/lich-tet-2026.html" class="related-link-item">
+                            <i data-lucide="calendar" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Lịch Tết 2026</span>
                         </a>
-                        <a href="/lich-am-duong.html" style="display: block; padding: 1rem; background: rgba(220, 20, 60, 0.05); border-radius: 10px; text-decoration: none; color: #DC143C; font-weight: 600; transition: all 0.3s ease;">
-                            <span style="font-size: 1.2rem; margin-right: 0.5rem;">🌙</span>
-                            Lịch Âm Dương
+                        <a href="/lich-nghi-tet-2026.html" class="related-link-item">
+                            <i data-lucide="calendar-days" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Lịch Nghỉ Tết 2026</span>
                         </a>
-                        <a href="/mon-an-tet.html" style="display: block; padding: 1rem; background: rgba(220, 20, 60, 0.05); border-radius: 10px; text-decoration: none; color: #DC143C; font-weight: 600; transition: all 0.3s ease;">
-                            <span style="font-size: 1.2rem; margin-right: 0.5rem;">🍑</span>
-                            Món Ăn Tết
+                        <a href="/lich-am-duong.html" class="related-link-item">
+                            <i data-lucide="moon" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Lịch Âm Dương</span>
+                        </a>
+                        <a href="/mon-an-tet.html" class="related-link-item">
+                            <i data-lucide="utensils-crossed" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Món Ăn Tết</span>
+                        </a>
+                        <a href="/tro-choi-tet.html" class="related-link-item">
+                            <i data-lucide="gamepad-2" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Trò Chơi Tết</span>
+                        </a>
+                        <a href="/may-tinh-li-xi.html" class="related-link-item">
+                            <i data-lucide="calculator" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Máy Tính Lì Xì</span>
+                        </a>
+                        <a href="/blog.html" class="related-link-item">
+                            <i data-lucide="book-open" style="width: 20px; height: 20px; margin-right: 0.5rem; flex-shrink: 0;"></i>
+                            <span>Blog Tết</span>
                         </a>
                     </div>
                 </div>
