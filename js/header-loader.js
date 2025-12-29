@@ -47,6 +47,9 @@ class HeaderLoader {
             // Add mobile menu toggle listener
             this.addMobileMenuListener();
             
+            // Initialize Lucide icons in the header
+            this.initIcons();
+            
         } catch (error) {
             console.error('Error loading header:', error);
             // Fallback: keep existing header if loading fails
@@ -147,6 +150,18 @@ class HeaderLoader {
     updateActiveState() {
         this.currentPage = this.getCurrentPage();
         this.setActiveNavItem();
+    }
+    
+    // Initialize Lucide icons
+    initIcons() {
+        // Wait a bit for DOM to be ready
+        setTimeout(() => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else if (typeof initIcons === 'function') {
+                initIcons();
+            }
+        }, 100);
     }
 }
 

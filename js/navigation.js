@@ -7,6 +7,8 @@ class Router {
             '/': 'index.html',
             '/index': 'index.html',
             '/index.html': 'index.html', // Keep for backward compatibility
+            '/con-bao-lau-nua-den-tet': 'con-bao-lau-nua-den-tet.html',
+            '/con-bao-lau-nua-den-tet.html': 'con-bao-lau-nua-den-tet.html', // Keep for backward compatibility
             '/mon-an-tet': 'mon-an-tet.html',
             '/mon-an-tet.html': 'mon-an-tet.html', // Keep for backward compatibility
             '/tro-choi-tet': 'tro-choi-tet.html',
@@ -215,7 +217,8 @@ class NavigationMenu {
             if (href === currentPath || 
                 (currentPath === '/' && href === 'index.html') ||
                 (currentPath === '/index.html' && href === '/') ||
-                (currentPath.includes('mon-an-tet') && href.includes('mon-an-tet'))) {
+                (currentPath.includes('mon-an-tet') && href.includes('mon-an-tet')) ||
+                (currentPath.includes('con-bao-lau-nua-den-tet') && href.includes('con-bao-lau-nua-den-tet'))) {
                 link.classList.add('active');
             }
         });

@@ -126,8 +126,18 @@ nav a {
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     white-space: nowrap;
+}
+
+.nav-icon {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
 }
 
 /* Navigation Expandable Section */
@@ -159,7 +169,10 @@ nav a {
 
 .see-more-icon {
     transition: transform 0.3s ease;
-    font-size: 0.8rem;
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+    flex-shrink: 0;
 }
 
 .nav-expandable.expanded .see-more-icon {
@@ -194,7 +207,9 @@ nav a {
 }
 
 .nav-secondary a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     padding: 0.8rem 1.5rem;
     border-radius: 0;
     background: transparent;
@@ -212,16 +227,39 @@ nav a {
     box-shadow: none;
 }
 
+.nav-secondary a:hover .nav-icon {
+    transform: scale(1.1);
+    color: #FFD700;
+}
+
+.nav-secondary .nav-icon {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
 nav a:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
+nav a:hover .nav-icon {
+    transform: scale(1.1);
+    color: #FFD700;
+}
+
 nav a.active {
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
     font-weight: 700;
+}
+
+nav a.active .nav-icon {
+    color: #FFD700;
+    transform: scale(1.1);
 }
 
 /* Main Content */
