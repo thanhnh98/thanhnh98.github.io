@@ -13,6 +13,24 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(html => {
                 footerContainer.innerHTML = html;
+                
+                // Add analytics tracking to download buttons after footer loads
+                setTimeout(function() {
+                    const googlePlayBtn = footerContainer.querySelector('.download-btn-footer.google-play-btn');
+                    const appStoreBtn = footerContainer.querySelector('.download-btn-footer.app-store-btn');
+                    
+                    if (googlePlayBtn && window.webAnalytics) {
+                        googlePlayBtn.addEventListener('click', function() {
+                            window.webAnalytics.trackDownloadClick('android', 'footer');
+                        });
+                    }
+                    
+                    if (appStoreBtn && window.webAnalytics) {
+                        appStoreBtn.addEventListener('click', function() {
+                            window.webAnalytics.trackDownloadClick('ios', 'footer');
+                        });
+                    }
+                }, 100);
             })
             .catch(error => {
                 console.error('Error loading footer:', error);

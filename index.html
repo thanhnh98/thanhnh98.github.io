@@ -923,6 +923,7 @@
 
     <!-- Lucide Icons - Beautiful, modern icon library -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/analytics.js"></script>
     <script src="js/resources.js"></script>
     <script src="js/script.js"></script>
     <script src="js/navigation.js"></script>
@@ -939,10 +940,62 @@
     <script>
       // Scroll to app section for "Khám phá ngay" button
       document.addEventListener('DOMContentLoaded', function() {
+        // Track download button clicks in app-intro section
+        const googlePlayIntroBtn = document.querySelector('.download-btn-intro.google-play-btn');
+        const appStoreIntroBtn = document.querySelector('.download-btn-intro.app-store-btn');
+        
+        if (googlePlayIntroBtn && window.webAnalytics) {
+          googlePlayIntroBtn.addEventListener('click', function() {
+            window.webAnalytics.trackDownloadClick('android', 'app_intro');
+          });
+        }
+        
+        if (appStoreIntroBtn && window.webAnalytics) {
+          appStoreIntroBtn.addEventListener('click', function() {
+            window.webAnalytics.trackDownloadClick('ios', 'app_intro');
+          });
+        }
+        
+        // Track download button clicks in footer (after footer loads)
+        setTimeout(function() {
+          const googlePlayFooterBtn = document.querySelector('.download-btn-footer.google-play-btn');
+          const appStoreFooterBtn = document.querySelector('.download-btn-footer.app-store-btn');
+          
+          if (googlePlayFooterBtn && window.webAnalytics) {
+            googlePlayFooterBtn.addEventListener('click', function() {
+              window.webAnalytics.trackDownloadClick('android', 'footer');
+            });
+          }
+          
+          if (appStoreFooterBtn && window.webAnalytics) {
+            appStoreFooterBtn.addEventListener('click', function() {
+              window.webAnalytics.trackDownloadClick('ios', 'footer');
+            });
+          }
+        }, 2000);
+        
+        // Track share button click
+        const shareBtn = document.getElementById('share-countdown-btn');
+        if (shareBtn && window.webAnalytics) {
+          shareBtn.addEventListener('click', function() {
+            window.webAnalytics.trackImportantAction('share_countdown_click', {
+              location: 'countdown_section'
+            });
+          });
+        }
+        
         const exploreBtn = document.getElementById('app-explore-btn');
         if (exploreBtn) {
           exploreBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            // Track navigation
+            if (window.webAnalytics) {
+              window.webAnalytics.trackImportantAction('explore_app_click', {
+                from: 'countdown_section',
+                to: 'app_intro'
+              });
+            }
             
             // Scroll smoothly to the app-intro section
             const appSection = document.getElementById('app-intro');
@@ -1060,6 +1113,11 @@
     <script>
       // Share website function for ads fallback
       function shareWebsite() {
+        // Track share action
+        if (window.webAnalytics) {
+          window.webAnalytics.trackShare('native', 'page');
+        }
+        
         const shareData = {
           title: "🎊 Sắp Tết 2026 - Đếm Ngược Đến Tết Nguyên Đán | Lịch Âm Dương Việt Nam 🏮",
           text: "🎊 Đếm ngược đến Tết Nguyên Đán 2026! Xem lịch vạn niên, tra cứu giờ hoàng đạo, ngày tốt xấu theo âm lịch. Thưởng thức không khí Tết với nhạc xuân và tính năng độc đáo. Cùng khám phá văn hóa Tết truyền thống Việt Nam! 🏮",
@@ -1191,7 +1249,7 @@
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+      import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -1212,6 +1270,16 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
+      
+      // Set analytics instance and logEvent function for tracking helper
+      if (window.webAnalytics) {
+        if (window.webAnalytics.setAnalyticsInstance) {
+          window.webAnalytics.setAnalyticsInstance(analytics);
+        }
+        if (window.webAnalytics.setLogEventFunction) {
+          window.webAnalytics.setLogEventFunction(logEvent);
+        }
+      }
     </script>
   </body>
 </html>

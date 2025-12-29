@@ -766,6 +766,7 @@
         </div>
     </div>
 
+    <script src="js/analytics.js"></script>
     <script src="js/header-loader.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/icons.js"></script>
@@ -929,6 +930,13 @@
         
         // Open share modal or use Web Share API
         shareBtn.addEventListener('click', async (e) => {
+            // Track share button click
+            if (window.webAnalytics) {
+                window.webAnalytics.trackImportantAction('share_countdown_click', {
+                    location: 'countdown_page'
+                });
+            }
+            
             // Try Web Share API first (for mobile)
             if (navigator.share && window.innerWidth <= 768) {
                 const shareData = {
@@ -940,6 +948,10 @@
                 if (navigator.canShare && navigator.canShare(shareData)) {
                     try {
                         await navigator.share(shareData);
+                        // Track successful native share
+                        if (window.webAnalytics) {
+                            window.webAnalytics.trackShare('native', 'countdown_page');
+                        }
                         return; // Exit if share was successful
                     } catch (error) {
                         // User cancelled or error occurred, fall through to modal
@@ -1004,6 +1016,11 @@
                 const pageTitle = 'Còn Bao Lâu Nữa Đến Tết 2026? | Đếm Ngược Tết Nguyên Đán';
                 const shareText = getShareText();
                 let shareUrl = '';
+                
+                // Track share action
+                if (window.webAnalytics) {
+                    window.webAnalytics.trackShare(shareType, 'countdown_page');
+                }
                 
                 switch(shareType) {
                     case 'copy-link':
