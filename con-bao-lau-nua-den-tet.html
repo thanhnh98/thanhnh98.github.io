@@ -40,7 +40,7 @@
     <meta name="twitter:image:alt" content="Còn Bao Lâu Nữa Đến Tết 2026 - Đếm Ngược Tết Nguyên Đán">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://saptet.vn/con-bao-lau-nua-den-tet.html">
+    <link rel="canonical" href="https://saptet.vn/con-bao-lau-nua-den-tet">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -989,25 +989,6 @@
             }
         });
         
-        // Get full URL with proper domain
-        function getFullUrl() {
-            // Use canonical URL if available, otherwise construct from current location
-            const canonical = document.querySelector('link[rel="canonical"]');
-            if (canonical && canonical.href) {
-                return canonical.href;
-            }
-            
-            // Construct full URL
-            const protocol = window.location.protocol;
-            const host = window.location.host;
-            const pathname = window.location.pathname;
-            
-            // Use saptet.vn domain if available, otherwise use current host
-            const domain = host.includes('saptet.vn') ? 'saptet.vn' : host;
-            
-            return `${protocol}//${domain}${pathname}`;
-        }
-        
         // Share options handlers
         shareOptions.forEach(option => {
             option.addEventListener('click', () => {
@@ -1098,6 +1079,18 @@
             }
         `;
         document.head.appendChild(style);
+    </script>
+    
+    <!-- Remove .html from URL -->
+    <script>
+        // Remove .html extension from URL in browser address bar
+        (function() {
+            if (window.location.pathname.endsWith('.html')) {
+                const newPath = window.location.pathname.slice(0, -5);
+                const newUrl = window.location.origin + newPath + window.location.search + window.location.hash;
+                window.history.replaceState({}, '', newUrl);
+            }
+        })();
     </script>
 </body>
 </html>
