@@ -37,8 +37,16 @@ class PWAInstaller {
     async registerServiceWorker() {
         if ('serviceWorker' in navigator) {
             try {
-                const registration = await navigator.serviceWorker.register('/sw.js');
+                // Luôn check version mới từ server khi register
+                const registration = await navigator.serviceWorker.register('/sw.js', {
+                    updateViaCache: 'none' // Quan trọng: Luôn check version mới từ server, không dùng cache
+                });
                 console.log('PWA: Service Worker registered successfully:', registration);
+                
+                // Periodically check for updates (mỗi 1 giờ)
+                setInterval(() => {
+                    registration.update();
+                }, 3600000); // 1 hour
                 
                 // Check for updates
                 registration.addEventListener('updatefound', () => {

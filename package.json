@@ -7,7 +7,10 @@
     "crawl": "node crawl-tet-articles.js",
     "crawl:dev": "node --inspect crawl-tet-articles.js",
     "install-deps": "npm install",
-    "test": "node -e \"console.log('Test script - crawling functionality')\""
+    "test": "node -e \"console.log('Test script - crawling functionality')\"",
+    "update-version": "node scripts/update-version.js",
+    "predeploy": "npm run update-version",
+    "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
   },
   "keywords": [
     "tet",

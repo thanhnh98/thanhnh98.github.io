@@ -254,6 +254,11 @@
         }
         
         .calendar-nav-buttons {
+            display: none;
+        }
+        
+        .calendars-container.double .calendar-nav-buttons,
+        .calendars-container.triple .calendar-nav-buttons {
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -262,39 +267,95 @@
         .calendar-nav-buttons button {
             background: linear-gradient(135deg, #DC143C, #FF4500);
             color: white;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             padding: 0.625rem 1.25rem;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 3px 10px rgba(220, 20, 60, 0.25);
+            font-weight: 700;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 3px 10px rgba(220, 20, 60, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             min-width: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .calendar-nav-buttons button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .calendar-nav-buttons button:hover:not(:disabled)::before {
+            left: 100%;
         }
         
         .calendar-nav-buttons button:hover:not(:disabled) {
             background: linear-gradient(135deg, #FF4500, #FFD700);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.35);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 6px 20px rgba(220, 20, 60, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
         
         .calendar-nav-buttons button:active:not(:disabled) {
-            transform: translateY(0);
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 3px 12px rgba(220, 20, 60, 0.35),
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
         
         .calendar-nav-buttons button:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.3), 0 3px 10px rgba(220, 20, 60, 0.25);
+            box-shadow: 
+                0 0 0 4px rgba(220, 20, 60, 0.25),
+                0 3px 10px rgba(220, 20, 60, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calendar-nav-buttons button:focus:not(:hover) {
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         .calendar-nav-buttons button:disabled {
-            background: #CBD5E1;
+            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
             color: #94A3B8;
+            border-color: rgba(148, 163, 184, 0.3);
             cursor: not-allowed;
             transform: none;
-            box-shadow: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            opacity: 0.6;
         }
+        
+        .calendar-nav-buttons button:disabled::before {
+            display: none;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .calendar-nav-buttons button {
+                transition: background-color 0.2s ease, border-color 0.2s ease;
+            }
+            
+            .calendar-nav-buttons button:hover:not(:disabled) {
+                transform: none;
+            }
+            
+            .calendar-nav-buttons button::before {
+                display: none;
+            }
+        }
+        
         
         .calendar-controls-row {
             display: flex;
@@ -420,11 +481,152 @@
         }
         
         .calendar-month-title {
-            font-size: clamp(0.6rem, 1.2vw, 0.72rem);
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: #DC143C;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .calendar-month-title-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .calendar-month-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .month-nav-btn {
+            background: linear-gradient(135deg, #DC143C 0%, #FF4500 50%, #FFD700 100%);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            padding: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 
+                0 4px 12px rgba(220, 20, 60, 0.35),
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        
+        .month-nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        
+        .month-nav-btn:hover:not(:disabled)::before {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .month-nav-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #FF4500 0%, #FFD700 50%, #FFA500 100%);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px) scale(1.08);
+            box-shadow: 
+                0 8px 24px rgba(220, 20, 60, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+        
+        .month-nav-btn:active:not(:disabled) {
+            transform: translateY(0) scale(1.02);
+            box-shadow: 
+                0 4px 12px rgba(220, 20, 60, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.12),
+                inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .month-nav-btn:focus {
+            outline: none;
+            box-shadow: 
+                0 0 0 4px rgba(220, 20, 60, 0.3),
+                0 4px 12px rgba(220, 20, 60, 0.35),
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .month-nav-btn:focus:not(:hover) {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .month-nav-btn:disabled {
+            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+            color: #94A3B8;
+            border-color: rgba(148, 163, 184, 0.3);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            opacity: 0.5;
+        }
+        
+        .month-nav-btn:disabled::before {
+            display: none;
+        }
+        
+        .month-nav-btn > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .month-nav-btn {
+                transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+            }
+            
+            .month-nav-btn:hover:not(:disabled) {
+                transform: none;
+            }
+            
+            .month-nav-btn::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .month-nav-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1.25rem;
+            }
+        }
+        
+        .calendars-container.double .calendar-month-title,
+        .calendars-container.triple .calendar-month-title {
+            justify-content: center;
+        }
+        
+        .calendars-container.double .calendar-month-nav,
+        .calendars-container.triple .calendar-month-nav {
+            display: none;
         }
         
         
@@ -1053,6 +1255,27 @@
                 flex: 1;
             }
             
+            .calendar-month-title {
+                flex-direction: row;
+                gap: 0.75rem;
+            }
+            
+            .calendar-month-title-text {
+                flex: 1;
+                order: 0;
+            }
+            
+            .month-nav-btn {
+                order: -1;
+                width: 40px;
+                height: 40px;
+                font-size: 1.15rem;
+            }
+            
+            .month-nav-btn:last-child {
+                order: 1;
+            }
+            
             .calendar-controls-row {
                 flex-direction: column;
                 align-items: stretch;
@@ -1163,10 +1386,6 @@
                     <div class="calendar-header">
                         <div class="calendar-title-row">
                             <h2 class="calendar-title">Lịch Vạn Niên - Lịch Âm Dương</h2>
-                            <div class="calendar-nav-buttons">
-                                <button id="prevMonth" aria-label="Tháng trước">← Tháng trước</button>
-                                <button id="nextMonth" aria-label="Tháng sau">Tháng sau →</button>
-                            </div>
                         </div>
                         
                         <div class="current-month-display" id="currentMonth" role="heading" aria-level="3">Tháng 1, 2026</div>
@@ -1195,12 +1414,7 @@
                     </div>
                         
                         <div class="calendars-container single" id="calendarsContainer">
-                            <div class="calendar-month-wrapper">
-                                <div class="calendar-month-title" id="currentMonthTitle">Tháng 1, 2026</div>
-                                <div class="calendar-grid" id="calendarGrid" role="grid" aria-label="Lịch tháng">
-                                    <!-- Calendar will be generated by JavaScript -->
-                                </div>
-                            </div>
+                            <!-- Calendar will be generated by JavaScript -->
                         </div>
                     </div>
                     
@@ -1259,7 +1473,7 @@
             'Bảy', 'Tám', 'Chín', 'Mười', 'Mười một', 'Chạp'
         ];
         
-        let currentDate = new Date();
+        let currentDate = new Date(2026, 0, 1); // Initialize to January 2026
         let selectedDate = null;
         
         // Tính toán các ngày Tết truyền thống Việt Nam dựa trên năm
@@ -1477,9 +1691,16 @@
             const month = currentDate.getMonth();
             
             // Cập nhật tiêu đề tháng chính
-            currentMonthElement.textContent = `${monthNames[month]}, ${year}`;
+            if (currentMonthElement) {
+                currentMonthElement.textContent = `${monthNames[month]}, ${year}`;
+            }
             
             // Clear container
+            if (!calendarsContainer) {
+                console.error('calendarsContainer not found');
+                return;
+            }
+            
             calendarsContainer.innerHTML = '';
             calendarsContainer.className = `calendars-container ${viewMode}`;
             
@@ -1493,9 +1714,45 @@
                 
                 const monthTitle = document.createElement('div');
                 monthTitle.className = 'calendar-month-title';
-                const displayMonth = (month + i) % 12;
-                const displayYear = month + i >= 12 ? year + 1 : year;
-                monthTitle.textContent = `${monthNames[displayMonth]}, ${displayYear}`;
+                
+                // Calculate display month and year
+                const displayMonthIndex = month + i;
+                const displayMonth = displayMonthIndex % 12;
+                const displayYear = displayMonthIndex >= 12 ? year + 1 : year;
+                
+                // Only show nav buttons in single mode
+                if (viewMode === 'single' && i === 0) {
+                    const prevBtn = document.createElement('button');
+                    prevBtn.textContent = '←';
+                    prevBtn.setAttribute('aria-label', 'Tháng trước');
+                    prevBtn.className = 'month-nav-btn';
+                    prevBtn.addEventListener('click', () => {
+                        currentDate.setMonth(currentDate.getMonth() - 1);
+                        generateCalendar();
+                    });
+                    monthTitle.appendChild(prevBtn);
+                    
+                    const titleText = document.createElement('div');
+                    titleText.className = 'calendar-month-title-text';
+                    titleText.textContent = `${monthNames[displayMonth]}, ${displayYear}`;
+                    monthTitle.appendChild(titleText);
+                    
+                    const nextBtn = document.createElement('button');
+                    nextBtn.textContent = '→';
+                    nextBtn.setAttribute('aria-label', 'Tháng sau');
+                    nextBtn.className = 'month-nav-btn';
+                    nextBtn.addEventListener('click', () => {
+                        currentDate.setMonth(currentDate.getMonth() + 1);
+                        generateCalendar();
+                    });
+                    monthTitle.appendChild(nextBtn);
+                } else {
+                    const titleText = document.createElement('div');
+                    titleText.className = 'calendar-month-title-text';
+                    titleText.textContent = `${monthNames[displayMonth]}, ${displayYear}`;
+                    monthTitle.appendChild(titleText);
+                }
+                
                 monthWrapper.appendChild(monthTitle);
                 
                 generateSingleCalendar(monthWrapper, displayYear, displayMonth);
@@ -1934,15 +2191,23 @@
                 }
             });
             
-            document.getElementById('prevMonth').addEventListener('click', () => {
-                currentDate.setMonth(currentDate.getMonth() - 1);
-                generateCalendar();
-            });
+            // Event listeners for header buttons (only visible in double/triple mode)
+            const prevMonthBtn = document.getElementById('prevMonth');
+            const nextMonthBtn = document.getElementById('nextMonth');
             
-            document.getElementById('nextMonth').addEventListener('click', () => {
-                currentDate.setMonth(currentDate.getMonth() + 1);
-                generateCalendar();
-            });
+            if (prevMonthBtn) {
+                prevMonthBtn.addEventListener('click', () => {
+                    currentDate.setMonth(currentDate.getMonth() - 1);
+                    generateCalendar();
+                });
+            }
+            
+            if (nextMonthBtn) {
+                nextMonthBtn.addEventListener('click', () => {
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    generateCalendar();
+                });
+            }
             
             document.getElementById('year-select').addEventListener('change', (e) => {
                 const year = parseInt(e.target.value);

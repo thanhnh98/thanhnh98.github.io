@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Cần full history để lấy git hash
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Update version for Service Worker
+        run: node scripts/update-version.js
+      
+      - name: Commit version changes
+        run: |
+          git config --local user.email "tlife1001@gmail.com"
+          git config --local user.name "GitHub Action"
+          git add sw.js .version .last_build_id
+          git diff --staged --quiet || git commit -m "chore: auto-update version for deployment [skip ci]"
+          git push origin master || echo "No changes to commit"
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/master'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
