@@ -2952,19 +2952,19 @@ main {
 /* Calendar Detail Button */
 .calendar-detail-btn {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .calendar-detail-btn .detail-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     background: linear-gradient(135deg, #DC143C, #FF4500, #FFD700);
     background-size: 200% 200%;
-    animation: detailButtonGradient 3s ease infinite;
     color: white;
     text-decoration: none;
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -2974,6 +2974,13 @@ main {
     border: 2px solid rgba(255, 215, 0, 0.3);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+}
+
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+    .calendar-detail-btn .detail-btn {
+        animation: detailButtonGradient 3s ease infinite;
+    }
 }
 
 .calendar-detail-btn .detail-btn::before {
@@ -3005,12 +3012,70 @@ main {
     border-color: rgba(255, 215, 0, 0.6);
 }
 
+.calendar-detail-btn .detail-btn:focus {
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(220, 20, 60, 0.3),
+        0 4px 15px rgba(220, 20, 60, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.calendar-detail-btn .detail-btn:active {
+    transform: translateY(0) scale(1.02);
+}
+
 .calendar-detail-btn .btn-icon {
-    font-size: 1.2rem;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.calendar-detail-btn .btn-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 2.5;
+}
+
+.calendar-detail-btn .detail-btn:hover .btn-icon:last-child {
+    transform: translateX(3px);
+    transition: transform 0.3s ease;
 }
 
 .calendar-detail-btn .btn-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .calendar-detail-btn {
+        margin-top: 1.5rem;
+    }
+    
+    .calendar-detail-btn .detail-btn {
+        padding: 0.875rem 1.5rem;
+        gap: 0.5rem;
+    }
+    
+    .calendar-detail-btn .btn-text {
+        font-size: 0.9rem;
+    }
+    
+    .calendar-detail-btn .btn-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-detail-btn .detail-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
 }
 
 /* Calendar Widget */
