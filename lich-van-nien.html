@@ -366,6 +366,72 @@
             flex-wrap: wrap;
         }
         
+        .go-to-today-btn {
+            background: linear-gradient(135deg, #DC143C, #FF4500);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.625rem 1.25rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 3px 10px rgba(220, 20, 60, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .go-to-today-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .go-to-today-btn:hover::before {
+            left: 100%;
+        }
+        
+        .go-to-today-btn:hover {
+            background: linear-gradient(135deg, #FF4500, #FFD700);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 6px 20px rgba(220, 20, 60, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .go-to-today-btn:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 
+                0 3px 12px rgba(220, 20, 60, 0.35),
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .go-to-today-btn:focus {
+            outline: none;
+            box-shadow: 
+                0 0 0 4px rgba(220, 20, 60, 0.25),
+                0 3px 10px rgba(220, 20, 60, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .go-to-today-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+        
         .year-selector {
             display: flex;
             align-items: center;
@@ -1402,6 +1468,10 @@
                                 </select>
                             </div>
                             
+                            <button id="goToTodayBtn" class="go-to-today-btn" aria-label="Về hôm nay">
+                                Trở về hôm nay
+                            </button>
+                            
                             <div class="view-mode-chips">
                                 <label>Chế độ:</label>
                                 <div class="view-mode-chips-container">
@@ -1457,6 +1527,7 @@
     <script src="js/header-loader.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/lunar-calendar.js"></script>
+    <script src="js/trung-thu-calculator.js"></script>
     <script>
         // Tên các tháng
         const monthNames = [
@@ -1602,9 +1673,15 @@
             };
             
             // Rằm tháng Tám (15/8 âm lịch): Tết Trung Thu
-            // Tính từ ngày Tết + khoảng 7 tháng (210 ngày)
-            const trungThu = new Date(tetDate);
-            trungThu.setDate(trungThu.getDate() + 210);
+            // Tính toán chính xác từ 15/8 âm lịch
+            let trungThu;
+            if (typeof calculateTrungThuDate === 'function') {
+                trungThu = calculateTrungThuDate(year);
+            } else {
+                // Fallback: Tính từ ngày Tết + khoảng 7 tháng (210 ngày)
+                trungThu = new Date(tetDate);
+                trungThu.setDate(trungThu.getDate() + 210);
+            }
             dates[formatDateKey(trungThu)] = {
                 name: 'Tết Trung Thu',
                 lunar: 'Rằm tháng Tám',
@@ -2206,6 +2283,42 @@
                 nextMonthBtn.addEventListener('click', () => {
                     currentDate.setMonth(currentDate.getMonth() + 1);
                     generateCalendar();
+                });
+            }
+            
+            // Nút "Về hôm nay"
+            const goToTodayBtn = document.getElementById('goToTodayBtn');
+            if (goToTodayBtn) {
+                goToTodayBtn.addEventListener('click', () => {
+                    const today = new Date();
+                    currentDate = new Date(today);
+                    
+                    // Cập nhật year selector
+                    const yearSelect = document.getElementById('year-select');
+                    if (yearSelect) {
+                        yearSelect.value = today.getFullYear();
+                    }
+                    
+                    // Regenerate calendar
+                    generateCalendar();
+                    
+                    // Scroll đến ngày hôm nay sau một chút delay để calendar render xong
+                    setTimeout(() => {
+                        const todayElement = document.querySelector('.calendar-day.today');
+                        if (todayElement) {
+                            todayElement.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center',
+                                inline: 'center'
+                            });
+                            
+                            // Highlight ngày hôm nay
+                            todayElement.style.animation = 'none';
+                            setTimeout(() => {
+                                todayElement.style.animation = '';
+                            }, 10);
+                        }
+                    }, 100);
                 });
             }
             

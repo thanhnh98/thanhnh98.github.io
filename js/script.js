@@ -675,7 +675,14 @@ const eventsData = {
     },
     'mid-autumn': {
         name: 'Tết Trung Thu',
-        getDate: () => getNextEventDate(10, 6), // October 6 (approximate)
+        getDate: () => {
+            // Tính toán từ 15/8 âm lịch
+            if (typeof getNextTrungThu === 'function') {
+                return getNextTrungThu().date;
+            }
+            // Fallback nếu hàm chưa được load
+            return getNextEventDate(10, 6);
+        },
         icon: '🥮',
         description: '15/8 Âm Lịch',
         background: 'linear-gradient(135deg, #ffa500, #ffb347)'

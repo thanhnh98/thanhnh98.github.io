@@ -71,6 +71,7 @@
                 <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">Giáng Sinh - 25/12 | Đếm ngược chính xác đến Noel</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="index.html" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#228B22'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">🏠 Về trang chủ</a>
+                    <button onclick="goToToday()" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='white'; this.style.color='#228B22'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">📅 Trở về hôm nay</button>
                     <a href="tro-choi-tet.html" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#228B22'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">🎮 Trò chơi Tết</a>
                 </div>
             </div>
@@ -202,11 +203,63 @@
     <!-- <script src="js/footer.js"></script> -->
     <script src="js/pwa-install.js"></script>
     <script>
+        // Tính toán ngày Noel (25/12 dương lịch) - luôn là 25/12 hàng năm
+        function getNextNoel() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const currentMonth = now.getMonth(); // 0-11
+            const currentDay = now.getDate();
+            
+            // Tạo ngày Noel năm hiện tại
+            const thisYearNoel = new Date(currentYear, 11, 25); // Tháng 12 = index 11
+            
+            // Nếu Noel năm nay chưa qua (chưa đến 25/12), trả về năm nay
+            if (currentMonth < 11 || (currentMonth === 11 && currentDay < 25)) {
+                return {
+                    year: currentYear,
+                    date: thisYearNoel
+                };
+            }
+            
+            // Nếu đã qua Noel năm nay, trả về năm sau
+            return {
+                year: currentYear + 1,
+                date: new Date(currentYear + 1, 11, 25)
+            };
+        }
+        
+        let nextNoel = getNextNoel();
+        let noelDate = nextNoel.date;
+        
+        // Format ngày để hiển thị
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+        
+        // Cập nhật hiển thị ngày Noel
+        function updateNoelDateDisplay() {
+            const dateDisplay = document.querySelector('#noel-countdown + p');
+            if (dateDisplay) {
+                dateDisplay.textContent = `Giáng Sinh: ${formatDate(noelDate)}`;
+            }
+        }
+        
         // Noel countdown
         function updateNoelCountdown() {
-            const noelDate = new Date('2025-12-25T00:00:00').getTime();
+            const noelTime = noelDate.getTime();
             const now = new Date().getTime();
-            const distance = noelDate - now;
+            const distance = noelTime - now;
+
+            if (distance < 0) {
+                // Nếu đã qua Noel, tính năm tiếp theo
+                nextNoel = getNextNoel();
+                noelDate = nextNoel.date;
+                updateNoelDateDisplay();
+                return;
+            }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -218,7 +271,14 @@
             document.getElementById('noel-minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('noel-seconds').textContent = seconds.toString().padStart(2, '0');
         }
+        
+        // Nút "Trở về hôm nay"
+        function goToToday() {
+            window.location.href = 'index.html';
+        }
 
+        // Khởi tạo
+        updateNoelDateDisplay();
         setInterval(updateNoelCountdown, 1000);
         updateNoelCountdown();
     </script>
