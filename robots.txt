@@ -12,6 +12,9 @@ Allow: /huong-dan-tet.html
 Allow: /mon-an-tet.html
 Allow: /tro-choi-tet.html
 Allow: /lich-am-duong.html
+Allow: /cua-hang.html
+Allow: /con-bao-lau-nua-den-tet
+Allow: /lich-van-nien.html
 
 # Allow crawling of assets
 Allow: /css/

@@ -158,7 +158,8 @@
   color: inherit;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   cursor: pointer;
 }
 
@@ -247,22 +248,34 @@
   flex: 1;
 }
 
+.shop-card-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0 1rem 1.25rem;
+  min-height: 48px;
+  flex-shrink: 0;
+}
+
 .shop-card-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  padding: 0.6rem 1rem;
+  padding: 0 1rem;
   border-radius: 10px;
   font-size: 0.85rem;
   font-weight: 600;
   text-align: center;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: #fff;
+  text-decoration: none;
   border: none;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  height: 100%;
+  box-sizing: border-box;
   transition: opacity 0.2s, transform 0.15s;
-  margin-top: auto;
 }
 
 .shop-card-cta:hover {
@@ -272,6 +285,38 @@
 
 .shop-card-cta:active {
   transform: scale(0.98);
+}
+
+.shop-card-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: 10px;
+  border: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.shop-card-share:hover {
+  background: rgba(0, 0, 0, 0.12);
+  transform: scale(1.05);
+}
+
+.shop-card-share:active {
+  transform: scale(0.98);
+}
+
+.shop-card-share svg {
+  display: block;
 }
 
 .shop-loading,
@@ -318,4 +363,27 @@
   .shop-category-btn {
     flex-shrink: 0;
   }
+}
+
+/* Toast khi share / copy link */
+.shop-share-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(1rem);
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+
+.shop-share-toast--show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }

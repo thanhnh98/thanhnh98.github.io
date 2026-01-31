@@ -8,6 +8,19 @@
         <priority>1.0</priority>
     </url>
     
+    <!-- Countdown & Lịch - High Priority -->
+    <url>
+        <loc>https://saptet.vn/con-bao-lau-nua-den-tet</loc>
+        <lastmod>2026-01-31</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/lich-van-nien.html</loc>
+        <lastmod>2026-01-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
     <!-- Tet 2026 Main Pages - High Priority -->
     <url>
         <loc>https://saptet.vn/lich-tet-2026.html</loc>

@@ -28,6 +28,71 @@
     return '';
   }
 
+  function toAbsoluteUrl(url) {
+    if (!url || typeof url !== 'string') return '';
+    url = url.trim();
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    var origin = typeof window !== 'undefined' && window.location ? window.location.origin : '';
+    return origin + (url.startsWith('/') ? url : '/' + url);
+  }
+
+  function showShareFeedback(message) {
+    var el = document.createElement('div');
+    el.className = 'shop-share-toast';
+    el.textContent = message;
+    el.setAttribute('role', 'status');
+    document.body.appendChild(el);
+    requestAnimationFrame(function () {
+      el.classList.add('shop-share-toast--show');
+    });
+    setTimeout(function () {
+      el.classList.remove('shop-share-toast--show');
+      setTimeout(function () {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, 300);
+    }, 2000);
+  }
+
+  function shareProduct(productUrl, name) {
+    var shareUrl = toAbsoluteUrl(productUrl);
+    if (!shareUrl) {
+      showShareFeedback('Không có link để chia sẻ');
+      return;
+    }
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      navigator.share({
+        url: shareUrl
+      }).then(function () {
+        showShareFeedback('Đã chia sẻ');
+      }).catch(function (err) {
+        if (err && err.name !== 'AbortError') {
+          copyToClipboard(shareUrl);
+          showShareFeedback('Đã copy link');
+        }
+      });
+    } else {
+      copyToClipboard(shareUrl);
+      showShareFeedback('Đã copy link');
+    }
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+      } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  }
+
   async function loadProducts() {
     var paths = [PRODUCTS_PATH, 'data/aff/products.json'];
     for (var i = 0; i < paths.length; i++) {
@@ -146,13 +211,30 @@
         descEl.textContent = desc;
         body.appendChild(descEl);
       }
-      var cta = document.createElement('span');
-      cta.className = 'shop-card-cta';
-      cta.textContent = buyText;
-      body.appendChild(cta);
       link.appendChild(body);
-
       card.appendChild(link);
+
+      var actions = document.createElement('div');
+      actions.className = 'shop-card-actions';
+      var ctaLink = document.createElement('a');
+      ctaLink.href = url;
+      ctaLink.target = '_blank';
+      ctaLink.rel = 'noopener noreferrer';
+      ctaLink.className = 'shop-card-cta';
+      ctaLink.textContent = buyText;
+      actions.appendChild(ctaLink);
+      var shareBtn = document.createElement('button');
+      shareBtn.type = 'button';
+      shareBtn.className = 'shop-card-share';
+      shareBtn.setAttribute('aria-label', 'Chia sẻ sản phẩm');
+      shareBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+      shareBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        shareProduct(url, name);
+      });
+      actions.appendChild(shareBtn);
+      card.appendChild(actions);
       grid.appendChild(card);
     });
   }

@@ -149,16 +149,19 @@ nav a {
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--color-text-header);
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 0.95rem;
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     backdrop-filter: blur(10px);
+    white-space: nowrap;
+    min-height: 0;
+    line-height: 1.5;
 }
 
 .see-more-btn:hover {
@@ -260,6 +263,20 @@ nav a.active {
 nav a.active .nav-icon {
     color: #FFD700;
     transform: scale(1.1);
+}
+
+/* Highlight nhẹ cho nút Cửa hàng khi active */
+nav a[data-page="cua-hang"].active {
+    animation: nav-cua-hang-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes nav-cua-hang-pulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    }
 }
 
 /* Main Content */

@@ -1,3 +1,4 @@
+
 {
    "data":{
       "agency":{
@@ -34,6 +35,49 @@
          }
       ],
       "products":[
+{
+  "id": "827191",
+  "shopId": "54952213353",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhkbrrck385h54.webp",
+  "images": [],
+  "name": "Ốp Lưng iPhone Camera Viền Cao Lucky Girl Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max",
+  "description": "Đã bán 10k+",
+  "type": "shopee",
+  "category": "decor",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/3B1aVPE3gD"
+},
+         {
+            "id":"501133",
+            "shopId":"54851766731",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mha0mw3r3oy434@resize_w900_nl.webp",
+            "images":[
+               
+            ],
+            "name":"Ốp lưng Tết 2026 vàng may mắn - ốp lưng trong nhũ vàng không ố lưng – Full iPhone 11–17 Pro Max (Có dây / Không dây)",
+            "description":"Đã bán: 643",
+            "type":"shopee",
+            "category":"bachhoa",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/6KycGrOYtg"
+         },
+         {
+            "id":"198949",
+            "shopId":"43205476877",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mbam754pxa6w2e",
+            "images":[
+               
+            ],
+            "name":"Bình Cắm Hoa Dáng Đu Đủ Gốm Sứ Bát Tràng Men Lì Vân Ganh Nổi Trang Trí Phòng Khách Cực Sang Và Đẹp | Shopee Việt Nam",
+            "description":"Mua Bình Cắm Hoa Dáng Đu Đủ Gốm Sứ Bát Tràng Men Lì Vân Ganh Nổi Trang Trí Phòng Khách Cực Sang Và Đẹp giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/9AIndLEHlY"
+         },
          {
             "id":"644740",
             "shopId":"22714104918",
