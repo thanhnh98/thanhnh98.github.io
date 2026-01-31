@@ -55,16 +55,13 @@
 
   function shareProduct(productUrl, name) {
     var shareUrl = toAbsoluteUrl(productUrl);
-    var title = name || 'Sản phẩm';
     if (!shareUrl) {
       showShareFeedback('Không có link để chia sẻ');
       return;
     }
     if (typeof navigator !== 'undefined' && navigator.share) {
       navigator.share({
-        title: title,
-        url: shareUrl,
-        text: title
+        url: shareUrl
       }).then(function () {
         showShareFeedback('Đã chia sẻ');
       }).catch(function (err) {
