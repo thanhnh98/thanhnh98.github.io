@@ -1,0 +1,207 @@
+{
+  "id": "nem-ran",
+  "name": "Nem Rán",
+  "description": "Món ăn truyền thống không thể thiếu trong mâm cỗ ngày Tết của người Việt, với vỏ bánh tráng giòn rụm và nhân thịt thơm ngon.",
+  "image": "https://i.pinimg.com/736x/c0/7f/d7/c07fd7b67d602590cf8499b3190786eb.jpg",
+  "category": "Khai vị",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "1 giờ 30 phút",
+  "difficulty": "Trung bình",
+  "servings": "4-6 người",
+  "calories": "180 kcal/cuốn",
+  "origin": "Xuất phát từ miền Nam với tên gọi 'chả giò', sau đó lan rộng ra cả nước. Theo nhiều tài liệu, món này có nguồn gốc từ Trung Hoa thuộc nhóm dimsum, nhưng đã được Việt hóa hoàn toàn về nguyên liệu và cách chế biến.",
+  "symbolism": "Tượng trưng cho sự sum vầy, đoàn tụ trong gia đình. Hình dáng cuộn tròn biểu thị sự trọn vẹn, may mắn. Là món ăn mang lại niềm vui, không khí lễ hội trong các dịp quan trọng.",
+  "ingredients": [
+    {
+      "name": "Thịt heo xay",
+      "amount": "500g",
+      "note": "Chọn thịt nạc vai có lẫn chút mỡ"
+    },
+    {
+      "name": "Miến rong",
+      "amount": "80g",
+      "note": "Ngâm nước cho nở, cắt khúc 2-3cm"
+    },
+    {
+      "name": "Mộc nhĩ",
+      "amount": "40g",
+      "note": "Ngâm nước nóng cho nở, băm nhỏ"
+    },
+    {
+      "name": "Nấm hương",
+      "amount": "40g",
+      "note": "Ngâm nước, băm nhỏ"
+    },
+    {
+      "name": "Cà rốt",
+      "amount": "1 củ to",
+      "note": "Gọt vỏ, bào sợi, cắt nhỏ"
+    },
+    {
+      "name": "Su hào/Củ sắn",
+      "amount": "200g",
+      "note": "Thái hạt lựu nhỏ"
+    },
+    {
+      "name": "Hành tây",
+      "amount": "1 củ",
+      "note": "Thái hạt lựu, băm nhỏ"
+    },
+    {
+      "name": "Trứng gà",
+      "amount": "3 quả",
+      "note": "Đánh tan để trộn nhân"
+    },
+    {
+      "name": "Giá đỗ",
+      "amount": "100g",
+      "note": "Rửa sạch, để ráo, bóp nhẹ"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "3 củ",
+      "note": "Bóc vỏ, băm nhuyễn"
+    },
+    {
+      "name": "Tỏi",
+      "amount": "3 tép",
+      "note": "Bóc vỏ, băm nhuyễn"
+    },
+    {
+      "name": "Hành lá",
+      "amount": "3 cây",
+      "note": "Rửa sạch, thái nhỏ"
+    },
+    {
+      "name": "Bánh đa nem",
+      "amount": "30 tờ",
+      "note": "Bánh tráng mỏng để cuốn"
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "2 muỗng canh",
+      "note": "Nước mắm ngon"
+    },
+    {
+      "name": "Hạt nêm",
+      "amount": "1 muỗng canh",
+      "note": "Tăng vị umami"
+    },
+    {
+      "name": "Tiêu xay",
+      "amount": "1 muỗng cà phê",
+      "note": "Tạo hương thơm"
+    },
+    {
+      "name": "Dầu ăn",
+      "amount": "500ml",
+      "note": "Để chiên ngập nem"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế nguyên liệu",
+      "description": "Miến rong ngâm nước ấm 15 phút, vớt ra để ráo, cắt khúc 2-3cm. Mộc nhĩ và nấm hương ngâm nước nóng cho nở, rửa sạch, băm nhỏ. Cà rốt gọt vỏ, bào sợi, cắt nhỏ. Su hào/củ sắn thái hạt lựu. Hành tây, hành tím, tỏi băm nhuyễn. Hành lá thái nhỏ. Giá đỗ rửa sạch, để ráo."
+    },
+    {
+      "step": 2,
+      "title": "Trộn nhân nem",
+      "description": "Cho thịt xay vào tô lớn, thêm tất cả nguyên liệu đã sơ chế. Đập 3 quả trứng vào, nêm 2 muỗng canh nước mắm, 1 muỗng canh hạt nêm, 1 muỗng cà phê tiêu xay. Trộn đều tất cả nguyên liệu, để ướp 15 phút cho thấm gia vị."
+    },
+    {
+      "step": 3,
+      "title": "Gói nem",
+      "description": "Trải bánh đa nem ra mặt phẳng, cho 1 muỗng canh nhân vào giữa, dàn đều. Gấp 2 mép bánh lại, cuộn chặt từ dưới lên trên. Gói đều tay, các cuốn phải có kích thước tương đương nhau."
+    },
+    {
+      "step": 4,
+      "title": "Chiên nem",
+      "description": "Đun nóng dầu ăn trong chảo sâu, dầu phải ngập nem. Khi dầu sôi già (thử bằng đũa thấy sủi tăm), hạ lửa vừa, từ từ thả nem vào. Chiên đều các mặt cho đến khi nem vàng giòn, vớt ra để ráo dầu."
+    }
+  ],
+  "tips": [
+    "Tất cả nguyên liệu phải để thật ráo nước để nem giòn lâu",
+    "Nhân nem phải khô, để nghỉ 15 phút trước khi gói",
+    "Có thể cuốn 2 lớp bánh tráng để nem giòn rụm hơn",
+    "Phết chút nước đường hoặc giấm lên bánh trước khi gói",
+    "Để nem trong tủ lạnh 15-20 phút trước khi chiên",
+    "Thêm vài giọt nước cốt chanh vào dầu chiên",
+    "Dầu phải sôi già mới thả nem để tránh ngấm dầu",
+    "Lật nem liên tục để chín vàng đều",
+    "Có thể bảo quản nem gói sẵn trong tủ đông 2 tuần"
+  ],
+  "nutrition_facts": {
+    "calories": 180,
+    "protein": "8g",
+    "fat": "12g",
+    "carbohydrates": "10g",
+    "fiber": "1g",
+    "sodium": "400mg",
+    "cholesterol": "45mg"
+  },
+  "cultural_notes": [
+    "Món ăn không thể thiếu trong mâm cỗ ngày Tết và các dịp lễ quan trọng",
+    "Mỗi vùng miền có tên gọi khác nhau: nem rán (Bắc), chả ram (Trung), chả giò (Nam)",
+    "Biểu tượng của sự sum vầy, đoàn tụ gia đình",
+    "Thể hiện sự khéo léo, tỉ mỉ của người nội trợ",
+    "Món ăn mang lại không khí vui tươi, lễ hội",
+    "Truyền thống gói nem cùng nhau trong gia đình tạo sự gắn kết"
+  ],
+  "variations": [
+    {
+      "name": "Nem rán hải sản",
+      "description": "Thay thịt heo bằng tôm, cua, mực tạo hương vị biển"
+    },
+    {
+      "name": "Nem rán chay",
+      "description": "Sử dụng đậu hũ, nấm, rau củ cho người ăn chay"
+    },
+    {
+      "name": "Nem vuông Hải Phòng",
+      "description": "Gói thành hình vuông, có thêm cua bể"
+    },
+    {
+      "name": "Nem rán chiên xù",
+      "description": "Tẩm bột chiên xù bên ngoài, ăn kèm bún đậu"
+    },
+    {
+      "name": "Nem rán phô mai",
+      "description": "Thêm phô mai vào nhân tạo vị béo ngậy hiện đại"
+    }
+  ],
+  "serving_suggestions": [
+    "Ăn kèm với nước mắm pha chua ngọt",
+    "Rau sống: xà lách, húng quế, húng cây, diếp cá",
+    "Đồ chua: dưa leo, cà rốt, củ cải",
+    "Bún tươi tạo thành món bún nem",
+    "Rau rừng miền Nam: đọt cóc, rau sao nhái, rau quế vị",
+    "Bánh tráng nướng (ở một số vùng)"
+  ],
+  "storage": {
+    "fresh": "Ăn ngay sau khi chiên để giòn nhất",
+    "refrigerator": "2-3 ngày trong tủ lạnh, hâm lại bằng lò nướng",
+    "freezer": "Nem gói sẵn có thể đông 2 tuần, chiên trực tiếp không cần rã đông",
+    "reheating_tips": "Hâm lại bằng lò nướng hoặc chảo không dầu để giữ độ giòn"
+  },
+  "regional_specialties": {
+    "Miền Bắc": "Gọi là nem rán, thường ăn kèm bún chả, có nem vuông Hải Phòng",
+    "Miền Trung": "Gọi là chả ram (Thanh Hóa gọi là chả), kích thước nhỏ hơn",
+    "Miền Nam": "Gọi là chả giò, kích thước lớn hơn, thường có tôm trong nhân",
+    "Sài Gòn": "Nơi xuất phát của món ăn với tên gọi chả giò",
+    "Hải Phòng": "Nổi tiếng với nem vuông có cua bể"
+  },
+  "dipping_sauce": {
+    "ingredients": [
+      "3 muỗng canh nước mắm",
+      "3 muỗng canh nước lọc",
+      "2 muỗng canh đường",
+      "2 muỗng canh giấm",
+      "2 tép tỏi băm",
+      "2 quả ớt băm",
+      "1 muỗng canh nước cốt chanh"
+    ],
+    "instructions": "Hòa tan đường với nước ấm, thêm nước mắm, giấm, nước cốt chanh. Khuấy đều, thêm tỏi ớt băm. Để 10 phút cho các vị hòa quyện."
+  }
+}

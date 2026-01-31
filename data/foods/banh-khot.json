@@ -1,0 +1,191 @@
+{
+  "id": "banh-khot",
+  "name": "Bánh Khọt",
+  "description": "Bánh khọt là món ăn vặt đặc trưng miền Nam, giòn tan hấp dẫn. Được làm từ bột gạo, nước cốt dừa, có nhân tôm tươi, nướng trong chảo đặc biệt tạo hình tròn nhỏ. Bánh có vỏ ngoài giòn, bên trong mềm và thơm vị dừa.",
+  "image": "https://i.pinimg.com/736x/dc/e8/50/dce850967a1ea0c4ad4949ed00e86e7a.jpg",
+  "category": "Món ăn vặt",
+  "regional_tags": ["Miền Nam"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "45 phút",
+  "prep_time": "30 phút",
+  "difficulty": "Trung bình",
+  "servings": "30-40 cái",
+  "calories": "45 calo/cái",
+  "origin": "Bánh khọt có nguồn gốc từ vùng đất Vũng Tàu - Bà Rịa, sau đó lan rộng khắp miền Nam Việt Nam. Món ăn này được tạo ra từ sự sáng tạo của người dân địa phương, sử dụng nguyên liệu sẵn có như gạo, dừa và tôm tươi.",
+  "symbolism": "Bánh khọt tượng trưng cho sự khéo léo, tỉ mỉ của người miền Nam trong chế biến món ăn. Hình dáng tròn nhỏ xinh xắn thể hiện sự tinh tế và là biểu tượng của văn hóa ẩm thực đường phố miền Nam.",
+  "ingredients": [
+    {
+      "name": "Bột gạo",
+      "amount": "300g",
+      "note": "Bột gạo tẻ mịn"
+    },
+    {
+      "name": "Bột năng",
+      "amount": "50g",
+      "note": "Bột năng để tạo độ giòn"
+    },
+    {
+      "name": "Nước cốt dừa",
+      "amount": "400ml",
+      "note": "Nước cốt dừa tươi"
+    },
+    {
+      "name": "Nước",
+      "amount": "300ml",
+      "note": "Nước lọc"
+    },
+    {
+      "name": "Tôm tươi",
+      "amount": "300g",
+      "note": "Tôm to, tươi ngon"
+    },
+    {
+      "name": "Thịt ba chỉ",
+      "amount": "200g",
+      "note": "Thịt ba chỉ thái nhỏ"
+    },
+    {
+      "name": "Hành lá",
+      "amount": "3 cây",
+      "note": "Hành lá thái nhỏ"
+    },
+    {
+      "name": "Nghệ tươi",
+      "amount": "1 củ nhỏ",
+      "note": "Nghệ tươi giã nát"
+    },
+    {
+      "name": "Muối",
+      "amount": "1 thìa cà phê",
+      "note": "Muối tinh"
+    },
+    {
+      "name": "Đường",
+      "amount": "1 thìa cà phê",
+      "note": "Đường cát trắng"
+    },
+    {
+      "name": "Dầu ăn",
+      "amount": "200ml",
+      "note": "Dầu ăn để chiên"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "3 củ",
+      "note": "Hành tím thái nhỏ"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Pha bột bánh khọt",
+      "description": "Trộn bột gạo, bột năng với nước cốt dừa và nước lọc. Thêm nghệ giã, muối, đường. Khuấy đều cho bột mịn, không vón cục. Để nghỉ 30 phút.",
+      "time": "35 phút",
+      "tips": "Bột phải được khuấy đều và để nghỉ để bột nở và mịn hơn"
+    },
+    {
+      "step": 2,
+      "title": "Sơ chế nhân",
+      "description": "Tôm bóc vỏ, rửa sạch, thái nhỏ. Thịt ba chỉ thái nhỏ. Phi thơm hành tím với chút dầu.",
+      "time": "15 phút",
+      "tips": "Tôm thái nhỏ sẽ dễ chín và phân bố đều trong bánh"
+    },
+    {
+      "step": 3,
+      "title": "Chuẩn bị chảo bánh khọt",
+      "description": "Làm nóng chảo bánh khọt (chảo có nhiều lỗ tròn nhỏ), cho dầu vào từng lỗ.",
+      "time": "5 phút",
+      "tips": "Chảo phải thật nóng và có đủ dầu để bánh giòn"
+    },
+    {
+      "step": 4,
+      "title": "Đổ bánh",
+      "description": "Đổ bột vào từng lỗ của chảo, cho tôm và thịt vào giữa mỗi cái bánh. Đậy nắp để bánh chín đều.",
+      "time": "8-10 phút",
+      "tips": "Đổ bột vừa đủ, không quá đầy để bánh không bị tràn"
+    },
+    {
+      "step": 5,
+      "title": "Nướng bánh",
+      "description": "Nướng bánh với lửa vừa cho đến khi đáy bánh vàng giòn, mặt trên chín tới. Rắc hành lá lên trên.",
+      "time": "10-12 phút",
+      "tips": "Lửa vừa để bánh chín đều, không bị cháy"
+    },
+    {
+      "step": 6,
+      "title": "Hoàn thành",
+      "description": "Dùng que tre lấy bánh ra đĩa. Ăn nóng kèm với rau sống và nước chấm.",
+      "time": "2 phút",
+      "tips": "Bánh khọt ngon nhất khi ăn nóng, vỏ ngoài giòn tan"
+    }
+  ],
+  "tips": [
+    "Bột phải được pha đúng độ đặc, không quá loãng hay quá sệt",
+    "Chảo bánh khọt phải thật nóng và có đủ dầu",
+    "Nướng với lửa vừa để bánh chín đều và giòn",
+    "Ăn ngay khi còn nóng để giữ độ giòn",
+    "Có thể thêm mực, cua hoặc các loại hải sản khác"
+  ],
+  "nutrition_facts": {
+    "calories": "45 calo/cái",
+    "protein": "3g",
+    "fat": "2g",
+    "carbohydrates": "5g",
+    "fiber": "0.5g",
+    "sodium": "80mg",
+    "benefits": [
+      "Cung cấp carbohydrate từ bột gạo",
+      "Protein từ tôm và thịt heo",
+      "Chất béo tốt từ nước cốt dừa",
+      "Vitamin A từ nghệ tươi",
+      "Dễ tiêu hóa, phù hợp làm món ăn vặt"
+    ]
+  },
+  "cultural_notes": [
+    "Bánh khọt thường xuất hiện trong các buổi họp mặt gia đình dịp Tết, tạo không khí vui vẻ, đoàn viên khi cả nhà cùng ngồi ăn.",
+    "Thường được làm vào buổi chiều hoặc tối, khi cả gia đình quây quần.",
+    "Ăn chung từ một chảo lớn, thể hiện tình đoàn kết gia đình.",
+    "Bánh khọt Vũng Tàu có nhân tôm to và nước chấm đặc biệt.",
+    "Miền Tây thường thêm thịt cua và rau thơm địa phương."
+  ],
+  "variations": [
+    {
+      "name": "Bánh khọt tôm",
+      "description": "Phiên bản truyền thống với nhân tôm tươi",
+      "region": "Vũng Tàu"
+    },
+    {
+      "name": "Bánh khọt cua",
+      "description": "Thêm thịt cua và trứng cua",
+      "region": "Miền Tây"
+    }
+  ],
+  "serving_suggestions": [
+    {
+      "name": "Rau sống",
+      "ingredients": "Xà lách, rau thơm, dưa chuột",
+      "description": "Rau sống tươi mát ăn kèm"
+    },
+    {
+      "name": "Nước mắm chấm",
+      "ingredients": "Nước mắm, chanh, đường, ớt, tỏi",
+      "description": "Nước chấm chua ngọt đặc trưng"
+    },
+    {
+      "name": "Bánh tráng nướng",
+      "ingredients": "Bánh tráng nướng giòn",
+      "description": "Ăn kèm để tăng độ giòn và thú vị"
+    }
+  ],
+  "storage": {
+    "refrigerator": "Bột pha sẵn có thể bảo quản 1 ngày trong tủ lạnh",
+    "freezer": "Không nên đông lạnh bánh khọt",
+    "room_temperature": "Bánh khọt nên ăn ngay, không để quá 2 giờ",
+    "reheating": "Có thể nướng lại trong lò nướng 2-3 phút để giòn trở lại"
+  },
+  "regional_specialties": {
+    "vung_tau": "Bánh khọt Vũng Tàu nổi tiếng với nhân tôm to và nước chấm đặc biệt",
+    "can_tho": "Miền Tây có bánh khọt cua với thịt cua tươi và rau thơm địa phương",
+    "saigon": "Sài Gòn có nhiều biến thể bánh khọt với các loại nhân đa dạng"
+  }
+}

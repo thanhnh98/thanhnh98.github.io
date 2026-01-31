@@ -1,0 +1,179 @@
+{
+  "id": "pho-bo",
+  "name": "Phở Bò",
+  "description": "Phở bò là món ăn đặc trưng của miền Bắc Việt Nam, với hương vị đậm đà khó quên. Tô phở với nước dùng trong vắt, thơm ngọt từ xương bò ninh lâu, bánh phở mềm dai và thịt bò tươi ngon đã trở thành biểu tượng ẩm thực Việt Nam trên thế giới.",
+  "image": "https://i.pinimg.com/736x/8c/e5/f8/8ce5f8f6be5bef52542fd1aa5a12aca3.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Bắc"],
+  "primary_region": "Miền Bắc",
+  "cooking_time": "4 tiếng",
+  "prep_time": "2 tiếng",
+  "difficulty": "Khó",
+  "servings": "4-6 người",
+  "calories": "350 calo/tô",
+  "origin": "Phở bò có nguồn gốc từ miền Bắc Việt Nam vào đầu thế kỷ 20, được cho là xuất hiện lần đầu tại Nam Định và Hà Nội. Món ăn này được tạo ra từ sự kết hợp giữa ẩm thực Việt Nam và Pháp trong thời kỳ thuộc địa.",
+  "symbolism": "Phở bò đại diện cho tinh hoa ẩm thực Việt Nam, thể hiện sự tinh tế trong cách chế biến và sự hài hòa của các hương vị. Đây là món ăn gắn liền với văn hóa đường phố Hà Nội và là niềm tự hào của người Việt trên toàn thế giới.",
+  "ingredients": [
+    {
+      "name": "Xương bò",
+      "amount": "2kg",
+      "note": "Xương ống, xương bả vai có tủy"
+    },
+    {
+      "name": "Thịt bò",
+      "amount": "500g",
+      "note": "Thịt nạm, gân bò"
+    },
+    {
+      "name": "Bánh phở",
+      "amount": "500g",
+      "note": "Bánh phở tươi hoặc khô"
+    },
+    {
+      "name": "Hành tây",
+      "amount": "2 củ",
+      "note": "Hành tây to, nướng thơm"
+    },
+    {
+      "name": "Gừng",
+      "amount": "100g",
+      "note": "Gừng già, nướng thơm"
+    },
+    {
+      "name": "Quế",
+      "amount": "2 thanh",
+      "note": "Quế Việt Nam"
+    },
+    {
+      "name": "Hoa hồi",
+      "amount": "3 cái",
+      "note": "Hoa hồi tám cánh"
+    },
+    {
+      "name": "Thảo quả",
+      "amount": "2 quả",
+      "note": "Thảo quả đập dập"
+    },
+    {
+      "name": "Đinh hương",
+      "amount": "5 cái",
+      "note": "Đinh hương khô"
+    },
+    {
+      "name": "Hạt mùi",
+      "amount": "1 thìa cà phê",
+      "note": "Hạt mùi rang thơm"
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "3 thìa canh",
+      "note": "Nước mắm ngon"
+    },
+    {
+      "name": "Đường phèn",
+      "amount": "2 thìa canh",
+      "note": "Đường phèn hoặc đường cát"
+    },
+    {
+      "name": "Muối",
+      "amount": "1 thìa cà phê",
+      "note": "Muối tinh"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế xương và thịt",
+      "description": "Rửa sạch xương bò, ngâm nước muối 30 phút. Chần qua nước sôi để loại bỏ tạp chất, rửa lại với nước lạnh.",
+      "time": "45 phút",
+      "tips": "Chần xương kỹ sẽ giúp nước dùng trong và không tanh"
+    },
+    {
+      "step": 2,
+      "title": "Nướng gia vị",
+      "description": "Nướng hành tây, gừng trên bếp gas cho thơm. Rang các loại gia vị khô (quế, hoa hồi, thảo quả, đinh hương, hạt mùi) cho thơm.",
+      "time": "15 phút",
+      "tips": "Nướng gia vị sẽ làm tăng hương thom và giảm vị hăng"
+    },
+    {
+      "step": 3,
+      "title": "Ninh nước dùng",
+      "description": "Cho xương vào nồi lớn, đổ nước ngập xương. Đun sôi rồi hạ lửa nhỏ, ninh 3-4 tiếng. Cho gia vị đã nướng vào ninh thêm 1 tiếng.",
+      "time": "4-5 tiếng",
+      "tips": "Ninh lửa nhỏ và lâu sẽ có nước dùng ngọt và trong"
+    },
+    {
+      "step": 4,
+      "title": "Luộc thịt bò",
+      "description": "Cho thịt bò vào nước dùng, luộc chín trong 45 phút. Vớt ra để nguội rồi thái lát mỏng.",
+      "time": "45 phút",
+      "tips": "Luộc thịt trong nước dùng sẽ làm tăng vị ngọt của nước"
+    },
+    {
+      "step": 5,
+      "title": "Chuẩn bị bánh phở",
+      "description": "Trụng bánh phở qua nước sôi cho mềm. Nếu dùng bánh khô thì ngâm nước ấm trước.",
+      "time": "5 phút",
+      "tips": "Bánh phở không nên trụng quá lâu để tránh bị nát"
+    },
+    {
+      "step": 6,
+      "title": "Hoàn thành",
+      "description": "Cho bánh phở vào tô, xếp thịt bò lên trên, chan nước dùng nóng. Ăn kèm với rau thơm, chanh, ớt.",
+      "time": "5 phút",
+      "tips": "Nước dùng phải thật nóng để làm chín thịt bò tái"
+    }
+  ],
+  "tips": [
+    "Ninh xương bò lâu với lửa nhỏ để có nước dùng ngọt và trong",
+    "Nướng gia vị trước khi cho vào nồi sẽ tăng hương thơm",
+    "Thái thịt bò mỏng và ngược thớ để thịt mềm",
+    "Nước dùng phải nóng hổi khi chan vào tô",
+    "Có thể thêm thịt bò tái để tăng độ ngon"
+  ],
+  "nutrition_facts": {
+    "calories": "350 calo/tô",
+    "protein": "25g",
+    "fat": "8g",
+    "carbohydrates": "45g",
+    "fiber": "2g",
+    "sodium": "1200mg",
+    "benefits": [
+      "Giàu protein từ thịt bò, tốt cho cơ bắp",
+      "Cung cấp carbohydrate từ bánh phở, bổ sung năng lượng",
+      "Chứa collagen từ xương bò, tốt cho da và khớp",
+      "Nhiều vitamin B từ thịt bò, tốt cho hệ thần kinh",
+      "Nước dùng ấm giúp tiêu hóa tốt"
+    ]
+  },
+  "cultural_notes": [
+    "Phở bò thường được thưởng thức vào sáng mùng 1 Tết, mang ý nghĩa khởi đầu năm mới với bữa ăn ấm áp và đầy đủ.",
+    "Nước dùng phở thường được ninh từ đêm 30 Tết để sáng mùng 1 có thể thưởng thức.",
+    "Phở bò được ăn nóng hổi, cả gia đình quây quần bên nhau.",
+    "Phở Hà Nội có nước dùng trong, ít gia vị, tập trung vào vị ngọt tự nhiên.",
+    "Phở Sài Gòn có nhiều rau thơm, gia vị phong phú hơn."
+  ],
+  "serving_suggestions": [
+    {
+      "name": "Rau thơm",
+      "ingredients": "Ngò gai, húng quế, giá đỗ",
+      "description": "Rau thơm tươi ăn kèm tăng hương vị"
+    },
+    {
+      "name": "Nước chấm",
+      "ingredients": "Tương ớt, hoisin sauce",
+      "description": "Chấm thêm để tăng vị cay và ngọt"
+    },
+    {
+      "name": "Chanh ớt",
+      "ingredients": "Chanh tươi, ớt sừng",
+      "description": "Vắt chanh và thêm ớt theo khẩu vị"
+    }
+  ],
+  "storage": {
+    "refrigerator": "Nước dùng có thể bảo quản 3-4 ngày trong tủ lạnh",
+    "freezer": "Nước dùng có thể đông lạnh 1 tháng",
+    "room_temperature": "Không nên để nước dùng ở nhiệt độ phòng quá 2 giờ",
+    "reheating": "Đun sôi lại nước dùng trước khi sử dụng"
+  }
+}

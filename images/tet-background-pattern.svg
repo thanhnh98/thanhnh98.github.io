@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#FF6B35;stop-opacity:0.05" />
+      <stop offset="100%" style="stop-color:#E60026;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <radialGradient id="flowerGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:0.1" />
+    </radialGradient>
+    
+    <!-- Traditional cloud pattern -->
+    <g id="cloud">
+      <path d="M20,30 Q10,20 20,10 Q30,5 40,10 Q50,20 40,30 Q30,35 20,30 Z" fill="url(#cloudGradient)" />
+    </g>
+    
+    <!-- Peach blossom pattern -->
+    <g id="peachBlossom">
+      <circle cx="0" cy="0" r="3" fill="url(#flowerGradient)" />
+      <circle cx="6" cy="2" r="2" fill="url(#flowerGradient)" />
+      <circle cx="-4" cy="5" r="2.5" fill="url(#flowerGradient)" />
+      <circle cx="2" cy="-6" r="2" fill="url(#flowerGradient)" />
+      <circle cx="-3" cy="-4" r="1.5" fill="url(#flowerGradient)" />
+    </g>
+    
+    <!-- Traditional wave pattern -->
+    <g id="wave">
+      <path d="M0,20 Q10,10 20,20 Q30,30 40,20 Q50,10 60,20" stroke="#FFD700" stroke-width="1" fill="none" opacity="0.2" />
+    </g>
+    
+    <!-- Firecracker -->
+    <g id="firecracker">
+      <rect x="0" y="0" width="8" height="24" rx="2" fill="#EF5350" opacity="0.4"/>
+      <rect x="2" y="-4" width="4" height="6" rx="1" fill="#FFEB3B" opacity="0.6"/>
+      <circle cx="4" cy="-4" r="1.5" fill="#FFC107" opacity="0.5"/>
+    </g>
+  </defs>
+  
+  <!-- Background base -->
+  <rect width="100%" height="100%" fill="url(#cloudGradient)" opacity="0.05" />
+  
+  <!-- Scattered clouds -->
+  <use href="#cloud" transform="translate(100,80) scale(1.2)" opacity="0.3" />
+  <use href="#cloud" transform="translate(300,150) scale(0.8)" opacity="0.2" />
+  <use href="#cloud" transform="translate(500,60) scale(1.5)" opacity="0.25" />
+  <use href="#cloud" transform="translate(700,200) scale(1.1)" opacity="0.3" />
+  <use href="#cloud" transform="translate(900,120) scale(0.9)" opacity="0.2" />
+  <use href="#cloud" transform="translate(1100,180) scale(1.3)" opacity="0.25" />
+  
+  <!-- Peach blossoms scattered -->
+  <use href="#peachBlossom" transform="translate(150,100) scale(1.5)" opacity="0.4" />
+  <use href="#peachBlossom" transform="translate(350,250) scale(1.2)" opacity="0.3" />
+  <use href="#peachBlossom" transform="translate(550,180) scale(1.8)" opacity="0.35" />
+  <use href="#peachBlossom" transform="translate(750,80) scale(1.1)" opacity="0.4" />
+  <use href="#peachBlossom" transform="translate(950,220) scale(1.4)" opacity="0.3" />
+  <use href="#peachBlossom" transform="translate(1050,140) scale(1.3)" opacity="0.35" />
+  
+  <!-- Traditional waves -->
+  <use href="#wave" transform="translate(0,300)" />
+  <use href="#wave" transform="translate(60,320)" />
+  <use href="#wave" transform="translate(120,340)" />
+  <use href="#wave" transform="translate(180,360)" />
+  <use href="#wave" transform="translate(240,380)" />
+  
+  <use href="#wave" transform="translate(0,500)" />
+  <use href="#wave" transform="translate(60,520)" />
+  <use href="#wave" transform="translate(120,540)" />
+  <use href="#wave" transform="translate(180,560)" />
+  <use href="#wave" transform="translate(240,580)" />
+  
+  <!-- Firecrackers -->
+  <use href="#firecracker" transform="translate(200,300) scale(1.2)" opacity="0.3" />
+  <use href="#firecracker" transform="translate(600,400) scale(0.8)" opacity="0.4" />
+  <use href="#firecracker" transform="translate(1000,250) scale(1.1)" opacity="0.35" />
+</svg>

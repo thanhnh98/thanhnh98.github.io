@@ -1,0 +1,207 @@
+{
+  "id": "canh-kho-qua-nhoi-thit",
+  "name": "Canh Khổ Qua Nhồi Thịt",
+  "description": "Canh khổ qua nhồi thịt là món ăn truyền thống của người Việt, đặc biệt phổ biến ở miền Nam. Theo quan niệm dân gian, ăn món này vào dịp Tết sẽ xua đi mọi khó khăn của năm cũ, đón chào năm mới may mắn và thuận lợi.",
+  "image": "https://i.pinimg.com/736x/7b/32/88/7b328815766f3babb9a3ef2d3a0c8c85.jpg",
+  "category": "Canh",
+  "regional_tags": ["Miền Nam", "Miền Trung"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "60 phút",
+  "difficulty": "Trung bình",
+  "servings": "4-5 người",
+  "calories": "120 kcal/100g",
+  "origin": "Canh khổ qua nhồi thịt có nguồn gốc từ miền Nam Việt Nam, là món ăn truyền thống thường xuất hiện trong mâm cơm ngày Tết và các dịp lễ quan trọng.",
+  "symbolism": "Theo quan niệm của người miền Nam, khi ăn canh khổ qua vào năm mới thì mọi cái 'khổ' của năm cũ sẽ 'qua' đi, mang lại may mắn và thuận lợi cho năm mới.",
+  "ingredients": [
+    {
+      "name": "Khổ qua",
+      "amount": "3 trái (khoảng 700g)",
+      "note": "Chọn trái xanh nhạt, gai nở to, không quá non hoặc quá già"
+    },
+    {
+      "name": "Thịt heo xay",
+      "amount": "300g",
+      "note": "Thịt nạc vai hoặc ba rọi"
+    },
+    {
+      "name": "Cá thác lác",
+      "amount": "200g",
+      "note": "Làm tăng độ ngọt cho nước dùng"
+    },
+    {
+      "name": "Xương heo",
+      "amount": "1kg",
+      "note": "Để nấu nước dùng"
+    },
+    {
+      "name": "Mộc nhĩ (nấm mèo)",
+      "amount": "50g",
+      "note": "Ngâm nở và băm nhuyễn"
+    },
+    {
+      "name": "Hành lá",
+      "amount": "50g",
+      "note": "Phần củ băm nhuyễn, phần lá để buộc khổ qua"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "2 củ",
+      "note": "Băm nhuyễn"
+    },
+    {
+      "name": "Tỏi",
+      "amount": "2 tép",
+      "note": "Băm nhuyễn"
+    },
+    {
+      "name": "Ngò rí",
+      "amount": "1 ít",
+      "note": "Để trang trí"
+    },
+    {
+      "name": "Trứng vịt",
+      "amount": "1 quả",
+      "note": "Làm nhân thịt dẻo hơn"
+    }
+  ],
+  "seasonings": [
+    {
+      "name": "Nước mắm",
+      "amount": "3 thìa canh"
+    },
+    {
+      "name": "Hạt nêm",
+      "amount": "2 thìa cà phê"
+    },
+    {
+      "name": "Muối",
+      "amount": "2 thìa cà phê"
+    },
+    {
+      "name": "Đường phèn",
+      "amount": "20g"
+    },
+    {
+      "name": "Tiêu xay",
+      "amount": "1 thìa cà phê"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế khổ qua",
+      "description": "Rửa sạch khổ qua, rạch một đường dọc theo chiều dài, móc bỏ hết ruột. Trụng sơ qua nước sôi có muối và đường, sau đó thả ngay vào nước đá để giữ màu xanh và giảm vị đắng."
+    },
+    {
+      "step": 2,
+      "title": "Nấu nước dùng",
+      "description": "Xương heo rửa sạch, trụng qua nước sôi. Cho vào nồi với 3 lít nước, 20g đường phèn, 15g muối, hành tím. Đun sôi rồi hạ lửa nhỏ, hầm 60 phút. Lọc bỏ cặn, lấy nước dùng trong."
+    },
+    {
+      "step": 3,
+      "title": "Chuẩn bị nhân thịt",
+      "description": "Trộn đều thịt xay với cá thác lác, mộc nhĩ băm nhuyễn, hành tím, tỏi băm, trứng vịt, nước mắm, hạt nêm, tiêu. Nhồi đều tay trong 2-3 phút cho nhân dẻo dai."
+    },
+    {
+      "step": 4,
+      "title": "Nhồi thịt vào khổ qua",
+      "description": "Nhồi hỗn hợp thịt vào khổ qua vừa đủ, không quá chặt. Dùng lá hành đã trụng buộc ngang khổ qua để giữ nhân thịt không rơi ra."
+    },
+    {
+      "step": 5,
+      "title": "Nấu canh",
+      "description": "Đun sôi nước dùng, nêm nếm vừa miệng. Cho khổ qua nhồi thịt vào, nấu 20-25 phút với lửa vừa. Kiểm tra độ chín bằng cách dùng đũa đâm qua."
+    },
+    {
+      "step": 6,
+      "title": "Hoàn thiện",
+      "description": "Nêm nếm lại gia vị, rắc ngò rí và tiêu lên trên. Tắt bếp, để canh nguội bớt trước khi thưởng thức để giảm vị đắng."
+    }
+  ],
+  "tips": [
+    "Chọn khổ qua màu xanh nhạt sẽ ít đắng hơn những trái sậm màu",
+    "Cạo thật sạch phần ruột trắng vì đây là phần gây đắng nhất",
+    "Trụng sơ khổ qua trước khi nhồi để giảm vị đắng và giữ màu xanh",
+    "Không cho khổ qua vào khi nước chưa sôi để tránh mất màu",
+    "Không dùng đường để nêm canh vì sẽ làm tăng vị đắng",
+    "Để canh nguội bớt trước khi ăn sẽ giảm đáng kể vị đắng"
+  ],
+  "nutrition_facts": {
+    "calories": "120 kcal/100g",
+    "carbohydrates": "8g",
+    "protein": "12g",
+    "fat": "5g",
+    "fiber": "3g",
+    "vitamin_c": "Cao",
+    "folate": "Trung bình",
+    "potassium": "Cao"
+  },
+  "cultural_notes": [
+    "Món ăn mang ý nghĩa tâm linh sâu sắc trong văn hóa miền Nam",
+    "Thường xuất hiện trong mâm cơm ngày Tết Nguyên Đán",
+    "Được coi là món ăn xua đuổi vận xui, đón may mắn",
+    "Phổ biến trong các bữa cơm gia đình miền Nam",
+    "Thể hiện sự khéo léo và tỉ mỉ của người nấu"
+  ],
+  "variations": [
+    {
+      "name": "Khổ qua nhồi thịt hấp",
+      "description": "Hấp thay vì nấu canh, giữ được nhiều dinh dưỡng hơn"
+    },
+    {
+      "name": "Khổ qua nhồi tôm thịt",
+      "description": "Thêm tôm tươi vào nhân để tăng độ ngọt và dinh dưỡng"
+    },
+    {
+      "name": "Khổ qua nhồi chay",
+      "description": "Dùng đậu hũ, nấm và rau củ thay thịt cho người ăn chay"
+    }
+  ],
+  "serving_suggestions": [
+    {
+      "name": "Cơm trắng",
+      "ingredients": "Cơm tẻ nóng",
+      "description": "Ăn nóng cùng cơm trắng để thưởng thức trọn vẹn hương vị"
+    },
+    {
+      "name": "Nước mắm pha ớt",
+      "ingredients": "Nước mắm, ớt, chanh, đường",
+      "description": "Chấm với nước mắm pha ớt để tăng vị cay nồng"
+    },
+    {
+      "name": "Rau sống",
+      "ingredients": "Rau thơm, bánh tráng",
+      "description": "Ăn kèm với rau sống và bánh tráng theo phong cách miền Nam"
+    },
+    {
+      "name": "Canh chua",
+      "ingredients": "Canh chua cá, canh chua tôm",
+      "description": "Kết hợp với canh chua để cân bằng vị trong bữa cơm"
+    }
+  ],
+  "storage": {
+    "room_temperature": "2-3 giờ ở nhiệt độ phòng, nên ăn ngay khi còn nóng",
+    "refrigerator": "1-2 ngày trong tủ lạnh ở nhiệt độ 4°C, bảo quản trong hộp kín",
+    "freezer": "Không nên đông lạnh vì khổ qua sẽ bị nát và mất độ giòn",
+    "reheating_tips": "Đun lại với lửa nhỏ trong 5-7 phút, không đun quá lâu để tránh khổ qua bị nát. Có thể thêm chút nước dùng nếu cần.",
+    "best_served": "Nên ăn ngay sau khi nấu để thưởng thức hương vị tốt nhất"
+  },
+  "regional_specialties": {
+    "Miền Nam": "Phiên bản gốc với nước dùng ngọt thanh, thường có cá thác lác",
+    "Miền Trung": "Có thể thêm tôm khô để tăng vị umami cho nước dùng"
+  },
+  "health_benefits": [
+    "Khổ qua giúp hạ đường huyết, tốt cho người tiểu đường",
+    "Chứa nhiều chất xơ, hỗ trợ tiêu hóa",
+    "Giàu vitamin C, tăng cường hệ miễn dịch",
+    "Có tác dụng giải nhiệt, thanh lọc cơ thể",
+    "Hỗ trợ giảm cholesterol xấu",
+    "Chứa các hợp chất chống oxy hóa"
+  ],
+  "cooking_notes": [
+    "Thời gian nấu tùy thuộc vào độ dày của khổ qua",
+    "Nước dùng ngọt từ xương heo là yếu tố quan trọng tạo nên hương vị",
+    "Cần kiên nhẫn trong khâu nhồi thịt để đảm bảo đẹp mắt",
+    "Lửa nấu không quá to để tránh khổ qua bị nát"
+  ]
+}

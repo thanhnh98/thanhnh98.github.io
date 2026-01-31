@@ -1,0 +1,48 @@
+{
+  "name": "saptet-blog-crawler",
+  "version": "1.0.0",
+  "description": "Script crawl dữ liệu blog Tết từ VNExpress và cập nhật vào website",
+  "main": "crawl-tet-articles.js",
+  "scripts": {
+    "crawl": "node crawl-tet-articles.js",
+    "crawl:dev": "node --inspect crawl-tet-articles.js",
+    "install-deps": "npm install",
+    "test": "node -e \"console.log('Test script - crawling functionality')\"",
+    "update-version": "node scripts/update-version.js",
+    "predeploy": "npm run update-version",
+    "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
+  },
+  "keywords": [
+    "tet",
+    "blog",
+    "crawler",
+    "vnexpress",
+    "vietnamese",
+    "lunar-new-year"
+  ],
+  "author": "Sắp Tết Team",
+  "license": "MIT",
+  "dependencies": {
+    "@dqcai/vn-lunar": "^1.0.1",
+    "@kabeep/lunar-date-fns": "^1.1.0",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "chinese-lunar-calendar": "^1.0.1",
+    "lunar-calendar": "^0.1.4",
+    "lunar-javascript": "^1.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanhnh98/thanhnh98.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thanhnh98/thanhnh98.github.io/issues"
+  },
+  "homepage": "https://saptet.vn"
+}

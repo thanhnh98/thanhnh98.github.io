@@ -1,0 +1,173 @@
+{
+  "id": "mut-tet",
+  "name": "Mứt Tết",
+  "description": "Mứt Tết là một trong những món ăn truyền thống không thể thiếu trong dịp Tết Nguyên đán của người Việt. Với đủ loại, đủ vị, đủ màu sắc khác nhau, mứt Tết thể hiện sự may mắn, hạnh phúc, ngọt ngào và chào đón năm mới.",
+  "image": "https://i.pinimg.com/736x/28/80/a0/2880a0553e2a5308ef6163f82db96445.jpg",
+  "category": "Bánh kẹo",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Miền Bắc",
+  "cooking_time": "2-4 giờ (tùy loại)",
+  "difficulty": "Trung bình",
+  "servings": "Cả gia đình",
+  "calories": "Khác nhau theo loại mứt",
+  "origin": "Mứt Tết có nguồn gốc từ truyền thống lâu đời của người Việt, được truyền từ đời này sang đời khác như một nét văn hóa ẩm thực đặc trưng trong dịp Tết cổ truyền.",
+  "symbolism": "Mứt Tết tượng trưng cho sự ngọt ngào, may mắn và hạnh phúc trong năm mới. Mỗi loại mứt mang một ý nghĩa riêng biệt, thể hiện mong muốn về tài lộc, sức khỏe, sum vầy và thịnh vượng.",
+  "popular_types": [
+    {
+      "name": "Mứt dừa",
+      "meaning": "Gia đình quây quần, sum vầy, hạnh phúc",
+      "description": "Loại mứt phổ biến nhất, có vị thơm ngọt, đa dạng màu sắc",
+      "region": "Phổ biến cả 3 miền, đặc biệt ở miền Nam"
+    },
+    {
+      "name": "Mứt hạt sen",
+      "meaning": "Năm mới sum họp, con cháu đầy nhà",
+      "description": "Vị thanh mát, bùi bùi, biểu tượng của sự thanh tao",
+      "region": "Phổ biến cả 3 miền"
+    },
+    {
+      "name": "Mứt quất/tắc",
+      "meaning": "Mang lại sự an khang, thịnh vượng, vận may",
+      "description": "Màu vàng óng ánh, vị chua ngọt đặc trưng",
+      "region": "Đặc biệt phổ biến ở miền Bắc"
+    },
+    {
+      "name": "Mứt cà chua",
+      "meaning": "May mắn, phú quý, tài lộc",
+      "description": "Màu đỏ tươi bắt mắt, vị chua ngọt độc đáo",
+      "region": "Phổ biến cả 3 miền"
+    },
+    {
+      "name": "Mứt gừng",
+      "meaning": "Cuộc sống đầm ấm, hạnh phúc",
+      "description": "Vị cay nồng nhẹ nhàng, tốt cho sức khỏe",
+      "region": "Phổ biến cả 3 miền"
+    },
+    {
+      "name": "Mứt đậu phộng/lạc",
+      "meaning": "Biểu tượng của sự trường thọ",
+      "description": "Màu trắng ngần, vị bùi béo giòn tan",
+      "region": "Phổ biến cả 3 miền"
+    },
+    {
+      "name": "Mứt bí",
+      "meaning": "Cầu mong sức khỏe tốt, sự phát triển",
+      "description": "Màu trắng trong, vị ngọt thanh giòn dai",
+      "region": "Phổ biến cả 3 miền"
+    }
+  ],
+  "regional_specialties": {
+    "mien_bac": {
+      "popular_types": ["Sấu bao tử", "Ô mai mận", "Mứt gừng", "Mứt dừa", "Mứt hạt sen", "Mứt khoai môn", "Mứt gấc", "Mứt mận", "Mứt táo"],
+      "characteristics": "Thiên về hương vị nồng ấm phù hợp với thời tiết se lạnh"
+    },
+    "mien_trung": {
+      "popular_types": ["Ô mai mơ", "Ô mai cam thảo", "Mứt dừa", "Mứt gừng", "Mứt mận", "Mứt bí", "Mứt cà pháo", "Mứt sen", "Mứt dừa xiêm", "Bánh Thuẫn"],
+      "characteristics": "Đa dạng và phong phú, có những biến tấu độc đáo"
+    },
+    "mien_nam": {
+      "popular_types": ["Mứt dừa", "Mứt bưởi", "Mứt gừng muối", "Ô mai mơ", "Mứt cà chua", "Mứt cà rốt", "Mứt hạt sen"],
+      "characteristics": "Nổi bật với mứt dừa do nguồn nguyên liệu phong phú"
+    }
+  },
+  "nutrition_facts": {
+    "calories": "250-350 kcal/100g (tùy loại mứt)",
+    "carbohydrates": "60-80g",
+    "sugar": "55-75g",
+    "fiber": "2-5g",
+    "benefits": [
+      "Cung cấp năng lượng nhanh từ đường tự nhiên",
+      "Vitamin C từ trái cây tươi",
+      "Chất chống oxy hóa từ các loại quả",
+      "Khoáng chất từ nguyên liệu tự nhiên"
+    ]
+  },
+  "cultural_notes": [
+    "Mứt Tết là cầu nối gắn kết gia đình trong những ngày đầu năm",
+    "Thể hiện nét đẹp văn hóa ẩm thực truyền thống Việt Nam",
+    "Mỗi loại mứt mang ý nghĩa phong thủy và tâm linh riêng",
+    "Là món quà ý nghĩa để tặng người thân, bạn bè",
+    "Khay mứt Tết thể hiện sự cầu kỳ và tâm huyết của gia chủ",
+    "Khay mứt Tết thường có số lượng lẻ (5, 7, 9 loại) theo quan niệm phong thủy",
+    "Màu sắc mứt được chọn lựa kỹ càng: đỏ (may mắn), vàng (tài lộc), trắng (thanh khiết)"
+  ],
+  "preparation_tips": {
+    "general_principles": [
+      "Chọn nguyên liệu tươi ngon, chất lượng cao",
+      "Sơ chế kỹ càng để loại bỏ độc tố và tạo độ giòn",
+      "Kiểm soát nhiệt độ và thời gian sên đường",
+      "Bảo quản trong hộp kín, nơi khô ráo"
+    ],
+    "common_ingredients": [
+      "Đường cát trắng hoặc đường phèn",
+      "Nước vôi trong (để tạo độ giòn)",
+      "Muối (để khử độc tố)",
+      "Phẩm màu thực phẩm (tùy chọn)",
+      "Hương liệu tự nhiên"
+    ]
+  },
+  "serving_traditions": [
+    "Bày mứt trong khay đẹp, sắp xếp theo màu sắc hài hòa",
+    "Thường ăn kèm với trà nóng trong những ngày đầu xuân",
+    "Dùng để đãi khách và trao đổi lời chúc tốt đẹp",
+    "Mỗi loại mứt có cách thưởng thức riêng phù hợp với độ tuổi"
+  ],
+  "health_benefits": {
+    "mut_gung": "Làm ấm người, kích thích tiêu hóa, giải độc, chống nôn mửa",
+    "mut_ca_chua": "Giàu vitamin A, lycopen chống ung thư, giải nhiệt",
+    "mut_hat_sen": "Chống mất ngủ, ngăn ngừa lão hóa, chữa thiếu máu",
+    "mut_bi": "Thanh nhiệt, lợi tiểu, giải khát, tiêu độc",
+    "mut_dua": "Cung cấp năng lượng, chất xơ và vitamin"
+  },
+  "storage_tips": [
+    "Bảo quản trong hộp kín, tránh ẩm mốc",
+    "Để nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp",
+    "Sử dụng thìa khô khi lấy mứt để tránh nhiễm khuẩn",
+    "Mứt tự làm nên tiêu thụ trong vòng 1-2 tháng",
+    "Kiểm tra định kỳ để phát hiện dấu hiệu hỏng"
+  ],
+  "modern_variations": [
+    "Mứt dừa nhiều màu sắc và hương vị (dâu, chanh dây, cà phê, đậu biếc)",
+    "Mứt trái cây nhập khẩu (kiwi, dâu tây, nho)",
+    "Mứt ít đường cho người tiểu đường",
+    "Mứt organic từ nguyên liệu hữu cơ",
+    "Mứt đóng gói hiện đại, tiện lợi"
+  ],
+  "variations": [
+    {
+      "name": "Mứt dừa nhiều màu",
+      "description": "Mứt dừa với các màu sắc và hương vị khác nhau như dâu, chanh dây, cà phê"
+    },
+    {
+      "name": "Mứt ít đường",
+      "description": "Phiên bản dành cho người tiểu đường với lượng đường giảm"
+    },
+    {
+      "name": "Mứt organic",
+      "description": "Làm từ nguyên liệu hữu cơ, không chất bảo quản"
+    }
+  ],
+  "serving_suggestions": [
+    {
+      "name": "Trà nóng",
+      "ingredients": "Trà xanh, trà ô long",
+      "description": "Ăn kèm với trà nóng trong những ngày đầu xuân"
+    },
+    {
+      "name": "Bánh quy",
+      "ingredients": "Bánh quy giòn",
+      "description": "Kết hợp với bánh quy để tăng độ giòn"
+    }
+  ],
+  "storage": {
+    "room_temperature": "1-2 tháng trong hộp kín",
+    "refrigerator": "3-4 tháng",
+    "notes": "Bảo quản nơi khô ráo, tránh ẩm mốc, dùng thìa khô khi lấy"
+  },
+  "regional_specialties": {
+    "hanoi": "Mứt gừng và mứt hạt sen truyền thống Hà Nội",
+    "hue": "Mứt me và mứt tắc đặc sản Huế",
+    "saigon": "Mứt dừa nhiều màu sắc và mứt cà chua",
+    "mekong_delta": "Mứt trái cây nhiệt đới phong phú từ miền Tây"
+  }
+}

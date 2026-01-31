@@ -1,0 +1,161 @@
+{
+  "id": "banh-chung",
+  "name": "Bánh Chưng",
+  "description": "Bánh chưng là món ăn truyền thống không thể thiếu trong ngày Tết của người Việt, được làm từ gạo nếp, đậu xanh, thịt heo và gói trong lá dong. Bánh có hình vuông tượng trưng cho đất, thể hiện lòng biết ơn với trời đất và tổ tiên.",
+  "image": "https://i.pinimg.com/736x/81/6c/f3/816cf349a2f78632e2f41c0b82588a72.jpg",
+  "category": "Bánh truyền thống",
+  "regional_tags": ["Miền Bắc", "Miền Trung", "Miền Nam"],
+  "primary_region": "Miền Bắc",
+  "cooking_time": "12-14 giờ",
+  "prep_time": "2 giờ",
+  "difficulty": "Khó",
+  "servings": "8-10 người",
+  "calories": "320 kcal/100g",
+  "origin": "Theo truyền thuyết, bánh chưng được tạo ra bởi Lang Liêu - hoàng tử thứ 18 của vua Hùng thứ 6 vào thời Hùng Vương (khoảng 1712-1632 TCN). Trong giấc mơ, thần nhân đã chỉ bảo Lang Liêu làm bánh hình vuông tượng trưng cho đất và bánh tròn tượng trưng cho trời để dâng lên vua cha. Bánh chưng là biểu tượng của nền văn minh lúa nước, thể hiện lòng hiếu thảo với tổ tiên và sự biết ơn với trời đất.",
+  "symbolism": "Hình vuông tượng trưng cho đất, thể hiện sự hài hòa giữa trời đất, âm dương, lòng biết ơn và hiếu thảo. Đây là món ăn thiêng liêng không thể thiếu trên bàn thờ tổ tiên ngày Tết.",
+  "ingredients": [
+    {
+      "name": "Gạo nếp",
+      "amount": "1 kg",
+      "note": "Chọn loại nếp dẻo, hạt đều, không sứt mẻ"
+    },
+    {
+      "name": "Đậu xanh đã tách vỏ",
+      "amount": "500g",
+      "note": "Đậu xanh vàng óng, hạt đều"
+    },
+    {
+      "name": "Thịt heo ba chỉ",
+      "amount": "400g",
+      "note": "Thịt có chút nạc chút mỡ, cắt miếng dày 1cm"
+    },
+    {
+      "name": "Lá dong",
+      "amount": "20-30 lá",
+      "note": "Lá xanh mướt, bản to và đều nhau"
+    },
+    {
+      "name": "Lạt dang (sợi tre)",
+      "amount": "Đủ dùng",
+      "note": "Ngâm nước để mềm dẻo trước khi dùng"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "3-4 củ",
+      "note": "Băm nhỏ"
+    },
+    {
+      "name": "Tiêu đen",
+      "amount": "1 thìa cà phê",
+      "note": "Xay nhuyễn"
+    },
+    {
+      "name": "Muối",
+      "amount": "2 thìa cà phê",
+      "note": ""
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "2 thìa canh",
+      "note": ""
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Chuẩn bị nguyên liệu",
+      "description": "Vo sạch gạo nếp, ngâm trong nước 12-14 tiếng. Đậu xanh ngâm 2 tiếng, sau đó hấp chín và giã nhuyễn thành nhân. Thịt heo cắt miếng vuông, ướp với hành tím, tiêu, muối, nước mắm trong 30 phút.",
+      "time": "14 tiếng"
+    },
+    {
+      "step": 2,
+      "title": "Chuẩn bị lá dong và lạt",
+      "description": "Rửa sạch lá dong, lau khô. Ngâm lạt dang trong nước ấm để mềm dẻo. Chuẩn bị khuôn gỗ hình vuông nếu có.",
+      "time": "30 phút"
+    },
+    {
+      "step": 3,
+      "title": "Gói bánh",
+      "description": "Trải 2-3 lớp lá dong, cho một lớp nếp, sau đó đậu xanh, thịt, lại đậu xanh và cuối cùng là nếp. Gói chặt thành hình vuông và buộc bằng lạt dang.",
+      "time": "2-3 tiếng"
+    },
+    {
+      "step": 4,
+      "title": "Luộc bánh",
+      "description": "Xếp bánh vào nồi lớn, đổ nước ngập bánh. Luộc liên tục 12-14 tiếng, thường xuyên thêm nước sôi để giữ mức nước.",
+      "time": "12-14 tiếng"
+    },
+    {
+      "step": 5,
+      "title": "Hoàn thành",
+      "description": "Vớt bánh ra, để ráo nước. Có thể ăn nóng hoặc để nguội. Bánh chưng có thể bảo quản 5-7 ngày ở nhiệt độ thường.",
+      "time": "30 phút"
+    }
+  ],
+  "tips": [
+    "Chọn gạo nếp dẻo, hạt đều để bánh ngon",
+    "Gói bánh phải chặt tay để bánh không bị tung khi luộc",
+    "Luộc bánh bằng lửa vừa, không để cạn nước",
+    "Có thể rán bánh chưng với chút dầu ăn để có vị thơm béo",
+    "Ăn kèm với dưa hành, chả lụa để giảm độ ngậy"
+  ],
+  "nutrition_facts": {
+    "calories": "320 kcal/100g",
+    "carbohydrates": "65g",
+    "protein": "8g",
+    "fat": "6g",
+    "fiber": "2g",
+    "benefits": [
+      "Cung cấp năng lượng dồi dào từ gạo nếp",
+      "Protein từ thịt heo và đậu xanh",
+      "Chất xơ từ đậu xanh giúp tiêu hóa",
+      "Vitamin B từ gạo nếp"
+    ]
+  },
+  "cultural_notes": [
+    "Bánh chưng là biểu tượng thiêng liêng của ngày Tết Việt Nam",
+    "Thường được cúng trên bàn thờ tổ tiên",
+    "Là món quà biếu Tết ý nghĩa",
+    "Việc gói bánh chưng là hoạt động gắn kết gia đình",
+    "Cũng được làm trong ngày Giỗ Tổ Hùng Vương (10/3 âm lịch)"
+  ],
+  "variations": [
+    {
+      "name": "Bánh chưng ngũ sắc",
+      "description": "Bánh chưng có 5 màu tượng trưng ngũ hành: trắng (kim), xanh (mộc), đen (thủy), đỏ (hỏa), vàng (thổ)"
+    },
+    {
+      "name": "Bánh chưng chay",
+      "description": "Thay thịt heo bằng nấm, đậu phụ hoặc các loại hạt"
+    }
+  ],
+  "serving_suggestions": [
+    {
+      "name": "Dưa hành",
+      "ingredients": "Hành muối, dưa chua",
+      "description": "Ăn kèm để giảm độ ngậy và tăng vị chua ngọt"
+    },
+    {
+      "name": "Chả lụa",
+      "ingredients": "Chả lụa, giò thủ",
+      "description": "Món mặn truyền thống ăn kèm bánh chưng"
+    },
+    {
+      "name": "Bánh chưng rán",
+      "ingredients": "Dầu ăn",
+      "description": "Rán bánh với chút dầu để có vỏ giòn"
+    }
+  ],
+  "storage": {
+    "roomTemperature": "5-7 ngày",
+    "refrigerator": "10-14 ngày",
+    "freezer": "1-2 tháng",
+    "notes": "Bảo quản trong túi nilon hoặc hộp kín. Có thể hâm nóng bằng lò vi sóng hoặc hấp lại."
+  },
+  "regional_specialties": {
+    "hanoi": "Bánh chưng Hà Nội truyền thống với lá dong tươi",
+    "northern_provinces": "Miền Bắc gói bánh chưng vuông vức, đậm đà",
+    "central_vietnam": "Miền Trung có bánh chưng nhỏ hơn, vị nhạt hơn",
+    "mekong_delta": "Miền Tây thường làm bánh chưng to, nhiều nhân"
+  }
+}

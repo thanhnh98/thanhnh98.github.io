@@ -1,0 +1,278 @@
+# Sắp Tết 2026 - Web Development Rules & Guidelines
+
+## 🎯 Project Overview
+**Sắp Tết 2026** is a comprehensive Vietnamese Lunar New Year countdown website with multiple features including countdown timer, lunar calendar, traditional games, food guides, and PWA capabilities.
+
+## 🏗️ Architecture & Structure
+
+### Core Components
+- **Main Application**: `index.html` - Single page application with dynamic sections
+- **JavaScript Modules**: Modular JS architecture in `js/` directory
+- **CSS Architecture**: Component-based CSS with variables and responsive design
+- **Assets Management**: Organized asset structure for images, fonts, sounds, and data
+- **PWA Support**: Service worker, web manifest, and offline capabilities
+
+### File Organization Rules
+```
+├── index.html              # Main entry point
+├── components/             # Reusable HTML components
+├── css/                   # Stylesheets organized by feature
+├── js/                    # JavaScript modules by functionality
+├── assets/                # Static assets (images, fonts, sounds)
+├── data/                  # JSON data files for content
+└── pages/                 # Additional HTML pages
+```
+
+## 🚀 Core Features & Functionality
+
+### 1. Countdown System
+- **Real-time Updates**: Update every second with accurate calculations
+- **Multi-year Support**: Handle Tết dates for 2025-2029 and beyond
+- **Timezone Handling**: Vietnam timezone (UTC+7) for accuracy
+- **Dynamic Year Detection**: Automatically detect next Tết year
+
+### 2. Lunar Calendar
+- **Interactive Calendar**: Month navigation with lunar date display
+- **Lunar Calculations**: Accurate Vietnamese lunar calendar support
+- **Date Selection**: Click to view detailed lunar information
+- **Zodiac Animals**: Display current year's zodiac animal
+
+### 3. Traditional Games
+- **Word Chain Game**: Nối chữ game with Tết vocabulary
+- **Tet Quiz**: Interactive quiz about Vietnamese New Year
+- **Game Carousel**: Expandable game selection interface
+- **Sound Integration**: Traditional Tết sound effects
+
+### 4. Cultural Content
+- **Traditional Foods**: Comprehensive guide to Tết dishes
+- **Customs & Traditions**: Detailed explanations of Tết practices
+- **Timeline Guide**: Step-by-step Tết preparation timeline
+- **Educational Resources**: Blog and learning materials
+
+### 5. PWA Features
+- **Service Worker**: Offline functionality and caching
+- **Web Manifest**: App-like installation experience
+- **Responsive Design**: Mobile-first approach with touch optimization
+- **Performance**: Fast loading and smooth animations
+
+## 💻 Development Standards
+
+### JavaScript Guidelines
+```javascript
+// Use ES6+ features consistently
+const tetDates = {
+    2025: new Date('2025-01-29T00:00:00+07:00'),
+    2026: new Date('2026-02-17T00:00:00+07:00')
+};
+
+// Modular function organization
+function updateCountdown() {
+    // Implementation
+}
+
+// Event handling with proper error handling
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        initializeApp();
+    } catch (error) {
+        console.error('Initialization failed:', error);
+    }
+});
+```
+
+### CSS Architecture
+```css
+/* Use CSS custom properties for theming */
+:root {
+    --color-primary: #d32f2f;
+    --color-secondary: #f57c00;
+    --color-accent: #388e3c;
+}
+
+/* Component-based CSS organization */
+.countdown-section { /* styles */ }
+.calendar-section { /* styles */ }
+.games-section { /* styles */ }
+
+/* Responsive design with mobile-first approach */
+@media (min-width: 768px) { /* tablet styles */ }
+@media (min-width: 1024px) { /* desktop styles */ }
+```
+
+### HTML Structure
+```html
+<!-- Semantic HTML5 elements -->
+<main>
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <h1>Main heading</h1>
+            <div class="content">
+                <!-- Content here -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Proper ARIA labels for accessibility -->
+<button aria-label="Previous month" id="prev-month">&lt;</button>
+```
+
+## 🔧 Long-term Development Priorities
+
+### Phase 1: Core Stability (Months 1-3)
+- **Performance Optimization**: Implement lazy loading for images and assets
+- **Error Handling**: Comprehensive error handling and user feedback
+- **Testing**: Cross-browser testing and mobile device validation
+- **Documentation**: Complete API documentation and code comments
+
+### Phase 2: Feature Enhancement (Months 4-6)
+- **Advanced Calendar**: Integration with external lunar calendar APIs
+- **User Accounts**: Basic user registration and preferences
+- **Content Management**: Admin panel for updating Tết content
+- **Analytics**: Enhanced user behavior tracking and insights
+
+### Phase 3: Scalability (Months 7-12)
+- **Backend Integration**: Node.js/Express backend for dynamic content
+- **Database**: MongoDB/PostgreSQL for user data and preferences
+- **API Development**: RESTful API for mobile app integration
+- **Caching Strategy**: Redis implementation for performance
+
+### Phase 4: Advanced Features (Year 2+)
+- **AI Integration**: Chatbot for Tết questions and guidance
+- **Social Features**: User-generated content and sharing
+- **Multi-language**: English and other language support
+- **Advanced Games**: More interactive and educational games
+
+## 📱 Mobile & PWA Development
+
+### PWA Requirements
+- **Service Worker**: Implement comprehensive caching strategy
+- **Offline Support**: Core functionality available offline
+- **Install Prompt**: Smooth app installation experience
+- **Background Sync**: Sync data when connection restored
+
+### Mobile Optimization
+- **Touch Interactions**: Optimize for touch devices
+- **Performance**: Sub-3 second loading times
+- **Responsive Images**: WebP format with fallbacks
+- **Gesture Support**: Swipe navigation and interactions
+
+## 🎨 Design & UX Standards
+
+### Visual Design
+- **Color Scheme**: Traditional Tết colors (red, gold, green)
+- **Typography**: Vietnamese-optimized font choices
+- **Icons**: Consistent icon system (emoji + custom icons)
+- **Animations**: Smooth, festive animations that don't interfere
+
+### User Experience
+- **Accessibility**: WCAG 2.1 AA compliance
+- **Loading States**: Clear feedback for all user actions
+- **Error Messages**: User-friendly error handling
+- **Navigation**: Intuitive navigation between sections
+
+## 🔒 Security & Performance
+
+### Security Measures
+- **Content Security Policy**: Implement CSP headers
+- **HTTPS Only**: Secure connections for all features
+- **Input Validation**: Sanitize all user inputs
+- **XSS Prevention**: Proper escaping and validation
+
+### Performance Standards
+- **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1
+- **Image Optimization**: WebP format with proper sizing
+- **Code Splitting**: Lazy load non-critical JavaScript
+- **Caching Strategy**: Effective browser and service worker caching
+
+## 📊 SEO & Analytics
+
+### SEO Requirements
+- **Meta Tags**: Comprehensive meta information
+- **Schema Markup**: Rich snippets for search engines
+- **Sitemap**: XML sitemap with proper structure
+- **Performance**: Fast loading for better rankings
+
+### Analytics Integration
+- **Google Analytics**: User behavior tracking
+- **Performance Monitoring**: Core Web Vitals tracking
+- **Error Tracking**: Sentry or similar error monitoring
+- **User Feedback**: In-app feedback collection
+
+## 🧪 Testing & Quality Assurance
+
+### Testing Strategy
+- **Unit Testing**: Jest for JavaScript functions
+- **Integration Testing**: End-to-end testing with Playwright
+- **Cross-browser Testing**: Support for Chrome, Firefox, Safari, Edge
+- **Mobile Testing**: iOS and Android device testing
+
+### Code Quality
+- **ESLint**: JavaScript code quality enforcement
+- **Prettier**: Consistent code formatting
+- **TypeScript**: Consider migration for better type safety
+- **Code Reviews**: Mandatory code review process
+
+## 📚 Documentation Requirements
+
+### Code Documentation
+- **JSDoc**: Comprehensive function documentation
+- **README Files**: Clear setup and usage instructions
+- **API Documentation**: OpenAPI/Swagger specifications
+- **Component Library**: Storybook for UI components
+
+### User Documentation
+- **Help System**: In-app help and tutorials
+- **FAQ Section**: Comprehensive question database
+- **Video Tutorials**: Screen recordings for complex features
+- **User Guides**: Step-by-step feature explanations
+
+## 🚀 Deployment & DevOps
+
+### Deployment Strategy
+- **GitHub Pages**: Primary hosting platform
+- **CDN Integration**: Cloudflare for global performance
+- **Automated Deployment**: GitHub Actions for CI/CD
+- **Environment Management**: Development, staging, production
+
+### Monitoring & Maintenance
+- **Uptime Monitoring**: 99.9% uptime target
+- **Performance Monitoring**: Regular performance audits
+- **Security Updates**: Regular dependency updates
+- **Backup Strategy**: Regular data backups
+
+## 🎯 Success Metrics
+
+### User Engagement
+- **Daily Active Users**: Target growth of 20% month-over-month
+- **Session Duration**: Average session > 3 minutes
+- **Feature Usage**: >70% of users interact with countdown
+- **Return Rate**: >40% of users return within 7 days
+
+### Technical Performance
+- **Page Load Speed**: <3 seconds on 3G connections
+- **Mobile Performance**: Lighthouse score >90
+- **Error Rate**: <0.1% error rate
+- **Uptime**: >99.9% availability
+
+## 🔄 Maintenance & Updates
+
+### Regular Updates
+- **Tết Date Updates**: Annual Tết date calculations
+- **Content Updates**: Seasonal content refresh
+- **Security Patches**: Monthly security updates
+- **Performance Optimization**: Quarterly performance reviews
+
+### Content Management
+- **Blog System**: Regular Tết-related content updates
+- **Event Calendar**: Annual event updates
+- **Game Content**: New games and quiz questions
+- **Cultural Information**: Updated traditions and customs
+
+---
+
+*This document should be reviewed and updated quarterly to reflect current development priorities and technical requirements.*
+description:
+globs:
+alwaysApply: false
+---

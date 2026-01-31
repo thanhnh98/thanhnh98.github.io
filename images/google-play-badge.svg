@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="135" height="40" viewBox="0 0 135 40">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00c2ff"/>
+      <stop offset="1" stop-color="#0085ff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00e064"/>
+      <stop offset="1" stop-color="#00c254"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffc200"/>
+      <stop offset="1" stop-color="#ff8500"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff0000"/>
+      <stop offset="1" stop-color="#ff0000"/>
+    </linearGradient>
+  </defs>
+  <g id="Google_Play_Badge" data-name="Google Play Badge" transform="translate(-10 -10)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="135" height="40" rx="2" transform="translate(10 10)" fill="#000"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(10 10)">
+      <path id="Path_1" data-name="Path 1" d="M1.5,0,0,2.5,1.5,5Z" transform="translate(10.5 17.5)" fill="url(#linear-gradient)"/>
+      <path id="Path_2" data-name="Path 2" d="M0,0,2.5,1.5,5,0Z" transform="translate(17.5 10.5)" fill="url(#linear-gradient-2)"/>
+      <path id="Path_3" data-name="Path 3" d="M0,1.5,2.5,0,5,1.5Z" transform="translate(17.5 27.5)" fill="url(#linear-gradient-3)"/>
+      <path id="Path_4" data-name="Path 4" d="M1.5,5,0,2.5,1.5,0Z" transform="translate(27.5 17.5)" fill="url(#linear-gradient-4)"/>
+      <path id="Path_5" data-name="Path 5" d="M10.5,17.5l-1.5-2.5L0,10.5V24.5L9,27l1.5-2.5Z" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_6" data-name="Path 6" d="M27.5,17.5l-1.5,2.5L17.5,27.5V10.5L26,13l1.5,2.5Z" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_7" data-name="Path 7" d="M17.5,10.5l-2.5-1.5L10.5,0H24.5L27,1.5l-2.5,1.5Z" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_8" data-name="Path 8" d="M17.5,27.5l-2.5,1.5L10.5,35H24.5L27,33.5l-2.5-1.5Z" transform="translate(0 0)" fill="#fff"/>
+      <text id="GET_IT_ON" data-name="GET IT ON" transform="translate(40 18)" fill="#fff" font-size="8" font-family="Roboto-Medium, Roboto" font-weight="500"><tspan x="0" y="0">GET IT ON</tspan></text>
+      <text id="Google_Play" data-name="Google Play" transform="translate(40 30)" fill="#fff" font-size="14" font-family="Roboto-Medium, Roboto" font-weight="500"><tspan x="0" y="0">Google Play</tspan></text>
+    </g>
+  </g>
+</svg>

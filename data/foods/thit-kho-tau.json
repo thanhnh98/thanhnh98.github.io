@@ -1,0 +1,173 @@
+{
+  "id": "thit-kho-tau",
+  "name": "Thịt Kho Tàu",
+  "description": "Món ăn truyền thống không thể thiếu trong mâm cơm Tết của người miền Nam, với hương vị đậm đà, mặn ngọt lờ lợ đặc trưng.",
+  "image": "https://i.pinimg.com/736x/a2/1f/24/a21f24b57a26b5d98a05eac0e4e705fd.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Nam", "Miền Trung"],
+  "primary_region": "Miền Nam",
+  "cooking_time": "2 giờ 30 phút",
+  "prep_time": "30 phút",
+  "difficulty": "Trung bình",
+  "servings": "4-6 người",
+  "calories": "450 kcal/khẩu phần",
+  "origin": "Xuất phát từ nền ẩm thực Việt Nam, đặc biệt phổ biến ở miền Nam. Có hai giả thuyết về tên gọi: một là từ việc ngư dân nấu thịt kho để ăn nhiều ngày trên tàu, hai là từ chữ 'tàu' trong tiếng địa phương miền Tây có nghĩa 'mặn ngọt lờ lợ'.",
+  "symbolism": "Tượng trưng cho sự sum vầy, đầm ấm của gia đình. Trứng vịt để nguyên quả thể hiện mong ước một năm mới trọn vẹn, đầy đủ và hạnh phúc.",
+  "ingredients": [
+    {
+      "name": "Thịt heo ba chỉ",
+      "amount": "1kg",
+      "note": "Chọn miếng có tỷ lệ 7 nạc 3 mỡ"
+    },
+    {
+      "name": "Trứng vịt",
+      "amount": "8-10 quả",
+      "note": "Luộc chín, bóc vỏ"
+    },
+    {
+      "name": "Nước dừa tươi",
+      "amount": "700ml",
+      "note": "Nước dừa xiêm ngọt thanh"
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "6 muỗng canh",
+      "note": "Nước mắm ngon, đậm đà"
+    },
+    {
+      "name": "Đường phèn",
+      "amount": "3 muỗng canh",
+      "note": "Tạo màu và vị ngọt tự nhiên"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "5 củ",
+      "note": "Bóc vỏ, một nửa băm nhuyễn, một nửa dập dập"
+    },
+    {
+      "name": "Tỏi",
+      "amount": "3 tép",
+      "note": "Bóc vỏ, băm nhuyễn và dập dập"
+    },
+    {
+      "name": "Ớt sừng đỏ",
+      "amount": "2-3 quả",
+      "note": "Bỏ cuống, băm nhuyễn"
+    },
+    {
+      "name": "Hạt nêm",
+      "amount": "1 muỗng canh",
+      "note": "Tăng vị umami"
+    },
+    {
+      "name": "Nước cốt chanh",
+      "amount": "1 muỗng cà phê",
+      "note": "Khử mùi tanh"
+    },
+    {
+      "name": "Bột ngọt",
+      "amount": "1 muỗng canh",
+      "note": "Tùy chọn"
+    },
+    {
+      "name": "Nước màu đường",
+      "amount": "3 muỗng canh",
+      "note": "Tạo màu đẹp mắt"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế nguyên liệu",
+      "description": "Thịt heo rửa sạch, cắt thành miếng vuông 4-5cm. Trứng vịt luộc chín, bóc vỏ. Hành tím, tỏi bóc vỏ, một nửa băm nhuyễn, một nửa dập dập. Ớt sừng bỏ cuống, băm nhuyễn."
+    },
+    {
+      "step": 2,
+      "title": "Ướp thịt",
+      "description": "Ướp thịt với hành tỏi ớt băm, 3 muỗng canh nước mắm, 1 muỗng canh hạt nêm, 1 muỗng cà phê nước cốt chanh, 1 muỗng canh bột ngọt, 3 muỗng canh nước màu đường. Trộn đều và ướp trong 1 tiếng."
+    },
+    {
+      "step": 3,
+      "title": "Áp chảo thịt",
+      "description": "Cho thịt đã ướp vào áp chảo sơ cho săn lại, sau đó vớt ra cho vào nồi."
+    },
+    {
+      "step": 4,
+      "title": "Kho thịt lần 1",
+      "description": "Thêm 700ml nước dừa, 300ml nước lọc, hành tỏi dập dập vào nồi. Đun lửa to vừa trong 30 phút đầu, hớt bọt thường xuyên."
+    },
+    {
+      "step": 5,
+      "title": "Kho thịt lần 2",
+      "description": "Thêm 300ml nước lọc, chuyển lửa nhỏ kho trong 1 tiếng. Đảo thịt mỗi 5 phút để không bị cháy."
+    },
+    {
+      "step": 6,
+      "title": "Thêm trứng và hoàn thiện",
+      "description": "Cho trứng vịt vào, chỉnh lửa thật nhỏ kho thêm 30 phút. Nêm thêm 3 muỗng canh nước mắm, 1 muỗng canh đường phèn, đợi đường tan rồi tắt bếp."
+    }
+  ],
+  "tips": [
+    "Chọn thịt ba chỉ có tỷ lệ nạc mỡ cân bằng (7 nạc 3 mỡ) để món ăn ngon và đẹp mắt",
+    "Ướp thịt ít nhất 30 phút, có thể phơi nắng 30 phút để thịt thấm gia vị nhanh hơn",
+    "Hớt bọt thường xuyên trong 30 phút đầu để nước kho trong và ngon",
+    "Cho trứng vào khi thịt gần mềm để trứng không bị nát và chai cứng",
+    "Không đậy kín nắp nồi khi kho để tránh nước bị đục",
+    "Có thể dùng lá chuối thay nắp để tạo hương thơm tự nhiên",
+    "Chia thành phần nhỏ và trữ đông để ăn dần trong nhiều ngày Tết"
+  ],
+  "nutrition_facts": {
+    "calories": 450,
+    "protein": "25g",
+    "fat": "35g",
+    "carbohydrates": "8g",
+    "fiber": "0.5g",
+    "sodium": "1200mg",
+    "cholesterol": "180mg"
+  },
+  "cultural_notes": [
+    "Món ăn không thể thiếu trong mâm cơm Tết của người miền Nam",
+    "Thể hiện triết lý cuộc sống: phải đủ các vị cay, đắng, mặn, ngọt mới là cuộc sống",
+    "Trứng để nguyên quả tượng trưng cho sự trọn vẹn, đầy đủ",
+    "Hương vị lờ lợ giúp ăn được nhiều ngày trong dịp Tết khi chợ đóng cửa",
+    "Tạo không khí sum vầy, đầm ấm khi cả gia đình quây quần"
+  ],
+  "variations": [
+    {
+      "name": "Thịt kho trứng gà",
+      "description": "Thay trứng vịt bằng trứng gà, phù hợp với gia đình có trẻ nhỏ"
+    },
+    {
+      "name": "Thịt kho trứng cút",
+      "description": "Sử dụng trứng cút nhỏ xinh, dễ ăn"
+    },
+    {
+      "name": "Thịt kho măng",
+      "description": "Thêm măng khô hoặc măng tươi để tăng độ giòn"
+    },
+    {
+      "name": "Thịt kho chay",
+      "description": "Dùng thịt chay và trứng chay cho người ăn chay"
+    }
+  ],
+  "serving_suggestions": [
+    "Ăn kèm với cơm trắng nóng",
+    "Dưa cải chua để cân bằng vị béo ngậy",
+    "Dưa kiệu, dưa giá tạo độ giòn",
+    "Rau sống như xà lách, húng quế",
+    "Dưa hấu để giải ngấy",
+    "Kim chi Hàn Quốc (biến tấu hiện đại)"
+  ],
+  "storage": {
+    "refrigerator": "3-5 ngày trong tủ lạnh",
+    "freezer": "1 tháng trong ngăn đá",
+    "room_temperature": "1-2 ngày ở nhiệt độ phòng (mùa đông)",
+    "reheating_tips": "Hâm nóng lại bằng lửa nhỏ, thêm chút nước nếu cần"
+  },
+  "regional_specialties": {
+    "Miền Nam": "Sử dụng nhiều nước dừa tươi, vị ngọt thanh đặc trưng",
+    "Miền Trung": "Có thể thêm ớt nhiều hơn, vị cay nồng hơn",
+    "Sài Gòn": "Thường ăn kèm bánh mì hoặc bún",
+    "Đồng bằng sông Cửu Long": "Sử dụng nước dừa xiêm ngọt tự nhiên"
+  }
+}

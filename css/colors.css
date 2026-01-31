@@ -1,0 +1,47 @@
+/* Vibrant Tết Theme Colors */
+:root {
+    /* Primary Tết Colors - Enhanced Vibrancy */
+    --color-primary: #E60026; /* More vibrant red */
+    --color-secondary: #FFD700; /* Bright Gold */
+    --color-accent-primary: #FF4500; /* Bright orange-red */
+    --color-accent-secondary: #00C851; /* Vibrant green */
+    --color-accent-tertiary: #FF1493; /* Deep Pink for celebration */
+    
+    /* Background Colors */
+    --color-background-primary: #FFF9E6; /* Warm cream */
+    --color-background-secondary: #FFEBCD; /* Blanched almond */
+    --color-background-accent: #FFE4E1; /* Misty rose */
+    
+    /* Text Colors */
+    --color-text-primary: #2C1810; /* Dark brown */
+    --color-text-secondary: #8B4513; /* Saddle brown */
+    --color-text-header: #FFFFFF; /* White for header */
+    --color-text-accent: #B8860B; /* Dark goldenrod */
+    
+    /* Header & Footer */
+    --color-header-bg: linear-gradient(135deg, #DC143C 0%, #B22222 50%, #8B0000 100%);
+    --color-footer-bg: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #FFB3B3 50%, #FFD1D1 75%, #FFE8E8 100%);
+    
+    /* Button Colors */
+    --color-button-primary: linear-gradient(135deg, #FF6B35 0%, #DC143C 100%);
+    --color-button-secondary: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    --color-button-hover: #FF4500;
+    
+    /* Timer Colors - Enhanced */
+    --color-timer-bg: linear-gradient(135deg, #E60026 0%, #FF4500 100%);
+    --color-timer-text: #FFFFFF;
+    --color-timer-shadow: rgba(230, 0, 38, 0.4);
+    --color-timer-border: #FFD700;
+    
+    /* Calendar Colors - Safe Blue/Green Theme */
+    --color-calendar-bg: linear-gradient(135deg, #FFFFFF 0%, #F0F8FF 100%);
+    --color-calendar-selected: #2E8B57; /* Sea Green */
+    --color-calendar-selected-bg: rgba(46, 139, 87, 0.1);
+    --color-calendar-hover: rgba(70, 130, 180, 0.2); /* Steel Blue */
+    --color-lunar-text: #4682B4; /* Steel Blue */
+    
+    /* Fonts */
+    --font-heading: 'Dancing Script', 'Pacifico', cursive;
+    --font-body: 'Nunito', 'Roboto', sans-serif;
+    --font-accent: 'Lobster', cursive;
+}

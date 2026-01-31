@@ -1,0 +1,184 @@
+{
+  "id": "bun-bo-hue",
+  "name": "Bún Bò Huế",
+  "description": "Bún bò Huế là món bún đặc trưng xứ Huế với hương vị cay nồng đặc biệt. Nước dùng có màu đỏ cam từ dầu điều và mắm ruốc, kết hợp với bún tươi, thịt bò, chả cua và các loại rau thơm tạo nên một món ăn đậm đà bản sắc miền Trung.",
+  "image": "https://i.pinimg.com/736x/77/c4/53/77c45337cfe31cf635aa4d97c10d0252.jpg",
+  "category": "Món chính",
+  "regional_tags": ["Miền Trung"],
+  "primary_region": "Miền Trung",
+  "cooking_time": "3 tiếng",
+  "prep_time": "1 tiếng",
+  "difficulty": "Trung bình",
+  "servings": "4-6 người",
+  "calories": "420 calo/tô",
+  "origin": "Bún bò Huế có nguồn gốc từ cố đô Huế, được tạo ra vào thời nhà Nguyễn. Món ăn này mang đậm dấu ấn hoàng gia với cách chế biến tinh tế và hương vị phong phú, thể hiện tinh hoa ẩm thực cung đình.",
+  "symbolism": "Bún bò Huế đại diện cho sự tinh tế và phong phú của ẩm thực cung đình Huế. Màu đỏ cam của nước dùng tượng trưng cho sự may mắn và thịnh vượng, thường được thưởng thức trong các dịp lễ tết quan trọng.",
+  "ingredients": [
+    {
+      "name": "Xương bò",
+      "amount": "1.5kg",
+      "note": "Xương ống, xương bả vai"
+    },
+    {
+      "name": "Thịt bò",
+      "amount": "400g",
+      "note": "Thịt nạm, gân bò"
+    },
+    {
+      "name": "Chân giò heo",
+      "amount": "500g",
+      "note": "Chân giò heo tươi"
+    },
+    {
+      "name": "Bún tươi",
+      "amount": "500g",
+      "note": "Bún tươi to"
+    },
+    {
+      "name": "Chả cua",
+      "amount": "200g",
+      "note": "Chả cua Huế"
+    },
+    {
+      "name": "Mắm ruốc",
+      "amount": "3 thìa canh",
+      "note": "Mắm ruốc Huế"
+    },
+    {
+      "name": "Dầu điều",
+      "amount": "2 thìa canh",
+      "note": "Dầu điều màu đỏ"
+    },
+    {
+      "name": "Sả",
+      "amount": "3 cây",
+      "note": "Sả tươi, đập dập"
+    },
+    {
+      "name": "Hành tím",
+      "amount": "5 củ",
+      "note": "Hành tím tươi"
+    },
+    {
+      "name": "Tỏi",
+      "amount": "1 củ",
+      "note": "Tỏi tươi"
+    },
+    {
+      "name": "Ớt khô",
+      "amount": "10 quả",
+      "note": "Ớt khô loại cay"
+    },
+    {
+      "name": "Nước mắm",
+      "amount": "3 thìa canh",
+      "note": "Nước mắm ngon"
+    },
+    {
+      "name": "Đường",
+      "amount": "2 thìa canh",
+      "note": "Đường cát trắng"
+    },
+    {
+      "name": "Muối",
+      "amount": "1 thìa cà phê",
+      "note": "Muối tinh"
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Sơ chế nguyên liệu",
+      "description": "Rửa sạch xương bò và chân giò heo, chần qua nước sôi để loại bỏ tạp chất. Thái thịt bò thành miếng vừa ăn.",
+      "time": "30 phút",
+      "tips": "Chần kỹ xương sẽ giúp nước dùng trong và thơm"
+    },
+    {
+      "step": 2,
+      "title": "Làm dầu điều",
+      "description": "Phi thơm hành tím, tỏi, ớt khô với dầu ăn. Thêm dầu điều và mắm ruốc, đảo đều cho thơm.",
+      "time": "15 phút",
+      "tips": "Dầu điều là linh hồn của món bún bò Huế, cần phi thơm đúng cách"
+    },
+    {
+      "step": 3,
+      "title": "Ninh nước dùng",
+      "description": "Cho xương bò, chân giò vào nồi lớn, đổ nước ngập. Đun sôi rồi hạ lửa nhỏ ninh 2-3 tiếng. Thêm sả đập dập.",
+      "time": "2-3 tiếng",
+      "tips": "Ninh lửa nhỏ để nước dùng ngọt và không bị đục"
+    },
+    {
+      "step": 4,
+      "title": "Nấu thịt bò",
+      "description": "Cho thịt bò vào nước dùng, nấu chín trong 30 phút. Vớt ra thái lát mỏng.",
+      "time": "30 phút",
+      "tips": "Nấu thịt trong nước dùng sẽ làm tăng vị ngọt"
+    },
+    {
+      "step": 5,
+      "title": "Pha nước dùng",
+      "description": "Lọc nước dùng cho trong, thêm dầu điều đã phi, nêm nếm gia vị cho vừa khẩu vị.",
+      "time": "10 phút",
+      "tips": "Nước dùng phải có màu đỏ cam đặc trưng và vị cay nồng"
+    },
+    {
+      "step": 6,
+      "title": "Hoàn thành",
+      "description": "Trụng bún qua nước sôi, cho vào tô. Xếp thịt bò, chả cua lên trên, chan nước dùng nóng. Ăn kèm rau thơm.",
+      "time": "5 phút",
+      "tips": "Bún phải được trụng nóng và nước dùng phải sôi khi chan vào tô"
+    }
+  ],
+  "tips": [
+    "Dầu điều và mắm ruốc là hai nguyên liệu quan trọng tạo nên hương vị đặc trưng",
+    "Ninh xương lâu với lửa nhỏ để có nước dùng ngọt",
+    "Nước dùng phải có màu đỏ cam và vị cay nồng đặc trưng",
+    "Chả cua Huế có vị ngọt đặc biệt, khác với chả cua miền Nam",
+    "Ăn kèm với rau thơm miền Trung như rau răm, ngò gai"
+  ],
+  "nutrition_facts": {
+    "calories": "420 calo/tô",
+    "protein": "28g",
+    "fat": "12g",
+    "carbohydrates": "48g",
+    "fiber": "3g",
+    "sodium": "1400mg",
+    "benefits": [
+      "Giàu protein từ thịt bò và chả cua",
+      "Cung cấp carbohydrate từ bún tươi",
+      "Chứa collagen từ chân giò heo, tốt cho da",
+      "Nhiều vitamin từ rau thơm",
+      "Mắm ruốc cung cấp canxi và protein"
+    ]
+  },
+  "cultural_notes": [
+    "Bún bò Huế thường được thưởng thức trong dịp Tết, đặc biệt là Tết Đoan Ngọ, mang ý nghĩa xua đuổi tà ma và cầu may mắn.",
+    "Thường được chuẩn bị từ sáng sớm để có nước dùng ngon nhất.",
+    "Ăn nóng hổi, cả gia đình quây quần, thể hiện tình đoàn kết.",
+    "Bún bò Huế truyền thống có mắm ruốc và dầu điều đặc trưng.",
+    "Phiên bản cung đình có thêm nhiều loại thịt quý và gia vị đặc biệt."
+  ],
+  "serving_suggestions": [
+    {
+      "name": "Rau thơm miền Trung",
+      "ingredients": "Rau răm, ngò gai, xà lách, chuối xanh",
+      "description": "Rau thơm đặc trưng miền Trung ăn kèm"
+    },
+    {
+      "name": "Mắm nêm",
+      "ingredients": "Mắm nêm, ớt, tỏi, chanh",
+      "description": "Nước chấm đặc trưng Huế"
+    },
+    {
+      "name": "Chanh muối ớt",
+      "ingredients": "Chanh tươi, muối, ớt sừng",
+      "description": "Gia vị chua cay kích thích vị giác"
+    }
+  ],
+  "storage": {
+    "refrigerator": "Nước dùng có thể bảo quản 2-3 ngày trong tủ lạnh",
+    "freezer": "Có thể đông lạnh nước dùng 2 tuần",
+    "room_temperature": "Không nên để ở nhiệt độ phòng quá 2 giờ",
+    "reheating": "Đun sôi lại nước dùng và thêm dầu điều trước khi ăn"
+  }
+}

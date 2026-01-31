@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Món Ăn Tết Truyền Thống | Sắp Tết 2026</title>
+    <meta name="description" content="🍑 Khám phá các món ăn truyền thống ngày Tết Việt Nam và ý nghĩa văn hóa của chúng. Từ bánh chưng, bánh tét đến thịt kho tàu, nem rán...">
+    <meta name="keywords" content="món ăn tết, bánh chưng, bánh tét, thịt kho tàu, nem rán, xôi gấc, canh khổ qua, ẩm thực tết">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saptet.vn/mon-an-tet.html">
+    <meta property="og:title" content="Món Ăn Tết Truyền Thống | Sắp Tết 2026">
+    <meta property="og:description" content="🍑 Khám phá các món ăn truyền thống ngày Tết Việt Nam và ý nghĩa văn hóa của chúng.">
+    <meta property="og:image" content="https://saptet.vn/android-chrome-512x512.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://saptet.vn/mon-an-tet.html">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/colors.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3395045728500314" crossorigin="anonymous"></script>
+
+    <!-- Schema Markup for Food Page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Món Ăn Tết Truyền Thống",
+        "description": "Khám phá các món ăn truyền thống ngày Tết Việt Nam và ý nghĩa văn hóa của chúng",
+        "url": "https://saptet.vn/mon-an-tet.html",
+        "inLanguage": "vi",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Sắp Tết 2026",
+            "url": "https://saptet.vn"
+        },
+        "about": {
+            "@type": "Thing",
+            "name": "Ẩm thực Tết Việt Nam",
+            "description": "Các món ăn truyền thống trong dịp Tết Nguyên Đán"
+        }
+    }
+    </script>
+    
+    <style>
+        .food-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 6rem 0 4rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .food-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/tet-background-pattern.svg') repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .food-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .food-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .food-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .foods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .food-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--color-accent);
+            cursor: pointer;
+        }
+        
+        .food-recipe-hint {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .food-recipe-hint span {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .food-card:hover .food-recipe-hint {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Food Recipe Modal Styles */
+        .recipe-header {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .recipe-header h4 {
+            color: #dc3545 !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .recipe-steps {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .recipe-steps h4 {
+            color: #28a745 !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .recipe-tips {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff3cd 0%, #fef9e7 100%);
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .recipe-tips h4 {
+            color: #856404 !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .recipe-variations {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .recipe-variations h4 {
+            color: #007bff !important;
+            margin-bottom: 10px !important;
+            font-size: 1.1em !important;
+        }
+        
+        .faq-modal-body ul {
+            margin: 10px 0 !important;
+            padding-left: 20px !important;
+        }
+        
+        .faq-modal-body li {
+            margin: 8px 0 !important;
+            line-height: 1.6 !important;
+            color: #495057 !important;
+        }
+        
+        .faq-modal-body ol {
+            margin: 10px 0 !important;
+            padding-left: 20px !important;
+        }
+        
+        .faq-modal-body ol > li {
+            margin: 15px 0 !important;
+            font-weight: 600 !important;
+            color: #343a40 !important;
+        }
+        
+        .faq-modal-body ol > li > ul {
+            margin-top: 8px !important;
+        }
+        
+        .faq-modal-body ol > li > ul > li {
+            font-weight: normal !important;
+            margin: 5px 0 !important;
+        }
+        
+        .faq-modal-body strong {
+            color: #dc3545 !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Recipe Detail Button Styles */
+        .recipe-detail-button {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #e9ecef;
+        }
+        
+        .detail-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-btn:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+        
+        .detail-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* Page Transition Animation */
+        body {
+            transition: opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        
+        .food-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .food-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .food-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        
+        .food-content {
+            padding: 1.5rem;
+        }
+        
+        .food-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .food-description {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .food-meaning {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1));
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--color-accent);
+        }
+        
+        .food-meaning h4 {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .food-meaning p {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin-top: 2rem;  /* Thêm dòng này */
+            margin-bottom: 2rem;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            text-decoration: none;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .food-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .foods-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .food-hero {
+                padding: 4rem 0 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-container"></div>
+
+    <section class="food-hero">
+        <div class="container">
+            <h1>Món Ăn Tết Truyền Thống</h1>
+            <p>Khám phá ẩm thực ngày Tết và ý nghĩa văn hóa sâu sắc của từng món ăn</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="foods-section">
+            <div class="container">
+                <a href="/index.html" class="back-button">
+                    <span>🏠</span>
+                    Về trang chủ
+                </a>
+                
+                <h2 class="section-title">Các Món Ăn Không Thể Thiếu</h2>
+                <p class="section-subtitle">
+                    Mỗi món ăn trong ngày Tết đều mang một ý nghĩa đặc biệt, thể hiện mong muốn về một năm mới tốt lành, thịnh vượng và hạnh phúc.
+                </p>
+                
+                <div class="foods-grid">
+                    <div class="food-card" onclick="openFoodModal('banh-chung')">
+                        <div class="food-image">
+                            <img src="" alt="Bánh Chưng" class="food-img" data-dish-id="banh-chung">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Bánh Chưng</h3>
+                            <p class="food-description">
+                                Món ăn truyền thống không thể thiếu trong mâm cơm Tết miền Bắc. Bánh chưng được gói bằng lá dong, có nhân đậu xanh và thịt lợn.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Tượng trưng cho đất trời, sự sum vầy của gia đình và lòng biết ơn tổ tiên. Hình vuông của bánh chưng đại diện cho đất.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('banh-tet')">
+                        <div class="food-image">
+                            <img src="" alt="Bánh Tét" class="food-img" data-dish-id="banh-tet">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Bánh Tét</h3>
+                            <p class="food-description">
+                                Món ăn đặc trưng của miền Nam trong dịp Tết. Bánh tét có hình tròn dài, được gói bằng lá chuối với nhân đậu xanh và thịt.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Hình tròn của bánh tét tượng trưng cho trời, sự viên mãn và đoàn tụ. Thể hiện mong muốn một năm mới tròn đầy hạnh phúc.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('thit-kho-tau')">
+                        <div class="food-image">
+                            <img src="" alt="Thịt Kho Tàu" class="food-img" data-dish-id="thit-kho-tau">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Thịt Kho Tàu</h3>
+                            <p class="food-description">
+                                Món thịt heo kho với trứng, có màu nâu đỏ đặc trưng từ nước màu. Đây là món ăn quen thuộc trong mâm cơm Tết.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Màu đỏ của món ăn tượng trưng cho may mắn, thịnh vượng. Trứng trong món ăn biểu thị sự sinh sôi nảy nở.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('nem-ran')">
+                        <div class="food-image">
+                            <img src="" alt="Nem Rán" class="food-img" data-dish-id="nem-ran">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Nem Rán</h3>
+                            <p class="food-description">
+                                Món nem cuốn tôm thịt rán giòn, thường được ăn kèm với rau sống và nước chấm chua ngọt đặc trưng.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Hình dáng giống thỏi vàng, tượng trưng cho sự giàu có, thịnh vượng. Màu vàng óng của nem rán mang lại may mắn.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('xoi-gac')">
+                        <div class="food-image">
+                            <img src="" alt="Xôi Gấc" class="food-img" data-dish-id="xoi-gac">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Xôi Gấc</h3>
+                            <p class="food-description">
+                                Món xôi có màu đỏ tự nhiên từ quả gấc, thường được trang trí với dừa nạo và đậu xanh rang.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Màu đỏ rực rỡ tượng trưng cho may mắn, tài lộc và sự thịnh vượng trong năm mới.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('ga-luoc')">
+                        <div class="food-image">
+                            <img src="" alt="Gà Luộc" class="food-img" data-dish-id="ga-luoc">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Gà Luộc</h3>
+                            <p class="food-description">
+                                Gà nguyên con luộc chín, thường được bày trên mâm cúng tổ tiên và là món chính trong bữa cơm Tết.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Tượng trưng cho sự trọn vẹn, đầy đủ. Gà trống còn có ý nghĩa báo hiệu một ngày mới, một năm mới tốt lành.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('canh-kho-qua')">
+                        <div class="food-image">
+                            <img src="" alt="Canh Khổ Qua" class="food-img" data-dish-id="canh-kho-qua-nhoi-thit">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Canh Khổ Qua</h3>
+                            <p class="food-description">
+                                Canh khổ qua nhồi thịt, có vị đắng nhẹ đặc trưng. Đây là món canh truyền thống trong bữa cơm Tết.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Vị đắng của khổ qua tượng trưng cho việc "nuốt đắng" những khó khăn của năm cũ để đón nhận may mắn năm mới.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('mang-kho-thit')">
+                        <div class="food-image">
+                            <img src="" alt="Măng Khô Kho Thịt" class="food-img" data-dish-id="mang-kho-thit">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Măng Khô Kho Thịt</h3>
+                            <p class="food-description">
+                                Món măng khô kho với thịt heo, có vị đậm đà, thường được nấu trong những ngày Tết để ăn dần.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Măng tre mọc nhanh, tượng trưng cho sự phát triển mạnh mẽ, thịnh vượng và sức sống dồi dào.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('mut-tet')">
+                        <div class="food-image">
+                            <img src="" alt="Mứt Tết" class="food-img" data-dish-id="mut-tet">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Mứt Tết</h3>
+                            <p class="food-description">
+                                Các loại mứt ngọt như mứt dừa, mứt gừng, mứt sen... được dùng để đãi khách trong dịp Tết.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Vị ngọt của mứt tượng trưng cho một năm mới ngọt ngào, hạnh phúc và những điều tốt đẹp sẽ đến.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thêm các món ăn theo vùng miền -->
+                    <div class="food-card" onclick="openFoodModal('pho-bo')">
+                        <div class="food-image">
+                            <img src="" alt="Phở Bò" class="food-img" data-dish-id="pho-bo">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Phở Bò (Miền Bắc)</h3>
+                            <p class="food-description">
+                                Món phở truyền thống Hà Nội với nước dùng trong, thịt bò tái và bánh phở mềm. Món ăn sáng không thể thiếu ngày Tết.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Tô phở nóng hổi tượng trưng cho sự ấm áp, sum vầy của gia đình trong những ngày đầu năm mới.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('bun-bo-hue')">
+                        <div class="food-image">
+                            <img src="" alt="Bún Bò Huế" class="food-img" data-dish-id="bun-bo-hue">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Bún Bò Huế (Miền Trung)</h3>
+                            <p class="food-description">
+                                Món bún đặc trưng xứ Huế với nước dùng cay nồng, thịt bò và chả cua. Hương vị đậm đà của cố đô.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Màu đỏ của nước dùng tượng trưng cho sự may mắn, thịnh vượng và tinh thần mạnh mẽ của người miền Trung.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('hu-tieu-nam-vang')">
+                        <div class="food-image">
+                            <img src="" alt="Hủ Tiếu Nam Vang" class="food-img" data-dish-id="hu-tieu-nam-vang">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Hủ Tiếu Nam Vang (Miền Nam)</h3>
+                            <p class="food-description">
+                                Món hủ tiếu đặc trưng miền Nam với nước dùng ngọt thanh, tôm khô, thịt băm và gan heo.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Sự hòa quyện của nhiều nguyên liệu tượng trưng cho sự đoàn kết, hòa thuận trong gia đình.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card" onclick="openFoodModal('banh-khot')">
+                        <div class="food-image">
+                            <img src="" alt="Bánh Khọt" class="food-img" data-dish-id="banh-khot">
+                        </div>
+                        <div class="food-content">
+                            <h3 class="food-title">Bánh Khọt (Miền Nam)</h3>
+                            <p class="food-description">
+                                Bánh khọt nhỏ xinh với tôm tươi, ăn kèm rau sống và nước chấm chua ngọt đặc trưng miền Tây.
+                            </p>
+                            <div class="food-meaning">
+                                <h4>Ý nghĩa:</h4>
+                                <p>Hình tròn nhỏ xinh tượng trưng cho sự viên mãn, đầy đủ trong từng điều nhỏ bé của cuộc sống.</p>
+                            </div>
+                            <div class="food-recipe-hint">
+                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Combined Support & Footer Section -->
+        <div id="footer-container"></div>
+    
+    <!-- Food Recipe Modal -->
+    <div id="foodModal" class="faq-modal">
+        <div class="faq-modal-content">
+            <div class="faq-modal-header">
+                <h3 id="foodModalTitle"></h3>
+                <span class="faq-close" onclick="closeFoodModal()">&times;</span>
+            </div>
+            <div class="faq-modal-body">
+                <div id="foodModalContent"></div>
+            </div>
+        </div>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3395045728500314"
+    crossorigin="anonymous"></script>
+    
+    <!-- Ads Section -->
+    <section class="ads-section" id="ads-section" style="display: none;">
+        <div class="container">
+            <div class="ads-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3395045728500314"
+                     data-ad-slot="5131370387"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    try {
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (e) {
+                        // Silently handle ads loading errors
+                    }
+                    
+                    // Show ads section only when ads are loaded
+                    setTimeout(function() {
+                        try {
+                            const adElement = document.querySelector('.adsbygoogle');
+                            const adsSection = document.getElementById('ads-section');
+                            
+                            if (adElement && adElement.innerHTML.trim() !== '' && 
+                                adElement.offsetHeight > 0 && adElement.offsetWidth > 0) {
+                                adsSection.style.display = 'block';
+                            }
+                        } catch (e) {
+                            // Silently handle any errors during ads visibility check
+                        }
+                    }, 2000);
+                </script>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/header-loader.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/food-modal.js"></script>
+    
+    <!-- Fix Back to Home button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.location.href = 'index.html';
+                });
+            }
+            
+            // Load images from JSON data
+            loadFoodImages();
+        });
+        
+        async function loadFoodImages() {
+            const foodImages = document.querySelectorAll('.food-img');
+            
+            for (const img of foodImages) {
+                const dishId = img.getAttribute('data-dish-id');
+                if (dishId) {
+                    try {
+                        const response = await fetch(`data/foods/${dishId}.json`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.image) {
+                                img.src = data.image;
+                                img.style.display = 'block';
+                            }
+                        }
+                    } catch (error) {
+                        console.log(`Could not load image for ${dishId}:`, error);
+                        // Keep the empty src, will show placeholder
+                    }
+                }
+            }
+        }
+    </script>
+<!-- Scripts -->
+<script src="js/footer.js"></script>
+
+</body>
+</html>

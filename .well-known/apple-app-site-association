@@ -1,0 +1,26 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": ["TEAMID.com.thanh_nguyen.tet_count_down"],
+                "components": [
+                    {
+                        "/": "*",
+                        "comment": "Matches any URL"
+                    },
+                    {
+                        "/mon-an-tet": "*",
+                        "comment": "Matches food pages"
+                    },
+                    {
+                        "/tro-choi-tet": "*",
+                        "comment": "Matches game pages"
+                    }
+                ]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": ["TEAMID.com.thanh_nguyen.tet_count_down"]
+    }
+}

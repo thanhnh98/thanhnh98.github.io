@@ -1,0 +1,31 @@
+# Robots.txt for Sắp Tết website
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://saptet.vn/sitemap.xml
+
+# Allow crawling of all content
+Allow: /may-tinh-li-xi.html
+Allow: /blog.html
+Allow: /huong-dan-tet.html
+Allow: /mon-an-tet.html
+Allow: /tro-choi-tet.html
+Allow: /lich-am-duong.html
+
+# Allow crawling of assets
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+Allow: /images/
+
+# Allow crawling of data
+Allow: /data/
+
+# Disallow crawling of temporary files
+Disallow: /debug-*.js
+Disallow: /demo-*.html
+Disallow: /demo-*.json
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

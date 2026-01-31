@@ -1,0 +1,31 @@
+<!-- Ads Banner Component -->
+<div class="ads-container" id="ads-banner" style="display: none;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3395045728500314"
+         data-ad-slot="5131370387"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            // Silently handle ads loading errors
+        }
+        
+        // Show ads banner only when ads are loaded
+        setTimeout(function() {
+            try {
+                const adElement = document.querySelector('.adsbygoogle');
+                const adsBanner = document.getElementById('ads-banner');
+                
+                if (adElement && adElement.innerHTML.trim() !== '' && 
+                    adElement.offsetHeight > 0 && adElement.offsetWidth > 0) {
+                    adsBanner.style.display = 'block';
+                }
+            } catch (e) {
+                // Silently handle any errors during ads visibility check
+            }
+        }, 2000);
+    </script>
+</div>
