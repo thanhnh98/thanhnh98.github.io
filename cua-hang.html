@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Tết - Sản phẩm Shopee & TikTok Shop | Sắp Tết 2026</title>
+    <meta name="description" content="🛍️ Mua sắm đồ Tết từ Shopee và TikTok Shop. Bao lì xì, trang trí Tết, bánh kẹo, thời trang Tết và nhiều hơn nữa.">
+    <meta name="keywords" content="cửa hàng tết, mua sắm tết, shopee tết, tiktok shop tết, bao lì xì, trang trí tết, bánh kẹo tết">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saptet.vn/cua-hang.html">
+    <meta property="og:title" content="Cửa Hàng Tết - Sản phẩm Shopee & TikTok Shop | Sắp Tết 2026">
+    <meta property="og:description" content="Mua sắm đồ Tết từ Shopee và TikTok Shop. Bao lì xì, trang trí, bánh kẹo, thời trang Tết.">
+    <meta property="og:image" content="https://saptet.vn/android-chrome-512x512.png">
+    
+    <link rel="canonical" href="https://saptet.vn/cua-hang.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/shop.css">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3395045728500314" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <section class="shop-hero">
+        <div class="container">
+            <h1>🛍️ Cửa Hàng Tết</h1>
+            <p>Sản phẩm gợi ý từ Shopee & TikTok Shop – mua sắm Tết dễ dàng</p>
+        </div>
+    </section>
+
+    <main class="shop-section">
+        <div class="container">
+            <a href="/" class="shop-back" aria-label="Về trang chủ">
+                <span>🏠</span> Về trang chủ
+            </a>
+            
+            <div id="shop-categories" class="shop-categories" role="tablist" aria-label="Lọc theo danh mục"></div>
+            
+            <div id="shop-grid" class="shop-grid" role="list"></div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/header-loader.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/footer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var back = document.querySelector('.shop-back');
+            if (back) {
+                back.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.location.href = document.querySelector('.shop-back').getAttribute('href') || '/';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

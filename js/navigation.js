@@ -18,6 +18,12 @@ class Router {
             '/tai-ung-dung.html': 'tai-ung-dung/index.html', // Keep for backward compatibility
             '/blog': 'blog.html',
             '/blog.html': 'blog.html',
+            '/cua-hang': 'cua-hang.html',
+            '/cua-hang.html': 'cua-hang.html',
+            '/may-tinh-li-xi': 'may-tinh-li-xi.html',
+            '/may-tinh-li-xi.html': 'may-tinh-li-xi.html',
+            '/huong-dan-tet': 'huong-dan-tet.html',
+            '/huong-dan-tet.html': 'huong-dan-tet.html',
             '/chi-tiet-mon-an': 'chi-tiet-mon-an.html',
             '/chi-tiet-mon-an.html': 'chi-tiet-mon-an.html',
             '/404': '404.html',
@@ -91,6 +97,12 @@ class Router {
             if (targetFile !== currentFile) {
                 window.location.href = targetFile + window.location.search + window.location.hash;
             }
+            return;
+        }
+        
+        // Path ends with .html = direct file request; server already served the page if it exists
+        // Don't force 404 so existing .html pages work even if not in routes
+        if (normalizedPath.endsWith('.html') || cleanPath.endsWith('.html')) {
             return;
         }
         

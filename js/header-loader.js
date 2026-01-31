@@ -10,6 +10,8 @@ class HeaderLoader {
         
         if (filename === 'mon-an-tet.html') {
             return 'mon-an-tet';
+        } else if (filename === 'cua-hang.html') {
+            return 'cua-hang';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;
             if (hash) {

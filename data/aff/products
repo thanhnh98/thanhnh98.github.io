@@ -1,0 +1,514 @@
+{
+   "data":{
+      "agency":{
+         "name":"TIKI"
+      },
+      "categories":[
+         {
+            "category":"other",
+            "displayName":"Tất cả"
+         },
+         {
+            "category":"clothes",
+            "displayName":"Thời trang Tết 👘"
+         },
+         {
+            "category":"lixi",
+            "displayName":"Bao Lì Xì 🧧"
+         },
+         {
+            "category":"banhkeo",
+            "displayName":"Bánh Kẹo Tết 🍬"
+         },
+         {
+            "category":"decor",
+            "displayName":"Trang Trí Tết 🎊"
+         },
+         {
+            "category":"assets",
+            "displayName":"Đồ dùng Tết 🏮"
+         },
+         {
+            "category":"bachhoa",
+            "displayName":"Bách hoá Tết 🛍️🎊"
+         }
+      ],
+      "products":[
+         {
+            "id":"644740",
+            "shopId":"22714104918",
+            "thumbnail":"https://down-zl-vn.img.susercontent.com/vn-11134207-7ras8-m1htaixqb2yn4e.webp",
+            "images":[
+               
+            ],
+            "name":"Mứt Dừa Non Sợi Đũa, Thơm Ngon Ngọt Bùi, Đặc Sản Bến Tre, Mứt Tết - Bánh Kẹo, đồ ăn vặt",
+            "description":"2k+ lượt bán",
+            "type":"shopee",
+            "category":"banhkeo",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/AUo7o2jlHn"
+         },
+         {
+            "id":"854519",
+            "shopId":"26693235083",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mg35szvk1xjca8",
+            "images":[
+               
+            ],
+            "name":"Kẹo Dẻo Sữa Chua Trái Cây Mix Vị, Vị Xoài, Dâu, Việt Quất, Táo Xanh, Bánh Kẹo Tết, Đám Cưới | Shopee Việt Nam",
+            "description":"Mua Kẹo Dẻo Sữa Chua Trái Cây Mix Vị, Vị Xoài, Dâu, Việt Quất, Táo Xanh, Bánh Kẹo Tết, Đám Cưới giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"banhkeo",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/4fqKrE8fQM"
+         },
+         {
+            "id":"315792",
+            "shopId":"23680775001",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mivikvrlansze7",
+            "images":[
+               
+            ],
+            "name":"[TÚI 300G] Kẹo xoài bóc vỏ ĐẠI LONG, hợp tiệc, KẸO TẾT, liên hoan ăn vặt thơm ngon kẹo dẻo trái cây bóc vỏ | Shopee Việt Nam",
+            "description":"Mua [TÚI 300G] Kẹo xoài bóc vỏ ĐẠI LONG, hợp tiệc, KẸO TẾT, liên hoan ăn vặt thơm ngon kẹo dẻo trái cây bóc vỏ giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"banhkeo",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/10x2UOAPHM"
+         },
+         {
+            "id":"307089",
+            "shopId":"25318640231",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/sg-11134201-821dz-mhabhj3qwr9l66",
+            "images":[
+               
+            ],
+            "name":"Cành Lựu Giả Có Hoa - Cắm bình, kết cây - Thân Nhựa Lõi Thép, Quả Xốp, Dài 90cm - Cảnh Nhi Flower | Shopee Việt Nam",
+            "description":"Mua Cành Lựu Giả Có Hoa - Cắm bình, kết cây - Thân Nhựa Lõi Thép, Quả Xốp, Dài 90cm - Cảnh Nhi Flower giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/3B1X3Q5mQW"
+         },
+         {
+            "id":"003928",
+            "shopId":"24367175857",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1ofl3bvcofze5.webp",
+            "images":[
+               
+            ],
+            "name":"Bình Hoa Gốm Sứ Bát Tràng Dáng Đu Đủ, Lọ Hoa Chất Liệu Men Cao Cấp, Phù Hợp Trang Trí Nhiều Nơi",
+            "description":"2k+ lượt bán",
+            "type":"shopee",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/2B8zrRUkj9"
+         },
+         {
+            "id":"586002",
+            "shopId":"41818233297",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mglm47b69gy5f1",
+            "images":[
+               
+            ],
+            "name":"[NE50] [Tặng Charm] Dép Sục Nguyên Khối Siêu Nhẹ 3cm Full Size Gia Đình | Shopee Việt Nam",
+            "description":"Mua [NE50] [Tặng Charm] Dép Sục Nguyên Khối Siêu Nhẹ 3cm Full Size Gia Đình giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"bachhoa",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/5L61d7hzJD"
+         },
+         {
+            "id":"370843",
+            "shopId":"23290540350",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3ewhxb1wddh79.webp",
+            "images":[
+               
+            ],
+            "name":"BỘ BÀI TÂY GALXY PHẢN QUANG TRÁNG GƯƠNG CAO CẤP",
+            "description":"10k+ lượt bán",
+            "type":"shopee",
+            "category":"bachhoa",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/3B1X33x01F"
+         },
+         {
+            "id":"827191",
+            "shopId":"54952213353",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhkbrrck385h54@resize_w450_nl.webp",
+            "images":[
+               
+            ],
+            "name":"Ốp Lưng iPhone Camera Viền Cao Lucky Girl Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max",
+            "description":"10k+ lượt bán",
+            "type":"shopee",
+            "category":"bachhoa",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/AUo7kzceNu"
+         },
+         {
+            "id":"348204",
+            "shopId":"49450917753",
+            "thumbnail":"",
+            "images":[
+               
+            ],
+            "name":"Tháp bày bia nước ngọt,tháp giả gỗ 3 tầng trưng bày ngày Tết ban thờ phủ bóng hàng dày đẹp",
+            "description":"30k+ lượt bán",
+            "type":"shopee",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/4q9l0Py8ax"
+         },
+         {
+            "id":"203396",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/a275bc9288984a03a5da35516e6c1fe3~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"[ ÁO TẾT ] Áo Thun Unisex \" MÀY QUĂC'' hottrend hàI hước Overco",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZS91FjbfCSRC6-xdxTs"
+         },
+         {
+            "id":"0244201",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/9c77713573144ac6afde08b71c4805c8~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"Set Bộ Cách Tân Sen Ngư, Hạc Vũ, Hồ Điệp Y78 Áo Tơ Thêu May Đúp Sạch Đính Nơ Xinh Mặc Chúc Tết 2026, Lễ Chùa, Ăn Cưới - Akara Closet",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZS91Fjsmj12vJ-v7b94"
+         },
+         {
+            "id":"9078408",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/867a476541734753b4f7a90682a68998~tplv-o3syd03w52-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"SÉT ÁO DÀI CÁCH TÂN THÊU HOA ĐÍNH NƠ KÈM CHÂN VÁY XÒE TRẺ TRUNG MẶC TẾT SIÊU XINH CÓ 3 MÀU,3 SIZE S,M, l Nữ Tre Top",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZS91Fjp3hMB78-GPwXv"
+         },
+         {
+            "id":"10",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/262d7af5000b4ef4a9f36dbe76921ba2~tplv-aphluv4xwc-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Móc khoá, treo điện thoại hình Ngựa Tiểu Mã dễ thương",
+            "description":"3.9K+ lượt bán",
+            "type":"none",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoQJcDSc2RL-U0BvA"
+         },
+         {
+            "id":"1",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/553c69b7ad09435e8a508d0965efbc16~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Set bao lì xì Tết Bính Ngọ 2026 – mẫu thiết kế độc quyền Hoa Nhí, Xuân Ánh Nguyệt, giấy C150 dày cán màng mịn 1",
+            "description":"6,7k lượt bán",
+            "type":"none",
+            "category":"lixi",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHEp66jn2YWE-gtwlJ"
+         },
+         {
+            "id":"2",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/a60cbbb08a144ffd8b0d4e61827404ab~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Bao lì xì Tết Việt Nam 2026 [Set 60 Cái] Thiết kế độc quyền Tết",
+            "description":"94,1k+ lượt bán",
+            "type":"none",
+            "category":"lixi",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHEp665NSafM-ZMcMA"
+         },
+         {
+            "id":"3",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/0a99fdd124c64f8d8e300bf67661d80f~tplv-aphluv4xwc-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Set bao lì xì Tết Bính Ngọ 2026 - Thiết kế độc quyền Tết Hoa Nhí Giấy C150 cán màng cao cấp",
+            "description":"8,8k+ lượt bán",
+            "type":"none",
+            "category":"lixi",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHEp6r4fSGCf-0wr2Y"
+         },
+         {
+            "id":"7",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/8eaf1f9a07904292bacec0e37bae2d92~tplv-aphluv4xwc-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"[Phúc-Lộc-Tài] Bao lì xì màu đỏ Cao Cấp, chất liệu nhủ lấp lánh.",
+            "description":"18,6k+ lượt bán",
+            "type":"none",
+            "category":"lixi",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoJLhDppTH9-OCs1s"
+         },
+         {
+            "id":"4",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/442a0609bee7490b9c1bfb9ed888a1f8~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Bao lì xì Tết Việt Nam 2026 - Mẫu Thiết Kế Độc Quyền Tết Độc Lập Đỏ Giấy C150 cán màng cao cấp",
+            "description":"1,7k+ lượt bán",
+            "type":"none",
+            "category":"lixi",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHEp6AuT4dyW-51Vuc"
+         },
+         {
+            "id":"5",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1b68bb2452bb44e19a08087ec7973294~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Mô hình bộ bầu cua trang trí nhà búp bê",
+            "description":"5,1k+ lượt bán",
+            "type":"none",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoJepqkbBMY-LZllb"
+         },
+         {
+            "id":"6",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/f08aee431267436ba9f339d1d12c892c~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Thẻ giấy hình bộ bài tây Mini trang trí nhà búp bê",
+            "description":"61,8k+ lượt bán",
+            "type":"none",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoJeGRcQVjN-dX6Ev"
+         },
+         {
+            "id":"8",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/7059239483e44091926605c6ae6bd6aa~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Thẻ cào năm mới, mùa xuân viết tay",
+            "description":"25+ lượt bán",
+            "type":"none",
+            "category":"lixi",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoYqVea9PKw-jKhIF"
+         },
+         {
+            "id":"9",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/8c66a89454d248fab2b6eb21657dabbc~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Vòng trang trí Tết Thần Tài kèm Phụ Kiện",
+            "description":"600+ lượt bán",
+            "type":"none",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoLJvMR7kJW-bPBJo"
+         },
+         {
+            "id":"10",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/305cd7b120594c81b73a2d499b4b796e~tplv-aphluv4xwc-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Khay đựng mứt Tết cao cấp [Bộ 6 ngăn]",
+            "description":"22.7K+ lượt bán",
+            "type":"none",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHosvAkMtK3A-kDBTL"
+         },
+         {
+            "id":"11",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/a8594c4d594046558aba50f5fcb84de0~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Khay đựng mứt Tết cao cấp [Bộ 5 ngăn]",
+            "description":"4.8K+ lượt bán",
+            "type":"none",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHosvBxgAoQd-lHLAP"
+         },
+         {
+            "id":"12",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/53274f36ba2844e6a0c99e98d8ac9bcd~tplv-o3syd03w52-resize-webp:800:800.webp",
+            "images":[
+               
+            ],
+            "name":"Set bình đào đông cắm sẵn trang trí Tết",
+            "description":"2.1K+ lượt bán",
+            "type":"none",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoGHkSkRAwe-DEbHt"
+         },
+         {
+            "id":"234113",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/23910a3b0a2e48d48d0b8fa7d2e7fc6b~tplv-o3syd03w52-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"Sét quạt trang trí tết NNQN01 ( SHOP GỬI PHỤ KIỆN ĐẦY ĐỦ NHƯ HÌNH ) có video hướng dẫn cách ghép",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoWFt38w91X-ABWdu"
+         },
+         {
+            "id":"84342",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/101afda927864b4f91869399c2f38cac~tplv-o3syd03w52-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"Tem dán dừa, bưởi, dưa trang trí Tết - Decal 3d dán trái cây - Decor",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoWFbSvgXu7-rjjOk"
+         },
+         {
+            "id":"177896",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/0e5087b26439438d85f7fec059ee54e1~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"Combo Trang Trí Tết  Bính Ngọ 2026 - Set Decor Trang Trí Tết Vẹn Tròn Đón Xuân Năm Mới Tặng Kèm Keo Nến TET6",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoWFusNNb8R-K7AUn/"
+         },
+         {
+            "id":"13124",
+            "thumbnail":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/5cb8751f2dd542918d3355632ec17300~tplv-o3syd03w52-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"Đĩa Trái Cây, Cao Cấp, Nhiều Tầng, Thích Hợp Cho Gia Đình, Phòng Khách, Bàn Cà Phê, Đĩa Kẹo, Đĩa Đồ Ăn Nhẹ, Hàng Mới Về Năm 2024, Lý Tưởng Cho Bàn Tiếp Khách",
+            "description":"Có video hướng dẫn, đầy đủ phụ kiện như hình",
+            "type":"none",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZSHoWFjhfMqJT-BHsKT/"
+         },
+         {
+            "id":"828612",
+            "shopId":"1917481546",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lz71wny8f44heb",
+            "images":[
+               
+            ],
+            "name":"Hạt điều rang củi (vị muối) Mẹ rô. Có hồ sơ công bố, xuất hóa đơn công ty đầy đủ | Shopee Việt Nam",
+            "description":"Mua Hạt điều rang củi (vị muối) Mẹ rô. Có hồ sơ công bố, xuất hóa đơn công ty đầy đủ giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/LhIUSx8yp"
+         },
+         {
+            "id":"609840",
+            "shopId":"50654394325",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mja0bg17mrk42b",
+            "images":[
+               
+            ],
+            "name":"Set decor Tết 2026 mã đáo thành công, đồ trang trí nhà cửa, quán cafe, khu vui chơi | Shopee Việt Nam",
+            "description":"Mua Set decor Tết 2026 mã đáo thành công, đồ trang trí nhà cửa, quán cafe, khu vui chơi giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/6pun11MQLA"
+         },
+         {
+            "id":"065291",
+            "shopId":"27383556793",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
+            "images":[
+               
+            ],
+            "name":"Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+            "description":"Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"bachhoa",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/7Kr3bAiNW7"
+         },
+         {
+            "id":"088166",
+            "shopId":"1311351953",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m351ii98lxou24",
+            "images":[
+               
+            ],
+            "name":"Bộ áo dài mặc tết chất áo tơ hoa 2 lớp cổ tròn thắc nơ bên tay lỡ kèm quần dài lụa mặc tôn dáng siêu xinh | Shopee Việt Nam",
+            "description":"Mua Bộ áo dài mặc tết chất áo tơ hoa 2 lớp cổ tròn thắc nơ bên tay lỡ kèm quần dài lụa mặc tôn dáng siêu xinh giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/9AIhUzWeyM"
+         }
+      ]
+   }
+}

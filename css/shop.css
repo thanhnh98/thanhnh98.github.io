@@ -1,0 +1,321 @@
+/* Shop / Referral products page - responsive */
+
+.shop-hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  padding: 5rem 0 3.5rem;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.shop-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../images/tet-background-pattern.svg') repeat;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.shop-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.shop-hero h1 {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.shop-hero p {
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  margin-bottom: 0;
+  opacity: 0.95;
+}
+
+.shop-section {
+  padding: 2rem 0 3rem;
+}
+
+.shop-section .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .shop-section .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.shop-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
+}
+
+.shop-back:hover {
+  opacity: 0.85;
+}
+
+.shop-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.shop-category-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 2px solid var(--color-primary);
+  background: #fff;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.shop-category-btn:hover {
+  background: rgba(211, 47, 47, 0.08);
+}
+
+.shop-category-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.shop-category-btn:active {
+  transform: scale(0.98);
+}
+
+/* Product grid - 1 col mobile, 2 tablet, 3–4 desktop */
+.shop-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 480px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .shop-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shop-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.shop-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.25s, transform 0.25s;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.shop-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.shop-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+}
+
+.shop-card-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+.shop-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shop-card-thumb img[src=""],
+.shop-card-thumb img:not([src]) {
+  visibility: hidden;
+}
+
+.shop-card-thumb .shop-card-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eee 0%, #e0e0e0 100%);
+  color: #999;
+  font-size: 2.5rem;
+}
+
+.shop-card-badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+.shop-card-badge.shopee {
+  background: #ee4d2d;
+  color: #fff;
+}
+
+.shop-card-badge.tiktok {
+  background: #000;
+  color: #fff;
+}
+
+.shop-card-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-card-name {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.shop-card-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary, #666);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  flex: 1;
+}
+
+.shop-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  border: none;
+  width: 100%;
+  transition: opacity 0.2s, transform 0.15s;
+  margin-top: auto;
+}
+
+.shop-card-cta:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+}
+
+.shop-card-cta:active {
+  transform: scale(0.98);
+}
+
+.shop-loading,
+.shop-error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-text-secondary, #666);
+}
+
+.shop-loading {
+  font-size: 1.1rem;
+}
+
+.shop-error {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.shop-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+/* Mobile: touch-friendly category scroll optional */
+@media (max-width: 767px) {
+  .shop-hero {
+    padding: 4rem 0 2.5rem;
+  }
+
+  .shop-categories {
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: -1rem;
+  }
+
+  .shop-categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shop-category-btn {
+    flex-shrink: 0;
+  }
+}
