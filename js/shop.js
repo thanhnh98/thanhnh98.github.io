@@ -53,12 +53,19 @@
     }, 2000);
   }
 
+  function trackShopEvent(action, params) {
+    if (typeof window !== 'undefined' && window.webAnalytics && window.webAnalytics.trackEvent) {
+      window.webAnalytics.trackEvent('shop_' + action, params || {});
+    }
+  }
+
   function shareProduct(productUrl, name) {
     var shareUrl = toAbsoluteUrl(productUrl);
     if (!shareUrl) {
       showShareFeedback('Không có link để chia sẻ');
       return;
     }
+    trackShopEvent('share_item', { item_name: name || '', item_url: shareUrl });
     if (typeof navigator !== 'undefined' && navigator.share) {
       navigator.share({
         url: shareUrl
@@ -167,6 +174,9 @@
       link.rel = 'noopener noreferrer';
       link.className = 'shop-card-link';
       link.setAttribute('aria-label', 'Xem sản phẩm: ' + name);
+      link.addEventListener('click', function () {
+        trackShopEvent('click_item', { item_name: name, item_url: url, brand: brand });
+      });
 
       const thumbEl = document.createElement('div');
       thumbEl.className = 'shop-card-thumb';
@@ -222,6 +232,9 @@
       ctaLink.rel = 'noopener noreferrer';
       ctaLink.className = 'shop-card-cta';
       ctaLink.textContent = buyText;
+      ctaLink.addEventListener('click', function () {
+        trackShopEvent('click_item', { item_name: name, item_url: url, brand: brand });
+      });
       actions.appendChild(ctaLink);
       var shareBtn = document.createElement('button');
       shareBtn.type = 'button';
@@ -251,6 +264,7 @@
     var categoriesEl = document.getElementById('shop-categories');
     if (!grid) return;
 
+    trackShopEvent('open', { page_path: typeof window !== 'undefined' && window.location ? window.location.pathname : '' });
     grid.innerHTML = '<p class="shop-loading">Đang tải sản phẩm...</p>';
 
     loadProducts().then(function (result) {

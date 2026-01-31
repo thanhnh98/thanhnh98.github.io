@@ -58,6 +58,7 @@
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
     <script src="js/icons.js"></script>
+    <script src="js/analytics.js"></script>
     <script src="js/shop.js"></script>
     <script src="js/footer.js"></script>
     <script>
@@ -70,6 +71,26 @@
                 });
             }
         });
+    </script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+      import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyA0H3MrjWzDOfLlvv6vLsRvafTgOvjkBNE",
+        authDomain: "sap-tet-countdown.firebaseapp.com",
+        databaseURL: "https://sap-tet-countdown-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "sap-tet-countdown",
+        storageBucket: "sap-tet-countdown.appspot.com",
+        messagingSenderId: "694828841632",
+        appId: "1:694828841632:web:c628cc496d648b229767c5",
+        measurementId: "G-N1W98H5503",
+      };
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      if (window.webAnalytics) {
+        if (window.webAnalytics.setAnalyticsInstance) window.webAnalytics.setAnalyticsInstance(analytics);
+        if (window.webAnalytics.setLogEventFunction) window.webAnalytics.setLogEventFunction(logEvent);
+      }
     </script>
 </body>
 </html>
