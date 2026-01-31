@@ -1,4 +1,3 @@
-
 {
    "data":{
       "agency":{
@@ -12,6 +11,10 @@
          {
             "category":"clothes",
             "displayName":"Thời trang Tết 👘"
+         },
+         {
+            "category":"oplung",
+            "displayName":"Ốp lưng xinh 📱"
          },
          {
             "category":"lixi",
@@ -35,19 +38,126 @@
          }
       ],
       "products":[
-{
-  "id": "827191",
-  "shopId": "54952213353",
-  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhkbrrck385h54.webp",
-  "images": [],
-  "name": "Ốp Lưng iPhone Camera Viền Cao Lucky Girl Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max",
-  "description": "Đã bán 10k+",
-  "type": "shopee",
-  "category": "decor",
-  "coinBonus": 10,
-  "buyText": "Xem sản phẩm",
-  "url": "https://s.shopee.vn/3B1aVPE3gD"
-},
+         {
+            "id":"669738",
+            "shopId":"40977538046",
+            "thumbnail":"",
+            "images":[
+               
+            ],
+            "name":"Ốp Lưng Iphone TPU hoa tiết da mềm TẾT ngựa",
+            "description":"Đã bán 7k+",
+            "type":"shopee",
+            "category":"oplung",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/8fMX7joLGv"
+         },
+         {
+            "id":"827191",
+            "shopId":"53502213453",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhkbpxwycd8m4a",
+            "images":[
+               
+            ],
+            "name":"Ốp Lưng iPhone Camera Viền Cao Happy Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max | Shopee Việt Nam",
+            "description":"Mua Ốp Lưng iPhone Camera Viền Cao Happy Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"oplung",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/9fF4JS0xwe"
+         },
+         {
+            "id":"610432",
+            "shopId":"50103070504",
+            "thumbnail":"",
+            "images":[
+               
+            ],
+            "name":"BST 2026 Áo dài Óng Ả 4 tà",
+            "description":"[Giao trước Tết] BST 2026 Áo dài Óng Ả 4 tà AD03 vải tơ tằm Chiết Giang lót lụa Hàng Châu dáng suông dài thiết kế",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/3fxrAKZEk6"
+         },
+         {
+            "id":"854141",
+            "shopId":"49403340673",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-miflklpurv2ecf",
+            "images":[
+               
+            ],
+            "name":"[BST TẾT 2026] Áo Nỉ Tết Gia Đình Embes - Áo Nỉ Cho Bé In Hình Họa Tiết \"Tết Là Nhà\" Size Từ 8-18Kg | Shopee Việt Nam",
+            "description":"Mua [BST TẾT 2026] Áo Nỉ Tết Gia Đình Embes - Áo Nỉ Cho Bé In Hình Họa Tiết \"Tết Là Nhà\" Size Từ 8-18Kg giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/10x5zNWv6W"
+         },
+         {
+            "id":"865476",
+            "shopId":"41223667033",
+            "thumbnail":"",
+            "images":[
+               
+            ],
+            "name":"Sét áo dài Tết Gấm cổ kiểu lệch đính ngọc, nút sang trọng+quần dài latin mềm bóng ( tặng Khăn+mấn+vòng cổ)",
+            "description":"Đã bán 4k+",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/8AQGWQZkS0"
+         },
+         {
+            "id":"384519",
+            "shopId":"29643780327",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-miu9qewbwlj53e",
+            "images":[
+               
+            ],
+            "name":"Áo dài Tết Như Ý,áo dài cách tân dáng suông 2 tà, tay lỡ đính hoa hot trend tết 2026, nữ,women dress - Áo Dài Mỹ An | Shopee Việt Nam",
+            "description":"Mua Áo dài Tết Như Ý,áo dài cách tân dáng suông 2 tà, tay lỡ đính hoa hot trend tết 2026, nữ,women dress - Áo Dài Mỹ An giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/3VeQxnaqsD"
+         },
+         {
+            "id":"305245",
+            "shopId":"44752159134",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/sg-11134201-82281-mhd09z3yeeq5a9",
+            "images":[
+               
+            ],
+            "name":"Băng Đô Tết Mới Hình Cung Hoàng Đạo Năm Ngựa, Phù Hợp Mọi Lứa Tuổi | Shopee Việt Nam",
+            "description":"Mua Băng Đô Tết Mới Hình Cung Hoàng Đạo Năm Ngựa, Phù Hợp Mọi Lứa Tuổi giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/806qK0LkVD"
+         },
+         {
+            "id":"827191",
+            "shopId":"54952213353",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhkbrrck385h54.webp",
+            "images":[
+               
+            ],
+            "name":"Ốp Lưng iPhone Camera Viền Cao Lucky Girl Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max",
+            "description":"Đã bán 10k+",
+            "type":"shopee",
+            "category":"oplung",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/3B1aVPE3gD"
+         },
          {
             "id":"501133",
             "shopId":"54851766731",
@@ -58,7 +168,7 @@
             "name":"Ốp lưng Tết 2026 vàng may mắn - ốp lưng trong nhũ vàng không ố lưng – Full iPhone 11–17 Pro Max (Có dây / Không dây)",
             "description":"Đã bán: 643",
             "type":"shopee",
-            "category":"bachhoa",
+            "category":"oplung",
             "coinBonus":10,
             "buyText":"Xem sản phẩm",
             "url":"https://s.shopee.vn/6KycGrOYtg"
@@ -193,7 +303,7 @@
             "name":"Ốp Lưng iPhone Camera Viền Cao Lucky Girl Tết 2026 Chống Sốc Cao Cấp - iP 7/8/X/XS/XR/11/12/13/14/15/16/17/Air/Pro/Max",
             "description":"10k+ lượt bán",
             "type":"shopee",
-            "category":"bachhoa",
+            "category":"oplung",
             "coinBonus":10,
             "buyText":"Xem sản phẩm",
             "url":"https://s.shopee.vn/AUo7kzceNu"
