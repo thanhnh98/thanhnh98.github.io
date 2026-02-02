@@ -1024,6 +1024,73 @@
         .events-upcoming .event-upcoming-item.event-upcoming-item--lunar { color: var(--color-event-lunar, #C62828); font-weight: 500; }
         .events-upcoming .event-upcoming-item.event-upcoming-item--solar { color: var(--color-event-solar, #1565C0); font-weight: 500; }
         .events-upcoming .event-upcoming-item:last-child { margin-bottom: 0; }
+        .events-upcoming .event-item-link { display: block; text-decoration: none; padding: 0.2rem 0; border-radius: 6px; transition: background 0.2s; }
+        .events-upcoming .event-item-link:hover { background: rgba(230, 0, 38, 0.06); }
+        
+        .events-full-list-wrap {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .events-full-list-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0 0 0.5rem 0;
+        }
+        .events-full-list {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .events-full-list .event-full-item {
+            margin-bottom: 0.35rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .events-full-list .event-full-item:last-child { border-bottom: none; }
+        .events-full-list .event-full-item.event-full-item--lunar { color: var(--color-event-lunar, #C62828); font-weight: 500; }
+        .events-full-list .event-full-item.event-full-item--solar { color: var(--color-event-solar, #1565C0); font-weight: 500; }
+        .events-full-list .event-days-left { font-weight: 600; color: var(--color-primary); margin-right: 0.35rem; }
+        
+        .events-year-list-wrap {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .events-year-list-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0 0 0.35rem 0;
+        }
+        .events-year-list-title #eventsYearListYear { color: var(--color-primary); }
+        .events-year-list-wrap .events-upcoming-legend { margin-bottom: 0.5rem; }
+        .events-year-list {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .events-year-list .event-year-item {
+            margin-bottom: 0.3rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .events-year-list .event-year-item:last-child { border-bottom: none; }
+        .events-year-list .event-year-item.event-year-item--lunar { color: var(--color-event-lunar, #C62828); font-weight: 500; }
+        .events-year-list .event-year-item.event-year-item--solar { color: var(--color-event-solar, #1565C0); font-weight: 500; }
+        .events-year-list .event-item-link { display: block; text-decoration: none; padding: 0.2rem 0; border-radius: 6px; transition: background 0.2s; }
+        .events-year-list .event-item-link:hover { background: rgba(230, 0, 38, 0.06); }
+        .events-year-list .event-days-left { font-weight: 600; color: var(--color-primary); margin-right: 0.35rem; }
+        .events-year-list .event-days-past { font-size: 0.75rem; color: var(--color-text-secondary); margin-right: 0.35rem; opacity: 0.85; }
         
         .lunar-info-item.tet-info-item {
             background: linear-gradient(135deg, #FFF9E6, #FFEBCD);
@@ -1547,7 +1614,7 @@
                     </div>
                         
                         <div id="eventsUpcomingWrap" class="events-upcoming-wrap" aria-live="polite">
-                            <p class="events-upcoming-title">📌 Sự kiện sắp tới</p>
+                            <p class="events-upcoming-title">📌 Sự kiện trong 1 tháng tới</p>
                             <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> 🌙 Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> ☀️ Dương lịch</span></div>
                             <div id="eventsUpcoming" class="events-upcoming"></div>
                         </div>
@@ -1564,11 +1631,11 @@
                         </div>
                     </div>
                     
-                    <!-- Detail Section below calendar -->
-                    <div class="calendar-detail-section" id="calendarDetailSection">
-                        <div class="empty-state">
-                            <p>Chọn một ngày trong lịch để xem thông tin chi tiết</p>
-                        </div>
+                    <!-- Sự kiện trong năm (dưới calendar detail, click vào từng sự kiện → trang chi tiết) -->
+                    <div id="eventsYearListWrap" class="events-year-list-wrap" aria-live="polite">
+                        <p class="events-year-list-title">📅 Tất cả sự kiện trong năm <span id="eventsYearListYear"></span></p>
+                        <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> 🌙 Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> ☀️ Dương lịch</span></div>
+                        <div id="eventsYearList" class="events-year-list"></div>
                     </div>
                 </div>
                 
@@ -2231,25 +2298,76 @@
             }
         }
         
-        // Cập nhật block "Sự kiện sắp tới"
-        function updateEventsUpcoming() {
-            const wrap = document.getElementById('eventsUpcomingWrap');
-            const el = document.getElementById('eventsUpcoming');
-            if (!el || !wrap) return;
-            if (typeof EVENTS_DATA === 'undefined') { wrap.style.display = 'none'; return; }
+        const ONE_MONTH_MS = 30 * 24 * 60 * 60 * 1000;
+
+        function pad2(n) { return (n < 10 ? '0' : '') + n; }
+        function formatDate(d) { return pad2(d.getDate()) + '/' + pad2(d.getMonth() + 1) + '/' + d.getFullYear(); }
+        function formatDateParam(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+        function daysFromToday(d) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const t = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+            t.setHours(0, 0, 0, 0);
+            return Math.round((t - today) / (24 * 60 * 60 * 1000));
+        }
+
+        /** Thu thập tất cả sự kiện (âm + dương) từ hôm nay trở đi, năm nay và năm sau, rồi sort từ gần đến xa. */
+        function collectAllUpcomingEvents() {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const year = today.getFullYear();
             const items = [];
+            if (typeof EVENTS_DATA === 'undefined') return items;
             if (typeof lunarToSolar === 'function' && EVENTS_DATA.LUNAR_EVENTS) {
                 EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
                     let d = lunarToSolar(year, ev.lunarMonth, ev.lunarDay);
-                    if (d) { d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
                     d = lunarToSolar(year + 1, ev.lunarMonth, ev.lunarDay);
-                    if (d) { d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
                     if (ev.lunarMonth === 12) {
                         d = lunarToSolar(year - 1, 12, ev.lunarDay);
-                        if (d) { d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                        if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    }
+                });
+            }
+            [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
+                if (!list) return;
+                list.forEach(function (ev) {
+                    let d = new Date(year, ev.month - 1, ev.day);
+                    d.setHours(0, 0, 0, 0);
+                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                    d = new Date(year + 1, ev.month - 1, ev.day);
+                    d.setHours(0, 0, 0, 0);
+                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                });
+            });
+            items.sort(function (a, b) { return a.date - b.date; });
+            return items;
+        }
+
+        /** Thu thập tất cả sự kiện (âm + dương) trong một năm dương lịch, sort theo ngày. */
+        function collectAllEventsInYear(year) {
+            const items = [];
+            if (typeof EVENTS_DATA === 'undefined') return items;
+            const yearStart = new Date(year, 0, 1);
+            yearStart.setHours(0, 0, 0, 0);
+            const yearEnd = new Date(year, 11, 31);
+            yearEnd.setHours(23, 59, 59, 999);
+            if (typeof lunarToSolar === 'function' && EVENTS_DATA.LUNAR_EVENTS) {
+                EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
+                    let d = lunarToSolar(year, ev.lunarMonth, ev.lunarDay);
+                    if (d) {
+                        d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                        d.setHours(0, 0, 0, 0);
+                        if (d >= yearStart && d <= yearEnd) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel });
+                    }
+                    if (ev.lunarMonth === 12) {
+                        d = lunarToSolar(year - 1, 12, ev.lunarDay);
+                        if (d) {
+                            d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                            d.setHours(0, 0, 0, 0);
+                            if (d >= yearStart && d <= yearEnd) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel });
+                        }
                     }
                 });
             }
@@ -2258,17 +2376,64 @@
                 list.forEach(function (ev) {
                     const d = new Date(year, ev.month - 1, ev.day);
                     d.setHours(0, 0, 0, 0);
-                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                    items.push({ date: d, name: ev.name, lunar: null });
                 });
             });
             items.sort(function (a, b) { return a.date - b.date; });
-            const show = items.slice(0, 5);
-            if (show.length === 0) { wrap.style.display = 'none'; return; }
+            return items;
+        }
+
+        function updateEventsUpcoming() {
+            const wrap = document.getElementById('eventsUpcomingWrap');
+            const el = document.getElementById('eventsUpcoming');
+            if (!el || !wrap) return;
+            if (typeof EVENTS_DATA === 'undefined') { wrap.style.display = 'none'; return; }
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayTime = today.getTime();
+            const endOneMonth = todayTime + ONE_MONTH_MS;
+            const all = collectAllUpcomingEvents();
+            const inOneMonth = all.filter(function (x) { return x.date.getTime() >= todayTime && x.date.getTime() <= endOneMonth; });
+            if (inOneMonth.length === 0) {
+                wrap.style.display = 'none';
+            } else {
+                wrap.style.display = '';
+                el.innerHTML = inOneMonth.map(function (x) {
+                    const days = daysFromToday(x.date);
+                    const dStr = formatDate(x.date);
+                    const dateParam = formatDateParam(x.date);
+                    const typeClass = x.lunar ? 'event-upcoming-item--lunar' : 'event-upcoming-item--solar';
+                    const daysText = days === 0 ? 'Hôm nay' : 'Còn ' + days + ' ngày';
+                    return '<a href="chi-tiet-su-kien.html?date=' + encodeURIComponent(formatDateParam(x.date)) + '" class="event-upcoming-item ' + typeClass + ' event-item-link"><span class="event-days-left">' + daysText + '</span> – ' + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
+                }).join('');
+            }
+        }
+
+        function updateEventsInYearList(year) {
+            const wrap = document.getElementById('eventsYearListWrap');
+            const el = document.getElementById('eventsYearList');
+            const yearEl = document.getElementById('eventsYearListYear');
+            if (!wrap || !el) return;
+            if (typeof EVENTS_DATA === 'undefined') { wrap.style.display = 'none'; return; }
+            if (yearEl) yearEl.textContent = year;
+            const items = collectAllEventsInYear(year);
+            if (items.length === 0) {
+                wrap.style.display = 'none';
+                return;
+            }
             wrap.style.display = '';
-            el.innerHTML = show.map(function (x) {
-                const dStr = x.date.getDate() + '/' + (x.date.getMonth() + 1) + '/' + x.date.getFullYear();
-                const typeClass = x.lunar ? 'event-upcoming-item--lunar' : 'event-upcoming-item--solar';
-                return '<div class="event-upcoming-item ' + typeClass + '">' + dStr + ' – ' + x.name + (x.lunar ? ' (' + x.lunar + ' âm lịch)' : '') + '</div>';
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            el.innerHTML = items.map(function (x) {
+                const dStr = formatDate(x.date);
+                const typeClass = x.lunar ? 'event-year-item--lunar' : 'event-year-item--solar';
+                const days = daysFromToday(x.date);
+                let prefix = '';
+                if (x.date.getTime() === today.getTime()) prefix = '<span class="event-days-left">Hôm nay</span> – ';
+                else if (days > 0) prefix = '<span class="event-days-left">Còn ' + days + ' ngày</span> – ';
+                else prefix = '<span class="event-days-past">Đã qua</span> – ';
+                const url = 'chi-tiet-su-kien.html?date=' + encodeURIComponent(formatDateParam(x.date));
+                return '<a href="' + url + '" class="event-year-item ' + typeClass + ' event-item-link">' + prefix + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
             }).join('');
         }
 
@@ -2276,6 +2441,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             generateCalendar();
             updateEventsUpcoming();
+            const yearSelect = document.getElementById('year-select');
+            const year = yearSelect ? parseInt(yearSelect.value, 10) : new Date().getFullYear();
+            updateEventsInYearList(year);
             
             // Dialog event listeners
             const dialogCloseBtn = document.getElementById('dialogClose');
@@ -2332,6 +2500,7 @@
                     
                     // Regenerate calendar
                     generateCalendar();
+                    updateEventsInYearList(today.getFullYear());
                     
                     // Scroll đến ngày hôm nay sau một chút delay để calendar render xong
                     setTimeout(() => {
@@ -2354,9 +2523,10 @@
             }
             
             document.getElementById('year-select').addEventListener('change', (e) => {
-                const year = parseInt(e.target.value);
+                const year = parseInt(e.target.value, 10);
                 currentDate.setFullYear(year);
                 generateCalendar();
+                updateEventsInYearList(year);
             });
             
             // View mode chips event listeners

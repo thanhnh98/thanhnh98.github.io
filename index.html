@@ -432,20 +432,24 @@
         
         <div class="container">
           <div id="countdown-content-wrapper" class="countdown-content-wrapper">
-            <div class="tet-main-greeting">
-              <i data-lucide="sparkles" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin: 0 0.5rem;"></i>
-              Sắp Tết 2026 - Tết Việt Nam - Tết Bính Ngọ 2026
-              <i data-lucide="sparkles" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin: 0 0.5rem;"></i>
-            </div>
             <h1 class="seo-title-hidden">Tải Sắp Tết ngay trên điện thoại! Theo dõi Tết mỗi ngày Không Cần Mở Web | Sắp Tết 2026 - Tết Việt Nam - Tết Bính Ngọ 2026 - Đếm Ngược Tết Nguyên Đán</h1>
             <h2>Đếm ngược đến Tết <span id="tet-year"></span> - Năm Bính Ngọ</h2>
-            <div class="tet-date-display">
-              <p>
-                <i data-lucide="calendar-heart" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.5rem;"></i>
-                Tết Nguyên Đán <span id="tet-date-lunar"></span>
-                <i data-lucide="calendar-heart" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 0.5rem;"></i>
+            <!-- Card: Đón Tết Bính Ngọ + ngày Tết + Hôm nay (click → lịch vạn niên) -->
+            <div class="countdown-info-card" aria-live="polite">
+              <div class="countdown-info-title">
+                <i data-lucide="sparkles" class="countdown-info-icon" aria-hidden="true"></i>
+                Đón Tết Nguyên Đán Bính Ngọ
+                <i data-lucide="sparkles" class="countdown-info-icon" aria-hidden="true"></i>
+              </div>
+              <p class="countdown-info-tet-date">
+                <i data-lucide="calendar-heart" class="countdown-info-icon" aria-hidden="true"></i>
+                Tết Nguyên Đán: <span id="tet-date-solar"></span>
               </p>
-              <p class="tet-date-solar">(<span id="tet-date-solar"></span>)</p>
+              <a href="lich-van-nien.html" class="countdown-info-today-link" aria-label="Xem lịch vạn niên chi tiết">
+                <span id="today-label">Hôm nay:</span>
+                <span id="today-date"></span>
+                <span id="today-event-count" class="today-event-count"></span>
+              </a>
             </div>
             <div id="countdown-timer">
               <div class="timer-box">
@@ -1182,6 +1186,7 @@
         window.solarToLunarFallbackFromComponent = solarToLunarFallback;
     </script>
     <script src="js/script.js"></script>
+    <script src="js/today-and-next-event.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
     <script src="js/icons.js"></script>

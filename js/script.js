@@ -595,16 +595,12 @@ function smoothScroll(targetId) {
     }
 }
 
-// Update Tet date display
+// Update Tet date display (chỉ cập nhật span ngày Tết trong countdown-info-card)
 function updateTetDateDisplay() {
-    const tetDateDisplay = document.querySelector('.tet-date-display');
-    if (tetDateDisplay) {
+    const el = document.getElementById('tet-date-solar');
+    if (el) {
         const nextTet = getNextTet();
-        const lunarDate = calculateLunarDate(nextTet.date);
-        tetDateDisplay.innerHTML = `
-            <p>Đón Tết Nguyên Đán Bính Ngọ</p>
-            <p class="tet-date-solar">${nextTet.date.toLocaleDateString('vi-VN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-        `;
+        el.textContent = nextTet.date.toLocaleDateString('vi-VN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     }
 }
 
@@ -1697,19 +1693,18 @@ function cloneCountdownSection() {
     clone.style.margin = '0 auto';
     clone.style.padding = '1rem';
     
-    // Remove border, box-shadow and background from tet-date-display
-    const tetDateDisplay = clone.querySelector('.tet-date-display');
-    if (tetDateDisplay) {
-        tetDateDisplay.style.border = 'none';
-        tetDateDisplay.style.boxShadow = 'none';
-        tetDateDisplay.style.background = 'transparent';
-        tetDateDisplay.style.backgroundColor = 'transparent';
-        
-        // Add "Tết chỉ còn..." text after tet-date-display
+    // Remove border, box-shadow and background from countdown-info-card (preview)
+    const countdownInfoCard = clone.querySelector('.countdown-info-card');
+    if (countdownInfoCard) {
+        countdownInfoCard.style.border = 'none';
+        countdownInfoCard.style.boxShadow = 'none';
+        countdownInfoCard.style.background = 'transparent';
+        countdownInfoCard.style.backgroundColor = 'transparent';
+        // Add "Tết chỉ còn..." text after countdown-info-card
         const remainingText = document.createElement('p');
         remainingText.className = 'tet-remaining-text';
         remainingText.textContent = 'Tết chỉ còn...';
-        tetDateDisplay.insertAdjacentElement('afterend', remainingText);
+        countdownInfoCard.insertAdjacentElement('afterend', remainingText);
     }
     
     // Disable animations in clone
