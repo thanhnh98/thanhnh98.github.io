@@ -395,6 +395,166 @@ main {
     pointer-events: none;
 }
 
+/* App intro: hàng nút + QR trong card — đều, cân */
+.app-intro-download-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+}
+
+.app-intro-qr-item {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid;
+}
+.app-download-intro-card .app-intro-qr-item {
+    flex: 0 0 56px;
+}
+.app-intro-qr-google {
+    border-color: rgba(52, 168, 83, 0.9);
+    box-shadow: 0 2px 12px rgba(52, 168, 83, 0.25);
+}
+.app-intro-qr-google:hover {
+    transform: scale(1.06);
+    box-shadow: 0 4px 20px rgba(52, 168, 83, 0.4);
+}
+.app-intro-qr-apple {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+.app-intro-qr-apple:hover {
+    transform: scale(1.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.app-intro-qr-img {
+    width: 100%;
+    height: 100%;
+    max-width: 48px;
+    max-height: 48px;
+    display: block;
+    object-fit: contain;
+}
+.app-intro-qr-modal-qr img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+.app-intro-qr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.app-intro-qr-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+.app-intro-qr-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+.app-intro-qr-modal-content {
+    position: relative;
+    background: linear-gradient(165deg, #fff8f0 0%, #fff 30%, #fff5f0 100%);
+    padding: 2rem 2.25rem 2.25rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(220, 20, 60, 0.15), 0 0 0 6px rgba(255, 215, 0, 0.12);
+    text-align: center;
+    max-width: 90vw;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+}
+.app-intro-qr-modal-icon-wrap {
+    margin-bottom: 0.75rem;
+}
+.app-intro-qr-modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.25), 0 0 0 2px rgba(255, 215, 0, 0.3);
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    animation: app-intro-qr-modal-icon-float 3s ease-in-out infinite;
+}
+@keyframes app-intro-qr-modal-icon-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+.app-intro-qr-modal-title {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #b91c1c;
+    line-height: 1.4;
+}
+.app-intro-qr-modal-qr {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(220, 20, 60, 0.12);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.app-intro-qr-modal-qr img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.app-intro-qr-modal-wish {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c2410c;
+    line-height: 1.5;
+    font-style: italic;
+}
+.app-intro-qr-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(220, 20, 60, 0.08);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #b91c1c;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+.app-intro-qr-modal-close:hover {
+    background: rgba(220, 20, 60, 0.18);
+    color: #991b1b;
+}
+
 .app-intro-content {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -533,9 +693,71 @@ main {
 .app-download-buttons-intro {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin: 2rem 0;
     align-items: center;
+    margin: 2rem 0;
+}
+
+/* Card bọc 2 hàng nút + QR: đều, cân, phù hợp layout */
+.app-download-intro-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 340px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.app-download-intro-card .app-intro-download-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+    min-height: 56px;
+}
+
+.app-download-intro-card .download-btn-intro {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.app-download-intro-card .download-btn-intro.google-play-btn {
+    background: linear-gradient(135deg, #34A853 0%, #4285F4 50%, #34A853 100%);
+    background-size: 200% 200%;
+    box-shadow: 0 4px 14px rgba(52, 168, 83, 0.35);
+}
+.app-download-intro-card .download-btn-intro.google-play-btn:hover {
+    box-shadow: 0 6px 20px rgba(52, 168, 83, 0.5);
+    transform: translateY(-2px);
+}
+.app-download-intro-card .download-btn-intro.app-store-btn {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    background-size: 200% 200%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.app-download-intro-card .download-btn-intro.app-store-btn:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.app-download-intro-card .store-badge-img-intro {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
 }
 
 .download-btn-intro {
@@ -684,9 +906,11 @@ main {
     }
     
     .app-download-buttons-intro {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
+        width: 100%;
+    }
+    
+    .app-download-intro-card {
+        max-width: 100%;
     }
     
     .download-btn-intro {
@@ -720,8 +944,17 @@ main {
     }
     
     .app-download-buttons-intro {
-        flex-direction: column;
-        gap: 0.8rem;
+        width: 100%;
+    }
+    
+    .app-download-intro-card {
+        max-width: 100%;
+        padding: 0.85rem;
+    }
+    
+    .app-download-intro-card .download-btn-intro {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
     }
     
     .download-btn-intro {

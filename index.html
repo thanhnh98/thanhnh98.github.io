@@ -551,6 +551,20 @@
 
       <!-- App Introduction Section -->
       <section id="app-intro" class="app-intro-section scroll-section">
+        <div id="app-intro-qr-modal" class="app-intro-qr-modal" role="dialog" aria-modal="true" aria-label="QR tải ứng dụng" aria-hidden="true">
+          <div class="app-intro-qr-modal-backdrop"></div>
+          <div class="app-intro-qr-modal-content">
+            <button type="button" class="app-intro-qr-modal-close" aria-label="Đóng">×</button>
+            <div class="app-intro-qr-modal-icon-wrap">
+              <img src="assets/images/ic_app.webp" alt="Sắp Tết" class="app-intro-qr-modal-icon">
+            </div>
+            <h3 class="app-intro-qr-modal-title" id="app-intro-qr-modal-title">Tải ứng dụng Sắp Tết</h3>
+            <div class="app-intro-qr-modal-qr">
+              <img id="app-intro-qr-modal-img" src="" alt="" width="220" height="220">
+            </div>
+            <p class="app-intro-qr-modal-wish">Chúc bạn một năm mới Bình An và Hạnh Phúc</p>
+          </div>
+        </div>
         <div class="container">
           <div class="app-intro-content">
             <div class="app-intro-left">
@@ -561,22 +575,34 @@
                 </div>
               </div>
               <div class="app-download-buttons-intro">
-                <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="download-btn-intro google-play-btn"
-                   aria-label="Tải ứng dụng Sắp Tết trên Google Play Store">
-                  <img src="assets/images/google_play.png" alt="Google Play" class="store-badge-img-intro">
-                  <span class="btn-text-intro">Google Play</span>
-                </a>
-                <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="download-btn-intro app-store-btn"
-                   aria-label="Tải ứng dụng Sắp Tết trên App Store">
-                  <img src="assets/images/apple_store.png" alt="App Store" class="store-badge-img-intro">
-                  <span class="btn-text-intro">App Store</span>
-                </a>
+                <div class="app-download-intro-card">
+                  <div class="app-intro-download-row">
+                    <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="download-btn-intro google-play-btn"
+                       aria-label="Tải ứng dụng Sắp Tết trên Google Play Store">
+                      <img src="assets/images/google_play.png" alt="Google Play" class="store-badge-img-intro">
+                      <span class="btn-text-intro">Google Play</span>
+                    </a>
+                    <button type="button" class="app-intro-qr-item app-intro-qr-google" data-image="assets/qrcode/qr-android.jpg" data-label="Google Play" aria-label="QR Google Play - bấm để phóng to">
+                      <img src="assets/qrcode/qr-android.jpg" alt="QR Google Play" class="app-intro-qr-img" width="52" height="52">
+                    </button>
+                  </div>
+                  <div class="app-intro-download-row">
+                    <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="download-btn-intro app-store-btn"
+                       aria-label="Tải ứng dụng Sắp Tết trên App Store">
+                      <img src="assets/images/apple_store.png" alt="App Store" class="store-badge-img-intro">
+                      <span class="btn-text-intro">App Store</span>
+                    </a>
+                    <button type="button" class="app-intro-qr-item app-intro-qr-apple" data-image="assets/qrcode/qr-apple.jpg" data-label="App Store" aria-label="QR App Store - bấm để phóng to">
+                      <img src="assets/qrcode/qr-apple.jpg" alt="QR App Store" class="app-intro-qr-img" width="52" height="52">
+                    </button>
+                  </div>
+                </div>
               </div>
               <div class="app-title-section">
                 <h2 class="app-title">Sắp Tết</h2>
@@ -1192,6 +1218,7 @@
     <script src="js/today-and-next-event.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
+    <script src="js/app-intro-qr.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/games-carousel.js"></script>
     <!-- <script src="js/universal-links.js"></script> -->
