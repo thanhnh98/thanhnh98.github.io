@@ -92,44 +92,54 @@
     return list;
   }
 
-  /** Đếm số ngày có sự kiện trong vòng 1 tháng (30 ngày) từ hôm nay. */
+  /** Trong vòng 1 tháng (30 ngày), tìm sự kiện gần nhất (chỉ 1). */
   var ONE_MONTH_MS = 30 * 24 * 60 * 60 * 1000;
 
-  function countUpcomingEventsInOneMonth(today, allEvents) {
+  function findNearestEventInOneMonth(today, allEvents) {
     today.setHours(0, 0, 0, 0);
     var todayTime = today.getTime();
     var endTime = todayTime + ONE_MONTH_MS;
-    var seen = {};
-    var count = 0;
+    var nearest = null;
+    var minDiff = Infinity;
     allEvents.forEach(function (item) {
       var t = item.date.getTime();
       if (t >= todayTime && t <= endTime) {
-        var key = item.date.getFullYear() + '-' + (item.date.getMonth() + 1) + '-' + item.date.getDate();
-        if (!seen[key]) {
-          seen[key] = true;
-          count++;
+        var diff = t - todayTime;
+        if (diff < minDiff) {
+          minDiff = diff;
+          nearest = item;
         }
       }
     });
-    return count;
+    if (!nearest) return null;
+    var daysLeft = Math.round(minDiff / (24 * 60 * 60 * 1000));
+    return { date: nearest.date, name: nearest.name, daysLeft: daysLeft };
   }
 
   function render() {
     var elDate = document.getElementById('today-date');
-    var elCount = document.getElementById('today-event-count');
+    var elLunar = document.getElementById('today-lunar');
+    var elNearestLink = document.getElementById('nearest-event-link');
+    var elNearestText = document.getElementById('nearest-event-text');
     var today = new Date();
 
     if (elDate) {
       elDate.textContent = getTodayString();
     }
+    if (elLunar) {
+      elLunar.textContent = getLunarString(today);
+    }
 
     var allEvents = collectAllEventDates(today);
-    var count = countUpcomingEventsInOneMonth(new Date(today.getTime()), allEvents);
-    if (elCount) {
-      if (count >= 1) {
-        elCount.textContent = ' (có sự kiện sắp diễn ra)';
+    var nearest = findNearestEventInOneMonth(new Date(today.getTime()), allEvents);
+    if (elNearestLink && elNearestText) {
+      if (nearest) {
+        elNearestText.textContent = nearest.daysLeft === 0
+          ? 'Hôm nay: ' + nearest.name
+          : nearest.daysLeft + ' ngày nữa đến ' + nearest.name;
+        elNearestLink.style.display = '';
       } else {
-        elCount.textContent = '';
+        elNearestLink.style.display = 'none';
       }
     }
   }
