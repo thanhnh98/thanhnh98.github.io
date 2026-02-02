@@ -14,6 +14,7 @@ class HeaderLoader {
             return 'cua-hang';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;
+            if (hash === '#app-intro') return 'app';
             if (hash) {
                 return hash.substring(1); // Remove # from hash
             }
@@ -48,6 +49,18 @@ class HeaderLoader {
             
             // Add mobile menu toggle listener
             this.addMobileMenuListener();
+            
+            // Scroll to #app-intro when clicking Ứng dụng
+            this.addAppIntroScrollListener();
+            
+            // Khi vào trang chủ với hash #app-intro thì cuộn mượt tới section
+            const path = window.location.pathname;
+            const isIndex = path === '/' || path.endsWith('/') || path.endsWith('index.html');
+            if (isIndex && window.location.hash === '#app-intro') {
+                setTimeout(() => {
+                    document.getElementById('app-intro')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
             
             // Initialize Lucide icons in the header
             this.initIcons();
@@ -90,7 +103,23 @@ class HeaderLoader {
                     const seeMoreBtn = document.querySelector('.see-more-btn');
                     const seeMoreText = seeMoreBtn?.querySelector('.see-more-text');
                     if (seeMoreText) {
-                        seeMoreText.textContent = 'Xem thêm';
+                        seeMoreText.textContent = 'Thêm';
+                    }
+                }
+            });
+        });
+    }
+
+    addAppIntroScrollListener() {
+        document.querySelectorAll('a[href*="#app-intro"], a.nav-app-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const path = window.location.pathname;
+                const isIndex = path === '/' || path.endsWith('/') || path.endsWith('index.html');
+                if (isIndex) {
+                    const appSection = document.getElementById('app-intro');
+                    if (appSection) {
+                        e.preventDefault();
+                        appSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 }
             });
@@ -131,7 +160,7 @@ class HeaderLoader {
                 // Update button text
                 const seeMoreText = seeMoreBtn.querySelector('.see-more-text');
                 if (seeMoreText) {
-                    seeMoreText.textContent = navExpandable.classList.contains('expanded') ? 'Thu gọn' : 'Xem thêm';
+                    seeMoreText.textContent = navExpandable.classList.contains('expanded') ? 'Thu gọn' : 'Thêm';
                 }
             });
             
