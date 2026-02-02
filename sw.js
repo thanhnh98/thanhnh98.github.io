@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1770029090441-db48e01';
+const CACHE_NAME = 'sap-tet-v1.0.1770031529742-f71cce0';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
