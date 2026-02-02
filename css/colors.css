@@ -40,6 +40,15 @@
     --color-calendar-hover: rgba(70, 130, 180, 0.2); /* Steel Blue */
     --color-lunar-text: #4682B4; /* Steel Blue */
     
+    /* Phân biệt sự kiện Âm lịch vs Dương lịch */
+    --color-event-lunar: #C62828;
+    --color-event-lunar-bg: rgba(198, 40, 40, 0.08);
+    --color-event-lunar-border: rgba(198, 40, 40, 0.35);
+    --color-event-solar: #1565C0;
+    --color-event-solar-vn: #2E7D32;
+    --color-event-solar-bg: rgba(21, 101, 192, 0.08);
+    --color-event-solar-border: rgba(21, 101, 192, 0.3);
+    
     /* Fonts */
     --font-heading: 'Dancing Script', 'Pacifico', cursive;
     --font-body: 'Nunito', 'Roboto', sans-serif;

@@ -2901,18 +2901,144 @@ main {
     color: var(--color-text-secondary);
 }
 
-/* Home Shop Preview Section - slider 4 item/slide, gọn */
+/* Home Shop Preview Section - slider 4 item/slide, gọn + decor Tết */
 .home-shop-preview-section {
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     background: linear-gradient(135deg, #fff9f0 0%, #fff5eb 50%, #fff0e6 100%);
     position: relative;
+    overflow: visible;
 }
 
+.home-shop-preview-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/tet-background-pattern.svg') repeat;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+.home-shop-preview-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary), var(--color-primary), var(--color-secondary), transparent);
+    background-size: 200% 100%;
+    opacity: 0.6;
+    animation: homeShopBorderFlow 4s ease-in-out infinite;
+}
+
+@keyframes homeShopBorderFlow {
+    0%, 100% { background-position: 0% 0; }
+    50% { background-position: 100% 0; }
+}
+
+/* Góc trang trí Tết */
 .home-shop-preview-section .container--shop-preview {
+    position: relative;
+    z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.home-shop-preview-section .container--shop-preview::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    background: url('../images/tet-corner-decoration.svg') no-repeat center/contain;
+    opacity: 0.5;
+    animation: gentleFloat 5s ease-in-out infinite;
+}
+
+.home-shop-preview-section .container--shop-preview::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 0;
+    width: 56px;
+    height: 56px;
+    background: url('../images/tet-corner-decoration.svg') no-repeat center/contain;
+    transform: scaleX(-1);
+    opacity: 0.5;
+    animation: gentleFloat 5s ease-in-out infinite reverse;
+}
+
+/* Hoa đào / lồng đèn trang trí nổi */
+.home-shop-deco {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.home-shop-deco--blossom {
+    width: 36px;
+    height: 36px;
+    background: url('../images/floating-peach-blossom.svg') no-repeat center/contain;
+    opacity: 0.45;
+    animation: homeShopBlossomFloat 8s ease-in-out infinite;
+}
+
+.home-shop-deco--blossom.home-shop-deco--2 { animation-delay: 1.5s; }
+.home-shop-deco--blossom.home-shop-deco--3 { animation-delay: 3s; }
+.home-shop-deco--blossom.home-shop-deco--4 { animation-delay: 4.5s; }
+
+.home-shop-deco--blossom:nth-child(1) { top: 12%; left: 6%; }
+.home-shop-deco--blossom.home-shop-deco--2 { top: 22%; right: 8%; }
+.home-shop-deco--blossom.home-shop-deco--3 { bottom: 25%; left: 10%; }
+.home-shop-deco--blossom.home-shop-deco--4 { bottom: 18%; right: 6%; }
+
+@keyframes homeShopBlossomFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.45; }
+    25% { transform: translateY(-8px) rotate(3deg); opacity: 0.55; }
+    50% { transform: translateY(-12px) rotate(-2deg); opacity: 0.45; }
+    75% { transform: translateY(-6px) rotate(2deg); opacity: 0.5; }
+}
+
+.home-shop-deco--lantern {
+    font-size: 1.5rem;
+    opacity: 0.7;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    animation: homeShopLanternSway 3s ease-in-out infinite;
+}
+
+.home-shop-deco--L { top: 50%; left: 0; transform: translateY(-50%); }
+.home-shop-deco--R { top: 50%; right: 0; transform: translateY(-50%); }
+.home-shop-deco--R { animation-delay: 0.5s; }
+
+@keyframes homeShopLanternSway {
+    0%, 100% { transform: translateY(-50%) rotate(-4deg); }
+    50% { transform: translateY(-50%) rotate(4deg); }
+}
+
+.home-shop-deco--lantern.home-shop-deco--R { animation-delay: 0.5s; }
+
+@media (max-width: 767px) {
+    .home-shop-preview-section .container--shop-preview::before,
+    .home-shop-preview-section .container--shop-preview::after {
+        width: 40px;
+        height: 40px;
+        opacity: 0.4;
+    }
+    .home-shop-deco--blossom {
+        width: 28px;
+        height: 28px;
+        opacity: 0.35;
+    }
+    .home-shop-deco--lantern {
+        font-size: 1.2rem;
+        opacity: 0.5;
+    }
 }
 
 .home-shop-preview-title {
@@ -2926,6 +3052,14 @@ main {
     justify-content: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+    animation: homeShopTitleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes homeShopTitleGlow {
+    0% { filter: drop-shadow(0 2px 4px rgba(230, 0, 38, 0.2)); }
+    100% { filter: drop-shadow(0 2px 8px rgba(230, 0, 38, 0.35)) drop-shadow(0 0 12px rgba(255, 215, 0, 0.25)); }
 }
 
 .home-shop-preview-icon {
@@ -3803,6 +3937,47 @@ main {
         0 0 100px rgba(33, 150, 243, 0.5);
 }
 
+/* Home calendar: highlight ngày sự kiện âm lịch / dương lịch */
+.calendar-section .calendar-day.calendar-day-lunar {
+    background: linear-gradient(135deg, rgba(255, 249, 230, 0.98) 0%, rgba(255, 235, 205, 0.98) 100%);
+    border: 1px solid var(--color-event-lunar-border, rgba(198, 40, 40, 0.35));
+}
+.calendar-section .calendar-day.calendar-day-tet-main {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(220, 20, 60, 0.85) 100%);
+    color: white;
+    border-color: rgba(220, 20, 60, 0.5);
+}
+.calendar-section .calendar-day.calendar-day-tet-main .solar-date,
+.calendar-section .calendar-day.calendar-day-tet-main .lunar-date,
+.calendar-section .calendar-day.calendar-day-tet-main .calendar-event-label { color: white; font-weight: 700; }
+.calendar-section .calendar-day.calendar-day-event-important {
+    background: linear-gradient(135deg, rgba(255, 228, 225, 0.98) 0%, rgba(255, 249, 230, 0.98) 100%);
+    border-color: rgba(255, 69, 0, 0.4);
+}
+.calendar-section .calendar-day.calendar-day-solar {
+    background: linear-gradient(135deg, rgba(21, 101, 192, 0.08) 0%, rgba(46, 139, 87, 0.08) 100%);
+    border: 1px solid var(--color-event-solar-border, rgba(21, 101, 192, 0.3));
+}
+.calendar-section .calendar-day .calendar-event-label {
+    font-size: 0.6rem;
+    line-height: 1.15;
+    margin-top: 0.2rem;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+.calendar-section .calendar-day .calendar-event-label-lunar {
+    color: var(--color-event-lunar, #C62828);
+    font-weight: 600;
+}
+.calendar-section .calendar-day .calendar-event-label-solar {
+    color: var(--color-event-solar, #1565C0);
+    font-weight: 600;
+}
+
 .calendar-day.tet-date {
     background: linear-gradient(135deg, rgba(255, 0, 0, 0.8) 0%, rgba(255, 215, 0, 0.7) 100%);
     color: white;
@@ -3922,6 +4097,37 @@ main {
     margin-bottom: 0.5rem;
     color: var(--color-text-secondary);
 }
+
+.lunar-info .lunar-info-event {
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    border-left: 4px solid;
+}
+.lunar-info .lunar-info-event p {
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+}
+.lunar-info .lunar-info-event p:last-child { margin-bottom: 0; }
+.lunar-info .lunar-info-event-lunar {
+    background: var(--color-event-lunar-bg, rgba(198, 40, 40, 0.08));
+    border-left-color: var(--color-event-lunar, #C62828);
+}
+.lunar-info .lunar-info-event-lunar p { color: var(--color-text-primary); }
+.lunar-info .lunar-info-event-solar {
+    background: var(--color-event-solar-bg, rgba(21, 101, 192, 0.08));
+    border-left-color: var(--color-event-solar, #1565C0);
+}
+.lunar-info .lunar-info-event-solar p { color: var(--color-text-primary); }
+.lunar-info .lunar-info-event-date {
+    font-size: 0.9rem !important;
+    color: var(--color-text-secondary) !important;
+}
+.lunar-info .lunar-info-note {
+    background: rgba(255, 215, 0, 0.1);
+    border-left-color: var(--color-text-accent, #B8860B);
+}
+.lunar-info .lunar-info-note p { color: var(--color-text-primary); }
 
 /* Features Section */
 .features-section {
@@ -6038,6 +6244,11 @@ footer::after {
     .calendar-day .lunar-date {
         font-size: 0.7rem;
         margin-top: 1px;
+    }
+    
+    .calendar-section .calendar-day .calendar-event-label {
+        font-size: 0.55rem;
+        -webkit-line-clamp: 2;
     }
     
     .lunar-info {

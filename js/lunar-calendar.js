@@ -209,11 +209,46 @@ function solarToLunarFallback(solarDate) {
     };
 }
 
+/**
+ * Chuyển ngày âm lịch (tháng, ngày) sang ngày dương lịch trong năm đã cho.
+ * Dùng cho sự kiện âm lịch (Tết Đoan Ngọ 5/5, Giỗ Tổ 10/3, v.v.).
+ * @param {number} year - Năm dương lịch
+ * @param {number} lunarMonth - Tháng âm (1-12)
+ * @param {number} lunarDay - Ngày âm (1-30)
+ * @returns {Date|null} Ngày dương lịch tương ứng, hoặc null nếu không tính được
+ */
+function lunarToSolar(year, lunarMonth, lunarDay) {
+    var yearData = LUNAR_YEAR_DATA[year];
+    if (!yearData) {
+        yearData = {
+            tetDate: calculateTetDate(year),
+            monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30],
+            leapMonth: null,
+            leapMonthDays: 0
+        };
+    }
+    var tetDate = new Date(yearData.tetDate.getTime());
+    var monthDays = yearData.monthDays;
+    var leapMonth = yearData.leapMonth;
+    var leapMonthDays = yearData.leapMonthDays || 0;
+    var daysToAdd = 0;
+    for (var m = 1; m < lunarMonth; m++) {
+        daysToAdd += monthDays[m - 1];
+        if (leapMonth === m) {
+            daysToAdd += leapMonthDays;
+        }
+    }
+    daysToAdd += (lunarDay - 1);
+    tetDate.setDate(tetDate.getDate() + daysToAdd);
+    return tetDate;
+}
+
 // Export functions for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         calculateLunarDate,
         solarToLunarFallback,
+        lunarToSolar,
         TET_DATES,
         LUNAR_YEAR_DATA
     };
