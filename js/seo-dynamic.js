@@ -127,11 +127,11 @@ class DynamicSEO {
         let title = document.querySelector('title');
         
         if (daysUntilTet <= 7 && title) {
-            title.textContent = `🎊 Sắp Tết 2026 - Tết Việt Nam (Tết Việt) - Tết Bính Ngọ 2026 - CHỈ CÒN ${daysUntilTet} NGÀY NỮA LÀ ĐẾN TẾT NGUYÊN ĐÁN! | Tết 2026`;
+            title.textContent = `🎊 Sắp Tết 2026 - CHỈ CÒN ${daysUntilTet} NGÀY NỮA LÀ ĐẾN TẾT NGUYÊN ĐÁN!`;
         } else if (daysUntilTet <= 30 && title) {
-            title.textContent = `🏮 Sắp Tết 2026 - Tết Việt Nam (Tết Việt) - Tết Bính Ngọ 2026 - Đếm ngược Tết Nguyên Đán chỉ còn ${daysUntilTet} ngày | Tết 2026`;
+            title.textContent = `🏮 Sắp Tết 2026 - Còn ${daysUntilTet} ngày tới Tết? Đếm ngược Tết Nguyên Đán`;
         } else if (title) {
-            title.textContent = `Sắp Tết 2026 - Tết Việt Nam (Tết Việt) | Tết Bính Ngọ 2026 | Lịch Âm Dương Việt Nam`;
+            title.textContent = `Sắp Tết 2026 - Còn bao nhiêu ngày tới Tết? Khi nào Tết? Đếm ngược Tết Nguyên Đán`;
         }
     }
 }

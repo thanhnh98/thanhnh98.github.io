@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <title>Lịch Vạn Niên 2026 - Lịch Âm Dương | Xem Ngày Tốt Xấu</title>
     <meta name="description" content="Lịch vạn niên 2026 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng. Lịch vạn niên Việt Nam chính xác nhất.">
     <meta name="keywords" content="lịch vạn niên, lịch âm dương, lịch vạn niên 2026, xem ngày tốt, ngày đẹp, giờ hoàng đạo, lịch âm dương 2026">
@@ -73,7 +73,7 @@
         .calendar-hero {
             background: linear-gradient(135deg, #DC143C 0%, #FF4500 25%, #FFD700 50%, #FF6347 75%, #DC143C 100%);
             background-size: 200% 200%;
-            padding: 6rem 0 4rem;
+            padding: clamp(4rem, 10vw, 6rem) clamp(1rem, 4vw, 2rem) clamp(2.5rem, 6vw, 4rem);
             text-align: center;
             color: white;
             position: relative;
@@ -121,7 +121,7 @@
         .calendar-container {
             background: #FFFFFF;
             border-radius: 16px;
-            padding: clamp(6.6rem, 1.8vw, 0.9rem);
+            padding: clamp(0.75rem, 2vw, 1.5rem);
             box-shadow: 0 8px 32px rgba(0,0,0,0.08);
             border: 1px solid rgba(220, 20, 60, 0.1);
         }
@@ -1427,6 +1427,12 @@
             .dialog {
                 max-width: 100%;
                 max-height: 95vh;
+                margin: 0.5rem;
+                border-radius: 12px;
+            }
+            
+            .dialog-overlay {
+                padding: 0.5rem;
             }
             
             .dialog-header {
@@ -1435,6 +1441,7 @@
             
             .dialog-content {
                 padding: 1rem;
+                -webkit-overflow-scrolling: touch;
             }
             
             .calendar-title-row {
@@ -1463,8 +1470,10 @@
             
             .month-nav-btn {
                 order: -1;
-                width: 40px;
-                height: 40px;
+                width: 44px;
+                min-width: 44px;
+                height: 44px;
+                min-height: 44px;
                 font-size: 1.15rem;
             }
             
@@ -1492,15 +1501,24 @@
             .view-mode-chip {
                 flex: 1;
                 text-align: center;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .calendar-grid {
+                gap: 0.35rem;
+                padding: 0.5rem;
             }
             
             .calendar-day {
-                min-height: 70px;
-                padding: 1rem 0.5rem;
+                min-height: 72px;
+                padding: 0.6rem 0.35rem;
             }
             
             .calendar-day.traditional-tet {
-                min-height: 70px;
+                min-height: 72px;
             }
             
             .calendar-day.traditional-tet .tet-label {
@@ -1509,9 +1527,9 @@
             }
             
             .calendar-day-header {
-                padding: 0.75rem 0.4rem;
-                font-size: 0.75rem;
-                min-height: 40px;
+                padding: 0.6rem 0.25rem;
+                font-size: 0.7rem;
+                min-height: 36px;
             }
             
             .calendar-day .day-number {
@@ -1519,11 +1537,123 @@
             }
             
             .calendar-day .lunar-date {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
             }
             
             .hour-list {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .go-to-today-btn {
+                min-height: 44px;
+            }
+            
+            .year-selector select {
+                min-height: 44px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .calendar-hero {
+                padding: 3rem 0.75rem 2rem;
+            }
+            
+            .calendar-hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .calendar-hero .subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .calendar-content {
+                padding: 1rem 0;
+            }
+            
+            .calendar-container {
+                padding: 0.75rem;
+            }
+            
+            .calendar-title {
+                font-size: 1.25rem;
+                min-width: 0;
+            }
+            
+            .current-month-display {
+                font-size: 1rem;
+            }
+            
+            .calendar-controls-row {
+                gap: 0.75rem;
+            }
+            
+            .calendar-grid {
+                gap: 2px;
+                padding: 4px;
+            }
+            
+            .calendar-day-header {
+                font-size: 0.6rem;
+                padding: 0.5rem 0.15rem !important;
+                min-height: 32px;
+            }
+            
+            .calendar-day {
+                min-height: 52px;
+                padding: 0.4rem 0.2rem;
+                border-radius: 8px;
+            }
+            
+            .calendar-day.traditional-tet {
+                min-height: 56px;
+            }
+            
+            .calendar-day .day-number {
+                font-size: 0.8rem;
+            }
+            
+            .calendar-day .lunar-date {
+                font-size: 0.55rem;
+            }
+            
+            .calendar-day.traditional-tet .tet-label {
+                font-size: 0.5rem;
+                -webkit-line-clamp: 1;
+                line-clamp: 1;
+            }
+            
+            .month-nav-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+            
+            .dialog {
+                max-height: 90vh;
+                margin: 0.25rem;
+                border-radius: 12px;
+            }
+            
+            .dialog-header h3 {
+                font-size: 1rem;
+            }
+            
+            .dialog-close {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+            }
+            
+            .view-mode-chip {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            @supports (padding: max(0px)) {
+                .calendar-hero { padding-left: max(0.75rem, env(safe-area-inset-left)); padding-right: max(0.75rem, env(safe-area-inset-right)); }
+                .calendar-container { padding-left: max(0.75rem, env(safe-area-inset-left)); padding-right: max(0.75rem, env(safe-area-inset-right)); }
+                .dialog { margin-left: max(0.25rem, env(safe-area-inset-left)); margin-right: max(0.25rem, env(safe-area-inset-right)); }
             }
         }
         
