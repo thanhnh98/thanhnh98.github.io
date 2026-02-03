@@ -1,3 +1,8 @@
+# Canonical URL redirects (fix "Page with redirect" / duplicate URLs for Google)
+# http → https, index.html → /
+http://saptet.vn/* https://saptet.vn/:splat 301!
+https://saptet.vn/index.html https://saptet.vn/ 301!
+
 # GitHub Pages redirects for comprehensive subdomain handling
 # Redirect all invalid subdomains to main site
 
@@ -81,8 +86,11 @@ http://phpmyadmin.saptet.vn/* https://saptet.vn/ 301!
 https://www.saptet.vn/* https://saptet.vn/:splat 301!
 http://www.saptet.vn/* https://saptet.vn/:splat 301!
 
-# Clean URL for shop page
+# Clean URLs → .html (so only one URL is canonical; reduces "Alternate page with proper canonical tag")
 /cua-hang /cua-hang.html 301!
+/mon-an-tet /mon-an-tet.html 301!
+/blog /blog.html 301!
+/con-bao-lau-nua-den-tet /con-bao-lau-nua-den-tet.html 301!
 
 # Handle common 404s
 /404 /404.html 404!
