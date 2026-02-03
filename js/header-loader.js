@@ -12,6 +12,8 @@ class HeaderLoader {
             return 'mon-an-tet';
         } else if (filename === 'cua-hang.html') {
             return 'cua-hang';
+        } else if (filename === 'ung-dung.html') {
+            return 'app';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;
             if (hash === '#app-intro') return 'app';
