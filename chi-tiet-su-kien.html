@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sự kiện | Đếm ngược & Ý nghĩa | Sắp Tết 2026</title>
+    <meta name="description" content="Xem đếm ngược đến ngày sự kiện, ý nghĩa và thông tin chi tiết về các ngày lễ âm lịch, dương lịch.">
+    <link rel="canonical" href="https://saptet.vn/chi-tiet-su-kien.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .event-detail-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            color: #fff;
+        }
+        .event-detail-hero h1 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin: 0 0 0.5rem 0;
+            font-weight: 700;
+        }
+        .event-detail-hero .event-date-display {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        .event-detail-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .event-detail-countdown .countdown-unit {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            min-width: 70px;
+            text-align: center;
+            border: 2px solid rgba(255,215,0,0.5);
+        }
+        .event-detail-countdown .countdown-value {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+        .event-detail-countdown .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        .event-detail-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .event-detail-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid rgba(230,0,38,0.1);
+        }
+        .event-detail-card h2 {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin: 0 0 0.75rem 0;
+        }
+        .event-detail-card p {
+            margin: 0 0 0.5rem 0;
+            line-height: 1.65;
+            color: var(--color-text-primary);
+        }
+        .event-detail-card .event-type-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .event-detail-card .event-type-badge.lunar {
+            background: var(--color-event-lunar-bg);
+            color: var(--color-event-lunar);
+        }
+        .event-detail-card .event-type-badge.solar {
+            background: var(--color-event-solar-bg);
+            color: var(--color-event-solar);
+        }
+        .event-detail-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--color-text-secondary);
+        }
+        .event-detail-empty a {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <section class="event-detail-hero" id="eventHero">
+            <div class="container">
+                <a href="lich-van-nien.html" class="back-link">← Lịch vạn niên</a>
+                <h1 id="eventTitle">Sự kiện</h1>
+                <p class="event-date-display" id="eventDateDisplay"></p>
+                <div class="event-detail-countdown" id="eventCountdown">
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="cdDays">0</span>
+                        <span class="countdown-label">Ngày</span>
+                    </div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="cdHours">0</span>
+                        <span class="countdown-label">Giờ</span>
+                    </div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="cdMinutes">0</span>
+                        <span class="countdown-label">Phút</span>
+                    </div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="cdSeconds">0</span>
+                        <span class="countdown-label">Giây</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-detail-content" id="eventContent">
+            <div id="eventCards"></div>
+            <div class="event-detail-empty" id="eventEmpty" style="display: none;">
+                <p>Không tìm thấy thông tin sự kiện cho ngày này.</p>
+                <p><a href="lich-van-nien.html">Xem lịch vạn niên</a> · <a href="su-kien-quan-trong.html">Xem tất cả sự kiện</a></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/header-loader.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/lunar-calendar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="data/events-data.js"></script>
+    <script>
+(function () {
+    function getParam(name) {
+        var m = (typeof location !== 'undefined' && location.search) ? location.search.match(new RegExp('[?&]' + name + '=([^&]+)')) : null;
+        return m ? decodeURIComponent(m[1]) : '';
+    }
+    function parseDateParam(str) {
+        if (!str || !/^\d{4}-\d{2}-\d{2}$/.test(str)) return null;
+        var p = str.split('-').map(Number);
+        var d = new Date(p[0], p[1] - 1, p[2]);
+        return (d.getFullYear() === p[0] && d.getMonth() === p[1] - 1 && d.getDate() === p[2]) ? d : null;
+    }
+    function pad2(n) { return (n < 10 ? '0' : '') + n; }
+    function formatDate(d) {
+        return pad2(d.getDate()) + '/' + pad2(d.getMonth() + 1) + '/' + d.getFullYear();
+    }
+    function formatDateLong(d) {
+        var days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+        return days[d.getDay()] + ', ' + d.getDate() + ' tháng ' + (d.getMonth() + 1) + ', ' + d.getFullYear();
+    }
+
+    /** Lấy danh sách sự kiện trùng ngày dương lịch (y, m, d). */
+    function getEventsOnDate(y, m, d) {
+        var target = new Date(y, m, d);
+        target.setHours(0, 0, 0, 0);
+        var list = [];
+        if (typeof EVENTS_DATA === 'undefined') return list;
+        var month = m + 1;
+        var day = d;
+
+        [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (arr) {
+            if (!arr) return;
+            arr.forEach(function (ev) {
+                if (ev.month === month && ev.day === day) {
+                    list.push({ name: ev.name, description: ev.description || '', lunar: null, type: 'solar', typeLabel: 'Dương lịch' });
+                }
+            });
+        });
+
+        if (typeof lunarToSolar === 'function' && EVENTS_DATA.LUNAR_EVENTS) {
+            EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
+                var solar = lunarToSolar(y, ev.lunarMonth, ev.lunarDay);
+                if (solar) {
+                    var sd = new Date(solar.getFullYear(), solar.getMonth(), solar.getDate());
+                    sd.setHours(0, 0, 0, 0);
+                    if (sd.getTime() === target.getTime()) {
+                        list.push({ name: ev.name, description: ev.description || '', lunar: ev.lunarLabel, type: 'lunar', typeLabel: 'Âm lịch' });
+                    }
+                }
+                if (ev.lunarMonth === 12) {
+                    solar = lunarToSolar(y - 1, 12, ev.lunarDay);
+                    if (solar) {
+                        var sd2 = new Date(solar.getFullYear(), solar.getMonth(), solar.getDate());
+                        sd2.setHours(0, 0, 0, 0);
+                        if (sd2.getTime() === target.getTime()) {
+                            list.push({ name: ev.name, description: ev.description || '', lunar: ev.lunarLabel, type: 'lunar', typeLabel: 'Âm lịch' });
+                        }
+                    }
+                }
+            });
+        }
+        return list;
+    }
+
+    function updateCountdown(targetDate) {
+        var now = new Date().getTime();
+        var t = targetDate.getTime();
+        var diff = t - now;
+        var daysEl = document.getElementById('cdDays');
+        var hoursEl = document.getElementById('cdHours');
+        var minutesEl = document.getElementById('cdMinutes');
+        var secondsEl = document.getElementById('cdSeconds');
+        var countdownWrap = document.getElementById('eventCountdown');
+        if (!daysEl) return;
+
+        if (diff <= 0) {
+            if (countdownWrap) countdownWrap.innerHTML = '<p style="margin:0; font-size:1.25rem;">Sự kiện đã diễn ra</p>';
+            return;
+        }
+        var days = Math.floor(diff / (24 * 60 * 60 * 1000));
+        var hours = Math.floor((diff % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+        var minutes = Math.floor((diff % (60 * 60 * 1000)) / (60 * 1000));
+        var seconds = Math.floor((diff % (60 * 1000)) / 1000);
+        daysEl.textContent = days;
+        hoursEl.textContent = pad2(hours);
+        minutesEl.textContent = pad2(minutes);
+        secondsEl.textContent = pad2(seconds);
+    }
+
+    function render() {
+        var dateParam = getParam('date');
+        var targetDate = parseDateParam(dateParam);
+        var titleEl = document.getElementById('eventTitle');
+        var dateDisplayEl = document.getElementById('eventDateDisplay');
+        var cardsEl = document.getElementById('eventCards');
+        var emptyEl = document.getElementById('eventEmpty');
+
+        if (!targetDate) {
+            if (titleEl) titleEl.textContent = 'Không có ngày hợp lệ';
+            if (dateDisplayEl) dateDisplayEl.textContent = 'Thiếu tham số ?date=yyyy-mm-dd';
+            if (cardsEl) cardsEl.innerHTML = '';
+            if (emptyEl) { emptyEl.style.display = 'block'; }
+            return;
+        }
+
+        if (titleEl) titleEl.textContent = 'Chi tiết sự kiện';
+        if (dateDisplayEl) dateDisplayEl.textContent = formatDateLong(targetDate) + ' (' + formatDate(targetDate) + ')';
+
+        var events = getEventsOnDate(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+        if (events.length === 0) {
+            if (cardsEl) cardsEl.innerHTML = '';
+            if (emptyEl) { emptyEl.style.display = 'block'; }
+        } else {
+            if (emptyEl) emptyEl.style.display = 'none';
+            if (cardsEl) {
+                cardsEl.innerHTML = events.map(function (ev) {
+                    var badgeClass = ev.type === 'lunar' ? 'lunar' : 'solar';
+                    var lunarNote = ev.lunar ? '<p class="event-lunar-note"><strong>Âm lịch:</strong> ' + ev.lunar + '</p>' : '';
+                    return '<div class="event-detail-card">' +
+                        '<span class="event-type-badge ' + badgeClass + '">' + ev.typeLabel + '</span>' +
+                        '<h2>' + ev.name + '</h2>' +
+                        lunarNote +
+                        '<p>' + (ev.description || 'Không có mô tả.') + '</p>' +
+                        '</div>';
+                }).join('');
+            }
+        }
+
+        updateCountdown(targetDate);
+        setInterval(function () { updateCountdown(targetDate); }, 1000);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', render);
+    } else {
+        render();
+    }
+})();
+    </script>
+</body>
+</html>

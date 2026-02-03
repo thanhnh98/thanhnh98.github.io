@@ -259,6 +259,48 @@
     });
   }
 
+  /**
+   * Lấy category từ URL: ?category=xxx hoặc #xxx
+   * Trả về category id nếu hợp lệ, null nếu không có hoặc không khớp danh sách.
+   */
+  function getCategoryFromUrl(validCategories) {
+    if (!validCategories || !validCategories.length) return null;
+    var set = {};
+    validCategories.forEach(function (c) {
+      set[c.category] = true;
+    });
+    var search = typeof window !== 'undefined' && window.location ? window.location.search : '';
+    var hash = typeof window !== 'undefined' && window.location ? window.location.hash : '';
+    var fromQuery = null;
+    var fromHash = null;
+    if (search) {
+      var m = search.match(/\bcategory=([^&]+)/i);
+      if (m) fromQuery = decodeURIComponent(m[1].replace(/\+/g, ' ')).trim();
+    }
+    if (hash && hash.length > 1) {
+      fromHash = decodeURIComponent(hash.slice(1).replace(/\+/g, ' ')).trim();
+    }
+    var slug = fromQuery || fromHash;
+    if (!slug) return null;
+    if (set[slug]) return slug;
+    return null;
+  }
+
+  /**
+   * Cập nhật URL với category hiện tại (không reload trang).
+   * Dùng query ?category= để dễ share và SEO.
+   */
+  function updateUrlCategory(category) {
+    if (typeof window === 'undefined' || !window.history || !window.location) return;
+    var base = window.location.pathname || '/cua-hang.html';
+    var url = category && category !== ALL_CATEGORY
+      ? base + '?category=' + encodeURIComponent(category)
+      : base;
+    if (window.location.search + (window.location.hash || '') !== (url === base ? '' : url.slice(base.length))) {
+      window.history.replaceState({ category: category }, '', url);
+    }
+  }
+
   function init() {
     var grid = document.getElementById('shop-grid');
     var categoriesEl = document.getElementById('shop-categories');
@@ -277,16 +319,22 @@
       }
 
       var activeCategory = ALL_CATEGORY;
-      if (categories.length && categories[0].category === ALL_CATEGORY) {
+      var fromUrl = getCategoryFromUrl(categories);
+      if (fromUrl) {
+        activeCategory = fromUrl;
+      } else if (categories.length && categories[0].category === ALL_CATEGORY) {
         activeCategory = ALL_CATEGORY;
       } else if (categories.length) {
         activeCategory = categories[0].category;
       }
 
+      updateUrlCategory(activeCategory);
+
       renderCategories(categories, activeCategory, function (cat) {
         activeCategory = cat;
         setCategoryActive(cat);
         renderProducts(products, activeCategory);
+        updateUrlCategory(activeCategory);
       });
       renderProducts(products, activeCategory);
     });

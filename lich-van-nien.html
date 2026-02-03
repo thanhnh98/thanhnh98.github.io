@@ -938,7 +938,7 @@
         
         .calendar-day.traditional-tet .tet-label {
             font-size: 0.65rem;
-            color: #DC143C;
+            color: var(--color-event-lunar, #C62828);
             font-weight: 600;
             margin-top: 4px;
             line-height: 1.2;
@@ -961,6 +961,136 @@
         .calendar-day.traditional-tet.tet-important .tet-label {
             color: #FF4500;
         }
+        
+        .calendar-day .tet-label-holiday {
+            font-size: 0.65rem;
+            color: var(--color-event-solar, #1565C0);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-top: 0.15rem;
+        }
+        
+        .calendar-day.solar-holiday-only {
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.08) 0%, rgba(46, 139, 87, 0.06) 100%);
+            border-color: rgba(21, 101, 192, 0.25);
+            border-width: 1px;
+        }
+        .calendar-day.solar-holiday-only:hover {
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.12) 0%, rgba(46, 139, 87, 0.1) 100%);
+        }
+        
+        .calendar-day .calendar-day-now-note {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 0.2rem;
+            padding: 0.1rem 0.35rem;
+            background: rgba(255, 215, 0, 0.35);
+            border-radius: 999px;
+            display: inline-block;
+        }
+        
+        .events-upcoming-wrap {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #fff9f0 0%, #fff5eb 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(230, 0, 38, 0.1);
+        }
+        .events-upcoming-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0 0 0.5rem 0;
+        }
+        .events-upcoming-legend {
+            font-size: 0.7rem;
+            margin-bottom: 0.35rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .events-upcoming-legend span { display: inline-flex; align-items: center; gap: 0.25rem; }
+        .events-upcoming-legend .dot-lunar { width: 6px; height: 6px; border-radius: 50%; background: var(--color-event-lunar, #C62828); }
+        .events-upcoming-legend .dot-solar { width: 6px; height: 6px; border-radius: 50%; background: var(--color-event-solar, #1565C0); }
+        .events-upcoming {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+        .events-upcoming .event-upcoming-item {
+            margin-bottom: 0.25rem;
+        }
+        .events-upcoming .event-upcoming-item.event-upcoming-item--lunar { color: var(--color-event-lunar, #C62828); font-weight: 500; }
+        .events-upcoming .event-upcoming-item.event-upcoming-item--solar { color: var(--color-event-solar, #1565C0); font-weight: 500; }
+        .events-upcoming .event-upcoming-item:last-child { margin-bottom: 0; }
+        .events-upcoming .event-item-link { display: block; text-decoration: none; padding: 0.2rem 0; border-radius: 6px; transition: background 0.2s; }
+        .events-upcoming .event-item-link:hover { background: rgba(230, 0, 38, 0.06); }
+        
+        .events-full-list-wrap {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .events-full-list-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0 0 0.5rem 0;
+        }
+        .events-full-list {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .events-full-list .event-full-item {
+            margin-bottom: 0.35rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .events-full-list .event-full-item:last-child { border-bottom: none; }
+        .events-full-list .event-full-item.event-full-item--lunar { color: var(--color-event-lunar, #C62828); font-weight: 500; }
+        .events-full-list .event-full-item.event-full-item--solar { color: var(--color-event-solar, #1565C0); font-weight: 500; }
+        .events-full-list .event-days-left { font-weight: 600; color: var(--color-primary); margin-right: 0.35rem; }
+        
+        .events-year-list-wrap {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .events-year-list-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0 0 0.35rem 0;
+        }
+        .events-year-list-title #eventsYearListYear { color: var(--color-primary); }
+        .events-year-list-wrap .events-upcoming-legend { margin-bottom: 0.5rem; }
+        .events-year-list {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .events-year-list .event-year-item {
+            margin-bottom: 0.3rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        .events-year-list .event-year-item:last-child { border-bottom: none; }
+        .events-year-list .event-year-item.event-year-item--lunar { color: var(--color-event-lunar, #C62828); font-weight: 500; }
+        .events-year-list .event-year-item.event-year-item--solar { color: var(--color-event-solar, #1565C0); font-weight: 500; }
+        .events-year-list .event-item-link { display: block; text-decoration: none; padding: 0.2rem 0; border-radius: 6px; transition: background 0.2s; }
+        .events-year-list .event-item-link:hover { background: rgba(230, 0, 38, 0.06); }
+        .events-year-list .event-days-left { font-weight: 600; color: var(--color-primary); margin-right: 0.35rem; }
+        .events-year-list .event-days-past { font-size: 0.75rem; color: var(--color-text-secondary); margin-right: 0.35rem; opacity: 0.85; }
         
         .lunar-info-item.tet-info-item {
             background: linear-gradient(135deg, #FFF9E6, #FFEBCD);
@@ -1159,14 +1289,14 @@
         
         .holiday-badge.traditional {
             background: linear-gradient(135deg, #FFE4E1, #FFF9E6);
-            color: #DC143C;
-            border: 2px solid #FFD700;
+            color: var(--color-event-lunar, #C62828);
+            border: 2px solid rgba(198, 40, 40, 0.4);
         }
         
         .holiday-badge.holiday {
             background: linear-gradient(135deg, #DBEAFE, #E0E7FF);
-            color: #1E40AF;
-            border: 2px solid #3B82F6;
+            color: var(--color-event-solar, #1565C0);
+            border: 2px solid rgba(21, 101, 192, 0.4);
         }
         
         .lunar-info h3::before {
@@ -1483,6 +1613,12 @@
                         </div>
                     </div>
                         
+                        <div id="eventsUpcomingWrap" class="events-upcoming-wrap" aria-live="polite">
+                            <p class="events-upcoming-title">📌 Sự kiện trong 1 tháng tới</p>
+                            <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> 🌙 Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> ☀️ Dương lịch</span></div>
+                            <div id="eventsUpcoming" class="events-upcoming"></div>
+                        </div>
+                        
                         <div class="calendars-container single" id="calendarsContainer">
                             <!-- Calendar will be generated by JavaScript -->
                         </div>
@@ -1495,11 +1631,11 @@
                         </div>
                     </div>
                     
-                    <!-- Detail Section below calendar -->
-                    <div class="calendar-detail-section" id="calendarDetailSection">
-                        <div class="empty-state">
-                            <p>Chọn một ngày trong lịch để xem thông tin chi tiết</p>
-                        </div>
+                    <!-- Sự kiện trong năm (dưới calendar detail, click vào từng sự kiện → trang chi tiết) -->
+                    <div id="eventsYearListWrap" class="events-year-list-wrap" aria-live="polite">
+                        <p class="events-year-list-title">📅 Tất cả sự kiện trong năm <span id="eventsYearListYear"></span></p>
+                        <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> 🌙 Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> ☀️ Dương lịch</span></div>
+                        <div id="eventsYearList" class="events-year-list"></div>
                     </div>
                 </div>
                 
@@ -1528,6 +1664,7 @@
     <script src="js/icons.js"></script>
     <script src="js/lunar-calendar.js"></script>
     <script src="js/trung-thu-calculator.js"></script>
+    <script src="data/events-data.js"></script>
     <script>
         // Tên các tháng
         const monthNames = [
@@ -1547,149 +1684,42 @@
         let currentDate = new Date(2026, 0, 1); // Initialize to January 2026
         let selectedDate = null;
         
-        // Tính toán các ngày Tết truyền thống Việt Nam dựa trên năm
+        // Tính toán các ngày Tết / sự kiện âm lịch từ EVENTS_DATA (đầy đủ, chính xác)
+        // Tháng Chạp (12): 23/12 (Ông Táo) rơi vào năm dương trước Tết → tính cả year-1 để hiện đúng trên lịch
         function getTraditionalTetDates(year) {
-            // Lấy ngày Tết chính của năm
-            let tetDate;
-            if (typeof TET_DATES !== 'undefined' && TET_DATES[year]) {
-                tetDate = new Date(TET_DATES[year]);
-            } else {
-                // Tính toán gần đúng nếu không có trong TET_DATES
-                tetDate = calculateTetDate ? calculateTetDate(year) : new Date(year, 1, 17);
-            }
-            
             const dates = {};
-            
-            // Tính toán các ngày trước Tết (dựa trên âm lịch)
-            // 23 tháng Chạp: Ông Công Ông Táo (7 ngày trước Tết)
-            const ongCongOngTao = new Date(tetDate);
-            ongCongOngTao.setDate(ongCongOngTao.getDate() - 7);
-            dates[formatDateKey(ongCongOngTao)] = {
-                name: 'Ông Công Ông Táo',
-                lunar: '23 tháng Chạp',
-                description: 'Ngày đưa Ông Công Ông Táo về trời',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
-            // 30 tháng Chạp: Tất niên (1 ngày trước Tết)
-            const tatNien = new Date(tetDate);
-            tatNien.setDate(tatNien.getDate() - 1);
-            dates[formatDateKey(tatNien)] = {
-                name: 'Tất niên',
-                lunar: '30 tháng Chạp',
-                description: 'Ngày cuối cùng của năm cũ, gia đình sum họp',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
-            // Mùng 1 Tết: Tết Nguyên Đán
-            dates[formatDateKey(tetDate)] = {
-                name: 'Mùng 1 Tết',
-                lunar: 'Mùng 1 tháng Giêng',
-                description: 'Tết Nguyên Đán - Ngày Tết chính',
-                type: 'traditional',
-                importance: 'highest',
-                isMain: true
-            };
-            
-            // Mùng 2 Tết
-            const mung2 = new Date(tetDate);
-            mung2.setDate(mung2.getDate() + 1);
-            dates[formatDateKey(mung2)] = {
-                name: 'Mùng 2 Tết',
-                lunar: 'Mùng 2 tháng Giêng',
-                description: 'Thăm họ hàng nội ngoại',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
-            // Mùng 3 Tết
-            const mung3 = new Date(tetDate);
-            mung3.setDate(mung3.getDate() + 2);
-            dates[formatDateKey(mung3)] = {
-                name: 'Mùng 3 Tết',
-                lunar: 'Mùng 3 tháng Giêng',
-                description: 'Thăm thầy cô, bạn bè',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
-            // Mùng 4 Tết
-            const mung4 = new Date(tetDate);
-            mung4.setDate(mung4.getDate() + 3);
-            dates[formatDateKey(mung4)] = {
-                name: 'Mùng 4 Tết',
-                lunar: 'Mùng 4 tháng Giêng',
-                description: 'Du xuân, vui chơi',
-                type: 'traditional',
-                importance: 'medium'
-            };
-            
-            // Mùng 5 Tết
-            const mung5 = new Date(tetDate);
-            mung5.setDate(mung5.getDate() + 4);
-            dates[formatDateKey(mung5)] = {
-                name: 'Mùng 5 Tết',
-                lunar: 'Mùng 5 tháng Giêng',
-                description: 'Nghỉ ngơi, thư giãn',
-                type: 'traditional',
-                importance: 'medium'
-            };
-            
-            // Mùng 7 Tết: Hạ nêu
-            const mung7 = new Date(tetDate);
-            mung7.setDate(mung7.getDate() + 6);
-            dates[formatDateKey(mung7)] = {
-                name: 'Hạ nêu',
-                lunar: 'Mùng 7 tháng Giêng',
-                description: 'Ngày hạ nêu, kết thúc Tết',
-                type: 'traditional',
-                importance: 'medium'
-            };
-            
-            // Rằm tháng Giêng (15/1 âm lịch): Tết Nguyên Tiêu
-            // Tính từ ngày Tết + 14 ngày
-            const nguyenTieu = new Date(tetDate);
-            nguyenTieu.setDate(nguyenTieu.getDate() + 14);
-            dates[formatDateKey(nguyenTieu)] = {
-                name: 'Tết Nguyên Tiêu',
-                lunar: 'Rằm tháng Giêng',
-                description: 'Lễ hội đèn lồng, cầu nguyện',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
-            // Rằm tháng Bảy (15/7 âm lịch): Lễ Vu Lan
-            // Tính từ ngày Tết + khoảng 6 tháng (180 ngày)
-            const vuLan = new Date(tetDate);
-            vuLan.setDate(vuLan.getDate() + 180);
-            dates[formatDateKey(vuLan)] = {
-                name: 'Lễ Vu Lan',
-                lunar: 'Rằm tháng Bảy',
-                description: 'Ngày báo hiếu cha mẹ',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
-            // Rằm tháng Tám (15/8 âm lịch): Tết Trung Thu
-            // Tính toán chính xác từ 15/8 âm lịch
-            let trungThu;
-            if (typeof calculateTrungThuDate === 'function') {
-                trungThu = calculateTrungThuDate(year);
-            } else {
-                // Fallback: Tính từ ngày Tết + khoảng 7 tháng (210 ngày)
-                trungThu = new Date(tetDate);
-                trungThu.setDate(trungThu.getDate() + 210);
+            if (typeof EVENTS_DATA !== 'undefined' && EVENTS_DATA.LUNAR_EVENTS && typeof lunarToSolar === 'function') {
+                function addEvent(ev, solarDate) {
+                    if (!solarDate) return;
+                    const key = formatDateKey(solarDate);
+                    dates[key] = {
+                        name: ev.name,
+                        lunar: ev.lunarLabel,
+                        description: ev.description,
+                        type: 'traditional',
+                        importance: ev.type === 'major' ? 'high' : 'medium',
+                        isMain: ev.isMainTet || false
+                    };
+                }
+                EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
+                    let solarDate;
+                    if (ev.lunarMonth === 8 && ev.lunarDay === 15 && typeof calculateTrungThuDate === 'function') {
+                        solarDate = calculateTrungThuDate(year);
+                    } else {
+                        solarDate = lunarToSolar(year, ev.lunarMonth, ev.lunarDay);
+                    }
+                    addEvent(ev, solarDate);
+                    // Tháng Chạp (23/12 Ông Táo...): ngày đó thuộc năm âm trước Tết, rơi vào tháng 1–2 dương lịch → thêm year-1
+                    if (ev.lunarMonth === 12) {
+                        const solarPrev = lunarToSolar(year - 1, 12, ev.lunarDay);
+                        if (solarPrev && solarPrev.getFullYear() === year) addEvent(ev, solarPrev);
+                    }
+                });
+                return dates;
             }
-            dates[formatDateKey(trungThu)] = {
-                name: 'Tết Trung Thu',
-                lunar: 'Rằm tháng Tám',
-                description: 'Tết thiếu nhi, rước đèn, phá cỗ',
-                type: 'traditional',
-                importance: 'high'
-            };
-            
+            // Fallback khi chưa load events-data: chỉ dùng Tết chính
+            let tetDate = (typeof TET_DATES !== 'undefined' && TET_DATES[year]) ? new Date(TET_DATES[year]) : (calculateTetDate ? calculateTetDate(year) : new Date(year, 1, 17));
+            dates[formatDateKey(tetDate)] = { name: 'Tết Nguyên Đán', lunar: 'Mùng 1 tháng Giêng', description: 'Ngày Tết cổ truyền lớn nhất năm.', type: 'traditional', importance: 'highest', isMain: true };
             return dates;
         }
         
@@ -1878,10 +1908,11 @@
                 ? `Mùng 1 tháng ${lunarMonth}` 
                 : `${lunarInfo.day} tháng ${lunarMonth}`;
             
-            // Kiểm tra ngày Tết truyền thống
+            // Kiểm tra ngày Tết truyền thống và ngày lễ dương lịch
             const dateKey = formatDateKey(solarDate);
             const traditionalDates = getTraditionalTetDates(year);
             const traditionalDate = traditionalDates[dateKey];
+            const holidayInfo = getHolidayInfo(solarDate);
             
             if (traditionalDate) {
                 dayElement.classList.add('traditional-tet');
@@ -1921,6 +1952,23 @@
                 tetLabel.className = 'tet-label';
                 tetLabel.textContent = traditionalDate.name;
                 dayElement.appendChild(tetLabel);
+            }
+            
+            // Thêm label cho ngày lễ dương lịch (khi không trùng ngày âm đã có label)
+            if (holidayInfo && !traditionalDate) {
+                dayElement.classList.add('solar-holiday-only');
+                const holidayLabel = document.createElement('div');
+                holidayLabel.className = 'tet-label tet-label-holiday';
+                holidayLabel.textContent = holidayInfo.name;
+                dayElement.appendChild(holidayLabel);
+            }
+            
+            // Note "Đang diễn ra" khi hôm nay là ngày có sự kiện
+            if (isToday && (traditionalDate || holidayInfo)) {
+                const nowNote = document.createElement('div');
+                nowNote.className = 'calendar-day-now-note';
+                nowNote.textContent = 'Đang diễn ra';
+                dayElement.appendChild(nowNote);
             }
             
             // Thêm sự kiện click và keyboard
@@ -2038,35 +2086,32 @@
             return activities[lunarDay] || ['Các việc không phù hợp'];
         }
         
-        // Kiểm tra ngày nghỉ lễ
+        // Kiểm tra ngày nghỉ lễ / sự kiện dương lịch (đầy đủ từ EVENTS_DATA)
         function getHolidayInfo(date) {
             const dateKey = formatDateKey(date);
             const year = date.getFullYear();
-            
-            // Ngày nghỉ lễ quốc gia Việt Nam (cố định)
-            const fixedHolidays = {
-                [`${year}-01-01`]: { name: 'Tết Dương lịch', type: 'national', description: 'Ngày đầu năm mới dương lịch' },
-                [`${year}-04-30`]: { name: 'Ngày Giải phóng miền Nam', type: 'national', description: 'Thống nhất đất nước' },
-                [`${year}-05-01`]: { name: 'Ngày Quốc tế Lao động', type: 'national', description: 'Ngày của người lao động' },
-                [`${year}-09-02`]: { name: 'Quốc khánh', type: 'national', description: 'Ngày độc lập Việt Nam' }
-            };
-            
-            // Ngày nghỉ lễ tính theo âm lịch (cần tính toán)
-            // Giỗ Tổ Hùng Vương - 10/3 âm lịch
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const fixedHolidays = {};
+            if (typeof EVENTS_DATA !== 'undefined') {
+                [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
+                    if (!list) return;
+                    list.forEach(function (ev) {
+                        const key = year + '-' + String(ev.month).padStart(2, '0') + '-' + String(ev.day).padStart(2, '0');
+                        if (!fixedHolidays[key]) fixedHolidays[key] = { name: ev.name, type: ev.type || 'national', description: ev.description };
+                    });
+                });
+            }
+            if (fixedHolidays[dateKey]) return fixedHolidays[dateKey];
+            // Giỗ Tổ Hùng Vương - 10/3 âm lịch (trùng ngày âm)
             let lunarInfo;
             try {
-                if (typeof calculateLunarDate === 'function') {
-                    lunarInfo = calculateLunarDate(date);
-                }
-            } catch (e) {
-                // Ignore
-            }
-            
+                if (typeof calculateLunarDate === 'function') lunarInfo = calculateLunarDate(date);
+            } catch (e) {}
             if (lunarInfo && lunarInfo.month === 3 && lunarInfo.day === 10) {
-                return { name: 'Giỗ Tổ Hùng Vương', type: 'national', description: 'Ngày giỗ các Vua Hùng' };
+                return { name: 'Giỗ Tổ Hùng Vương', type: 'national', description: 'Quốc lễ – nghỉ lễ chính thức. Ngày giỗ các Vua Hùng, tưởng nhớ công ơn dựng nước.' };
             }
-            
-            return fixedHolidays[dateKey] || null;
+            return null;
         }
         
         // Dialog functions
@@ -2178,6 +2223,17 @@
                 </div>
                 ` : ''}
                 
+                ${!traditionalDate && (lunarInfo.day === 1 || lunarInfo.day === 15) ? `
+                <div class="detail-section">
+                    <div class="detail-section-title">
+                        <span>🕯️ Ngày âm lịch (tâm linh)</span>
+                    </div>
+                    <div class="detail-section-content">
+                        <p>${lunarInfo.day === 1 ? 'Mùng 1' : 'Rằm (15)'} âm lịch – ngày cúng, tâm linh phổ biến hàng tháng. Nhiều gia đình cúng ông bà tổ tiên vào mùng 1 và rằm.</p>
+                    </div>
+                </div>
+                ` : ''}
+                
                 <div class="detail-section">
                     <div class="detail-section-title">
                         <span>⏰ Giờ hoàng đạo</span>
@@ -2242,9 +2298,152 @@
             }
         }
         
+        const ONE_MONTH_MS = 30 * 24 * 60 * 60 * 1000;
+
+        function pad2(n) { return (n < 10 ? '0' : '') + n; }
+        function formatDate(d) { return pad2(d.getDate()) + '/' + pad2(d.getMonth() + 1) + '/' + d.getFullYear(); }
+        function formatDateParam(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+        function daysFromToday(d) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const t = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+            t.setHours(0, 0, 0, 0);
+            return Math.round((t - today) / (24 * 60 * 60 * 1000));
+        }
+
+        /** Thu thập tất cả sự kiện (âm + dương) từ hôm nay trở đi, năm nay và năm sau, rồi sort từ gần đến xa. */
+        function collectAllUpcomingEvents() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const year = today.getFullYear();
+            const items = [];
+            if (typeof EVENTS_DATA === 'undefined') return items;
+            if (typeof lunarToSolar === 'function' && EVENTS_DATA.LUNAR_EVENTS) {
+                EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
+                    let d = lunarToSolar(year, ev.lunarMonth, ev.lunarDay);
+                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    d = lunarToSolar(year + 1, ev.lunarMonth, ev.lunarDay);
+                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    if (ev.lunarMonth === 12) {
+                        d = lunarToSolar(year - 1, 12, ev.lunarDay);
+                        if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    }
+                });
+            }
+            [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
+                if (!list) return;
+                list.forEach(function (ev) {
+                    let d = new Date(year, ev.month - 1, ev.day);
+                    d.setHours(0, 0, 0, 0);
+                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                    d = new Date(year + 1, ev.month - 1, ev.day);
+                    d.setHours(0, 0, 0, 0);
+                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                });
+            });
+            items.sort(function (a, b) { return a.date - b.date; });
+            return items;
+        }
+
+        /** Thu thập tất cả sự kiện (âm + dương) trong một năm dương lịch, sort theo ngày. */
+        function collectAllEventsInYear(year) {
+            const items = [];
+            if (typeof EVENTS_DATA === 'undefined') return items;
+            const yearStart = new Date(year, 0, 1);
+            yearStart.setHours(0, 0, 0, 0);
+            const yearEnd = new Date(year, 11, 31);
+            yearEnd.setHours(23, 59, 59, 999);
+            if (typeof lunarToSolar === 'function' && EVENTS_DATA.LUNAR_EVENTS) {
+                EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
+                    let d = lunarToSolar(year, ev.lunarMonth, ev.lunarDay);
+                    if (d) {
+                        d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                        d.setHours(0, 0, 0, 0);
+                        if (d >= yearStart && d <= yearEnd) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel });
+                    }
+                    if (ev.lunarMonth === 12) {
+                        d = lunarToSolar(year - 1, 12, ev.lunarDay);
+                        if (d) {
+                            d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                            d.setHours(0, 0, 0, 0);
+                            if (d >= yearStart && d <= yearEnd) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel });
+                        }
+                    }
+                });
+            }
+            [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
+                if (!list) return;
+                list.forEach(function (ev) {
+                    const d = new Date(year, ev.month - 1, ev.day);
+                    d.setHours(0, 0, 0, 0);
+                    items.push({ date: d, name: ev.name, lunar: null });
+                });
+            });
+            items.sort(function (a, b) { return a.date - b.date; });
+            return items;
+        }
+
+        function updateEventsUpcoming() {
+            const wrap = document.getElementById('eventsUpcomingWrap');
+            const el = document.getElementById('eventsUpcoming');
+            if (!el || !wrap) return;
+            if (typeof EVENTS_DATA === 'undefined') { wrap.style.display = 'none'; return; }
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayTime = today.getTime();
+            const endOneMonth = todayTime + ONE_MONTH_MS;
+            const all = collectAllUpcomingEvents();
+            const inOneMonth = all.filter(function (x) { return x.date.getTime() >= todayTime && x.date.getTime() <= endOneMonth; });
+            if (inOneMonth.length === 0) {
+                wrap.style.display = 'none';
+            } else {
+                wrap.style.display = '';
+                el.innerHTML = inOneMonth.map(function (x) {
+                    const days = daysFromToday(x.date);
+                    const dStr = formatDate(x.date);
+                    const dateParam = formatDateParam(x.date);
+                    const typeClass = x.lunar ? 'event-upcoming-item--lunar' : 'event-upcoming-item--solar';
+                    const daysText = days === 0 ? 'Hôm nay' : 'Còn ' + days + ' ngày';
+                    return '<a href="chi-tiet-su-kien.html?date=' + encodeURIComponent(formatDateParam(x.date)) + '" class="event-upcoming-item ' + typeClass + ' event-item-link"><span class="event-days-left">' + daysText + '</span> – ' + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
+                }).join('');
+            }
+        }
+
+        function updateEventsInYearList(year) {
+            const wrap = document.getElementById('eventsYearListWrap');
+            const el = document.getElementById('eventsYearList');
+            const yearEl = document.getElementById('eventsYearListYear');
+            if (!wrap || !el) return;
+            if (typeof EVENTS_DATA === 'undefined') { wrap.style.display = 'none'; return; }
+            if (yearEl) yearEl.textContent = year;
+            const items = collectAllEventsInYear(year);
+            if (items.length === 0) {
+                wrap.style.display = 'none';
+                return;
+            }
+            wrap.style.display = '';
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            el.innerHTML = items.map(function (x) {
+                const dStr = formatDate(x.date);
+                const typeClass = x.lunar ? 'event-year-item--lunar' : 'event-year-item--solar';
+                const days = daysFromToday(x.date);
+                let prefix = '';
+                if (x.date.getTime() === today.getTime()) prefix = '<span class="event-days-left">Hôm nay</span> – ';
+                else if (days > 0) prefix = '<span class="event-days-left">Còn ' + days + ' ngày</span> – ';
+                else prefix = '<span class="event-days-past">Đã qua</span> – ';
+                const url = 'chi-tiet-su-kien.html?date=' + encodeURIComponent(formatDateParam(x.date));
+                return '<a href="' + url + '" class="event-year-item ' + typeClass + ' event-item-link">' + prefix + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
+            }).join('');
+        }
+
         // Event listeners
         document.addEventListener('DOMContentLoaded', () => {
             generateCalendar();
+            updateEventsUpcoming();
+            const yearSelect = document.getElementById('year-select');
+            const year = yearSelect ? parseInt(yearSelect.value, 10) : new Date().getFullYear();
+            updateEventsInYearList(year);
             
             // Dialog event listeners
             const dialogCloseBtn = document.getElementById('dialogClose');
@@ -2301,6 +2500,7 @@
                     
                     // Regenerate calendar
                     generateCalendar();
+                    updateEventsInYearList(today.getFullYear());
                     
                     // Scroll đến ngày hôm nay sau một chút delay để calendar render xong
                     setTimeout(() => {
@@ -2323,9 +2523,10 @@
             }
             
             document.getElementById('year-select').addEventListener('change', (e) => {
-                const year = parseInt(e.target.value);
+                const year = parseInt(e.target.value, 10);
                 currentDate.setFullYear(year);
                 generateCalendar();
+                updateEventsInYearList(year);
             });
             
             // View mode chips event listeners
