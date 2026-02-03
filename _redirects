@@ -91,6 +91,7 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 /mon-an-tet /mon-an-tet.html 301!
 /blog /blog.html 301!
 /con-bao-lau-nua-den-tet /con-bao-lau-nua-den-tet.html 301!
+/ung-dung /ung-dung.html 301!
 
 # Handle common 404s
 /404 /404.html 404!
