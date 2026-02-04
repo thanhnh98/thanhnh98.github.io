@@ -1498,7 +1498,7 @@ function navigateToEventDetailFromModal() {
     
     // Define the mapping of event types to their detail pages
     const eventPages = {
-        'tet': 'lich-am-duong.html',
+        'tet': 'lich-van-nien.html',
         'valentine': 'blog.html#valentine',
         'women-day': 'blog.html#women-day',
         'hung-kings': 'blog.html#hung-kings',

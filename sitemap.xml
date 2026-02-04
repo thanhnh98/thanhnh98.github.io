@@ -46,13 +46,6 @@
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
-    <url>
-        <loc>https://saptet.vn/lich-am-duong.html</loc>
-        <lastmod>2026-01-25</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.95</priority>
-    </url>
-    
     <!-- Tet Features - High Priority -->
     <url>
         <loc>https://saptet.vn/tro-choi-tet.html</loc>
