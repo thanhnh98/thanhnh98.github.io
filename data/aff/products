@@ -38,18 +38,95 @@
          }
       ],
       "products":[
-{
-  "id": "620969",
-  "thumbnail": "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/4ebebdcddab14533b817dfa4ab31b299~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
-  "images": [],
-  "name": "[Lịch Tết 2026] Lịch gỗ để bàn trang trí 2026 xinh xắn, hiện đại chào đón năm mới an khang thịnh vượng",
-  "description": "Lịch tết xin xăn, có thể dùng tặng bạn bè hoặc người thân.",
-  "type": "tiktok",
-  "category": "assets",
-  "coinBonus": 10,
-  "buyText": "Xem sản phẩm",
-  "url": "https://vt.tiktok.com/ZS91tDdHVg9xq-16WY9/"
-},
+         {
+            "id":"675798",
+            "shopId":"46403955942",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-miv7yuyexrls9e@resize_w450_nl.webp",
+            "images":[
+               
+            ],
+            "name":"[TẾT 2026] Set 100 Tag Thẻ Treo Tết Kèm Dây, Liễn Trang Trí Tết Kèm Dây Đỏ Treo Cây Mai Đào | HAPPY DECOR",
+            "description":"Đã bán 6k+",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/9pYadAx8X6"
+         },
+         {
+            "id":"827191",
+            "shopId":"51901940830",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mhd6hht1ojyi97@resize_w450_nl.webp",
+            "images":[
+               
+            ],
+            "name":"Ốp Lưng iPhone Lucky Horse Tết 2026 Viền Thẳng, Bảo Vệ Camera - iP 7/8/X/XS/11/12/13/14/15/16/17/Plus/Pro/Max/Air | Shopee Việt Nam",
+            "description":"Mua Ốp Lưng iPhone Lucky Horse Tết 2026 Viền Thẳng, Bảo Vệ Camera - iP 7/8/X/XS/11/12/13/14/15/16/17/Plus/Pro/Max/Air giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"oplung",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/6fbYrGTDM2"
+         },
+         {
+            "id":"586002",
+            "shopId":"28588429737",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mbwae410c5ata3",
+            "images":[
+               
+            ],
+            "name":"[NE30] Dép Sandal Học Sinh Nam Nữ Thương Hiệu NESTY | Shopee Việt Nam",
+            "description":"Mua [NE30] Dép Sandal Học Sinh Nam Nữ Thương Hiệu NESTY giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/3qHNTyso6P"
+         },
+         {
+            "id":"369297",
+            "shopId":"28271231483",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/sg-11134201-7rfhp-m3yrsh4wlf9f4e@resize_w450_nl.webp",
+            "images":[
+               
+            ],
+            "name":"Túi xách cao cấp thêu Lụa Phong Cách Trung Quốc",
+            "description":"Đã bán 10k+",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/70EPFiwNpA"
+         },
+         {
+            "id":"586002",
+            "shopId":"27705010459",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lxk0ue0dsqmx4a@resize_w450_nl.webp",
+            "images":[
+               
+            ],
+            "name":"Dép Quai Ngang Masage Thương Hiệu NESTY Chất Liệu Nhựa Eva Cao Cấp",
+            "description":"Đã bán 30k+",
+            "type":"shopee",
+            "category":"clothes",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/5VPbSrduen"
+         },
+         {
+            "id":"620969",
+            "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/4ebebdcddab14533b817dfa4ab31b299~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+            "images":[
+               
+            ],
+            "name":"[Lịch Tết 2026] Lịch gỗ để bàn trang trí 2026 xinh xắn, hiện đại chào đón năm mới an khang thịnh vượng",
+            "description":"Lịch tết xin xăn, có thể dùng tặng bạn bè hoặc người thân.",
+            "type":"tiktok",
+            "category":"assets",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://vt.tiktok.com/ZS91tDdHVg9xq-16WY9/"
+         },
          {
             "id":"1733975172230317284",
             "thumbnail":"https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/9be485bd43ba4ef8857df20d9a56bc30~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
