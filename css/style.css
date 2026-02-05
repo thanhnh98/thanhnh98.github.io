@@ -2397,6 +2397,513 @@ main {
     animation: greetingPulse 4s ease-in-out infinite;
 }
 
+/* ===== TẾT CELEBRATION - Fireworks & Mùng Tết Styles ===== */
+
+/* Fireworks Container */
+.fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+    display: none;
+}
+
+.fireworks-container.active {
+    display: block;
+}
+
+/* Individual Firework */
+.firework {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: fireworkExplode 1.5s ease-out forwards;
+}
+
+.firework::before,
+.firework::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+}
+
+/* Firework Explosion Particles */
+.firework-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: particleExplode 1.2s ease-out forwards;
+}
+
+@keyframes fireworkExplode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes particleExplode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--end-x, 0), var(--end-y, 0)) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* Firework Colors */
+.firework-red { background: #ff3366; box-shadow: 0 0 20px #ff3366, 0 0 40px #ff3366; }
+.firework-gold { background: #ffd700; box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700; }
+.firework-orange { background: #ff6b35; box-shadow: 0 0 20px #ff6b35, 0 0 40px #ff6b35; }
+.firework-pink { background: #ff69b4; box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4; }
+.firework-yellow { background: #ffeb3b; box-shadow: 0 0 20px #ffeb3b, 0 0 40px #ffeb3b; }
+.firework-white { background: #ffffff; box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff; }
+
+/* Mùng Tết Mode - Special Styles */
+.countdown-section.mung-tet-mode {
+    background: 
+        radial-gradient(ellipse at top center, rgba(255, 215, 0, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at bottom center, rgba(220, 38, 38, 0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #FFF9F0 0%, #FFF5EB 50%, #FFFAF5 100%);
+}
+
+/* Mùng Tết Display Container */
+.mung-tet-display {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 65vh;
+    padding: 3rem 1.5rem;
+    animation: mungTetFadeIn 0.6s ease-out;
+}
+
+@keyframes mungTetFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating Particles - Subtle, not distracting */
+.mung-tet-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.particle--1 { top: 15%; left: 10%; background: #FFD700; animation: particleDrift 12s ease-in-out infinite; }
+.particle--2 { top: 25%; right: 15%; background: #DC2626; animation: particleDrift 14s ease-in-out infinite 2s; }
+.particle--3 { top: 60%; left: 8%; background: #F97316; animation: particleDrift 16s ease-in-out infinite 4s; }
+.particle--4 { top: 70%; right: 12%; background: #FFD700; animation: particleDrift 13s ease-in-out infinite 1s; }
+.particle--5 { top: 40%; left: 5%; background: #DC2626; animation: particleDrift 15s ease-in-out infinite 3s; }
+.particle--6 { top: 50%; right: 8%; background: #F97316; animation: particleDrift 11s ease-in-out infinite 5s; }
+
+@keyframes particleDrift {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+    50% { transform: translateY(-20px) translateX(10px); opacity: 0.5; }
+}
+
+/* Main Card - Glassmorphism */
+.mung-tet-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    padding: 3rem 3.5rem;
+    max-width: 580px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 
+        0 25px 50px -12px rgba(220, 38, 38, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    z-index: 10;
+}
+
+/* Card Corner Decorations */
+.card-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+}
+
+.card-corner::before,
+.card-corner::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(135deg, #DC2626, #FFD700);
+    border-radius: 2px;
+}
+
+.card-corner::before {
+    width: 100%;
+    height: 3px;
+}
+
+.card-corner::after {
+    width: 3px;
+    height: 100%;
+}
+
+.card-corner--tl { top: 12px; left: 12px; }
+.card-corner--tl::before { top: 0; left: 0; }
+.card-corner--tl::after { top: 0; left: 0; }
+
+.card-corner--tr { top: 12px; right: 12px; }
+.card-corner--tr::before { top: 0; right: 0; }
+.card-corner--tr::after { top: 0; right: 0; }
+
+.card-corner--bl { bottom: 12px; left: 12px; }
+.card-corner--bl::before { bottom: 0; left: 0; }
+.card-corner--bl::after { bottom: 0; left: 0; }
+
+.card-corner--br { bottom: 12px; right: 12px; }
+.card-corner--br::before { bottom: 0; right: 0; }
+.card-corner--br::after { bottom: 0; right: 0; }
+
+/* Year Badge */
+.mung-tet-year-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+}
+
+.mung-tet-year-badge .badge-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Mùng Tết Title */
+.mung-tet-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    line-height: 1.2;
+}
+
+.mung-tet-text {
+    background: linear-gradient(135deg, #DC2626 0%, #B91C1C 40%, #991B1B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.2));
+}
+
+/* Subtitle */
+.mung-tet-subtitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #78716C;
+    margin: 0.5rem 0 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Divider */
+.mung-tet-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.divider-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+    border-radius: 1px;
+}
+
+.divider-icon {
+    width: 24px;
+    height: 24px;
+    color: #DC2626;
+    opacity: 0.7;
+}
+
+/* Random Greeting Display */
+.random-greeting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #DC2626;
+    padding: 1rem 0;
+}
+
+.greeting-icon {
+    width: 20px;
+    height: 20px;
+    color: #FFD700;
+}
+
+/* Vietnamese Wishes - Phúc Lộc Thọ */
+.mung-tet-wishes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.wish-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #92400E;
+    transition: all 0.2s ease-out;
+}
+
+.wish-tag:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+}
+
+.wish-icon {
+    width: 16px;
+    height: 16px;
+    color: #CA8A04;
+}
+
+/* CTA Button */
+.mung-tet-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.mung-tet-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+}
+
+.mung-tet-cta .cta-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.mung-tet-cta .cta-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s ease-out;
+}
+
+.mung-tet-cta:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+/* New Year Celebration Message */
+.new-year-celebration {
+    text-align: center;
+    padding: 2rem;
+    animation: celebrationFadeIn 0.6s ease-out;
+}
+
+.new-year-celebration h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+@keyframes celebrationFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Hide timer during Mùng Tết mode */
+.countdown-section.mung-tet-mode #countdown-timer {
+    display: none;
+}
+
+.countdown-section.mung-tet-mode .countdown-info-card {
+    display: none;
+}
+
+.countdown-section.mung-tet-mode > .container > h2 {
+    display: none;
+}
+
+.countdown-section.mung-tet-mode .tet-greeting {
+    display: none !important;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .mung-tet-display,
+    .mung-tet-card,
+    .particle,
+    .wish-tag,
+    .mung-tet-cta {
+        animation: none;
+        transition: none;
+    }
+    
+    .particle {
+        display: none;
+    }
+}
+
+/* Responsive for Mùng Tết */
+@media (max-width: 768px) {
+    .mung-tet-display {
+        min-height: 55vh;
+        padding: 2rem 1rem;
+    }
+    
+    .mung-tet-card {
+        padding: 2.5rem 2rem;
+        border-radius: 24px;
+    }
+    
+    .mung-tet-title {
+        font-size: 2.8rem;
+    }
+    
+    .mung-tet-subtitle {
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .random-greeting {
+        font-size: 1.5rem;
+    }
+    
+    .card-corner {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .new-year-celebration h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mung-tet-display {
+        min-height: 50vh;
+        padding: 1.5rem 1rem;
+    }
+    
+    .mung-tet-card {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+    }
+    
+    .mung-tet-title {
+        font-size: 2.2rem;
+    }
+    
+    .mung-tet-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    
+    .mung-tet-year-badge {
+        font-size: 0.8rem;
+        padding: 0.5rem 1.2rem;
+    }
+    
+    .random-greeting {
+        font-size: 1.3rem;
+        flex-wrap: wrap;
+    }
+    
+    .mung-tet-wishes {
+        gap: 0.75rem;
+    }
+    
+    .wish-tag {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+    }
+    
+    .mung-tet-cta {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .card-corner {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .new-year-celebration h2 {
+        font-size: 2rem;
+    }
+    
+    .particle {
+        width: 6px;
+        height: 6px;
+    }
+}
+
 /* Share Countdown Button */
 .share-countdown-btn {
     display: flex;
