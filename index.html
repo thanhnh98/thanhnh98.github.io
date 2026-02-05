@@ -493,6 +493,80 @@
                 <span id="nearest-event-text"></span>
               </a>
             </div>
+            
+            <!-- Mùng Tết Display (ẩn mặc định, hiện khi đang trong ngày Tết) -->
+            <div id="mung-tet-display" class="mung-tet-display" style="display: none;">
+              <!-- Floating Particles (subtle, not distracting) -->
+              <div class="mung-tet-particles" aria-hidden="true">
+                <span class="particle particle--1"></span>
+                <span class="particle particle--2"></span>
+                <span class="particle particle--3"></span>
+                <span class="particle particle--4"></span>
+                <span class="particle particle--5"></span>
+                <span class="particle particle--6"></span>
+              </div>
+              
+              <!-- Main Content Card - Glassmorphism -->
+              <div class="mung-tet-card">
+                <!-- Decorative Corner Elements -->
+                <div class="card-corner card-corner--tl"></div>
+                <div class="card-corner card-corner--tr"></div>
+                <div class="card-corner card-corner--bl"></div>
+                <div class="card-corner card-corner--br"></div>
+                
+                <!-- Year Badge -->
+                <div class="mung-tet-year-badge">
+                  <i data-lucide="calendar-heart" class="badge-icon"></i>
+                  <span>Năm Bính Ngọ 2026</span>
+                </div>
+                
+                <!-- Main Title -->
+                <h2 class="mung-tet-title" id="mung-tet-title">
+                  <span class="mung-tet-text">Mùng 1 Tết</span>
+                </h2>
+                
+                <!-- Subtitle -->
+                <p class="mung-tet-subtitle">Tết Nguyên Đán Việt Nam</p>
+                
+                <!-- Divider with icon -->
+                <div class="mung-tet-divider">
+                  <span class="divider-line"></span>
+                  <i data-lucide="flower-2" class="divider-icon"></i>
+                  <span class="divider-line"></span>
+                </div>
+                
+                <!-- Greeting -->
+                <div class="random-greeting" id="random-greeting">
+                  <i data-lucide="sparkles" class="greeting-icon"></i>
+                  <span id="greeting-text">Chúc Mừng Năm Mới!</span>
+                  <i data-lucide="sparkles" class="greeting-icon"></i>
+                </div>
+                
+                <!-- Vietnamese Wishes -->
+                <div class="mung-tet-wishes">
+                  <span class="wish-tag">
+                    <i data-lucide="heart" class="wish-icon"></i>
+                    Phúc
+                  </span>
+                  <span class="wish-tag">
+                    <i data-lucide="coins" class="wish-icon"></i>
+                    Lộc
+                  </span>
+                  <span class="wish-tag">
+                    <i data-lucide="infinity" class="wish-icon"></i>
+                    Thọ
+                  </span>
+                </div>
+              </div>
+              
+              <!-- CTA Button -->
+              <a href="lich-van-nien.html" class="mung-tet-cta">
+                <i data-lucide="calendar-days" class="cta-icon"></i>
+                <span>Xem Lịch Vạn Niên</span>
+                <i data-lucide="arrow-right" class="cta-arrow"></i>
+              </a>
+            </div>
+            
             <div id="countdown-timer">
               <div class="timer-box">
                 <span id="days" class="time-value">00</span>
@@ -1965,6 +2039,9 @@
     </div>
   </div>
 </div>
+
+<!-- Fireworks Container for New Year Celebration -->
+<div id="fireworks-container" class="fireworks-container" aria-hidden="true"></div>
 
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

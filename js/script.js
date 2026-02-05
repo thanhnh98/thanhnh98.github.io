@@ -27,6 +27,143 @@ const zodiacAnimals = [
     'Thân (Khỉ)', 'Dậu (Gà)', 'Tuất (Chó)', 'Hợi (Heo)'
 ];
 
+// ===== LỜI CHÚC TẾT NGẪU NHIÊN =====
+const tetGreetings = [
+    'Chúc Mừng Năm Mới! An Khang Thịnh Vượng!',
+    'Năm mới Vạn Sự Như Ý, Tỷ Sự Như Mơ!',
+    'Phúc Lộc Thọ đầy nhà, Tài Lộc đến muôn nơi!',
+    'Năm mới Phát Tài Phát Lộc, Sức Khỏe Dồi Dào!',
+    'Chúc năm mới Hạnh Phúc, Bình An, Thành Công!',
+    'Tân Xuân Vạn Phúc, Gia Đình Hạnh Phúc!',
+    'Năm mới Mã Đáo Thành Công, Vạn Sự Hanh Thông!',
+    'Chúc Xuân An Lành, Hạnh Phúc Viên Mãn!',
+    'Năm mới Tài Lộc Như Ý, Công Danh Thăng Tiến!',
+    'Xuân sang Phú Quý, Năm mới Bình An!',
+    'Chúc năm mới Thịnh Vượng, Phát Đạt, An Khang!',
+    'Tết đến Xuân về, Hạnh Phúc Tràn Đầy!',
+    'Năm mới Gặp Nhiều May Mắn, Vui Vẻ Cả Năm!',
+    'Chúc Sức Khỏe, Hạnh Phúc, Phát Tài Năm Mới!',
+    'Xuân Bính Ngọ Mã Đáo Thành Công, Vạn Sự Như Ý!',
+    'Năm Ngọ Tài Lộc Dồi Dào, Công Việc Thuận Lợi!',
+    'Chúc Tân Xuân Hạnh Phúc, An Khang Thịnh Vượng!',
+    'Năm mới Rồng Bay Phượng Múa, Gia Đình Sum Vầy!',
+    'Xuân Về Hoa Nở, Phúc Lộc Đầy Nhà!',
+    'Chúc Mừng Năm Mới! Mọi Điều Tốt Đẹp Nhất!'
+];
+
+// Tên các ngày Mùng Tết
+const mungTetNames = [
+    '', // index 0 không dùng
+    'Mùng 1 Tết',
+    'Mùng 2 Tết',
+    'Mùng 3 Tết',
+    'Mùng 4 Tết',
+    'Mùng 5 Tết',
+    'Mùng 6 Tết',
+    'Mùng 7 Tết',
+    'Mùng 8 Tết',
+    'Mùng 9 Tết',
+    'Mùng 10 Tết'
+];
+
+// Biến lưu trạng thái đã bắn pháo hoa chưa
+let hasTriggeredFireworks = false;
+let currentGreetingIndex = -1;
+
+// ===== HÀM BẮN PHÁO HOA =====
+function createFirework(x, y) {
+    const container = document.getElementById('fireworks-container');
+    if (!container) return;
+    
+    const colors = ['firework-red', 'firework-gold', 'firework-orange', 'firework-pink', 'firework-yellow', 'firework-white'];
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = `firework-particle ${colors[Math.floor(Math.random() * colors.length)]}`;
+        
+        const angle = (i / particleCount) * Math.PI * 2;
+        const velocity = 80 + Math.random() * 120;
+        const endX = Math.cos(angle) * velocity;
+        const endY = Math.sin(angle) * velocity;
+        
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.setProperty('--end-x', endX + 'px');
+        particle.style.setProperty('--end-y', endY + 'px');
+        particle.style.animation = `particleExplode ${0.8 + Math.random() * 0.4}s ease-out forwards`;
+        particle.style.transform = `translate(${endX}px, ${endY}px)`;
+        
+        container.appendChild(particle);
+        
+        // Xóa particle sau khi animation hoàn thành
+        setTimeout(() => particle.remove(), 1500);
+    }
+}
+
+function launchFireworks() {
+    const container = document.getElementById('fireworks-container');
+    if (!container) return;
+    
+    container.classList.add('active');
+    
+    const viewWidth = window.innerWidth;
+    const viewHeight = window.innerHeight;
+    
+    // Bắn 15 đợt pháo hoa trong 5 giây
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            const x = Math.random() * viewWidth * 0.8 + viewWidth * 0.1;
+            const y = Math.random() * viewHeight * 0.5 + viewHeight * 0.1;
+            createFirework(x, y);
+        }, i * 350);
+    }
+    
+    // Ẩn container sau khi xong
+    setTimeout(() => {
+        container.classList.remove('active');
+    }, 7000);
+}
+
+// ===== LẤY LỜI CHÚC NGẪU NHIÊN =====
+function getRandomGreeting() {
+    // Mỗi ngày lấy 1 lời chúc ngẫu nhiên, giữ nguyên trong ngày
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem('tetGreetingDate');
+    
+    if (savedDate === today && currentGreetingIndex >= 0) {
+        return tetGreetings[currentGreetingIndex];
+    }
+    
+    currentGreetingIndex = Math.floor(Math.random() * tetGreetings.length);
+    localStorage.setItem('tetGreetingDate', today);
+    return tetGreetings[currentGreetingIndex];
+}
+
+// ===== KIỂM TRA ĐANG TRONG NGÀY TẾT (Mùng 1-10) =====
+function checkMungTet() {
+    try {
+        // Sử dụng calculateLunarDate từ lunar-calendar.js
+        if (typeof calculateLunarDate === 'function') {
+            const today = new Date();
+            const lunar = calculateLunarDate(today);
+            
+            // Nếu là tháng 1 âm lịch và ngày từ 1-10 → đang trong Mùng Tết
+            if (lunar && lunar.month === 1 && lunar.day >= 1 && lunar.day <= 10) {
+                return {
+                    isMungTet: true,
+                    day: lunar.day,
+                    name: mungTetNames[lunar.day] || `Mùng ${lunar.day} Tết`
+                };
+            }
+        }
+    } catch (e) {
+        console.warn('Không thể tính ngày âm lịch:', e);
+    }
+    
+    return { isMungTet: false, day: 0, name: '' };
+}
+
 function getNextTet() {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -53,8 +190,60 @@ function updateCountdown() {
     const tetTime = nextTet.date.getTime();
     const distance = tetTime - now;
     
+    // Lấy các element cần thiết
+    const tetYearEl = document.getElementById('tet-year');
+    const countdownSection = document.querySelector('.countdown-section');
+    const countdownTimer = document.getElementById('countdown-timer');
+    const countdownInfoCard = document.querySelector('.countdown-info-card');
+    const mungTetDisplay = document.getElementById('mung-tet-display');
+    const mungTetTitle = document.getElementById('mung-tet-title');
+    const greetingText = document.getElementById('greeting-text');
+    const tetGreeting = document.querySelector('.tet-greeting');
+    const sectionH2 = countdownSection ? countdownSection.querySelector('.container > .countdown-content-wrapper > h2:not(.mung-tet-title)') : null;
+    
     // Update the year display
-    document.getElementById('tet-year').textContent = nextTet.year;
+    if (tetYearEl) tetYearEl.textContent = nextTet.year;
+    
+    // ===== KIỂM TRA MÙNG TẾT (ngày 1-10 tháng 1 âm lịch) =====
+    const mungTetInfo = checkMungTet();
+    
+    if (mungTetInfo.isMungTet) {
+        // Đang trong Mùng Tết → hiển thị mode đặc biệt
+        if (countdownSection) countdownSection.classList.add('mung-tet-mode');
+        if (countdownTimer) countdownTimer.style.display = 'none';
+        if (countdownInfoCard) countdownInfoCard.style.display = 'none';
+        if (sectionH2) sectionH2.style.display = 'none';
+        if (tetGreeting) tetGreeting.style.display = 'none';
+        
+        // Hiển thị Mùng Tết
+        if (mungTetDisplay) {
+            mungTetDisplay.style.display = 'flex';
+            // Update the text inside .mung-tet-text element
+            const mungTetTextEl = document.querySelector('.mung-tet-text');
+            if (mungTetTextEl) mungTetTextEl.textContent = mungTetInfo.name;
+            if (greetingText) greetingText.textContent = getRandomGreeting();
+            // Re-init lucide icons
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                setTimeout(() => lucide.createIcons(), 50);
+            }
+        }
+        
+        // Bắn pháo hoa vào Mùng 1 (chỉ 1 lần khi load trang)
+        if (mungTetInfo.day === 1 && !hasTriggeredFireworks) {
+            hasTriggeredFireworks = true;
+            setTimeout(launchFireworks, 500);
+        }
+        
+        return; // Không cần countdown nữa
+    }
+    
+    // ===== CHẾ ĐỘ ĐẾM NGƯỢC BÌNH THƯỜNG =====
+    // Reset về trạng thái bình thường nếu không phải Mùng Tết
+    if (countdownSection) countdownSection.classList.remove('mung-tet-mode');
+    if (countdownTimer) countdownTimer.style.display = 'flex';
+    if (countdownInfoCard) countdownInfoCard.style.display = 'block';
+    if (sectionH2) sectionH2.style.display = 'block';
+    if (mungTetDisplay) mungTetDisplay.style.display = 'none';
     
     if (distance > 0) {
         // Calculate time units
@@ -69,17 +258,45 @@ function updateCountdown() {
         document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
         document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         
-        // Hide greeting message
-        document.querySelector('.tet-greeting').style.display = 'block';
+        // Show greeting message normally
+        if (tetGreeting) tetGreeting.style.display = 'block';
+        
+        // ===== KIỂM TRA KHI SẮP ĐẾN 00:00:00:00 =====
+        // Bắn pháo hoa khi còn dưới 3 giây
+        if (distance <= 3000 && distance > 0 && !hasTriggeredFireworks) {
+            hasTriggeredFireworks = true;
+            // Đợi đến đúng 0 giây rồi bắn
+            setTimeout(() => {
+                launchFireworks();
+            }, distance);
+        }
     } else {
-        // Tết has arrived!
+        // ===== TẾT ĐÃ ĐẾN! =====
         document.getElementById('days').textContent = '00';
         document.getElementById('hours').textContent = '00';
         document.getElementById('minutes').textContent = '00';
         document.getElementById('seconds').textContent = '00';
         
-        // Show greeting message
-        document.querySelector('.tet-greeting').style.display = 'block';
+        // Bắn pháo hoa khi countdown chạm 0
+        if (!hasTriggeredFireworks) {
+            hasTriggeredFireworks = true;
+            launchFireworks();
+        }
+        
+        // Update greeting message
+        if (tetGreeting) {
+            tetGreeting.innerHTML = `
+                <i data-lucide="party-popper" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin: 0 0.5rem;"></i>
+                <strong>Chúc Mừng Năm Mới ${nextTet.year}!</strong>
+                <i data-lucide="party-popper" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin: 0 0.5rem;"></i>
+                <br><span style="font-size: 1.1rem; margin-top: 0.5rem; display: block;">${getRandomGreeting()}</span>
+            `;
+            tetGreeting.style.display = 'block';
+            // Re-init lucide icons
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
     }
 }
 
