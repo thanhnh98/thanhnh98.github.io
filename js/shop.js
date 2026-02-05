@@ -1,12 +1,21 @@
 /**
  * Shop / Referral products page
- * Loads products from data/aff/products, filters by category,
+ * Loads products from data/aff/products, filters by category and platform,
  * opens Shopee or TikTok based on product URL (brand from URL).
  */
 
 (function () {
   const PRODUCTS_PATH = 'data/aff/products';
   const ALL_CATEGORY = 'other';
+  const ALL_PLATFORM = 'all';
+  
+  // Platform filter options
+  const PLATFORMS = [
+    { id: 'all', displayName: 'Tất cả' },
+    { id: 'tiktok', displayName: 'TikTok' },
+    { id: 'shopee', displayName: 'Shopee' },
+    { id: 'other', displayName: 'Khác' }
+  ];
 
   function getBrandFromUrl(url) {
     if (!url || typeof url !== 'string') return 'other';
@@ -128,30 +137,76 @@
     const container = document.getElementById('shop-categories');
     if (!container) return;
     container.innerHTML = '';
+    var activeBtn = null;
     categories.forEach(function (cat) {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'shop-category-btn' + (cat.category === activeCategory ? ' active' : '');
+      var isActive = cat.category === activeCategory;
+      btn.className = 'shop-category-btn' + (isActive ? ' active' : '');
       btn.textContent = cat.displayName || cat.category;
       btn.dataset.category = cat.category;
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (e) {
+        createRipple(e, btn);
         onSelect(cat.category);
+      });
+      container.appendChild(btn);
+      if (isActive) {
+        activeBtn = btn;
+      }
+    });
+    // Scroll active button to center on initial render (after a small delay for DOM)
+    if (activeBtn) {
+      setTimeout(function () {
+        scrollButtonToCenter(activeBtn);
+      }, 150);
+    }
+  }
+
+  function renderPlatforms(activePlatform, onSelect) {
+    const container = document.getElementById('shop-platforms');
+    if (!container) return;
+    container.innerHTML = '';
+    PLATFORMS.forEach(function (plat) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'shop-platform-btn' + (plat.id === activePlatform ? ' active' : '') + (plat.id !== 'all' && plat.id !== 'other' ? ' ' + plat.id : '');
+      btn.textContent = plat.displayName;
+      btn.dataset.platform = plat.id;
+      btn.addEventListener('click', function (e) {
+        createRipple(e, btn);
+        onSelect(plat.id);
       });
       container.appendChild(btn);
     });
   }
 
-  function renderProducts(products, activeCategory) {
+  function setPlatformActive(platform) {
+    var btns = document.querySelectorAll('.shop-platform-btn');
+    btns.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.platform === platform);
+    });
+  }
+
+  function renderProducts(products, activeCategory, activePlatform) {
     const grid = document.getElementById('shop-grid');
     if (!grid) return;
     grid.innerHTML = '';
 
-    const filtered = activeCategory === ALL_CATEGORY
+    // Filter by category
+    var filtered = activeCategory === ALL_CATEGORY
       ? products
       : products.filter(function (p) { return p.category === activeCategory; });
+    
+    // Filter by platform
+    if (activePlatform && activePlatform !== ALL_PLATFORM) {
+      filtered = filtered.filter(function (p) {
+        var brand = getBrandFromUrl(p.url);
+        return brand === activePlatform;
+      });
+    }
 
     if (filtered.length === 0) {
-      grid.innerHTML = '<p class="shop-empty">Chưa có sản phẩm nào trong danh mục này.</p>';
+      grid.innerHTML = '<p class="shop-empty">Chưa có sản phẩm nào phù hợp với bộ lọc này.</p>';
       return;
     }
 
@@ -254,9 +309,76 @@
 
   function setCategoryActive(category) {
     var btns = document.querySelectorAll('.shop-category-btn');
+    var activeBtn = null;
     btns.forEach(function (btn) {
-      btn.classList.toggle('active', btn.dataset.category === category);
+      var isActive = btn.dataset.category === category;
+      btn.classList.toggle('active', isActive);
+      if (isActive) {
+        activeBtn = btn;
+      }
     });
+    // Scroll active button to center on mobile (with small delay to ensure DOM is updated)
+    if (activeBtn) {
+      requestAnimationFrame(function () {
+        scrollButtonToCenter(activeBtn);
+      });
+    }
+  }
+
+  /**
+   * Scroll button to center of its container (for mobile horizontal scroll)
+   */
+  function scrollButtonToCenter(btn) {
+    if (!btn) return;
+    var container = btn.parentElement;
+    if (!container) return;
+    
+    // Only apply when container is scrollable
+    if (container.scrollWidth <= container.clientWidth) return;
+    
+    // Calculate the scroll position to center the button
+    var btnLeft = btn.offsetLeft;
+    var btnWidth = btn.offsetWidth;
+    var containerWidth = container.clientWidth;
+    
+    // Target scroll position: button center aligned with container center
+    var scrollTarget = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+    
+    // Clamp to valid scroll range
+    var maxScroll = container.scrollWidth - containerWidth;
+    scrollTarget = Math.max(0, Math.min(scrollTarget, maxScroll));
+    
+    // Smooth scroll to center
+    container.scrollTo({
+      left: scrollTarget,
+      behavior: 'smooth'
+    });
+  }
+
+  /**
+   * Create ripple effect on button click
+   */
+  function createRipple(event, btn) {
+    var ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    
+    var rect = btn.getBoundingClientRect();
+    var size = Math.max(rect.width, rect.height);
+    var x = event.clientX - rect.left - size / 2;
+    var y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    
+    btn.appendChild(ripple);
+    
+    // Remove ripple after animation
+    setTimeout(function () {
+      if (ripple.parentNode) {
+        ripple.parentNode.removeChild(ripple);
+      }
+    }, 500);
   }
 
   /**
@@ -319,6 +441,7 @@
       }
 
       var activeCategory = ALL_CATEGORY;
+      var activePlatform = ALL_PLATFORM;
       var fromUrl = getCategoryFromUrl(categories);
       if (fromUrl) {
         activeCategory = fromUrl;
@@ -333,10 +456,17 @@
       renderCategories(categories, activeCategory, function (cat) {
         activeCategory = cat;
         setCategoryActive(cat);
-        renderProducts(products, activeCategory);
+        renderProducts(products, activeCategory, activePlatform);
         updateUrlCategory(activeCategory);
       });
-      renderProducts(products, activeCategory);
+      
+      renderPlatforms(activePlatform, function (plat) {
+        activePlatform = plat;
+        setPlatformActive(plat);
+        renderProducts(products, activeCategory, activePlatform);
+      });
+      
+      renderProducts(products, activeCategory, activePlatform);
     });
   }
 
