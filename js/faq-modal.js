@@ -3,25 +3,25 @@
 // FAQ Data với nội dung chi tiết
 const faqData = {
     faq1: {
-        title: "🗓️ Tết 2026 là ngày nào?",
+        title: "🗓️ Tết 2027 là ngày nào?",
         content: `
-            <p><span class="highlight">Tết Nguyên Đán 2026</span> rơi vào <strong>Thứ Hai, ngày 17 tháng 2 năm 2026</strong> (âm lịch mùng 1 tháng Giêng năm Bính Ngọ).</p>
+            <p><span class="highlight">Tết Nguyên Đán 2027</span> rơi vào <strong>Thứ Hai, ngày 6 tháng 2 năm 2027</strong> (âm lịch mùng 1 tháng Giêng năm Đinh Mùi).</p>
             
             <h4>📅 Thông tin chi tiết:</h4>
             <ul>
-                <li><strong>Ngày:</strong> Thứ Hai, 17/02/2026</li>
-                <li><strong>Âm lịch:</strong> Mùng 1 tháng Giêng năm Bính Ngọ</li>
-                <li><strong>Năm con giáp:</strong> Năm con Ngựa</li>
-                <li><strong>Can Chi:</strong> Bính Ngọ</li>
+                <li><strong>Ngày:</strong> Thứ Hai, 06/02/2027</li>
+                <li><strong>Âm lịch:</strong> Mùng 1 tháng Giêng năm Đinh Mùi</li>
+                <li><strong>Năm con giáp:</strong> Năm con Dê</li>
+                <li><strong>Can Chi:</strong> Đinh Mùi</li>
             </ul>
             
             <p>Đây là ngày quan trọng nhất trong năm của người Việt Nam, đánh dấu sự khởi đầu của năm mới theo lịch âm.</p>
         `
     },
     faq2: {
-        title: "🐎 Năm 2026 là năm con gì?",
+        title: "🐎 Năm 2027 là năm con gì?",
         content: `
-            <p>Năm 2026 là <span class="highlight">năm Bính Ngọ</span> - năm con <strong>Ngựa</strong> theo lịch âm Việt Nam.</p>
+            <p>Năm 2027 là <span class="highlight">năm Đinh Mùi</span> - năm con <strong>Ngựa</strong> theo lịch âm Việt Nam.</p>
             
             <h4>🐎 Đặc điểm của tuổi Ngựa:</h4>
             <ul>

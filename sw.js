@@ -34,7 +34,7 @@ const urlsToCache = [
   '/js/faq-modal.js',
   '/js/footer.js',
   '/assets/images/background.webp',
-  '/assets/images/ic_app.webp',
+  '/assets/images/ic_app.png',
   '/favicon.ico',
   '/favicon.png',
   '/android-chrome-192x192.png',

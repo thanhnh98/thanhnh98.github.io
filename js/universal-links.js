@@ -36,11 +36,11 @@ class UniversalLinksManager {
                 <div class="smart-banner-container">
                     <button class="smart-banner-close" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
                     <div class="smart-banner-icon">
-                        <img src="assets/images/ic_app.webp" alt="Sắp Tết">
+                        <img src="assets/images/ic_app.png" alt="Sắp Tết">
                     </div>
                     <div class="smart-banner-info">
                         <div class="smart-banner-title">Sắp Tết</div>
-                        <div class="smart-banner-subtitle">Đếm ngược Tết 2026</div>
+                        <div class="smart-banner-subtitle">Đếm ngược Tết 2027</div>
                         <div class="smart-banner-rating">⭐⭐⭐⭐⭐ MIỄN PHÍ</div>
                     </div>
                     <div class="smart-banner-button">

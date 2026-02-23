@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="footer-main-content">
                                 <div class="app-info">
                                     <div class="app-title-container">
-                                        <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-small">
-                                        <h2 class="app-title">Sắp Tết - Đếm Ngược Tết 2026</h2>
+                                        <img src="assets/images/ic_app.png" alt="Sắp Tết App Icon" class="app-icon-small">
+                                        <h2 class="app-title">Sắp Tết - Đếm Ngược Tết 2027</h2>
                                     </div>
                                     <p class="app-description">Ứng dụng đếm ngược Tết Việt Nam và lịch âm dương được yêu thích</p>
                                     
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 </div>
                                             </a>
                                         </div>
-                                        <p class="app-features">✨ Đếm ngược Tết Việt Nam • Lịch âm dương • Tết Nguyên đán 2026</p>
+                                        <p class="app-features">✨ Đếm ngược Tết Việt Nam • Lịch âm dương • Tết Nguyên đán 2027</p>
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                      class="developer-link">TLife</a>
                                 </p>
                                 <p class="app-info-footer">
-                                    Ứng dụng Sắp Tết - Đếm ngược Tết 2026
+                                    Ứng dụng Sắp Tết - Đếm ngược Tết 2027
                                 </p>
                             </div>
                         </div>
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         {
                             "@context": "https://schema.org",
                             "@type": "MobileApplication",
-                            "name": "Sắp Tết - Đếm ngược Tết 2026",
+                            "name": "Sắp Tết - Đếm ngược Tết 2027",
                             "description": "Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích",
                             "applicationCategory": "LifestyleApplication",
                             "operatingSystem": ["Android", "iOS"],
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 "https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down",
                                 "https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone"
                             ],
-                            "screenshot": "assets/images/ic_app.webp",
+                            "screenshot": "assets/images/ic_app.png",
                             "author": {
                                 "@type": "Organization",
                                 "name": "TLife",

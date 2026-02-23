@@ -3,7 +3,7 @@ name: seo-web
 description: Tối ưu SEO cho website Sắp Tết khi implement trang mới hoặc tính năng mới. Bao gồm meta tags, schema markup, Vietnamese SEO, social sharing, performance optimization. Sử dụng khi tạo trang HTML mới, thêm tính năng, hoặc cải thiện SEO cho trang hiện có.
 ---
 
-# SEO Web - Sắp Tết 2026
+# SEO Web - Sắp Tết 2027
 
 ## Khi Nào Sử Dụng Skill Này
 
@@ -26,7 +26,7 @@ Khi tạo trang mới, đảm bảo có đủ các thành phần sau:
 <!-- Required -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>[Từ khóa chính] | Sắp Tết 2026 - Tết Việt Nam</title>
+<title>[Từ khóa chính] | Sắp Tết 2027 - Tết Việt Nam</title>
 <meta name="description" content="[Mô tả 150-160 ký tự, bao gồm từ khóa chính]" />
 <meta name="keywords" content="[5-10 từ khóa liên quan, phân cách bằng dấu phẩy]" />
 <link rel="canonical" href="https://saptet.vn/[url-trang]" />
@@ -40,8 +40,8 @@ Khi tạo trang mới, đảm bảo có đủ các thành phần sau:
 **Quy tắc Title:**
 - Độ dài: 50-60 ký tự
 - Bắt đầu với từ khóa chính
-- Bao gồm "Sắp Tết 2026" hoặc "Tết Việt Nam"
-- Format: `[Từ khóa chính] | Sắp Tết 2026`
+- Bao gồm "Sắp Tết 2027" hoặc "Tết Việt Nam"
+- Format: `[Từ khóa chính] | Sắp Tết 2027`
 
 **Quy tắc Description:**
 - Độ dài: 150-160 ký tự
@@ -100,7 +100,7 @@ Tùy loại trang, thêm schema phù hợp:
   "inLanguage": "vi-VN",
   "isPartOf": {
     "@type": "WebSite",
-    "name": "Sắp Tết 2026",
+    "name": "Sắp Tết 2027",
     "url": "https://saptet.vn"
   }
 }
@@ -178,7 +178,7 @@ Tùy loại trang, thêm schema phù hợp:
 
 ```html
 <!-- H1: Chỉ có 1 H1, chứa từ khóa chính -->
-<h1>[Từ khóa chính] | Sắp Tết 2026</h1>
+<h1>[Từ khóa chính] | Sắp Tết 2027</h1>
 
 <!-- H2-H6: Phân cấp rõ ràng, mỗi heading chứa từ khóa liên quan -->
 <h2>[Từ khóa phụ 1]</h2>
@@ -204,7 +204,7 @@ Tùy loại trang, thêm schema phù hợp:
 <!-- Link đến các trang liên quan với anchor text có từ khóa -->
 <a href="/mon-an-tet.html">Món ăn Tết truyền thống</a>
 <a href="/tro-choi-tet.html">Trò chơi dân gian Tết</a>
-<a href="/huong-dan-tet.html">Hướng dẫn đón Tết 2026</a>
+<a href="/huong-dan-tet.html">Hướng dẫn đón Tết 2027</a>
 ```
 
 **Quy tắc Internal Linking:**
@@ -240,9 +240,9 @@ Tùy loại trang, thêm schema phù hợp:
 ## Từ Khóa Chính Cho Website Sắp Tết
 
 ### Primary Keywords (Từ khóa chính)
-- Tết 2026
+- Tết 2027
 - Tết Nguyên Đán
-- Sắp Tết 2026
+- Sắp Tết 2027
 - Đếm ngược Tết
 - Tết Việt Nam
 - Tết Việt
@@ -256,8 +256,8 @@ Tùy loại trang, thêm schema phù hợp:
 - Giờ hoàng đạo
 
 ### Long-tail Keywords (Từ khóa dài)
-- Đếm ngược Tết Nguyên Đán 2026
-- Còn bao lâu nữa đến Tết 2026
+- Đếm ngược Tết Nguyên Đán 2027
+- Còn bao lâu nữa đến Tết 2027
 - Món ăn truyền thống Tết Việt Nam
 - Hướng dẫn chuẩn bị Tết Nguyên Đán
 
@@ -429,13 +429,13 @@ Sau khi implement, kiểm tra:
 
 ```html
 <head>
-  <title>Món Ăn Tết Truyền Thống Việt Nam 2026 | Sắp Tết 2026</title>
+  <title>Món Ăn Tết Truyền Thống Việt Nam 2027 | Sắp Tết 2027</title>
   <meta name="description" content="Khám phá 14 món ăn Tết truyền thống Việt Nam: bánh chưng, thịt kho tàu, nem rán, xôi gấc. Hướng dẫn cách làm và ý nghĩa văn hóa từng món ăn Tết Nguyên Đán." />
   <meta name="keywords" content="món ăn Tết, món ăn Tết truyền thống, bánh chưng, thịt kho tàu, nem rán, xôi gấc, ẩm thực Tết Việt Nam" />
   <link rel="canonical" href="https://saptet.vn/mon-an-tet.html" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Món Ăn Tết Truyền Thống Việt Nam 2026 | Sắp Tết 2026" />
+  <meta property="og:title" content="Món Ăn Tết Truyền Thống Việt Nam 2027 | Sắp Tết 2027" />
   <meta property="og:description" content="Khám phá 14 món ăn Tết truyền thống Việt Nam với hướng dẫn chi tiết và ý nghĩa văn hóa." />
   <meta property="og:url" content="https://saptet.vn/mon-an-tet.html" />
   
@@ -444,14 +444,14 @@ Sau khi implement, kiểm tra:
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Món Ăn Tết Truyền Thống Việt Nam 2026",
+    "headline": "Món Ăn Tết Truyền Thống Việt Nam 2027",
     "description": "Khám phá 14 món ăn Tết truyền thống...",
     "image": "https://saptet.vn/assets/images/img_sharing.png"
   }
   </script>
 </head>
 <body>
-  <h1>Món Ăn Tết Truyền Thống Việt Nam 2026</h1>
+  <h1>Món Ăn Tết Truyền Thống Việt Nam 2027</h1>
   <h2>Bánh Chưng - Món Ăn Không Thể Thiếu</h2>
   <p>Bánh chưng là món ăn Tết truyền thống...</p>
   <!-- Internal links -->
