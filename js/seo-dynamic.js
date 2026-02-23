@@ -127,11 +127,11 @@ class DynamicSEO {
         let title = document.querySelector('title');
         
         if (daysUntilTet <= 7 && title) {
-            title.textContent = `🎊 Sắp Tết 2027 - CHỈ CÒN ${daysUntilTet} NGÀY NỮA LÀ ĐẾN TẾT NGUYÊN ĐÁN!`;
+            title.textContent = `🎊 Sắp Tết - CHỈ CÒN ${daysUntilTet} NGÀY NỮA LÀ ĐẾN TẾT 2027!`;
         } else if (daysUntilTet <= 30 && title) {
-            title.textContent = `🏮 Sắp Tết 2027 - Còn ${daysUntilTet} ngày tới Tết? Đếm ngược Tết Nguyên Đán`;
+            title.textContent = `🏮 Sắp Tết - Đếm Ngược Tết 2027 | Còn ${daysUntilTet} Ngày Nữa Tới Tết`;
         } else if (title) {
-            title.textContent = `Sắp Tết 2027 - Còn bao nhiêu ngày tới Tết? Khi nào Tết? Đếm ngược Tết Nguyên Đán`;
+            title.textContent = `Sắp Tết - Đếm Ngược Tết 2027 | Còn Bao Nhiêu Ngày Nữa Tới Tết?`;
         }
     }
 }
