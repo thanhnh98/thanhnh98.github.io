@@ -1,11 +1,11 @@
-# Phân Tích Website Sắp Tết 2026 & Gợi Ý Tính Năng Bổ Sung
+# Phân Tích Website Sắp Tết 2027 & Gợi Ý Tính Năng Bổ Sung
 
 ## 📊 Phân Tích Website Hiện Tại
 
 ### ✅ **Tính Năng Đã Có:**
 
 #### 1. **Đếm Ngược Tết (Core Feature)**
-- Countdown chính xác đến Tết 2026
+- Countdown chính xác đến Tết 2027
 - Hiển thị ngày, giờ, phút, giây
 - Tự động cập nhật theo thời gian thực
 - Hỗ trợ nhiều năm Tết (2025-2029)
@@ -250,7 +250,7 @@
 
 ## 🎯 **Kết Luận**
 
-Website Sắp Tết 2026 hiện tại đã có nền tảng vững chắc với content chất lượng cao và SEO tối ưu. Việc bổ sung các tính năng tương tác và tiện ích thực tế sẽ giúp:
+Website Sắp Tết 2027 hiện tại đã có nền tảng vững chắc với content chất lượng cao và SEO tối ưu. Việc bổ sung các tính năng tương tác và tiện ích thực tế sẽ giúp:
 
 1. **Tăng user engagement** đáng kể
 2. **Cải thiện user experience** 

@@ -1,4 +1,4 @@
-// Quiz Kiến Thức Về Tết - Sắp Tết 2026
+// Quiz Kiến Thức Về Tết - Sắp Tết 2027
 class TetQuiz {
     constructor(rootElement) {
         this.currentQuestion = 0;
@@ -12,26 +12,26 @@ class TetQuiz {
     getQuestions() {
         return [
             {
-                question: "Tết Nguyên Đán 2026 rơi vào ngày nào?",
+                question: "Tết Nguyên Đán 2027 rơi vào ngày nào?",
                 options: [
-                    "15 tháng 2 năm 2026",
-                    "17 tháng 2 năm 2026", 
-                    "19 tháng 2 năm 2026",
-                    "21 tháng 2 năm 2026"
+                    "15 tháng 2 năm 2027",
+                    "6 tháng 2 năm 2027", 
+                    "19 tháng 2 năm 2027",
+                    "21 tháng 2 năm 2027"
                 ],
                 correct: 1,
-                explanation: "Tết Nguyên Đán 2026 rơi vào ngày 17 tháng 2 năm 2026 (âm lịch mùng 1 tháng Giêng năm Bính Ngọ)."
+                explanation: "Tết Nguyên Đán 2027 rơi vào ngày 6 tháng 2 năm 2027 (âm lịch mùng 1 tháng Giêng năm Đinh Mùi)."
             },
             {
-                question: "Năm 2026 là năm con gì theo âm lịch?",
+                question: "Năm 2027 là năm con gì theo âm lịch?",
                 options: [
                     "Năm con Rắn (Tỵ)",
-                    "Năm con Ngựa (Ngọ)",
+                    "Năm con Dê (Ngọ)",
                     "Năm con Dê (Mùi)",
                     "Năm con Khỉ (Thân)"
                 ],
                 correct: 1,
-                explanation: "Năm 2026 là năm Bính Ngọ (năm con Ngựa) theo âm lịch Việt Nam."
+                explanation: "Năm 2027 là năm Đinh Mùi (năm con Dê) theo âm lịch Việt Nam."
             },
             {
                 question: "Món ăn nào được coi là 'linh hồn' của mâm cơm Tết?",
@@ -392,9 +392,9 @@ class TetQuiz {
         const percentage = (this.score / this.questions.length) * 100;
         const grade = this.getGrade(percentage);
         
-        const shareText = `🎯 Tôi vừa đạt ${percentage}% trong Quiz Kiến Thức Về Tết trên Sắp Tết 2026! Xếp loại: ${grade} 🏮`;
+        const shareText = `🎯 Tôi vừa đạt ${percentage}% trong Quiz Kiến Thức Về Tết trên Sắp Tết 2027! Xếp loại: ${grade} 🏮`;
         const shareUrl = encodeURIComponent(window.location.href);
-        const shareTitle = encodeURIComponent('Quiz Kiến Thức Về Tết - Sắp Tết 2026');
+        const shareTitle = encodeURIComponent('Quiz Kiến Thức Về Tết - Sắp Tết 2027');
         
         const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURIComponent(shareText)}`;
         window.open(facebookUrl, '_blank');

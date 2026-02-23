@@ -1,7 +1,7 @@
-# Sắp Tết 2026 - Advanced Features & AdSense Compliance
+# Sắp Tết 2027 - Advanced Features & AdSense Compliance
 
 ## Overview
-This document outlines the comprehensive improvements made to the Sắp Tết 2026 website to address Google AdSense policy violations and enhance user experience.
+This document outlines the comprehensive improvements made to the Sắp Tết 2027 website to address Google AdSense policy violations and enhance user experience.
 
 ## Issues Identified & Fixed
 

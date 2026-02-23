@@ -138,7 +138,7 @@ function generateArticleHTML(article, isFeatured = false) {
                     <!-- Featured Article -->
                     <article class="blog-post featured">
                         <div class="post-image">
-                            <img src="${imageUrl}" alt="${article.title}" onerror="this.src='assets/images/ic_app.webp'">
+                            <img src="${imageUrl}" alt="${article.title}" onerror="this.src='assets/images/ic_app.png'">
                         </div>
                         <div class="post-content">
                             <div class="post-meta">
@@ -154,7 +154,7 @@ function generateArticleHTML(article, isFeatured = false) {
     return `
                     <article class="blog-post">
                         <div class="post-image">
-                            <img src="${imageUrl}" alt="${article.title}" onerror="this.src='assets/images/ic_app.webp'">
+                            <img src="${imageUrl}" alt="${article.title}" onerror="this.src='assets/images/ic_app.png'">
                         </div>
                         <div class="post-content">
                             <div class="post-meta">

@@ -3,7 +3,7 @@
     <!-- Homepage - Highest Priority -->
     <url>
         <loc>https://saptet.vn/</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -11,75 +11,81 @@
     <!-- Countdown & Lịch - High Priority -->
     <url>
         <loc>https://saptet.vn/con-bao-lau-nua-den-tet</loc>
-        <lastmod>2026-01-31</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://saptet.vn/lich-van-nien.html</loc>
-        <lastmod>2026-01-31</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien-quan-trong.html</loc>
-        <lastmod>2026-01-31</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://saptet.vn/chi-tiet-su-kien.html</loc>
-        <lastmod>2026-02-02</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
     </url>
-    <!-- Tet 2026 Main Pages - High Priority -->
+    <!-- Tet 2027 Main Pages - High Priority -->
     <url>
         <loc>https://saptet.vn/lich-tet-2026.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://saptet.vn/lich-nghi-tet-2026.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/lich-am-duong.html</loc>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
     <!-- Tet Features - High Priority -->
     <url>
         <loc>https://saptet.vn/tro-choi-tet.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://saptet.vn/may-tinh-li-xi.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://saptet.vn/mon-an-tet.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://saptet.vn/cua-hang.html</loc>
-        <lastmod>2026-01-31</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://saptet.vn/huong-dan-tet.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://saptet.vn/ung-dung.html</loc>
-        <lastmod>2026-02-03</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -87,7 +93,7 @@
     <!-- Blog and Content - Medium-High Priority -->
     <url>
         <loc>https://saptet.vn/blog.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.85</priority>
     </url>
@@ -95,13 +101,13 @@
     <!-- Seasonal Pages - Medium Priority -->
     <url>
         <loc>https://saptet.vn/trung-thu.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://saptet.vn/noel.html</loc>
-        <lastmod>2026-01-25</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -109,13 +115,13 @@
     <!-- Legal Pages - Low Priority -->
     <url>
         <loc>https://saptet.vn/privacy-policy.html</loc>
-        <lastmod>2026-01-15</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
         <loc>https://saptet.vn/privacy-policy-en.html</loc>
-        <lastmod>2026-01-15</lastmod>
+        <lastmod>2026-02-23</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
