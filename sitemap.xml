@@ -10,14 +10,14 @@
     
     <!-- Countdown & Lịch - High Priority -->
     <url>
-        <loc>https://saptet.vn/con-bao-lau-nua-den-tet</loc>
-        <lastmod>2026-02-23</lastmod>
+        <loc>https://saptet.vn/con-bao-lau-nua-den-tet.html</loc>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://saptet.vn/lich-van-nien.html</loc>
-        <lastmod>2026-02-23</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
@@ -42,12 +42,6 @@
     </url>
     <url>
         <loc>https://saptet.vn/lich-nghi-tet-2026.html</loc>
-        <lastmod>2026-02-23</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.95</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/lich-am-duong.html</loc>
         <lastmod>2026-02-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>

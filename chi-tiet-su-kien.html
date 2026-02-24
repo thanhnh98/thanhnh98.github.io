@@ -251,13 +251,40 @@
         secondsEl.textContent = pad2(seconds);
     }
 
+    function getUpcomingLunarTetDate() {
+        if (typeof lunarToSolar !== 'function') return null;
+        var now = new Date();
+        var thisYearTet = lunarToSolar(now.getFullYear(), 1, 1);
+        if (!thisYearTet) return null;
+
+        var tetStart = new Date(thisYearTet.getFullYear(), thisYearTet.getMonth(), thisYearTet.getDate());
+        tetStart.setHours(0, 0, 0, 0);
+        if (tetStart.getTime() >= now.getTime()) {
+            return tetStart;
+        }
+
+        var nextYearTet = lunarToSolar(now.getFullYear() + 1, 1, 1);
+        if (!nextYearTet) return tetStart;
+        return new Date(nextYearTet.getFullYear(), nextYearTet.getMonth(), nextYearTet.getDate());
+    }
+
     function render() {
         var dateParam = getParam('date');
+        var hasDateParam = !!dateParam;
         var targetDate = parseDateParam(dateParam);
+        var isTetFallback = false;
         var titleEl = document.getElementById('eventTitle');
         var dateDisplayEl = document.getElementById('eventDateDisplay');
         var cardsEl = document.getElementById('eventCards');
         var emptyEl = document.getElementById('eventEmpty');
+
+        if (!hasDateParam) {
+            var fallbackDate = getUpcomingLunarTetDate();
+            if (fallbackDate) {
+                targetDate = fallbackDate;
+                isTetFallback = true;
+            }
+        }
 
         if (!targetDate) {
             if (titleEl) titleEl.textContent = 'Không có ngày hợp lệ';
@@ -267,7 +294,7 @@
             return;
         }
 
-        if (titleEl) titleEl.textContent = 'Chi tiết sự kiện';
+        if (titleEl) titleEl.textContent = isTetFallback ? 'Đếm ngược Tết Nguyên Đán' : 'Chi tiết sự kiện';
         if (dateDisplayEl) dateDisplayEl.textContent = formatDateLong(targetDate) + ' (' + formatDate(targetDate) + ')';
 
         var events = getEventsOnDate(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
