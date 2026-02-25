@@ -30,7 +30,7 @@ const LUNAR_YEAR_DATA = {
     },
     2026: {
         tetDate: new Date(2026, 1, 17), // Feb 17, 2026
-        monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30],
+        monthDays: [30, 29, 30, 29, 29, 30, 29, 29, 30, 30, 30, 29],
         leapMonth: null,
         leapMonthDays: 0
     },
