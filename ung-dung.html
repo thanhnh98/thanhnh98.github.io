@@ -195,24 +195,51 @@
         .app-faq details[open] summary::after { content: '−'; }
         .app-faq .answer { padding: 0 1.25rem 1.25rem; color: var(--color-text-secondary); line-height: 1.6; }
 
-        .breadcrumb { padding: 1rem 0 0.5rem; font-size: 0.9rem; color: var(--color-text-secondary); }
-        .breadcrumb a { color: var(--color-primary); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .breadcrumb span { margin: 0 0.35rem; }
+        .app-page main { margin-top: 0; }
+        .app-page .app-intro-section { margin-top: 0; padding-top: clamp(1rem, 2.5vw, 1.5rem); }
+
+        .app-mobile-sticky-download {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            display: none;
+            gap: 0.6rem;
+            padding: 0.65rem;
+            background: rgba(255,255,255,0.96);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            backdrop-filter: blur(6px);
+        }
+        .app-mobile-sticky-download a {
+            flex: 1;
+            min-height: 42px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #fff;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        }
+        .app-mobile-sticky-download a img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            body.app-page { padding-bottom: 74px; }
+            .app-mobile-sticky-download { display: flex; }
+        }
     </style>
 </head>
 <body class="app-page">
     <div id="header-container"></div>
 
     <main>
-        <nav class="container breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Trang chủ</a><span>/</span><span>Ứng dụng Tết</span>
-        </nav>
-        <p id="ung-dung-refresh-hint" class="container" style="display:none; margin:0.5rem 0 0; font-size:0.9rem;">
-            <a href="#" id="ung-dung-refresh-link" style="color:var(--color-primary);">↻ Xem bản mới nhất</a>
-            <span style="color:var(--color-text-secondary);"> (khi URL không có .html, dùng link này để tải lại trang không cache)</span>
-        </p>
-
         <!-- App Introduction Section - giống homepage -->
         <section id="app-intro" class="app-intro-section scroll-section slide-in" aria-labelledby="app-hero-title">
             <div id="app-intro-qr-modal" class="app-intro-qr-modal" role="dialog" aria-modal="true" aria-label="QR tải ứng dụng" aria-hidden="true">
@@ -367,6 +394,15 @@
         </section>
     </main>
 
+    <div class="app-mobile-sticky-download" aria-label="Tải ứng dụng nhanh">
+        <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/google_play.png" alt="Google Play"> Android
+        </a>
+        <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027/id6743064990?platform=iphone" target="_blank" rel="noopener noreferrer">
+            <img src="assets/images/apple_store.png" alt="App Store"> iOS
+        </a>
+    </div>
+
     <div id="footer-container"></div>
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -390,23 +426,7 @@
           grid.appendChild(card);
         });
       })();
-      (function() {
-        var path = window.location.pathname || '';
-        if (path.indexOf('.html') === -1 && (path === '/ung-dung' || path === '/ung-dung/' || path.endsWith('/ung-dung') || path.endsWith('/ung-dung/'))) {
-          var hint = document.getElementById('ung-dung-refresh-hint');
-          var link = document.getElementById('ung-dung-refresh-link');
-          if (hint && link) {
-            hint.style.display = 'block';
-            link.addEventListener('click', function(e) {
-              e.preventDefault();
-              var p = path.replace(/\/$/, '') || '/';
-              var sep = p.indexOf('?') >= 0 ? '&' : '?';
-              window.location.href = (p === '/' ? '/ung-dung.html' : p + '.html') + sep + 'nocache=' + Date.now();
-            });
-          }
-        }
-      })();
     </script>
-    <script src="js/navigation.js"></script>
+    <script src="js/navigation.js?v=20260226"></script>
 </body>
 </html>

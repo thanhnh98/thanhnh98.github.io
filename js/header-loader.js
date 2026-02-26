@@ -6,13 +6,14 @@ class HeaderLoader {
 
     getCurrentPage() {
         const path = window.location.pathname;
+        const normalizedPath = path.replace(/\/$/, '');
         const filename = path.split('/').pop();
         
         if (filename === 'mon-an-tet.html') {
             return 'mon-an-tet';
         } else if (filename === 'cua-hang.html') {
             return 'cua-hang';
-        } else if (filename === 'ung-dung.html') {
+        } else if (filename === 'ung-dung.html' || normalizedPath === '/ung-dung') {
             return 'app';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;
@@ -113,7 +114,7 @@ class HeaderLoader {
     }
 
     addAppIntroScrollListener() {
-        document.querySelectorAll('a[href*="#app-intro"], a.nav-app-link').forEach(link => {
+        document.querySelectorAll('a[href*="#app-intro"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const path = window.location.pathname;
                 const isIndex = path === '/' || path.endsWith('/') || path.endsWith('index.html');
