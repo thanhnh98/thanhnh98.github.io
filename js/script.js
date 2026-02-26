@@ -140,7 +140,9 @@ function getRandomGreeting() {
     return tetGreetings[currentGreetingIndex];
 }
 
-// ===== KIỂM TRA ĐANG TRONG NGÀY TẾT (Mùng 1-10) =====
+const MAX_MUNG_TET_DAY = 6;
+
+// ===== KIỂM TRA ĐANG TRONG NGÀY TẾT (Mùng 1-6) =====
 function checkMungTet() {
     try {
         // Sử dụng calculateLunarDate từ lunar-calendar.js
@@ -148,8 +150,8 @@ function checkMungTet() {
             const today = new Date();
             const lunar = calculateLunarDate(today);
             
-            // Nếu là tháng 1 âm lịch và ngày từ 1-10 → đang trong Mùng Tết
-            if (lunar && lunar.month === 1 && lunar.day >= 1 && lunar.day <= 10) {
+            // Nếu là tháng 1 âm lịch và ngày từ 1-6 → đang trong Mùng Tết
+            if (lunar && lunar.month === 1 && lunar.day >= 1 && lunar.day <= MAX_MUNG_TET_DAY) {
                 return {
                     isMungTet: true,
                     day: lunar.day,
@@ -204,7 +206,7 @@ function updateCountdown() {
     // Update the year display
     if (tetYearEl) tetYearEl.textContent = nextTet.year;
     
-    // ===== KIỂM TRA MÙNG TẾT (ngày 1-10 tháng 1 âm lịch) =====
+    // ===== KIỂM TRA MÙNG TẾT (ngày 1-6 tháng 1 âm lịch) =====
     const mungTetInfo = checkMungTet();
     
     if (mungTetInfo.isMungTet) {
