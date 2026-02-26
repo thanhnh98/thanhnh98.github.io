@@ -1714,7 +1714,7 @@
                             <h2 class="calendar-title">Lịch Vạn Niên - Lịch Âm Dương</h2>
                         </div>
                         
-                        <div class="current-month-display" id="currentMonth" role="heading" aria-level="3">Tháng 1, 2027</div>
+                        <div class="current-month-display" id="currentMonth" role="heading" aria-level="3">Tháng 1, 2026</div>
                         
                         <div class="calendar-controls-row">
                             <div class="year-selector">
@@ -1722,7 +1722,7 @@
                                 <select id="year-select" aria-label="Chọn năm">
                                     <option value="2024">2024</option>
                                     <option value="2025">2025</option>
-                                    <option value="2027" selected>2027</option>
+                                    <option value="2026" selected>2026</option>
                                     <option value="2027">2027</option>
                                     <option value="2028">2028</option>
                                 </select>
@@ -1811,7 +1811,7 @@
             'Bảy', 'Tám', 'Chín', 'Mười', 'Mười một', 'Chạp'
         ];
         
-        let currentDate = new Date(2027, 0, 1); // Initialize to January 2027
+        let currentDate = new Date(); // Initialize to current date
         let selectedDate = null;
         
         // Tính toán các ngày Tết / sự kiện âm lịch từ EVENTS_DATA (đầy đủ, chính xác)
@@ -1996,6 +1996,40 @@
                 calendarsContainer.appendChild(monthWrapper);
             }
         }
+
+        function selectDateInCalendar(date, shouldScroll = false) {
+            const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            selectedDate = normalizedDate;
+            updateLunarInfo(normalizedDate);
+
+            document.querySelectorAll('.calendar-day').forEach(d => {
+                d.classList.remove('selected');
+                d.setAttribute('aria-selected', 'false');
+            });
+
+            const year = String(normalizedDate.getFullYear());
+            const month = String(normalizedDate.getMonth() + 1);
+            const day = String(normalizedDate.getDate());
+            const baseSelector = `.calendar-day[data-year="${year}"][data-month="${month}"][data-day="${day}"]`;
+
+            let targetElement = document.querySelector(`${baseSelector}:not(.other-month)`);
+            if (!targetElement) {
+                targetElement = document.querySelector(baseSelector);
+            }
+
+            if (targetElement) {
+                targetElement.classList.add('selected');
+                targetElement.setAttribute('aria-selected', 'true');
+
+                if (shouldScroll) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                        inline: 'center'
+                    });
+                }
+            }
+        }
         
         function createDayElement(day, isOtherMonth, year, month) {
             const dayElement = document.createElement('div');
@@ -2032,6 +2066,10 @@
             } catch (e) {
                 lunarInfo = { day: 1, month: 1 };
             }
+
+            dayElement.dataset.year = String(solarDate.getFullYear());
+            dayElement.dataset.month = String(solarDate.getMonth() + 1);
+            dayElement.dataset.day = String(solarDate.getDate());
             
             const lunarMonth = lunarMonths[lunarInfo.month - 1] || lunarMonths[0];
             const lunarDateStr = lunarInfo.day === 1 
@@ -2569,10 +2607,27 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', () => {
-            generateCalendar();
-            updateEventsUpcoming();
+            const today = new Date();
+            const normalizedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            currentDate = new Date(normalizedToday);
+
             const yearSelect = document.getElementById('year-select');
-            const year = yearSelect ? parseInt(yearSelect.value, 10) : new Date().getFullYear();
+            if (yearSelect) {
+                const todayYear = String(normalizedToday.getFullYear());
+                const hasTodayYear = Array.from(yearSelect.options).some(opt => opt.value === todayYear);
+                if (!hasTodayYear) {
+                    const option = document.createElement('option');
+                    option.value = todayYear;
+                    option.textContent = todayYear;
+                    yearSelect.appendChild(option);
+                }
+                yearSelect.value = todayYear;
+            }
+
+            generateCalendar();
+            selectDateInCalendar(normalizedToday);
+            updateEventsUpcoming();
+            const year = yearSelect ? parseInt(yearSelect.value, 10) : normalizedToday.getFullYear();
             updateEventsInYearList(year);
             
             // Dialog event listeners
@@ -2620,35 +2675,27 @@
             if (goToTodayBtn) {
                 goToTodayBtn.addEventListener('click', () => {
                     const today = new Date();
-                    currentDate = new Date(today);
+                    const normalizedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    currentDate = new Date(normalizedToday);
                     
                     // Cập nhật year selector
                     const yearSelect = document.getElementById('year-select');
                     if (yearSelect) {
-                        yearSelect.value = today.getFullYear();
+                        const todayYear = String(normalizedToday.getFullYear());
+                        const hasTodayYear = Array.from(yearSelect.options).some(opt => opt.value === todayYear);
+                        if (!hasTodayYear) {
+                            const option = document.createElement('option');
+                            option.value = todayYear;
+                            option.textContent = todayYear;
+                            yearSelect.appendChild(option);
+                        }
+                        yearSelect.value = todayYear;
                     }
                     
                     // Regenerate calendar
                     generateCalendar();
-                    updateEventsInYearList(today.getFullYear());
-                    
-                    // Scroll đến ngày hôm nay sau một chút delay để calendar render xong
-                    setTimeout(() => {
-                        const todayElement = document.querySelector('.calendar-day.today');
-                        if (todayElement) {
-                            todayElement.scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'center',
-                                inline: 'center'
-                            });
-                            
-                            // Highlight ngày hôm nay
-                            todayElement.style.animation = 'none';
-                            setTimeout(() => {
-                                todayElement.style.animation = '';
-                            }, 10);
-                        }
-                    }, 100);
+                    selectDateInCalendar(normalizedToday, true);
+                    updateEventsInYearList(normalizedToday.getFullYear());
                 });
             }
             
