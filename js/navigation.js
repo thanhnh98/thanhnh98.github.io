@@ -24,6 +24,8 @@ class Router {
             '/may-tinh-li-xi.html': 'may-tinh-li-xi.html',
             '/huong-dan-tet': 'huong-dan-tet.html',
             '/huong-dan-tet.html': 'huong-dan-tet.html',
+            '/ung-dung': 'ung-dung.html',
+            '/ung-dung.html': 'ung-dung.html',
             '/chi-tiet-mon-an': 'chi-tiet-mon-an.html',
             '/chi-tiet-mon-an.html': 'chi-tiet-mon-an.html',
             '/404': '404.html',
