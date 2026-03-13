@@ -18,6 +18,8 @@ class Router {
             '/tai-ung-dung.html': 'tai-ung-dung/index.html', // Keep for backward compatibility
             '/blog': 'blog.html',
             '/blog.html': 'blog.html',
+            '/tin-tuc': 'tin-tuc.html',
+            '/tin-tuc.html': 'tin-tuc.html',
             '/cua-hang': 'cua-hang.html',
             '/cua-hang.html': 'cua-hang.html',
             '/may-tinh-li-xi': 'may-tinh-li-xi.html',
@@ -52,7 +54,12 @@ class Router {
     cleanUrl() {
         const currentPath = window.location.pathname;
         let cleanPath = currentPath;
-        
+
+        // Pages that should keep .html in URL (no redirect to clean URL)
+        const keepHtmlPages = ['/tin-tuc.html', '/news/'];
+        const shouldKeepHtml = keepHtmlPages.some(p => currentPath === p || currentPath.startsWith(p));
+        if (shouldKeepHtml) return;
+
         // Remove .html extension and redirect to clean URL
         if (currentPath.endsWith('.html')) {
             if (currentPath === '/index.html') {
@@ -60,7 +67,7 @@ class Router {
             } else {
                 cleanPath = currentPath.replace('.html', '');
             }
-            
+
             // Update URL without page reload
             history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
         }

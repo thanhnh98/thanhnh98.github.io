@@ -102,6 +102,15 @@ function isInvalidSubdomain(url) {
 
 // Fetch event - serve cached content when offline and handle subdomain redirects
 self.addEventListener('fetch', event => {
+  // Skip cache on localhost for easier development
+  try {
+    const url = new URL(event.request.url);
+    if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+      event.respondWith(fetch(event.request));
+      return;
+    }
+  } catch (e) {}
+
   // Handle subdomain redirects
   if (isInvalidSubdomain(event.request.url)) {
     console.log('Service Worker: Invalid subdomain detected, redirecting to 404');

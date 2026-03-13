@@ -1,0 +1,45 @@
+{
+  "version": "1.1",
+  "generatedAt": "2026-03-12T00:00:00Z",
+  "items": [
+    {
+      "id": "news-001",
+      "slug": "su-kien-xang-dau-ngay-10-03-2026",
+      "title": "Sự kiện xăng dầu: Điều chỉnh giá từ 23h45 ngày 10/03/2026",
+      "summary": "Liên Bộ Công Thương - Tài chính điều chỉnh tăng giá một số mặt hàng xăng dầu từ 23h45 ngày 10/03/2026; thị trường sau đó ghi nhận biến động mạnh ở kỳ kế tiếp.",
+      "category": "economy",
+      "publishedAt": "2026-03-12T11:30:00Z",
+      "author": "Fetch News Team",
+      "tags": [
+        "xang-dau",
+        "gia-xang",
+        "thi-truong-nang-luong",
+        "viet-nam"
+      ],
+      "source": {
+        "name": "VietnamPlus (TTXVN)",
+        "url": "https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp"
+      },
+      "links": {
+        "canonicalUrl": "https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp",
+        "affiliateUrl": "https://s.shopee.vn/4frPs6Oav6",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "aff-001",
+        "shopId": "xangdau-2026",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lqtyd2agh2vmb1",
+        "images": [],
+        "name": "Hộp Socola AVY Trắng Đen Hot Trend Mix Chữ Quà Tặng Người Yêu Valentine",
+        "description": "Sản phẩm gợi ý liên quan theo metadata affiliate của bài viết.",
+        "type": "shopee",
+        "category": "quatet",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/4frPs6Oav6"
+      },
+      "thumbnailUrl": "https://picsum.photos/seed/xang-dau-20260310/800/450",
+      "detailPage": "./news/su-kien-xang-dau-ngay-10-03-2026.html"
+    }
+  ]
+}

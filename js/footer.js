@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const footerContainer = document.getElementById('footer-container');
     
     if (footerContainer) {
-        // Load footer from centralized file
-        fetch('footer.html')
+        // Load footer from centralized file (absolute URL for nested pages)
+        const origin = window.location.origin;
+        fetch(origin + '/footer.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to load footer');
