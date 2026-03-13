@@ -40,6 +40,46 @@
       },
       "thumbnailUrl": "https://picsum.photos/seed/xang-dau-20260310/800/450",
       "detailPage": "./news/su-kien-xang-dau-ngay-10-03-2026.html"
+    },
+    {
+      "id": "news-002",
+      "slug": "gia-vang-hom-nay-ngay-13-03-2026",
+      "title": "Giá vàng hôm nay 13/03/2026: DOJI niêm yết SJC 181,80-184,80 triệu đồng/lượng",
+      "summary": "Mốc 12:26 ngày 13/03/2026, DOJI niêm yết vàng SJC tại Hà Nội 181,80-184,80 triệu đồng/lượng, chênh lệch mua-bán 3,00 triệu đồng/lượng. Góc nhìn biên tập: chi phí vào-ra còn cao nên ưu tiên kỷ luật quản trị rủi ro và phân bổ vốn theo từng nhịp.",
+      "category": "economy",
+      "publishedAt": "2026-03-13T12:30:00Z",
+      "author": "Sắp Tết Editorial",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "doji",
+        "vietnamplus",
+        "thi-truong-vang"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://giavang.doji.vn/",
+        "affiliateUrl": "",
+        "useAffiliate": false
+      },
+      "affiliate": {
+        "id": "",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "",
+        "description": "",
+        "type": "",
+        "category": "",
+        "coinBonus": 0,
+        "buyText": "",
+        "url": ""
+      },
+      "thumbnailUrl": "https://picsum.photos/seed/gia-vang-20260313/800/450",
+      "detailPage": "./news/gia-vang-hom-nay-ngay-13-03-2026.html"
     }
   ]
 }
