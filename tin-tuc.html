@@ -351,6 +351,7 @@
             line-height: 1.35;
             color: var(--color-text-primary);
             display: -webkit-box;
+            line-clamp: 2;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
@@ -373,6 +374,7 @@
             line-height: 1.5;
             margin: 0;
             display: -webkit-box;
+            line-clamp: 2;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
@@ -592,6 +594,7 @@
     <script src="js/header-loader.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/icons.js"></script>
+    <script src="js/analytics.js"></script>
     <script>
         var fallbackNewsPosts = [];
 
@@ -623,6 +626,18 @@
             return normalized.charAt(0).toUpperCase() + normalized.slice(1);
         }
 
+        function toTitleSlug(value) {
+            return String(value || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/đ/g, "d")
+                .replace(/Đ/g, "d")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "")
+                .replace(/-{2,}/g, "-");
+        }
+
         function resolveDetailUrl(detailPage, sourcePath) {
             if (!detailPage) return "";
             if (/^https?:\/\//i.test(detailPage)) return detailPage;
@@ -650,6 +665,7 @@
                 title: post.title || "Bài viết mới",
                 summary: summary,
                 category: post.category || "general",
+                slug: post.slug || "",
                 publishedAt: post.publishedAt || "",
                 author: post.author || "Sắp Tết Team",
                 tags: Array.isArray(post.tags) ? post.tags : [],
@@ -679,7 +695,7 @@
 
             featuredEl.innerHTML =
                 (post.hasAds ? "<span class='news-ads-badge'>QC</span>" : "") +
-                "<a class='featured-thumb-link' href='" + escapeHtml(readUrl) + "'>" +
+                "<a class='featured-thumb-link' href='" + escapeHtml(readUrl) + "' data-news-track='1' data-click-area='featured_image' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='0'>" +
                     "<img class='featured-thumb' src='" + escapeHtml(post.thumbnailUrl) + "' alt='" + escapeHtml(post.title) + "' loading='lazy'>" +
                 "</a>" +
                 "<div class='featured-body'>" +
@@ -689,12 +705,12 @@
                         "<span>" + escapeHtml(formatDate(post.publishedAt)) + "</span>" +
                         "<span>Tác giả: " + escapeHtml(post.author) + "</span>" +
                     "</div>" +
-                    "<a class='featured-title-link' href='" + escapeHtml(readUrl) + "'>" +
+                    "<a class='featured-title-link' href='" + escapeHtml(readUrl) + "' data-news-track='1' data-click-area='featured_title' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='0'>" +
                         "<h2>" + escapeHtml(post.title) + "</h2>" +
                     "</a>" +
                     "<p class='featured-excerpt'>" + escapeHtml(post.summary) + "</p>" +
                     "<div class='news-link-group'>" +
-                        "<a class='news-link' href='" + escapeHtml(readUrl) + "'>Xem bài viết</a>" +
+                        "<a class='news-link' href='" + escapeHtml(readUrl) + "' data-news-track='1' data-click-area='featured_button' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='0'>Xem bài viết</a>" +
                     "</div>" +
                 "</div>";
         }
@@ -708,12 +724,13 @@
                 return;
             }
 
-            listEl.innerHTML = posts.map(function(post) {
+            listEl.innerHTML = posts.map(function(post, index) {
                 var detailUrl = post.detailUrl || post.canonicalUrl || "#";
+                var position = index + 1;
                 return (
                     "<article class='news-card'>" +
                         (post.hasAds ? "<span class='news-card-badge-qc'>QC</span>" : "") +
-                        "<a href='" + escapeHtml(detailUrl) + "' class='news-card-thumb-link'>" +
+                        "<a href='" + escapeHtml(detailUrl) + "' class='news-card-thumb-link' data-news-track='1' data-click-area='card_image' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='" + position + "'>" +
                             "<img class='news-card-thumb' src='" + escapeHtml(post.thumbnailUrl) + "' alt='" + escapeHtml(post.title) + "' loading='lazy'>" +
                         "</a>" +
                         "<div class='news-card-body'>" +
@@ -721,16 +738,31 @@
                                 "<span class='news-source'>" + escapeHtml(formatCategory(post.category)) + "</span>" +
                                 "<span class='news-card-date'>" + escapeHtml(formatDate(post.publishedAt)) + "</span>" +
                             "</div>" +
-                            "<a href='" + escapeHtml(detailUrl) + "' class='news-card-title-link'>" +
+                            "<a href='" + escapeHtml(detailUrl) + "' class='news-card-title-link' data-news-track='1' data-click-area='card_title' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='" + position + "'>" +
                                 "<h3 class='news-card-title'>" + escapeHtml(post.title) + "</h3>" +
                             "</a>" +
                             "<p class='news-card-desc'>" + escapeHtml(post.summary) + "</p>" +
                             "<p class='news-card-author'>Nguồn: " + escapeHtml(post.sourceName) + " - " + escapeHtml(post.author) + "</p>" +
-                            "<a class='news-link' href='" + escapeHtml(detailUrl) + "'>Xem bài viết</a>" +
+                            "<a class='news-link' href='" + escapeHtml(detailUrl) + "' data-news-track='1' data-click-area='card_button' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='" + position + "'>Xem bài viết</a>" +
                         "</div>" +
                     "</article>"
                 );
             }).join("");
+        }
+
+        function trackNewsClick(element) {
+            if (!element || !window.webAnalytics || !window.webAnalytics.trackEvent) return;
+            var articleTitle = element.getAttribute('data-article-title') || '';
+            var articleSlug = element.getAttribute('data-article-slug') || toTitleSlug(articleTitle);
+            window.webAnalytics.trackEvent('news_article_open', {
+                title: articleSlug,
+                article_id: element.getAttribute('data-article-id') || '',
+                article_title: articleTitle,
+                article_category: element.getAttribute('data-article-category') || '',
+                article_position: Number(element.getAttribute('data-article-position') || -1),
+                click_area: element.getAttribute('data-click-area') || 'unknown',
+                page_path: window.location.pathname
+            });
         }
 
         function normalizeNewsPayload(payload) {
@@ -781,6 +813,12 @@
         }
 
         loadNewsData();
+
+        document.addEventListener('click', function(event) {
+            var target = event.target.closest('a[data-news-track="1"]');
+            if (!target) return;
+            trackNewsClick(target);
+        });
     </script>
     <script src="js/navigation.js?v=20260311"></script>
 </body>

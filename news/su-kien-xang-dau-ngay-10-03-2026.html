@@ -129,7 +129,7 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn-news secondary" href="https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp" target="_blank" rel="noopener noreferrer nofollow">Nguồn báo</a>
+          <a id="news-source-button" class="btn-news secondary" href="https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp" target="_blank" rel="noopener noreferrer nofollow">Nguồn báo</a>
           <a class="btn-news secondary" href="/tin-tuc.html">Quay lại trang Tin tức</a>
         </div>
       </article>
@@ -139,9 +139,42 @@
   <div id="footer-container"></div>
 
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../js/analytics.js"></script>
   <script src="../js/header-loader.js"></script>
   <script src="../js/footer.js"></script>
   <script src="../js/icons.js"></script>
   <script src="../js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var articleTitle = document.querySelector('.news-title')?.textContent?.trim() || document.title;
+      var articleSlug = 'su-kien-xang-dau-ngay-10-03-2026';
+      var articleCategory = 'economy';
+
+      if (window.webAnalytics && window.webAnalytics.trackEvent) {
+        window.webAnalytics.trackEvent('news_article_view', {
+          article_id: 'news-001',
+          article_slug: articleSlug,
+          article_title: articleTitle,
+          article_category: articleCategory,
+          page_path: window.location.pathname
+        });
+      }
+
+      var sourceBtn = document.getElementById('news-source-button');
+      if (sourceBtn) {
+        sourceBtn.addEventListener('click', function() {
+          if (window.webAnalytics && window.webAnalytics.trackEvent) {
+            window.webAnalytics.trackEvent('news_source_click', {
+              article_id: 'news-001',
+              article_slug: articleSlug,
+              article_title: articleTitle,
+              source_name: 'VietnamPlus (TTXVN)',
+              source_url: sourceBtn.href
+            });
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
