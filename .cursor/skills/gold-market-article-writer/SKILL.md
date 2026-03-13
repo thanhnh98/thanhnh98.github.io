@@ -21,7 +21,7 @@ Mặc định áp dụng cho thị trường Việt Nam (SJC, vàng nhẫn, doan
 - **Frequency:** hỗ trợ cả daily và weekly.
 - **Output:** hỗ trợ 2 mode:
   1. `article-only`
-  2. `publish-to-repo` (update `news.json` + tạo `news/<slug>.html`)
+  2. `publish-to-repo` (update `news.json` + tạo `tin-tuc/<slug>.html`)
 
 ## When To Use
 
@@ -138,7 +138,7 @@ Trả về:
 
 Áp dụng cho repo này:
 - Update `news.json`
-- Tạo `news/<slug>.html`
+- Tạo `tin-tuc/<slug>.html`
 - Giữ tương thích layout/detail page hiện có.
 
 ### Publish Checklist

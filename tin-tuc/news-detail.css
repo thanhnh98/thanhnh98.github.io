@@ -99,6 +99,19 @@
     background: #f4f4f4;
 }
 
+/* App article media tuning: keep screenshot ratio clean and consistent */
+.news-cover.app-cover {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #f4f4f4;
+}
+
+.news-cover.app-shot {
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #fafafa;
+}
+
 .news-summary {
     font-size: clamp(1rem, 2.5vw, 1.1rem);
     line-height: 1.75;
@@ -123,17 +136,40 @@
 
 .news-toc ul {
     margin: 0;
-    padding-left: 1.1rem;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
 }
 
 .news-toc a {
     color: var(--color-primary);
     font-weight: 700;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.45rem 0.65rem;
+    border-radius: 10px;
+    border: 1px solid rgba(230, 0, 38, 0.14);
+    background: rgba(230, 0, 38, 0.04);
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .news-toc a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    background: rgba(230, 0, 38, 0.1);
+    border-color: rgba(230, 0, 38, 0.28);
+}
+
+@media (min-width: 768px) {
+    .news-toc ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 .news-content {
@@ -160,6 +196,42 @@
 .news-content ul {
     margin: 0.5rem 0 0.7rem;
     padding-left: 1.2rem;
+}
+
+.app-promo-grid {
+    margin: 0.9rem 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+    .app-promo-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.app-promo-card {
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.app-promo-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    display: block;
+    background: #f8f8f8;
+}
+
+.app-promo-card figcaption {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+    padding: 0.5rem 0.6rem 0.6rem;
 }
 
 .source-box,
@@ -189,6 +261,29 @@
     grid-template-columns: 92px 1fr;
     gap: 0.85rem;
     align-items: stretch;
+}
+
+.ads-card-more-link {
+    position: absolute;
+    bottom: 0.42rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(24, 24, 27, 0.42);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    z-index: 2;
+}
+
+.ads-card-more-link:hover {
+    color: rgba(230, 0, 38, 0.88);
+}
+
+.ads-card-more-link:focus-visible {
+    color: rgba(230, 0, 38, 0.95);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 .ads-card-label {
@@ -316,6 +411,25 @@
 
 .source-links a:hover {
     text-decoration: underline;
+}
+
+.news-image-source {
+    margin-top: 0.45rem;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: rgba(24, 24, 27, 0.56);
+}
+
+.news-image-source a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    font-weight: 600;
+}
+
+.news-image-source a:hover {
+    color: rgba(24, 24, 27, 0.7);
 }
 
 .cta-row {

@@ -24,8 +24,8 @@ Add one news item:
 - Append one new object to `news.json`.
 - Set `links.useAffiliate` to `true`.
 - Set `affiliate.disclosureRequired` to `true`.
-- Create matching file `news/vietnam-tech-market-expands-in-q1.html`.
-- Set `detailPage` to `./news/vietnam-tech-market-expands-in-q1.html`.
+- Create matching file `tin-tuc/vietnam-tech-market-expands-in-q1.html`.
+- Set `detailPage` to `./tin-tuc/vietnam-tech-market-expands-in-q1.html`.
 
 ## Example 2: Slug Collision
 
@@ -49,6 +49,6 @@ Add one news item:
 ### Expected result (summary)
 
 - If `news-1` already exists, use `news-1-2` as slug.
-- Create `news/news-1-2.html`.
-- Set `detailPage` to `./news/news-1-2.html`.
+- Create `tin-tuc/news-1-2.html`.
+- Set `detailPage` to `./tin-tuc/news-1-2.html`.
 - Keep required affiliate fields populated.

@@ -15,7 +15,11 @@ class HeaderLoader {
             return 'cua-hang';
         } else if (filename === 'ung-dung.html' || normalizedPath === '/ung-dung') {
             return 'app';
-        } else if (filename === 'tin-tuc.html' || path.indexOf('/news/') !== -1) {
+        } else if (
+            filename === 'tin-tuc.html' ||
+            normalizedPath === '/tin-tuc' ||
+            path.indexOf('/tin-tuc/') !== -1
+        ) {
             return 'tin-tuc';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;

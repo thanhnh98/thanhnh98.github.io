@@ -1,6 +1,6 @@
 ---
 name: news-item-generator
-description: Creates and publishes a complete news item in this repository by updating news.json and creating news/<slug>.html. Use when the user asks to add/create/generate tin tuc, ban tin, or a new news article. Always attach at least one random affiliate product from data/aff/products and produce detailed article content with source links.
+description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. Always attach at least one random affiliate product from data/aff/products and produce detailed article content with source links.
 ---
 
 # News Item Generator
@@ -9,10 +9,12 @@ description: Creates and publishes a complete news item in this repository by up
 
 Use this skill to publish one new news item end-to-end while keeping:
 - `news.json`
-- `news/<slug>.html`
+- `tin-tuc/<slug>.html`
 - affiliate product section in detail page
 
 consistent and production-ready.
+
+This is a general daily news workflow (`Bản Tin`), not a Tet-only workflow.
 
 ## Trigger Conditions
 
@@ -23,10 +25,15 @@ Apply this skill when user intent includes:
 - "viết bản tin"
 - "đăng bài tin tức mới"
 
+Also apply when user asks for:
+- daily brief / bản tin mỗi ngày
+- tin nóng theo xu hướng
+- tổng hợp tin theo chủ đề
+
 ## Files To Update
 
 - `news.json`
-- `news/<slug>.html` (new file)
+- `tin-tuc/<slug>.html` (new file)
 
 ## Required Inputs
 
@@ -41,8 +48,42 @@ Collect or infer:
 - `source.url`
 - `links.canonicalUrl`
 - `thumbnailUrl`
+- `thumbnailSource.name`
+- `thumbnailSource.url`
 
 If a non-critical field is missing, infer from trusted context. Ask user only when ambiguity affects factual correctness.
+
+### Thumbnail Relevance Rule (Required)
+
+- `thumbnailUrl` must visually match the article topic/title/content.
+- Avoid generic/random placeholders that are unrelated to the story.
+- Prefer:
+  1. Official/source-provided image when available and valid.
+  2. A topic-keyword stock image URL that clearly matches domain context.
+- If no suitable image is available, generate a neutral but topic-aligned fallback (not abstract random).
+
+### Thumbnail Source Attribution Rule (Required)
+
+- Every item must include a `thumbnailSource` object in `news.json`:
+  - `thumbnailSource.name`
+  - `thumbnailSource.url`
+- The URL should point to the original media/source page or direct asset URL.
+- If image comes from first-party assets, set source name to the first-party brand/site.
+- Do not publish thumbnail without attribution metadata.
+
+## Topic Scope and Naming Rules (Required)
+
+- News topics can be any domain (economy, policy, tech, society, transport, health, sports, etc.).
+- Do not force Tet-related framing unless the source topic itself is about Tet.
+- Use neutral publication framing: `Bản Tin` / `Bản Tin mỗi ngày`.
+- Avoid fixed phrases like "Bản Tin Tết 2027" in newly generated content unless explicitly requested.
+
+## Trend-First Policy (Required)
+
+Before drafting:
+1. Identify whether the topic is currently trending or has fresh market/public relevance.
+2. Prefer topics with recent momentum (policy updates, market moves, traffic spikes, public-impact events).
+3. If user does not provide a topic, propose 5-10 trend-aligned options first.
 
 ## Mandatory Random Affiliate Rule
 
@@ -84,13 +125,120 @@ Each detail page must include:
 4. Summary paragraph
 5. TOC block
 6. At least 3 content sections with meaningful paragraphs
-7. Optional editorial viewpoint section when topic needs analysis
+7. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến", "Điểm đáng chú ý")
 8. Affiliate `ads-card` block in article body:
-   - include `data-random-affiliate="true"`
-9. Source reference block with links
-10. CTA row at bottom
-11. Script include for random affiliate:
+   - include `data-random-affiliate="true"` (in-body contextual block)
+9. Post-conclusion affiliate `ads-card`:
+   - add one more `data-random-affiliate="true"` block ngay sau phần kết luận
+10. Source reference block with links
+11. CTA row at bottom
+12. Script include for random affiliate:
    - `../js/news-affiliate-random.js`
+
+## Topic-Differentiated Generation Algorithm (Critical)
+
+Do NOT generate a one-style-fits-all article.
+
+Before writing, classify topic intent, then build sections by domain logic:
+
+### 1) Topic Classification
+
+Map input to one primary topic class:
+- `technology` (kỹ thuật/công nghệ/sản phẩm số)
+- `economy` (kinh tế/tài chính/vĩ mô/giá cả)
+- `entertainment` (giải trí/phim/nhạc/show/culture-trend)
+- `society` (xã hội/đời sống/hành vi cộng đồng/chính sách tác động dân sinh)
+- `policy` (chính sách/quy định/hiệu lực/tuân thủ)
+- `health` (y tế/sức khỏe cộng đồng/chỉ báo dịch tễ)
+- `travel` / `transport` / `commerce` / `energy` / `sports` (khi phù hợp)
+
+If a topic overlaps multiple classes, choose:
+1. primary = strongest user intent,
+2. secondary = one supporting lens only.
+
+### 2) Section Blueprint by Topic (Mandatory)
+
+Use these blueprints as default article skeletons:
+
+#### A. `technology` (Kỹ thuật/Công nghệ)
+- Section 1: `Tính năng và thay đổi chính`
+- Section 2: `Cách sử dụng / luồng thao tác (how to use)`
+- Section 3: `Điều kiện triển khai và giới hạn thực tế`
+- Optional Section 4: `Tác động tới trải nghiệm người dùng`
+- Conclusion: neutral observation on adoption/readiness (no direct advice)
+
+Reasoning:
+- Người đọc công nghệ cần biết "mới gì", "dùng thế nào", "khi nào phù hợp".
+
+#### B. `economy` (Kinh tế)
+- Section 1: `Dữ liệu và chỉ số chính`
+- Section 2: `Diễn biến thị trường theo kỳ`
+- Section 3: `Phân tích động lực kỹ thuật` (chi phí, cung-cầu, thanh khoản, độ trễ)
+- Optional Section 4: `Kịch bản diễn biến ngắn hạn` (mang tính mô tả)
+- Conclusion: neutral observation on market state/uncertainty
+
+Reasoning:
+- Tin kinh tế phải bám số liệu, cấu trúc thị trường và cơ chế vận động.
+
+#### C. `entertainment` (Giải trí)
+- Section 1: `Nội dung nổi bật / điểm thu hút`
+- Section 2: `Tính năng trải nghiệm và cách tham gia`
+- Section 3: `Phản hồi cộng đồng và nhịp lan tỏa`
+- Optional Section 4: `Yếu tố tạo trend (format, KOL, meme, short-form)`
+- Conclusion: neutral observation on audience momentum
+
+Reasoning:
+- Tin giải trí cần trọng tâm vào trải nghiệm, mức lan truyền và mức độ quan tâm.
+
+#### D. `society` (Xã hội)
+- Section 1: `Bối cảnh và dữ liệu nền`
+- Section 2: `Xu hướng hành vi / tâm lý cộng đồng`
+- Section 3: `Tác động dân sinh theo nhóm đối tượng`
+- Optional Section 4: `Biến số xã hội cần theo dõi`
+- Conclusion: neutral observation on social trajectory
+
+Reasoning:
+- Tin xã hội cần giải thích hành vi, tâm lý và tác động thực tế đến đời sống.
+
+#### E. `policy` (Chính sách)
+- Section 1: `Nội dung quy định và mốc hiệu lực`
+- Section 2: `Phạm vi áp dụng và đối tượng chịu tác động`
+- Section 3: `Thay đổi so với trước`
+- Optional Section 4: `Tác động vận hành thực tế`
+- Conclusion: neutral observation on implementation signals
+
+### 3) Narrative Control by Topic
+
+Adjust language and evidence depth by class:
+- `technology`: feature-level clarity, workflow verbs, UX terminology.
+- `economy`: numeric precision, unit consistency, time-series phrasing.
+- `entertainment`: audience engagement signals, platform dynamics, sentiment tone.
+- `society`: context framing, social behavior patterns, group-level impact.
+- `policy`: legal wording accuracy, effective dates, scope boundaries.
+
+### 4) Hard Guardrails
+
+- Reject outputs that reuse the same section names across all topics.
+- Reject outputs that lack domain-specific evidence style (numbers for economy, usage flows for technology, audience dynamics for entertainment, behavioral framing for society).
+- If topic class is unclear, add a short internal classification note first, then write.
+
+## Verification and Source Integrity (Critical)
+
+- News content must be factual and traceable to trusted sources.
+- Prioritize source tiers in this order:
+  1. Official/government/regulator pages
+  2. Primary institutional sources (exchange, enterprise IR, ministry portals)
+  3. Reputable press outlets as secondary context
+- Do not invent numbers, timestamps, or quotes.
+- If a metric is unverified, label it clearly as preliminary and avoid hard claims.
+- Every article must include at least 1 primary source link; prefer 2+ when possible.
+
+## Tone and Conclusion Policy
+
+- Do not force fixed section names like "Nhận định chuyên môn" or "Gợi ý hành động".
+- Conclusion sections should be neutral, journalistic observations.
+- Avoid imperative advice language ("nên", "hãy", "cần phải làm...") in conclusions.
+- Prefer evidence-based closing remarks that summarize trend direction, uncertainty, and observable implications.
 
 ## Generation Workflow
 
@@ -101,8 +249,9 @@ Each detail page must include:
    - slug: lowercase hyphen-case from title
    - handle collisions with `-2`, `-3`, ...
 4. Append new item to `news.json` using repository schema.
-5. Create `news/<slug>.html` based on current detail template.
-6. Ensure `detailPage` is exactly `./news/<slug>.html`.
+   - include `thumbnailSource` in the new item.
+5. Create `tin-tuc/<slug>.html` based on current detail template.
+6. Ensure `detailPage` is exactly `./tin-tuc/<slug>.html`.
 7. Validate JSON formatting (2 spaces).
 
 ## Topic-Aware Skill Selection (Important)
@@ -118,17 +267,48 @@ Before writing article content:
 
 This ensures unfamiliar topics still get structured, high-quality output.
 
+## Topic Taxonomy for Easy Management
+
+Use controlled categories in `news.json`:
+- `economy`
+- `policy`
+- `society`
+- `transport`
+- `energy`
+- `technology`
+- `entertainment`
+- `health`
+- `education`
+- `travel`
+- `commerce`
+- `sports`
+- `lifestyle` (legacy-compatible)
+
+Tagging rule:
+- 3-6 concise tags
+- include at least: domain tag + event/impact tag
+- avoid year-locked tags unless year is materially relevant
+
 ## Validation Checklist
 
 - `news.json` is valid JSON
 - new `id` is unique
 - new `slug` is unique
 - `detailPage` matches created file path
-- detail HTML exists in `news/`
+- detail HTML exists in `tin-tuc/`
 - article is detailed (not thin content)
 - random affiliate product is present in JSON
-- detail page contains `.ads-card[data-random-affiliate="true"]`
+- detail page contains at least 2 `.ads-card[data-random-affiliate="true"]` blocks
+- one affiliate block is positioned immediately after conclusion section
 - detail page loads `../js/news-affiliate-random.js`
+- title/body do not force Tet framing when topic is non-Tet
+- category follows controlled topic taxonomy
+- article includes verified primary source references
+- thumbnail is topic-relevant (no off-topic random image)
+- thumbnail source attribution exists (`thumbnailSource.name`, `thumbnailSource.url`)
+- section blueprint matches topic class (technology/economy/entertainment/society/...)
+- section names are not generic-cloned from unrelated domains
+- domain evidence style is correct (e.g., economy has indicators; technology has how-to flow)
 
 ## Output Style
 
