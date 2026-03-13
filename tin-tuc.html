@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
-    <title>Tin Tức Tết 2027 Mới Nhất | Sắp Tết</title>
-    <meta name="description" content="Tin tức Tết 2027 mới nhất: tổng hợp bài báo, cập nhật xu hướng và thông tin hữu ích dịp Tết. Có thể kết nối API để tự động tải danh sách bài viết." />
+    <title>Bản Tin Mới Nhất | Sắp Tết</title>
+    <meta name="description" content="Bản tin mới nhất: tổng hợp bài báo, cập nhật xu hướng và thông tin hữu ích dịp Tết." />
     <meta name="keywords" content="tin tức tết, tin tức tết 2027, bài báo tết, cập nhật tết, tin tết việt nam, sắp tết" />
     <link rel="canonical" href="https://saptet.vn/tin-tuc.html" />
 
@@ -18,21 +18,21 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://saptet.vn/tin-tuc.html" />
-    <meta property="og:title" content="Tin Tức Tết 2027 Mới Nhất | Sắp Tết" />
+    <meta property="og:title" content="Bản Tin Mới Nhất | Sắp Tết" />
     <meta property="og:description" content="Theo dõi danh sách tin tức Tết 2027, có thể mở rộng để load bài viết từ API hoặc metadata link báo lớn." />
     <meta property="og:image" content="https://saptet.vn/assets/images/img_sharing.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Tin tức Tết 2027 trên Sắp Tết" />
+    <meta property="og:image:alt" content="Bản Tin trên Sắp Tết" />
     <meta property="og:site_name" content="Sắp Tết - Đếm ngược Tết Nguyên Đán" />
     <meta property="og:locale" content="vi_VN" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://saptet.vn/tin-tuc.html" />
-    <meta property="twitter:title" content="Tin Tức Tết 2027 Mới Nhất | Sắp Tết" />
+    <meta property="twitter:title" content="Bản Tin Mới Nhất | Sắp Tết" />
     <meta property="twitter:description" content="Danh sách bài tin tức Tết 2027 với mẫu sẵn để kết nối API và dẫn link báo ngoài." />
     <meta property="twitter:image" content="https://saptet.vn/assets/images/img_sharing.png" />
-    <meta property="twitter:image:alt" content="Tin tức Tết 2027" />
+    <meta property="twitter:image:alt" content="Bản Tin" />
     <meta property="twitter:site" content="@sap.tetvn" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,7 +50,7 @@
       "@graph": [
         {
           "@type": "CollectionPage",
-          "name": "Tin tức Tết 2027 mới nhất",
+          "name": "Bản Tin mới nhất",
           "description": "Trang danh sách các bài tin tức Tết 2027 được tổng hợp trên Sắp Tết.",
           "url": "https://saptet.vn/tin-tuc.html",
           "inLanguage": "vi-VN",
@@ -91,29 +91,75 @@
     <style>
         .news-page {
             overflow-x: hidden;
+            background: linear-gradient(180deg, #fffdf6 0%, #fff8e6 100%);
         }
 
-        .news-hero {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            color: #fff;
-            text-align: center;
-            padding: clamp(3rem, 7vw, 5rem) 1rem;
+        .news-top {
+            padding: clamp(1rem, 2.5vw, 1.5rem) 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fff;
         }
 
-        .news-hero h1 {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            margin-bottom: 0.8rem;
+        .news-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.6rem;
         }
 
-        .news-hero p {
-            max-width: 760px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+        .news-breadcrumb a {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .news-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .news-top-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .news-top-title h1 {
+            font-size: clamp(1.45rem, 3.2vw, 2rem);
+            margin-bottom: 0.45rem;
+            line-height: 1.25;
+            color: var(--color-text-primary);
+        }
+
+        .news-top-title p {
+            max-width: 78ch;
+            margin: 0;
+            line-height: 1.65;
+            color: var(--color-text-secondary);
+            font-size: 0.96rem;
+        }
+
+        .news-top-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        @media (min-width: 900px) {
+            .news-top-row {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+
+            .news-top-actions {
+                justify-content: flex-end;
+            }
         }
 
         .news-list-section {
-            padding: clamp(2rem, 5vw, 4rem) 1rem;
+            padding: clamp(1.25rem, 2.8vw, 2rem) 1rem clamp(2rem, 4vw, 3rem);
         }
         @media (min-width: 768px) {
             .news-list-section {
@@ -129,38 +175,92 @@
         }
 
         .news-layout {
-            max-width: 1200px;
+            max-width: 1220px;
             margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+        }
+
+        @media (min-width: 1080px) {
+            .news-layout {
+                grid-template-columns: minmax(0, 1fr) 300px;
+                align-items: start;
+            }
         }
 
         .news-main {
             display: grid;
-            gap: 1.5rem;
+            gap: 1rem;
+        }
+
+        .news-section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.7rem;
+        }
+
+        .news-section-heading h2 {
+            font-size: clamp(1.12rem, 2.5vw, 1.45rem);
+            margin: 0;
+            color: var(--color-text-primary);
         }
 
         .featured-post {
             border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 16px;
-            overflow: hidden;
+            border-radius: 14px;
             background: var(--color-background-primary);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
             position: relative;
+            transition: box-shadow 0.25s ease, border-color 0.25s ease;
+            padding: 0.9rem;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        @media (min-width: 900px) {
+            .featured-post {
+                grid-template-columns: 280px minmax(0, 1fr);
+                align-items: start;
+            }
         }
         .featured-thumb {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 16 / 10;
             object-fit: cover;
             display: block;
             background: #f3f4f6;
+            border-radius: 10px;
+        }
+
+        .featured-thumb-link {
+            display: block;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .featured-thumb-link:hover .featured-thumb {
+            filter: brightness(0.97);
         }
         .featured-body {
-            padding: 1rem;
+            padding: 0.1rem 0.2rem;
         }
         .featured-body h2 {
-            font-size: clamp(1.3rem, 3vw, 1.7rem);
+            font-size: clamp(1.15rem, 2.6vw, 1.45rem);
             line-height: 1.35;
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.45rem;
             color: var(--color-text-primary);
+        }
+
+        .featured-title-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .featured-title-link:hover h2 {
+            color: var(--color-primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
         .featured-meta {
             display: flex;
@@ -172,45 +272,40 @@
         }
         .featured-excerpt {
             color: var(--color-text-secondary);
-            line-height: 1.65;
-            margin-bottom: 0.9rem;
+            line-height: 1.58;
+            margin-bottom: 0.7rem;
+            font-size: 0.92rem;
         }
 
         .news-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.25rem;
+            gap: 0.9rem;
         }
         @media (min-width: 600px) {
             .news-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        @media (min-width: 1024px) {
+        @media (min-width: 1320px) {
             .news-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
+                gap: 1rem;
             }
         }
 
         .news-card {
             background: var(--color-background-primary);
             border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
             position: relative;
-            transition: box-shadow 0.25s, transform 0.25s;
+            transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
         }
         .news-card:hover {
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
             transform: translateY(-2px);
-        }
-
-        .news-card-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
         }
 
         .news-card-thumb {
@@ -221,8 +316,19 @@
             background: #f3f4f6;
         }
 
+        .news-card-thumb-link {
+            display: block;
+            overflow: hidden;
+        }
+
+        .news-card-thumb-link:hover .news-card-thumb {
+            filter: brightness(0.97);
+        }
+
         .news-card-body {
-            padding: 1rem;
+            padding: 0.85rem;
+            display: grid;
+            gap: 0.45rem;
         }
 
         .news-card-date {
@@ -232,22 +338,50 @@
             margin-bottom: 0.5rem;
         }
 
+        .news-card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem 0.6rem;
+            margin-bottom: 0.42rem;
+        }
+
         .news-card-title {
             font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-            margin: 0 0 0.5rem;
+            margin: 0;
             line-height: 1.35;
             color: var(--color-text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-card-title-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .news-card-title-link:hover .news-card-title {
+            color: var(--color-primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
 
         .news-card-desc {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--color-text-secondary);
-            line-height: 1.55;
+            line-height: 1.5;
             margin: 0;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+
+        .news-card-author {
+            margin-top: 0.45rem;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
         }
 
         .news-card-badge-qc {
@@ -270,6 +404,7 @@
             font-weight: 700;
             border-radius: 999px;
             padding: 0.2rem 0.6rem;
+            font-size: 0.74rem;
         }
 
         .news-link {
@@ -282,13 +417,10 @@
             border-radius: 10px;
             text-decoration: none;
             font-weight: 700;
-            color: #fff;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-        }
-        .news-link.secondary {
-            background: #fff;
             color: var(--color-text-primary);
+            background: #fff;
             border: 1px solid rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
         .news-link-group {
             display: flex;
@@ -319,27 +451,136 @@
             max-width: 700px;
             margin: 0 auto;
         }
+
+        .news-rail {
+            display: none;
+        }
+
+        @media (min-width: 1080px) {
+            .news-rail {
+                display: grid;
+                gap: 0.85rem;
+                position: sticky;
+                top: 90px;
+            }
+        }
+
+        .news-rail-card {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            background: #fff;
+            padding: 0.85rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-rail-card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 0.98rem;
+            color: var(--color-text-primary);
+        }
+
+        .news-rail-card ul {
+            margin: 0;
+            padding-left: 1rem;
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .news-rail-card li,
+        .news-rail-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+
+        .news-main .news-empty {
+            grid-column: 1 / -1;
+        }
+
+        .featured-post:hover,
+        .featured-post:focus-within,
+        .news-card:focus-within {
+            border-color: rgba(230, 0, 38, 0.35);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .news-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            border-color: rgba(230, 0, 38, 0.45);
+            color: var(--color-primary);
+        }
+
+        .featured-thumb-link:focus-visible,
+        .featured-title-link:focus-visible,
+        .news-card-thumb-link:focus-visible,
+        .news-card-title-link:focus-visible,
+        .news-link:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 0, 38, 0.25);
+            border-radius: 10px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .news-card,
+            .news-link,
+            .featured-post {
+                transition: none;
+            }
+
+            .news-card:hover,
+            .news-link:hover {
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body class="news-page">
     <div id="header-container"></div>
 
     <main>
-        <section class="news-hero" aria-labelledby="news-title">
+        <section class="news-top" aria-labelledby="news-title">
             <div class="container">
-                <h1 id="news-title">Tin Tức Tết 2027</h1>
-                <p>Danh sách các bài tin tức dự kiến đăng. Bạn có thể dùng mẫu này để chuyển sang tải dữ liệu từ API hoặc dùng metadata để dẫn link các bài báo lớn.</p>
+                <nav class="news-breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Trang chủ</a>
+                    <span aria-hidden="true">/</span>
+                    <span>Tin tức</span>
+                </nav>
+                <div class="news-top-row">
+                    <div class="news-top-title">
+                        <h1 id="news-title">Bản Tin</h1>
+                        <p>Tổng hợp những tin đáng chú ý, trình bày gọn gàng để bạn theo dõi nhanh và nắm thông tin mới mỗi ngày.</p>
+                    </div>
+                    <div class="news-top-actions">
+                        <a class="news-link secondary" href="#news-list-title">Xem tất cả bài</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="news-list-section" aria-labelledby="news-list-title">
             <div class="container">
-                <h2 id="news-list-title" style="text-align:center; margin-bottom: 1.5rem;">Bài viết mới nhất</h2>
                 <div class="news-layout">
                     <section class="news-main" aria-label="Danh sách bài viết">
+                        <div class="news-section-heading">
+                            <h2>Bài nổi bật</h2>
+                        </div>
                         <article id="featured-post" class="featured-post" aria-live="polite"></article>
+                        <div class="news-section-heading">
+                            <h2 id="news-list-title">Tất cả bài viết</h2>
+                        </div>
                         <div id="news-list" class="news-grid" aria-live="polite"></div>
                     </section>
+                    <aside class="news-rail" aria-label="Thông tin tổng hợp">
+                        <section class="news-rail-card">
+                            <h3>Cách đọc nhanh</h3>
+                            <ul>
+                                <li>Ưu tiên xem `Bài nổi bật` để nắm diễn biến chính.</li>
+                                <li>Dùng badge chuyên mục để lọc theo mảng quan tâm.</li>
+                                <li>Kiểm tra nguồn báo trước khi trích dẫn lại.</li>
+                            </ul>
+                        </section>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -373,6 +614,13 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#39;");
+        }
+
+        function formatCategory(category) {
+            var raw = String(category || "general").trim();
+            if (!raw) return "General";
+            var normalized = raw.replace(/[_-]+/g, " ");
+            return normalized.charAt(0).toUpperCase() + normalized.slice(1);
         }
 
         function resolveDetailUrl(detailPage, sourcePath) {
@@ -428,23 +676,25 @@
             }
 
             var readUrl = post.detailUrl || post.canonicalUrl || "#";
-            var sourceUrl = post.canonicalUrl || "#";
-            var sourceRel = /^https?:\/\//i.test(sourceUrl) ? "noopener noreferrer nofollow" : "noopener noreferrer";
 
             featuredEl.innerHTML =
                 (post.hasAds ? "<span class='news-ads-badge'>QC</span>" : "") +
-                "<img class='featured-thumb' src='" + escapeHtml(post.thumbnailUrl) + "' alt='" + escapeHtml(post.title) + "' loading='lazy'>" +
+                "<a class='featured-thumb-link' href='" + escapeHtml(readUrl) + "'>" +
+                    "<img class='featured-thumb' src='" + escapeHtml(post.thumbnailUrl) + "' alt='" + escapeHtml(post.title) + "' loading='lazy'>" +
+                "</a>" +
                 "<div class='featured-body'>" +
                     "<div class='featured-meta'>" +
                         "<span class='news-source'>" + escapeHtml(post.sourceName) + "</span>" +
+                        "<span class='news-source'>" + escapeHtml(formatCategory(post.category)) + "</span>" +
                         "<span>" + escapeHtml(formatDate(post.publishedAt)) + "</span>" +
                         "<span>Tác giả: " + escapeHtml(post.author) + "</span>" +
                     "</div>" +
-                    "<h2>" + escapeHtml(post.title) + "</h2>" +
+                    "<a class='featured-title-link' href='" + escapeHtml(readUrl) + "'>" +
+                        "<h2>" + escapeHtml(post.title) + "</h2>" +
+                    "</a>" +
                     "<p class='featured-excerpt'>" + escapeHtml(post.summary) + "</p>" +
                     "<div class='news-link-group'>" +
-                        "<a class='news-link' href='" + escapeHtml(readUrl) + "'>Đọc bài chi tiết</a>" +
-                        "<a class='news-link secondary' href='" + escapeHtml(sourceUrl) + "' target='_blank' rel='" + sourceRel + "'>Nguồn báo</a>" +
+                        "<a class='news-link' href='" + escapeHtml(readUrl) + "'>Xem bài viết</a>" +
                     "</div>" +
                 "</div>";
         }
@@ -463,14 +713,21 @@
                 return (
                     "<article class='news-card'>" +
                         (post.hasAds ? "<span class='news-card-badge-qc'>QC</span>" : "") +
-                        "<a href='" + escapeHtml(detailUrl) + "' class='news-card-link'>" +
+                        "<a href='" + escapeHtml(detailUrl) + "' class='news-card-thumb-link'>" +
                             "<img class='news-card-thumb' src='" + escapeHtml(post.thumbnailUrl) + "' alt='" + escapeHtml(post.title) + "' loading='lazy'>" +
-                            "<div class='news-card-body'>" +
-                                "<span class='news-card-date'>" + escapeHtml(formatDate(post.publishedAt)) + "</span>" +
-                                "<h3 class='news-card-title'>" + escapeHtml(post.title) + "</h3>" +
-                                "<p class='news-card-desc'>" + escapeHtml(post.summary) + "</p>" +
-                            "</div>" +
                         "</a>" +
+                        "<div class='news-card-body'>" +
+                            "<div class='news-card-meta'>" +
+                                "<span class='news-source'>" + escapeHtml(formatCategory(post.category)) + "</span>" +
+                                "<span class='news-card-date'>" + escapeHtml(formatDate(post.publishedAt)) + "</span>" +
+                            "</div>" +
+                            "<a href='" + escapeHtml(detailUrl) + "' class='news-card-title-link'>" +
+                                "<h3 class='news-card-title'>" + escapeHtml(post.title) + "</h3>" +
+                            "</a>" +
+                            "<p class='news-card-desc'>" + escapeHtml(post.summary) + "</p>" +
+                            "<p class='news-card-author'>Nguồn: " + escapeHtml(post.sourceName) + " - " + escapeHtml(post.author) + "</p>" +
+                            "<a class='news-link' href='" + escapeHtml(detailUrl) + "'>Xem bài viết</a>" +
+                        "</div>" +
                     "</article>"
                 );
             }).join("");
