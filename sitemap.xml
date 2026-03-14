@@ -99,9 +99,95 @@
     </url>
     <url>
         <loc>https://saptet.vn/tin-tuc/</loc>
-        <lastmod>2026-03-11</lastmod>
+        <lastmod>2026-03-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.85</priority>
+    </url>
+
+    <!-- News Detail Pages -->
+    <url>
+        <loc>https://saptet.vn/tin-tuc/su-kien-xang-dau-ngay-10-03-2026.html</loc>
+        <lastmod>2026-03-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html</loc>
+        <lastmod>2026-03-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/chi-so-gia-tieu-dung-thang-03-2026.html</loc>
+        <lastmod>2026-03-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/ty-gia-trung-tam-ngan-hang-nha-nuoc-ngay-14-03-2026.html</loc>
+        <lastmod>2026-03-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/luong-khach-hang-khong-noi-dia-truoc-cao-diem-tet-2027.html</loc>
+        <lastmod>2026-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/ve-tau-tet-2027-lich-mo-ban-va-ap-luc-cao-diem.html</loc>
+        <lastmod>2026-03-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/doanh-nghiep-tang-phuc-loi-giu-chan-lao-dong-truoc-tet-2027.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/du-bao-thoi-tiet-cuoi-thang-03-2026-va-ke-hoach-mua-sam.html</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/an-toan-thuc-pham-mua-le-hoi-truoc-tet-2027.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/cong-suat-tieu-thu-dien-tang-trong-dot-nang-nong-som-2026.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/du-lich-noi-dia-ghi-nhan-xu-huong-dat-som-cho-dip-le.html</loc>
+        <lastmod>2026-03-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/ban-le-online-tang-toc-som-truoc-mua-tet-2027.html</loc>
+        <lastmod>2026-03-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/ung-dung-sap-tet-2027-ban-cap-nhat-moi.html</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html</loc>
+        <lastmod>2026-03-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
     
     <!-- Seasonal Pages - Medium Priority -->

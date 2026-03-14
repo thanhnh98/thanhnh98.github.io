@@ -34,6 +34,7 @@ Also apply when user asks for:
 
 - `news.json`
 - `tin-tuc/<slug>.html` (new file)
+- `sitemap.xml` (append new detail URL entry)
 - routing references when needed (`components/header.html`, `js/navigation.js`, redirects)
 
 ## Routing Rules (Required)
@@ -294,7 +295,11 @@ Adjust language and evidence depth by class:
 5. Create `tin-tuc/<slug>.html` based on current detail template.
 6. Ensure `detailPage` is exactly `./tin-tuc/<slug>.html`.
 7. Populate full SEO metadata block in detail HTML (title/description/canonical/og/twitter).
-8. Validate JSON formatting (2 spaces).
+8. Update `sitemap.xml`:
+   - ensure listing URL `/tin-tuc/` exists
+   - append `<url>` for `https://saptet.vn/tin-tuc/<slug>.html`
+   - set `lastmod` to publish date (YYYY-MM-DD), `changefreq` to `weekly`, priority around `0.8`
+9. Validate JSON formatting (2 spaces).
 
 ## Topic-Aware Skill Selection (Important)
 
@@ -338,6 +343,7 @@ Tagging rule:
 - new `slug` is unique
 - `detailPage` matches created file path
 - detail HTML exists in `tin-tuc/`
+- `sitemap.xml` contains `https://saptet.vn/tin-tuc/<slug>.html`
 - detail HTML includes canonical/og/twitter metadata matching its slug and topic
 - detail HTML does not use generic copy-paste SEO description from unrelated article
 - article is detailed (not thin content)
