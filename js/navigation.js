@@ -16,8 +16,11 @@ class Router {
             '/tai-ung-dung': 'tai-ung-dung/index.html',
             '/tai-ung-dung/': 'tai-ung-dung/index.html',
             '/tai-ung-dung.html': 'tai-ung-dung/index.html', // Keep for backward compatibility
-            '/blog': 'blog.html',
-            '/blog.html': 'blog.html',
+            '/blog': 'tin-tuc/index.html',
+            '/blog.html': 'tin-tuc/index.html',
+            '/news': 'tin-tuc/index.html',
+            '/news/': 'tin-tuc/index.html',
+            '/news.html': 'tin-tuc/index.html',
             '/tin-tuc': 'tin-tuc/index.html',
             '/tin-tuc/': 'tin-tuc/index.html',
             '/tin-tuc.html': 'tin-tuc/index.html',

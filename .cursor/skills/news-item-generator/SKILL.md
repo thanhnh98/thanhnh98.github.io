@@ -34,6 +34,22 @@ Also apply when user asks for:
 
 - `news.json`
 - `tin-tuc/<slug>.html` (new file)
+- routing references when needed (`components/header.html`, `js/navigation.js`, redirects)
+
+## Routing Rules (Required)
+
+Always keep news routing consistent with current structure:
+- Listing page: `/tin-tuc/` (file path: `tin-tuc/index.html`)
+- Detail page URL: `/tin-tuc/<slug>.html`
+- `news.json.detailPage`: `./tin-tuc/<slug>.html`
+
+When task includes route migration/update, enforce:
+- `js/navigation.js`: map `/tin-tuc`, `/tin-tuc/`, `/tin-tuc.html` to `tin-tuc/index.html`
+- `js/navigation.js`: map `/blog` and `/blog.html` to `tin-tuc/index.html` (if blog is deprecated)
+- Header/menu links should point to `/tin-tuc/index.html` or `/tin-tuc/` consistently (prefer `/tin-tuc/index.html` for explicit file routing in this repo)
+- Redirect rules should keep old blog URL working:
+  - `_redirects`: `/blog` and `/blog.html` -> `/tin-tuc/index.html`
+  - `.htaccess`: `^blog/?$` -> `/tin-tuc/index.html`
 
 ## Required Inputs
 
@@ -134,6 +150,31 @@ Each detail page must include:
 11. CTA row at bottom
 12. Script include for random affiliate:
    - `../js/news-affiliate-random.js`
+
+## SEO Metadata Rules (Required)
+
+Each `tin-tuc/<slug>.html` must include article-specific SEO metadata (no generic reuse):
+- `<title>` aligned to article headline
+- `<meta name="description">` aligned to article summary/content
+- `<link rel="canonical" href="https://saptet.vn/tin-tuc/<slug>.html">`
+- `<meta name="robots" content="index, follow">`
+- Open Graph:
+  - `og:type=article`
+  - `og:title`
+  - `og:description`
+  - `og:image` (topic-relevant, same topic as article)
+  - `og:url=https://saptet.vn/tin-tuc/<slug>.html`
+- Twitter:
+  - `twitter:card=summary_large_image`
+  - `twitter:title`
+  - `twitter:description`
+  - `twitter:image`
+
+SEO quality constraints:
+- Title and description must reflect the actual article topic and section logic.
+- Do not reuse identical description text across multiple different articles.
+- `og:image` / `twitter:image` should be coherent with article content (prefer same cover image).
+- Canonical URL must exactly match the generated detail page path.
 
 ## Topic-Differentiated Generation Algorithm (Critical)
 
@@ -252,7 +293,8 @@ Adjust language and evidence depth by class:
    - include `thumbnailSource` in the new item.
 5. Create `tin-tuc/<slug>.html` based on current detail template.
 6. Ensure `detailPage` is exactly `./tin-tuc/<slug>.html`.
-7. Validate JSON formatting (2 spaces).
+7. Populate full SEO metadata block in detail HTML (title/description/canonical/og/twitter).
+8. Validate JSON formatting (2 spaces).
 
 ## Topic-Aware Skill Selection (Important)
 
@@ -296,6 +338,8 @@ Tagging rule:
 - new `slug` is unique
 - `detailPage` matches created file path
 - detail HTML exists in `tin-tuc/`
+- detail HTML includes canonical/og/twitter metadata matching its slug and topic
+- detail HTML does not use generic copy-paste SEO description from unrelated article
 - article is detailed (not thin content)
 - random affiliate product is present in JSON
 - detail page contains at least 2 `.ads-card[data-random-affiliate="true"]` blocks
@@ -309,6 +353,7 @@ Tagging rule:
 - section blueprint matches topic class (technology/economy/entertainment/society/...)
 - section names are not generic-cloned from unrelated domains
 - domain evidence style is correct (e.g., economy has indicators; technology has how-to flow)
+- routing consistency maintained (`/tin-tuc/` listing, `/tin-tuc/<slug>.html` detail, legacy blog redirects when applicable)
 
 ## Output Style
 

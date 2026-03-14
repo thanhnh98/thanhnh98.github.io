@@ -26,6 +26,14 @@ Add one news item:
 - Set `affiliate.disclosureRequired` to `true`.
 - Create matching file `tin-tuc/vietnam-tech-market-expands-in-q1.html`.
 - Set `detailPage` to `./tin-tuc/vietnam-tech-market-expands-in-q1.html`.
+- Add full SEO metadata in detail page:
+  - canonical: `https://saptet.vn/tin-tuc/vietnam-tech-market-expands-in-q1.html`
+  - `og:url`, `og:title`, `og:description`, `og:image`
+  - `twitter:title`, `twitter:description`, `twitter:image`
+- Include 2 affiliate blocks in detail page:
+  - one in-body contextual `ads-card`
+  - one post-conclusion `ads-card` right after `#ket-luan`
+- Ensure listing route remains `/tin-tuc/` and detail route is `/tin-tuc/<slug>.html`.
 
 ## Example 2: Slug Collision
 
@@ -52,3 +60,23 @@ Add one news item:
 - Create `tin-tuc/news-1-2.html`.
 - Set `detailPage` to `./tin-tuc/news-1-2.html`.
 - Keep required affiliate fields populated.
+- Add canonical/og/twitter metadata matching `news-1-2` slug.
+- Ensure the generated detail page has 2 affiliate `ads-card` blocks (in-body + post-conclusion).
+
+## Example 3: Route Migration (Blog -> Tin Tuc)
+
+### User prompt
+
+Update routing so old blog URLs redirect to the news listing page.
+
+### Expected result (summary)
+
+- In `js/navigation.js`:
+  - map `/blog` -> `tin-tuc/index.html`
+  - map `/blog.html` -> `tin-tuc/index.html`
+- In `_redirects`:
+  - `/blog` -> `/tin-tuc/index.html` (301)
+  - `/blog.html` -> `/tin-tuc/index.html` (301)
+- In `.htaccess`:
+  - `RewriteRule ^blog/?$ /tin-tuc/index.html [NC,L]`
+- Update header/nav links to point to `tin-tuc` listing when blog is deprecated.

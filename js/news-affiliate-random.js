@@ -203,6 +203,66 @@
     insertAfter.insertAdjacentElement('afterend', newCard);
   }
 
+  async function shareCurrentArticle() {
+    var title = (document.querySelector('.news-title') && document.querySelector('.news-title').textContent.trim()) || document.title || 'Bản Tin';
+    var url = window.location.href;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: title, text: title, url: url });
+        return true;
+      } catch (err) {
+        if (err && err.name === 'AbortError') return false;
+      }
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(url);
+        return true;
+      } catch (err) {
+        // fallback below
+      }
+    }
+
+    var input = document.createElement('input');
+    input.value = url;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    return true;
+  }
+
+  function ensureDetailShareButton() {
+    var ctaRow = document.querySelector('.news-article .cta-row');
+    if (!ctaRow) return;
+    if (ctaRow.querySelector('#news-share-button')) return;
+
+    var shareBtn = document.createElement('button');
+    shareBtn.id = 'news-share-button';
+    shareBtn.type = 'button';
+    shareBtn.className = 'btn-share-icon-only';
+    shareBtn.setAttribute('aria-label', 'Chia sẻ bài viết');
+    shareBtn.setAttribute('title', 'Chia sẻ bài viết');
+    shareBtn.innerHTML = "<svg class='news-share-icon' viewBox='0 0 24 24' aria-hidden='true'><circle cx='18' cy='5' r='3'></circle><circle cx='6' cy='12' r='3'></circle><circle cx='18' cy='19' r='3'></circle><path d='M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49'></path></svg>";
+    shareBtn.addEventListener('click', function () {
+      shareCurrentArticle().then(function (shared) {
+        if (!shared) return;
+        if (window.webAnalytics && window.webAnalytics.trackEvent) {
+          var title = (document.querySelector('.news-title') && document.querySelector('.news-title').textContent.trim()) || document.title || '';
+          window.webAnalytics.trackEvent('news_article_share', {
+            article_title: title,
+            article_slug: getCurrentArticleSlug(),
+            share_url: window.location.href
+          });
+        }
+      });
+    });
+
+    ctaRow.insertAdjacentElement('afterbegin', shareBtn);
+  }
+
   async function initRandomAffiliateInNews() {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.ads-card[data-random-affiliate="true"]'));
     if (!cards.length) return;
@@ -227,11 +287,13 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       ensurePostConclusionAffiliateCard();
+      ensureDetailShareButton();
       initRandomAffiliateInNews();
       initNewsImageSourceAttribution();
     });
   } else {
     ensurePostConclusionAffiliateCard();
+    ensureDetailShareButton();
     initRandomAffiliateInNews();
     initNewsImageSourceAttribution();
   }

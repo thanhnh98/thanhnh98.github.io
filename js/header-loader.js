@@ -194,34 +194,45 @@ class HeaderLoader {
     
     // Initialize Lucide icons
     initIcons() {
-        // Try multiple times to ensure Lucide is loaded
-        let attempts = 0;
-        const maxAttempts = 10;
-        
-        const tryInitIcons = () => {
-            attempts++;
-            
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                lucide.createIcons();
-                return;
-            }
-            
-            // Fallback to icons.js initIcons function
-            if (typeof initIcons === 'function' && attempts > 2) {
-                initIcons();
-                return;
-            }
-            
-            // Retry if not loaded yet
-            if (attempts < maxAttempts) {
-                setTimeout(tryInitIcons, 100);
-            } else {
-                console.warn('Lucide Icons library not loaded after multiple attempts');
-            }
+        const loadLucideScript = () => {
+            return new Promise((resolve, reject) => {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    resolve();
+                    return;
+                }
+
+                const existing = document.querySelector('script[data-lucide-loader="true"]');
+                if (existing) {
+                    existing.addEventListener('load', () => resolve(), { once: true });
+                    existing.addEventListener('error', () => reject(new Error('Lucide load error')), { once: true });
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/lucide@latest';
+                script.async = true;
+                script.setAttribute('data-lucide-loader', 'true');
+                script.addEventListener('load', () => resolve(), { once: true });
+                script.addEventListener('error', () => reject(new Error('Lucide load error')), { once: true });
+                document.head.appendChild(script);
+            });
         };
-        
-        // Start trying after a short delay
-        setTimeout(tryInitIcons, 50);
+
+        loadLucideScript()
+            .then(() => {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                } else if (typeof initIcons === 'function') {
+                    initIcons();
+                }
+            })
+            .catch(() => {
+                if (typeof initIcons === 'function') {
+                    initIcons();
+                } else {
+                    console.warn('Unable to initialize icons for header');
+                }
+            });
     }
 }
 

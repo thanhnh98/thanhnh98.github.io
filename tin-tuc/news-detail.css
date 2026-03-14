@@ -466,6 +466,45 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+.btn-share-icon-only {
+    min-width: 44px;
+    width: 44px;
+    min-height: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: rgba(24, 24, 27, 0.62);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn-share-icon-only:hover {
+    color: var(--color-primary);
+    background: transparent;
+}
+
+.btn-share-icon-only:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(230, 0, 38, 0.2);
+}
+
+.news-share-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 .btn-news:hover {
     transform: translateY(-1px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);

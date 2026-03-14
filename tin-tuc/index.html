@@ -342,10 +342,12 @@
         }
 
         .news-card-date {
-            display: block;
+            display: inline-flex;
+            align-items: center;
             font-size: 0.82rem;
             color: var(--color-text-secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
+            line-height: 1.2;
         }
 
         .news-card-meta {
@@ -413,12 +415,15 @@
         }
 
         .news-source {
+            display: inline-flex;
+            align-items: center;
             background: rgba(230, 0, 38, 0.1);
             color: var(--color-primary);
             font-weight: 700;
             border-radius: 999px;
-            padding: 0.2rem 0.6rem;
+            padding: 0.28rem 0.62rem;
             font-size: 0.74rem;
+            line-height: 1.2;
         }
 
         .news-link {
@@ -440,6 +445,51 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.55rem;
+        }
+
+        .news-share-btn {
+            cursor: pointer;
+        }
+
+        .news-share-icon-btn {
+            min-width: 44px;
+            min-height: 44px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: rgba(24, 24, 27, 0.62);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+            border-radius: 10px;
+            transition: color 0.2s ease;
+        }
+
+        .news-share-icon-btn:hover {
+            color: var(--color-primary);
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .news-share-icon-btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 0, 38, 0.2);
+        }
+
+        .news-share-icon {
+            width: 18px;
+            height: 18px;
+            display: block;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .news-ads-badge {
@@ -768,6 +818,9 @@
                     "<p class='featured-excerpt'>" + escapeHtml(post.summary) + "</p>" +
                     "<div class='news-link-group'>" +
                         "<a class='news-link' href='" + escapeHtml(readUrl) + "' data-news-track='1' data-click-area='featured_button' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='0'>Xem bài viết</a>" +
+                        "<button class='news-share-btn news-share-icon-btn' type='button' aria-label='Chia sẻ bài viết' title='Chia sẻ bài viết' data-news-share='1' data-share-url='" + escapeHtml(readUrl) + "' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='0'>" +
+                            "<svg class='news-share-icon' viewBox='0 0 24 24' aria-hidden='true'><circle cx='18' cy='5' r='3'></circle><circle cx='6' cy='12' r='3'></circle><circle cx='18' cy='19' r='3'></circle><path d='M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49'></path></svg>" +
+                        "</button>" +
                     "</div>" +
                 "</div>";
         }
@@ -799,11 +852,48 @@
                             "</a>" +
                             "<p class='news-card-desc'>" + escapeHtml(post.summary) + "</p>" +
                             "<p class='news-card-author'>Nguồn: " + escapeHtml(post.sourceName) + " - " + escapeHtml(post.author) + "</p>" +
-                            "<a class='news-link' href='" + escapeHtml(detailUrl) + "' data-news-track='1' data-click-area='card_button' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='" + position + "'>Xem bài viết</a>" +
+                            "<div class='news-link-group'>" +
+                                "<a class='news-link' href='" + escapeHtml(detailUrl) + "' data-news-track='1' data-click-area='card_button' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='" + position + "'>Xem bài viết</a>" +
+                                "<button class='news-share-btn news-share-icon-btn' type='button' aria-label='Chia sẻ bài viết' title='Chia sẻ bài viết' data-news-share='1' data-share-url='" + escapeHtml(detailUrl) + "' data-article-id='" + escapeHtml(post.id) + "' data-article-title='" + escapeHtml(post.title) + "' data-article-slug='" + escapeHtml(post.slug || toTitleSlug(post.title)) + "' data-article-category='" + escapeHtml(post.category) + "' data-article-position='" + position + "'>" +
+                                    "<svg class='news-share-icon' viewBox='0 0 24 24' aria-hidden='true'><circle cx='18' cy='5' r='3'></circle><circle cx='6' cy='12' r='3'></circle><circle cx='18' cy='19' r='3'></circle><path d='M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49'></path></svg>" +
+                                "</button>" +
+                            "</div>" +
                         "</div>" +
                     "</article>"
                 );
             }).join("");
+        }
+
+        async function shareNewsLink(url, title) {
+            if (!url) return false;
+            var absoluteUrl = /^https?:\/\//i.test(url) ? url : (window.location.origin + url);
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: title || document.title,
+                        text: title || "",
+                        url: absoluteUrl
+                    });
+                    return true;
+                } catch (error) {
+                    if (error && error.name === "AbortError") return false;
+                }
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try {
+                    await navigator.clipboard.writeText(absoluteUrl);
+                    return true;
+                } catch (error) {
+                    // fallback below
+                }
+            }
+            var tempInput = document.createElement("input");
+            tempInput.value = absoluteUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            return true;
         }
 
         function collectCategories(posts) {
@@ -945,6 +1035,25 @@
                 }
             }
             rerenderNewsByFilter();
+        });
+
+        document.addEventListener('click', async function(event) {
+            var shareBtn = event.target.closest('button[data-news-share="1"]');
+            if (!shareBtn) return;
+            event.preventDefault();
+            var shareUrl = shareBtn.getAttribute('data-share-url') || '';
+            var articleTitle = shareBtn.getAttribute('data-article-title') || '';
+            var shared = await shareNewsLink(shareUrl, articleTitle);
+            if (shared && window.webAnalytics && window.webAnalytics.trackEvent) {
+                window.webAnalytics.trackEvent('news_article_share', {
+                    article_id: shareBtn.getAttribute('data-article-id') || '',
+                    article_slug: shareBtn.getAttribute('data-article-slug') || '',
+                    article_title: articleTitle,
+                    article_category: shareBtn.getAttribute('data-article-category') || '',
+                    article_position: Number(shareBtn.getAttribute('data-article-position') || -1),
+                    share_url: shareUrl
+                });
+            }
         });
     </script>
     <script src="../js/navigation.js?v=20260311"></script>

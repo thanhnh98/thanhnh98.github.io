@@ -506,6 +506,50 @@
         "url": "https://saptet.vn/assets/images/img_sharing.png"
       },
       "detailPage": "./tin-tuc/ung-dung-sap-tet-2027-ban-cap-nhat-moi.html"
+    },
+    {
+      "id": "news-014",
+      "slug": "suc-hut-openclaw-hien-tai-thang-03-2026",
+      "title": "Sức hút OpenClaw hiện tại: Vì sao dự án AI agent này tăng trưởng nhanh?",
+      "summary": "OpenClaw thu hút mạnh nhờ nhịp phát hành dày, cộng đồng đóng góp lớn và mô hình trợ lý AI chạy trên hạ tầng cá nhân, tạo cảm giác kiểm soát dữ liệu tốt hơn so với các công cụ chỉ chạy trên đám mây.",
+      "category": "technology",
+      "publishedAt": "2026-03-24T10:00:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "openclaw",
+        "ai-agent",
+        "github-stars",
+        "open-source",
+        "tro-ly-ai-ca-nhan"
+      ],
+      "source": {
+        "name": "GitHub - openclaw/openclaw",
+        "url": "https://github.com/openclaw/openclaw"
+      },
+      "links": {
+        "canonicalUrl": "https://github.com/openclaw/openclaw",
+        "affiliateUrl": "https://s.shopee.vn/7Kr3bAiNW7",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "065291",
+        "shopId": "27383556793",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
+        "images": [],
+        "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+        "description": "Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt.",
+        "type": "shopee",
+        "category": "bachhoa",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/7Kr3bAiNW7"
+      },
+      "thumbnailUrl": "https://cdn-media.sforum.vn/storage/app/media/phuonganh/openclaw-la-gi.jpg",
+      "thumbnailSource": {
+        "name": "Sforum",
+        "url": "https://cdn-media.sforum.vn/storage/app/media/phuonganh/openclaw-la-gi.jpg"
+      },
+      "detailPage": "./tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html"
     }
   ]
 }
