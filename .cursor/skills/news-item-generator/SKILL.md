@@ -147,9 +147,13 @@ Each detail page must include:
    - include `data-random-affiliate="true"` (in-body contextual block)
 9. Post-conclusion affiliate `ads-card`:
    - add one more `data-random-affiliate="true"` block ngay sau phần kết luận
-10. Source reference block with links
-11. CTA row at bottom
-12. Script include for random affiliate:
+10. Placement override rule (required):
+   - Default layout keeps 2 affiliate blocks (one in-body + one post-conclusion).
+   - If user explicitly requests a different placement/count (e.g., only in-body, remove post-conclusion), user instruction takes priority.
+   - When override is applied, keep exactly the requested placement/count and avoid leaving duplicate blocks.
+11. Source reference block with links
+12. CTA row at bottom
+13. Script include for random affiliate:
    - `../js/news-affiliate-random.js`
 
 ## SEO Metadata Rules (Required)
@@ -348,8 +352,8 @@ Tagging rule:
 - detail HTML does not use generic copy-paste SEO description from unrelated article
 - article is detailed (not thin content)
 - random affiliate product is present in JSON
-- detail page contains at least 2 `.ads-card[data-random-affiliate="true"]` blocks
-- one affiliate block is positioned immediately after conclusion section
+- detail page affiliate block count/placement matches user instruction when explicitly provided
+- otherwise default to 2 blocks (in-body + post-conclusion)
 - detail page loads `../js/news-affiliate-random.js`
 - title/body do not force Tet framing when topic is non-Tet
 - category follows controlled topic taxonomy
