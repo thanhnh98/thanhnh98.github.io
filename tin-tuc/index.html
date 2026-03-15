@@ -952,7 +952,7 @@
             if (!element || !window.webAnalytics || !window.webAnalytics.trackEvent) return;
             var articleTitle = element.getAttribute('data-article-title') || '';
             var articleSlug = element.getAttribute('data-article-slug') || toTitleSlug(articleTitle);
-            window.webAnalytics.trackEvent('news_article_open', {
+            window.webAnalytics.trackEvent('news_item', {
                 title: articleSlug,
                 article_id: element.getAttribute('data-article-id') || '',
                 article_title: articleTitle,
