@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-03-12T00:00:00Z",
+  "generatedAt": "2026-03-15T00:00:00Z",
   "items": [
     {
       "id": "news-001",
@@ -97,7 +97,12 @@
       "category": "economy",
       "publishedAt": "2026-03-14T09:00:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["cpi", "gia-tieu-dung", "kinh-te-vi-mo", "chi-tieu-ho-gia-dinh"],
+      "tags": [
+        "cpi",
+        "gia-tieu-dung",
+        "kinh-te-vi-mo",
+        "chi-tieu-ho-gia-dinh"
+      ],
       "source": {
         "name": "Tổng cục Thống kê",
         "url": "https://www.gso.gov.vn/"
@@ -135,7 +140,12 @@
       "category": "economy",
       "publishedAt": "2026-03-14T13:30:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["ty-gia", "ngan-hang-nha-nuoc", "nhap-khau", "quan-tri-rui-ro"],
+      "tags": [
+        "ty-gia",
+        "ngan-hang-nha-nuoc",
+        "nhap-khau",
+        "quan-tri-rui-ro"
+      ],
       "source": {
         "name": "Ngân hàng Nhà nước",
         "url": "https://www.sbv.gov.vn/"
@@ -173,7 +183,12 @@
       "category": "travel",
       "publishedAt": "2026-03-15T08:45:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["hang-khong", "du-lich-noi-dia", "ve-may-bay", "cao-diem-di-lai"],
+      "tags": [
+        "hang-khong",
+        "du-lich-noi-dia",
+        "ve-may-bay",
+        "cao-diem-di-lai"
+      ],
       "source": {
         "name": "Cục Hàng không Việt Nam",
         "url": "https://www.caa.gov.vn/"
@@ -209,9 +224,14 @@
       "title": "Vé tàu đường dài: Lịch mở bán và áp lực cao điểm",
       "summary": "Áp lực đặt vé tàu đường dài tăng sớm ở các tuyến nóng, người đi lại nên chuẩn bị nhiều phương án lịch trình linh hoạt.",
       "category": "transport",
-      "publishedAt": "2026-03-16T10:10:00Z",
+      "publishedAt": "2026-03-14T10:10:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["ve-tau", "duong-sat", "cao-diem-di-lai", "di-chuyen-lien-tinh"],
+      "tags": [
+        "ve-tau",
+        "duong-sat",
+        "cao-diem-di-lai",
+        "di-chuyen-lien-tinh"
+      ],
       "source": {
         "name": "Tổng công ty Đường sắt Việt Nam",
         "url": "https://dsvn.vn/"
@@ -247,9 +267,14 @@
       "title": "Doanh nghiệp tăng phúc lợi để giữ chân lao động",
       "summary": "Nhiều doanh nghiệp chuyển sang gói phúc lợi tổng thể để ổn định nhân sự trước mùa sản xuất cao điểm cuối năm.",
       "category": "economy",
-      "publishedAt": "2026-03-17T08:20:00Z",
+      "publishedAt": "2026-03-14T11:20:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["lao-dong", "phuc-loi", "doanh-nghiep", "nhan-su"],
+      "tags": [
+        "lao-dong",
+        "phuc-loi",
+        "doanh-nghiep",
+        "nhan-su"
+      ],
       "source": {
         "name": "Bộ Lao động - Thương binh và Xã hội",
         "url": "https://www.molisa.gov.vn/"
@@ -285,9 +310,14 @@
       "title": "Dự báo thời tiết cuối tháng 03/2026 và kế hoạch mua sắm",
       "summary": "Biến động thời tiết chuyển mùa có thể ảnh hưởng trực tiếp đến nhịp logistics và hành vi mua sắm ngắn hạn của người tiêu dùng.",
       "category": "society",
-      "publishedAt": "2026-03-18T11:00:00Z",
+      "publishedAt": "2026-03-14T12:00:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["thoi-tiet", "logistics", "mua-sam", "du-bao"],
+      "tags": [
+        "thoi-tiet",
+        "logistics",
+        "mua-sam",
+        "du-bao"
+      ],
       "source": {
         "name": "Trung tâm Dự báo KTTV Quốc gia",
         "url": "https://nchmf.gov.vn/"
@@ -323,9 +353,14 @@
       "title": "An toàn thực phẩm mùa lễ hội và tiêu dùng cao điểm",
       "summary": "Công tác kiểm tra an toàn thực phẩm được siết chặt trước mùa tiêu dùng cao điểm, người mua cần ưu tiên hàng hóa có truy xuất rõ ràng.",
       "category": "lifestyle",
-      "publishedAt": "2026-03-19T09:20:00Z",
+      "publishedAt": "2026-03-14T13:20:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["an-toan-thuc-pham", "le-hoi", "tieu-dung", "suc-khoe"],
+      "tags": [
+        "an-toan-thuc-pham",
+        "le-hoi",
+        "tieu-dung",
+        "suc-khoe"
+      ],
       "source": {
         "name": "Cục An toàn thực phẩm",
         "url": "https://vfa.gov.vn/"
@@ -361,9 +396,14 @@
       "title": "Công suất tiêu thụ điện tăng trong đợt nắng nóng sớm 2026",
       "summary": "Nhu cầu điện tăng sớm tạo áp lực phụ tải theo giờ cao điểm; hộ gia đình và doanh nghiệp cần tối ưu thói quen tiêu thụ điện.",
       "category": "energy",
-      "publishedAt": "2026-03-20T10:30:00Z",
+      "publishedAt": "2026-03-14T14:30:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["dien-nang", "nang-nong", "phu-tai", "tiet-kiem-dien"],
+      "tags": [
+        "dien-nang",
+        "nang-nong",
+        "phu-tai",
+        "tiet-kiem-dien"
+      ],
       "source": {
         "name": "EVN",
         "url": "https://www.evn.com.vn/"
@@ -399,9 +439,14 @@
       "title": "Du lịch nội địa ghi nhận xu hướng đặt sớm cho dịp lễ",
       "summary": "Lượng đặt dịch vụ du lịch sớm tăng, giúp giảm rủi ro cháy phòng nhưng làm biên giá phân hóa mạnh hơn giữa đặt sớm và cận ngày.",
       "category": "travel",
-      "publishedAt": "2026-03-21T09:50:00Z",
+      "publishedAt": "2026-03-14T15:50:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["du-lich", "dat-tour-som", "gia-dich-vu", "di-lai"],
+      "tags": [
+        "du-lich",
+        "dat-tour-som",
+        "gia-dich-vu",
+        "di-lai"
+      ],
       "source": {
         "name": "Cục Du lịch Quốc gia Việt Nam",
         "url": "https://vietnamtourism.gov.vn/"
@@ -437,9 +482,14 @@
       "title": "Bán lẻ online tăng tốc sớm trước mùa cao điểm",
       "summary": "Đơn hàng online tăng nhanh hơn thông lệ ở nhóm hàng theo mùa; tối ưu tồn kho và giao vận là yếu tố quyết định hiệu quả cao điểm.",
       "category": "commerce",
-      "publishedAt": "2026-03-22T08:30:00Z",
+      "publishedAt": "2026-03-14T16:30:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["thuong-mai-dien-tu", "ban-le-online", "ton-kho", "cao-diem-mua-sam"],
+      "tags": [
+        "thuong-mai-dien-tu",
+        "ban-le-online",
+        "ton-kho",
+        "cao-diem-mua-sam"
+      ],
       "source": {
         "name": "Bộ Công Thương",
         "url": "https://www.moit.gov.vn/"
@@ -475,9 +525,14 @@
       "title": "Sắp Tết 2027: Ứng dụng vui, đếm ngược ngày Tết và nhiều trò chơi thú vị",
       "summary": "Sắp Tết 2027 là app Tết phổ biến với bộ đếm ngược Tết 2027, mini game vui nhộn và link tải nhanh cho Android/iOS qua Google Play, App Store hoặc trang tự nhận diện thiết bị.",
       "category": "technology",
-      "publishedAt": "2026-03-23T09:00:00Z",
+      "publishedAt": "2026-03-14T17:00:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["sap-tet-2027", "ung-dung-di-dong", "cap-nhat-san-pham", "trai-nghiem-nguoi-dung"],
+      "tags": [
+        "sap-tet-2027",
+        "ung-dung-di-dong",
+        "cap-nhat-san-pham",
+        "trai-nghiem-nguoi-dung"
+      ],
       "source": {
         "name": "Sắp Tết",
         "url": "https://saptet.vn/"
@@ -513,7 +568,7 @@
       "title": "Sức hút OpenClaw hiện tại: Vì sao dự án AI agent này tăng trưởng nhanh?",
       "summary": "OpenClaw thu hút mạnh nhờ nhịp phát hành dày, cộng đồng đóng góp lớn và mô hình trợ lý AI chạy trên hạ tầng cá nhân, tạo cảm giác kiểm soát dữ liệu tốt hơn so với các công cụ chỉ chạy trên đám mây.",
       "category": "technology",
-      "publishedAt": "2026-03-24T10:00:00Z",
+      "publishedAt": "2026-03-15T10:00:00Z",
       "author": "Bản Tin Editorial",
       "tags": [
         "openclaw",
@@ -550,6 +605,94 @@
         "url": "https://cdn-media.sforum.vn/storage/app/media/phuonganh/openclaw-la-gi.jpg"
       },
       "detailPage": "./tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html"
+    },
+    {
+      "id": "news-015",
+      "slug": "gia-vang-hom-nay-ngay-15-03-2026",
+      "title": "Giá vàng hôm nay 15/03/2026: SJC-DOJI phổ biến 179,60-182,60 triệu đồng/lượng",
+      "summary": "Theo dữ liệu đối chiếu sáng 15/03/2026 và bảng niêm yết chính thức, giá vàng SJC-DOJI phổ biến quanh 179,60-182,60 triệu đồng/lượng, chênh lệch mua-bán 3,00 triệu đồng/lượng. Góc nhìn biên tập: thị trường đang đi ngang sau nhịp giảm mạnh nhưng chi phí vào-ra vẫn là biến số quan trọng.",
+      "category": "economy",
+      "publishedAt": "2026-03-15T08:40:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "doji",
+        "thi-truong-vang",
+        "gia-vang-15-03-2026"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://giavang.doji.vn/",
+        "affiliateUrl": "https://s.shopee.vn/7Kr3bAiNW7",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "065291",
+        "shopId": "27383556793",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
+        "images": [],
+        "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+        "description": "Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt.",
+        "type": "shopee",
+        "category": "bachhoa",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/7Kr3bAiNW7"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-15-03-2026.html"
+    },
+    {
+      "id": "news-016",
+      "slug": "cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026",
+      "title": "Các địa điểm du lịch không thể bỏ lỡ trong tháng 3-6/2026",
+      "summary": "Giai đoạn tháng 3-6/2026 là thời điểm thuận lợi để đi cả tuyến phố cổ, di sản và biển. Theo Vietnam Tourism và dữ liệu khí hậu NCHMF, lịch trình hiệu quả là chia theo điểm mạnh từng tháng: Hội An, Huế, Đà Nẵng, Hạ Long cùng các lựa chọn bổ sung như Mộc Châu, Phú Quốc.",
+      "category": "travel",
+      "publishedAt": "2026-03-15T06:40:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "du-lich-thang-3-6",
+        "diem-den-viet-nam",
+        "hoi-an",
+        "ha-long",
+        "du-lich-noi-dia"
+      ],
+      "source": {
+        "name": "Vietnam Tourism",
+        "url": "https://vietnam.travel/things-to-do/vietnam-monthly-guide"
+      },
+      "links": {
+        "canonicalUrl": "https://vietnam.travel/things-to-do/vietnam-monthly-guide",
+        "affiliateUrl": "https://s.shopee.vn/3qHNTyso6P",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "586002",
+        "shopId": "28588429737",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mbwae410c5ata3",
+        "images": [],
+        "name": "[NE30] Dép Sandal Học Sinh Nam Nữ Thương Hiệu NESTY | Shopee Việt Nam",
+        "description": "Mua [NE30] Dép Sandal Học Sinh Nam Nữ Thương Hiệu NESTY giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "clothes",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/3qHNTyso6P"
+      },
+      "thumbnailUrl": "https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-viet-nam-cover.jpeg",
+      "thumbnailSource": {
+        "name": "Traveloka Blog (ImageKit CDN)",
+        "url": "https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-viet-nam-cover.jpeg"
+      },
+      "detailPage": "./tin-tuc/cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026.html"
     }
   ]
 }

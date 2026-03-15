@@ -99,7 +99,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/tin-tuc/</loc>
-        <lastmod>2026-03-24</lastmod>
+        <lastmod>2026-03-15</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.85</priority>
     </url>
@@ -114,6 +114,12 @@
     <url>
         <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html</loc>
         <lastmod>2026-03-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-15-03-2026.html</loc>
+        <lastmod>2026-03-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -185,7 +191,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html</loc>
-        <lastmod>2026-03-24</lastmod>
+        <lastmod>2026-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026.html</loc>
+        <lastmod>2026-03-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

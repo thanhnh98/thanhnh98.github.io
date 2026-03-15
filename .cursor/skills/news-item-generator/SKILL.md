@@ -70,6 +70,22 @@ Collect or infer:
 
 If a non-critical field is missing, infer from trusted context. Ask user only when ambiguity affects factual correctness.
 
+### Publish Time Policy (Required)
+
+- `publishedAt` in `news.json` is the article creation timestamp, not a scheduled future date.
+- Never set `publishedAt` later than the current local time at creation.
+- If editing old items, normalize any future-dated records back to their real creation time.
+- Detail page metadata must stay consistent with `publishedAt`:
+  - visible `Đăng: DD/MM/YYYY`
+  - JSON-LD `datePublished` when present
+  - sitemap `lastmod` for the same slug
+
+### Default Sort Policy (Required)
+
+- News listing must default to newest first (`publishedAt` descending).
+- Do not rely on array insertion order; always enforce explicit date sort in listing logic.
+- After updates, verify newest item appears first on `/tin-tuc/`.
+
 ### Thumbnail Relevance Rule (Required)
 
 - `thumbnailUrl` must visually match the article topic/title/content.
@@ -278,6 +294,8 @@ Adjust language and evidence depth by class:
 - Do not invent numbers, timestamps, or quotes.
 - If a metric is unverified, label it clearly as preliminary and avoid hard claims.
 - Every article must include at least 1 primary source link; prefer 2+ when possible.
+- Source timestamps should be fresh relative to publication time; avoid publishing with stale primary data when a newer official update exists.
+- If latest official source is delayed, clearly mark the last verified update time in article content.
 
 ## Tone and Conclusion Policy
 
@@ -304,6 +322,7 @@ Adjust language and evidence depth by class:
    - append `<url>` for `https://saptet.vn/tin-tuc/<slug>.html`
    - set `lastmod` to publish date (YYYY-MM-DD), `changefreq` to `weekly`, priority around `0.8`
 9. Validate JSON formatting (2 spaces).
+10. Run a future-date check for `publishedAt`; fail generation if any item date is in the future.
 
 ## Topic-Aware Skill Selection (Important)
 
@@ -345,9 +364,12 @@ Tagging rule:
 - `news.json` is valid JSON
 - new `id` is unique
 - new `slug` is unique
+- no `publishedAt` values are in the future
 - `detailPage` matches created file path
 - detail HTML exists in `tin-tuc/`
 - `sitemap.xml` contains `https://saptet.vn/tin-tuc/<slug>.html`
+- detail HTML `Đăng:` date and `publishedAt` represent the same creation day
+- `datePublished` (if exists) is consistent with `publishedAt`
 - detail HTML includes canonical/og/twitter metadata matching its slug and topic
 - detail HTML does not use generic copy-paste SEO description from unrelated article
 - article is detailed (not thin content)
