@@ -58,8 +58,15 @@ Collect or infer:
 - `title`
 - `summary`
 - `category`
-- `publishedAt` (ISO-8601)
+- `publishedAt` (ISO-8601) — **bắt buộc, xem quy tắc bên dưới**
 - `author`
+
+### publishedAt Rule (Bắt buộc — không vi phạm)
+
+- `publishedAt` là **ngày phát hành** của bài viết, dùng để hiển thị trên trang tin tức (listing + detail).
+- **Khi tạo bài mới:** Gán `publishedAt` = ngày giờ hiện tại lúc gen (ISO-8601, ví dụ `2026-03-16T10:30:00Z`).
+- **Sau khi tạo:** **KHÔNG BAO GIỜ** chỉnh sửa `publishedAt` — kể cả khi sửa nội dung, ảnh, affiliate hay metadata khác.
+- Đồng bộ: giá trị `publishedAt` trong `news.json` phải khớp với ngày hiển thị trong `tin-tuc/<slug>.html` (news-meta "Đăng: DD/MM/YYYY").
 - `tags` (array)
 - `source.name`
 - `source.url`
@@ -285,21 +292,24 @@ Adjust language and evidence depth by class:
 ## Generation Workflow
 
 1. Read `news.json`.
-2. Read product list and pick one random valid product.
-3. Compute next ID and slug:
+2. **Set `publishedAt`** = ngày giờ hiện tại (ISO-8601). Ví dụ: nếu hôm nay là 16/03/2026 lúc 10:30, dùng `2026-03-16T10:30:00Z`.
+3. Read product list and pick one random valid product.
+4. Compute next ID and slug:
    - ID: `news-XXX` (zero-padded, increment highest)
    - slug: lowercase hyphen-case from title
    - handle collisions with `-2`, `-3`, ...
-4. Append new item to `news.json` using repository schema.
+5. Append new item to `news.json` using repository schema.
    - include `thumbnailSource` in the new item.
-5. Create `tin-tuc/<slug>.html` based on current detail template.
-6. Ensure `detailPage` is exactly `./tin-tuc/<slug>.html`.
-7. Populate full SEO metadata block in detail HTML (title/description/canonical/og/twitter).
-8. Update `sitemap.xml`:
+   - **publishedAt** = ngày giờ hiện tại, không dùng ngày giả định hay tuần tự.
+6. Create `tin-tuc/<slug>.html` based on current detail template.
+7. Ensure `detailPage` is exactly `./tin-tuc/<slug>.html`.
+8. Populate full SEO metadata block in detail HTML (title/description/canonical/og/twitter).
+9. **Trong HTML detail:** news-meta "Đăng: DD/MM/YYYY" phải khớp với `publishedAt` (ví dụ `2026-03-16T10:30:00Z` → "Đăng: 16/03/2026").
+10. Update `sitemap.xml`:
    - ensure listing URL `/tin-tuc/` exists
    - append `<url>` for `https://saptet.vn/tin-tuc/<slug>.html`
    - set `lastmod` to publish date (YYYY-MM-DD), `changefreq` to `weekly`, priority around `0.8`
-9. Validate JSON formatting (2 spaces).
+11. Validate JSON formatting (2 spaces).
 
 ## Topic-Aware Skill Selection (Important)
 
@@ -340,6 +350,7 @@ Tagging rule:
 
 - `news.json` is valid JSON
 - new `id` is unique
+- `publishedAt` = ngày giờ hiện tại lúc gen (không dùng ngày tuần tự hoặc giả định)
 - new `slug` is unique
 - `detailPage` matches created file path
 - detail HTML exists in `tin-tuc/`

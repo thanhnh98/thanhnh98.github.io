@@ -247,7 +247,7 @@
       "title": "Doanh nghiệp tăng phúc lợi để giữ chân lao động",
       "summary": "Nhiều doanh nghiệp chuyển sang gói phúc lợi tổng thể để ổn định nhân sự trước mùa sản xuất cao điểm cuối năm.",
       "category": "economy",
-      "publishedAt": "2026-03-17T08:20:00Z",
+      "publishedAt": "2026-03-16T08:20:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["lao-dong", "phuc-loi", "doanh-nghiep", "nhan-su"],
       "source": {
@@ -285,7 +285,7 @@
       "title": "Dự báo thời tiết cuối tháng 03/2026 và kế hoạch mua sắm",
       "summary": "Biến động thời tiết chuyển mùa có thể ảnh hưởng trực tiếp đến nhịp logistics và hành vi mua sắm ngắn hạn của người tiêu dùng.",
       "category": "society",
-      "publishedAt": "2026-03-18T11:00:00Z",
+      "publishedAt": "2026-03-16T08:45:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["thoi-tiet", "logistics", "mua-sam", "du-bao"],
       "source": {
@@ -323,7 +323,7 @@
       "title": "An toàn thực phẩm mùa lễ hội và tiêu dùng cao điểm",
       "summary": "Công tác kiểm tra an toàn thực phẩm được siết chặt trước mùa tiêu dùng cao điểm, người mua cần ưu tiên hàng hóa có truy xuất rõ ràng.",
       "category": "lifestyle",
-      "publishedAt": "2026-03-19T09:20:00Z",
+      "publishedAt": "2026-03-16T09:00:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["an-toan-thuc-pham", "le-hoi", "tieu-dung", "suc-khoe"],
       "source": {
@@ -361,7 +361,7 @@
       "title": "Công suất tiêu thụ điện tăng trong đợt nắng nóng sớm 2026",
       "summary": "Nhu cầu điện tăng sớm tạo áp lực phụ tải theo giờ cao điểm; hộ gia đình và doanh nghiệp cần tối ưu thói quen tiêu thụ điện.",
       "category": "energy",
-      "publishedAt": "2026-03-20T10:30:00Z",
+      "publishedAt": "2026-03-16T09:15:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["dien-nang", "nang-nong", "phu-tai", "tiet-kiem-dien"],
       "source": {
@@ -399,7 +399,7 @@
       "title": "Du lịch nội địa ghi nhận xu hướng đặt sớm cho dịp lễ",
       "summary": "Lượng đặt dịch vụ du lịch sớm tăng, giúp giảm rủi ro cháy phòng nhưng làm biên giá phân hóa mạnh hơn giữa đặt sớm và cận ngày.",
       "category": "travel",
-      "publishedAt": "2026-03-21T09:50:00Z",
+      "publishedAt": "2026-03-16T09:30:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["du-lich", "dat-tour-som", "gia-dich-vu", "di-lai"],
       "source": {
@@ -437,7 +437,7 @@
       "title": "Bán lẻ online tăng tốc sớm trước mùa cao điểm",
       "summary": "Đơn hàng online tăng nhanh hơn thông lệ ở nhóm hàng theo mùa; tối ưu tồn kho và giao vận là yếu tố quyết định hiệu quả cao điểm.",
       "category": "commerce",
-      "publishedAt": "2026-03-22T08:30:00Z",
+      "publishedAt": "2026-03-16T09:45:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["thuong-mai-dien-tu", "ban-le-online", "ton-kho", "cao-diem-mua-sam"],
       "source": {
@@ -475,7 +475,7 @@
       "title": "Sắp Tết 2027: Ứng dụng vui, đếm ngược ngày Tết và nhiều trò chơi thú vị",
       "summary": "Sắp Tết 2027 là app Tết phổ biến với bộ đếm ngược Tết 2027, mini game vui nhộn và link tải nhanh cho Android/iOS qua Google Play, App Store hoặc trang tự nhận diện thiết bị.",
       "category": "technology",
-      "publishedAt": "2026-03-23T09:00:00Z",
+      "publishedAt": "2026-03-16T10:00:00Z",
       "author": "Bản Tin Editorial",
       "tags": ["sap-tet-2027", "ung-dung-di-dong", "cap-nhat-san-pham", "trai-nghiem-nguoi-dung"],
       "source": {
@@ -513,7 +513,7 @@
       "title": "Sức hút OpenClaw hiện tại: Vì sao dự án AI agent này tăng trưởng nhanh?",
       "summary": "OpenClaw thu hút mạnh nhờ nhịp phát hành dày, cộng đồng đóng góp lớn và mô hình trợ lý AI chạy trên hạ tầng cá nhân, tạo cảm giác kiểm soát dữ liệu tốt hơn so với các công cụ chỉ chạy trên đám mây.",
       "category": "technology",
-      "publishedAt": "2026-03-24T10:00:00Z",
+      "publishedAt": "2026-03-16T10:15:00Z",
       "author": "Bản Tin Editorial",
       "tags": [
         "openclaw",
@@ -550,6 +550,50 @@
         "url": "https://cdn-media.sforum.vn/storage/app/media/phuonganh/openclaw-la-gi.jpg"
       },
       "detailPage": "./tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html"
+    },
+    {
+      "id": "news-015",
+      "slug": "gia-vang-hom-nay-ngay-16-03-2026",
+      "title": "Giá vàng hôm nay 16/03/2026: Nhận định và triển vọng thị trường",
+      "summary": "Sáng 16/03/2026, vàng SJC tại Hà Nội niêm yết 179,6-182,6 triệu đồng/lượng, trong khi giá vàng thế giới giảm xuống dưới 5.000 USD/ounce. Xung đột Trung Đông và giá dầu tăng đẩy lo ngại lạm phát, Fed có thể trì hoãn cắt giảm lãi suất. Bài viết phân tích dữ liệu, nhận định và triển vọng ngắn hạn.",
+      "category": "economy",
+      "publishedAt": "2026-03-16T10:30:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "nhan-dinh-vang",
+        "trien-vong-vang",
+        "thi-truong-vang"
+      ],
+      "source": {
+        "name": "VietnamPlus (TTXVN)",
+        "url": "https://www.vietnamplus.vn/gia-vang-ngay-163-bang-gia-tai-cac-cong-ty-vang-bac-da-quy-post1099212.vnp"
+      },
+      "links": {
+        "canonicalUrl": "https://www.vietnamplus.vn/gia-vang-ngay-163-bang-gia-tai-cac-cong-ty-vang-bac-da-quy-post1099212.vnp",
+        "affiliateUrl": "https://s.shopee.vn/2qP1LAhjST",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "464120",
+        "shopId": "9014406851",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-may4upu2iymvc2",
+        "images": [],
+        "name": "Socola Valentine Trái Tim quà tặng tình nhân 14/2 chocolate | Shopee Việt Nam",
+        "description": "Mua Socola Valentine Trái Tim quà tặng tình nhân chocolate thơm ngon giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/2qP1LAhjST"
+      },
+      "thumbnailUrl": "https://cdn.tienphong.vn/images/3178588b1004dbc9ad221ba37d1455fbf3fc1b8fbe426ace91ac16c0b985b39d91c395aaa9493e5cdaf349cad3d4a15e/abc.png",
+      "thumbnailSource": {
+        "name": "Báo Tiền Phong",
+        "url": "https://cdn.tienphong.vn/images/3178588b1004dbc9ad221ba37d1455fbf3fc1b8fbe426ace91ac16c0b985b39d91c395aaa9493e5cdaf349cad3d4a15e/abc.png"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-16-03-2026.html"
     }
   ]
 }
