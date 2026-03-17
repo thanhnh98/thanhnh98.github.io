@@ -599,6 +599,25 @@
         </div>
       </section>
 
+      <!-- Home News Preview - Bản tin mới nhất (data từ news.json) -->
+      <section id="home-news-preview" class="home-news-preview-section scroll-section">
+        <script type="application/json" id="news-json-inline">{"items":[{"id":"news-019","slug":"lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026","title":"Lịch nghỉ lễ Giỗ Tổ Hùng Vương và 30/4-1/5 năm 2026: Chính thức theo Bộ Luật Lao động","summary":"Cục Việc làm (Bộ Nội vụ) khẳng định lịch nghỉ lễ thực hiện đúng quy định. Giỗ Tổ 10/3 âm lịch (26/4) nghỉ 3 ngày (25-27/4); 30/4-1/5 nghỉ 4 ngày (30/4-3/5).","category":"policy","publishedAt":"2026-03-17T14:30:00Z","thumbnailUrl":"https://resource.kinhtedothi.vn/2025/03/27/ky-nghi-1.jpg","detailPage":"./tin-tuc/lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026.html"}]}</script>
+        <div class="container container--news-preview">
+          <h2 class="home-news-preview-title">
+            <i data-lucide="newspaper" class="home-news-preview-icon" aria-hidden="true"></i>
+            Bản Tin Mới Nhất
+          </h2>
+          <p class="home-news-preview-subtitle">Tin tức mới, bài báo mới trong ngày – cập nhật nhanh từ Sắp Tết</p>
+          <div id="home-news-grid" class="home-news-grid" role="list">
+            <!-- News cards filled by home-news-preview.js -->
+          </div>
+          <div id="home-news-loading" class="home-news-loading">Đang tải tin tức...</div>
+          <div class="home-news-more-wrap">
+            <a href="/tin-tuc/" class="home-news-more-btn" aria-label="Xem thêm bản tin">Xem thêm</a>
+          </div>
+        </div>
+      </section>
+
       <!-- Home Shop Preview - Gợi ý mua sắm Tết (slider 4 item/slide) -->
       <section id="home-shop-preview" class="home-shop-preview-section scroll-section">
         <span class="home-shop-deco home-shop-deco--blossom" aria-hidden="true"></span>
@@ -1340,6 +1359,7 @@
     <script src="js/seo-dynamic.js?v=20270226"></script>
     <script src="js/lucky-money-calculator.js"></script>
     <script src="js/tet-quiz.js"></script>
+    <script src="js/home-news-preview.js?v=20260317"></script>
     <script src="js/home-shop-preview.js"></script>
     <script src="js/subdomain-handler.js"></script>
 

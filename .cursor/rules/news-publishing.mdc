@@ -1,0 +1,24 @@
+---
+description: Quy tắc bắt buộc khi tạo hoặc chỉnh sửa bài viết tin tức (news.json, tin-tuc/*.html)
+globs: news.json, tin-tuc/*.html
+alwaysApply: false
+---
+
+# News Publishing Rules
+
+## publishedAt — Ngày phát hành (Bắt buộc)
+
+**Khi tạo bài mới:**
+- Gán `publishedAt` = ngày giờ hiện tại lúc gen (ISO-8601, ví dụ `2026-03-16T10:30:00Z`).
+- Dùng trong `news.json` và hiển thị tương ứng trong `tin-tuc/<slug>.html` (news-meta "Đăng: DD/MM/YYYY").
+- Không dùng ngày tuần tự hoặc giả định (ví dụ: bài 1 → 12/03, bài 2 → 13/03, …).
+
+**Sau khi tạo:**
+- **KHÔNG BAO GIỜ** chỉnh sửa `publishedAt` — kể cả khi sửa nội dung, ảnh, affiliate hay metadata khác.
+- `publishedAt` là ngày phát hành cố định, không thể thay đổi.
+
+## Đồng bộ hiển thị
+
+- `news.json` → `publishedAt` (ISO-8601)
+- `tin-tuc/index.html` → hiển thị từ `news.json` qua `formatDate(post.publishedAt)`
+- `tin-tuc/<slug>.html` → news-meta "Đăng: DD/MM/YYYY" phải khớp với `publishedAt`

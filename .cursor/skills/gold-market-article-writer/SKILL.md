@@ -145,7 +145,7 @@ Trả về:
 - `id` mới không trùng (`news-XXX`).
 - `slug` không trùng.
 - `detailPage` khớp đường dẫn file tạo mới.
-- `publishedAt` ISO-8601.
+- `publishedAt` ISO-8601 = **ngày giờ hiện tại lúc tạo bài**; không chỉnh sửa sau khi tạo.
 - Có section "Nguồn tham khảo".
 - Không chèn câu "tham chiếu bài khác" trong nội dung chính.
 
