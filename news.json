@@ -728,6 +728,51 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Hard_rain_on_a_roof.jpg/3840px-Hard_rain_on_a_roof.jpg"
       },
       "detailPage": "./tin-tuc/thoi-tiet-nhung-thang-dau-nam-2026-so-voi-2025.html"
+    },
+    {
+      "id": "news-019",
+      "slug": "lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026",
+      "title": "Lịch nghỉ lễ Giỗ Tổ Hùng Vương và 30/4-1/5 năm 2026: Chính thức theo Bộ Luật Lao động",
+      "summary": "Cục Việc làm (Bộ Nội vụ) khẳng định lịch nghỉ lễ thực hiện đúng quy định. Giỗ Tổ 10/3 âm lịch (26/4) nghỉ 3 ngày (25-27/4); 30/4-1/5 nghỉ 4 ngày (30/4-3/5). Không có kỳ nghỉ 9 ngày liên tiếp như tin đồn—người lao động đi làm 2 ngày (28-29/4) giữa hai kỳ nghỉ.",
+      "category": "policy",
+      "publishedAt": "2026-03-17T14:30:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "lich-nghi-le",
+        "gio-to-hung-vuong",
+        "30-4-1-5",
+        "bo-luat-lao-dong",
+        "bo-noi-vu",
+        "cuc-viec-lam"
+      ],
+      "source": {
+        "name": "VietnamPlus (TTXVN)",
+        "url": "https://www.vietnamplus.vn/bo-noi-vu-bac-bo-thong-tin-hoan-doi-de-nghi-gio-to-304-15-keo-dai-9-ngay-post1097334.vnp"
+      },
+      "links": {
+        "canonicalUrl": "https://www.vietnamplus.vn/bo-noi-vu-bac-bo-thong-tin-hoan-doi-de-nghi-gio-to-304-15-keo-dai-9-ngay-post1097334.vnp",
+        "affiliateUrl": "https://s.shopee.vn/9pYadAx8X6",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "675798",
+        "shopId": "46403955942",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-miv7yuyexrls9e@resize_w450_nl.webp",
+        "images": [],
+        "name": "[TẾT 2026] Set 100 Tag Thẻ Treo Tết Kèm Dây, Liễn Trang Trí Tết Kèm Dây Đỏ Treo Cây Mai Đào",
+        "description": "Trang trí dịp lễ, phù hợp kế hoạch nghỉ lễ.",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/9pYadAx8X6"
+      },
+      "thumbnailUrl": "https://resource.kinhtedothi.vn/2025/03/27/ky-nghi-1.jpg",
+      "thumbnailSource": {
+        "name": "Kinh Tế Đô Thị",
+        "url": "https://resource.kinhtedothi.vn/2025/03/27/ky-nghi-1.jpg"
+      },
+      "detailPage": "./tin-tuc/lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026.html"
     }
   ]
 }
