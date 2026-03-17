@@ -1,4 +1,4 @@
-// Sắp Tết 2026 Resources Configuration
+// Sắp Tết 2027 Resources Configuration
 // This file contains all the configurable resources for the Sắp Tết website
 // Update these values to customize the app store links and other resources
 
@@ -11,7 +11,7 @@ const APP_RESOURCES = {
     
     // App Information
     appInfo: {
-        name: 'Sắp Tết 2026',
+        name: 'Sắp Tết 2027',
         description: 'Ứng dụng đếm ngược Tết và lịch âm dương',
         version: '2.0.0',
         website: 'https://saptet.vn'
@@ -21,7 +21,7 @@ const APP_RESOURCES = {
     features: {
         countdown: 'Đếm ngược chính xác đến Tết Nguyên Đán',
         calendar: 'Lịch âm dương với thông tin ngày tốt xấu',
-        luckyDraw: 'Tết Nguyên đán 2026 và lịch vạn niên',
+        luckyDraw: 'Tết Nguyên đán 2027 và lịch vạn niên',
         foods: 'Khám phá món ăn Tết truyền thống'
     },
     
@@ -117,6 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
     preloadImages();
     initializeLuckyWheel();
     
-    console.log('Sắp Tết 2026 resources initialized');
+    console.log('Sắp Tết 2027 resources initialized');
     console.log('App info:', APP_RESOURCES.appInfo);
 });

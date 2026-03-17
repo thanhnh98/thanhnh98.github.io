@@ -1,4 +1,4 @@
-// Máy Tính Lì Xì Thông Minh - Sắp Tết 2026
+// Máy Tính Lì Xì Thông Minh - Sắp Tết 2027
 class LuckyMoneyCalculator {
     constructor() {
         this.recipients = [];
@@ -484,14 +484,14 @@ class LuckyMoneyCalculator {
         }
 
         const data = {
-            title: 'Danh sách lì xì Tết 2026',
+            title: 'Danh sách lì xì Tết 2027',
             date: new Date().toLocaleDateString('vi-VN'),
             recipients: this.recipients,
             total: this.totalAmount
         };
 
         const csv = this.generateCSV(data);
-        this.downloadCSV(csv, 'danh-sach-li-xi-tet-2026.csv');
+        this.downloadCSV(csv, 'danh-sach-li-xi-tet-2027.csv');
     }
 
     generateCSV(data) {

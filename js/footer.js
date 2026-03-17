@@ -2,9 +2,38 @@
 document.addEventListener('DOMContentLoaded', function() {
     const footerContainer = document.getElementById('footer-container');
     
+    function ensureLucideAndRenderIcons() {
+        const render = () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            } else if (typeof window.initIcons === 'function') {
+                window.initIcons();
+            }
+        };
+
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            render();
+            return;
+        }
+
+        const existing = document.querySelector('script[data-lucide-loader="true"]');
+        if (existing) {
+            existing.addEventListener('load', render, { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/lucide@latest';
+        script.async = true;
+        script.setAttribute('data-lucide-loader', 'true');
+        script.addEventListener('load', render, { once: true });
+        document.head.appendChild(script);
+    }
+    
     if (footerContainer) {
-        // Load footer from centralized file
-        fetch('footer.html')
+        // Load footer from centralized file (absolute URL for nested pages)
+        const origin = window.location.origin;
+        fetch(origin + '/footer.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to load footer');
@@ -13,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(html => {
                 footerContainer.innerHTML = html;
+                ensureLucideAndRenderIcons();
                 
                 // Add analytics tracking to download buttons after footer loads
                 setTimeout(function() {
@@ -41,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="footer-main-content">
                                 <div class="app-info">
                                     <div class="app-title-container">
-                                        <img src="assets/images/ic_app.webp" alt="Sắp Tết App Icon" class="app-icon-small">
-                                        <h2 class="app-title">Sắp Tết - Đếm Ngược Tết 2026</h2>
+                                        <img src="/assets/images/ic_app.png" alt="Sắp Tết App Icon" class="app-icon-small">
+                                        <h2 class="app-title">Sắp Tết - Đếm Ngược Tết 2027</h2>
                                     </div>
                                     <p class="app-description">Ứng dụng đếm ngược Tết Việt Nam và lịch âm dương được yêu thích</p>
                                     
@@ -60,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                         <span class="btn-title">Google Play</span>
                                                     </div>
                                                     <div class="btn-badge">
-                                                        <img src="assets/images/google_play.png" 
+                                                        <img src="/assets/images/google_play.png" 
                                                              alt="Google Play" 
                                                              class="store-badge-img">
                                                     </div>
@@ -77,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                                         <span class="btn-title">App Store</span>
                                                     </div>
                                                     <div class="btn-badge">
-                                                        <img src="assets/images/apple_store.png" 
+                                                        <img src="/assets/images/apple_store.png" 
                                                              alt="App Store" 
                                                              class="store-badge-img">
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
-                                        <p class="app-features">✨ Đếm ngược Tết Việt Nam • Lịch âm dương • Tết Nguyên đán 2026</p>
+                                        <p class="app-features">✨ Đếm ngược Tết Việt Nam • Lịch âm dương • Tết Nguyên đán 2027</p>
                                     </div>
                                 </div>
                             </div>
@@ -97,14 +127,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                        rel="noopener noreferrer" 
                                        class="social-link-compact"
                                        aria-label="Facebook">
-                                        <img src="assets/images/facebook.png" alt="Facebook" class="social-icon-img">
+                                        <img src="/assets/images/facebook.png" alt="Facebook" class="social-icon-img">
                                     </a>
                                     <a href="https://tiktok.com/@sap.tet" 
                                        target="_blank" 
                                        rel="noopener noreferrer" 
                                        class="social-link-compact"
                                        aria-label="TikTok">
-                                        <img src="assets/images/tiktok.png" alt="TikTok" class="social-icon-img">
+                                        <img src="/assets/images/tiktok.png" alt="TikTok" class="social-icon-img">
                                     </a>
                                     <a href="https://saptet.vn" 
                                        target="_blank" 
@@ -124,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                      class="developer-link">TLife</a>
                                 </p>
                                 <p class="app-info-footer">
-                                    Ứng dụng Sắp Tết - Đếm ngược Tết 2026
+                                    Ứng dụng Sắp Tết - Đếm ngược Tết 2027
                                 </p>
                             </div>
                         </div>
@@ -134,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         {
                             "@context": "https://schema.org",
                             "@type": "MobileApplication",
-                            "name": "Sắp Tết - Đếm ngược Tết 2026",
+                            "name": "Sắp Tết - Đếm ngược Tết 2027",
                             "description": "Ứng dụng đếm ngược Tết và lịch âm dương được yêu thích",
                             "applicationCategory": "LifestyleApplication",
                             "operatingSystem": ["Android", "iOS"],
@@ -147,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 "https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down",
                                 "https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2026/id6743064990?platform=iphone"
                             ],
-                            "screenshot": "assets/images/ic_app.webp",
+                            "screenshot": "/assets/images/ic_app.png",
                             "author": {
                                 "@type": "Organization",
                                 "name": "TLife",
@@ -162,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </script>
                     </section>
                 `;
+                ensureLucideAndRenderIcons();
             });
     }
 });

@@ -8,6 +8,7 @@
   /** Sự kiện theo ÂM LỊCH (key: "lunarMonth-lunarDay" để tra cứu theo ngày âm) */
   var LUNAR_EVENTS = [
     { lunarMonth: 1, lunarDay: 1, name: 'Tết Nguyên Đán', lunarLabel: 'Mùng 1 Tết', description: 'Ngày Tết cổ truyền lớn nhất năm. Tết Nguyên Đán là dịp sum họp gia đình, cúng ông bà tổ tiên và đón năm mới theo lịch âm.', type: 'major', isMainTet: true },
+    { lunarMonth: 1, lunarDay: 10, name: 'Ngày vía Thần Tài', lunarLabel: 'Mùng 10 tháng Giêng (10/1)', description: 'Ngày vía Thần Tài theo tín ngưỡng dân gian. Nhiều gia đình, cửa hàng làm lễ cầu tài lộc, may mắn đầu năm.', type: 'major' },
     { lunarMonth: 1, lunarDay: 15, name: 'Tết Nguyên Tiêu (Rằm tháng Giêng)', lunarLabel: 'Rằm tháng Giêng (15/1)', description: 'Tết Nguyên Tiêu. Câu nói dân gian: "Lễ Phật quanh năm không bằng Rằm tháng Giêng". Ngày lễ Phật, cầu an, thắp đèn lồng.', type: 'major' },
     { lunarMonth: 3, lunarDay: 3, name: 'Tết Hàn Thực', lunarLabel: '3/3 âm lịch', description: 'Tết Hàn Thực – ăn đồ nguội. Truyền thống làm bánh trôi, bánh chay để tưởng nhớ.', type: 'major' },
     { lunarMonth: 3, lunarDay: 10, name: 'Giỗ Tổ Hùng Vương', lunarLabel: '10/3 âm lịch', description: 'Quốc lễ – nghỉ lễ chính thức. Ngày giỗ các Vua Hùng, tưởng nhớ công ơn dựng nước.', type: 'major', isNationalHoliday: true },

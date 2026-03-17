@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1770775367946-9d4fed1';
+const CACHE_NAME = 'sap-tet-v1.0.1773712023177-9f72f4a';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
@@ -34,7 +34,7 @@ const urlsToCache = [
   '/js/faq-modal.js',
   '/js/footer.js',
   '/assets/images/background.webp',
-  '/assets/images/ic_app.webp',
+  '/assets/images/ic_app.png',
   '/favicon.ico',
   '/favicon.png',
   '/android-chrome-192x192.png',
@@ -102,6 +102,15 @@ function isInvalidSubdomain(url) {
 
 // Fetch event - serve cached content when offline and handle subdomain redirects
 self.addEventListener('fetch', event => {
+  // Skip cache on localhost for easier development
+  try {
+    const url = new URL(event.request.url);
+    if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+      event.respondWith(fetch(event.request));
+      return;
+    }
+  } catch (e) {}
+
   // Handle subdomain redirects
   if (isInvalidSubdomain(event.request.url)) {
     console.log('Service Worker: Invalid subdomain detected, redirecting to 404');

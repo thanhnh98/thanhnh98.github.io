@@ -6,14 +6,21 @@ class HeaderLoader {
 
     getCurrentPage() {
         const path = window.location.pathname;
+        const normalizedPath = path.replace(/\/$/, '');
         const filename = path.split('/').pop();
         
         if (filename === 'mon-an-tet.html') {
             return 'mon-an-tet';
         } else if (filename === 'cua-hang.html') {
             return 'cua-hang';
-        } else if (filename === 'ung-dung.html') {
+        } else if (filename === 'ung-dung.html' || normalizedPath === '/ung-dung') {
             return 'app';
+        } else if (
+            filename === 'tin-tuc.html' ||
+            normalizedPath === '/tin-tuc' ||
+            path.indexOf('/tin-tuc/') !== -1
+        ) {
+            return 'tin-tuc';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;
             if (hash === '#app-intro') return 'app';
@@ -113,7 +120,7 @@ class HeaderLoader {
     }
 
     addAppIntroScrollListener() {
-        document.querySelectorAll('a[href*="#app-intro"], a.nav-app-link').forEach(link => {
+        document.querySelectorAll('a[href*="#app-intro"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const path = window.location.pathname;
                 const isIndex = path === '/' || path.endsWith('/') || path.endsWith('index.html');
@@ -187,34 +194,45 @@ class HeaderLoader {
     
     // Initialize Lucide icons
     initIcons() {
-        // Try multiple times to ensure Lucide is loaded
-        let attempts = 0;
-        const maxAttempts = 10;
-        
-        const tryInitIcons = () => {
-            attempts++;
-            
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                lucide.createIcons();
-                return;
-            }
-            
-            // Fallback to icons.js initIcons function
-            if (typeof initIcons === 'function' && attempts > 2) {
-                initIcons();
-                return;
-            }
-            
-            // Retry if not loaded yet
-            if (attempts < maxAttempts) {
-                setTimeout(tryInitIcons, 100);
-            } else {
-                console.warn('Lucide Icons library not loaded after multiple attempts');
-            }
+        const loadLucideScript = () => {
+            return new Promise((resolve, reject) => {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    resolve();
+                    return;
+                }
+
+                const existing = document.querySelector('script[data-lucide-loader="true"]');
+                if (existing) {
+                    existing.addEventListener('load', () => resolve(), { once: true });
+                    existing.addEventListener('error', () => reject(new Error('Lucide load error')), { once: true });
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/lucide@latest';
+                script.async = true;
+                script.setAttribute('data-lucide-loader', 'true');
+                script.addEventListener('load', () => resolve(), { once: true });
+                script.addEventListener('error', () => reject(new Error('Lucide load error')), { once: true });
+                document.head.appendChild(script);
+            });
         };
-        
-        // Start trying after a short delay
-        setTimeout(tryInitIcons, 50);
+
+        loadLucideScript()
+            .then(() => {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                } else if (typeof initIcons === 'function') {
+                    initIcons();
+                }
+            })
+            .catch(() => {
+                if (typeof initIcons === 'function') {
+                    initIcons();
+                } else {
+                    console.warn('Unable to initialize icons for header');
+                }
+            });
     }
 }
 

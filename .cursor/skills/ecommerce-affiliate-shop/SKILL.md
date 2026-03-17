@@ -81,7 +81,7 @@ description: Thiết kế và UX best practices cho tính năng shop affiliate (
 
 ```html
 <img src="product.jpg" 
-     alt="Bao lì xì đỏ in chữ vàng năm 2026"
+     alt="Bao lì xì đỏ in chữ vàng năm 2027"
      loading="lazy"
      onerror="this.parentElement.classList.add('has-placeholder')" />
 ```
@@ -550,7 +550,7 @@ function trackShopEvent(action, params) {
     "products": [
       {
         "id": "unique-id",
-        "name": "Bao lì xì đỏ in chữ vàng năm 2026",
+        "name": "Bao lì xì đỏ in chữ vàng năm 2027",
         "description": "Bao lì xì đẹp, chất lượng cao",
         "thumbnail": "https://example.com/image.jpg",
         "url": "https://shopee.vn/product-link",
@@ -771,19 +771,19 @@ Khi implement shop affiliate, test:
      target="_blank"
      rel="noopener noreferrer"
      class="shop-card-link"
-     aria-label="Xem sản phẩm: Bao lì xì đỏ in chữ vàng năm 2026"
+     aria-label="Xem sản phẩm: Bao lì xì đỏ in chữ vàng năm 2027"
      onclick="trackShopEvent('click_item', {item_name: 'Bao lì xì đỏ', brand: 'shopee'})">
     
     <div class="shop-card-thumb">
       <img src="bao-li-xi.jpg" 
-           alt="Bao lì xì đỏ in chữ vàng năm 2026"
+           alt="Bao lì xì đỏ in chữ vàng năm 2027"
            loading="lazy"
            onerror="this.parentElement.classList.add('has-placeholder')" />
       <span class="shop-card-badge shopee">Shopee</span>
     </div>
     
     <div class="shop-card-body">
-      <h3 class="shop-card-name">Bao lì xì đỏ in chữ vàng năm 2026</h3>
+      <h3 class="shop-card-name">Bao lì xì đỏ in chữ vàng năm 2027</h3>
       <p class="shop-card-desc">Bao lì xì đẹp, chất lượng cao, phù hợp Tết Nguyên Đán</p>
     </div>
   </a>

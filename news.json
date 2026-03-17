@@ -1,0 +1,698 @@
+{
+  "version": "1.1",
+  "generatedAt": "2026-03-15T00:00:00Z",
+  "items": [
+    {
+      "id": "news-001",
+      "slug": "su-kien-xang-dau-ngay-10-03-2026",
+      "title": "Sự kiện xăng dầu: Điều chỉnh giá từ 23h45 ngày 10/03/2026",
+      "summary": "Kỳ điều hành 23h45 ngày 10/03/2026 ghi nhận xăng E5 RON 92 và RON 95-III tăng mạnh, phản ánh chi phí đầu vào còn cao. Góc nhìn biên tập: tác động lan sang vận tải và tiêu dùng ngắn hạn, cần theo dõi thêm tốc độ truyền dẫn giá ở kỳ kế tiếp.",
+      "category": "economy",
+      "publishedAt": "2026-03-12T11:30:00Z",
+      "author": "Fetch News Team",
+      "tags": [
+        "xang-dau",
+        "gia-xang",
+        "thi-truong-nang-luong",
+        "viet-nam"
+      ],
+      "source": {
+        "name": "VietnamPlus (TTXVN)",
+        "url": "https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp"
+      },
+      "links": {
+        "canonicalUrl": "https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp",
+        "affiliateUrl": "https://s.shopee.vn/4frPs6Oav6",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "aff-001",
+        "shopId": "xangdau-2026",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lqtyd2agh2vmb1",
+        "images": [],
+        "name": "Hộp Socola AVY Trắng Đen Hot Trend Mix Chữ Quà Tặng Người Yêu Valentine",
+        "description": "Sản phẩm gợi ý liên quan theo metadata affiliate của bài viết.",
+        "type": "shopee",
+        "category": "quatet",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/4frPs6Oav6"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Gasoline_in_mason_jar.jpg/1280px-Gasoline_in_mason_jar.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Gasoline_in_mason_jar.jpg/1280px-Gasoline_in_mason_jar.jpg"
+      },
+      "detailPage": "./tin-tuc/su-kien-xang-dau-ngay-10-03-2026.html"
+    },
+    {
+      "id": "news-002",
+      "slug": "gia-vang-hom-nay-ngay-13-03-2026",
+      "title": "Giá vàng hôm nay 13/03/2026: DOJI niêm yết SJC 181,80-184,80 triệu đồng/lượng",
+      "summary": "Mốc 12:26 ngày 13/03/2026, DOJI niêm yết vàng SJC tại Hà Nội 181,80-184,80 triệu đồng/lượng, chênh lệch mua-bán 3,00 triệu đồng/lượng. Bài viết cập nhật theo khung kinh tế: dữ liệu chỉ số, diễn biến thị trường, động lực kỹ thuật và kịch bản ngắn hạn.",
+      "category": "economy",
+      "publishedAt": "2026-03-13T12:30:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "doji",
+        "vietnamplus",
+        "thi-truong-vang"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://giavang.doji.vn/",
+        "affiliateUrl": "https://s.shopee.vn/5q2cujgiYL",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "596867",
+        "shopId": "28470746030",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3t1qpqueoc5b1",
+        "images": [],
+        "name": "Socola valentine tặng túi hộp đen sang chảnhm | Shopee Việt Nam",
+        "description": "Mua Socola valentine tặng túi hộp đen sang chảnhm giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/5q2cujgiYL"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html"
+    },
+    {
+      "id": "news-003",
+      "slug": "chi-so-gia-tieu-dung-thang-03-2026",
+      "title": "CPI tháng 03/2026: Áp lực giá thiết yếu tăng nhẹ",
+      "summary": "Giá tiêu dùng tháng 03/2026 tăng nhẹ ở nhóm thiết yếu, tạo áp lực sớm lên ngân sách hộ gia đình trước mùa cao điểm cuối năm.",
+      "category": "economy",
+      "publishedAt": "2026-03-14T09:00:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "cpi",
+        "gia-tieu-dung",
+        "kinh-te-vi-mo",
+        "chi-tieu-ho-gia-dinh"
+      ],
+      "source": {
+        "name": "Tổng cục Thống kê",
+        "url": "https://www.gso.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://www.gso.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/8pg54hryHp",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "491301",
+        "shopId": "25454624470",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mjdp02l21mv6fb@resize_w900_nl.webp",
+        "images": [],
+        "name": "[TẶNG BAO LÌ XÌ] Set Hộp Gỗ Quà Tết 2026 Hạt Dinh Dưỡng từ Nông Sản Giọt Nắng",
+        "description": "Đã bán 10k+",
+        "type": "shopee",
+        "category": "quatet",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/8pg54hryHp"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Consumer_price_index_2024_relative_to_2010.svg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Consumer_price_index_2024_relative_to_2010.svg"
+      },
+      "detailPage": "./tin-tuc/chi-so-gia-tieu-dung-thang-03-2026.html"
+    },
+    {
+      "id": "news-004",
+      "slug": "ty-gia-trung-tam-ngan-hang-nha-nuoc-ngay-14-03-2026",
+      "title": "Tỷ giá trung tâm 14/03/2026: Biên độ thị trường ổn định",
+      "summary": "Tỷ giá trung tâm được điều hành trong biên độ hẹp, hỗ trợ ổn định kỳ vọng thị trường nhưng doanh nghiệp vẫn cần chủ động phòng ngừa rủi ro.",
+      "category": "economy",
+      "publishedAt": "2026-03-14T13:30:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "ty-gia",
+        "ngan-hang-nha-nuoc",
+        "nhap-khau",
+        "quan-tri-rui-ro"
+      ],
+      "source": {
+        "name": "Ngân hàng Nhà nước",
+        "url": "https://www.sbv.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://www.sbv.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/6VIAILbriV",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "900081",
+        "shopId": "52752229387",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mivqxlrlb56r52@resize_w450_nl.webp",
+        "images": [],
+        "name": "Giỏ đựng quà Tết 2026, Giỏ quà Tết mây tre Quai Trúc chắc chắn, đựng bánh kẹo làm quà tặng cao cấp",
+        "description": "Đã bán 4k+",
+        "type": "shopee",
+        "category": "quatet",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/6VIAILbriV"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/US_Dollar_Index_DXY.webp/3840px-US_Dollar_Index_DXY.webp.png",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/US_Dollar_Index_DXY.webp/3840px-US_Dollar_Index_DXY.webp.png"
+      },
+      "detailPage": "./tin-tuc/ty-gia-trung-tam-ngan-hang-nha-nuoc-ngay-14-03-2026.html"
+    },
+    {
+      "id": "news-005",
+      "slug": "luong-khach-hang-khong-noi-dia-truoc-cao-diem-tet-2027",
+      "title": "Lượng khách hàng không nội địa tăng trước mùa cao điểm",
+      "summary": "Nhu cầu bay nội địa tăng sớm trên các chặng trục, phản ánh xu hướng đặt vé trước để tối ưu ngân sách trong giai đoạn cao điểm đi lại.",
+      "category": "travel",
+      "publishedAt": "2026-03-15T08:45:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "hang-khong",
+        "du-lich-noi-dia",
+        "ve-may-bay",
+        "cao-diem-di-lai"
+      ],
+      "source": {
+        "name": "Cục Hàng không Việt Nam",
+        "url": "https://www.caa.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://www.caa.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/2g5Rj2Er7u",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "956858",
+        "shopId": "25402110506",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mitkesdhaux271@resize_w450_nl.webp",
+        "images": [],
+        "name": "Hộp Quà Tết Lộc Xuân An Khang 488g, hộp quà Tết Hữu Nghị (Bao bì mới 2026) - Kèm Túi",
+        "description": "Đã bán 5k+",
+        "type": "shopee",
+        "category": "quatet",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/2g5Rj2Er7u"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Airport_infrastructure.png/3840px-Airport_infrastructure.png",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Airport_infrastructure.png/3840px-Airport_infrastructure.png"
+      },
+      "detailPage": "./tin-tuc/luong-khach-hang-khong-noi-dia-truoc-cao-diem-tet-2027.html"
+    },
+    {
+      "id": "news-006",
+      "slug": "ve-tau-tet-2027-lich-mo-ban-va-ap-luc-cao-diem",
+      "title": "Vé tàu đường dài: Lịch mở bán và áp lực cao điểm",
+      "summary": "Áp lực đặt vé tàu đường dài tăng sớm ở các tuyến nóng, người đi lại nên chuẩn bị nhiều phương án lịch trình linh hoạt.",
+      "category": "transport",
+      "publishedAt": "2026-03-14T10:10:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "ve-tau",
+        "duong-sat",
+        "cao-diem-di-lai",
+        "di-chuyen-lien-tinh"
+      ],
+      "source": {
+        "name": "Tổng công ty Đường sắt Việt Nam",
+        "url": "https://dsvn.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://dsvn.vn/",
+        "affiliateUrl": "https://s.shopee.vn/70EQssAb2W",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "577358",
+        "shopId": "20792231313",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mj07m28phn2e86@resize_w450_nl.webp",
+        "images": [],
+        "name": "Hộp Quà Tặng Dịp Tết 2026, Set Quà Tết Tặng Đối Tác, Người Thân, Bạn Bè, Quà Biếu Tết Ông Bà",
+        "description": "Đã bán 2k+",
+        "type": "shopee",
+        "category": "quatet",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/70EQssAb2W"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Alaska_Railroad_oil_train_at_Nenna.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Alaska_Railroad_oil_train_at_Nenna.jpg"
+      },
+      "detailPage": "./tin-tuc/ve-tau-tet-2027-lich-mo-ban-va-ap-luc-cao-diem.html"
+    },
+    {
+      "id": "news-007",
+      "slug": "doanh-nghiep-tang-phuc-loi-giu-chan-lao-dong-truoc-tet-2027",
+      "title": "Doanh nghiệp tăng phúc lợi để giữ chân lao động",
+      "summary": "Nhiều doanh nghiệp chuyển sang gói phúc lợi tổng thể để ổn định nhân sự trước mùa sản xuất cao điểm cuối năm.",
+      "category": "economy",
+      "publishedAt": "2026-03-14T11:20:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "lao-dong",
+        "phuc-loi",
+        "doanh-nghiep",
+        "nhan-su"
+      ],
+      "source": {
+        "name": "Bộ Lao động - Thương binh và Xã hội",
+        "url": "https://www.molisa.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://www.molisa.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/9pYadAx8X6",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "675798",
+        "shopId": "46403955942",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-miv7yuyexrls9e@resize_w450_nl.webp",
+        "images": [],
+        "name": "[TẾT 2026] Set 100 Tag Thẻ Treo Tết Kèm Dây, Liễn Trang Trí Tết Kèm Dây Đỏ Treo Cây Mai Đào | HAPPY DECOR",
+        "description": "Đã bán 6k+",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/9pYadAx8X6"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Wolfsburg_VW-Werk.jpg/960px-Wolfsburg_VW-Werk.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Wolfsburg_VW-Werk.jpg/960px-Wolfsburg_VW-Werk.jpg"
+      },
+      "detailPage": "./tin-tuc/doanh-nghiep-tang-phuc-loi-giu-chan-lao-dong-truoc-tet-2027.html"
+    },
+    {
+      "id": "news-008",
+      "slug": "du-bao-thoi-tiet-cuoi-thang-03-2026-va-ke-hoach-mua-sam",
+      "title": "Dự báo thời tiết cuối tháng 03/2026 và kế hoạch mua sắm",
+      "summary": "Biến động thời tiết chuyển mùa có thể ảnh hưởng trực tiếp đến nhịp logistics và hành vi mua sắm ngắn hạn của người tiêu dùng.",
+      "category": "society",
+      "publishedAt": "2026-03-14T12:00:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "thoi-tiet",
+        "logistics",
+        "mua-sam",
+        "du-bao"
+      ],
+      "source": {
+        "name": "Trung tâm Dự báo KTTV Quốc gia",
+        "url": "https://nchmf.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://nchmf.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/3B1X3Q5mQW",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "307089",
+        "shopId": "25318640231",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-821dz-mhabhj3qwr9l66",
+        "images": [],
+        "name": "Cành Lựu Giả Có Hoa - Cắm bình, kết cây - Thân Nhựa Lõi Thép, Quả Xốp, Dài 90cm - Cảnh Nhi Flower | Shopee Việt Nam",
+        "description": "Mua Cành Lựu Giả Có Hoa - Cắm bình, kết cây - Thân Nhựa Lõi Thép, Quả Xốp, Dài 90cm - Cảnh Nhi Flower giá tốt.",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/3B1X3Q5mQW"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Hard_rain_on_a_roof.jpg/3840px-Hard_rain_on_a_roof.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Hard_rain_on_a_roof.jpg/3840px-Hard_rain_on_a_roof.jpg"
+      },
+      "detailPage": "./tin-tuc/du-bao-thoi-tiet-cuoi-thang-03-2026-va-ke-hoach-mua-sam.html"
+    },
+    {
+      "id": "news-009",
+      "slug": "an-toan-thuc-pham-mua-le-hoi-truoc-tet-2027",
+      "title": "An toàn thực phẩm mùa lễ hội và tiêu dùng cao điểm",
+      "summary": "Công tác kiểm tra an toàn thực phẩm được siết chặt trước mùa tiêu dùng cao điểm, người mua cần ưu tiên hàng hóa có truy xuất rõ ràng.",
+      "category": "lifestyle",
+      "publishedAt": "2026-03-14T13:20:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "an-toan-thuc-pham",
+        "le-hoi",
+        "tieu-dung",
+        "suc-khoe"
+      ],
+      "source": {
+        "name": "Cục An toàn thực phẩm",
+        "url": "https://vfa.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://vfa.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/2B8zrRUkj9",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "003928",
+        "shopId": "24367175857",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1ofl3bvcofze5.webp",
+        "images": [],
+        "name": "Bình Hoa Gốm Sứ Bát Tràng Dáng Đu Đủ, Lọ Hoa Chất Liệu Men Cao Cấp, Phù Hợp Trang Trí Nhiều Nơi",
+        "description": "2k+ lượt bán",
+        "type": "shopee",
+        "category": "assets",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/2B8zrRUkj9"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Seafood-_FDA_Lab_2881_%284494783228%29.jpg/3840px-Seafood-_FDA_Lab_2881_%284494783228%29.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Seafood-_FDA_Lab_2881_%284494783228%29.jpg/3840px-Seafood-_FDA_Lab_2881_%284494783228%29.jpg"
+      },
+      "detailPage": "./tin-tuc/an-toan-thuc-pham-mua-le-hoi-truoc-tet-2027.html"
+    },
+    {
+      "id": "news-010",
+      "slug": "cong-suat-tieu-thu-dien-tang-trong-dot-nang-nong-som-2026",
+      "title": "Công suất tiêu thụ điện tăng trong đợt nắng nóng sớm 2026",
+      "summary": "Nhu cầu điện tăng sớm tạo áp lực phụ tải theo giờ cao điểm; hộ gia đình và doanh nghiệp cần tối ưu thói quen tiêu thụ điện.",
+      "category": "energy",
+      "publishedAt": "2026-03-14T14:30:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "dien-nang",
+        "nang-nong",
+        "phu-tai",
+        "tiet-kiem-dien"
+      ],
+      "source": {
+        "name": "EVN",
+        "url": "https://www.evn.com.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://www.evn.com.vn/",
+        "affiliateUrl": "https://s.shopee.vn/4q9l0Py8ax",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "348204",
+        "shopId": "49450917753",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134258-820l4-mjs376rozu9x43",
+        "images": [],
+        "name": "Tháp bày bia nước ngọt,tháp giả gỗ 3 tầng trưng bày ngày Tết ban thờ phủ bóng hàng dày đẹp",
+        "description": "30k+ lượt bán",
+        "type": "shopee",
+        "category": "assets",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/4q9l0Py8ax"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/500kV_3-Phase_Transmission_Lines.png/1920px-500kV_3-Phase_Transmission_Lines.png",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/500kV_3-Phase_Transmission_Lines.png/1920px-500kV_3-Phase_Transmission_Lines.png"
+      },
+      "detailPage": "./tin-tuc/cong-suat-tieu-thu-dien-tang-trong-dot-nang-nong-som-2026.html"
+    },
+    {
+      "id": "news-011",
+      "slug": "du-lich-noi-dia-ghi-nhan-xu-huong-dat-som-cho-dip-le",
+      "title": "Du lịch nội địa ghi nhận xu hướng đặt sớm cho dịp lễ",
+      "summary": "Lượng đặt dịch vụ du lịch sớm tăng, giúp giảm rủi ro cháy phòng nhưng làm biên giá phân hóa mạnh hơn giữa đặt sớm và cận ngày.",
+      "category": "travel",
+      "publishedAt": "2026-03-14T15:50:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "du-lich",
+        "dat-tour-som",
+        "gia-dich-vu",
+        "di-lai"
+      ],
+      "source": {
+        "name": "Cục Du lịch Quốc gia Việt Nam",
+        "url": "https://vietnamtourism.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://vietnamtourism.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/AUo7o2jlHn",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "644740",
+        "shopId": "22714104918",
+        "thumbnail": "https://down-zl-vn.img.susercontent.com/vn-11134207-7ras8-m1htaixqb2yn4e.webp",
+        "images": [],
+        "name": "Mứt Dừa Non Sợi Đũa, Thơm Ngon Ngọt Bùi, Đặc Sản Bến Tre, Mứt Tết - Bánh Kẹo, đồ ăn vặt",
+        "description": "2k+ lượt bán",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/AUo7o2jlHn"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/New_york_times_square-terabass.jpg/3840px-New_york_times_square-terabass.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/New_york_times_square-terabass.jpg/3840px-New_york_times_square-terabass.jpg"
+      },
+      "detailPage": "./tin-tuc/du-lich-noi-dia-ghi-nhan-xu-huong-dat-som-cho-dip-le.html"
+    },
+    {
+      "id": "news-012",
+      "slug": "ban-le-online-tang-toc-som-truoc-mua-tet-2027",
+      "title": "Bán lẻ online tăng tốc sớm trước mùa cao điểm",
+      "summary": "Đơn hàng online tăng nhanh hơn thông lệ ở nhóm hàng theo mùa; tối ưu tồn kho và giao vận là yếu tố quyết định hiệu quả cao điểm.",
+      "category": "commerce",
+      "publishedAt": "2026-03-14T16:30:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "thuong-mai-dien-tu",
+        "ban-le-online",
+        "ton-kho",
+        "cao-diem-mua-sam"
+      ],
+      "source": {
+        "name": "Bộ Công Thương",
+        "url": "https://www.moit.gov.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://www.moit.gov.vn/",
+        "affiliateUrl": "https://s.shopee.vn/LhIUSx8yp",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "828612",
+        "shopId": "1917481546",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lz71wny8f44heb",
+        "images": [],
+        "name": "Hạt điều rang củi (vị muối) Mẹ rô. Có hồ sơ công bố, xuất hóa đơn công ty đầy đủ | Shopee Việt Nam",
+        "description": "Mua Hạt điều rang củi (vị muối) Mẹ rô. Có hồ sơ công bố, xuất hóa đơn công ty đầy đủ giá tốt.",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/LhIUSx8yp"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Shopping_online_with_bank_card.jpg/3840px-Shopping_online_with_bank_card.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Shopping_online_with_bank_card.jpg/3840px-Shopping_online_with_bank_card.jpg"
+      },
+      "detailPage": "./tin-tuc/ban-le-online-tang-toc-som-truoc-mua-tet-2027.html"
+    },
+    {
+      "id": "news-013",
+      "slug": "ung-dung-sap-tet-2027-ban-cap-nhat-moi",
+      "title": "Sắp Tết 2027: Ứng dụng vui, đếm ngược ngày Tết và nhiều trò chơi thú vị",
+      "summary": "Sắp Tết 2027 là app Tết phổ biến với bộ đếm ngược Tết 2027, mini game vui nhộn và link tải nhanh cho Android/iOS qua Google Play, App Store hoặc trang tự nhận diện thiết bị.",
+      "category": "technology",
+      "publishedAt": "2026-03-14T17:00:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "sap-tet-2027",
+        "ung-dung-di-dong",
+        "cap-nhat-san-pham",
+        "trai-nghiem-nguoi-dung"
+      ],
+      "source": {
+        "name": "Sắp Tết",
+        "url": "https://saptet.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/",
+        "affiliateUrl": "https://vt.tiktok.com/ZS91tDdHVg9xq-16WY9/",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "620969",
+        "shopId": "",
+        "thumbnail": "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/679ebdcbf1694dbdb917c7cd9c3e6e38~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+        "images": [],
+        "name": "[Lịch Tết 2027] Lịch gỗ để bàn trang trí 2027 xinh xắn, hiện đại chào đón năm mới an khang thịnh vượng",
+        "description": "Lịch tết xin xăn, có thể dùng tặng bạn bè hoặc người thân.",
+        "type": "tiktok",
+        "category": "assets",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://vt.tiktok.com/ZS91tDdHVg9xq-16WY9/"
+      },
+      "thumbnailUrl": "https://saptet.vn/assets/images/img_sharing.png",
+      "thumbnailSource": {
+        "name": "Sắp Tết",
+        "url": "https://saptet.vn/assets/images/img_sharing.png"
+      },
+      "detailPage": "./tin-tuc/ung-dung-sap-tet-2027-ban-cap-nhat-moi.html"
+    },
+    {
+      "id": "news-014",
+      "slug": "suc-hut-openclaw-hien-tai-thang-03-2026",
+      "title": "Sức hút OpenClaw hiện tại: Vì sao dự án AI agent này tăng trưởng nhanh?",
+      "summary": "OpenClaw thu hút mạnh nhờ nhịp phát hành dày, cộng đồng đóng góp lớn và mô hình trợ lý AI chạy trên hạ tầng cá nhân, tạo cảm giác kiểm soát dữ liệu tốt hơn so với các công cụ chỉ chạy trên đám mây.",
+      "category": "technology",
+      "publishedAt": "2026-03-15T10:00:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "openclaw",
+        "ai-agent",
+        "github-stars",
+        "open-source",
+        "tro-ly-ai-ca-nhan"
+      ],
+      "source": {
+        "name": "GitHub - openclaw/openclaw",
+        "url": "https://github.com/openclaw/openclaw"
+      },
+      "links": {
+        "canonicalUrl": "https://github.com/openclaw/openclaw",
+        "affiliateUrl": "https://s.shopee.vn/7Kr3bAiNW7",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "065291",
+        "shopId": "27383556793",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
+        "images": [],
+        "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+        "description": "Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt.",
+        "type": "shopee",
+        "category": "bachhoa",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/7Kr3bAiNW7"
+      },
+      "thumbnailUrl": "https://cdn-media.sforum.vn/storage/app/media/phuonganh/openclaw-la-gi.jpg",
+      "thumbnailSource": {
+        "name": "Sforum",
+        "url": "https://cdn-media.sforum.vn/storage/app/media/phuonganh/openclaw-la-gi.jpg"
+      },
+      "detailPage": "./tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html"
+    },
+    {
+      "id": "news-015",
+      "slug": "gia-vang-hom-nay-ngay-15-03-2026",
+      "title": "Giá vàng hôm nay 15/03/2026: SJC-DOJI phổ biến 179,60-182,60 triệu đồng/lượng",
+      "summary": "Theo dữ liệu đối chiếu sáng 15/03/2026 và bảng niêm yết chính thức, giá vàng SJC-DOJI phổ biến quanh 179,60-182,60 triệu đồng/lượng, chênh lệch mua-bán 3,00 triệu đồng/lượng. Góc nhìn biên tập: thị trường đang đi ngang sau nhịp giảm mạnh nhưng chi phí vào-ra vẫn là biến số quan trọng.",
+      "category": "economy",
+      "publishedAt": "2026-03-15T08:40:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "doji",
+        "thi-truong-vang",
+        "gia-vang-15-03-2026"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://giavang.doji.vn/",
+        "affiliateUrl": "https://s.shopee.vn/7Kr3bAiNW7",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "065291",
+        "shopId": "27383556793",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
+        "images": [],
+        "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+        "description": "Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt.",
+        "type": "shopee",
+        "category": "bachhoa",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/7Kr3bAiNW7"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-15-03-2026.html"
+    },
+    {
+      "id": "news-016",
+      "slug": "cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026",
+      "title": "Các địa điểm du lịch không thể bỏ lỡ trong tháng 3-6/2026",
+      "summary": "Giai đoạn tháng 3-6/2026 là thời điểm thuận lợi để đi cả tuyến phố cổ, di sản và biển. Theo Vietnam Tourism và dữ liệu khí hậu NCHMF, lịch trình hiệu quả là chia theo điểm mạnh từng tháng: Hội An, Huế, Đà Nẵng, Hạ Long cùng các lựa chọn bổ sung như Mộc Châu, Phú Quốc.",
+      "category": "travel",
+      "publishedAt": "2026-03-15T06:40:00Z",
+      "author": "Bản Tin Editorial",
+      "tags": [
+        "du-lich-thang-3-6",
+        "diem-den-viet-nam",
+        "hoi-an",
+        "ha-long",
+        "du-lich-noi-dia"
+      ],
+      "source": {
+        "name": "Vietnam Tourism",
+        "url": "https://vietnam.travel/things-to-do/vietnam-monthly-guide"
+      },
+      "links": {
+        "canonicalUrl": "https://vietnam.travel/things-to-do/vietnam-monthly-guide",
+        "affiliateUrl": "https://s.shopee.vn/3qHNTyso6P",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "586002",
+        "shopId": "28588429737",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mbwae410c5ata3",
+        "images": [],
+        "name": "[NE30] Dép Sandal Học Sinh Nam Nữ Thương Hiệu NESTY | Shopee Việt Nam",
+        "description": "Mua [NE30] Dép Sandal Học Sinh Nam Nữ Thương Hiệu NESTY giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "clothes",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/3qHNTyso6P"
+      },
+      "thumbnailUrl": "https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-viet-nam-cover.jpeg",
+      "thumbnailSource": {
+        "name": "Traveloka Blog (ImageKit CDN)",
+        "url": "https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-viet-nam-cover.jpeg"
+      },
+      "detailPage": "./tin-tuc/cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026.html"
+    }
+  ]
+}

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
-    <title>Lịch Vạn Niên 2026 - Lịch Âm Dương | Xem Ngày Tốt Xấu</title>
-    <meta name="description" content="Lịch vạn niên 2026 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng. Lịch vạn niên Việt Nam chính xác nhất.">
-    <meta name="keywords" content="lịch vạn niên, lịch âm dương, lịch vạn niên 2026, xem ngày tốt, ngày đẹp, giờ hoàng đạo, lịch âm dương 2026">
+    <title>Lịch Vạn Niên 2027 - Lịch Âm Dương | Xem Ngày Tốt Xấu</title>
+    <meta name="description" content="Lịch vạn niên 2027 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng. Lịch vạn niên Việt Nam chính xác nhất.">
+    <meta name="keywords" content="lịch vạn niên, lịch âm dương, lịch vạn niên 2027, xem ngày tốt, ngày đẹp, giờ hoàng đạo, lịch âm dương 2027">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://saptet.vn/lich-van-nien.html">
-    <meta property="og:title" content="Lịch Vạn Niên 2026 - Lịch Âm Dương | Xem Ngày Tốt Xấu">
-    <meta property="og:description" content="Lịch vạn niên 2026 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng.">
+    <meta property="og:title" content="Lịch Vạn Niên 2027 - Lịch Âm Dương | Xem Ngày Tốt Xấu">
+    <meta property="og:description" content="Lịch vạn niên 2027 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng.">
     <meta property="og:image" content="https://saptet.vn/assets/images/img_sharing.png">
     
     <!-- Canonical URL -->
@@ -35,13 +35,13 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Lịch Vạn Niên 2026 - Lịch Âm Dương",
-        "description": "Lịch vạn niên 2026 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng",
+        "name": "Lịch Vạn Niên 2027 - Lịch Âm Dương",
+        "description": "Lịch vạn niên 2027 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng",
         "url": "https://saptet.vn/lich-van-nien.html",
         "inLanguage": "vi",
         "isPartOf": {
             "@type": "WebSite",
-            "name": "Sắp Tết",
+            "name": "Sắp Tết - Đếm Ngược Tết",
             "url": "https://saptet.vn"
         },
         "about": {
@@ -1700,7 +1700,7 @@
     <main>
         <section class="calendar-hero">
             <div class="container">
-                <h1>Lịch Vạn Niên 2026</h1>
+                <h1>Lịch Vạn Niên 2027</h1>
                 <p class="subtitle">Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo</p>
             </div>
         </section>
@@ -1811,7 +1811,7 @@
             'Bảy', 'Tám', 'Chín', 'Mười', 'Mười một', 'Chạp'
         ];
         
-        let currentDate = new Date(2026, 0, 1); // Initialize to January 2026
+        let currentDate = new Date(); // Initialize to current date
         let selectedDate = null;
         
         // Tính toán các ngày Tết / sự kiện âm lịch từ EVENTS_DATA (đầy đủ, chính xác)
@@ -1996,6 +1996,40 @@
                 calendarsContainer.appendChild(monthWrapper);
             }
         }
+
+        function selectDateInCalendar(date, shouldScroll = false) {
+            const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            selectedDate = normalizedDate;
+            updateLunarInfo(normalizedDate);
+
+            document.querySelectorAll('.calendar-day').forEach(d => {
+                d.classList.remove('selected');
+                d.setAttribute('aria-selected', 'false');
+            });
+
+            const year = String(normalizedDate.getFullYear());
+            const month = String(normalizedDate.getMonth() + 1);
+            const day = String(normalizedDate.getDate());
+            const baseSelector = `.calendar-day[data-year="${year}"][data-month="${month}"][data-day="${day}"]`;
+
+            let targetElement = document.querySelector(`${baseSelector}:not(.other-month)`);
+            if (!targetElement) {
+                targetElement = document.querySelector(baseSelector);
+            }
+
+            if (targetElement) {
+                targetElement.classList.add('selected');
+                targetElement.setAttribute('aria-selected', 'true');
+
+                if (shouldScroll) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                        inline: 'center'
+                    });
+                }
+            }
+        }
         
         function createDayElement(day, isOtherMonth, year, month) {
             const dayElement = document.createElement('div');
@@ -2032,6 +2066,10 @@
             } catch (e) {
                 lunarInfo = { day: 1, month: 1 };
             }
+
+            dayElement.dataset.year = String(solarDate.getFullYear());
+            dayElement.dataset.month = String(solarDate.getMonth() + 1);
+            dayElement.dataset.day = String(solarDate.getDate());
             
             const lunarMonth = lunarMonths[lunarInfo.month - 1] || lunarMonths[0];
             const lunarDateStr = lunarInfo.day === 1 
@@ -2569,10 +2607,27 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', () => {
-            generateCalendar();
-            updateEventsUpcoming();
+            const today = new Date();
+            const normalizedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            currentDate = new Date(normalizedToday);
+
             const yearSelect = document.getElementById('year-select');
-            const year = yearSelect ? parseInt(yearSelect.value, 10) : new Date().getFullYear();
+            if (yearSelect) {
+                const todayYear = String(normalizedToday.getFullYear());
+                const hasTodayYear = Array.from(yearSelect.options).some(opt => opt.value === todayYear);
+                if (!hasTodayYear) {
+                    const option = document.createElement('option');
+                    option.value = todayYear;
+                    option.textContent = todayYear;
+                    yearSelect.appendChild(option);
+                }
+                yearSelect.value = todayYear;
+            }
+
+            generateCalendar();
+            selectDateInCalendar(normalizedToday);
+            updateEventsUpcoming();
+            const year = yearSelect ? parseInt(yearSelect.value, 10) : normalizedToday.getFullYear();
             updateEventsInYearList(year);
             
             // Dialog event listeners
@@ -2620,35 +2675,27 @@
             if (goToTodayBtn) {
                 goToTodayBtn.addEventListener('click', () => {
                     const today = new Date();
-                    currentDate = new Date(today);
+                    const normalizedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    currentDate = new Date(normalizedToday);
                     
                     // Cập nhật year selector
                     const yearSelect = document.getElementById('year-select');
                     if (yearSelect) {
-                        yearSelect.value = today.getFullYear();
+                        const todayYear = String(normalizedToday.getFullYear());
+                        const hasTodayYear = Array.from(yearSelect.options).some(opt => opt.value === todayYear);
+                        if (!hasTodayYear) {
+                            const option = document.createElement('option');
+                            option.value = todayYear;
+                            option.textContent = todayYear;
+                            yearSelect.appendChild(option);
+                        }
+                        yearSelect.value = todayYear;
                     }
                     
                     // Regenerate calendar
                     generateCalendar();
-                    updateEventsInYearList(today.getFullYear());
-                    
-                    // Scroll đến ngày hôm nay sau một chút delay để calendar render xong
-                    setTimeout(() => {
-                        const todayElement = document.querySelector('.calendar-day.today');
-                        if (todayElement) {
-                            todayElement.scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'center',
-                                inline: 'center'
-                            });
-                            
-                            // Highlight ngày hôm nay
-                            todayElement.style.animation = 'none';
-                            setTimeout(() => {
-                                todayElement.style.animation = '';
-                            }, 10);
-                        }
-                    }, 100);
+                    selectDateInCalendar(normalizedToday, true);
+                    updateEventsInYearList(normalizedToday.getFullYear());
                 });
             }
             

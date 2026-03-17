@@ -4,7 +4,7 @@
 # Script để khởi chạy local server cho website
 
 echo "🎊 Đang khởi chạy Sắp Tết 2026 Local Server..."
-echo "📅 Lịch nghỉ Tết 2026: 9 ngày từ 14/2 - 22/2/2026"
+echo "📅 Lịch nghỉ Tết 2027: đang chờ thông báo chính thức"
 echo ""
 
 # Hàm kiểm tra port có đang được sử dụng không

@@ -1,4 +1,4 @@
-// Sắp Tết 2026 - Enhanced Countdown and Calendar
+// Sắp Tết 2027 - Enhanced Countdown and Calendar
 
 // Tết dates for the next few years (Vietnamese Lunar New Year)
 // Set to 00:00:00 Vietnam time (UTC+7)
@@ -140,7 +140,9 @@ function getRandomGreeting() {
     return tetGreetings[currentGreetingIndex];
 }
 
-// ===== KIỂM TRA ĐANG TRONG NGÀY TẾT (Mùng 1-10) =====
+const MAX_MUNG_TET_DAY = 6;
+
+// ===== KIỂM TRA ĐANG TRONG NGÀY TẾT (Mùng 1-6) =====
 function checkMungTet() {
     try {
         // Sử dụng calculateLunarDate từ lunar-calendar.js
@@ -148,8 +150,8 @@ function checkMungTet() {
             const today = new Date();
             const lunar = calculateLunarDate(today);
             
-            // Nếu là tháng 1 âm lịch và ngày từ 1-10 → đang trong Mùng Tết
-            if (lunar && lunar.month === 1 && lunar.day >= 1 && lunar.day <= 10) {
+            // Nếu là tháng 1 âm lịch và ngày từ 1-6 → đang trong Mùng Tết
+            if (lunar && lunar.month === 1 && lunar.day >= 1 && lunar.day <= MAX_MUNG_TET_DAY) {
                 return {
                     isMungTet: true,
                     day: lunar.day,
@@ -204,7 +206,7 @@ function updateCountdown() {
     // Update the year display
     if (tetYearEl) tetYearEl.textContent = nextTet.year;
     
-    // ===== KIỂM TRA MÙNG TẾT (ngày 1-10 tháng 1 âm lịch) =====
+    // ===== KIỂM TRA MÙNG TẾT (ngày 1-6 tháng 1 âm lịch) =====
     const mungTetInfo = checkMungTet();
     
     if (mungTetInfo.isMungTet) {
@@ -611,7 +613,7 @@ function solarToLunarFallback(solarDate) {
         },
         2026: {
             tetDate: new Date(2026, 1, 17), // Feb 17, 2026
-            monthDays: [29, 30, 29, 30, 29, 30, 30, 30, 29, 30, 29, 30],
+            monthDays: [30, 29, 30, 29, 29, 30, 29, 29, 30, 30, 30, 29],
             leapMonth: null,
             leapMonthDays: 0
         }
@@ -940,9 +942,9 @@ function getNextEventDate(month, day, currentYear = null) {
 const eventsData = {
     'tet': {
         name: 'Tết Nguyên Đán',
-        getDate: () => getNextEventDate(2, 17), // February 17, 2026
+        getDate: () => getNextEventDate(2, 6), // February 6, 2027
         icon: '🏮',
-        description: 'Đón Tết Bính Ngọ',
+        description: 'Đón Tết Đinh Mùi',
         background: 'linear-gradient(135deg, #ff6b6b, #ff8e8e)'
     },
     'valentine': {
@@ -1936,7 +1938,7 @@ function cloneCountdownSection() {
     const watermark = document.createElement('div');
     watermark.className = 'countdown-preview-watermark';
     watermark.innerHTML = `
-        <p class="watermark-text">Sắp Tết 2026 - Đếm Ngược Tết Nguyên Đán</p>
+        <p class="watermark-text">Sắp Tết 2027 - Đếm Ngược Tết Nguyên Đán</p>
         <p class="watermark-url">saptet.vn</p>
     `;
     clone.appendChild(watermark);
@@ -2160,8 +2162,8 @@ document.addEventListener('DOMContentLoaded', function() {
         option.addEventListener('click', function() {
             const shareType = this.getAttribute('data-share');
             const pageUrl = window.location.href;
-            const pageTitle = encodeURIComponent('🎊 Sắp Tết 2026 - Đếm Ngược Đến Tết Nguyên Đán');
-            const pageText = encodeURIComponent('Cùng đếm ngược đến Tết Bính Ngọ 2026! 🏮');
+            const pageTitle = encodeURIComponent('🎊 Sắp Tết 2027 - Đếm Ngược Đến Tết Nguyên Đán');
+            const pageText = encodeURIComponent('Cùng đếm ngược đến Tết Đinh Mùi 2027! 🏮');
             
             let shareUrl = '';
             

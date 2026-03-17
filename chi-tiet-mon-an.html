@@ -1060,11 +1060,11 @@
                             window.dishImageCache[id] = data.image;
                             // Update the image if it's already rendered
                             const dishImage = document.getElementById('dish-image');
-                            if (dishImage && dishImage.src.includes('ic_app.webp')) {
+                            if (dishImage && dishImage.src.includes('ic_app.png')) {
                                 loadImageSafely(dishImage, [
                                     data.image,
                                     `assets/images/foods/${id}.jpg`,
-                                    `assets/images/ic_app.webp`
+                                    `assets/images/ic_app.png`
                                 ]);
                             }
                         } else {
@@ -1074,14 +1074,14 @@
                     })
                     .catch(error => {
                         console.log(`Could not load image for ${id}:`, error);
-                        window.dishImageCache[id] = `assets/images/ic_app.webp`;
+                        window.dishImageCache[id] = `assets/images/ic_app.png`;
                     });
                 
                 // Return placeholder immediately while loading
-                return `assets/images/ic_app.webp`;
+                return `assets/images/ic_app.png`;
             } catch (error) {
                 console.log(`Error getting image for ${id}:`, error);
-                return `assets/images/ic_app.webp`;
+                return `assets/images/ic_app.png`;
             }
         }
         
