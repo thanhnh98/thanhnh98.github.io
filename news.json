@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-03-12T00:00:00Z",
+  "generatedAt": "2026-03-15T00:00:00Z",
   "items": [
     {
       "id": "news-001",
@@ -97,7 +97,12 @@
       "category": "economy",
       "publishedAt": "2026-03-14T09:00:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["cpi", "gia-tieu-dung", "kinh-te-vi-mo", "chi-tieu-ho-gia-dinh"],
+      "tags": [
+        "cpi",
+        "gia-tieu-dung",
+        "kinh-te-vi-mo",
+        "chi-tieu-ho-gia-dinh"
+      ],
       "source": {
         "name": "Tổng cục Thống kê",
         "url": "https://www.gso.gov.vn/"
@@ -135,7 +140,12 @@
       "category": "economy",
       "publishedAt": "2026-03-14T13:30:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["ty-gia", "ngan-hang-nha-nuoc", "nhap-khau", "quan-tri-rui-ro"],
+      "tags": [
+        "ty-gia",
+        "ngan-hang-nha-nuoc",
+        "nhap-khau",
+        "quan-tri-rui-ro"
+      ],
       "source": {
         "name": "Ngân hàng Nhà nước",
         "url": "https://www.sbv.gov.vn/"
@@ -173,7 +183,12 @@
       "category": "travel",
       "publishedAt": "2026-03-15T08:45:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["hang-khong", "du-lich-noi-dia", "ve-may-bay", "cao-diem-di-lai"],
+      "tags": [
+        "hang-khong",
+        "du-lich-noi-dia",
+        "ve-may-bay",
+        "cao-diem-di-lai"
+      ],
       "source": {
         "name": "Cục Hàng không Việt Nam",
         "url": "https://www.caa.gov.vn/"
@@ -209,9 +224,14 @@
       "title": "Vé tàu đường dài: Lịch mở bán và áp lực cao điểm",
       "summary": "Áp lực đặt vé tàu đường dài tăng sớm ở các tuyến nóng, người đi lại nên chuẩn bị nhiều phương án lịch trình linh hoạt.",
       "category": "transport",
-      "publishedAt": "2026-03-16T10:10:00Z",
+      "publishedAt": "2026-03-14T10:10:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["ve-tau", "duong-sat", "cao-diem-di-lai", "di-chuyen-lien-tinh"],
+      "tags": [
+        "ve-tau",
+        "duong-sat",
+        "cao-diem-di-lai",
+        "di-chuyen-lien-tinh"
+      ],
       "source": {
         "name": "Tổng công ty Đường sắt Việt Nam",
         "url": "https://dsvn.vn/"
@@ -249,7 +269,12 @@
       "category": "economy",
       "publishedAt": "2026-03-16T08:20:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["lao-dong", "phuc-loi", "doanh-nghiep", "nhan-su"],
+      "tags": [
+        "lao-dong",
+        "phuc-loi",
+        "doanh-nghiep",
+        "nhan-su"
+      ],
       "source": {
         "name": "Bộ Lao động - Thương binh và Xã hội",
         "url": "https://www.molisa.gov.vn/"
@@ -287,7 +312,12 @@
       "category": "society",
       "publishedAt": "2026-03-16T08:45:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["thoi-tiet", "logistics", "mua-sam", "du-bao"],
+      "tags": [
+        "thoi-tiet",
+        "logistics",
+        "mua-sam",
+        "du-bao"
+      ],
       "source": {
         "name": "Trung tâm Dự báo KTTV Quốc gia",
         "url": "https://nchmf.gov.vn/"
@@ -325,7 +355,12 @@
       "category": "lifestyle",
       "publishedAt": "2026-03-16T09:00:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["an-toan-thuc-pham", "le-hoi", "tieu-dung", "suc-khoe"],
+      "tags": [
+        "an-toan-thuc-pham",
+        "le-hoi",
+        "tieu-dung",
+        "suc-khoe"
+      ],
       "source": {
         "name": "Cục An toàn thực phẩm",
         "url": "https://vfa.gov.vn/"
@@ -363,7 +398,12 @@
       "category": "energy",
       "publishedAt": "2026-03-16T09:15:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["dien-nang", "nang-nong", "phu-tai", "tiet-kiem-dien"],
+      "tags": [
+        "dien-nang",
+        "nang-nong",
+        "phu-tai",
+        "tiet-kiem-dien"
+      ],
       "source": {
         "name": "EVN",
         "url": "https://www.evn.com.vn/"
@@ -401,7 +441,12 @@
       "category": "travel",
       "publishedAt": "2026-03-16T09:30:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["du-lich", "dat-tour-som", "gia-dich-vu", "di-lai"],
+      "tags": [
+        "du-lich",
+        "dat-tour-som",
+        "gia-dich-vu",
+        "di-lai"
+      ],
       "source": {
         "name": "Cục Du lịch Quốc gia Việt Nam",
         "url": "https://vietnamtourism.gov.vn/"
@@ -439,7 +484,12 @@
       "category": "commerce",
       "publishedAt": "2026-03-16T09:45:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["thuong-mai-dien-tu", "ban-le-online", "ton-kho", "cao-diem-mua-sam"],
+      "tags": [
+        "thuong-mai-dien-tu",
+        "ban-le-online",
+        "ton-kho",
+        "cao-diem-mua-sam"
+      ],
       "source": {
         "name": "Bộ Công Thương",
         "url": "https://www.moit.gov.vn/"
@@ -477,7 +527,12 @@
       "category": "technology",
       "publishedAt": "2026-03-16T10:00:00Z",
       "author": "Bản Tin Editorial",
-      "tags": ["sap-tet-2027", "ung-dung-di-dong", "cap-nhat-san-pham", "trai-nghiem-nguoi-dung"],
+      "tags": [
+        "sap-tet-2027",
+        "ung-dung-di-dong",
+        "cap-nhat-san-pham",
+        "trai-nghiem-nguoi-dung"
+      ],
       "source": {
         "name": "Sắp Tết",
         "url": "https://saptet.vn/"
@@ -714,8 +769,8 @@
         "shopId": "27383556793",
         "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
         "images": [],
-        "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực",
-        "description": "Quạt mini cầm tay, phù hợp mùa nắng nóng.",
+        "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+        "description": "Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt.",
         "type": "shopee",
         "category": "bachhoa",
         "coinBonus": 10,

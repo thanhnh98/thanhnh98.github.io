@@ -32,12 +32,36 @@ function setLogEventFunction(logEvent) {
  * @param {object} eventParams - Additional event parameters
  */
 function trackEvent(eventName, eventParams = {}) {
-    const fullEventName = `web_${eventName}`;
+    if (!eventName || typeof eventName !== 'string') {
+        console.warn('Analytics tracking skipped: invalid event name', eventName);
+        return;
+    }
+
+    let normalizedEventName = eventName.startsWith('web_') ? eventName.slice(4) : eventName;
+    const normalizedParams = { ...(eventParams || {}) };
+
+    // Backward-compatible mapping for news detail page view
+    if (normalizedEventName === 'news_article_view') {
+        normalizedEventName = 'news_item_view';
+    }
+
+    // Ensure expected title param for news item view events
+    if (normalizedEventName === 'news_item_view') {
+        const inferredTitle =
+            normalizedParams.title ||
+            normalizedParams.article_title ||
+            document.querySelector('.news-title')?.textContent?.trim() ||
+            document.title ||
+            '';
+        normalizedParams.title = inferredTitle;
+    }
+
+    const fullEventName = `web_${normalizedEventName}`;
     
     // Firebase Analytics
     if (isAnalyticsAvailable() && logEventFunction) {
         try {
-            logEventFunction(analyticsInstance, fullEventName, eventParams);
+            logEventFunction(analyticsInstance, fullEventName, normalizedParams);
         } catch (error) {
             console.warn('Analytics tracking error:', error);
         }
@@ -45,7 +69,7 @@ function trackEvent(eventName, eventParams = {}) {
     
     // Console log for debugging
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        console.log(`[Analytics] ${fullEventName}`, eventParams);
+        console.log(`[Analytics] ${fullEventName}`, normalizedParams);
     }
 }
 

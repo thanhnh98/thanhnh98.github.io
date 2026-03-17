@@ -37,7 +37,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&family=Newsreader:opsz,wght@12..16,400;12..16,500;12..16,600;12..16,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/colors.css" />
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
@@ -102,55 +102,140 @@
         }
 
         .news-top {
-            padding: clamp(1rem, 2.5vw, 1.5rem) 1rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            background: #fff;
+            padding: clamp(1.5rem, 4vw, 2.5rem) 1rem;
+            background: linear-gradient(135deg, #fffdf8 0%, #fff9ed 50%, #fff 100%);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.12);
+            box-shadow: 0 4px 24px rgba(139, 69, 19, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-top::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            border-radius: 0 4px 4px 0;
         }
 
         .news-breadcrumb {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.82rem;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
             color: var(--color-text-secondary);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.01em;
         }
 
         .news-breadcrumb a {
             color: var(--color-primary);
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
+            transition: color 0.2s ease, opacity 0.2s ease;
         }
 
         .news-breadcrumb a:hover {
-            text-decoration: underline;
+            color: var(--color-accent-primary);
+            opacity: 0.9;
+        }
+
+        .news-breadcrumb [aria-hidden="true"] {
+            color: rgba(139, 69, 19, 0.4);
+            font-weight: 400;
         }
 
         .news-top-row {
             display: flex;
             flex-direction: column;
-            gap: 0.85rem;
+            gap: 1.25rem;
+        }
+
+        .news-top-title {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .news-top-title-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .news-top-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            flex-shrink: 0;
+            color: var(--color-primary);
+            opacity: 0.9;
         }
 
         .news-top-title h1 {
-            font-size: clamp(1.45rem, 3.2vw, 2rem);
-            margin-bottom: 0.45rem;
-            line-height: 1.25;
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: clamp(1.65rem, 3.8vw, 2.25rem);
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
             color: var(--color-text-primary);
+            letter-spacing: -0.02em;
         }
 
         .news-top-title p {
-            max-width: 78ch;
+            max-width: 72ch;
             margin: 0;
-            line-height: 1.65;
+            line-height: 1.7;
             color: var(--color-text-secondary);
-            font-size: 0.96rem;
+            font-size: 0.9375rem;
         }
 
         .news-top-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.55rem;
+            gap: 0.5rem;
+        }
+
+        .news-top-actions .news-link {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.125rem;
+            font-size: 0.875rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #fff 0%, #fffbf5 100%);
+            border: 1px solid rgba(230, 0, 38, 0.2);
+            color: var(--color-primary);
+            font-weight: 700;
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+        }
+
+        .news-top-actions .news-link:hover {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff5eb 100%);
+            border-color: rgba(230, 0, 38, 0.4);
+            box-shadow: 0 4px 12px rgba(230, 0, 38, 0.12);
+        }
+
+        .news-top-actions .news-link:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 0, 38, 0.25);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .news-top-actions .news-link,
+            .news-breadcrumb a {
+                transition: none;
+            }
+        }
+
+        .news-top-actions .news-link svg {
+            width: 1rem;
+            height: 1rem;
+            flex-shrink: 0;
         }
 
         @media (min-width: 900px) {
@@ -158,10 +243,12 @@
                 flex-direction: row;
                 align-items: flex-start;
                 justify-content: space-between;
+                gap: 1.5rem;
             }
 
             .news-top-actions {
                 justify-content: flex-end;
+                flex-shrink: 0;
             }
         }
 
@@ -649,11 +736,26 @@
                 </nav>
                 <div class="news-top-row">
                     <div class="news-top-title">
-                        <h1 id="news-title">Bản Tin Mới Nhất</h1>
+                        <div class="news-top-title-header">
+                            <svg class="news-top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                                <path d="M18 14h-8"/>
+                                <path d="M15 18h-5"/>
+                                <path d="M10 6h8v4h-8V6Z"/>
+                            </svg>
+                            <h1 id="news-title">Bản Tin Mới Nhất</h1>
+                        </div>
                         <p>Tổng hợp tin tức mới nhất, bài báo mới và tin hot trong ngày. Đọc tin tức hôm nay, cập nhật tin tức 24h trình bày gọn gàng để bạn theo dõi nhanh mỗi ngày.</p>
                     </div>
                     <div class="news-top-actions">
-                        <a class="news-link secondary" href="#news-list-title">Xem tất cả bài</a>
+                        <a class="news-link" href="#news-list-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M4 6h16"/>
+                                <path d="M4 12h16"/>
+                                <path d="M4 18h16"/>
+                            </svg>
+                            Xem tất cả bài
+                        </a>
                     </div>
                 </div>
             </div>
@@ -959,7 +1061,7 @@
             if (!element || !window.webAnalytics || !window.webAnalytics.trackEvent) return;
             var articleTitle = element.getAttribute('data-article-title') || '';
             var articleSlug = element.getAttribute('data-article-slug') || toTitleSlug(articleTitle);
-            window.webAnalytics.trackEvent('news_article_open', {
+            window.webAnalytics.trackEvent('news_item', {
                 title: articleSlug,
                 article_id: element.getAttribute('data-article-id') || '',
                 article_title: articleTitle,
