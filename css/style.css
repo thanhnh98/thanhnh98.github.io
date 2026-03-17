@@ -3708,6 +3708,219 @@ main {
     color: var(--color-text-secondary);
 }
 
+/* Home News Preview Section - Bản tin mới nhất (phân biệt màu với shop) */
+.home-news-preview-section {
+    padding: 2.5rem 0;
+    background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 50%, #E2E8F0 100%);
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid #94A3B8;
+    border-bottom: 3px solid #94A3B8;
+}
+
+.home-news-preview-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #3B82F6 0%, #60A5FA 100%);
+    opacity: 0.9;
+}
+
+.home-news-preview-section .container--news-preview {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1rem;
+}
+
+.home-news-preview-title {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    margin-bottom: 0.25rem;
+    color: #1E40AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.home-news-preview-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #3B82F6;
+}
+
+.home-news-preview-subtitle {
+    text-align: center;
+    color: #475569;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.home-news-grid {
+    margin-bottom: 1.25rem;
+}
+
+.home-news-loading {
+    text-align: center;
+    padding: 1.5rem;
+    color: #64748B;
+    font-size: 0.9rem;
+}
+
+.home-news-empty {
+    text-align: center;
+    padding: 1.5rem;
+    color: #64748B;
+}
+
+.home-news-more-wrap {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.home-news-more-btn {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.home-news-more-btn:hover {
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.home-news-more-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+
+/* Featured card - 1 tin mới nhất, layout ngang */
+.home-news-card--featured {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(30, 64, 175, 0.12);
+    border: 1px solid #E2E8F0;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.home-news-card--featured:hover {
+    box-shadow: 0 8px 28px rgba(30, 64, 175, 0.18);
+    border-color: #93C5FD;
+}
+
+.home-news-card {
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.home-news-card-link {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .home-news-card-link {
+        grid-template-columns: 320px minmax(0, 1fr);
+    }
+}
+
+.home-news-card-thumb-wrap {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #F1F5F9;
+}
+
+@media (min-width: 768px) {
+    .home-news-card--featured .home-news-card-thumb-wrap {
+        aspect-ratio: auto;
+        min-height: 200px;
+    }
+}
+
+.home-news-card-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.home-news-card:hover .home-news-card-thumb {
+    transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-news-card:hover .home-news-card-thumb {
+        transform: none;
+    }
+}
+
+.home-news-card-body {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-news-card--featured .home-news-card-body {
+    padding: 1.25rem 1.5rem;
+}
+
+.home-news-card-date {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748B;
+    margin-bottom: 0.35rem;
+}
+
+.home-news-card-title {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin: 0 0 0.5rem;
+    color: #1E293B;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.home-news-card--featured .home-news-card-title {
+    font-size: 1.15rem;
+    -webkit-line-clamp: 2;
+}
+
+.home-news-card-summary {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #475569;
+    margin: 0 0 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.home-news-card-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #3B82F6;
+}
+
 /* Home Shop Preview Section - slider 4 item/slide, gọn + decor Tết */
 .home-shop-preview-section {
     padding: 2.5rem 0;
