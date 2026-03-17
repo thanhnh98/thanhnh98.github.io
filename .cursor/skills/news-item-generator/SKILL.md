@@ -59,7 +59,7 @@ Collect or infer:
 - `summary`
 - `category`
 - `publishedAt` (ISO-8601) — **bắt buộc, xem quy tắc bên dưới**
-- `author`
+- `author` (default: "Sắp Tết Editor")
 
 ### publishedAt Rule (Bắt buộc — không vi phạm)
 
@@ -110,6 +110,12 @@ If a non-critical field is missing, infer from trusted context. Ask user only wh
 - The URL should point to the original media/source page or direct asset URL.
 - If image comes from first-party assets, set source name to the first-party brand/site.
 - Do not publish thumbnail without attribution metadata.
+
+### Thumbnail License Rule (Legal Compliance)
+
+- **Prefer:** Wikimedia Commons (CC, Public Domain), Unsplash, Pexels—images with clear reuse licenses.
+- **Avoid:** Images from commercial newspapers (thoibaotaichinhvietnam.vn, kinhtedothi.vn, tienphong.vn, vnexpress.net, etc.) unless you have explicit permission.
+- If no suitable licensed image exists, use a topic-aligned Wikimedia/stock image. Never use newspaper images without permission.
 
 ## Topic Scope and Naming Rules (Required)
 
@@ -163,20 +169,22 @@ Each detail page must include:
 2. H1 + metadata row
 3. Cover image
 4. Summary paragraph
-5. TOC block
-6. At least 3 content sections with meaningful paragraphs
-7. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến", "Điểm đáng chú ý")
-8. Affiliate `ads-card` block in article body:
+5. **Economy disclaimer** (required for `category: economy` only): Insert `<aside class="news-disclaimer">` block immediately after summary, before TOC. Content: "Thông tin giá vàng, xăng dầu, tỷ giá, CPI trong bài chỉ mang tính tham khảo, không phải tư vấn đầu tư. Vui lòng kiểm tra tại nguồn chính thức (DOJI, NHNN, GSO, Bộ Công Thương) trước khi quyết định."
+6. TOC block
+7. At least 3 content sections with meaningful paragraphs
+8. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến", "Điểm đáng chú ý")
+9. Affiliate `ads-card` block in article body:
    - include `data-random-affiliate="true"` (in-body contextual block)
-9. Post-conclusion affiliate `ads-card`:
+10. Post-conclusion affiliate `ads-card`:
    - add one more `data-random-affiliate="true"` block ngay sau phần kết luận
-10. Placement override rule (required):
+11. Placement override rule (required):
    - Default layout keeps 2 affiliate blocks (one in-body + one post-conclusion).
    - If user explicitly requests a different placement/count (e.g., only in-body, remove post-conclusion), user instruction takes priority.
    - When override is applied, keep exactly the requested placement/count and avoid leaving duplicate blocks.
-11. Source reference block with links
-12. CTA row at bottom
-13. Script include for random affiliate:
+12. Source reference block with links
+13. **Standard disclaimer** before CTA: "Bài viết mang tính chất tổng hợp và chia sẻ thông tin, không phải lời khuyên chuyên môn."
+14. CTA row at bottom
+15. Script include for random affiliate:
    - `../js/news-affiliate-random.js`
 
 ## SEO Metadata Rules (Required)
@@ -291,6 +299,22 @@ Adjust language and evidence depth by class:
 - Reject outputs that lack domain-specific evidence style (numbers for economy, usage flows for technology, audience dynamics for entertainment, behavioral framing for society).
 - If topic class is unclear, add a short internal classification note first, then write.
 
+## Content Writing Rules (Aggregation & Legal Compliance)
+
+When drafting article content, follow these rules to avoid copyright risk and ensure legal compliance:
+
+- **Rewrite 100%:** Never copy verbatim from any source. Summarize and express in your own words.
+- **Minimum sources:** Use at least 2 trusted sources; prefer 3+ when possible. Prioritize: official/government, institutional, reputable press.
+- **Verify before writing:** Only include information verifiable from sources. Do not invent numbers, timestamps, or quotes.
+- **Title policy:** Accurate, reflects content; may be engaging but must not be clickbait or misleading.
+- **Section naming:** Use "Góc nhìn biên tập" (editorial perspective) or "Phân tích khách quan dựa trên dữ liệu"—not "Nhận định cá nhân" (personal opinion).
+- **No professional advice:** Do not give financial, medical, or legal advice. Use neutral, observational language.
+- **No absolute claims:** Avoid definitive claims unless backed by official sources.
+- **Copyright:** Do not use copyrighted content (images, long quotes). Short quotes must be attributed. For images, prefer Wikimedia Commons (CC), Unsplash, Pexels.
+- **Emoji:** Use sparingly; avoid for economy, policy, finance topics.
+- **Article length:** Minimum 400 words; target 400–800 words. Avoid thin content (150–300 words).
+- **Footer disclaimer:** Every article must end with: "Bài viết mang tính chất tổng hợp và chia sẻ thông tin, không phải lời khuyên chuyên môn."
+
 ## Verification and Source Integrity (Critical)
 
 - News content must be factual and traceable to trusted sources.
@@ -393,6 +417,9 @@ Tagging rule:
 - article includes verified primary source references
 - thumbnail is topic-relevant (no off-topic random image)
 - thumbnail source attribution exists (`thumbnailSource.name`, `thumbnailSource.url`)
+- thumbnail uses licensed source (Wikimedia Commons, Unsplash, Pexels preferred; avoid newspaper images without permission)
+- economy articles include `news-disclaimer` block after summary
+- standard disclaimer at end of article: "Bài viết mang tính chất tổng hợp và chia sẻ thông tin, không phải lời khuyên chuyên môn."
 - section blueprint matches topic class (technology/economy/entertainment/society/...)
 - section names are not generic-cloned from unrelated domains
 - domain evidence style is correct (e.g., economy has indicators; technology has how-to flow)
