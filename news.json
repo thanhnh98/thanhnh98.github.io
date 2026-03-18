@@ -828,6 +828,96 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1280px-Flag_of_Vietnam.svg.png"
       },
       "detailPage": "./tin-tuc/lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026.html"
+    },
+    {
+      "id": "news-020",
+      "slug": "gia-vang-hom-nay-ngay-18-03-2026",
+      "title": "Giá vàng hôm nay 18/03/2026: DOJI niêm yết SJC 180,0-183,0 triệu đồng/lượng, thế giới hồi phục trên 5.000 USD",
+      "summary": "Mốc 09:10 ngày 18/03/2026, DOJI niêm yết vàng SJC tại Hà Nội 180,0-183,0 triệu đồng/lượng, giảm nhẹ 100.000 đồng so với phiên 17/03. Giá vàng thế giới hồi phục lên ~5.001 USD/ounce sau phiên giảm mạnh trước đó, chênh lệch trong nước-thế giới duy trì khoảng 27 triệu đồng/lượng.",
+      "category": "economy",
+      "publishedAt": "2026-03-18T10:00:00Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "doji",
+        "thi-truong-vang",
+        "gia-vang-the-gioi",
+        "fed"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-18-03-2026.html",
+        "affiliateUrl": "https://s.shopee.vn/7VBj7DwXdp",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "294568",
+        "shopId": "26557885515",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-82621-mlvl9ee7zv9ee0",
+        "images": [],
+        "name": "Thùng 48 Hộp Sữa Yến Mạch TH true milk OAT hương vị Sô Cô La 180ml",
+        "description": "Gợi ý mua sắm từ Shopee.",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/7VBj7DwXdp"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-18-03-2026.html"
+    },
+    {
+      "id": "news-021",
+      "slug": "goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026",
+      "title": "Gợi ý quà tặng tinh tế cho các dịp đặc biệt năm 2026: Từ 8/3 đến Giỗ Tổ và 30/4",
+      "summary": "Tổng hợp ý tưởng quà tặng ý nghĩa cho các dịp lễ sắp tới: 8/3, Giỗ Tổ Hùng Vương (26/4), 30/4-1/5 và sinh nhật người thân. Từ quà handmade dưới 200.000 đồng đến set quà cao cấp, bài viết gợi ý theo từng ngân sách và đối tượng nhận quà.",
+      "category": "lifestyle",
+      "publishedAt": "2026-03-18T10:30:00Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "qua-tang",
+        "dip-dac-biet",
+        "qua-tang-tinh-te",
+        "gio-to-hung-vuong",
+        "30-4-1-5",
+        "mua-sam"
+      ],
+      "source": {
+        "name": "Sắp Tết Editor (Tổng hợp)",
+        "url": "https://saptet.vn/tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html",
+        "affiliateUrl": "https://s.shopee.vn/5VPmVorF7G",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "094677",
+        "shopId": "23889045695",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m4zit0l8y4ub66",
+        "images": [],
+        "name": "Chocolate Truffle Set quà tặng Valentine (đã gồm hộp quà + túi + thiệp)",
+        "description": "Gợi ý mua sắm từ Shopee.",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/5VPmVorF7G"
+      },
+      "thumbnailUrl": "https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg",
+      "thumbnailSource": {
+        "name": "Pixabay",
+        "url": "https://pixabay.com/photos/gift-package-loop-made-surprise-1420830/"
+      },
+      "detailPage": "./tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html"
     }
   ]
 }
