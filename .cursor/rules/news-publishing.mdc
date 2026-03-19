@@ -22,3 +22,20 @@ alwaysApply: false
 - `news.json` → `publishedAt` (ISO-8601)
 - `tin-tuc/index.html` → hiển thị từ `news.json` qua `formatDate(post.publishedAt)`
 - `tin-tuc/<slug>.html` → news-meta "Đăng: DD/MM/YYYY" phải khớp với `publishedAt`
+
+## Cover image đồng bộ (Bắt buộc)
+
+Khi user nói "ảnh cover cho bài báo", hiểu mặc định là **toàn bộ ảnh đại diện của bài** phải dùng cùng một nguồn ảnh:
+
+- `news.json` → `thumbnailUrl` (ảnh thumbnail ngoài listing)
+- `news.json` → `thumbnailSource.name` và `thumbnailSource.url` (nguồn ảnh)
+- `tin-tuc/<slug>.html` → ảnh cover trong nội dung bài (`.news-cover`)
+- `tin-tuc/<slug>.html` → `og:image`
+- `tin-tuc/<slug>.html` → `twitter:image`
+- `tin-tuc/<slug>.html` → JSON-LD `image`
+
+### Quy tắc áp dụng
+
+- Khi đổi cover, phải cập nhật **đồng thời tất cả vị trí trên**, không để lệch ảnh giữa listing/detail/social.
+- Nếu user chỉ đưa 1 URL ảnh, dùng URL đó cho toàn bộ vị trí cover của bài.
+- Không đổi `publishedAt` khi chỉ thay ảnh cover.

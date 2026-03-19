@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-03-15T00:00:00Z",
+  "generatedAt": "2026-03-19T03:17:24Z",
   "items": [
     {
       "id": "news-001",
@@ -82,10 +82,10 @@
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/5q2cujgiYL"
       },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailUrl": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg",
       "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+        "name": "Pinterest CDN",
+        "url": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg"
       },
       "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html"
     },
@@ -918,6 +918,50 @@
         "url": "https://pixabay.com/photos/gift-package-loop-made-surprise-1420830/"
       },
       "detailPage": "./tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html"
+    },
+    {
+      "id": "news-022",
+      "slug": "gia-vang-hom-nay-ngay-19-03-2026",
+      "title": "Giá vàng hôm nay 19/03/2026: DOJI niêm yết SJC 175,4-178,4 triệu đồng/lượng, chênh lệch mua-bán 3 triệu",
+      "summary": "Lúc 08:43 ngày 19/03/2026, DOJI niêm yết vàng miếng SJC tại Hà Nội ở mức 175,4-178,4 triệu đồng/lượng, giảm mạnh so với phiên trước nhưng biên mua-bán vẫn duy trì 3 triệu đồng/lượng. Bài viết tổng hợp dữ liệu chính và phân tích các yếu tố thị trường trong ngắn hạn.",
+      "category": "economy",
+      "publishedAt": "2026-03-19T03:17:24Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "gia-vang-hom-nay",
+        "vang-sjc",
+        "doji",
+        "thi-truong-vang",
+        "gia-vang-the-gioi"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-19-03-2026.html",
+        "affiliateUrl": "https://s.shopee.vn/5VPmVorF7G",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "094677",
+        "shopId": "23889045695",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m4zit0l8y4ub66",
+        "images": [],
+        "name": "Chocolate Truffle Set quà tặng Valentine (đã gồm hộp quà + túi + thiệp)",
+        "description": "Gợi ý mua sắm từ Shopee.",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/5VPmVorF7G"
+      },
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailSource": {
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-19-03-2026.html"
     }
   ]
 }
