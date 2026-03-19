@@ -27,136 +27,322 @@
     
     <style>
         .events-hero {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            padding: 5rem 0 3.5rem;
-            text-align: center;
-            color: white;
+            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 55%, #ef4444 100%);
+            padding: 5rem 0 3rem;
+            color: #fff;
             position: relative;
             overflow: hidden;
         }
         .events-hero::before {
-            content: '';
+            content: "";
             position: absolute;
             inset: 0;
-            background: url('images/tet-background-pattern.svg') repeat;
-            opacity: 0.08;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.22), transparent 40%);
+            pointer-events: none;
         }
-        .events-hero .container { position: relative; z-index: 2; }
-        .events-hero h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .events-hero p { font-size: 1rem; opacity: 0.95; margin: 0; }
-        
-        .events-content { padding: 2rem 0 3rem; }
+        .events-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .events-hero-headline {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .events-hero h1 {
+            margin: 0 0 0.55rem;
+            font-size: clamp(1.75rem, 4vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.22;
+        }
+        .events-hero p {
+            margin: 0;
+            font-size: clamp(0.96rem, 2vw, 1.1rem);
+            opacity: 0.96;
+        }
+        .events-stats {
+            margin: 1.35rem auto 0;
+            max-width: 840px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+        .events-stat-card {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 14px;
+            padding: 0.75rem 0.7rem;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+        .events-stat-value {
+            display: block;
+            font-size: clamp(1.15rem, 3vw, 1.5rem);
+            line-height: 1.1;
+            font-weight: 800;
+        }
+        .events-stat-label {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.78rem;
+            opacity: 0.92;
+            font-weight: 700;
+        }
+
+        .events-content {
+            padding: 2rem 0 3rem;
+            background: linear-gradient(180deg, #fff7f7 0%, #fff 28%);
+        }
+        .events-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        .events-toolbar-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            min-height: 44px;
+            padding: 0.58rem 0.9rem;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .events-toolbar-link:hover {
+            background: #fff3f3;
+            box-shadow: 0 8px 20px rgba(185, 28, 28, 0.12);
+            transform: translateY(-1px);
+        }
+        .events-toolbar-link:focus-visible,
+        .events-cta a:focus-visible {
+            outline: 2px solid #f59e0b;
+            outline-offset: 2px;
+        }
+        .events-toolbar-link i,
+        .events-cta a i {
+            width: 18px;
+            height: 18px;
+        }
+
         .events-legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 0.75rem 1rem;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            gap: 0.7rem;
+            margin-bottom: 1rem;
         }
         .events-legend-item {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.86rem;
+            font-weight: 700;
+            padding: 0.42rem 0.72rem;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
         }
-        .events-legend-item .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+        .events-legend-item i {
+            width: 15px;
+            height: 15px;
         }
-        .events-legend-item.lunar .dot { background: var(--color-event-lunar); }
-        .events-legend-item.solar .dot { background: var(--color-event-solar); }
-        .events-legend-item.lunar { color: var(--color-event-lunar); }
-        .events-legend-item.solar { color: var(--color-event-solar); }
-        
+        .events-legend-item.lunar {
+            color: #92400e;
+            background: #fff7ed;
+            border-color: #fdba74;
+        }
+        .events-legend-item.solar {
+            color: #1d4ed8;
+            background: #eff6ff;
+            border-color: #93c5fd;
+        }
+
         .events-section {
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
+            margin-bottom: 1.15rem;
+            padding: 1.2rem;
             background: #fff;
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--color-primary);
+            border: 1px solid #fee2e2;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
         }
-        .events-section--lunar {
-            border-left-color: var(--color-event-lunar);
-            background: linear-gradient(to right, var(--color-event-lunar-bg) 0%, #fff 8%);
+        .events-section-head {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.35rem;
         }
-        .events-section--lunar h2 { color: var(--color-event-lunar); }
-        .events-section--solar {
-            border-left-color: var(--color-event-solar);
-            background: linear-gradient(to right, var(--color-event-solar-bg) 0%, #fff 8%);
+        .events-section-head i {
+            width: 22px;
+            height: 22px;
         }
-        .events-section--solar h2 { color: var(--color-event-solar); }
+        .events-section--lunar .events-section-head { color: #b45309; }
+        .events-section--solar .events-section-head { color: #1d4ed8; }
         .events-section h2 {
+            margin: 0;
             font-family: var(--font-heading);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: clamp(1.1rem, 2.4vw, 1.38rem);
         }
-        .events-section .section-desc { color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem; }
-        
+        .events-section .section-desc {
+            margin: 0 0 0.95rem;
+            color: #475569;
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
         .event-card {
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.75rem;
-            background: #fafafa;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.06);
-            border-left: 3px solid transparent;
-            transition: background 0.2s, box-shadow 0.2s;
+            padding: 0.95rem;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .event-card--lunar {
-            border-left-color: var(--color-event-lunar-border);
-            background: linear-gradient(to right, var(--color-event-lunar-bg) 0%, #fafafa 6%);
+        .event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
         }
-        .event-card--lunar:hover { background: linear-gradient(to right, var(--color-event-lunar-bg) 0%, #fff 6%); }
-        .event-card--solar {
-            border-left-color: var(--color-event-solar-border);
-            background: linear-gradient(to right, var(--color-event-solar-bg) 0%, #fafafa 6%);
+        .event-card--lunar { border-left: 3px solid #f59e0b; }
+        .event-card--solar { border-left: 3px solid #3b82f6; }
+        .event-card-title {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.45rem;
+            margin-bottom: 0.4rem;
         }
-        .event-card--solar:hover { background: linear-gradient(to right, var(--color-event-solar-bg) 0%, #fff 6%); }
-        .event-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-        .event-card h3 { font-size: 1.1rem; margin: 0 0 0.35rem 0; color: var(--color-text-primary); }
-        .event-card .event-date { font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; }
-        .event-card .event-desc { font-size: 0.9rem; line-height: 1.5; color: #444; margin: 0; }
-        .event-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+        .event-card-title i {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .event-card h3 {
+            font-size: 1rem;
+            line-height: 1.35;
+            margin: 0;
+            color: #0f172a;
+        }
+        .event-card .event-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin: 0 0 0.55rem;
+            color: #475569;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+        .event-card .event-date i {
+            width: 14px;
+            height: 14px;
+        }
+        .event-card .event-desc {
+            margin: 0;
+            color: #334155;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .event-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.6rem;
+        }
         .event-badge {
-            font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 999px;
-            font-weight: 600;
+            font-size: 0.72rem;
+            padding: 0.22rem 0.52rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 700;
         }
-        .event-badge.lunar { background: var(--color-event-lunar-bg); color: var(--color-event-lunar); }
-        .event-badge.solar { background: var(--color-event-solar-bg); color: var(--color-event-solar); }
-        .event-badge.now { background: var(--color-primary); color: #fff; }
-        .event-badge.soon { background: rgba(255, 215, 0, 0.35); color: #8B4513; }
-        .event-badge.national { background: rgba(46, 139, 87, 0.12); color: var(--color-event-solar-vn); }
-        .event-badge.international { background: rgba(21, 101, 192, 0.12); color: var(--color-event-solar); }
-        
+        .event-badge.lunar { background: #ffedd5; color: #9a3412; border-color: #fdba74; }
+        .event-badge.solar { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+        .event-badge.now { background: #dc2626; color: #fff; }
+        .event-badge.soon { background: #fef3c7; color: #92400e; }
+        .event-badge.national { background: #dcfce7; color: #166534; border-color: #86efac; }
+        .event-badge.international { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
+
+        .events-subsection {
+            margin-top: 1rem;
+            padding-top: 0.85rem;
+            border-top: 1px dashed #e5e7eb;
+        }
+        .events-subsection h3 {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.42rem;
+            margin: 0 0 0.5rem;
+            font-size: 1rem;
+            color: #334155;
+        }
+        .events-subsection h3 i {
+            width: 16px;
+            height: 16px;
+        }
+        .event-misc-list {
+            margin: 0;
+            padding-left: 1.1rem;
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         .events-cta {
             text-align: center;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #fff9f0 0%, #fff5eb 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(230, 0, 38, 0.1);
+            margin-top: 1.35rem;
+            padding: 1.15rem 1rem;
+            background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+            border-radius: 14px;
+            border: 1px solid #fed7aa;
+        }
+        .events-cta p {
+            margin: 0 0 0.85rem;
+            color: #334155;
+            font-weight: 700;
         }
         .events-cta a {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
+            gap: 0.45rem;
+            min-height: 44px;
+            padding: 0.68rem 1.1rem;
             border-radius: 999px;
-            transition: opacity 0.2s, transform 0.15s;
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .events-cta a:hover { opacity: 0.95; transform: scale(1.02); }
-        .events-subsection { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.06); border-left: none; }
-        .events-subsection h3 { font-size: 1.1rem; color: var(--color-text-primary); margin-bottom: 0.5rem; }
-        .event-misc-list { margin: 0; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .events-cta a:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 1024px) {
+            .events-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            .events-hero { padding: 4.6rem 0 2.6rem; }
+            .events-content { padding-top: 1.5rem; }
+            .events-section { padding: 1rem; }
+            .event-grid { grid-template-columns: 1fr; }
+            .events-toolbar-link { width: 100%; justify-content: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .event-card,
+            .events-toolbar-link,
+            .events-cta a {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -164,51 +350,98 @@
 
     <section class="events-hero">
         <div class="container">
-            <h1>📅 Các sự kiện quan trọng trong năm</h1>
-            <p>Ngày lễ theo âm lịch và dương lịch – tra cứu đầy đủ, chính xác</p>
+            <div class="events-hero-headline">
+                <h1>Các sự kiện quan trọng trong năm</h1>
+                <p>Tra cứu ngày lễ theo âm lịch và dương lịch với trạng thái đang diễn ra hoặc sắp tới.</p>
+            </div>
+            <div class="events-stats" role="status" aria-live="polite">
+                <div class="events-stat-card">
+                    <span class="events-stat-value" id="stat-lunar">--</span>
+                    <span class="events-stat-label">Sự kiện âm lịch</span>
+                </div>
+                <div class="events-stat-card">
+                    <span class="events-stat-value" id="stat-solar-vn">--</span>
+                    <span class="events-stat-label">Sự kiện Việt Nam</span>
+                </div>
+                <div class="events-stat-card">
+                    <span class="events-stat-value" id="stat-solar-intl">--</span>
+                    <span class="events-stat-label">Sự kiện quốc tế</span>
+                </div>
+                <div class="events-stat-card">
+                    <span class="events-stat-value" id="stat-upcoming">--</span>
+                    <span class="events-stat-label">Sự kiện trong 7 ngày</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <main class="events-content">
         <div class="container">
-            <a href="/" class="shop-back" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--color-primary); font-weight: 600; text-decoration: none;">🏠 Về trang chủ</a>
+            <div class="events-toolbar">
+                <a href="/" class="events-toolbar-link" aria-label="Về trang chủ">
+                    <i data-lucide="house"></i>
+                    <span>Về trang chủ</span>
+                </a>
+                <a href="#lunar-events-section" class="events-toolbar-link" aria-label="Đến mục sự kiện âm lịch">
+                    <i data-lucide="moon-star"></i>
+                    <span>Âm lịch</span>
+                </a>
+                <a href="#solar-vn-section" class="events-toolbar-link" aria-label="Đến mục sự kiện Việt Nam">
+                    <i data-lucide="flag"></i>
+                    <span>Sự kiện Việt Nam</span>
+                </a>
+                <a href="#solar-intl-section" class="events-toolbar-link" aria-label="Đến mục sự kiện quốc tế">
+                    <i data-lucide="globe"></i>
+                    <span>Sự kiện quốc tế</span>
+                </a>
+            </div>
             
             <div class="events-legend" role="presentation">
-                <span class="events-legend-item lunar"><span class="dot" aria-hidden="true"></span> 🌙 Âm lịch</span>
-                <span class="events-legend-item solar"><span class="dot" aria-hidden="true"></span> ☀️ Dương lịch</span>
+                <span class="events-legend-item lunar"><i data-lucide="moon-star"></i> Âm lịch</span>
+                <span class="events-legend-item solar"><i data-lucide="sun"></i> Dương lịch</span>
             </div>
             
             <div id="lunar-events-section" class="events-section events-section--lunar">
-                <h2>🌙 I. Ngày quan trọng theo âm lịch</h2>
+                <div class="events-section-head">
+                    <i data-lucide="moon-star"></i>
+                    <h2>I. Ngày quan trọng theo âm lịch</h2>
+                </div>
                 <p class="section-desc">Thường gắn với tín ngưỡng – gia đình – văn hoá truyền thống. Ngày dương lịch tương ứng thay đổi theo từng năm.</p>
-                <div id="lunar-events-list"></div>
-                <div class="events-section events-subsection">
-                    <h3>🕯️ Ngày giỗ – tâm linh (phổ biến)</h3>
+                <div id="lunar-events-list" class="event-grid"></div>
+                <div class="events-subsection">
+                    <h3><i data-lucide="flame"></i>Ngày giỗ và mốc tâm linh phổ biến</h3>
                     <ul class="event-misc-list">
-                        <li>Mùng 1 âm lịch hàng tháng – 🌙</li>
-                        <li>Rằm (15 âm lịch) hàng tháng – 🌙</li>
-                        <li>Giỗ Tổ nghề (tuỳ ngành) – 🌙</li>
-                        <li>Giỗ tổ tiên từng gia đình – 🌙</li>
+                        <li>Mùng 1 âm lịch hàng tháng</li>
+                        <li>Rằm (15 âm lịch) hàng tháng</li>
+                        <li>Giỗ Tổ nghề (tuỳ ngành)</li>
+                        <li>Giỗ tổ tiên theo từng gia đình</li>
                     </ul>
                 </div>
             </div>
 
             <div id="solar-vn-section" class="events-section events-section--solar">
-                <h2>☀️ II. Ngày lễ, kỷ niệm lớn Việt Nam (dương lịch)</h2>
+                <div class="events-section-head">
+                    <i data-lucide="flag"></i>
+                    <h2>II. Ngày lễ và kỷ niệm lớn Việt Nam</h2>
+                </div>
                 <p class="section-desc">Dùng cho hành chính – xã hội – nghỉ lễ chính thức. Ngày cố định hàng năm.</p>
-                <div id="solar-vn-list"></div>
+                <div id="solar-vn-list" class="event-grid"></div>
             </div>
 
             <div id="solar-intl-section" class="events-section events-section--solar">
-                <h2>🌍 Ngày quốc tế / hay dùng làm content, giáo dục</h2>
+                <div class="events-section-head">
+                    <i data-lucide="globe"></i>
+                    <h2>III. Ngày quốc tế và mốc giáo dục phổ biến</h2>
+                </div>
                 <p class="section-desc">Các ngày dương lịch phổ biến trong truyền thông và giáo dục.</p>
-                <div id="solar-intl-list"></div>
+                <div id="solar-intl-list" class="event-grid"></div>
             </div>
 
             <div class="events-cta">
-                <p style="margin: 0 0 1rem 0; font-weight: 600; color: var(--color-text-primary);">Xem ngày tốt xấu và thông tin chi tiết từng ngày trên lịch</p>
+                <p>Xem ngày tốt xấu và thông tin chi tiết từng ngày trên lịch</p>
                 <a href="lich-van-nien.html" aria-label="Xem lịch vạn niên">
-                    <span>📆</span> Xem lịch vạn niên
+                    <i data-lucide="calendar-days"></i>
+                    <span>Xem lịch vạn niên</span>
                 </a>
             </div>
         </div>
@@ -228,6 +461,15 @@
     today.setHours(0, 0, 0, 0);
     var in7Days = new Date(today);
     in7Days.setDate(in7Days.getDate() + 7);
+
+    function escapeHtml(input) {
+        return String(input)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
 
     function formatSolarDate(d) {
         return d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
@@ -262,24 +504,46 @@
         return { label: null };
     }
 
+    function buildEventCard(ev, options) {
+        var kind = options.kind;
+        var dateText = options.dateText || '';
+        var status = options.status || null;
+        var isNational = !!options.isNational;
+        var includeInternational = !!options.includeInternational;
+        var titleIcon = kind === 'lunar' ? 'moon-star' : 'calendar-days';
+        var cardClass = kind === 'lunar' ? 'event-card event-card--lunar' : 'event-card event-card--solar';
+
+        var html = '<article class="' + cardClass + '">';
+        html += '<div class="event-card-title">';
+        html += '<i data-lucide="' + titleIcon + '"></i>';
+        html += '<h3>' + escapeHtml(ev.name) + '</h3>';
+        html += '</div>';
+        html += '<div class="event-date"><i data-lucide="clock-3"></i><span>' + escapeHtml(dateText) + '</span></div>';
+        html += '<p class="event-desc">' + escapeHtml(ev.description) + '</p>';
+        html += '<div class="event-badges">';
+        html += '<span class="event-badge ' + (kind === 'lunar' ? 'lunar' : 'solar') + '">' + (kind === 'lunar' ? 'Âm lịch' : 'Dương lịch') + '</span>';
+        if (isNational) html += '<span class="event-badge national">Nghỉ lễ</span>';
+        if (status === 'now') html += '<span class="event-badge now">Đang diễn ra</span>';
+        else if (status === 'soon') html += '<span class="event-badge soon">Sắp tới</span>';
+        if (includeInternational) html += '<span class="event-badge international">Quốc tế</span>';
+        html += '</div></article>';
+        return html;
+    }
+
     function renderLunarEvents() {
         var list = document.getElementById('lunar-events-list');
         if (!list || !window.EVENTS_DATA) return;
         var html = '';
         EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
             var status = getLunarEventStatus(ev);
-            html += '<div class="event-card event-card--lunar">';
-            html += '<h3>' + ev.name + '</h3>';
-            html += '<div class="event-date">🌙 ' + ev.lunarLabel + ' âm lịch';
-            if (status.solarStr) html += ' → Dương lịch: ' + status.solarStr;
-            html += '</div>';
-            html += '<p class="event-desc">' + ev.description + '</p>';
-            html += '<div class="event-badges">';
-            html += '<span class="event-badge lunar">Âm lịch</span>';
-            if (ev.isNationalHoliday) html += '<span class="event-badge national">Nghỉ lễ</span>';
-            if (status.label === 'now') html += '<span class="event-badge now">Đang diễn ra</span>';
-            else if (status.label === 'soon') html += '<span class="event-badge soon">Sắp tới</span>';
-            html += '</div></div>';
+            var dateText = ev.lunarLabel + ' âm lịch';
+            if (status.solarStr) dateText += ' -> Dương lịch: ' + status.solarStr;
+            html += buildEventCard(ev, {
+                kind: 'lunar',
+                dateText: dateText,
+                status: status.label,
+                isNational: ev.isNationalHoliday
+            });
         });
         list.innerHTML = html || '<p>Chưa có dữ liệu.</p>';
     }
@@ -291,16 +555,12 @@
         EVENTS_DATA.SOLAR_EVENTS_VIETNAM.forEach(function (ev) {
             var status = getSolarEventStatus(ev);
             var dateStr = (ev.day < 10 ? '0' : '') + ev.day + '/' + (ev.month < 10 ? '0' : '') + ev.month;
-            html += '<div class="event-card event-card--solar">';
-            html += '<h3>' + ev.name + '</h3>';
-            html += '<div class="event-date">☀️ ' + dateStr + ' dương lịch</div>';
-            html += '<p class="event-desc">' + ev.description + '</p>';
-            html += '<div class="event-badges">';
-            html += '<span class="event-badge solar">Dương lịch</span>';
-            if (ev.isHoliday) html += '<span class="event-badge national">Nghỉ lễ</span>';
-            if (status.label === 'now') html += '<span class="event-badge now">Đang diễn ra</span>';
-            else if (status.label === 'soon') html += '<span class="event-badge soon">Sắp tới</span>';
-            html += '</div></div>';
+            html += buildEventCard(ev, {
+                kind: 'solar',
+                dateText: dateStr + ' dương lịch',
+                status: status.label,
+                isNational: ev.isHoliday
+            });
         });
         list.innerHTML = html || '<p>Chưa có dữ liệu.</p>';
     }
@@ -312,18 +572,46 @@
         EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL.forEach(function (ev) {
             var status = getSolarEventStatus(ev);
             var dateStr = (ev.day < 10 ? '0' : '') + ev.day + '/' + (ev.month < 10 ? '0' : '') + ev.month;
-            html += '<div class="event-card event-card--solar">';
-            html += '<h3>' + ev.name + '</h3>';
-            html += '<div class="event-date">☀️ ' + dateStr + ' dương lịch</div>';
-            html += '<p class="event-desc">' + ev.description + '</p>';
-            html += '<div class="event-badges">';
-            html += '<span class="event-badge solar">Dương lịch</span>';
-            if (status.label === 'now') html += '<span class="event-badge now">Đang diễn ra</span>';
-            else if (status.label === 'soon') html += '<span class="event-badge soon">Sắp tới</span>';
-            html += '<span class="event-badge international">Quốc tế</span>';
-            html += '</div></div>';
+            html += buildEventCard(ev, {
+                kind: 'solar',
+                dateText: dateStr + ' dương lịch',
+                status: status.label,
+                includeInternational: true
+            });
         });
         list.innerHTML = html || '<p>Chưa có dữ liệu.</p>';
+    }
+
+    function renderSummaryStats() {
+        if (!window.EVENTS_DATA) return;
+        var lunarCount = EVENTS_DATA.LUNAR_EVENTS.length;
+        var solarVnCount = EVENTS_DATA.SOLAR_EVENTS_VIETNAM.length;
+        var solarIntlCount = EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL.length;
+        var upcomingCount = 0;
+
+        EVENTS_DATA.SOLAR_EVENTS_VIETNAM.concat(EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL).forEach(function (ev) {
+            var st = getSolarEventStatus(ev);
+            if (st.label === 'now' || st.label === 'soon') upcomingCount += 1;
+        });
+        EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
+            var st = getLunarEventStatus(ev);
+            if (st.label === 'now' || st.label === 'soon') upcomingCount += 1;
+        });
+
+        var lunarEl = document.getElementById('stat-lunar');
+        var solarVnEl = document.getElementById('stat-solar-vn');
+        var solarIntlEl = document.getElementById('stat-solar-intl');
+        var upcomingEl = document.getElementById('stat-upcoming');
+        if (lunarEl) lunarEl.textContent = String(lunarCount);
+        if (solarVnEl) solarVnEl.textContent = String(solarVnCount);
+        if (solarIntlEl) solarIntlEl.textContent = String(solarIntlCount);
+        if (upcomingEl) upcomingEl.textContent = String(upcomingCount);
+    }
+
+    function renderIcons() {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons();
+        }
     }
 
     if (document.readyState === 'loading') {
@@ -331,11 +619,15 @@
             renderLunarEvents();
             renderSolarVietnam();
             renderSolarInternational();
+            renderSummaryStats();
+            renderIcons();
         });
     } else {
         renderLunarEvents();
         renderSolarVietnam();
         renderSolarInternational();
+        renderSummaryStats();
+        renderIcons();
     }
 })();
     </script>
