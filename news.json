@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-03-19T03:17:24Z",
+  "generatedAt": "2026-03-20T02:52:38Z",
   "items": [
     {
       "id": "news-001",
@@ -82,10 +82,10 @@
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/5q2cujgiYL"
       },
-      "thumbnailUrl": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
       "thumbnailSource": {
-        "name": "Pinterest CDN",
-        "url": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg"
+        "name": "Wikimedia Commons",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
       },
       "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html"
     },
@@ -956,12 +956,144 @@
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/5VPmVorF7G"
       },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
+      "thumbnailUrl": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg",
       "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
+        "name": "Pinterest CDN",
+        "url": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg"
       },
       "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-19-03-2026.html"
+    },
+    {
+      "id": "news-023",
+      "slug": "gia-vang-hom-nay-ngay-20-03-2026",
+      "title": "Giá vàng hôm nay 20/03/2026: DOJI niêm yết SJC 171,9-174,9 triệu đồng/lượng",
+      "summary": "Cập nhật lúc 09:34 ngày 20/03/2026, DOJI niêm yết vàng SJC và nhẫn 9999 cùng ở mức 171,9-174,9 triệu đồng/lượng, chênh lệch mua-bán 3 triệu đồng/lượng. Bài viết tổng hợp dữ liệu chính và phân tích kịch bản ngắn hạn của thị trường vàng trong nước.",
+      "category": "economy",
+      "publishedAt": "2026-03-20T02:42:38Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "gia-vang-hom-nay",
+        "doji",
+        "vang-sjc",
+        "vang-nhan-9999",
+        "thi-truong-vang"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-20-03-2026.html",
+        "affiliateUrl": "https://s.shopee.vn/4qAxwE8Qix",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "383221",
+        "shopId": "18322772881",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m6i1dp99nl9j37",
+        "images": [],
+        "name": "Quần short nữ linen - Linen Short | Shopee Việt Nam",
+        "description": "Mua Quần short nữ linen - Linen Short giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "clothes",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/4qAxwE8Qix"
+      },
+      "thumbnailUrl": "https://i.pinimg.com/1200x/26/f7/c7/26f7c78ed05263f2f38d750a83fbde49.jpg",
+      "thumbnailSource": {
+        "name": "Pinterest CDN",
+        "url": "https://i.pinimg.com/1200x/26/f7/c7/26f7c78ed05263f2f38d750a83fbde49.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-20-03-2026.html"
+    },
+    {
+      "id": "news-024",
+      "slug": "gia-xang-hom-nay-ngay-20-03-2026",
+      "title": "Giá xăng hôm nay 20/03/2026: RON95-III ở mức 30.690 đồng/lít sau kỳ điều hành 19/3",
+      "summary": "Giá xăng dầu ngày 20/03/2026 đang áp dụng theo kỳ điều hành từ 23h ngày 19/3 với RON95-III 30.690 đồng/lít và E5RON92 27.177 đồng/lít. Bản tin phân tích tác động ngắn hạn lên vận tải, logistics và chi phí dân sinh.",
+      "category": "energy",
+      "publishedAt": "2026-03-20T02:47:38Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "gia-xang-hom-nay",
+        "xang-dau",
+        "ron95-iii",
+        "e5ron92",
+        "thi-truong-nang-luong"
+      ],
+      "source": {
+        "name": "VietnamPlus (TTXVN)",
+        "url": "https://www.vietnamplus.vn/gia-xang-dau-tang-manh-mat-hang-ron95-iii-len-nguong-30690-dong-moi-lit-post1098756.vnp"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/gia-xang-hom-nay-ngay-20-03-2026.html",
+        "affiliateUrl": "https://s.shopee.vn/3VeXK4vjXN",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "229869",
+        "shopId": "28086665458",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mjaobz2hperm07",
+        "images": [],
+        "name": "Bình Tập Hút Nước Cho Bé Emoon Tritan Chuẩn Nha Khoa Chống Sặc",
+        "description": "Mua Bình Tập Hút Nước Cho Bé Emoon Tritan giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "bachhoa",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/3VeXK4vjXN"
+      },
+      "thumbnailUrl": "https://i.pinimg.com/736x/76/4f/ba/764fbab084a8462c670656e9103b4e57.jpg",
+      "thumbnailSource": {
+        "name": "Pinterest CDN",
+        "url": "https://i.pinimg.com/736x/76/4f/ba/764fbab084a8462c670656e9103b4e57.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-xang-hom-nay-ngay-20-03-2026.html"
+    },
+    {
+      "id": "news-025",
+      "slug": "openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1",
+      "title": "OpenClaw cập nhật 2026.3.13-1: Tập trung ổn định gateway và trải nghiệm đa nền tảng",
+      "summary": "OpenClaw duy trì sức hút công nghệ với hơn 325 nghìn sao trên GitHub và bản phát hành 2026.3.13-1 tập trung xử lý các lỗi vận hành quan trọng ở gateway, browser và UI chat đa nền tảng.",
+      "category": "technology",
+      "publishedAt": "2026-03-20T02:52:38Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "openclaw",
+        "ai-agent",
+        "github-stars",
+        "open-source",
+        "release-notes"
+      ],
+      "source": {
+        "name": "GitHub - openclaw/openclaw",
+        "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.3.13-1"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1.html",
+        "affiliateUrl": "https://s.shopee.vn/gKLwTTokp",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "778013",
+        "shopId": "25725120069",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-matn3i3v0zwhe4@resize_w450_nl.webp",
+        "images": [],
+        "name": "Quạt mini GOOJODOQ 100 tốc độ gió có thể điều chỉnh màn hình kỹ thuật số cầm tay",
+        "description": "Đã bán 100k+, phù hợp mang theo và dùng hàng ngày.",
+        "type": "shopee",
+        "category": "bachhoa",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/gKLwTTokp"
+      },
+      "thumbnailUrl": "https://i.pinimg.com/736x/e6/af/1a/e6af1ae7f7e7ffeae991c4492d64e4d4.jpg",
+      "thumbnailSource": {
+        "name": "Pinterest CDN",
+        "url": "https://i.pinimg.com/736x/e6/af/1a/e6af1ae7f7e7ffeae991c4492d64e4d4.jpg"
+      },
+      "detailPage": "./tin-tuc/openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1.html"
     }
   ]
 }

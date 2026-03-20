@@ -99,7 +99,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/tin-tuc/</loc>
-        <lastmod>2026-03-19</lastmod>
+        <lastmod>2026-03-20</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.85</priority>
     </url>
@@ -246,6 +246,24 @@
     <url>
         <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-19-03-2026.html</loc>
         <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-20-03-2026.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/gia-xang-hom-nay-ngay-20-03-2026.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1.html</loc>
+        <lastmod>2026-03-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
