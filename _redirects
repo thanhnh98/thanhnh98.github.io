@@ -89,6 +89,8 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 # Clean URLs → .html (so only one URL is canonical; reduces "Alternate page with proper canonical tag")
 /cua-hang /cua-hang.html 301!
 /mon-an-tet /mon-an-tet.html 301!
+/tin-tuc /tin-tuc/ 301!
+/tin-tuc/index.html /tin-tuc/ 301!
 /blog /tin-tuc 301!
 /blog.html /tin-tuc 301!
 /news /tin-tuc/index.html 301!
