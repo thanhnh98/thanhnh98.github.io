@@ -27,7 +27,7 @@ const APP_RESOURCES = {
     
     // Social Media Links (optional)
     socialMedia: {
-        facebook: 'https://www.facebook.com/saptet2026/',
+        facebook: 'https://www.facebook.com/saptet2027/',
         youtube: 'https://youtube.com/@sap.tet',
         tiktok: 'https://tiktok.com/@sap.tet'
     },

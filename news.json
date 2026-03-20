@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-03-20T02:52:38Z",
+  "generatedAt": "2026-03-20T10:32:35Z",
   "items": [
     {
       "id": "news-001",
@@ -1094,6 +1094,50 @@
         "url": "https://i.pinimg.com/736x/e6/af/1a/e6af1ae7f7e7ffeae991c4492d64e4d4.jpg"
       },
       "detailPage": "./tin-tuc/openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1.html"
+    },
+    {
+      "id": "news-026",
+      "slug": "thong-bao-lich-thi-tot-nghiep-thpt-2026",
+      "title": "Lịch thi tốt nghiệp THPT 2026: Thi ngày 11-12/6, công bố kết quả lúc 8h ngày 1/7",
+      "summary": "Theo thông tin từ Cổng Thông tin điện tử Chính phủ, kỳ thi tốt nghiệp THPT 2026 thi chính thức ngày 11-12/6; đồng thời có các mốc quan trọng như thử đăng ký 17-21/4, đăng ký chính thức 24/4-5/5 và công bố kết quả lúc 8h ngày 1/7/2026.",
+      "category": "education",
+      "publishedAt": "2026-03-20T10:32:35Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "lich-thi-thpt-2026",
+        "tot-nghiep-thpt",
+        "cong-thong-tin-dien-tu-chinh-phu",
+        "thi-sinh-12",
+        "cong-van-1257"
+      ],
+      "source": {
+        "name": "Xây dựng chính sách - Cổng Thông tin điện tử Chính phủ",
+        "url": "https://xaydungchinhsach.chinhphu.vn/lich-thi-tot-nghiep-thpt-nam-2026-119260319121525172.htm"
+      },
+      "links": {
+        "canonicalUrl": "https://xaydungchinhsach.chinhphu.vn/lich-thi-tot-nghiep-thpt-nam-2026-119260319121525172.htm",
+        "affiliateUrl": "https://s.shopee.vn/4LDp7tGpai",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "766344",
+        "shopId": "43527863643",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mjjry3o161voa4",
+        "images": [],
+        "name": "[HOẢ TỐC HN] Socola Valentine Truffle Hộp 6 Viên Cao Cấp Tặng Kèm Túi Và Thiệp Quà Valentine Ngọt Ngào | Shopee Việt Nam",
+        "description": "Mua [HOẢ TỐC HN] Socola Valentine Truffle Hộp 6 Viên Cao Cấp Tặng Kèm Túi Và Thiệp Quà Valentine Ngọt Ngào giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/4LDp7tGpai"
+      },
+      "thumbnailUrl": "https://saptet.vn/assets/images/thpt-2026-decor.png",
+      "thumbnailSource": {
+        "name": "Sắp Tết",
+        "url": "https://saptet.vn/assets/images/thpt-2026-decor.png"
+      },
+      "detailPage": "./tin-tuc/thong-bao-lich-thi-tot-nghiep-thpt-2026.html"
     }
   ]
 }
