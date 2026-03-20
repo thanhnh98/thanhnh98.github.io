@@ -7887,6 +7887,16 @@ footer::after {
     color: white;
 }
 
+.fab-main--thpt {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 55%, #ef4444 100%);
+    border: 1px solid rgba(255, 215, 0, 0.55);
+    box-shadow: 0 8px 24px rgba(185, 28, 28, 0.35);
+}
+
+.fab-main--thpt:hover {
+    box-shadow: 0 10px 28px rgba(127, 29, 29, 0.45), 0 0 0 3px rgba(250, 204, 21, 0.18);
+}
+
 .fab-icon {
     width: 20px;
     height: 20px;
