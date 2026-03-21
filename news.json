@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-03-20T10:32:35Z",
+  "generatedAt": "2026-03-21T01:29:03Z",
   "items": [
     {
       "id": "news-001",
@@ -1138,6 +1138,50 @@
         "url": "https://saptet.vn/assets/images/thpt-2026-decor.png"
       },
       "detailPage": "./tin-tuc/thong-bao-lich-thi-tot-nghiep-thpt-2026.html"
+    },
+    {
+      "id": "news-027",
+      "slug": "gia-vang-hom-nay-ngay-21-03-2026",
+      "title": "Giá vàng hôm nay 21/03/2026: DOJI niêm yết SJC 173,1-176,1 triệu đồng/lượng",
+      "summary": "Đầu ngày 21/03/2026, mặt bằng tham chiếu từ bảng giá DOJI tại Hà Nội (mốc hiển thị 17:34 ngày 20/03/2026) ghi nhận SJC và nhẫn 9999 ở 173,1-176,1 triệu đồng/lượng, chênh lệch mua-bán 3 triệu. Bài viết phân tích ngắn hạn và nhắc kiểm tra lại giavang.doji.vn trước khi giao dịch.",
+      "category": "economy",
+      "publishedAt": "2026-03-21T01:29:03Z",
+      "author": "Sắp Tết Editor",
+      "tags": [
+        "gia-vang-hom-nay",
+        "doji",
+        "vang-sjc",
+        "vang-nhan-9999",
+        "thi-truong-vang"
+      ],
+      "source": {
+        "name": "DOJI",
+        "url": "https://giavang.doji.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-21-03-2026.html",
+        "affiliateUrl": "https://vt.tiktok.com/ZS9136wPP9XMw-k3Mbl/",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "330183",
+        "shopId": "",
+        "thumbnail": "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/5a47d385e5f642afa2ec83c8b91cc203~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
+        "images": [],
+        "name": "ComBo 1kg Kẹo Mix Vị : Kẹo Lạc Trà Xanh , Kẹo Dồi Trà Xanh , Bánh Cáy , Kẹo Lạc Cafe",
+        "description": "ComBo 1kg Kẹo Mix Vị : Kẹo Lạc Trà Xanh , Kẹo Dồi Trà Xanh , Bánh Cáy , Kẹo Lạc Cafe",
+        "type": "tiktok",
+        "category": "banhkeo",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://vt.tiktok.com/ZS9136wPP9XMw-k3Mbl/"
+      },
+      "thumbnailUrl": "https://i.pinimg.com/1200x/85/57/7c/85577c13103b91a459817aa203812993.jpg",
+      "thumbnailSource": {
+        "name": "Pinterest CDN",
+        "url": "https://i.pinimg.com/1200x/85/57/7c/85577c13103b91a459817aa203812993.jpg"
+      },
+      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-21-03-2026.html"
     }
   ]
 }

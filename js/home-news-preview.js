@@ -27,6 +27,9 @@
 
   function formatDate(isoDate) {
     if (!isoDate) return '';
+    if (typeof window.formatNewsPublishedAtGMT7 === 'function') {
+      return window.formatNewsPublishedAtGMT7(isoDate);
+    }
     var date = new Date(isoDate);
     if (isNaN(date.getTime())) return isoDate || '';
     return date.toLocaleDateString('vi-VN', {

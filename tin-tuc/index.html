@@ -791,6 +791,7 @@
     <script src="../js/header-loader.js"></script>
     <script src="../js/footer.js"></script>
     <script src="../js/icons.js"></script>
+    <script src="../js/news-published-format.js?v=1"></script>
     <script src="../js/analytics.js"></script>
     <script>
         var fallbackNewsPosts = [];
@@ -798,6 +799,10 @@
         var activeCategoryFilters = [];
 
         function formatDate(isoDate) {
+            if (!isoDate) return "";
+            if (typeof window.formatNewsPublishedAtGMT7 === "function") {
+                return window.formatNewsPublishedAtGMT7(isoDate);
+            }
             var date = new Date(isoDate);
             if (isNaN(date.getTime())) {
                 return isoDate || "";
