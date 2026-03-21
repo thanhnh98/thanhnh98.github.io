@@ -982,6 +982,13 @@ const eventsData = {
         description: 'Ngày 1/5',
         background: 'linear-gradient(135deg, #ff4757, #ff6b7a)'
     },
+    'thpt-2026': {
+        name: 'Thi THPT 2026',
+        getDate: () => new Date(2026, 5, 11), // 11/06/2026
+        icon: '📝',
+        description: '11-12/06/2026',
+        background: 'linear-gradient(135deg, #B91C1C, #DC2626)'
+    },
     'mid-autumn': {
         name: 'Tết Trung Thu',
         getDate: () => {
@@ -1723,6 +1730,7 @@ function navigateToEventDetailFromModal() {
         'hung-kings': 'blog.html#hung-kings',
         'liberation': 'blog.html#liberation',
         'labor-day': 'blog.html#labor-day',
+        'thpt-2026': 'dem-nguoc-thi-thpt-2026.html#lich-thi-thpt-2026',
         'mid-autumn': 'trung-thu.html',
         'teachers-day': 'blog.html#teachers-day',
         'christmas': 'noel.html',

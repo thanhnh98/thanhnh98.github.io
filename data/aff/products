@@ -29,6 +29,14 @@
             "displayName":"Bánh Kẹo 🍬"
          },
          {
+            "category":"thucpham",
+            "displayName":"Thực phẩm 🍬"
+         },
+         {
+            "category":"thucphamkho",
+            "displayName":"Thực phẩm khô 🍬"
+         },
+         {
             "category":"decor",
             "displayName":"Trang Trí 🎊"
          },
@@ -42,6 +50,123 @@
          }
       ],
       "products":[
+{
+  "id": "865932",
+  "shopId": "20277798791",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26lk667bruca2",
+  "images": [],
+  "name": "Thùng 48 hộp Sữa đậu nành Vinamilk hạt hạnh nhân | Shopee Việt Nam",
+  "description": "Mua Thùng 48 hộp Sữa đậu nành Vinamilk hạt hạnh nhân giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "thucpham",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/70FZ8UWgQR"
+},
+{
+  "id": "936949",
+  "shopId": "47652978343",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mi4rlxtpd894b7",
+  "images": [],
+  "name": "Trà dưỡng huyết DETONIC giúp bổ máu và giảm các triệu chứng mệt mỏi, chóng mặt, suy nhược cơ thể nguyên liệu thiên nhiên | Shopee Việt Nam",
+  "description": "Mua Trà dưỡng huyết DETONIC giúp bổ máu và giảm các triệu chứng mệt mỏi, chóng mặt, suy nhược cơ thể nguyên liệu thiên nhiên giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "thucphamkho",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/4qB4YPToQA"
+},
+{
+  "id": "936949",
+  "shopId": "47652978343",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mi4rlxtpd894b7",
+  "images": [],
+  "name": "Trà dưỡng huyết DETONIC giúp bổ máu và giảm các triệu chứng mệt mỏi, chóng mặt, suy nhược cơ thể nguyên liệu thiên nhiên | Shopee Việt Nam",
+  "description": "Mua Trà dưỡng huyết DETONIC giúp bổ máu và giảm các triệu chứng mệt mỏi, chóng mặt, suy nhược cơ thể nguyên liệu thiên nhiên giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "thucphamkho",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/4qB4YPToQA"
+},
+{
+  "id": "553341",
+  "shopId": "29709112008",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mllfkvkza60z11",
+  "images": [],
+  "name": "COMBO 2 Cà Phê Mr. Phin Robusta Dak Mil 500g, cafe đậm đà, không chua, Phương Vy Coffee | Shopee Việt Nam",
+  "description": "Mua COMBO 2 Cà Phê Mr. Phin Robusta Dak Mil 500g, cafe đậm đà, không chua, Phương Vy Coffee giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "thucphamkho",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/70FZ8MNXZV"
+},
+{
+  "id": "905413",
+  "shopId": "44212730304",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mllrtn115q0zfe",
+  "images": [],
+  "name": "CÀ PHÊ TRUYỀN THỐNG HIGHLANDS COFFEE 1 KG | Shopee Việt Nam",
+  "description": "Mua CÀ PHÊ TRUYỀN THỐNG HIGHLANDS COFFEE 1 KG giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "thucphamkho",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/AACau6ys2p"
+},
+{
+  "id": "129291",
+  "shopId": "23153225516",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m5arerhxldbs0e",
+  "images": [],
+  "name": "Quần Đùi Nữ Cạp Cao Quần Short Nữ Dance Lưng Cao Gen Bụng Nâng Mông Tôn Dáng | Shopee Việt Nam",
+  "description": "Mua Quần Đùi Nữ Cạp Cao Quần Short Nữ Dance Lưng Cao Gen Bụng Nâng Mông Tôn Dáng giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "clothes",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/9KdTuXqowu"
+},
+{
+  "id": "386512",
+  "shopId": "50456685533",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mlgbopi4r8jpd5",
+  "images": [],
+  "name": "( Tăng quần bí ) Áo Váy Babydoll Hari Cổ Sen 2 Lớp Form Rộng Gấu Viền Bèo Bo Chun AQ255 | Shopee Việt Nam",
+  "description": "Mua ( Tăng quần bí ) Áo Váy Babydoll Hari Cổ Sen 2 Lớp Form Rộng Gấu Viền Bèo Bo Chun AQ255 giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "clothes",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/9Uwu6nQ2Mb"
+},
+{
+  "id": "827191",
+  "shopId": "23244410073",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m9zsat7xhi562f",
+  "images": [],
+  "name": "Ốp Lưng iPhone TPU Silicon Mềm 4 Góc Cao Cấp, Chống Sốc, Bảo Vệ Camera - iP 6/7/8/Plus/X/XS/11/12/13/14/15/16/17/Pro/Max | Shopee Việt Nam",
+  "description": "Mua Ốp Lưng iPhone TPU Silicon Mềm 4 Góc Cao Cấp, Chống Sốc, Bảo Vệ Camera - iP 6/7/8/Plus/X/XS/11/12/13/14/15/16/17/Pro/Max giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "oplung",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/2Vn9lkaA56"
+},
+{
+  "id": "224928",
+  "shopId": "55156859869",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mlhw2vc6wg7780",
+  "images": [],
+  "name": "(TẶNG KÈM ÁO QUÂY) Áo ren xô hoa cổ tàu tay phồng dáng rộng Michu Babydoll | Shopee Việt Nam",
+  "description": "Mua (TẶNG KÈM ÁO QUÂY) Áo ren xô hoa cổ tàu tay phồng dáng rộng Michu Babydoll giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "clothes",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/1gE2m9esgk"
+},
          {
             "id":"294568",
             "shopId":"26557885515",

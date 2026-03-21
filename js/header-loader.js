@@ -2,6 +2,7 @@
 class HeaderLoader {
     constructor() {
         this.currentPage = this.getCurrentPage();
+        this.adsenseClient = 'ca-pub-3395045728500314';
     }
 
     getCurrentPage() {
@@ -34,6 +35,8 @@ class HeaderLoader {
 
     async loadHeader() {
         try {
+            this.ensureAdsenseScript();
+
             // Use absolute URL to work from any directory level
             // Get the origin (protocol + hostname + port) and construct full URL
             const origin = window.location.origin;
@@ -78,6 +81,21 @@ class HeaderLoader {
             console.error('Error loading header:', error);
             // Fallback: keep existing header if loading fails
         }
+    }
+
+    ensureAdsenseScript() {
+        const scriptSrc = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${this.adsenseClient}`;
+        const existingScript = document.querySelector(`script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]`);
+        if (existingScript) {
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.src = scriptSrc;
+        script.setAttribute('data-adsense-loader', 'true');
+        document.head.appendChild(script);
     }
 
     setActiveNavItem() {

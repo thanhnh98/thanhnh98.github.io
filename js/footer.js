@@ -196,3 +196,111 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+
+// Trang chi tiết tin: hiển thị "Đăng" kèm giờ theo múi Việt Nam (UTC+7)
+(function () {
+    function formatPublishedAtVN(isoDate) {
+        if (!isoDate) return '';
+        var d = new Date(isoDate);
+        if (isNaN(d.getTime())) return '';
+        try {
+            var fmt = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Asia/Ho_Chi_Minh',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            var parts = fmt.formatToParts(d);
+            var map = {};
+            for (var i = 0; i < parts.length; i++) {
+                map[parts[i].type] = parts[i].value;
+            }
+            return map.day + '/' + map.month + '/' + map.year + ', ' + map.hour + ':' + map.minute + ' (UTC+7)';
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function typeMatchesArticle(t) {
+        if (t === 'BlogPosting' || t === 'NewsArticle' || t === 'Article') return true;
+        if (Array.isArray(t)) {
+            for (var i = 0; i < t.length; i++) {
+                if (typeMatchesArticle(t[i])) return true;
+            }
+        }
+        return false;
+    }
+
+    function readLdJsonDatePublished() {
+        var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+        for (var i = 0; i < scripts.length; i++) {
+            var raw = scripts[i].textContent.trim();
+            if (!raw) continue;
+            try {
+                var data = JSON.parse(raw);
+                var candidates = [];
+                if (Array.isArray(data)) candidates = data;
+                else if (data && data['@graph']) candidates = data['@graph'];
+                else candidates = [data];
+                for (var j = 0; j < candidates.length; j++) {
+                    var item = candidates[j];
+                    if (item && item.datePublished && typeMatchesArticle(item['@type'])) {
+                        return item.datePublished;
+                    }
+                }
+            } catch (err) { /* ignore */ }
+        }
+        return null;
+    }
+
+    function updateNewsMetaPublishedAt(iso) {
+        var text = formatPublishedAtVN(iso);
+        if (!text) return;
+        document.querySelectorAll('.news-meta span').forEach(function (span) {
+            if (/^\s*Đăng\s*:/i.test(span.textContent)) {
+                span.textContent = 'Đăng: ' + text;
+            }
+        });
+    }
+
+    function slugFromPath() {
+        var p = window.location.pathname.replace(/\/$/, '');
+        var name = p.split('/').pop() || '';
+        if (name.endsWith('.html')) return name.slice(0, -5);
+        return name;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (!document.body.classList.contains('news-detail-page')) return;
+
+        var fromAttr = document.body.getAttribute('data-news-published-at');
+        if (fromAttr) {
+            updateNewsMetaPublishedAt(fromAttr);
+            return;
+        }
+
+        var fromLd = readLdJsonDatePublished();
+        if (fromLd) {
+            updateNewsMetaPublishedAt(fromLd);
+            return;
+        }
+
+        var slug = slugFromPath();
+        if (!slug || slug === 'index') return;
+
+        fetch('/news.json', { credentials: 'same-origin' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (data) {
+                if (!data || !Array.isArray(data.items)) return;
+                var hit = data.items.find(function (post) {
+                    var dp = (post.detailPage || '').replace(/^\.\//, '');
+                    return dp === 'tin-tuc/' + slug + '.html';
+                });
+                if (hit && hit.publishedAt) updateNewsMetaPublishedAt(hit.publishedAt);
+            })
+            .catch(function () { /* offline / file:// */ });
+    });
+})();
