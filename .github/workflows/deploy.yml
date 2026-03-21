@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Generate tin-tuc extensionless URL stubs (GitHub Pages)
+        run: node scripts/generate-tin-tuc-clean-urls.js
+
       - name: Update version for Service Worker
         run: node scripts/update-version.js
       

@@ -23,6 +23,14 @@ alwaysApply: false
 - `tin-tuc/index.html` → hiển thị từ `news.json` qua `formatDate(post.publishedAt)`
 - `tin-tuc/<slug>.html` → news-meta "Đăng: DD/MM/YYYY" phải khớp với `publishedAt`
 
+## URL không đuôi `.html` trên GitHub Pages (Bắt buộc)
+
+Sau khi tạo hoặc đổi slug file `tin-tuc/<slug>.html`, chạy:
+
+- `npm run generate-tin-tuc-clean-urls`
+
+Script tạo `tin-tuc/<slug>/index.html` (redirect nhẹ về `../<slug>.html`) vì **GitHub Pages không hỗ trợ** file `_redirects`.
+
 ## Cover image đồng bộ (Bắt buộc)
 
 Khi user nói "ảnh cover cho bài báo", hiểu mặc định là **toàn bộ ảnh đại diện của bài** phải dùng cùng một nguồn ảnh:

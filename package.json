@@ -9,6 +9,7 @@
     "install-deps": "npm install",
     "test": "node -e \"console.log('Test script - crawling functionality')\"",
     "update-version": "node scripts/update-version.js",
+    "generate-tin-tuc-clean-urls": "node scripts/generate-tin-tuc-clean-urls.js",
     "predeploy": "npm run update-version",
     "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
   },
