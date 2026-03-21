@@ -1,6 +1,6 @@
 ---
 name: news-item-generator
-description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. Always attach at least one random affiliate product from data/aff/products and produce detailed article content with source links.
+description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. No editorial prediction or speculation—only attributable facts, past-tense observations, and clearly cited third-party forecasts when required. Always attach at least one random affiliate product from data/aff/products and produce detailed article content with source links.
 ---
 
 # News Item Generator
@@ -117,6 +117,13 @@ If a non-critical field is missing, infer from trusted context. Ask user only wh
 - **Avoid:** Images from commercial newspapers (thoibaotaichinhvietnam.vn, kinhtedothi.vn, tienphong.vn, vnexpress.net, etc.) unless you have explicit permission.
 - If no suitable licensed image exists, use a topic-aligned Wikimedia/stock image. Never use newspaper images without permission.
 
+## Chính sách không dự đoán / không phán đoán (bắt buộc)
+
+- **Không** viết dưới danh nghĩa biên tập các nội dung: dự báo giá, kịch bản tương lai, “sẽ / có thể” mang tính tiên đoán, triển vọng ngắn hạn do tự suy ra, “nhận định chuyên môn” không có nguồn.
+- **Được phép:** mô tả **đã xảy ra**, số liệu có mốc thời gian, trích dẫn **nguyên văn có nguồn** khi một cơ quan/báo chính thức đưa dự báo (ghi rõ “theo [tên nguồn]…”).
+- **Được phép:** mục kiểu “các mốc tin công khai đáng theo dõi” (lịch họp, báo cáo sắp công bố) **không** kèm kết luận biên tập về kết quả tương lai.
+- Tránh tiêu đề/mục lục gợi dự báo: không dùng “triển vọng”, “dự báo”, “kịch bản” như lời của trang trừ khi đang **trích thuật** nguồn có thẩm quyền.
+
 ## Topic Scope and Naming Rules (Required)
 
 - News topics can be any domain (economy, policy, tech, society, transport, health, sports, etc.).
@@ -171,7 +178,7 @@ Each detail page must include:
 4. Summary paragraph
 5. TOC block
 6. At least 3 content sections with meaningful paragraphs
-7. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến", "Điểm đáng chú ý")
+7. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến **đã ghi nhận**", "Điểm đáng chú ý từ dữ liệu") — không dự báo tương lai
 8. Affiliate `ads-card` block in article body:
    - include `data-random-affiliate="true"` (in-body contextual block)
 9. Post-conclusion affiliate `ads-card`:
@@ -255,9 +262,9 @@ Reasoning:
 #### B. `economy` (Kinh tế)
 - Section 1: `Dữ liệu và chỉ số chính`
 - Section 2: `Diễn biến thị trường theo kỳ`
-- Section 3: `Phân tích động lực kỹ thuật` (chi phí, cung-cầu, thanh khoản, độ trễ)
-- Optional Section 4: `Kịch bản diễn biến ngắn hạn` (mang tính mô tả)
-- Conclusion: neutral observation on market state/uncertainty
+- Section 3: `Phân tích động lực kỹ thuật` (chi phí, cung-cầu, thanh khoản, độ trễ) — chỉ từ dữ liệu và giải thích cơ chế đã ghi nhận
+- Optional Section 4: `Các mốc thông tin công khai đáng theo dõi` (lịch công bố, báo cáo, nguồn tra cứu) — **không** kịch bản giá hay dự báo biên tập
+- Conclusion: tóm tắt trạng thái **đã quan sát** và giới hạn hiểu biết; không kết luận về hướng đi tương lai trừ khi trích nguồn có thẩm quyền
 
 Reasoning:
 - Tin kinh tế phải bám số liệu, cấu trúc thị trường và cơ chế vận động.
@@ -274,10 +281,10 @@ Reasoning:
 
 #### D. `society` (Xã hội)
 - Section 1: `Bối cảnh và dữ liệu nền`
-- Section 2: `Xu hướng hành vi / tâm lý cộng đồng`
+- Section 2: `Xu hướng hành vi / tâm lý cộng đồng` (chỉ từ khảo sát, báo cáo hoặc sự kiện đã diễn ra)
 - Section 3: `Tác động dân sinh theo nhóm đối tượng`
-- Optional Section 4: `Biến số xã hội cần theo dõi`
-- Conclusion: neutral observation on social trajectory
+- Optional Section 4: `Các mốc hoặc nguồn cập nhật đáng theo dõi` (không phán đoán kết quả)
+- Conclusion: quan sát trung tính về những gì **đã** ghi nhận
 
 Reasoning:
 - Tin xã hội cần giải thích hành vi, tâm lý và tác động thực tế đến đời sống.
@@ -336,9 +343,9 @@ When drafting article content, follow these rules to avoid copyright risk and en
 ## Tone and Conclusion Policy
 
 - Do not force fixed section names like "Nhận định chuyên môn" or "Gợi ý hành động".
-- Conclusion sections should be neutral, journalistic observations.
+- Conclusion sections should be neutral, journalistic observations **về quá khứ và hiện tại đã có nguồn**.
 - Avoid imperative advice language ("nên", "hãy", "cần phải làm...") in conclusions.
-- Prefer evidence-based closing remarks that summarize trend direction, uncertainty, and observable implications.
+- **Không** kết thúc bằng dự đoán hướng đi, kịch bản giá, hay “triển vọng” do biên tập tự suy; chỉ tóm tắt điều đã kiểm chứng và (nếu cần) hướng độc giả tới nguồn chính thức để tự cập nhật.
 
 ## Generation Workflow
 

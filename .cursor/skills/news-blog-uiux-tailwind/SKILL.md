@@ -1,6 +1,6 @@
 ---
 name: news-blog-uiux-tailwind
-description: Generates modern Tailwind-based news/blog pages with strong UI/UX defaults and complete long-form article structures. Use when creating or redesigning news homepages, blog listing pages, article detail pages, responsive blog UIs, or improving readability and accessibility.
+description: Generates modern Tailwind-based news/blog pages with strong UI/UX defaults and complete long-form article structures. Placeholder and sample copy must not imply editorial prediction or speculation (no forecasts, scenarios, or “sẽ/có thể” forward claims unless clearly labeled as quoted third-party source). Use when creating or redesigning news homepages, blog listing pages, article detail pages, responsive blog UIs, or improving readability and accessibility.
 ---
 
 # Modern News/Blog UI-UX (Tailwind)
@@ -28,7 +28,7 @@ Default stack is HTML + Tailwind CSS.
 3. Generate Tailwind layout skeleton:
    - Semantic landmarks (`header`, `main`, `section`, `article`, `aside`, `footer`).
    - Responsive grid/flex structure (mobile-first).
-4. Fill components with realistic placeholders:
+4. Fill components with realistic placeholders (factual tone only—no invented forecasts or editorial speculation):
    - Hero area
    - Card/list modules
    - Metadata blocks (author, date, read-time, category)
