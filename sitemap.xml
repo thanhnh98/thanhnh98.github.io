@@ -106,24 +106,6 @@
 
     <!-- News Detail Pages -->
     <url>
-        <loc>https://saptet.vn/tin-tuc/su-kien-xang-dau-ngay-10-03-2026.html</loc>
-        <lastmod>2026-03-12</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html</loc>
-        <lastmod>2026-03-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-15-03-2026.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc>https://saptet.vn/tin-tuc/chi-so-gia-tieu-dung-thang-03-2026.html</loc>
         <lastmod>2026-03-14</lastmod>
         <changefreq>weekly</changefreq>
@@ -196,18 +178,6 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-16-03-2026.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-17-03-2026.html</loc>
-        <lastmod>2026-03-17</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc>https://saptet.vn/tin-tuc/cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026.html</loc>
         <lastmod>2026-03-15</lastmod>
         <changefreq>weekly</changefreq>
@@ -232,32 +202,8 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-18-03-2026.html</loc>
-        <lastmod>2026-03-18</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc>https://saptet.vn/tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html</loc>
         <lastmod>2026-03-18</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-19-03-2026.html</loc>
-        <lastmod>2026-03-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-20-03-2026.html</loc>
-        <lastmod>2026-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-xang-hom-nay-ngay-20-03-2026.html</loc>
-        <lastmod>2026-03-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -270,12 +216,6 @@
     <url>
         <loc>https://saptet.vn/tin-tuc/thong-bao-lich-thi-tot-nghiep-thpt-2026.html</loc>
         <lastmod>2026-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/gia-vang-hom-nay-ngay-21-03-2026.html</loc>
-        <lastmod>2026-03-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

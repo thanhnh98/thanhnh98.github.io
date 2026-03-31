@@ -3,100 +3,13 @@
   "generatedAt": "2026-03-21T01:29:03Z",
   "items": [
     {
-      "id": "news-001",
-      "slug": "su-kien-xang-dau-ngay-10-03-2026",
-      "title": "Sự kiện xăng dầu: Điều chỉnh giá từ 23h45 ngày 10/03/2026",
-      "summary": "Kỳ điều hành 23h45 ngày 10/03/2026 ghi nhận xăng E5 RON 92 và RON 95-III tăng mạnh, phản ánh chi phí đầu vào còn cao. Góc nhìn biên tập: tác động lan sang vận tải và tiêu dùng ngắn hạn, cần theo dõi thêm tốc độ truyền dẫn giá ở kỳ kế tiếp.",
-      "category": "economy",
-      "publishedAt": "2026-03-12T11:30:00Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "xang-dau",
-        "gia-xang",
-        "thi-truong-nang-luong",
-        "viet-nam"
-      ],
-      "source": {
-        "name": "VietnamPlus (TTXVN)",
-        "url": "https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp"
-      },
-      "links": {
-        "canonicalUrl": "https://www.vietnamplus.vn/gia-xang-dau-tang-tu-23h45-ngay-1032026-post1098124.vnp",
-        "affiliateUrl": "https://s.shopee.vn/4frPs6Oav6",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "aff-001",
-        "shopId": "xangdau-2026",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lqtyd2agh2vmb1",
-        "images": [],
-        "name": "Hộp Socola AVY Trắng Đen Hot Trend Mix Chữ Quà Tặng Người Yêu Valentine",
-        "description": "Sản phẩm gợi ý liên quan theo metadata affiliate của bài viết.",
-        "type": "shopee",
-        "category": "quatet",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/4frPs6Oav6"
-      },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Gasoline_in_mason_jar.jpg/1280px-Gasoline_in_mason_jar.jpg",
-      "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Gasoline_in_mason_jar.jpg/1280px-Gasoline_in_mason_jar.jpg"
-      },
-      "detailPage": "./tin-tuc/su-kien-xang-dau-ngay-10-03-2026.html"
-    },
-    {
-      "id": "news-002",
-      "slug": "gia-vang-hom-nay-ngay-13-03-2026",
-      "title": "Giá vàng hôm nay 13/03/2026: DOJI niêm yết SJC 181,80-184,80 triệu đồng/lượng",
-      "summary": "Mốc 12:26 ngày 13/03/2026, DOJI niêm yết vàng SJC tại Hà Nội 181,80-184,80 triệu đồng/lượng, chênh lệch mua-bán 3,00 triệu đồng/lượng. Bài viết cập nhật theo khung kinh tế: dữ liệu chỉ số, diễn biến thị trường, động lực kỹ thuật và kịch bản ngắn hạn.",
-      "category": "economy",
-      "publishedAt": "2026-03-13T12:30:00Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "vang-sjc",
-        "doji",
-        "vietnamplus",
-        "thi-truong-vang"
-      ],
-      "source": {
-        "name": "DOJI",
-        "url": "https://giavang.doji.vn/"
-      },
-      "links": {
-        "canonicalUrl": "https://giavang.doji.vn/",
-        "affiliateUrl": "https://s.shopee.vn/5q2cujgiYL",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "596867",
-        "shopId": "28470746030",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3t1qpqueoc5b1",
-        "images": [],
-        "name": "Socola valentine tặng túi hộp đen sang chảnhm | Shopee Việt Nam",
-        "description": "Mua Socola valentine tặng túi hộp đen sang chảnhm giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
-        "type": "shopee",
-        "category": "banhkeo",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/5q2cujgiYL"
-      },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
-      "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-13-03-2026.html"
-    },
-    {
       "id": "news-003",
       "slug": "chi-so-gia-tieu-dung-thang-03-2026",
       "title": "CPI tháng 03/2026: Áp lực giá thiết yếu tăng nhẹ",
       "summary": "Giá tiêu dùng tháng 03/2026 tăng nhẹ ở nhóm thiết yếu, tạo áp lực sớm lên ngân sách hộ gia đình trước mùa cao điểm cuối năm.",
       "category": "economy",
       "publishedAt": "2026-03-14T09:00:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "cpi",
         "gia-tieu-dung",
@@ -139,7 +52,7 @@
       "summary": "Tỷ giá trung tâm được điều hành trong biên độ hẹp, hỗ trợ ổn định kỳ vọng thị trường nhưng doanh nghiệp vẫn cần chủ động phòng ngừa rủi ro.",
       "category": "economy",
       "publishedAt": "2026-03-14T13:30:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "ty-gia",
         "ngan-hang-nha-nuoc",
@@ -182,7 +95,7 @@
       "summary": "Nhu cầu bay nội địa tăng sớm trên các chặng trục, phản ánh xu hướng đặt vé trước để tối ưu ngân sách trong giai đoạn cao điểm đi lại.",
       "category": "travel",
       "publishedAt": "2026-03-15T08:45:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "hang-khong",
         "du-lich-noi-dia",
@@ -225,7 +138,7 @@
       "summary": "Áp lực đặt vé tàu đường dài tăng sớm ở các tuyến nóng, người đi lại nên chuẩn bị nhiều phương án lịch trình linh hoạt.",
       "category": "transport",
       "publishedAt": "2026-03-14T10:10:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "ve-tau",
         "duong-sat",
@@ -268,7 +181,7 @@
       "summary": "Nhiều doanh nghiệp chuyển sang gói phúc lợi tổng thể để ổn định nhân sự trước mùa sản xuất cao điểm cuối năm.",
       "category": "economy",
       "publishedAt": "2026-03-16T08:20:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "lao-dong",
         "phuc-loi",
@@ -311,7 +224,7 @@
       "summary": "Biến động thời tiết chuyển mùa có thể ảnh hưởng trực tiếp đến nhịp logistics và hành vi mua sắm ngắn hạn của người tiêu dùng.",
       "category": "society",
       "publishedAt": "2026-03-16T08:45:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "thoi-tiet",
         "logistics",
@@ -354,7 +267,7 @@
       "summary": "Công tác kiểm tra an toàn thực phẩm được siết chặt trước mùa tiêu dùng cao điểm, người mua cần ưu tiên hàng hóa có truy xuất rõ ràng.",
       "category": "lifestyle",
       "publishedAt": "2026-03-16T09:00:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "an-toan-thuc-pham",
         "le-hoi",
@@ -397,7 +310,7 @@
       "summary": "Nhu cầu điện tăng sớm tạo áp lực phụ tải theo giờ cao điểm; hộ gia đình và doanh nghiệp cần tối ưu thói quen tiêu thụ điện.",
       "category": "energy",
       "publishedAt": "2026-03-16T09:15:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "dien-nang",
         "nang-nong",
@@ -440,7 +353,7 @@
       "summary": "Lượng đặt dịch vụ du lịch sớm tăng, giúp giảm rủi ro cháy phòng nhưng làm biên giá phân hóa mạnh hơn giữa đặt sớm và cận ngày.",
       "category": "travel",
       "publishedAt": "2026-03-16T09:30:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "du-lich",
         "dat-tour-som",
@@ -483,7 +396,7 @@
       "summary": "Đơn hàng online tăng nhanh hơn thông lệ ở nhóm hàng theo mùa; tối ưu tồn kho và giao vận là yếu tố quyết định hiệu quả cao điểm.",
       "category": "commerce",
       "publishedAt": "2026-03-16T09:45:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "thuong-mai-dien-tu",
         "ban-le-online",
@@ -526,7 +439,7 @@
       "summary": "Sắp Tết 2027 là app Tết phổ biến với bộ đếm ngược Tết 2027, mini game vui nhộn và link tải nhanh cho Android/iOS qua Google Play, App Store hoặc trang tự nhận diện thiết bị.",
       "category": "technology",
       "publishedAt": "2026-03-16T10:00:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "sap-tet-2027",
         "ung-dung-di-dong",
@@ -569,7 +482,7 @@
       "summary": "OpenClaw thu hút mạnh nhờ nhịp phát hành dày, cộng đồng đóng góp lớn và mô hình trợ lý AI chạy trên hạ tầng cá nhân, tạo cảm giác kiểm soát dữ liệu tốt hơn so với các công cụ chỉ chạy trên đám mây.",
       "category": "technology",
       "publishedAt": "2026-03-16T10:15:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "openclaw",
         "ai-agent",
@@ -607,102 +520,13 @@
       "detailPage": "./tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html"
     },
     {
-      "id": "news-015",
-      "slug": "gia-vang-hom-nay-ngay-16-03-2026",
-      "title": "Giá vàng hôm nay 16/03/2026: Dữ liệu niêm yết và bối cảnh thị trường",
-      "summary": "Sáng 16/03/2026, vàng SJC tại Hà Nội niêm yết 179,6-182,6 triệu đồng/lượng, giá vàng thế giới giảm xuống dưới 5.000 USD/ounce. Bài tổng hợp số liệu từ nguồn chính thống và bối cảnh được báo chí kinh tế thường đặt cạnh chủ đề lạm phát–lãi suất (tham khảo nguồn, không dự báo giá hay chính sách).",
-      "category": "economy",
-      "publishedAt": "2026-03-16T10:30:00Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "vang-sjc",
-        "du-lieu-niem-yet",
-        "thi-truong-vang",
-        "vietnamplus"
-      ],
-      "source": {
-        "name": "VietnamPlus (TTXVN)",
-        "url": "https://www.vietnamplus.vn/gia-vang-ngay-163-bang-gia-tai-cac-cong-ty-vang-bac-da-quy-post1099212.vnp"
-      },
-      "links": {
-        "canonicalUrl": "https://www.vietnamplus.vn/gia-vang-ngay-163-bang-gia-tai-cac-cong-ty-vang-bac-da-quy-post1099212.vnp",
-        "affiliateUrl": "https://s.shopee.vn/2qP1LAhjST",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "464120",
-        "shopId": "9014406851",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-may4upu2iymvc2",
-        "images": [],
-        "name": "Socola Valentine Trái Tim quà tặng tình nhân 14/2 chocolate | Shopee Việt Nam",
-        "description": "Mua Socola Valentine Trái Tim quà tặng tình nhân chocolate thơm ngon giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
-        "type": "shopee",
-        "category": "banhkeo",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/2qP1LAhjST"
-      },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
-      "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-16-03-2026.html"
-    },
-    {
-      "id": "news-016",
-      "slug": "gia-vang-hom-nay-ngay-17-03-2026",
-      "title": "Giá vàng hôm nay 17/03/2026: Trong nước tăng bất chấp giá thế giới giảm mạnh",
-      "summary": "Chiều 16/03 và sáng 17/03, vàng SJC tại SJC, DOJI, Phú Quý neo quanh 180,1-183,1 triệu đồng/lượng (mua vào-bán ra), tăng 500.000 đồng/lượng so với mở cửa phiên sáng 16/03. Giá vàng thế giới giảm mạnh tới 36 USD xuống còn ~4.981 USD/ounce, chênh lệch trong nước-thế giới khoảng 25 triệu đồng/lượng.",
-      "category": "economy",
-      "publishedAt": "2026-03-17T10:30:00Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "vang-sjc",
-        "doji",
-        "phu-quy",
-        "thi-truong-vang",
-        "vietnamplus"
-      ],
-      "source": {
-        "name": "VietnamPlus (TTXVN)",
-        "url": "https://www.vietnamplus.vn/du-gia-the-gioi-giam-manh-nhung-vang-trong-nuoc-lai-dieu-chinh-tang-500000-dongluong-post1099306.vnp"
-      },
-      "links": {
-        "canonicalUrl": "https://www.vietnamplus.vn/du-gia-the-gioi-giam-manh-nhung-vang-trong-nuoc-lai-dieu-chinh-tang-500000-dongluong-post1099306.vnp",
-        "affiliateUrl": "https://s.shopee.vn/8pg54hryHp",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "491301",
-        "shopId": "25454624470",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mjdp02l21mv6fb@resize_w900_nl.webp",
-        "images": [],
-        "name": "[TẶNG BAO LÌ XÌ] Set Hộp Gỗ Quà Tết 2026 Hạt Dinh Dưỡng từ Nông Sản Giọt Nắng",
-        "description": "Đã bán 10k+",
-        "type": "shopee",
-        "category": "quatet",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/8pg54hryHp"
-      },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
-      "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-17-03-2026.html"
-    },
-    {
       "id": "news-017",
       "slug": "xu-huong-trend-hot-hom-nay-17-03-2026",
       "title": "Xu hướng trend hot hôm nay 17/03/2026: Từ \"Trò chuyện với bản thân 10 năm trước\" đến \"2026 là năm 2016 mới\"",
       "summary": "Tổng hợp các xu hướng đang lan tỏa mạnh trên mạng xã hội Việt Nam: trào lưu hoài niệm \"trò chuyện với bản thân 10 năm trước\", \"2026 là năm 2016 mới\", câu thoại \"Chị Bờ Vai\" từ Thỏ Ơi!!, làm hoa kẽm nhung DIY và bài hát \"Ai Đưa Em Về\" gây sốt TikTok.",
       "category": "entertainment",
       "publishedAt": "2026-03-17T11:00:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "xu-huong",
         "trend-hot",
@@ -747,7 +571,7 @@
       "summary": "So sánh thời tiết tháng 1-3/2026 với cùng kỳ 2025: Mùa Đông 2025-2026 có xu thế ấm hơn trung bình nhiều năm, nhiệt độ Bắc Bộ tháng 1/2026 cao hơn 0,5-1°C. Năm ngoái, không khí lạnh hoạt động mạnh hơn, nhiều đợt rét đậm rét hại kéo dài. Năm nay nắng nóng xuất hiện sớm từ cuối tháng 2 ở Nam Bộ.",
       "category": "society",
       "publishedAt": "2026-03-17T14:00:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "thoi-tiet",
         "du-bao-khi-tuong",
@@ -791,7 +615,7 @@
       "summary": "Cục Việc làm (Bộ Nội vụ) khẳng định lịch nghỉ lễ thực hiện đúng quy định. Giỗ Tổ 10/3 âm lịch (26/4) nghỉ 3 ngày (25-27/4); 30/4-1/5 nghỉ 4 ngày (30/4-3/5). Không có kỳ nghỉ 9 ngày liên tiếp như tin đồn—người lao động đi làm 2 ngày (28-29/4) giữa hai kỳ nghỉ.",
       "category": "policy",
       "publishedAt": "2026-03-17T14:30:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "lich-nghi-le",
         "gio-to-hung-vuong",
@@ -830,58 +654,13 @@
       "detailPage": "./tin-tuc/lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026.html"
     },
     {
-      "id": "news-020",
-      "slug": "gia-vang-hom-nay-ngay-18-03-2026",
-      "title": "Giá vàng hôm nay 18/03/2026: DOJI niêm yết SJC 180,0-183,0 triệu đồng/lượng, thế giới hồi phục trên 5.000 USD",
-      "summary": "Mốc 09:10 ngày 18/03/2026, DOJI niêm yết vàng SJC tại Hà Nội 180,0-183,0 triệu đồng/lượng, giảm nhẹ 100.000 đồng so với phiên 17/03. Giá vàng thế giới hồi phục lên ~5.001 USD/ounce sau phiên giảm mạnh trước đó, chênh lệch trong nước-thế giới duy trì khoảng 27 triệu đồng/lượng.",
-      "category": "economy",
-      "publishedAt": "2026-03-18T10:00:00Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "vang-sjc",
-        "doji",
-        "thi-truong-vang",
-        "gia-vang-the-gioi",
-        "fed"
-      ],
-      "source": {
-        "name": "DOJI",
-        "url": "https://giavang.doji.vn/"
-      },
-      "links": {
-        "canonicalUrl": "https://giavang.doji.vn/",
-        "affiliateUrl": "https://s.shopee.vn/7VBj7DwXdp",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "294568",
-        "shopId": "26557885515",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-82621-mlvl9ee7zv9ee0",
-        "images": [],
-        "name": "Thùng 48 Hộp Sữa Yến Mạch TH true milk OAT hương vị Sô Cô La 180ml",
-        "description": "Gợi ý mua sắm từ Shopee.",
-        "type": "shopee",
-        "category": "banhkeo",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/7VBj7DwXdp"
-      },
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg",
-      "thumbnailSource": {
-        "name": "Wikimedia Commons",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-18-03-2026.html"
-    },
-    {
       "id": "news-021",
       "slug": "goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026",
       "title": "Gợi ý quà tặng tinh tế cho các dịp đặc biệt năm 2026: Từ 8/3 đến Giỗ Tổ và 30/4",
       "summary": "Tổng hợp ý tưởng quà tặng ý nghĩa cho các dịp lễ sắp tới: 8/3, Giỗ Tổ Hùng Vương (26/4), 30/4-1/5 và sinh nhật người thân. Từ quà handmade dưới 200.000 đồng đến set quà cao cấp, bài viết gợi ý theo từng ngân sách và đối tượng nhận quà.",
       "category": "lifestyle",
       "publishedAt": "2026-03-18T10:30:00Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "qua-tang",
         "dip-dac-biet",
@@ -891,7 +670,7 @@
         "mua-sam"
       ],
       "source": {
-        "name": "Sắp Tết Editor (Tổng hợp)",
+        "name": "Thanh Nguyen (Tổng hợp)",
         "url": "https://saptet.vn/tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html"
       },
       "links": {
@@ -920,145 +699,13 @@
       "detailPage": "./tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html"
     },
     {
-      "id": "news-022",
-      "slug": "gia-vang-hom-nay-ngay-19-03-2026",
-      "title": "Giá vàng hôm nay 19/03/2026: DOJI niêm yết SJC 175,4-178,4 triệu đồng/lượng, chênh lệch mua-bán 3 triệu",
-      "summary": "Lúc 08:43 ngày 19/03/2026, DOJI niêm yết vàng miếng SJC tại Hà Nội ở mức 175,4-178,4 triệu đồng/lượng, giảm mạnh so với phiên trước nhưng biên mua-bán vẫn duy trì 3 triệu đồng/lượng. Bài viết tổng hợp dữ liệu chính và phân tích các yếu tố thị trường trong ngắn hạn.",
-      "category": "economy",
-      "publishedAt": "2026-03-19T03:17:24Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "vang-sjc",
-        "doji",
-        "thi-truong-vang",
-        "gia-vang-the-gioi"
-      ],
-      "source": {
-        "name": "DOJI",
-        "url": "https://giavang.doji.vn/"
-      },
-      "links": {
-        "canonicalUrl": "https://giavang.doji.vn/",
-        "affiliateUrl": "https://s.shopee.vn/5VPmVorF7G",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "094677",
-        "shopId": "23889045695",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m4zit0l8y4ub66",
-        "images": [],
-        "name": "Chocolate Truffle Set quà tặng Valentine (đã gồm hộp quà + túi + thiệp)",
-        "description": "Gợi ý mua sắm từ Shopee.",
-        "type": "shopee",
-        "category": "banhkeo",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/5VPmVorF7G"
-      },
-      "thumbnailUrl": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg",
-      "thumbnailSource": {
-        "name": "Pinterest CDN",
-        "url": "https://i.pinimg.com/736x/52/42/92/524292c41fc73e2eae554ed3c02b7bf6.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-19-03-2026.html"
-    },
-    {
-      "id": "news-023",
-      "slug": "gia-vang-hom-nay-ngay-20-03-2026",
-      "title": "Giá vàng hôm nay 20/03/2026: DOJI niêm yết SJC 171,9-174,9 triệu đồng/lượng",
-      "summary": "Cập nhật lúc 09:34 ngày 20/03/2026, DOJI niêm yết vàng SJC và nhẫn 9999 cùng ở mức 171,9-174,9 triệu đồng/lượng, chênh lệch mua-bán 3 triệu đồng/lượng. Bài viết tổng hợp dữ liệu chính và phân tích kịch bản ngắn hạn của thị trường vàng trong nước.",
-      "category": "economy",
-      "publishedAt": "2026-03-20T02:42:38Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "doji",
-        "vang-sjc",
-        "vang-nhan-9999",
-        "thi-truong-vang"
-      ],
-      "source": {
-        "name": "DOJI",
-        "url": "https://giavang.doji.vn/"
-      },
-      "links": {
-        "canonicalUrl": "https://giavang.doji.vn/",
-        "affiliateUrl": "https://s.shopee.vn/4qAxwE8Qix",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "383221",
-        "shopId": "18322772881",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m6i1dp99nl9j37",
-        "images": [],
-        "name": "Quần short nữ linen - Linen Short | Shopee Việt Nam",
-        "description": "Mua Quần short nữ linen - Linen Short giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
-        "type": "shopee",
-        "category": "clothes",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/4qAxwE8Qix"
-      },
-      "thumbnailUrl": "https://i.pinimg.com/1200x/26/f7/c7/26f7c78ed05263f2f38d750a83fbde49.jpg",
-      "thumbnailSource": {
-        "name": "Pinterest CDN",
-        "url": "https://i.pinimg.com/1200x/26/f7/c7/26f7c78ed05263f2f38d750a83fbde49.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-20-03-2026.html"
-    },
-    {
-      "id": "news-024",
-      "slug": "gia-xang-hom-nay-ngay-20-03-2026",
-      "title": "Giá xăng hôm nay 20/03/2026: RON95-III ở mức 30.690 đồng/lít sau kỳ điều hành 19/3",
-      "summary": "Giá xăng dầu ngày 20/03/2026 đang áp dụng theo kỳ điều hành từ 23h ngày 19/3 với RON95-III 30.690 đồng/lít và E5RON92 27.177 đồng/lít. Bản tin phân tích tác động ngắn hạn lên vận tải, logistics và chi phí dân sinh.",
-      "category": "energy",
-      "publishedAt": "2026-03-20T02:47:38Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-xang-hom-nay",
-        "xang-dau",
-        "ron95-iii",
-        "e5ron92",
-        "thi-truong-nang-luong"
-      ],
-      "source": {
-        "name": "VietnamPlus (TTXVN)",
-        "url": "https://www.vietnamplus.vn/gia-xang-dau-tang-manh-mat-hang-ron95-iii-len-nguong-30690-dong-moi-lit-post1098756.vnp"
-      },
-      "links": {
-        "canonicalUrl": "https://www.vietnamplus.vn/gia-xang-dau-tang-manh-mat-hang-ron95-iii-len-nguong-30690-dong-moi-lit-post1098756.vnp",
-        "affiliateUrl": "https://s.shopee.vn/3VeXK4vjXN",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "229869",
-        "shopId": "28086665458",
-        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mjaobz2hperm07",
-        "images": [],
-        "name": "Bình Tập Hút Nước Cho Bé Emoon Tritan Chuẩn Nha Khoa Chống Sặc",
-        "description": "Mua Bình Tập Hút Nước Cho Bé Emoon Tritan giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
-        "type": "shopee",
-        "category": "bachhoa",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://s.shopee.vn/3VeXK4vjXN"
-      },
-      "thumbnailUrl": "https://i.pinimg.com/736x/76/4f/ba/764fbab084a8462c670656e9103b4e57.jpg",
-      "thumbnailSource": {
-        "name": "Pinterest CDN",
-        "url": "https://i.pinimg.com/736x/76/4f/ba/764fbab084a8462c670656e9103b4e57.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-xang-hom-nay-ngay-20-03-2026.html"
-    },
-    {
       "id": "news-025",
       "slug": "openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1",
       "title": "OpenClaw cập nhật 2026.3.13-1: Tập trung ổn định gateway và trải nghiệm đa nền tảng",
       "summary": "OpenClaw duy trì sức hút công nghệ với hơn 325 nghìn sao trên GitHub và bản phát hành 2026.3.13-1 tập trung xử lý các lỗi vận hành quan trọng ở gateway, browser và UI chat đa nền tảng.",
       "category": "technology",
       "publishedAt": "2026-03-20T02:52:38Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "openclaw",
         "ai-agent",
@@ -1102,7 +749,7 @@
       "summary": "Theo thông tin từ Cổng Thông tin điện tử Chính phủ, kỳ thi tốt nghiệp THPT 2026 thi chính thức ngày 11-12/6; đồng thời có các mốc quan trọng như thử đăng ký 17-21/4, đăng ký chính thức 24/4-5/5 và công bố kết quả lúc 8h ngày 1/7/2026.",
       "category": "education",
       "publishedAt": "2026-03-20T10:32:35Z",
-      "author": "Sắp Tết Editor",
+      "author": "Thanh Nguyen",
       "tags": [
         "lich-thi-thpt-2026",
         "tot-nghiep-thpt",
@@ -1138,50 +785,6 @@
         "url": "https://saptet.vn/assets/images/thpt-2026-decor.png"
       },
       "detailPage": "./tin-tuc/thong-bao-lich-thi-tot-nghiep-thpt-2026.html"
-    },
-    {
-      "id": "news-027",
-      "slug": "gia-vang-hom-nay-ngay-21-03-2026",
-      "title": "Giá vàng hôm nay 21/03/2026: DOJI niêm yết SJC 173,1-176,1 triệu đồng/lượng",
-      "summary": "Đầu ngày 21/03/2026, mặt bằng tham chiếu từ bảng giá DOJI tại Hà Nội (mốc hiển thị 17:34 ngày 20/03/2026) ghi nhận SJC và nhẫn 9999 ở 173,1-176,1 triệu đồng/lượng, chênh lệch mua-bán 3 triệu. Bài viết phân tích ngắn hạn và nhắc kiểm tra lại giavang.doji.vn trước khi giao dịch.",
-      "category": "economy",
-      "publishedAt": "2026-03-21T01:29:03Z",
-      "author": "Sắp Tết Editor",
-      "tags": [
-        "gia-vang-hom-nay",
-        "doji",
-        "vang-sjc",
-        "vang-nhan-9999",
-        "thi-truong-vang"
-      ],
-      "source": {
-        "name": "DOJI",
-        "url": "https://giavang.doji.vn/"
-      },
-      "links": {
-        "canonicalUrl": "https://giavang.doji.vn/",
-        "affiliateUrl": "https://vt.tiktok.com/ZS9136wPP9XMw-k3Mbl/",
-        "useAffiliate": true
-      },
-      "affiliate": {
-        "id": "330183",
-        "shopId": "",
-        "thumbnail": "https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/5a47d385e5f642afa2ec83c8b91cc203~tplv-aphluv4xwc-resize-webp:260:260.webp?dr=15582&t=555f072d&ps=933b5bde&shp=7745054a&shcp=9b759fb9&idc=my&from=2001012042",
-        "images": [],
-        "name": "ComBo 1kg Kẹo Mix Vị : Kẹo Lạc Trà Xanh , Kẹo Dồi Trà Xanh , Bánh Cáy , Kẹo Lạc Cafe",
-        "description": "ComBo 1kg Kẹo Mix Vị : Kẹo Lạc Trà Xanh , Kẹo Dồi Trà Xanh , Bánh Cáy , Kẹo Lạc Cafe",
-        "type": "tiktok",
-        "category": "banhkeo",
-        "coinBonus": 10,
-        "buyText": "Xem sản phẩm",
-        "url": "https://vt.tiktok.com/ZS9136wPP9XMw-k3Mbl/"
-      },
-      "thumbnailUrl": "https://i.pinimg.com/1200x/85/57/7c/85577c13103b91a459817aa203812993.jpg",
-      "thumbnailSource": {
-        "name": "Pinterest CDN",
-        "url": "https://i.pinimg.com/1200x/85/57/7c/85577c13103b91a459817aa203812993.jpg"
-      },
-      "detailPage": "./tin-tuc/gia-vang-hom-nay-ngay-21-03-2026.html"
     }
   ]
 }
