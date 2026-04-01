@@ -1,6 +1,6 @@
 ---
 name: news-item-generator
-description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. No editorial prediction or speculation—only attributable facts, past-tense observations, and clearly cited third-party forecasts when required. Always attach at least one random affiliate product from data/aff/products and produce detailed article content with source links.
+description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. No editorial prediction or speculation—only attributable facts, past-tense observations, and clearly cited third-party forecasts when required. Always attach 3 affiliate products highly related to the article topic (1 primary + 2 related) and produce detailed article content with source links.
 ---
 
 # News Item Generator
@@ -138,22 +138,32 @@ Before drafting:
 2. Prefer topics with recent momentum (policy updates, market moves, traffic spikes, public-impact events).
 3. If user does not provide a topic, propose 5-10 trend-aligned options first.
 
-## Mandatory Random Affiliate Rule
+## Mandatory Related Affiliate Rule
 
-Every generated news item must include at least one random product from:
+Every generated news item must include 3 related products:
+- 1 product liên quan nhất (primary) cho vị trí 1
+- 2 sản phẩm liên quan còn lại cho vị trí 2 (khối "Sản phẩm liên quan")
+
+Preferred source pools:
 - `data/aff/products` (primary)
 - `data/aff/products.json` (fallback)
 
 ### Product selection constraints
 
-Selected product should have:
+All selected products should have:
 - non-empty `name`
 - non-empty `url`
 - `thumbnail` preferred (fallback allowed)
 
+Relevance ranking rule:
+- Score by topical match with article `title`, `tags`, `category`.
+- Highest-relevance product goes to position 1.
+- Next 2 products go to position 2.
+- No duplicate product URLs across 3 items.
+
 ### JSON mapping (required)
 
-Map random product into news item:
+Map primary product into news item:
 - `links.affiliateUrl` = product `url`
 - `links.useAffiliate` = `true`
 - `affiliate.id` = product `id` (or empty string if absent)
@@ -166,6 +176,10 @@ Map random product into news item:
 - `affiliate.coinBonus` = product `coinBonus` (or `0`)
 - `affiliate.buyText` = product `buyText` (or `"Xem sản phẩm"`)
 - `affiliate.url` = product `url`
+
+Map the other 2 related products into:
+- `relatedAffiliates` (array length = 2)
+- Each item uses the same schema as `affiliate`
 
 ## Article Detail Requirements (Detailed Content)
 
@@ -180,9 +194,9 @@ Each detail page must include:
 6. At least 3 content sections with meaningful paragraphs
 7. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến **đã ghi nhận**", "Điểm đáng chú ý từ dữ liệu") — không dự báo tương lai
 8. Affiliate `ads-card` block in article body:
-   - include `data-random-affiliate="true"` (in-body contextual block)
+   - include `data-random-affiliate="true"` (vị trí 1, primary product)
 9. Post-conclusion affiliate `ads-card`:
-   - add one more `data-random-affiliate="true"` block ngay sau phần kết luận
+   - add one more `data-random-affiliate="true"` block ngay sau phần kết luận (vị trí 2, hiển thị 2 related products + title "Sản phẩm liên quan")
 10. Placement override rule (required):
    - Default layout keeps 2 affiliate blocks (one in-body + one post-conclusion).
    - If user explicitly requests a different placement/count (e.g., only in-body, remove post-conclusion), user instruction takes priority.
@@ -420,7 +434,7 @@ Tagging rule:
 - detail HTML includes canonical/og/twitter metadata matching its slug and topic
 - detail HTML does not use generic copy-paste SEO description from unrelated article
 - article is detailed (not thin content)
-- random affiliate product is present in JSON
+- 3 related affiliate products are mapped in JSON (1 primary + 2 related)
 - detail page affiliate block count/placement matches user instruction when explicitly provided
 - otherwise default to 2 blocks (in-body + post-conclusion)
 - detail page loads `../js/news-affiliate-random.js`
@@ -442,7 +456,7 @@ After completion, report:
 1. Created item ID + slug
 2. Updated JSON path
 3. Created HTML path
-4. Random product selected (name + url)
+4. Primary + related products selected (3 items)
 5. Any fallback decisions (slug collision, missing field inference)
 
 ## Additional Examples

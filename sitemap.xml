@@ -239,6 +239,25 @@
         <priority>0.8</priority>
     </url>
 
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-garmin-forerunner-165-gps-pin-11-ngay.html</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-amazfit-active-3-premium-trong-tam-gia.html</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-huawei-watch-gt6-pin-21-ngay.html</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- Seasonal Pages - Medium Priority -->
     <url>
         <loc>https://saptet.vn/trung-thu.html</loc>
