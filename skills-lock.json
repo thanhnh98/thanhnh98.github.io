@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "technical-blog-writing": {
+      "source": "inferen-sh/skills",
+      "sourceType": "github",
+      "computedHash": "833ef303857d5770ff2c197c89065b2087813717f136e1ca7ee1fcad6b1b25c7"
+    }
+  }
+}
