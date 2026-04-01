@@ -220,6 +220,25 @@
         <priority>0.8</priority>
     </url>
     
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-quat-mini-goojodoq-100-cap-gio-2026.html</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-op-lung-iphone-tpu-hoa-tiet-da-mem.html</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-tra-duong-huyet-detonic-thanh-phan-cach-dung.html</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- Seasonal Pages - Medium Priority -->
     <url>
         <loc>https://saptet.vn/trung-thu.html</loc>

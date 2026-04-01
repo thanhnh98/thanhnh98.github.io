@@ -49,6 +49,27 @@
     return valid[index];
   }
 
+  function pickRandomProducts(products, count, excludedUrls) {
+    var excluded = {};
+    (excludedUrls || []).forEach(function (url) {
+      if (url) excluded[String(url)] = true;
+    });
+
+    var valid = products.filter(function (p) {
+      return p && p.url && p.name && !excluded[String(p.url)];
+    });
+    if (!valid.length) return [];
+
+    var shuffled = valid.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = temp;
+    }
+    return shuffled.slice(0, Math.max(0, count || 0));
+  }
+
   function getCurrentArticleSlug() {
     var path = window.location.pathname || '';
     var fileName = path.split('/').pop() || '';
@@ -143,6 +164,32 @@
 
     if (thumbLinkEl) thumbLinkEl.href = product.url;
     if (titleLinkEl) titleLinkEl.href = product.url;
+  }
+
+  function createRelatedProductsSection(templateCard, products) {
+    if (!templateCard) return null;
+
+    var wrapper = document.createElement('section');
+    wrapper.className = 'ads-related-section';
+    wrapper.setAttribute('aria-label', 'Sản phẩm liên quan');
+
+    var heading = document.createElement('h3');
+    heading.className = 'ads-related-title';
+    heading.textContent = 'Sản phẩm liên quan';
+    wrapper.appendChild(heading);
+
+    var grid = document.createElement('div');
+    grid.className = 'ads-related-grid';
+
+    products.forEach(function (product) {
+      var card = templateCard.cloneNode(true);
+      card.classList.add('ads-card-related-item');
+      fillAdsCard(card, product);
+      grid.appendChild(card);
+    });
+
+    wrapper.appendChild(grid);
+    return wrapper;
   }
 
   function createFallbackAdsCard() {
@@ -263,17 +310,44 @@
     ctaRow.insertAdjacentElement('afterbegin', shareBtn);
   }
 
-  async function initRandomAffiliateInNews() {
+  function getItemAffiliate(item) {
+    if (!item || !item.affiliate) return null;
+    if (!item.affiliate.url || !item.affiliate.name) return null;
+    return item.affiliate;
+  }
+
+  async function initAffiliateInNews() {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.ads-card[data-random-affiliate="true"]'));
     if (!cards.length) return;
 
     var products = await loadProducts();
     if (!products.length) return;
 
-    cards.forEach(function (card) {
-      var product = pickRandomProduct(products);
-      fillAdsCard(card, product);
-    });
+    var slug = getCurrentArticleSlug();
+    var item = await loadNewsItemBySlug(slug);
+    var fixedAffiliate = getItemAffiliate(item);
+    var firstCard = cards[0];
+    var secondCard = cards[1];
+
+    if (firstCard) {
+      if (fixedAffiliate) {
+        fillAdsCard(firstCard, fixedAffiliate);
+      } else {
+        var fallbackProduct = pickRandomProduct(products);
+        if (fallbackProduct) fillAdsCard(firstCard, fallbackProduct);
+      }
+    }
+
+    if (!secondCard) return;
+
+    var excluded = [];
+    if (fixedAffiliate && fixedAffiliate.url) excluded.push(fixedAffiliate.url);
+    var relatedProducts = pickRandomProducts(products, 2, excluded);
+    if (!relatedProducts.length) return;
+
+    var relatedSection = createRelatedProductsSection(secondCard, relatedProducts);
+    if (!relatedSection) return;
+    secondCard.replaceWith(relatedSection);
   }
 
   async function initNewsImageSourceAttribution() {
@@ -288,13 +362,13 @@
     document.addEventListener('DOMContentLoaded', function () {
       ensurePostConclusionAffiliateCard();
       ensureDetailShareButton();
-      initRandomAffiliateInNews();
+      initAffiliateInNews();
       initNewsImageSourceAttribution();
     });
   } else {
     ensurePostConclusionAffiliateCard();
     ensureDetailShareButton();
-    initRandomAffiliateInNews();
+    initAffiliateInNews();
     initNewsImageSourceAttribution();
   }
 })();
