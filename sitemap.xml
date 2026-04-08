@@ -276,6 +276,12 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-man-hinh-di-dong-arzopa-a1-156-fhd.html</loc>
+        <lastmod>2026-04-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
     <!-- Seasonal Pages - Medium Priority -->
     <url>
