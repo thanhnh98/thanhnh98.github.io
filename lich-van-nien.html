@@ -2572,7 +2572,7 @@
                     const dateParam = formatDateParam(x.date);
                     const typeClass = x.lunar ? 'event-upcoming-item--lunar' : 'event-upcoming-item--solar';
                     const daysText = days === 0 ? 'Hôm nay' : 'Còn ' + days + ' ngày';
-                    return '<a href="chi-tiet-su-kien.html?date=' + encodeURIComponent(formatDateParam(x.date)) + '" class="event-upcoming-item ' + typeClass + ' event-item-link"><span class="event-days-left">' + daysText + '</span> – ' + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
+                    return '<a href="chi-tiet-su-kien.html#' + formatDateParam(x.date) + '" class="event-upcoming-item ' + typeClass + ' event-item-link"><span class="event-days-left">' + daysText + '</span> – ' + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
                 }).join('');
             }
         }
@@ -2600,7 +2600,7 @@
                 if (x.date.getTime() === today.getTime()) prefix = '<span class="event-days-left">Hôm nay</span> – ';
                 else if (days > 0) prefix = '<span class="event-days-left">Còn ' + days + ' ngày</span> – ';
                 else prefix = '<span class="event-days-past">Đã qua</span> – ';
-                const url = 'chi-tiet-su-kien.html?date=' + encodeURIComponent(formatDateParam(x.date));
+                const url = 'chi-tiet-su-kien.html#' + formatDateParam(x.date);
                 return '<a href="' + url + '" class="event-year-item ' + typeClass + ' event-item-link">' + prefix + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
             }).join('');
         }

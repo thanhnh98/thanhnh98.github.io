@@ -164,9 +164,33 @@
     <script src="data/events-data.js"></script>
     <script>
 (function () {
+    var countdownTickId = null;
+
     function getParam(name) {
         var m = (typeof location !== 'undefined' && location.search) ? location.search.match(new RegExp('[?&]' + name + '=([^&]+)')) : null;
         return m ? decodeURIComponent(m[1]) : '';
+    }
+
+    /** Ưu tiên ?date= (link cũ / chia sẻ); không thì #yyyy-mm-dd từ lịch — tránh nhiều URL lập chỉ mục. */
+    function getEffectiveDateStr() {
+        var q = getParam('date');
+        if (q) return q;
+        if (typeof location === 'undefined' || !location.hash) return '';
+        var raw = decodeURIComponent(location.hash.replace(/^#/, '').trim());
+        if (!raw) return '';
+        if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+        var hm = raw.match(/^date=(\d{4}-\d{2}-\d{2})$/);
+        return hm ? hm[1] : '';
+    }
+
+    function restoreCountdownUi() {
+        var wrap = document.getElementById('eventCountdown');
+        if (!wrap || document.getElementById('cdDays')) return;
+        wrap.innerHTML =
+            '<div class="countdown-unit"><span class="countdown-value" id="cdDays">0</span><span class="countdown-label">Ngày</span></div>' +
+            '<div class="countdown-unit"><span class="countdown-value" id="cdHours">0</span><span class="countdown-label">Giờ</span></div>' +
+            '<div class="countdown-unit"><span class="countdown-value" id="cdMinutes">0</span><span class="countdown-label">Phút</span></div>' +
+            '<div class="countdown-unit"><span class="countdown-value" id="cdSeconds">0</span><span class="countdown-label">Giây</span></div>';
     }
     function parseDateParam(str) {
         if (!str || !/^\d{4}-\d{2}-\d{2}$/.test(str)) return null;
@@ -269,7 +293,12 @@
     }
 
     function render() {
-        var dateParam = getParam('date');
+        if (countdownTickId !== null) {
+            clearInterval(countdownTickId);
+            countdownTickId = null;
+        }
+
+        var dateParam = getEffectiveDateStr();
         var hasDateParam = !!dateParam;
         var targetDate = parseDateParam(dateParam);
         var isTetFallback = false;
@@ -288,7 +317,7 @@
 
         if (!targetDate) {
             if (titleEl) titleEl.textContent = 'Không có ngày hợp lệ';
-            if (dateDisplayEl) dateDisplayEl.textContent = 'Thiếu tham số ?date=yyyy-mm-dd';
+            if (dateDisplayEl) dateDisplayEl.textContent = 'Thiếu ngày: dùng #yyyy-mm-dd hoặc ?date=yyyy-mm-dd';
             if (cardsEl) cardsEl.innerHTML = '';
             if (emptyEl) { emptyEl.style.display = 'block'; }
             return;
@@ -317,8 +346,9 @@
             }
         }
 
+        restoreCountdownUi();
         updateCountdown(targetDate);
-        setInterval(function () { updateCountdown(targetDate); }, 1000);
+        countdownTickId = setInterval(function () { updateCountdown(targetDate); }, 1000);
     }
 
     if (document.readyState === 'loading') {
@@ -326,6 +356,7 @@
     } else {
         render();
     }
+    window.addEventListener('hashchange', render);
 })();
     </script>
 </body>
