@@ -13,9 +13,9 @@ class Router {
             '/mon-an-tet.html': 'mon-an-tet.html', // Keep for backward compatibility
             '/tro-choi-tet': 'tro-choi-tet.html',
             '/tro-choi-tet.html': 'tro-choi-tet.html', // Keep for backward compatibility
-            '/tai-ung-dung': 'tai-ung-dung/index.html',
-            '/tai-ung-dung/': 'tai-ung-dung/index.html',
-            '/tai-ung-dung.html': 'tai-ung-dung/index.html', // Keep for backward compatibility
+            '/tai-ung-dung': 'tai-ung-dung.html',
+            '/tai-ung-dung/': 'tai-ung-dung.html',
+            '/tai-ung-dung.html': 'tai-ung-dung.html',
             '/blog': 'tin-tuc/index.html',
             '/blog.html': 'tin-tuc/index.html',
             '/news': 'tin-tuc/index.html',
@@ -60,7 +60,14 @@ class Router {
         let cleanPath = currentPath;
 
         // Pages that should keep .html in URL (no redirect to clean URL)
-        const keepHtmlPages = ['/tin-tuc/', '/tin-tuc.html', '/tin-tuc/index.html', '/tin-tuc'];
+        const keepHtmlPages = [
+            '/tin-tuc/',
+            '/tin-tuc.html',
+            '/tin-tuc/index.html',
+            '/tin-tuc',
+            '/tai-ung-dung.html',
+            '/chi-tiet-mon-an.html',
+        ];
         const shouldKeepHtml = keepHtmlPages.some(p => currentPath === p || currentPath.startsWith(p));
         if (shouldKeepHtml) return;
 
@@ -90,24 +97,17 @@ class Router {
         // Special handling for directory routes (like /tai-ung-dung/ and /tin-tuc/)
         // GitHub Pages automatically serves index.html from directories
         if (
-            normalizedPath === '/tai-ung-dung' ||
-            cleanPath === '/tai-ung-dung' ||
-            cleanPath === '/tai-ung-dung/' ||
             normalizedPath === '/tin-tuc' ||
             cleanPath === '/tin-tuc' ||
             cleanPath === '/tin-tuc/'
         ) {
-            // Allow directory routes to load naturally, don't redirect
-            // Check if we're already on the correct page
             const currentFile = this.getCurrentPageFile();
             if (
-                currentFile === 'tai-ung-dung/index.html' ||
                 currentFile === 'tin-tuc/index.html' ||
-                (currentFile === 'index.html' && (cleanPath.includes('tai-ung-dung') || cleanPath.includes('tin-tuc')))
+                (currentFile === 'index.html' && cleanPath.includes('tin-tuc'))
             ) {
-                return; // Already on the correct page
+                return;
             }
-            // If not on the page yet, let the server handle it naturally
             return;
         }
         
@@ -141,12 +141,7 @@ class Router {
             return;
         }
         // Don't redirect directory routes to 404
-        if (
-            currentPath === '/tai-ung-dung' ||
-            currentPath === '/tai-ung-dung/' ||
-            currentPath === '/tin-tuc' ||
-            currentPath === '/tin-tuc/'
-        ) {
+        if (currentPath === '/tin-tuc' || currentPath === '/tin-tuc/') {
             return;
         }
         // Redirect to 404 page
@@ -159,9 +154,6 @@ class Router {
             return 'index.html';
         }
         // Handle directory routes
-        if (path === '/tai-ung-dung' || path === '/tai-ung-dung/') {
-            return 'tai-ung-dung/index.html';
-        }
         if (path === '/tin-tuc' || path === '/tin-tuc/') {
             return 'tin-tuc/index.html';
         }
