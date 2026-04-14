@@ -1411,6 +1411,80 @@
         "url": "https://s.shopee.vn/AAD3bn5ri0"
       },
       "detailPage": "./tin-tuc/review-man-hinh-di-dong-arzopa-a1-156-fhd.html"
+    },
+    {
+      "id": "news-037",
+      "slug": "review-quat-sac-tich-dien-honjianda-fl323-fl313",
+      "title": "Review quạt sạc tích điện Honjianda FL323/FL313: giải pháp làm mát ổn định cho mùa nóng cao điểm",
+      "summary": "Quạt sạc tích điện Honjianda FL323/FL313 dạng hộp 12 inch được quan tâm trong mùa nắng nóng nhờ khả năng chạy AC/DC, dùng pin rời và tích hợp đèn LED, cổng USB để tăng độ linh hoạt khi mất điện.",
+      "category": "technology",
+      "publishedAt": "2026-04-09T09:00:00Z",
+      "author": "Thanh Nguyen",
+      "tags": [
+        "review-do-gia-dung",
+        "quat-sac-tich-dien",
+        "honjianda",
+        "mua-nong-cao-diem"
+      ],
+      "source": {
+        "name": "Shopee Việt Nam",
+        "url": "https://s.shopee.vn/10yqWbo2gG"
+      },
+      "links": {
+        "canonicalUrl": "https://s.shopee.vn/10yqWbo2gG",
+        "affiliateUrl": "https://s.shopee.vn/10yqWbo2gG",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "230021",
+        "shopId": "283603808",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m59roawybzqwea",
+        "images": [
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8x01t805dhj33@resize_w900_nl.webp",
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8x01t8a6df2a7@resize_w900_nl.webp"
+        ],
+        "name": "Quạt Sạc Tích Điện dạng hộp AC&DC 12 inch Honjianda FL323/FL313 1-2 pin - có đèn LED & USB | Shopee Việt Nam",
+        "description": "Mua Quạt Sạc Tích Điện dạng hộp AC&DC 12 inch Honjianda FL323/FL313 1-2 pin - có đèn LED & USB giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/10yqWbo2gG"
+      },
+      "relatedAffiliates": [
+        {
+          "id": "778013",
+          "shopId": "25725120069",
+          "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-matn3i3v0zwhe4@resize_w450_nl.webp",
+          "images": [],
+          "name": "Quạt mini GOOJODOQ 100 tốc độ gió có thể điều chỉnh màn hình kỹ thuật số cầm tay",
+          "description": "Đã bán 100k+, phù hợp mang theo và dùng hàng ngày.",
+          "type": "shopee",
+          "category": "bachhoa",
+          "coinBonus": 10,
+          "buyText": "Xem sản phẩm",
+          "url": "https://s.shopee.vn/gKLwTTokp"
+        },
+        {
+          "id": "065291",
+          "shopId": "27383556793",
+          "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8m0ed1yezxq87",
+          "images": [],
+          "name": "Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo | Shopee Việt Nam",
+          "description": "Mua Quạt mini cầm tay M2 5000mAh di động có thể sạc gió mạnh 100 tốc độ turbo phản lực màn hình hiển thị pin tặng dây đeo giá tốt.",
+          "type": "shopee",
+          "category": "bachhoa",
+          "coinBonus": 10,
+          "buyText": "Xem sản phẩm",
+          "url": "https://s.shopee.vn/7Kr3bAiNW7"
+        }
+      ],
+      "thumbnailUrl": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m59roawybzqwea",
+      "thumbnailSource": {
+        "name": "Shopee Việt Nam",
+        "url": "https://s.shopee.vn/10yqWbo2gG"
+      },
+      "detailPage": "./tin-tuc/review-quat-sac-tich-dien-honjianda-fl323-fl313.html"
     }
   ]
 }

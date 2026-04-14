@@ -1575,6 +1575,22 @@
             "coinBonus":10,
             "buyText":"Xem sản phẩm",
             "url":"https://s.shopee.vn/9AIhUzWeyM"
+         },
+         {
+            "id":"230021",
+            "shopId":"283603808",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m59roawybzqwea",
+            "images":[
+               "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8x01t805dhj33@resize_w900_nl.webp",
+               "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8x01t8a6df2a7@resize_w900_nl.webp"
+            ],
+            "name":"Quạt Sạc Tích Điện dạng hộp AC&DC 12 inch Honjianda FL323/FL313 1-2 pin - có đèn LED & USB | Shopee Việt Nam",
+            "description":"Mua Quạt Sạc Tích Điện dạng hộp AC&DC 12 inch Honjianda FL323/FL313 1-2 pin - có đèn LED & USB giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/10yqWbo2gG"
          }
       ]
    }

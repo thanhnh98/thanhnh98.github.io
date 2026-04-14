@@ -1,39 +1,47 @@
 // Dynamic SEO Description Generator
 class DynamicSEO {
     constructor() {
+        // getContent runs when a rule matches so day counts stay correct (hourly refresh + long-lived tabs).
         this.descriptions = [
             // Countdown focused descriptions
             {
                 condition: () => this.getDaysUntilTet() <= 7,
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - CHỈ CÒN ${this.getDaysUntilTet()} NGÀY NỮA LÀ ĐẾN TẾT NGUYÊN ĐÁN! Chuẩn bị Tết hoàn hảo: món ăn Tết truyền thống (bánh chưng, thịt kho tàu), phong tục Tết, trang trí nhà cửa. Lịch âm dương, giờ hoàng đạo chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - CHỈ CÒN ${this.getDaysUntilTet()} NGÀY NỮA LÀ ĐẾN TẾT NGUYÊN ĐÁN! Chuẩn bị Tết hoàn hảo: món ăn Tết truyền thống (bánh chưng, thịt kho tàu), phong tục Tết, trang trí nhà cửa. Lịch âm dương, giờ hoàng đạo chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
             },
             {
                 condition: () => this.getDaysUntilTet() <= 30,
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày! Khám phá văn hóa Tết Việt Nam: món ăn Tết truyền thống (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày! Khám phá văn hóa Tết Việt Nam: món ăn Tết truyền thống (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
             },
             // Food focused descriptions
             {
                 condition: () => this.isWeekend(),
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Cuối tuần rồi! Học cách làm món Tết Nguyên Đán truyền thống: bánh chưng, thịt kho tàu, nem rán, xôi gấc. Khám phá văn hóa ẩm thực Tết Việt Nam, phong tục Tết, lịch âm dương 2027. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Cuối tuần rồi! Học cách làm món Tết Nguyên Đán truyền thống: bánh chưng, thịt kho tàu, nem rán, xôi gấc. Khám phá văn hóa ẩm thực Tết Việt Nam, phong tục Tết, lịch âm dương 2027. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
             },
             // Culture focused descriptions
             {
                 condition: () => this.isLunarDate(),
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Hôm nay ${this.getCurrentLunarDate()} âm lịch! Khám phá văn hóa Tết Nguyên Đán Việt Nam: phong tục Tết truyền thống, món ăn Tết (bánh chưng, thịt kho tàu), trò chơi dân gian. Lịch âm dương, giờ hoàng đạo chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Hôm nay ${this.getCurrentLunarDate()} âm lịch! Khám phá văn hóa Tết Nguyên Đán Việt Nam: phong tục Tết truyền thống, món ăn Tết (bánh chưng, thịt kho tàu), trò chơi dân gian. Lịch âm dương, giờ hoàng đạo chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
             },
             // General descriptions with seasonal variations
             {
                 condition: () => this.isMorning(),
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Chào buổi sáng! Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày. Khám phá văn hóa Tết Việt Nam: món ăn Tết, phong tục Tết, lịch âm dương, blog văn hóa chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Chào buổi sáng! Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày. Khám phá văn hóa Tết Việt Nam: món ăn Tết, phong tục Tết, lịch âm dương, blog văn hóa chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
             },
             {
                 condition: () => this.isEvening(),
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Buổi tối rồi! Chuẩn bị Tết Nguyên Đán: món ăn Tết (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Buổi tối rồi! Chuẩn bị Tết Nguyên Đán: món ăn Tết (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
             },
             // Default description
             {
                 condition: () => true,
-                content: `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày! Khám phá văn hóa Tết Việt Nam: món ăn Tết (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
+                getContent: () =>
+                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày! Khám phá văn hóa Tết Việt Nam: món ăn Tết (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
             }
         ];
         
@@ -93,10 +101,10 @@ class DynamicSEO {
     getBestDescription() {
         for (let desc of this.descriptions) {
             if (desc.condition()) {
-                return desc.content;
+                return desc.getContent();
             }
         }
-        return this.descriptions[this.descriptions.length - 1].content;
+        return this.descriptions[this.descriptions.length - 1].getContent();
     }
 
     updateMetaTags(description) {
