@@ -171,7 +171,7 @@
         return m ? decodeURIComponent(m[1]) : '';
     }
 
-    /** Ưu tiên ?date= (link cũ / chia sẻ); không thì #yyyy-mm-dd từ lịch — tránh nhiều URL lập chỉ mục. */
+    /** Hỗ trợ link cũ ?date=..., nhưng chuẩn URL hiện tại là #yyyy-mm-dd để giảm URL trùng. */
     function getEffectiveDateStr() {
         var q = getParam('date');
         if (q) return q;
@@ -181,6 +181,21 @@
         if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
         var hm = raw.match(/^date=(\d{4}-\d{2}-\d{2})$/);
         return hm ? hm[1] : '';
+    }
+
+    function normalizeCanonicalUrl(dateStr, hadDateQuery) {
+        if (typeof window === 'undefined' || typeof history === 'undefined' || !dateStr) return;
+        var canonicalPath = '/chi-tiet-su-kien.html';
+        var canonicalHash = '#' + dateStr;
+        var currentHash = window.location.hash || '';
+        var shouldNormalize =
+            hadDateQuery ||
+            window.location.pathname !== canonicalPath ||
+            (currentHash && currentHash !== canonicalHash);
+
+        if (shouldNormalize) {
+            history.replaceState(null, '', canonicalPath + canonicalHash);
+        }
     }
 
     function restoreCountdownUi() {
@@ -298,6 +313,7 @@
             countdownTickId = null;
         }
 
+        var hadDateQuery = !!getParam('date');
         var dateParam = getEffectiveDateStr();
         var hasDateParam = !!dateParam;
         var targetDate = parseDateParam(dateParam);
@@ -317,11 +333,14 @@
 
         if (!targetDate) {
             if (titleEl) titleEl.textContent = 'Không có ngày hợp lệ';
-            if (dateDisplayEl) dateDisplayEl.textContent = 'Thiếu ngày: dùng #yyyy-mm-dd hoặc ?date=yyyy-mm-dd';
+            if (dateDisplayEl) dateDisplayEl.textContent = 'Thiếu ngày: dùng #yyyy-mm-dd';
             if (cardsEl) cardsEl.innerHTML = '';
             if (emptyEl) { emptyEl.style.display = 'block'; }
             return;
         }
+
+        var canonicalDateStr = targetDate.getFullYear() + '-' + pad2(targetDate.getMonth() + 1) + '-' + pad2(targetDate.getDate());
+        normalizeCanonicalUrl(canonicalDateStr, hadDateQuery);
 
         if (titleEl) titleEl.textContent = isTetFallback ? 'Đếm ngược Tết Nguyên Đán' : 'Chi tiết sự kiện';
         if (dateDisplayEl) dateDisplayEl.textContent = formatDateLong(targetDate) + ' (' + formatDate(targetDate) + ')';
