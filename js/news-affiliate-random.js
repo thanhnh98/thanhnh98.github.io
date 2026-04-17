@@ -1,6 +1,7 @@
 /**
- * Random affiliate renderer for news detail pages.
- * Loads products from /data/aff/products and fills .ads-card blocks.
+ * Affiliate renderer for news detail pages.
+ * Position 1: most relevant primary product.
+ * Position 2: two related products.
  */
 (function () {
   function getNewsDataPathCandidates() {
@@ -47,6 +48,91 @@
     if (!valid.length) return null;
     var index = Math.floor(Math.random() * valid.length);
     return valid[index];
+  }
+
+  function pickRandomProducts(products, count, excludedUrls) {
+    var excluded = {};
+    (excludedUrls || []).forEach(function (url) {
+      if (url) excluded[String(url)] = true;
+    });
+
+    var valid = products.filter(function (p) {
+      return p && p.url && p.name && !excluded[String(p.url)];
+    });
+    if (!valid.length) return [];
+
+    var shuffled = valid.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = temp;
+    }
+    return shuffled.slice(0, Math.max(0, count || 0));
+  }
+
+  function tokenizeText(text) {
+    return String(text || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9\u00C0-\u024F\s-]/g, ' ')
+      .split(/[\s-]+/)
+      .filter(Boolean);
+  }
+
+  function buildArticleKeywords(item) {
+    var tokens = [];
+    if (!item) return tokens;
+    tokens = tokens.concat(tokenizeText(item.title));
+    tokens = tokens.concat(tokenizeText(item.slug));
+    if (Array.isArray(item.tags)) {
+      item.tags.forEach(function (tag) {
+        tokens = tokens.concat(tokenizeText(tag));
+      });
+    }
+    return Array.from(new Set(tokens)).filter(function (t) { return t.length >= 3; });
+  }
+
+  function scoreProductRelevance(product, item, primaryAffiliate) {
+    if (!product || !product.url || !product.name) return -1;
+    var score = 0;
+    var targetCategory = (primaryAffiliate && primaryAffiliate.category) || (item && item.affiliate && item.affiliate.category) || '';
+    var targetType = (primaryAffiliate && primaryAffiliate.type) || (item && item.affiliate && item.affiliate.type) || '';
+
+    if (targetCategory && product.category && String(product.category) === String(targetCategory)) score += 8;
+    if (targetType && product.type && String(product.type) === String(targetType)) score += 3;
+
+    var productTokens = tokenizeText(product.name + ' ' + (product.description || ''));
+    var tokenSet = {};
+    productTokens.forEach(function (t) { tokenSet[t] = true; });
+
+    var keywords = buildArticleKeywords(item);
+    var matched = 0;
+    keywords.forEach(function (kw) {
+      if (tokenSet[kw]) matched += 1;
+    });
+    score += Math.min(6, matched);
+    return score;
+  }
+
+  function pickTopRelatedProducts(products, count, excludedUrls, item, primaryAffiliate) {
+    var excluded = {};
+    (excludedUrls || []).forEach(function (url) {
+      if (url) excluded[String(url)] = true;
+    });
+
+    var ranked = products
+      .filter(function (p) { return p && p.url && p.name && !excluded[String(p.url)]; })
+      .map(function (p, idx) {
+        return { product: p, score: scoreProductRelevance(p, item, primaryAffiliate), idx: idx };
+      })
+      .sort(function (a, b) {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.idx - b.idx;
+      })
+      .slice(0, Math.max(0, count || 0))
+      .map(function (x) { return x.product; });
+
+    return ranked;
   }
 
   function getCurrentArticleSlug() {
@@ -143,6 +229,32 @@
 
     if (thumbLinkEl) thumbLinkEl.href = product.url;
     if (titleLinkEl) titleLinkEl.href = product.url;
+  }
+
+  function createRelatedProductsSection(templateCard, products) {
+    if (!templateCard) return null;
+
+    var wrapper = document.createElement('section');
+    wrapper.className = 'ads-related-section';
+    wrapper.setAttribute('aria-label', 'Sản phẩm liên quan');
+
+    var heading = document.createElement('h3');
+    heading.className = 'ads-related-title';
+    heading.textContent = 'Sản phẩm liên quan';
+    wrapper.appendChild(heading);
+
+    var grid = document.createElement('div');
+    grid.className = 'ads-related-grid';
+
+    products.forEach(function (product) {
+      var card = templateCard.cloneNode(true);
+      card.classList.add('ads-card-related-item');
+      fillAdsCard(card, product);
+      grid.appendChild(card);
+    });
+
+    wrapper.appendChild(grid);
+    return wrapper;
   }
 
   function createFallbackAdsCard() {
@@ -263,17 +375,63 @@
     ctaRow.insertAdjacentElement('afterbegin', shareBtn);
   }
 
-  async function initRandomAffiliateInNews() {
+  function getItemAffiliate(item) {
+    if (!item || !item.affiliate) return null;
+    if (!item.affiliate.url || !item.affiliate.name) return null;
+    return item.affiliate;
+  }
+
+  function getItemRelatedAffiliates(item, primaryAffiliate) {
+    if (!item || !Array.isArray(item.relatedAffiliates)) return [];
+    var primaryUrl = primaryAffiliate && primaryAffiliate.url ? String(primaryAffiliate.url) : '';
+    return item.relatedAffiliates
+      .filter(function (p) { return p && p.url && p.name; })
+      .filter(function (p) { return !primaryUrl || String(p.url) !== primaryUrl; })
+      .slice(0, 2);
+  }
+
+  async function initAffiliateInNews() {
     var cards = Array.prototype.slice.call(document.querySelectorAll('.ads-card[data-random-affiliate="true"]'));
     if (!cards.length) return;
 
     var products = await loadProducts();
     if (!products.length) return;
 
-    cards.forEach(function (card) {
-      var product = pickRandomProduct(products);
-      fillAdsCard(card, product);
-    });
+    var slug = getCurrentArticleSlug();
+    var item = await loadNewsItemBySlug(slug);
+    var fixedAffiliate = getItemAffiliate(item);
+    var firstCard = cards[0];
+    var secondCard = cards[1];
+
+    if (firstCard) {
+      if (fixedAffiliate) {
+        fillAdsCard(firstCard, fixedAffiliate);
+      } else {
+        var fallbackProduct = pickRandomProduct(products);
+        if (fallbackProduct) fillAdsCard(firstCard, fallbackProduct);
+      }
+    }
+
+    if (!secondCard) return;
+
+    var excluded = [];
+    if (fixedAffiliate && fixedAffiliate.url) excluded.push(fixedAffiliate.url);
+    var relatedProducts = getItemRelatedAffiliates(item, fixedAffiliate);
+    if (relatedProducts.length < 2) {
+      var need = 2 - relatedProducts.length;
+      var extraExcluded = excluded.concat(relatedProducts.map(function (p) { return p.url; }));
+      var extra = pickTopRelatedProducts(products, need, extraExcluded, item, fixedAffiliate);
+      relatedProducts = relatedProducts.concat(extra);
+    }
+    if (relatedProducts.length < 2) {
+      var randomExcluded = excluded.concat(relatedProducts.map(function (p) { return p.url; }));
+      relatedProducts = relatedProducts.concat(pickRandomProducts(products, 2 - relatedProducts.length, randomExcluded));
+    }
+    if (!relatedProducts.length) return;
+
+    var relatedSection = createRelatedProductsSection(secondCard, relatedProducts);
+    if (!relatedSection) return;
+    secondCard.replaceWith(relatedSection);
   }
 
   async function initNewsImageSourceAttribution() {
@@ -288,13 +446,13 @@
     document.addEventListener('DOMContentLoaded', function () {
       ensurePostConclusionAffiliateCard();
       ensureDetailShareButton();
-      initRandomAffiliateInNews();
+      initAffiliateInNews();
       initNewsImageSourceAttribution();
     });
   } else {
     ensurePostConclusionAffiliateCard();
     ensureDetailShareButton();
-    initRandomAffiliateInNews();
+    initAffiliateInNews();
     initNewsImageSourceAttribution();
   }
 })();

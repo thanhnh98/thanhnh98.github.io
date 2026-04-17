@@ -14,12 +14,12 @@ Redirect 301 /index.html /
 # Specific route handling for key pages (must come BEFORE general rewrite rule)
 RewriteRule ^may-tinh-li-xi/?$ /may-tinh-li-xi.html [NC,L]
 RewriteRule ^tro-choi-tet/?$ /tro-choi-tet.html [NC,L]
-RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L]
+RewriteRule ^tai-ung-dung/?$ /tai-ung-dung.html [NC,L,R=301]
 RewriteRule ^mon-an-tet/?$ /mon-an-tet.html [NC,L]
 RewriteRule ^cua-hang/?$ /cua-hang.html [NC,L]
 RewriteRule ^tin-tuc$ /tin-tuc/ [NC,L,R=301]
 RewriteRule ^tin-tuc/index\.html$ /tin-tuc/ [NC,L,R=301]
-RewriteRule ^blog/?$ /tin-tuc/index.html [NC,L]
+RewriteRule ^blog/?$ /tin-tuc/ [NC,L,R=301]
 RewriteRule ^news/?$ /tin-tuc/index.html [NC,L,R=301]
 RewriteRule ^huong-dan-tet/?$ /huong-dan-tet.html [NC,L]
 RewriteRule ^trung-thu/?$ /trung-thu.html [NC,L]
@@ -28,6 +28,9 @@ RewriteRule ^lich-van-nien/?$ /lich-van-nien.html [NC,L]
 # Lịch âm dương → cùng trang lịch vạn niên
 RewriteRule ^lich-am-duong/?$ /lich-van-nien.html [NC,L,R=301]
 RewriteRule ^lich-am-duong\.html$ /lich-van-nien.html [NC,L,R=301]
+RewriteRule ^lich-tet-2027\.html$ /lich-tet-2026.html [NC,L,R=301]
+RewriteRule ^lich-nghi-tet-2027\.html$ /lich-nghi-tet-2026.html [NC,L,R=301]
+RewriteRule ^tin-tuc/cua-hang\.html$ /cua-hang.html [NC,L,R=301]
 
 # Redirect .html URLs to clean URLs (except for direct file access)
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]

@@ -1,6 +1,6 @@
 ---
 name: news-item-generator
-description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. Always attach at least one random affiliate product from data/aff/products and produce detailed article content with source links.
+description: Creates and publishes a complete daily news item in this repository by updating news.json and creating tin-tuc/<slug>.html. Topics are not limited to Tet; prioritize current trends and verified facts from official/trusted sources. No editorial prediction or speculation—only attributable facts, past-tense observations, and clearly cited third-party forecasts when required. Always attach 3 affiliate products highly related to the article topic (1 primary + 2 related) and produce detailed article content with source links.
 ---
 
 # News Item Generator
@@ -117,6 +117,13 @@ If a non-critical field is missing, infer from trusted context. Ask user only wh
 - **Avoid:** Images from commercial newspapers (thoibaotaichinhvietnam.vn, kinhtedothi.vn, tienphong.vn, vnexpress.net, etc.) unless you have explicit permission.
 - If no suitable licensed image exists, use a topic-aligned Wikimedia/stock image. Never use newspaper images without permission.
 
+## Chính sách không dự đoán / không phán đoán (bắt buộc)
+
+- **Không** viết dưới danh nghĩa biên tập các nội dung: dự báo giá, kịch bản tương lai, “sẽ / có thể” mang tính tiên đoán, triển vọng ngắn hạn do tự suy ra, “nhận định chuyên môn” không có nguồn.
+- **Được phép:** mô tả **đã xảy ra**, số liệu có mốc thời gian, trích dẫn **nguyên văn có nguồn** khi một cơ quan/báo chính thức đưa dự báo (ghi rõ “theo [tên nguồn]…”).
+- **Được phép:** mục kiểu “các mốc tin công khai đáng theo dõi” (lịch họp, báo cáo sắp công bố) **không** kèm kết luận biên tập về kết quả tương lai.
+- Tránh tiêu đề/mục lục gợi dự báo: không dùng “triển vọng”, “dự báo”, “kịch bản” như lời của trang trừ khi đang **trích thuật** nguồn có thẩm quyền.
+
 ## Topic Scope and Naming Rules (Required)
 
 - News topics can be any domain (economy, policy, tech, society, transport, health, sports, etc.).
@@ -131,22 +138,32 @@ Before drafting:
 2. Prefer topics with recent momentum (policy updates, market moves, traffic spikes, public-impact events).
 3. If user does not provide a topic, propose 5-10 trend-aligned options first.
 
-## Mandatory Random Affiliate Rule
+## Mandatory Related Affiliate Rule
 
-Every generated news item must include at least one random product from:
+Every generated news item must include 3 related products:
+- 1 product liên quan nhất (primary) cho vị trí 1
+- 2 sản phẩm liên quan còn lại cho vị trí 2 (khối "Sản phẩm liên quan")
+
+Preferred source pools:
 - `data/aff/products` (primary)
 - `data/aff/products.json` (fallback)
 
 ### Product selection constraints
 
-Selected product should have:
+All selected products should have:
 - non-empty `name`
 - non-empty `url`
 - `thumbnail` preferred (fallback allowed)
 
+Relevance ranking rule:
+- Score by topical match with article `title`, `tags`, `category`.
+- Highest-relevance product goes to position 1.
+- Next 2 products go to position 2.
+- No duplicate product URLs across 3 items.
+
 ### JSON mapping (required)
 
-Map random product into news item:
+Map primary product into news item:
 - `links.affiliateUrl` = product `url`
 - `links.useAffiliate` = `true`
 - `affiliate.id` = product `id` (or empty string if absent)
@@ -160,6 +177,10 @@ Map random product into news item:
 - `affiliate.buyText` = product `buyText` (or `"Xem sản phẩm"`)
 - `affiliate.url` = product `url`
 
+Map the other 2 related products into:
+- `relatedAffiliates` (array length = 2)
+- Each item uses the same schema as `affiliate`
+
 ## Article Detail Requirements (Detailed Content)
 
 Do not generate short stub pages.
@@ -169,22 +190,27 @@ Each detail page must include:
 2. H1 + metadata row
 3. Cover image
 4. Summary paragraph
-5. **Economy disclaimer** (required for `category: economy` only): Insert `<aside class="news-disclaimer">` block immediately after summary, before TOC. Content: "Thông tin giá vàng, xăng dầu, tỷ giá, CPI trong bài chỉ mang tính tham khảo, không phải tư vấn đầu tư. Vui lòng kiểm tra tại nguồn chính thức (DOJI, NHNN, GSO, Bộ Công Thương) trước khi quyết định."
-6. TOC block
-7. At least 3 content sections with meaningful paragraphs
-8. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến", "Điểm đáng chú ý")
-9. Affiliate `ads-card` block in article body:
-   - include `data-random-affiliate="true"` (in-body contextual block)
-10. Post-conclusion affiliate `ads-card`:
-   - add one more `data-random-affiliate="true"` block ngay sau phần kết luận
-11. Placement override rule (required):
+5. TOC block
+6. At least 3 content sections with meaningful paragraphs
+7. Optional specialized analysis section when topic needs depth (e.g., "Phân tích diễn biến **đã ghi nhận**", "Điểm đáng chú ý từ dữ liệu") — không dự báo tương lai
+8. Affiliate `ads-card` block in article body:
+   - include `data-random-affiliate="true"` (vị trí 1, primary product)
+9. Post-conclusion affiliate `ads-card`:
+   - add one more `data-random-affiliate="true"` block ngay sau phần kết luận (vị trí 2, hiển thị 2 related products + title "Sản phẩm liên quan")
+10. Placement override rule (required):
    - Default layout keeps 2 affiliate blocks (one in-body + one post-conclusion).
    - If user explicitly requests a different placement/count (e.g., only in-body, remove post-conclusion), user instruction takes priority.
    - When override is applied, keep exactly the requested placement/count and avoid leaving duplicate blocks.
-12. Source reference block with links
-13. **Standard disclaimer** before CTA: "Bài viết mang tính chất tổng hợp và chia sẻ thông tin, không phải lời khuyên chuyên môn."
-14. CTA row at bottom
-15. Script include for random affiliate:
+11. Source reference block (`<div class="source-box">`) with links
+12. **Lưu ý nhỏ / disclaimer — vị trí theo độ nhạy cảm (bắt buộc):**
+    - **Nguyên tắc:** Tin được xem là **nhạy cảm** (YMYL-adjacent) → đặt disclaimer **đầu trang**; các tin còn lại → đặt **cuối trang**, ngay trước nguồn.
+    - **Tin nhạy cảm — đầu trang:** Ngay **sau** đoạn tóm tắt (`<p class="news-summary">`…`</p>`), **trước** `<nav class="news-toc">`, chèn `<aside class="news-disclaimer news-disclaimer--lead" aria-labelledby="disclaimer-block-title">` với `<h2 class="news-disclaimer-title" id="disclaimer-block-title">Lưu ý nhỏ</h2>`. **Không** đặt bản đầy đủ cùng kiểu ở cuối (tránh lặp dài); có thể kết thúc bằng một câu nhắc đối chiếu **Nguồn tham khảo** khi sắp tới mục đó trong bài.
+    - **Tin thường — cuối trang:** Sau `</section>` của `news-content`, **trước** `<div class="source-box">`, chèn `<aside class="news-disclaimer news-disclaimer--near-sources" …>` (cùng tiêu đề và giọng như trên).
+    - **Nội dung chung (cả hai vị trí):** Giọng tự nhiên, thân (ví dụ "mình", "bài này"): **đoạn mở (lead)** bài chi tiết dùng `<p class="news-disclaimer-lead">` — ví dụ: «Bài này là phần **tổng hợp và chia sẻ góc nhìn cá nhân** dựa trên các nguồn công khai. Những đoạn phân tích hay góc nhìn trong bài không thay cho thông báo chính thức từ cơ quan hoặc tổ chức được trích dẫn.» **Không** thêm cụm kiểu «viết lại cho dễ đọc / dễ theo dõi» hay «không phải báo chí / trang có giấy phép đăng tin» trừ khi user yêu cầu rõ. Trang listing `tin-tuc/index`: đoạn tương ứng kiểu «Mục Chia sẻ mỗi ngày là nơi mình tổng hợp tin từ nguồn mở» + câu về góc nhìn / không thay thông báo chính thức — **không** lặp các cụm đã bỏ ở trên. **Đoạn thứ hai (số liệu / nguồn, chuẩn):** sau lead, một `<p>` thường: «Các số liệu được tham khảo vào thời điểm viết bài, bạn có thể kiểm tra lại các nguồn tham khảo của các bài viết chính thống ở cuối mỗi bài.» — trang listing `tin-tuc/index` dùng cùng ý trong block disclaimer. **Đoạn kết disclaimer (chuẩn):** «Đây không phải thông tin tư vấn hay khuyến nghị đầu tư - vui lòng chỉ sử dụng cho mục đích tham khảo.» — **không** liệt kê luật/y tế hay «chứng chỉ hành nghề» trừ khi bài thuộc lĩnh vực đó và user yêu cầu rõ. Bài `policy` / lịch nghỉ: thêm đoạn ưu tiên văn bản chính thức. Bài giáo dục/lịch thi: thêm đoạn ưu tiên Bộ GD&amp;ĐT và nhà trường.
+    - **Phân loại "nhạy cảm" (hướng dẫn):** Ưu tiên coi là nhạy cảm khi chủ đề có thể ảnh hưởng trực tiếp đến **sức khỏe, tiền bạc đầu tư, hoặc quyết định pháp lý cá nhân** — ví dụ: `health`; tin **giá vàng / lãi suất / đầu tư / chứng khoán / tiền mã hóa** trong nhóm `economy`; hướng dẫn mang tính **tư vấn pháp lý-y tế-tài chính** dù chỉ ở mức tổng hợp. Các chủ đề như công nghệ sản phẩm, giải trí, xã hội chung (không gắn quyết định tài chính/sức khỏe nặng) → dùng **cuối trang**.
+    - Khi xóa `news-disclaimer-footer` khỏi trong section, **không** dùng regex/footer pattern nuốt khoảng trắng trước block `ads-card` post-conclusion.
+13. CTA row at bottom
+14. Script include for random affiliate:
    - `../js/news-affiliate-random.js`
 
 ## SEO Metadata Rules (Required)
@@ -250,9 +276,9 @@ Reasoning:
 #### B. `economy` (Kinh tế)
 - Section 1: `Dữ liệu và chỉ số chính`
 - Section 2: `Diễn biến thị trường theo kỳ`
-- Section 3: `Phân tích động lực kỹ thuật` (chi phí, cung-cầu, thanh khoản, độ trễ)
-- Optional Section 4: `Kịch bản diễn biến ngắn hạn` (mang tính mô tả)
-- Conclusion: neutral observation on market state/uncertainty
+- Section 3: `Phân tích động lực kỹ thuật` (chi phí, cung-cầu, thanh khoản, độ trễ) — chỉ từ dữ liệu và giải thích cơ chế đã ghi nhận
+- Optional Section 4: `Các mốc thông tin công khai đáng theo dõi` (lịch công bố, báo cáo, nguồn tra cứu) — **không** kịch bản giá hay dự báo biên tập
+- Conclusion: tóm tắt trạng thái **đã quan sát** và giới hạn hiểu biết; không kết luận về hướng đi tương lai trừ khi trích nguồn có thẩm quyền
 
 Reasoning:
 - Tin kinh tế phải bám số liệu, cấu trúc thị trường và cơ chế vận động.
@@ -269,10 +295,10 @@ Reasoning:
 
 #### D. `society` (Xã hội)
 - Section 1: `Bối cảnh và dữ liệu nền`
-- Section 2: `Xu hướng hành vi / tâm lý cộng đồng`
+- Section 2: `Xu hướng hành vi / tâm lý cộng đồng` (chỉ từ khảo sát, báo cáo hoặc sự kiện đã diễn ra)
 - Section 3: `Tác động dân sinh theo nhóm đối tượng`
-- Optional Section 4: `Biến số xã hội cần theo dõi`
-- Conclusion: neutral observation on social trajectory
+- Optional Section 4: `Các mốc hoặc nguồn cập nhật đáng theo dõi` (không phán đoán kết quả)
+- Conclusion: quan sát trung tính về những gì **đã** ghi nhận
 
 Reasoning:
 - Tin xã hội cần giải thích hành vi, tâm lý và tác động thực tế đến đời sống.
@@ -313,7 +339,7 @@ When drafting article content, follow these rules to avoid copyright risk and en
 - **Copyright:** Do not use copyrighted content (images, long quotes). Short quotes must be attributed. For images, prefer Wikimedia Commons (CC), Unsplash, Pexels.
 - **Emoji:** Use sparingly; avoid for economy, policy, finance topics.
 - **Article length:** Minimum 400 words; target 400–800 words. Avoid thin content (150–300 words).
-- **Footer disclaimer:** Every article must end with: "Bài viết mang tính chất tổng hợp và chia sẻ thông tin, không phải lời khuyên chuyên môn."
+- **Lưu ý nhỏ / miễn trừ:** Vị trí theo mục 12 — **nhạy cảm:** `news-disclaimer--lead` sau tóm tắt, trước TOC; **tin thường:** `news-disclaimer--near-sources` trước `source-box`. Giọng tự nhiên; không bắt buộc `news-disclaimer-footer` trùng ý.
 
 ## Verification and Source Integrity (Critical)
 
@@ -331,9 +357,9 @@ When drafting article content, follow these rules to avoid copyright risk and en
 ## Tone and Conclusion Policy
 
 - Do not force fixed section names like "Nhận định chuyên môn" or "Gợi ý hành động".
-- Conclusion sections should be neutral, journalistic observations.
+- Conclusion sections should be neutral, journalistic observations **về quá khứ và hiện tại đã có nguồn**.
 - Avoid imperative advice language ("nên", "hãy", "cần phải làm...") in conclusions.
-- Prefer evidence-based closing remarks that summarize trend direction, uncertainty, and observable implications.
+- **Không** kết thúc bằng dự đoán hướng đi, kịch bản giá, hay “triển vọng” do biên tập tự suy; chỉ tóm tắt điều đã kiểm chứng và (nếu cần) hướng độc giả tới nguồn chính thức để tự cập nhật.
 
 ## Generation Workflow
 
@@ -408,7 +434,7 @@ Tagging rule:
 - detail HTML includes canonical/og/twitter metadata matching its slug and topic
 - detail HTML does not use generic copy-paste SEO description from unrelated article
 - article is detailed (not thin content)
-- random affiliate product is present in JSON
+- 3 related affiliate products are mapped in JSON (1 primary + 2 related)
 - detail page affiliate block count/placement matches user instruction when explicitly provided
 - otherwise default to 2 blocks (in-body + post-conclusion)
 - detail page loads `../js/news-affiliate-random.js`
@@ -418,8 +444,7 @@ Tagging rule:
 - thumbnail is topic-relevant (no off-topic random image)
 - thumbnail source attribution exists (`thumbnailSource.name`, `thumbnailSource.url`)
 - thumbnail uses licensed source (Wikimedia Commons, Unsplash, Pexels preferred; avoid newspaper images without permission)
-- economy articles include `news-disclaimer` block after summary
-- standard disclaimer at end of article: "Bài viết mang tính chất tổng hợp và chia sẻ thông tin, không phải lời khuyên chuyên môn."
+- disclaimer đúng vị trí theo độ nhạy cảm (mục 12): bài **nhạy cảm** có `news-disclaimer--lead` sau `news-summary`, trước TOC; bài **thường** có `news-disclaimer--near-sources` ngay trước `source-box`
 - section blueprint matches topic class (technology/economy/entertainment/society/...)
 - section names are not generic-cloned from unrelated domains
 - domain evidence style is correct (e.g., economy has indicators; technology has how-to flow)
@@ -431,7 +456,7 @@ After completion, report:
 1. Created item ID + slug
 2. Updated JSON path
 3. Created HTML path
-4. Random product selected (name + url)
+4. Primary + related products selected (3 items)
 5. Any fallback decisions (slug collision, missing field inference)
 
 ## Additional Examples

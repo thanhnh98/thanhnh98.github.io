@@ -85,7 +85,7 @@
     if (loadingEl) loadingEl.style.display = 'none';
 
     if (!Array.isArray(posts) || posts.length === 0) {
-      gridEl.innerHTML = '<p class="home-news-empty">Chưa có tin tức. Vui lòng quay lại sau.</p>';
+      gridEl.innerHTML = '<p class="home-news-empty">Chưa có bài blog. Vui lòng quay lại sau.</p>';
       return;
     }
 

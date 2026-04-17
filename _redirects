@@ -93,9 +93,12 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 # tin-tuc/<slug>/index.html — sinh bằng: npm run generate-tin-tuc-clean-urls
 /tin-tuc /tin-tuc/ 301!
 /tin-tuc/index.html /tin-tuc/ 301!
+/tai-ung-dung /tai-ung-dung.html 301!
+/tai-ung-dung/ /tai-ung-dung.html 301!
 /tin-tuc/:slug /tin-tuc/:slug.html 301!
-/blog /tin-tuc 301!
-/blog.html /tin-tuc 301!
+/blog /tin-tuc/ 301!
+/blog/ /tin-tuc/ 301!
+/blog.html /tin-tuc/ 301!
 /news /tin-tuc/index.html 301!
 /news/ /tin-tuc/index.html 301!
 /con-bao-lau-nua-den-tet /con-bao-lau-nua-den-tet.html 301!
@@ -106,6 +109,11 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 # Lịch âm dương = Lịch vạn niên (cùng 1 trang)
 /lich-am-duong /lich-van-nien.html 301!
 /lich-am-duong.html /lich-van-nien.html 301!
+
+# Alias URL sai thư mục → trang đúng
+/tin-tuc/cua-hang.html /cua-hang.html 301!
+/lich-tet-2027.html /lich-tet-2026.html 301!
+/lich-nghi-tet-2027.html /lich-nghi-tet-2026.html 301!
 
 # Handle common 404s
 /404 /404.html 404!

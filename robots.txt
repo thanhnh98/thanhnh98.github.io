@@ -29,5 +29,10 @@ Disallow: /debug-*.js
 Disallow: /demo-*.html
 Disallow: /demo-*.json
 
+# Reduce duplicate crawl from parameter URLs (canonicalized to clean URLs)
+Disallow: /*?q=*
+Disallow: /*?utm_*
+Disallow: /chi-tiet-su-kien.html?date=*
+
 # Crawl delay for respectful crawling
 Crawl-delay: 1
