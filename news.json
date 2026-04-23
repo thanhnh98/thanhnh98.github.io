@@ -205,7 +205,7 @@
         "name": "[TẾT 2026] Set 100 Tag Thẻ Treo Tết Kèm Dây, Liễn Trang Trí Tết Kèm Dây Đỏ Treo Cây Mai Đào | HAPPY DECOR",
         "description": "Đã bán 6k+",
         "type": "shopee",
-        "category": "decor",
+        "category": "tech",
         "coinBonus": 10,
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/9pYadAx8X6"
@@ -1485,6 +1485,85 @@
         "url": "https://s.shopee.vn/10yqWbo2gG"
       },
       "detailPage": "./tin-tuc/review-quat-sac-tich-dien-honjianda-fl323-fl313.html"
+    },
+    {
+      "id": "news-038",
+      "slug": "review-quat-cam-tay-hson-100-cap-do-gio-5000mah",
+      "title": "Review quạt cầm tay HSON 100 cấp độ gió: pin 5000mAh có thực sự tiện cho mùa nóng?",
+      "summary": "Quạt cầm tay HSON 100 cấp độ gió nổi bật với pin 5000mAh và màn hình LED hiển thị, phù hợp nhu cầu làm mát cá nhân linh hoạt trong ngày nắng nóng.",
+      "category": "technology",
+      "publishedAt": "2026-04-23T08:37:54Z",
+      "author": "Thanh Nguyen",
+      "tags": [
+        "review-do-gia-dung",
+        "quat-cam-tay",
+        "quat-tich-dien",
+        "hson",
+        "mua-nong"
+      ],
+      "source": {
+        "name": "Shopee Việt Nam",
+        "url": "https://s.shopee.vn/9zu1YrgepE"
+      },
+      "links": {
+        "canonicalUrl": "https://s.shopee.vn/9zu1YrgepE",
+        "affiliateUrl": "https://s.shopee.vn/9zu1YrgepE",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "345772",
+        "shopId": "27815268529",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1quep2vea4fad@resize_w900_nl.webp",
+        "images": [
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1quep2vea4fad@resize_w900_nl.webp",
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1qi4artm9bz9d@resize_w900_nl.webp",
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1qi3ypba3pv9a@resize_w900_nl.webp"
+        ],
+        "name": "Quạt cầm tay 100 cấp độ gió, Quạt tích điện HSON pin cao 5000 MAH hiển thị đèn led, sử dụng lâu, di động, gió mạnh | Shopee Việt Nam",
+        "description": "Mua Quạt cầm tay 100 cấp độ gió, Quạt tích điện HSON pin cao 5000 MAH hiển thị đèn led, sử dụng lâu, di động, gió mạnh giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/9zu1YrgepE"
+      },
+      "relatedAffiliates": [
+        {
+          "id": "230021",
+          "shopId": "283603808",
+          "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m59roawybzqwea",
+          "images": [
+            "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8x01t805dhj33@resize_w900_nl.webp",
+            "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8x01t8a6df2a7@resize_w900_nl.webp"
+          ],
+          "name": "Quạt Sạc Tích Điện dạng hộp AC&DC 12 inch Honjianda FL323/FL313 1-2 pin - có đèn LED & USB | Shopee Việt Nam",
+          "description": "Giải pháp làm mát ổn định, phù hợp dùng trong nhà hoặc khi mất điện ngắn hạn.",
+          "type": "shopee",
+          "category": "decor",
+          "coinBonus": 10,
+          "buyText": "Xem sản phẩm",
+          "url": "https://s.shopee.vn/10yqWbo2gG"
+        },
+        {
+          "id": "778013",
+          "shopId": "25725120069",
+          "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-matn3i3v0zwhe4@resize_w450_nl.webp",
+          "images": [],
+          "name": "Quạt mini GOOJODOQ 100 tốc độ gió có thể điều chỉnh màn hình kỹ thuật số cầm tay",
+          "description": "Mẫu quạt mini cầm tay phổ biến, thuận tiện mang theo mỗi ngày.",
+          "type": "shopee",
+          "category": "bachhoa",
+          "coinBonus": 10,
+          "buyText": "Xem sản phẩm",
+          "url": "https://s.shopee.vn/gKLwTTokp"
+        }
+      ],
+      "thumbnailUrl": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1quep2vea4fad@resize_w900_nl.webp",
+      "thumbnailSource": {
+        "name": "Shopee Việt Nam",
+        "url": "https://s.shopee.vn/9zu1YrgepE"
+      },
+      "detailPage": "./tin-tuc/review-quat-cam-tay-hson-100-cap-do-gio-5000mah.html"
     }
   ]
 }

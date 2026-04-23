@@ -37,7 +37,7 @@
             "displayName":"Thực phẩm khô 🍬"
          },
          {
-            "category":"decor",
+            "category":"tech",
             "displayName":"Trang Trí 🎊"
          },
          {
@@ -1591,6 +1591,23 @@
             "coinBonus":10,
             "buyText":"Xem sản phẩm",
             "url":"https://s.shopee.vn/10yqWbo2gG"
+         },
+         {
+            "id":"345772",
+            "shopId":"27815268529",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1quep2vea4fad@resize_w900_nl.webp",
+            "images":[
+               "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1quep2vea4fad@resize_w900_nl.webp",
+               "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1qi4artm9bz9d@resize_w900_nl.webp",
+               "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m1qi3ypba3pv9a@resize_w900_nl.webp"
+            ],
+            "name":"Quạt cầm tay 100 cấp độ gió, Quạt tích điện HSON pin cao 5000 MAH hiển thị đèn led, sử dụng lâu, di động, gió mạnh | Shopee Việt Nam",
+            "description":"Mua Quạt cầm tay 100 cấp độ gió, Quạt tích điện HSON pin cao 5000 MAH hiển thị đèn led, sử dụng lâu, di động, gió mạnh giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/9zu1YrgepE"
          }
       ]
    }
