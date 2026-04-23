@@ -1625,6 +1625,21 @@
             "coinBonus":10,
             "buyText":"Xem sản phẩm",
             "url":"https://s.shopee.vn/2BBAHYIV4Z"
+         },
+         {
+            "id":"321534",
+            "shopId":"6947029998",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m67dj9c3v4037d",
+            "images":[
+               
+            ],
+            "name":"[HN-HCM] Viên rửa bát Finish Classic, Finish Essential | Shopee Việt Nam",
+            "description":"Mua [HN-HCM] Viên rửa bát Finish Classic, Finish Essential giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/6VK9Z7m5k4"
          }
       ]
    }
