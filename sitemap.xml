@@ -276,6 +276,12 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/gioi-thieu-ung-dung-tinh-ngay-date-calculator-date-tools.html</loc>
+        <lastmod>2026-04-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
     <!-- Seasonal Pages - Medium Priority -->
     <url>
