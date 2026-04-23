@@ -248,7 +248,7 @@
         "name": "Cành Lựu Giả Có Hoa - Cắm bình, kết cây - Thân Nhựa Lõi Thép, Quả Xốp, Dài 90cm - Cảnh Nhi Flower | Shopee Việt Nam",
         "description": "Mua Cành Lựu Giả Có Hoa - Cắm bình, kết cây - Thân Nhựa Lõi Thép, Quả Xốp, Dài 90cm - Cảnh Nhi Flower giá tốt.",
         "type": "shopee",
-        "category": "decor",
+        "category": "tech",
         "coinBonus": 10,
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/3B1X3Q5mQW"
@@ -1564,6 +1564,82 @@
         "url": "https://s.shopee.vn/9zu1YrgepE"
       },
       "detailPage": "./tin-tuc/review-quat-cam-tay-hson-100-cap-do-gio-5000mah.html"
+    },
+    {
+      "id": "news-039",
+      "slug": "review-sac-du-phong-20000mah-4-cap-sac-nhanh-r08",
+      "title": "Review sạc dự phòng 20000mAh R08 tích hợp 4 cáp: tiện dụng thật hay chỉ hợp nhu cầu cơ bản?",
+      "summary": "Sạc dự phòng R08 20000mAh tích hợp 4 cáp và màn hình LED phù hợp nhu cầu sạc đa thiết bị khi di chuyển, với lợi thế tiện dụng hơn các mẫu pin cần mang dây rời.",
+      "category": "technology",
+      "publishedAt": "2026-04-23T09:21:34Z",
+      "author": "Thanh Nguyen",
+      "tags": [
+        "review-cong-nghe",
+        "sac-du-phong",
+        "pin-20000mah",
+        "phu-kien-di-dong",
+        "sac-nhanh"
+      ],
+      "source": {
+        "name": "Shopee Việt Nam",
+        "url": "https://s.shopee.vn/2BBAHYIV4Z"
+      },
+      "links": {
+        "canonicalUrl": "https://s.shopee.vn/2BBAHYIV4Z",
+        "affiliateUrl": "https://s.shopee.vn/2BBAHYIV4Z",
+        "useAffiliate": true
+      },
+      "affiliate": {
+        "id": "112412",
+        "shopId": "27967005864",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3aisi9ljkrw0d@resize_w900_nl.webp",
+        "images": [
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3aisi9ljkrw0d@resize_w900_nl.webp",
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3amqpy5ia759e@resize_w900_nl.webp",
+          "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m2cdu9dhp67m0e@resize_w900_nl.webp"
+        ],
+        "name": "Sạc dự phòng 20000mah có tích hợp 4 cáp sạc nhanh màn hình led hiện thị dung lượng sạc được cho nhiều thiết bị r08 | Shopee Việt Nam",
+        "description": "Mua Sạc dự phòng 20000mah có tích hợp 4 cáp sạc nhanh màn hình led hiện thị dung lượng sạc được cho nhiều thiết bị r08 giá tốt. Mua hàng qua mạng uy tín, tiện lợi.",
+        "type": "shopee",
+        "category": "decor",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/2BBAHYIV4Z"
+      },
+      "relatedAffiliates": [
+        {
+          "id": "905161",
+          "shopId": "1417573924",
+          "thumbnail": "https://down-vn.img.susercontent.com/file/cn-11134207-820l4-mjdmv9axg8hw75@resize_w900_nl.webp",
+          "images": [],
+          "name": "Màn hình di động ARZOPA A1- 15,6'' FHD 1080P - Màn hình máy tính xách tay siêu mỏng di động có chân đế - Màn hình IPS cho PC, MAC, Điện thoại, Xbox, PS5 | Shopee Việt Nam",
+          "description": "Gợi ý phụ kiện công nghệ phù hợp người dùng di động và làm việc linh hoạt.",
+          "type": "shopee",
+          "category": "tech",
+          "coinBonus": 10,
+          "buyText": "Xem sản phẩm",
+          "url": "https://s.shopee.vn/AAD3bn5ri0"
+        },
+        {
+          "id": "736233",
+          "shopId": "8334180",
+          "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lxch7b6roxcrbc@resize_w900_nl.webp",
+          "images": [],
+          "name": "Đồng hồ thông minh GPS Garmin Forerunner 165 Non Music Pin Đến 11 ngày Thể Thao Sức Khỏe",
+          "description": "Thiết bị đồng hành cho người dùng thường xuyên di chuyển và cần quản lý pin thiết bị cá nhân.",
+          "type": "shopee",
+          "category": "tech",
+          "coinBonus": 10,
+          "buyText": "Xem sản phẩm",
+          "url": "https://s.shopee.vn/AKWJBMdmiM"
+        }
+      ],
+      "thumbnailUrl": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m3aisi9ljkrw0d@resize_w900_nl.webp",
+      "thumbnailSource": {
+        "name": "Shopee Việt Nam",
+        "url": "https://s.shopee.vn/2BBAHYIV4Z"
+      },
+      "detailPage": "./tin-tuc/review-sac-du-phong-20000mah-4-cap-sac-nhanh-r08.html"
     }
   ]
 }
