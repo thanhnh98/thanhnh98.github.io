@@ -1,159 +1,238 @@
-// Dynamic SEO Description Generator
+// Dynamic SEO metadata manager focused on crawl quality.
 class DynamicSEO {
     constructor() {
-        // getContent runs when a rule matches so day counts stay correct (hourly refresh + long-lived tabs).
-        this.descriptions = [
-            // Countdown focused descriptions
+        this.tetDate = new Date("2027-02-06T00:00:00+07:00");
+        this.updateEveryMs = 60 * 60 * 1000;
+        this.schemaScriptId = "dynamic-webpage-schema";
+        this.baseTitle = "Sắp Tết - Đếm Ngược Tết 2027";
+        this.defaultImage = "https://saptet.vn/assets/images/img_sharing.png";
+        this.defaultCanonical = "https://saptet.vn/";
+        this.enableHourlyRefresh = false;
+        this.allowedHomepagePaths = new Set(["/", "/index.html"]);
+        this.lastSeoSignature = "";
+        this.cachedElements = {};
+        this.titleRules = [
             {
-                condition: () => this.getDaysUntilTet() <= 7,
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - CHỈ CÒN ${this.getDaysUntilTet()} NGÀY NỮA LÀ ĐẾN TẾT NGUYÊN ĐÁN! Chuẩn bị Tết hoàn hảo: món ăn Tết truyền thống (bánh chưng, thịt kho tàu), phong tục Tết, trang trí nhà cửa. Lịch âm dương, giờ hoàng đạo chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
+                condition: (daysUntilTet) => daysUntilTet <= 7,
+                build: (daysUntilTet) =>
+                    `${this.baseTitle} | Chỉ Còn ${daysUntilTet} Ngày Nữa`,
             },
             {
-                condition: () => this.getDaysUntilTet() <= 30,
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày! Khám phá văn hóa Tết Việt Nam: món ăn Tết truyền thống (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
+                condition: (daysUntilTet) => daysUntilTet <= 30,
+                build: (daysUntilTet) =>
+                    `${this.baseTitle} | Còn ${daysUntilTet} Ngày Nữa Tới Tết`,
             },
-            // Food focused descriptions
+        ];
+        this.descriptionRules = [
             {
-                condition: () => this.isWeekend(),
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Cuối tuần rồi! Học cách làm món Tết Nguyên Đán truyền thống: bánh chưng, thịt kho tàu, nem rán, xôi gấc. Khám phá văn hóa ẩm thực Tết Việt Nam, phong tục Tết, lịch âm dương 2027. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
-            },
-            // Culture focused descriptions
-            {
-                condition: () => this.isLunarDate(),
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Hôm nay ${this.getCurrentLunarDate()} âm lịch! Khám phá văn hóa Tết Nguyên Đán Việt Nam: phong tục Tết truyền thống, món ăn Tết (bánh chưng, thịt kho tàu), trò chơi dân gian. Lịch âm dương, giờ hoàng đạo chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
-            },
-            // General descriptions with seasonal variations
-            {
-                condition: () => this.isMorning(),
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Chào buổi sáng! Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày. Khám phá văn hóa Tết Việt Nam: món ăn Tết, phong tục Tết, lịch âm dương, blog văn hóa chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🏮`
+                condition: (daysUntilTet) => daysUntilTet <= 7,
+                build: (daysUntilTet) =>
+                    `Đếm ngược Tết Nguyên Đán 2027: chỉ còn ${daysUntilTet} ngày. Xem lịch âm dương, giờ hoàng đạo, gợi ý món ăn và phong tục Tết Việt Nam cập nhật mỗi ngày.`,
             },
             {
-                condition: () => this.isEvening(),
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Buổi tối rồi! Chuẩn bị Tết Nguyên Đán: món ăn Tết (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
+                condition: (daysUntilTet) => daysUntilTet <= 30,
+                build: (daysUntilTet) =>
+                    `Còn ${daysUntilTet} ngày tới Tết 2027. Theo dõi đếm ngược Tết Nguyên Đán, tra cứu lịch âm dương, giờ hoàng đạo và khám phá văn hóa Tết Việt Nam.`,
             },
-            // Default description
             {
                 condition: () => true,
-                getContent: () =>
-                    `Sắp Tết 2027 - Tết Việt Nam (Tết Việt) - Tết Đinh Mùi 2027 - Đếm ngược Tết Nguyên Đán chỉ còn ${this.getDaysUntilTet()} ngày! Khám phá văn hóa Tết Việt Nam: món ăn Tết (bánh chưng, thịt kho tàu), phong tục Tết, trò chơi dân gian. Lịch âm dương, giờ hoàng đạo, blog văn hóa Tết chi tiết. Từ khóa: Tết Việt Nam, Tết Việt, Tết 2027, Tết. 🎊`
-            }
+                build: () =>
+                    "Đếm ngược Tết Nguyên Đán 2027 chính xác từng ngày. Xem lịch âm dương, giờ hoàng đạo, món ăn và phong tục Tết Việt Nam trên Sắp Tết.",
+            },
         ];
-        
-        this.init();
     }
 
     init() {
-        this.updateDescription();
-        // Update description every hour
-        setInterval(() => this.updateDescription(), 3600000);
+        if (!this.shouldRunForCurrentPage()) return;
+        this.refreshSeo();
+        if (this.enableHourlyRefresh) {
+            this.intervalId = window.setInterval(() => this.refreshSeo(), this.updateEveryMs);
+        }
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) {
+                this.refreshSeo();
+            }
+        });
+    }
+
+    refreshSeo() {
+        const daysUntilTet = this.getDaysUntilTet();
+        const title = this.buildTitle(daysUntilTet);
+        const description = this.buildDescription(daysUntilTet);
+        const pageUrl = this.getCurrentPageUrl();
+        const signature = `${title}|${description}|${pageUrl}|${daysUntilTet}`;
+        if (signature === this.lastSeoSignature) return;
+        this.lastSeoSignature = signature;
+
+        document.title = title;
+        this.setMetaByName("description", this.clampText(description, 160));
+        this.setMetaByName(
+            "robots",
+            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        );
+        this.setMetaByProperty("og:title", title);
+        this.setMetaByProperty("og:description", this.clampText(description, 200));
+        this.setMetaByProperty("og:url", pageUrl);
+        this.setMetaByProperty("twitter:title", title);
+        this.setMetaByProperty("twitter:description", this.clampText(description, 200));
+        this.setMetaByProperty("twitter:url", pageUrl);
+        this.setCanonical(pageUrl);
+        this.setHrefLang(pageUrl);
+        this.updateWebPageSchema(title, description, pageUrl, this.getDaysUntilTet());
     }
 
     getDaysUntilTet() {
-        const tetDate = new Date('2027-02-06');
-        const today = new Date();
-        const diffTime = tetDate - today;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        return Math.max(0, diffDays);
+        const now = new Date();
+        const ms = this.tetDate - now;
+        const days = Math.ceil(ms / (1000 * 60 * 60 * 24));
+        return Math.max(0, days);
     }
 
-    isWeekend() {
-        const day = new Date().getDay();
-        return day === 0 || day === 6;
-    }
-
-    isMorning() {
-        const hour = new Date().getHours();
-        return hour >= 6 && hour < 12;
-    }
-
-    isEvening() {
-        const hour = new Date().getHours();
-        return hour >= 18 && hour < 22;
-    }
-
-    isLunarDate() {
-        // Check if today is a special lunar date (1st, 15th, 30th of lunar month)
-        // This is a simplified version - in real implementation you'd use a lunar calendar library
-        const today = new Date();
-        const day = today.getDate();
-        return day === 1 || day === 15 || day === 30;
-    }
-
-    getCurrentLunarDate() {
-        // Simplified lunar date - in real implementation use a proper lunar calendar
-        const today = new Date();
-        const day = today.getDate();
-        const month = today.getMonth() + 1;
-        return `${day}/${month}`;
-    }
-
-    updateDescription() {
-        const description = this.getBestDescription();
-        this.updateMetaTags(description);
-    }
-
-    getBestDescription() {
-        for (let desc of this.descriptions) {
-            if (desc.condition()) {
-                return desc.getContent();
+    buildTitle(daysUntilTet) {
+        for (const rule of this.titleRules) {
+            if (rule.condition(daysUntilTet)) {
+                return rule.build(daysUntilTet);
             }
         }
-        return this.descriptions[this.descriptions.length - 1].getContent();
+        return `${this.baseTitle} | Còn Bao Nhiêu Ngày Nữa Tới Tết?`;
     }
 
-    updateMetaTags(description) {
-        // Update meta description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-            metaDesc.setAttribute('content', description);
+    buildDescription(daysUntilTet) {
+        for (const rule of this.descriptionRules) {
+            if (rule.condition(daysUntilTet)) {
+                return rule.build(daysUntilTet);
+            }
         }
-
-        // Update Open Graph description
-        let ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) {
-            ogDesc.setAttribute('content', description);
-        }
-
-        // Update Twitter description
-        let twitterDesc = document.querySelector('meta[property="twitter:description"]');
-        if (twitterDesc) {
-            twitterDesc.setAttribute('content', description);
-        }
-
-        // Update page title with countdown if close to Tet
-        this.updateTitle();
+        return this.descriptionRules[this.descriptionRules.length - 1].build(daysUntilTet);
     }
 
-    updateTitle() {
-        const daysUntilTet = this.getDaysUntilTet();
-        let title = document.querySelector('title');
-        
-        if (daysUntilTet <= 7 && title) {
-            title.textContent = `🎊 Sắp Tết - CHỈ CÒN ${daysUntilTet} NGÀY NỮA LÀ ĐẾN TẾT 2027!`;
-        } else if (daysUntilTet <= 30 && title) {
-            title.textContent = `🏮 Sắp Tết - Đếm Ngược Tết 2027 | Còn ${daysUntilTet} Ngày Nữa Tới Tết`;
-        } else if (title) {
-            title.textContent = `Sắp Tết - Đếm Ngược Tết 2027 | Còn Bao Nhiêu Ngày Nữa Tới Tết?`;
+    getCurrentPageUrl() {
+        const current = new URL(window.location.href);
+        current.hash = "";
+        current.search = "";
+        if (!current.pathname) {
+            current.pathname = "/";
         }
+        return current.toString();
+    }
+
+    shouldRunForCurrentPage() {
+        const path = window.location.pathname || "/";
+        return this.allowedHomepagePaths.has(path);
+    }
+
+    setCanonical(url) {
+        const canonical = this.ensureHeadElement('link[rel="canonical"]', "link", {
+            rel: "canonical",
+        });
+        canonical.setAttribute("href", url);
+    }
+
+    setHrefLang(url) {
+        const vi = this.ensureHeadElement('link[rel="alternate"][hreflang="vi-VN"]', "link", {
+            rel: "alternate",
+            hreflang: "vi-VN",
+        });
+        vi.setAttribute("href", url);
+
+        const xDefault = this.ensureHeadElement(
+            'link[rel="alternate"][hreflang="x-default"]',
+            "link",
+            { rel: "alternate", hreflang: "x-default" }
+        );
+        xDefault.setAttribute("href", this.defaultCanonical);
+    }
+
+    updateWebPageSchema(title, description, url, daysUntilTet) {
+        const schema = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: title,
+            description: this.clampText(description, 200),
+            url,
+            inLanguage: "vi-VN",
+            isPartOf: {
+                "@type": "WebSite",
+                name: "Sắp Tết - Đếm Ngược Tết",
+                url: "https://saptet.vn/",
+            },
+            primaryImageOfPage: {
+                "@type": "ImageObject",
+                url: this.defaultImage,
+            },
+            about: {
+                "@type": "Thing",
+                name: "Tết Nguyên Đán 2027",
+            },
+            mainEntity: {
+                "@type": "Event",
+                name: "Tết Nguyên Đán 2027",
+                startDate: this.tetDate.toISOString(),
+                eventStatus: "https://schema.org/EventScheduled",
+                inLanguage: "vi-VN",
+            },
+            additionalProperty: [
+                {
+                    "@type": "PropertyValue",
+                    name: "daysUntilTet",
+                    value: String(daysUntilTet),
+                },
+            ],
+        };
+
+        let script = document.getElementById(this.schemaScriptId);
+        if (!script) {
+            script = document.createElement("script");
+            script.type = "application/ld+json";
+            script.id = this.schemaScriptId;
+            document.head.appendChild(script);
+        }
+        script.textContent = JSON.stringify(schema);
+    }
+
+    setMetaByName(name, content) {
+        const selector = `meta[name="${name}"]`;
+        const meta = this.ensureHeadElement(selector, "meta", { name });
+        meta.setAttribute("content", content);
+    }
+
+    setMetaByProperty(property, content) {
+        const selector = `meta[property="${property}"]`;
+        const meta = this.ensureHeadElement(selector, "meta", { property });
+        meta.setAttribute("content", content);
+    }
+
+    ensureHeadElement(selector, tagName, attrs = {}) {
+        if (this.cachedElements[selector]) {
+            return this.cachedElements[selector];
+        }
+        let element = document.head.querySelector(selector);
+        if (!element) {
+            element = document.createElement(tagName);
+            for (const [key, value] of Object.entries(attrs)) {
+                element.setAttribute(key, value);
+            }
+            document.head.appendChild(element);
+        }
+        this.cachedElements[selector] = element;
+        return element;
+    }
+
+    clampText(text, maxLength) {
+        if (text.length <= maxLength) return text;
+        return `${text.slice(0, maxLength - 1).trimEnd()}…`;
     }
 }
 
-// Initialize dynamic SEO when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    new DynamicSEO();
-});
+function initDynamicSEO() {
+    if (window.__dynamicSeoInitialized) return;
+    window.__dynamicSeoInitialized = true;
+    const seo = new DynamicSEO();
+    seo.init();
+}
 
-// Also initialize immediately if DOM is already loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        new DynamicSEO();
-    });
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDynamicSEO, { once: true });
 } else {
-    new DynamicSEO();
-} 
+    initDynamicSEO();
+}

@@ -1,10 +1,20 @@
 {
   "version": 1,
   "skills": {
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "ddd028951738fcbcdebf0f9bd90b708c55d1b9370a31603e0c13e5b262d8b8bb"
+    },
     "technical-blog-writing": {
       "source": "inferen-sh/skills",
       "sourceType": "github",
       "computedHash": "833ef303857d5770ff2c197c89065b2087813717f136e1ca7ee1fcad6b1b25c7"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "f3bc47f890f42a44db1007ab390709ec368e4b8c089baee6b0007182236ac474"
     }
   }
 }
