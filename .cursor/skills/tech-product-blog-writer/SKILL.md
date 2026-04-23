@@ -20,6 +20,7 @@ Use this skill to write technology product blog articles with a strong review vo
 - Tone: confident, practical, and specific.
 - Perspective: reviewer/editor perspective with clear conclusions.
 - Priority: benefits and highlighted capabilities first.
+- Formatting note: Bold key highlight points so users can scan and recognize important takeaways quickly.
 - Weakness coverage: brief, non-dominant, and solution-oriented.
 - Avoid over-hedging language and avoid excessive negativity.
 

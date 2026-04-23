@@ -137,9 +137,28 @@
 
   function getCurrentArticleSlug() {
     var path = window.location.pathname || '';
-    var fileName = path.split('/').pop() || '';
-    if (!fileName || fileName.indexOf('.html') === -1) return '';
-    return fileName.replace(/\.html$/i, '');
+    var parts = path.split('/').filter(Boolean);
+    if (!parts.length) return '';
+
+    var last = parts[parts.length - 1];
+    var prev = parts.length > 1 ? parts[parts.length - 2] : '';
+
+    // /tin-tuc/slug.html
+    if (/\.html$/i.test(last) && last.toLowerCase() !== 'index.html') {
+      return last.replace(/\.html$/i, '');
+    }
+
+    // /tin-tuc/slug/index.html
+    if (last.toLowerCase() === 'index.html' && prev && prev !== 'tin-tuc') {
+      return prev;
+    }
+
+    // /tin-tuc/slug/
+    if (last !== 'tin-tuc') {
+      return last;
+    }
+
+    return '';
   }
 
   async function loadNewsItemBySlug(slug) {
@@ -407,8 +426,9 @@
       if (fixedAffiliate) {
         fillAdsCard(firstCard, fixedAffiliate);
       } else {
-        var fallbackProduct = pickRandomProduct(products);
-        if (fallbackProduct) fillAdsCard(firstCard, fallbackProduct);
+        // Non-random fallback: pick highest relevance product.
+        var topPrimary = pickTopRelatedProducts(products, 1, [], item, null)[0];
+        if (topPrimary) fillAdsCard(firstCard, topPrimary);
       }
     }
 
@@ -424,8 +444,9 @@
       relatedProducts = relatedProducts.concat(extra);
     }
     if (relatedProducts.length < 2) {
-      var randomExcluded = excluded.concat(relatedProducts.map(function (p) { return p.url; }));
-      relatedProducts = relatedProducts.concat(pickRandomProducts(products, 2 - relatedProducts.length, randomExcluded));
+      var extraDeterministicExcluded = excluded.concat(relatedProducts.map(function (p) { return p.url; }));
+      var deterministicExtra = pickTopRelatedProducts(products, 2 - relatedProducts.length, extraDeterministicExcluded, item, fixedAffiliate);
+      relatedProducts = relatedProducts.concat(deterministicExtra);
     }
     if (!relatedProducts.length) return;
 
