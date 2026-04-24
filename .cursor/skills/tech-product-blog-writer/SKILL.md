@@ -98,6 +98,7 @@ For each article, follow this structure:
 - [ ] Technical attribute terminology is specific.
 - [ ] Weakness coverage is short and non-dominant.
 - [ ] Final section gives clear value assessment by price tier.
+- [ ] Cover banner đầu bài click được và mở đúng link affiliate chính của bài (tab mới, `noopener noreferrer nofollow`).
 
 ## Example Verdict Patterns
 

@@ -53,3 +53,12 @@ Khi user nói "ảnh cover cho bài báo", hiểu mặc định là **toàn bộ
 - Khi đổi cover, phải cập nhật **đồng thời tất cả vị trí trên**, không để lệch ảnh giữa listing/detail/social.
 - Nếu user chỉ đưa 1 URL ảnh, dùng URL đó cho toàn bộ vị trí cover của bài.
 - Không đổi `publishedAt` khi chỉ thay ảnh cover.
+
+## Review bài sản phẩm — cover phải click affiliate (Bắt buộc)
+
+Áp dụng cho các bài review sản phẩm (ví dụ slug bắt đầu `review-` hoặc tiêu đề bắt đầu `Review`):
+
+- Banner cover đầu bài (`.news-cover`) phải bấm được và mở link affiliate của bài.
+- Link cover phải dùng cùng URL với CTA nguồn/affiliate chính của bài (ưu tiên `#news-source-button[href]`).
+- Mở tab mới với `target="_blank"` và `rel="noopener noreferrer nofollow"`.
+- Nếu chưa có đủ dữ liệu để gắn link affiliate hợp lệ, không gắn link giả; cần bổ sung URL affiliate trước khi publish.
