@@ -223,6 +223,44 @@
     coverImage.insertAdjacentElement('afterend', wrapper);
   }
 
+  function isExternalUrl(url) {
+    if (!url || typeof url !== 'string') return false;
+    return /^https?:\/\//i.test(url);
+  }
+
+  function isReviewArticle(slug, title) {
+    var normalizedSlug = String(slug || '').toLowerCase();
+    var normalizedTitle = String(title || '').toLowerCase();
+    return normalizedSlug.indexOf('review-') === 0 || normalizedTitle.indexOf('review ') === 0;
+  }
+
+  function makeReviewCoverClickable(slug) {
+    var titleEl = document.querySelector('.news-title');
+    var title = titleEl ? titleEl.textContent.trim() : '';
+    if (!isReviewArticle(slug, title)) return;
+
+    var sourceBtn = document.querySelector('#news-source-button');
+    if (!sourceBtn) return;
+    var affiliateUrl = sourceBtn.getAttribute('href') || '';
+    if (!isExternalUrl(affiliateUrl)) return;
+
+    var coverImage = document.querySelector('.news-cover');
+    if (!coverImage) return;
+    if (coverImage.closest('a.news-cover-link')) return;
+
+    var link = document.createElement('a');
+    link.className = 'news-cover-link';
+    link.href = affiliateUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer nofollow';
+    link.setAttribute('aria-label', 'Mở link sản phẩm liên kết');
+
+    var parent = coverImage.parentNode;
+    if (!parent) return;
+    parent.insertBefore(link, coverImage);
+    link.appendChild(coverImage);
+  }
+
   function fillAdsCard(card, product) {
     if (!card || !product) return;
 
@@ -461,6 +499,7 @@
     var item = await loadNewsItemBySlug(slug);
     if (!item) return;
     renderImageSourceAttribution(item);
+    makeReviewCoverClickable(slug);
   }
 
   if (document.readyState === 'loading') {

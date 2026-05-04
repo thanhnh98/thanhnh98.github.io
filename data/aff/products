@@ -10,51 +10,158 @@
          },
          {
             "category":"clothes",
-            "displayName":"Thời trang 👘"
+            "displayName":"Thời trang"
          },
          {
             "category":"oplung",
-            "displayName":"Ốp lưng xinh 📱"
+            "displayName":"Ốp lưng xinh"
          },
          {
             "category":"lixi",
-            "displayName":"Bao Lì Xì 🧧"
+            "displayName":"Bao Lì Xì"
          },
          {
             "category":"quatet",
-            "displayName":"Quà Tết 🎁"
+            "displayName":"Quà Tết"
          },
          {
             "category":"banhkeo",
-            "displayName":"Bánh Kẹo 🍬"
+            "displayName":"Bánh Kẹo"
          },
          {
             "category":"thucpham",
-            "displayName":"Thực phẩm 🍬"
+            "displayName":"Thực phẩm"
          },
          {
             "category":"thucphamkho",
-            "displayName":"Thực phẩm khô 🍬"
+            "displayName":"Thực phẩm khô"
          },
          {
             "category":"tech",
-            "displayName":"Trang Trí 🎊"
+            "displayName":"Trang Trí"
          },
          {
             "category":"assets",
-            "displayName":"Đồ dùng 🏮"
+            "displayName":"Đồ dùng"
          },
          {
             "category":"bachhoa",
-            "displayName":"Bách hoá 🛍️🎊"
+            "displayName":"Bách hoá"
          },
          {
             "category":"tech",
-            "displayName":"Công nghệ 🎧📱"
+            "displayName":"Công nghệ"
+         },
+         {
+            "category":"electric",
+            "displayName":"Đồ dùng Điện Tử"
          }
       ],
       "products":[
-
+{
+  "id": "964055",
+  "shopId": "127805122",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvy2h2amd715c5",
+  "images": [],
+  "name": "Bộ Bút Highlight Nhớ Dòng Kèm Sticker Trang Trí Đánh Dấu Màu Pastel Deli Dạ Quang Tiện Lợi | Shopee Việt Nam",
+  "description": "Mua Bộ Bút Highlight Nhớ Dòng Kèm Sticker Trang Trí Đánh Dấu Màu Pastel Deli Dạ Quang Tiện Lợi giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/Ljo1VwzTC"
+},
+{
+  "id": "799567",
+  "shopId": "142856269",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-ml7jve2i134f3d",
+  "images": [],
+  "name": "Máy Tính Casio FX 580 - Màu Đen, Hồng, Xanh | Shopee Việt Nam",
+  "description": "Mua Máy Tính Casio FX 580 - Màu Đen, Hồng, Xanh giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/9ALCXhVFVq"
+},
+{
+  "id": "598505",
+  "shopId": "1257785233",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mn16hejogb28f5",
+  "images": [],
+  "name": "Bình giữ nhiệt mini  TAFUCO pocket tumbler 220 ml inox 316 | Shopee Việt Nam",
+  "description": "Mua Bình giữ nhiệt mini  TAFUCO pocket tumbler 220 ml inox 316 giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/4AwWaQLMtJ"
+},
+{
+  "id": "221228",
+  "shopId": "348955539",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m21xzge0pp5nc3",
+  "images": [],
+  "name": "[VC 40K LIVE] Hộp 10 Bút Chì Gỗ 2B HB Cao Cấp Deli Nét Đậm Rõ, Nhạy Với Máy Chấm Thi, Thiết Kế Basic Học Sinh Sinh Viên | Shopee Việt Nam",
+  "description": "Mua [VC 40K LIVE] Hộp 10 Bút Chì Gỗ 2B HB Cao Cấp Deli Nét Đậm Rõ, Nhạy Với Máy Chấm Thi, Thiết Kế Basic Học Sinh Sinh Viên giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://shopee.vn/-VC-40K-LIVE-H%E1%BB%99p-10-B%C3%BAt-Ch%C3%AC-G%E1%BB%97-2B-HB-Cao-C%E1%BA%A5p-Deli-N%C3%A9t-%C4%90%E1%BA%ADm-R%C3%B5-Nh%E1%BA%A1y-V%E1%BB%9Bi-M%C3%A1y-Ch%E1%BA%A5m-Thi-Thi%E1%BA%BFt-K%E1%BA%BF-Basic-H%E1%BB%8Dc-Sinh-Sinh-Vi%C3%AAn-i.348955539.26466221228?extraParams=%7B%22display_model_id%22%3A223405572186%2C%22model_selection_logic%22%3A3%7D&sp_atk=3de3f125-84a1-4018-91ed-63bd2c33557c&xptdk=3de3f125-84a1-4018-91ed-63bd2c33557c"
+},
+{
+  "id": "960401",
+  "shopId": "348955539",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-7rbn6-ln8jv418ljso57",
+  "images": [],
+  "name": "Bìa Cúc Túi Nút My Clear Bag File Đựng Tài Liệu A4 Deli Trong Suốt Túi Đựng Hồ Sơ Lưu Trữ Giấy Tờ Giấy Kiểm Tra Sổ Vẽ | Shopee Việt Nam",
+  "description": "Mua Bìa Cúc Túi Nút My Clear Bag File Đựng Tài Liệu A4 Deli Trong Suốt Túi Đựng Hồ Sơ Lưu Trữ Giấy Tờ Giấy Kiểm Tra Sổ Vẽ giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://shopee.vn/B%C3%ACa-C%C3%BAc-T%C3%BAi-N%C3%BAt-My-Clear-Bag-File-%C4%90%E1%BB%B1ng-T%C3%A0i-Li%E1%BB%87u-A4-Deli-Trong-Su%E1%BB%91t-T%C3%BAi-%C4%90%E1%BB%B1ng-H%E1%BB%93-S%C6%A1-L%C6%B0u-Tr%E1%BB%AF-Gi%E1%BA%A5y-T%E1%BB%9D-Gi%E1%BA%A5y-Ki%E1%BB%83m-Tra-S%E1%BB%95-V%E1%BA%BD-i.348955539.22958960401?extraParams=%7B%22display_model_id%22%3A89224797742%2C%22model_selection_logic%22%3A3%7D&sp_atk=5bc08982-74a4-4ef5-a537-ca89e69af898&xptdk=5bc08982-74a4-4ef5-a537-ca89e69af898"
+},
+{
+  "id": "112688",
+  "shopId": "1058970944",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-8257w-mfyuihz3togd9e",
+  "images": [],
+  "name": "Tinh Dầu Thơm Phòng Daily Comma Crystal Hologram Diffuser hương thơm dịu nhẹ, decor phòng 100ML | Shopee Việt Nam",
+  "description": "Mua Tinh Dầu Thơm Phòng Daily Comma Crystal Hologram Diffuser hương thơm dịu nhẹ, decor phòng 100ML giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/6Ahaxsjjsf"
+},
+{
+  "id": "204997",
+  "shopId": "586898247",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134253-81zvf-mipkmi0lwjk694",
+  "images": [],
+  "name": "Gối Công Thái Học FEINITE Chống Đau Mỏi Vai Ngáy, Giúp Ngủ Ngon Nằm Cực Êm Nội Địa Hàn [ HÀNG 1KG ] | Shopee Việt Nam",
+  "description": "Mua Gối Công Thái Học FEINITE Chống Đau Mỏi Vai Ngáy, Giúp Ngủ Ngon Nằm Cực Êm Nội Địa Hàn [ HÀNG 1KG ] giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "assets",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/9KecjciMie"
+},
+{
+  "id": "113260",
+  "shopId": "14811394",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mg89hjogjua17a",
+  "images": [],
+  "name": "Đèn LED Gắn Bàn, Đèn Gắn Tường Từ Tính Tích Điện Hỗ Trợ Làm Đèn Học, Đèn Đọc Sách Đầu Giường | Shopee Việt Nam",
+  "description": "Mua Đèn LED Gắn Bàn, Đèn Gắn Tường Từ Tính Tích Điện Hỗ Trợ Làm Đèn Học, Đèn Đọc Sách Đầu Giường giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "Điện tử",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://shopee.vn/%C4%90%C3%A8n-H%E1%BB%8Dc-G%E1%BA%AFn-T%C6%B0%E1%BB%9Dng-Ch%E1%BB%91ng-C%E1%BA%ADn-Th%E1%BB%8B-Pin-S%E1%BA%A1c-T%C3%ADch-H%E1%BB%A3p-%C4%90%E1%BB%93ng-H%E1%BB%93-B%C3%A1o-Th%E1%BB%A9c-3-M%C3%A0u-%C3%81nh-S%C3%A1ng-T%C4%83ng-Gi%E1%BA%A3m-%C4%90%E1%BB%99-S%C3%A1ng-i.14811394.56350113260"
+},
 {
    "id": "736233",
    "shopId": "8334180",

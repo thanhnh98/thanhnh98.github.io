@@ -984,9 +984,9 @@ const eventsData = {
     },
     'thpt-2026': {
         name: 'Thi THPT 2026',
-        getDate: () => new Date(2026, 5, 11), // 11/06/2026
+        getDate: () => new Date('2026-06-11T07:30:00+07:00'), // mốc phát đề buổi sáng 11/06/2026 (UTC+7)
         icon: '📝',
-        description: '11-12/06/2026',
+        description: '7h30 11/06/2026 · 11-12/06',
         background: 'linear-gradient(135deg, #B91C1C, #DC2626)'
     },
     'mid-autumn': {

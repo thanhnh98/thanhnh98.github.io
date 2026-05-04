@@ -212,6 +212,10 @@ Each detail page must include:
 13. CTA row at bottom
 14. Script include for random affiliate:
    - `../js/news-affiliate-random.js`
+15. **Bài review sản phẩm (bắt buộc):**
+   - Cover banner đầu bài (`.news-cover`) phải click được để mở link affiliate chính.
+   - URL cover click phải đồng nhất với CTA nguồn/affiliate chính (`#news-source-button` hoặc `links.affiliateUrl`).
+   - Dùng `target="_blank"` + `rel="noopener noreferrer nofollow"`.
 
 ## SEO Metadata Rules (Required)
 
@@ -438,6 +442,7 @@ Tagging rule:
 - detail page affiliate block count/placement matches user instruction when explicitly provided
 - otherwise default to 2 blocks (in-body + post-conclusion)
 - detail page loads `../js/news-affiliate-random.js`
+- nếu là bài review sản phẩm: cover banner click mở đúng link affiliate chính
 - title/body do not force Tet framing when topic is non-Tet
 - category follows controlled topic taxonomy
 - article includes verified primary source references
