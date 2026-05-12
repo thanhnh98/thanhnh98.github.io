@@ -28,6 +28,8 @@ class Router {
             '/cua-hang.html': 'cua-hang.html',
             '/may-tinh-li-xi': 'may-tinh-li-xi.html',
             '/may-tinh-li-xi.html': 'may-tinh-li-xi.html',
+            '/qr-code': 'qr-code/index.html',
+            '/qr-code/': 'qr-code/index.html',
             '/huong-dan-tet': 'huong-dan-tet.html',
             '/huong-dan-tet.html': 'huong-dan-tet.html',
             '/ung-dung': 'ung-dung.html',
@@ -93,6 +95,28 @@ class Router {
         if (normalizedPath !== '/' && normalizedPath.endsWith('/')) {
             normalizedPath = normalizedPath.slice(0, -1);
         }
+
+        // Chuẩn hóa URL trang QR: alias cũ / đường index thô → /qr-code (giữ query/hash)
+        if (
+            normalizedPath === '/qrcode' ||
+            normalizedPath === '/qrcode.html' ||
+            normalizedPath.endsWith('/qr-code/index.html')
+        ) {
+            window.location.replace('/qr-code' + window.location.search + window.location.hash);
+            return;
+        }
+
+        // Đang ở /qr-code và đã serve qr-code/index.html — không ép chuyển file (tránh /qr-code/index.html trên thanh địa chỉ)
+        if (
+            normalizedPath === '/qr-code' ||
+            cleanPath === '/qr-code' ||
+            cleanPath === '/qr-code/'
+        ) {
+            const currentFile = this.getCurrentPageFile();
+            if (currentFile === 'qr-code/index.html') {
+                return;
+            }
+        }
         
         // Special handling for directory routes (like /tai-ung-dung/ and /tin-tuc/)
         // GitHub Pages automatically serves index.html from directories
@@ -144,6 +168,9 @@ class Router {
         if (currentPath === '/tin-tuc' || currentPath === '/tin-tuc/') {
             return;
         }
+        if (currentPath === '/qr-code' || currentPath === '/qr-code/') {
+            return;
+        }
         // Redirect to 404 page
         window.location.href = '/404.html';
     }
@@ -152,6 +179,12 @@ class Router {
         const path = window.location.pathname;
         if (path === '/' || path === '/index' || path === '/index.html') {
             return 'index.html';
+        }
+        if (path === '/qr-code' || path === '/qr-code/') {
+            return 'qr-code/index.html';
+        }
+        if (path.endsWith('/qr-code/index.html') || path === '/qr-code/index.html') {
+            return 'qr-code/index.html';
         }
         // Handle directory routes
         if (path === '/tin-tuc' || path === '/tin-tuc/') {

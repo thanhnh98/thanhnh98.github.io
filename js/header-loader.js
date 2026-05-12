@@ -12,6 +12,15 @@ class HeaderLoader {
         
         if (filename === 'mon-an-tet.html') {
             return 'mon-an-tet';
+        } else if (
+            filename === 'qrcode.html' ||
+            normalizedPath === '/qrcode' ||
+            filename === 'qrcode' ||
+            normalizedPath === '/qr-code' ||
+            path === '/qr-code/' ||
+            (filename === 'index.html' && path.includes('/qr-code'))
+        ) {
+            return 'qrcode';
         } else if (filename === 'cua-hang.html') {
             return 'cua-hang';
         } else if (filename === 'ung-dung.html' || normalizedPath === '/ung-dung') {
