@@ -4,10 +4,10 @@
             <img src="/assets/images/ic_app.png" alt="Sắp Tết" class="app-icon">
             <h1><a href="/" title="Sắp Tết - Đếm ngược Tết Nguyên Đán">Sắp Tết</a></h1>
         </div>
-        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <button class="mobile-menu-toggle" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="site-navigation">
             ☰
         </button>
-        <nav>
+        <nav id="site-navigation" aria-label="Điều hướng chính">
             <ul class="nav-primary">
                 <li><a href="/con-bao-lau-nua-den-tet" data-page="countdown">
                     <i data-lucide="timer" class="nav-icon"></i>
@@ -32,11 +32,11 @@
             </ul>
             
             <div class="nav-expandable">
-                <button class="see-more-btn" aria-label="Thêm mục điều hướng">
+                <button class="see-more-btn" aria-label="Thêm mục điều hướng" aria-expanded="false" aria-controls="nav-secondary-menu">
                     <span class="see-more-text">Thêm</span>
                     <i data-lucide="chevron-down" class="see-more-icon"></i>
                 </button>
-                <ul class="nav-secondary">
+                <ul class="nav-secondary" id="nav-secondary-menu">
                     <li><a href="/qr-code" data-page="qrcode">
                         <i data-lucide="qr-code" class="nav-icon"></i>
                         <span>Tạo mã QR</span>

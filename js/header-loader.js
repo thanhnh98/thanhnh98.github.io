@@ -124,12 +124,17 @@ class HeaderLoader {
                 // Remove active class from all links
                 navLinks.forEach(l => l.classList.remove('active'));
                 // Add active class to clicked link
-                e.target.classList.add('active');
+                link.classList.add('active');
                 
                 // Close mobile menu on link click
                 const nav = document.querySelector('nav');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
                 if (nav) {
                     nav.classList.remove('mobile-menu-open');
+                }
+                if (mobileToggle) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    mobileToggle.classList.remove('active');
                 }
                 
                 // Close expandable menu on link click
@@ -138,6 +143,7 @@ class HeaderLoader {
                     navExpandable.classList.remove('expanded');
                     const seeMoreBtn = document.querySelector('.see-more-btn');
                     const seeMoreText = seeMoreBtn?.querySelector('.see-more-text');
+                    seeMoreBtn?.setAttribute('aria-expanded', 'false');
                     if (seeMoreText) {
                         seeMoreText.textContent = 'Thêm';
                     }
@@ -168,13 +174,17 @@ class HeaderLoader {
         
         if (mobileToggle && nav) {
             mobileToggle.addEventListener('click', () => {
-                nav.classList.toggle('mobile-menu-open');
+                const isOpen = nav.classList.toggle('mobile-menu-open');
+                mobileToggle.classList.toggle('active', isOpen);
+                mobileToggle.setAttribute('aria-expanded', String(isOpen));
             });
             
             // Close menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('header') && nav.classList.contains('mobile-menu-open')) {
                     nav.classList.remove('mobile-menu-open');
+                    mobileToggle.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         }
@@ -191,12 +201,13 @@ class HeaderLoader {
             seeMoreBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                navExpandable.classList.toggle('expanded');
+                const isExpanded = navExpandable.classList.toggle('expanded');
+                seeMoreBtn.setAttribute('aria-expanded', String(isExpanded));
                 
                 // Update button text
                 const seeMoreText = seeMoreBtn.querySelector('.see-more-text');
                 if (seeMoreText) {
-                    seeMoreText.textContent = navExpandable.classList.contains('expanded') ? 'Thu gọn' : 'Thêm';
+                    seeMoreText.textContent = isExpanded ? 'Thu gọn' : 'Thêm';
                 }
             });
             
@@ -204,9 +215,10 @@ class HeaderLoader {
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.nav-expandable') && navExpandable.classList.contains('expanded')) {
                     navExpandable.classList.remove('expanded');
+                    seeMoreBtn.setAttribute('aria-expanded', 'false');
                     const seeMoreText = seeMoreBtn.querySelector('.see-more-text');
                     if (seeMoreText) {
-                        seeMoreText.textContent = 'Xem thêm';
+                        seeMoreText.textContent = 'Thêm';
                     }
                 }
             });
