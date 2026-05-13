@@ -2,21 +2,35 @@
 :root {
     /* Primary Tết Colors - Enhanced Vibrancy */
     --color-primary: #E60026; /* More vibrant red */
+    --color-primary-rgb: 230, 0, 38;
     --color-secondary: #FFD700; /* Bright Gold */
+    --color-secondary-rgb: 255, 215, 0;
     --color-accent-primary: #FF4500; /* Bright orange-red */
+    --color-accent-primary-rgb: 255, 69, 0;
     --color-accent-secondary: #00C851; /* Vibrant green */
+    --color-accent-secondary-rgb: 0, 200, 81;
     --color-accent-tertiary: #FF1493; /* Deep Pink for celebration */
+    --color-accent-tertiary-rgb: 255, 20, 147;
     
     /* Background Colors */
+    --color-surface: #FFFFFF;
+    --color-surface-rgb: 255, 255, 255;
     --color-background-primary: #FFF9E6; /* Warm cream */
+    --color-background-primary-rgb: 255, 249, 230;
     --color-background-secondary: #FFEBCD; /* Blanched almond */
+    --color-background-secondary-rgb: 255, 235, 205;
     --color-background-accent: #FFE4E1; /* Misty rose */
+    --color-background-accent-rgb: 255, 228, 225;
     
     /* Text Colors */
     --color-text-primary: #2C1810; /* Dark brown */
+    --color-text-primary-rgb: 44, 24, 16;
     --color-text-secondary: #8B4513; /* Saddle brown */
+    --color-text-secondary-rgb: 139, 69, 19;
     --color-text-header: #FFFFFF; /* White for header */
+    --color-text-header-rgb: 255, 255, 255;
     --color-text-accent: #B8860B; /* Dark goldenrod */
+    --color-text-accent-rgb: 184, 134, 11;
     
     /* Header & Footer */
     --color-header-bg: linear-gradient(135deg, #DC143C 0%, #B22222 50%, #8B0000 100%);
@@ -26,6 +40,12 @@
     --color-button-primary: linear-gradient(135deg, #FF6B35 0%, #DC143C 100%);
     --color-button-secondary: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
     --color-button-hover: #FF4500;
+
+    /* Marketplace Colors */
+    --color-marketplace-shopee: #C73F25;
+    --color-marketplace-shopee-rgb: 199, 63, 37;
+    --color-marketplace-tiktok: #111111;
+    --color-marketplace-tiktok-rgb: 17, 17, 17;
     
     /* Timer Colors - Enhanced */
     --color-timer-bg: linear-gradient(135deg, #E60026 0%, #FF4500 100%);
