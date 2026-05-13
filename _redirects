@@ -117,8 +117,8 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 
 # Alias URL sai thư mục → trang đúng
 /tin-tuc/cua-hang.html /cua-hang.html 301!
-/lich-tet-2027.html /lich-tet-2026.html 301!
-/lich-nghi-tet-2027.html /lich-nghi-tet-2026.html 301!
+/lich-tet-2026.html /lich-tet-2027.html 301!
+/lich-nghi-tet-2026.html /lich-nghi-tet-2027.html 301!
 
 # Handle common 404s
 /404 /404.html 404!
