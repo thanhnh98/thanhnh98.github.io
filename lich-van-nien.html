@@ -1691,82 +1691,611 @@
                 margin-bottom: 1rem;
             }
         }
+
+        /* Calendar workspace redesign */
+        .calendar-page {
+            background: linear-gradient(180deg, #fff8ed 0%, #fffdf8 38%, #fff8ed 100%);
+            min-height: 100vh;
+        }
+
+        .calendar-hero.calendar-hero--compact {
+            background: linear-gradient(135deg, #9f1239 0%, #c2410c 58%, #b45309 100%);
+            background-size: 100% 100%;
+            padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(1.25rem, 3vw, 1.75rem);
+            text-align: left;
+            animation: none;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.28);
+        }
+
+        .calendar-hero-content {
+            max-width: 980px;
+        }
+
+        .calendar-eyebrow {
+            margin: 0 0 0.35rem;
+            color: rgba(255, 245, 210, 0.86);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .calendar-hero.calendar-hero--compact h1 {
+            margin: 0;
+            color: #fffaf0 !important;
+            font-family: var(--font-body);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            line-height: 1.08;
+            text-shadow: 0 2px 14px rgba(76, 5, 5, 0.28);
+        }
+
+        .calendar-hero.calendar-hero--compact .subtitle {
+            max-width: 680px;
+            margin: 0.65rem 0 0;
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-size: clamp(0.98rem, 2vw, 1.12rem);
+            font-weight: 600;
+            line-height: 1.55;
+            text-shadow: none;
+        }
+
+        .calendar-content {
+            padding: clamp(1rem, 3vw, 2rem) 0 clamp(2rem, 5vw, 3.5rem);
+        }
+
+        .calendar-workspace {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+            gap: clamp(1rem, 2vw, 1.5rem);
+            align-items: start;
+        }
+
+        .calendar-panel,
+        .calendar-sidebar > * {
+            border-radius: 8px;
+        }
+
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(127, 29, 29, 0.12);
+            border-radius: 8px;
+            box-shadow: 0 14px 40px rgba(127, 29, 29, 0.09);
+            padding: clamp(0.9rem, 2vw, 1.25rem);
+        }
+
+        .calendar-header {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-title-row {
+            display: block;
+            margin-bottom: 0.85rem;
+        }
+
+        .calendar-title {
+            color: #7f1d1d;
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+            font-weight: 800;
+        }
+
+        .current-month-display {
+            color: #9f1239;
+            text-align: left;
+            margin: 0.2rem 0 0;
+            font-size: clamp(0.98rem, 1.6vw, 1.08rem);
+        }
+
+        .calendar-controls-row {
+            justify-content: flex-start;
+            gap: 0.65rem;
+            margin-bottom: 0;
+            padding: 0.65rem;
+            border: 1px solid rgba(127, 29, 29, 0.08);
+            border-radius: 8px;
+            background: #fff7ed;
+        }
+
+        .go-to-today-btn,
+        .calendar-nav-buttons button {
+            background: #9f1239 !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 7px;
+            box-shadow: none !important;
+            min-height: 40px;
+            padding: 0.55rem 0.85rem;
+            transform: none !important;
+        }
+
+        .go-to-today-btn::before,
+        .calendar-nav-buttons button::before,
+        .month-nav-btn::before,
+        .calendar-day-header::before,
+        .calendar-day::before {
+            display: none;
+        }
+
+        .go-to-today-btn:hover,
+        .calendar-nav-buttons button:hover:not(:disabled) {
+            background: #be123c !important;
+            transform: none !important;
+            box-shadow: 0 6px 16px rgba(159, 18, 57, 0.18) !important;
+        }
+
+        .year-selector,
+        .view-mode-chips {
+            gap: 0.45rem;
+        }
+
+        .year-selector label,
+        .view-mode-chips label {
+            color: #6f1d1b;
+            font-size: 0.86rem;
+            font-weight: 800;
+        }
+
+        .year-selector select {
+            border: 1px solid rgba(127, 29, 29, 0.18);
+            border-radius: 7px;
+            min-height: 40px;
+        }
+
+        .view-mode-chips-container {
+            gap: 0.25rem;
+            padding: 0.2rem;
+            border: 1px solid rgba(127, 29, 29, 0.12);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .view-mode-chip {
+            border: 0;
+            border-radius: 6px;
+            padding: 0.45rem 0.7rem;
+            color: #6f1d1b;
+            background: transparent;
+            font-size: 0.86rem;
+        }
+
+        .view-mode-chip:hover {
+            color: #9f1239;
+            background: rgba(159, 18, 57, 0.07);
+        }
+
+        .view-mode-chip.active {
+            background: #9f1239;
+            color: #fff;
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .calendar-month-wrapper {
+            border: 1px solid rgba(127, 29, 29, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+
+        .calendar-month-title {
+            color: #7f1d1d;
+            margin-bottom: 0.65rem;
+        }
+
+        .month-nav-btn {
+            width: 40px;
+            height: 40px;
+            background: #fff7ed;
+            color: #7f1d1d;
+            border: 1px solid rgba(127, 29, 29, 0.2);
+            border-radius: 8px;
+            box-shadow: none;
+            font-size: 1.1rem;
+        }
+
+        .month-nav-btn:hover:not(:disabled) {
+            background: #fee2e2;
+            border-color: rgba(159, 18, 57, 0.3);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .calendar-grid {
+            gap: 0.35rem;
+            padding: 0;
+            margin-bottom: 0;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+        }
+
+        .calendar-day-header {
+            min-height: 34px;
+            padding: 0.45rem 0.25rem !important;
+            background: #7f1d1d !important;
+            border: 0;
+            border-radius: 6px;
+            box-shadow: none;
+            font-size: 0.78rem;
+            text-shadow: none;
+        }
+
+        .calendar-day-header:hover {
+            background: #7f1d1d !important;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .calendar-day {
+            min-height: 74px;
+            padding: 0.55rem 0.35rem;
+            border: 1px solid rgba(127, 29, 29, 0.1);
+            border-radius: 7px;
+            box-shadow: none;
+            background: #fff;
+            gap: 0.15rem;
+        }
+
+        .calendar-day:hover {
+            background: #fff7ed;
+            border-color: rgba(159, 18, 57, 0.24);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .calendar-day.today {
+            background: #fff7ed;
+            color: #7f1d1d;
+            border: 2px solid #f59e0b;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+            animation: none;
+            transform: none;
+        }
+
+        .calendar-day.today .day-number,
+        .calendar-day.today .lunar-date {
+            color: #7f1d1d;
+            text-shadow: none;
+        }
+
+        .calendar-day.selected {
+            background: #9f1239 !important;
+            border-color: #9f1239;
+            color: #fff !important;
+            transform: none;
+            box-shadow: 0 8px 20px rgba(159, 18, 57, 0.18);
+            text-shadow: none;
+        }
+
+        .calendar-day.selected:hover {
+            transform: none;
+            box-shadow: 0 8px 20px rgba(159, 18, 57, 0.18);
+        }
+
+        .calendar-day.traditional-tet,
+        .calendar-day.traditional-tet.tet-important {
+            background: #fff7ed;
+            border-color: rgba(194, 65, 12, 0.28);
+        }
+
+        .calendar-day.traditional-tet.tet-main {
+            background: #b91c1c;
+            color: #fff;
+            border-color: #f59e0b;
+            box-shadow: none;
+            text-shadow: none;
+        }
+
+        .calendar-day.traditional-tet:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .calendar-day .day-number {
+            font-size: 1rem;
+            color: #1f2937;
+        }
+
+        .calendar-day .lunar-date {
+            color: #6b7280;
+            font-size: 0.68rem;
+        }
+
+        .calendar-day.traditional-tet .tet-label,
+        .calendar-day .tet-label-holiday {
+            font-size: 0.58rem;
+            line-height: 1.15;
+        }
+
+        .calendar-day.other-month {
+            opacity: 0.42;
+        }
+
+        .calendar-sidebar {
+            display: grid;
+            gap: 1rem;
+            position: sticky;
+            top: 92px;
+            max-height: calc(100vh - 108px);
+            overflow: auto;
+            padding-right: 0.15rem;
+        }
+
+        .calendar-detail-section,
+        .events-upcoming-wrap,
+        .events-year-list-wrap {
+            margin: 0;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(127, 29, 29, 0.12);
+            border-radius: 8px;
+            box-shadow: 0 14px 40px rgba(127, 29, 29, 0.08);
+            padding: 1rem;
+        }
+
+        .calendar-detail-section {
+            min-height: 0;
+        }
+
+        .calendar-detail-section .empty-state {
+            min-height: 160px;
+            color: #6f1d1b;
+            background: #fff7ed;
+            border-radius: 8px;
+        }
+
+        .detail-section {
+            margin-bottom: 1rem;
+        }
+
+        .detail-section-title {
+            color: #7f1d1d;
+            font-size: 0.98rem;
+            border-bottom: 1px solid rgba(127, 29, 29, 0.1);
+        }
+
+        .detail-section-content p {
+            font-size: 0.92rem;
+        }
+
+        .hour-list {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.45rem;
+        }
+
+        .hour-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 7px;
+            box-shadow: none;
+            padding: 0.55rem 0.35rem;
+        }
+
+        .hour-item.auspicious {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+        }
+
+        .hour-item.inauspicious {
+            background: #fff1f2;
+            border-color: #fecdd3;
+        }
+
+        .activity-list li {
+            padding: 0.32rem 0 0.32rem 1.2rem;
+            font-size: 0.92rem;
+        }
+
+        .holiday-badge {
+            border-radius: 999px;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.78rem;
+        }
+
+        .events-upcoming-title,
+        .events-full-list-title,
+        .events-year-list-title {
+            color: #7f1d1d;
+            font-size: 0.95rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .events-upcoming-legend {
+            color: #6b7280;
+            font-size: 0.74rem;
+        }
+
+        .events-upcoming,
+        .events-year-list {
+            font-size: 0.82rem;
+            max-height: 240px;
+        }
+
+        .events-year-list .event-item-link,
+        .events-upcoming .event-item-link {
+            border-radius: 6px;
+            padding: 0.35rem 0.4rem;
+        }
+
+        .dialog-overlay {
+            display: none !important;
+        }
+
+        @media (max-width: 1120px) {
+            .calendar-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-sidebar {
+                position: static;
+                max-height: none;
+                overflow: visible;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .calendar-hero.calendar-hero--compact {
+                padding: 1.35rem 0 1.1rem;
+            }
+
+            .calendar-content {
+                padding: 0.85rem 0 2rem;
+            }
+
+            .calendar-container,
+            .calendar-detail-section,
+            .events-upcoming-wrap,
+            .events-year-list-wrap {
+                padding: 0.8rem;
+            }
+
+            .calendar-title-row {
+                display: block;
+            }
+
+            .calendar-controls-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: end;
+                padding: 0.55rem;
+            }
+
+            .go-to-today-btn {
+                width: 100%;
+            }
+
+            .year-selector,
+            .view-mode-chips {
+                width: 100%;
+                align-items: stretch;
+                justify-content: flex-start;
+            }
+
+            .view-mode-chips {
+                grid-column: 1 / -1;
+            }
+
+            .year-selector {
+                display: grid;
+                grid-template-columns: auto 1fr;
+            }
+
+            .year-selector select {
+                width: 100%;
+            }
+
+            .calendar-grid {
+                gap: 2px;
+            }
+
+            .calendar-day {
+                min-height: 58px;
+                padding: 0.35rem 0.12rem;
+                border-radius: 6px;
+            }
+
+            .calendar-day-header {
+                min-height: 30px;
+                font-size: 0.65rem;
+                border-radius: 5px;
+            }
+
+            .calendar-day .day-number {
+                font-size: 0.82rem;
+            }
+
+            .calendar-day .lunar-date {
+                font-size: 0.55rem;
+            }
+
+            .calendar-day.traditional-tet .tet-label,
+            .calendar-day .tet-label-holiday {
+                display: none;
+            }
+
+            .hour-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header will be loaded dynamically -->
     <div id="header-container"></div>
 
-    <main>
-        <section class="calendar-hero">
+    <main class="calendar-page">
+        <section class="calendar-hero calendar-hero--compact">
             <div class="container">
-                <h1>Lịch Vạn Niên 2027</h1>
-                <p class="subtitle">Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo</p>
+                <div class="calendar-hero-content">
+                    <p class="calendar-eyebrow">Lịch âm dương Việt Nam</p>
+                    <h1>Lịch Vạn Niên</h1>
+                    <p class="subtitle">Tra nhanh ngày âm, giờ hoàng đạo và sự kiện quan trọng trong năm.</p>
+                </div>
             </div>
         </section>
 
         <section class="calendar-content">
             <div class="container">
-                <div class="calendar-wrapper">
-                    <div class="calendar-container">
-                    <div class="calendar-header">
-                        <div class="calendar-title-row">
-                            <h2 class="calendar-title">Lịch Vạn Niên - Lịch Âm Dương</h2>
-                        </div>
-                        
-                        <div class="current-month-display" id="currentMonth" role="heading" aria-level="3">Tháng 1, 2026</div>
-                        
-                        <div class="calendar-controls-row">
-                            <div class="year-selector">
-                                <label for="year-select">Năm:</label>
-                                <select id="year-select" aria-label="Chọn năm">
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026" selected>2026</option>
-                                    <option value="2027">2027</option>
-                                    <option value="2028">2028</option>
-                                </select>
-                            </div>
-                            
-                            <button id="goToTodayBtn" class="go-to-today-btn" aria-label="Về hôm nay">
-                                Trở về hôm nay
-                            </button>
-                            
-                            <div class="view-mode-chips">
-                                <label>Chế độ:</label>
-                                <div class="view-mode-chips-container">
-                                    <div class="view-mode-chip active" data-mode="single" role="button" tabindex="0" aria-label="1 tháng">1 tháng</div>
-                                    <div class="view-mode-chip" data-mode="double" role="button" tabindex="0" aria-label="2 tháng">2 tháng</div>
-                                    <div class="view-mode-chip" data-mode="triple" role="button" tabindex="0" aria-label="3 tháng">3 tháng</div>
+                <div class="calendar-workspace">
+                    <section class="calendar-panel" aria-labelledby="calendarWorkspaceTitle">
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <div class="calendar-title-row">
+                                    <div>
+                                        <h2 class="calendar-title" id="calendarWorkspaceTitle">Lịch âm dương</h2>
+                                        <div class="current-month-display" id="currentMonth" role="heading" aria-level="3">Tháng 1, 2026</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="calendar-controls-row" aria-label="Bộ lọc lịch">
+                                    <button id="goToTodayBtn" class="go-to-today-btn" aria-label="Về hôm nay">
+                                        Hôm nay
+                                    </button>
+
+                                    <div class="year-selector">
+                                        <label for="year-select">Năm</label>
+                                        <select id="year-select" aria-label="Chọn năm">
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026" selected>2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="view-mode-chips">
+                                        <label>Hiển thị</label>
+                                        <div class="view-mode-chips-container">
+                                            <div class="view-mode-chip active" data-mode="single" role="button" tabindex="0" aria-label="1 tháng">1 tháng</div>
+                                            <div class="view-mode-chip" data-mode="double" role="button" tabindex="0" aria-label="2 tháng">2 tháng</div>
+                                            <div class="view-mode-chip" data-mode="triple" role="button" tabindex="0" aria-label="3 tháng">3 tháng</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="calendars-container single" id="calendarsContainer">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
                         </div>
-                    </div>
-                        
+                    </section>
+
+                    <aside class="calendar-sidebar" aria-label="Chi tiết ngày và sự kiện">
+                        <div class="calendar-detail-section" id="calendarDetailSection">
+                            <div class="empty-state">
+                                <p>Chọn một ngày trong lịch để xem thông tin chi tiết</p>
+                            </div>
+                        </div>
+
                         <div id="eventsUpcomingWrap" class="events-upcoming-wrap" aria-live="polite">
-                            <p class="events-upcoming-title">📌 Sự kiện trong 1 tháng tới</p>
-                            <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> 🌙 Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> ☀️ Dương lịch</span></div>
+                            <p class="events-upcoming-title">Sự kiện sắp tới</p>
+                            <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> Dương lịch</span></div>
                             <div id="eventsUpcoming" class="events-upcoming"></div>
                         </div>
                         
-                        <div class="calendars-container single" id="calendarsContainer">
-                            <!-- Calendar will be generated by JavaScript -->
+                        <div id="eventsYearListWrap" class="events-year-list-wrap" aria-live="polite">
+                            <p class="events-year-list-title">Sự kiện năm <span id="eventsYearListYear"></span></p>
+                            <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> Dương lịch</span></div>
+                            <div id="eventsYearList" class="events-year-list"></div>
                         </div>
-                    </div>
-                    
-                    <!-- Detail Section below calendar -->
-                    <div class="calendar-detail-section" id="calendarDetailSection">
-                        <div class="empty-state">
-                            <p>Chọn một ngày trong lịch để xem thông tin chi tiết</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Sự kiện trong năm (dưới calendar detail, click vào từng sự kiện → trang chi tiết) -->
-                    <div id="eventsYearListWrap" class="events-year-list-wrap" aria-live="polite">
-                        <p class="events-year-list-title">📅 Tất cả sự kiện trong năm <span id="eventsYearListYear"></span></p>
-                        <div class="events-upcoming-legend"><span><span class="dot-lunar" aria-hidden="true"></span> 🌙 Âm lịch</span><span><span class="dot-solar" aria-hidden="true"></span> ☀️ Dương lịch</span></div>
-                        <div id="eventsYearList" class="events-year-list"></div>
-                    </div>
+                    </aside>
                 </div>
                 
                 <!-- Dialog for detail information -->
@@ -1914,12 +2443,6 @@
             const viewMode = activeChip ? activeChip.getAttribute('data-mode') : 'single';
             const year = currentDate.getFullYear();
             
-            // Reset detail section when calendar regenerates
-            const detailSection = document.getElementById('calendarDetailSection');
-            if (detailSection) {
-                detailSection.innerHTML = '<div class="empty-state"><p>Chọn một ngày trong lịch để xem thông tin chi tiết</p></div>';
-            }
-            
             // Remove selected class from all days
             document.querySelectorAll('.calendar-day').forEach(d => {
                 d.classList.remove('selected');
@@ -1994,6 +2517,15 @@
                 
                 generateSingleCalendar(monthWrapper, displayYear, displayMonth);
                 calendarsContainer.appendChild(monthWrapper);
+            }
+
+            if (selectedDate) {
+                const selectedSelector = `.calendar-day[data-year="${selectedDate.getFullYear()}"][data-month="${selectedDate.getMonth() + 1}"][data-day="${selectedDate.getDate()}"]:not(.other-month)`;
+                const visibleSelectedDay = document.querySelector(selectedSelector);
+                if (visibleSelectedDay) {
+                    visibleSelectedDay.classList.add('selected');
+                    visibleSelectedDay.setAttribute('aria-selected', 'true');
+                }
             }
         }
 
@@ -2155,8 +2687,10 @@
                 dayElement.setAttribute('aria-selected', 'true');
                 dayElement.focus();
                 
-                // Open dialog
-                openDialog();
+                const detailSection = document.getElementById('calendarDetailSection');
+                if (detailSection && window.matchMedia('(max-width: 768px)').matches) {
+                    detailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             };
             
             dayElement.addEventListener('click', selectDay);
@@ -2355,7 +2889,7 @@
             const detailHTML = `
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>📅 Thông tin ngày</span>
+                        <span>Thông tin ngày</span>
                     </div>
                     <div class="detail-section-content">
                         <p><strong>Dương lịch:</strong> ${dayName}, ${solarDateStr}</p>
@@ -2368,7 +2902,7 @@
                 ${traditionalDate ? `
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>🎊 Ngày Tết truyền thống</span>
+                        <span>Ngày Tết truyền thống</span>
                     </div>
                     <div class="detail-section-content">
                         <p><strong>${traditionalDate.name}</strong></p>
@@ -2381,7 +2915,7 @@
                 ${holidayInfo ? `
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>🇻🇳 Ngày nghỉ lễ</span>
+                        <span>Ngày nghỉ lễ</span>
                     </div>
                     <div class="detail-section-content">
                         <p><strong>${holidayInfo.name}</strong></p>
@@ -2394,7 +2928,7 @@
                 ${!traditionalDate && (lunarInfo.day === 1 || lunarInfo.day === 15) ? `
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>🕯️ Ngày âm lịch (tâm linh)</span>
+                        <span>Ngày âm lịch</span>
                     </div>
                     <div class="detail-section-content">
                         <p>${lunarInfo.day === 1 ? 'Mùng 1' : 'Rằm (15)'} âm lịch – ngày cúng, tâm linh phổ biến hàng tháng. Nhiều gia đình cúng ông bà tổ tiên vào mùng 1 và rằm.</p>
@@ -2404,7 +2938,7 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>⏰ Giờ hoàng đạo</span>
+                        <span>Giờ hoàng đạo</span>
                     </div>
                     <div class="detail-section-content">
                         <p style="margin-bottom: 0.75rem;"><strong>Giờ tốt để làm việc quan trọng:</strong></p>
@@ -2420,7 +2954,7 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>⚠️ Giờ hắc đạo</span>
+                        <span>Giờ hắc đạo</span>
                     </div>
                     <div class="detail-section-content">
                         <p style="margin-bottom: 0.75rem;"><strong>Nên tránh làm việc quan trọng:</strong></p>
@@ -2436,7 +2970,7 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>✅ Việc nên làm</span>
+                        <span>Việc nên làm</span>
                     </div>
                     <div class="detail-section-content">
                         <ul class="activity-list">
@@ -2447,7 +2981,7 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>❌ Việc không nên làm</span>
+                        <span>Việc không nên làm</span>
                     </div>
                     <div class="detail-section-content">
                         <ul class="activity-list">

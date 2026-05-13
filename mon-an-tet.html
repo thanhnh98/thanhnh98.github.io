@@ -428,41 +428,291 @@
             margin: 0 0.25rem;
         }
         
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: white;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            margin-top: 2rem;  /* Thêm dòng này */
-            margin-bottom: 2rem;
+        .food-page {
+            background: #fffaf2;
         }
-        
-        .back-button:hover {
+
+        .food-hero--compact {
+            padding: 4.75rem 0 3rem;
+            background:
+                linear-gradient(135deg, rgba(128, 28, 23, 0.94), rgba(205, 69, 41, 0.9)),
+                url('images/tet-background-pattern.svg') repeat;
+        }
+
+        .food-hero--compact::before {
+            opacity: 0.08;
+        }
+
+        .food-eyebrow {
+            display: inline-flex;
+            width: fit-content;
+            margin: 0 auto 0.75rem;
+            padding: 0.35rem 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            font-size: 0.85rem !important;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .food-hero--compact h1 {
+            max-width: 820px;
+            margin: 0 auto 0.75rem;
+            font-size: 3.5rem;
+            line-height: 1.08;
+        }
+
+        .food-hero--compact p:not(.food-eyebrow) {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.65;
+        }
+
+        .foods-section {
+            padding: 3rem 0 4rem;
+        }
+
+        .food-section-header {
+            max-width: 760px;
+            margin-bottom: 1rem;
+        }
+
+        .food-section-header .section-title,
+        .food-section-header .section-subtitle {
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .food-section-header .section-title {
+            margin-bottom: 0.65rem;
+            font-size: 2.25rem;
+            line-height: 1.18;
+        }
+
+        .food-section-header .section-subtitle {
+            max-width: 720px;
+            margin-bottom: 0;
+            line-height: 1.65;
+        }
+
+        .food-page-links {
+            text-align: left;
+            margin-bottom: 1.25rem;
+        }
+
+        .food-filter-bar {
+            display: flex;
+            gap: 0.65rem;
+            overflow-x: auto;
+            padding: 0.2rem 0 0.85rem;
+            margin-bottom: 1.25rem;
+            scrollbar-width: thin;
+        }
+
+        .food-filter-btn {
+            flex: 0 0 auto;
+            border: 1px solid rgba(128, 28, 23, 0.18);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            font: inherit;
+            font-size: 0.92rem;
+            font-weight: 800;
+            line-height: 1;
+            padding: 0.72rem 1rem;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .food-filter-btn:hover,
+        .food-filter-btn:focus-visible {
+            border-color: var(--color-primary);
+            outline: none;
+        }
+
+        .food-filter-btn.active {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: #fff;
+        }
+
+        .food-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .foods-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 0;
+        }
+
+        .food-card {
+            border: 1px solid rgba(128, 28, 23, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 10px 24px rgba(62, 34, 20, 0.08);
+            outline: none;
+        }
+
+        .food-card:hover,
+        .food-card:focus-visible {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-            text-decoration: none;
-            color: white;
+            border-color: rgba(205, 69, 41, 0.45);
+            box-shadow: 0 14px 30px rgba(62, 34, 20, 0.13);
+        }
+
+        .food-card.is-hidden {
+            display: none;
+        }
+
+        .food-image {
+            aspect-ratio: 16 / 10;
+            height: auto;
+            background: #f6dfc1;
+        }
+
+        .food-content {
+            padding: 1rem;
+        }
+
+        .food-title {
+            margin-bottom: 0.45rem;
+            font-size: 1.15rem;
+            line-height: 1.25;
+        }
+
+        .food-description {
+            display: -webkit-box;
+            min-height: 4.55rem;
+            margin-bottom: 0.85rem;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .food-meaning {
+            border-left: 3px solid var(--color-accent);
+            border-radius: 8px;
+            padding: 0.8rem;
+            background: #fff7e6;
+        }
+
+        .food-meaning h4 {
+            margin-bottom: 0.35rem;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+
+        .food-meaning p {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        .food-recipe-hint {
+            margin-top: 0.85rem;
+            padding: 0;
+            border-radius: 0;
+            background: transparent;
+            text-align: left;
+        }
+
+        .food-recipe-hint span {
+            color: var(--color-primary);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-shadow: none;
+        }
+
+        .food-card:hover .food-recipe-hint {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .food-sidebar {
+            position: sticky;
+            top: 5.5rem;
+            border: 1px solid rgba(128, 28, 23, 0.12);
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 10px 24px rgba(62, 34, 20, 0.08);
+            padding: 1rem;
+        }
+
+        .food-sidebar h3 {
+            margin: 0 0 0.85rem;
+            color: var(--color-text-primary);
+            font-size: 1.05rem;
+        }
+
+        .food-sidebar-list {
+            display: grid;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .food-sidebar-list li {
+            border-radius: 8px;
+            background: #fff7e6;
+            padding: 0.85rem;
+        }
+
+        .food-sidebar-list strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--color-primary);
+            font-size: 0.92rem;
+        }
+
+        .food-sidebar-list span {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
         
         @media (max-width: 768px) {
             .food-hero h1 {
                 font-size: 2.5rem;
             }
+
+            .food-section-header .section-title {
+                font-size: 1.75rem;
+            }
             
+            .food-section-header .section-title,
+            .food-section-header .section-subtitle,
+            .food-page-links {
+                text-align: left;
+            }
+
+            .food-layout {
+                grid-template-columns: 1fr;
+            }
+
             .foods-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+
+            .food-sidebar {
+                position: static;
+                order: -1;
             }
             
             .food-hero {
-                padding: 4rem 0 3rem;
+                padding: 4rem 0 2.75rem;
             }
         }
     </style>
@@ -471,25 +721,25 @@
     <!-- Header will be loaded dynamically -->
     <div id="header-container"></div>
 
-    <section class="food-hero">
+    <section class="food-hero food-hero--compact">
         <div class="container">
+            <p class="food-eyebrow">Ẩm thực Tết Việt Nam</p>
             <h1>Món Ăn Tết Truyền Thống</h1>
-            <p>Khám phá ẩm thực ngày Tết và ý nghĩa văn hóa sâu sắc của từng món ăn</p>
+            <p>Khám phá món chính, bánh truyền thống, món canh và đặc sản vùng miền cho mâm cơm ngày Tết.</p>
         </div>
     </section>
 
-    <main>
+    <main class="food-page">
         <section class="foods-section">
             <div class="container">
-                <a href="/" class="back-button">
-                    <span>🏠</span>
-                    Về trang chủ
-                </a>
-                
-                <h2 class="section-title">Các Món Ăn Không Thể Thiếu</h2>
-                <p class="section-subtitle">
-                    Mỗi món ăn trong ngày Tết đều mang một ý nghĩa đặc biệt, thể hiện mong muốn về một năm mới tốt lành, thịnh vượng và hạnh phúc.
-                </p>
+                <div class="food-section-header">
+                    <div>
+                        <h2 class="section-title">Các món nên có trong mâm Tết</h2>
+                        <p class="section-subtitle">
+                            Mỗi món ăn mang một ý nghĩa riêng, từ sum vầy, sung túc đến lời chúc may mắn cho năm mới.
+                        </p>
+                    </div>
+                </div>
                 <nav class="food-page-links" aria-label="Trang liên quan">
                     <a href="/">Trang chủ</a>
                     <span aria-hidden="true"> · </span>
@@ -499,9 +749,19 @@
                     <span aria-hidden="true"> · </span>
                     <a href="/huong-dan-tet.html">Hướng dẫn đón Tết</a>
                 </nav>
+
+                <div class="food-filter-bar" aria-label="Lọc món ăn Tết">
+                    <button type="button" class="food-filter-btn active" data-food-filter="all" aria-pressed="true">Tất cả</button>
+                    <button type="button" class="food-filter-btn" data-food-filter="mon-chinh" aria-pressed="false">Món chính</button>
+                    <button type="button" class="food-filter-btn" data-food-filter="banh-truyen-thong" aria-pressed="false">Bánh truyền thống</button>
+                    <button type="button" class="food-filter-btn" data-food-filter="mon-canh" aria-pressed="false">Món canh</button>
+                    <button type="button" class="food-filter-btn" data-food-filter="mon-vung-mien" aria-pressed="false">Món vùng miền</button>
+                    <button type="button" class="food-filter-btn" data-food-filter="mut-ngot" aria-pressed="false">Mứt/ngọt</button>
+                </div>
                 
-                <div class="foods-grid">
-                    <div class="food-card" onclick="openFoodModal('banh-chung')">
+                <div class="food-layout">
+                    <div class="foods-grid" id="foodsGrid">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="banh-truyen-thong" onclick="openFoodModal('banh-chung')">
                         <div class="food-image">
                             <img src="" alt="Bánh Chưng" class="food-img" data-dish-id="banh-chung">
                         </div>
@@ -515,12 +775,12 @@
                                 <p>Tượng trưng cho đất trời, sự sum vầy của gia đình và lòng biết ơn tổ tiên. Hình vuông của bánh chưng đại diện cho đất.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('banh-tet')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="banh-truyen-thong" onclick="openFoodModal('banh-tet')">
                         <div class="food-image">
                             <img src="" alt="Bánh Tét" class="food-img" data-dish-id="banh-tet">
                         </div>
@@ -534,12 +794,12 @@
                                 <p>Hình tròn của bánh tét tượng trưng cho trời, sự viên mãn và đoàn tụ. Thể hiện mong muốn một năm mới tròn đầy hạnh phúc.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('thit-kho-tau')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-chinh" onclick="openFoodModal('thit-kho-tau')">
                         <div class="food-image">
                             <img src="" alt="Thịt Kho Tàu" class="food-img" data-dish-id="thit-kho-tau">
                         </div>
@@ -553,12 +813,12 @@
                                 <p>Màu đỏ của món ăn tượng trưng cho may mắn, thịnh vượng. Trứng trong món ăn biểu thị sự sinh sôi nảy nở.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('nem-ran')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-chinh" onclick="openFoodModal('nem-ran')">
                         <div class="food-image">
                             <img src="" alt="Nem Rán" class="food-img" data-dish-id="nem-ran">
                         </div>
@@ -572,12 +832,12 @@
                                 <p>Hình dáng giống thỏi vàng, tượng trưng cho sự giàu có, thịnh vượng. Màu vàng óng của nem rán mang lại may mắn.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('xoi-gac')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-chinh" onclick="openFoodModal('xoi-gac')">
                         <div class="food-image">
                             <img src="" alt="Xôi Gấc" class="food-img" data-dish-id="xoi-gac">
                         </div>
@@ -591,12 +851,12 @@
                                 <p>Màu đỏ rực rỡ tượng trưng cho may mắn, tài lộc và sự thịnh vượng trong năm mới.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('ga-luoc')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-chinh" onclick="openFoodModal('ga-luoc')">
                         <div class="food-image">
                             <img src="" alt="Gà Luộc" class="food-img" data-dish-id="ga-luoc">
                         </div>
@@ -610,12 +870,12 @@
                                 <p>Tượng trưng cho sự trọn vẹn, đầy đủ. Gà trống còn có ý nghĩa báo hiệu một ngày mới, một năm mới tốt lành.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('canh-kho-qua')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-canh" onclick="openFoodModal('canh-kho-qua')">
                         <div class="food-image">
                             <img src="" alt="Canh Khổ Qua" class="food-img" data-dish-id="canh-kho-qua-nhoi-thit">
                         </div>
@@ -629,12 +889,12 @@
                                 <p>Vị đắng của khổ qua tượng trưng cho việc "nuốt đắng" những khó khăn của năm cũ để đón nhận may mắn năm mới.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('mang-kho-thit')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-chinh" onclick="openFoodModal('mang-kho-thit')">
                         <div class="food-image">
                             <img src="" alt="Măng Khô Kho Thịt" class="food-img" data-dish-id="mang-kho-thit">
                         </div>
@@ -648,12 +908,12 @@
                                 <p>Măng tre mọc nhanh, tượng trưng cho sự phát triển mạnh mẽ, thịnh vượng và sức sống dồi dào.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('mut-tet')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mut-ngot" onclick="openFoodModal('mut-tet')">
                         <div class="food-image">
                             <img src="" alt="Mứt Tết" class="food-img" data-dish-id="mut-tet">
                         </div>
@@ -667,13 +927,13 @@
                                 <p>Vị ngọt của mứt tượng trưng cho một năm mới ngọt ngào, hạnh phúc và những điều tốt đẹp sẽ đến.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Thêm các món ăn theo vùng miền -->
-                    <div class="food-card" onclick="openFoodModal('pho-bo')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-vung-mien" onclick="openFoodModal('pho-bo')">
                         <div class="food-image">
                             <img src="" alt="Phở Bò" class="food-img" data-dish-id="pho-bo">
                         </div>
@@ -687,12 +947,12 @@
                                 <p>Tô phở nóng hổi tượng trưng cho sự ấm áp, sum vầy của gia đình trong những ngày đầu năm mới.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('bun-bo-hue')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-vung-mien" onclick="openFoodModal('bun-bo-hue')">
                         <div class="food-image">
                             <img src="" alt="Bún Bò Huế" class="food-img" data-dish-id="bun-bo-hue">
                         </div>
@@ -706,12 +966,12 @@
                                 <p>Màu đỏ của nước dùng tượng trưng cho sự may mắn, thịnh vượng và tinh thần mạnh mẽ của người miền Trung.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('hu-tieu-nam-vang')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-vung-mien" onclick="openFoodModal('hu-tieu-nam-vang')">
                         <div class="food-image">
                             <img src="" alt="Hủ Tiếu Nam Vang" class="food-img" data-dish-id="hu-tieu-nam-vang">
                         </div>
@@ -725,12 +985,12 @@
                                 <p>Sự hòa quyện của nhiều nguyên liệu tượng trưng cho sự đoàn kết, hòa thuận trong gia đình.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="food-card" onclick="openFoodModal('banh-khot')">
+                    <div class="food-card" role="button" tabindex="0" data-food-category="mon-vung-mien" onclick="openFoodModal('banh-khot')">
                         <div class="food-image">
                             <img src="" alt="Bánh Khọt" class="food-img" data-dish-id="banh-khot">
                         </div>
@@ -744,10 +1004,28 @@
                                 <p>Hình tròn nhỏ xinh tượng trưng cho sự viên mãn, đầy đủ trong từng điều nhỏ bé của cuộc sống.</p>
                             </div>
                             <div class="food-recipe-hint">
-                                <span>👨‍🍳 Xem hướng dẫn nấu nướng</span>
+                                <span>Xem cách làm</span>
                             </div>
                         </div>
                     </div>
+                </div>
+                <aside class="food-sidebar" aria-label="Gợi ý mâm Tết">
+                    <h3>Gợi ý mâm Tết</h3>
+                    <ul class="food-sidebar-list">
+                        <li>
+                            <strong>Mâm miền Bắc</strong>
+                            <span>Bánh chưng, gà luộc, nem rán, măng khô.</span>
+                        </li>
+                        <li>
+                            <strong>Mâm miền Nam</strong>
+                            <span>Bánh tét, thịt kho tàu, canh khổ qua, mứt Tết.</span>
+                        </li>
+                        <li>
+                            <strong>Món dễ chuẩn bị</strong>
+                            <span>Nem rán, xôi gấc, mứt Tết cho mâm cỗ gọn.</span>
+                        </li>
+                    </ul>
+                </aside>
                 </div>
             </div>
         </section>
@@ -812,21 +1090,53 @@
     <script src="js/icons.js"></script>
     <script src="js/food-modal.js"></script>
     
-    <!-- Fix Back to Home button -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const backButton = document.querySelector('.back-button');
-            if (backButton) {
-                backButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.location.href = '/';
-                });
-            }
-            
-            // Load images from JSON data
             loadFoodImages();
+            setupFoodFilters();
+            setupFoodCardKeyboard();
         });
+
+        function filterFoodCards(filter) {
+            const cards = document.querySelectorAll('.food-card[data-food-category]');
+
+            cards.forEach(function(card) {
+                const shouldShow = filter === 'all' || card.dataset.foodCategory === filter;
+                card.classList.toggle('is-hidden', !shouldShow);
+                card.hidden = !shouldShow;
+            });
+        }
+
+        function setupFoodFilters() {
+            const buttons = document.querySelectorAll('.food-filter-btn[data-food-filter]');
+
+            buttons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const filter = button.dataset.foodFilter;
+
+                    buttons.forEach(function(item) {
+                        const isActive = item === button;
+                        item.classList.toggle('active', isActive);
+                        item.setAttribute('aria-pressed', String(isActive));
+                    });
+
+                    filterFoodCards(filter);
+                });
+            });
+        }
+
+        function setupFoodCardKeyboard() {
+            const cards = document.querySelectorAll('.food-card[role="button"]');
+
+            cards.forEach(function(card) {
+                card.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        card.click();
+                    }
+                });
+            });
+        }
         
         async function loadFoodImages() {
             const foodImages = document.querySelectorAll('.food-img');
