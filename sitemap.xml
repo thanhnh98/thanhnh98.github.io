@@ -311,14 +311,14 @@
 
     <!-- Legal Pages - Low Priority -->
     <url>
-        <loc>https://saptet.vn/privacy-policy.html</loc>
-        <lastmod>2026-02-23</lastmod>
+        <loc>https://saptet.vn/privacy-policy/vi/</loc>
+        <lastmod>2026-05-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://saptet.vn/privacy-policy-en.html</loc>
-        <lastmod>2026-02-23</lastmod>
+        <loc>https://saptet.vn/privacy-policy/en/</loc>
+        <lastmod>2026-05-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
