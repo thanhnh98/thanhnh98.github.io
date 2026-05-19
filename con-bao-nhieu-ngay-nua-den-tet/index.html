@@ -190,6 +190,45 @@
             </div>
         </section>
 
+        <section class="intent-breakdown" aria-labelledby="breakdown-heading">
+            <div class="container">
+                <div class="intent-breakdown-card">
+                    <h2 id="breakdown-heading">
+                        <i data-lucide="layers" aria-hidden="true"></i>
+                        Còn bao lâu nữa đến Tết
+                    </h2>
+                    <div class="intent-breakdown-grid" aria-live="polite">
+                        <article class="intent-breakdown-unit">
+                            <span class="intent-breakdown-icon intent-breakdown-icon--months" aria-hidden="true"><i data-lucide="calendar-range"></i></span>
+                            <span class="value" id="months-display">—</span>
+                            <span class="label">Tháng</span>
+                        </article>
+                        <article class="intent-breakdown-unit">
+                            <span class="intent-breakdown-icon intent-breakdown-icon--weeks" aria-hidden="true"><i data-lucide="calendar-days"></i></span>
+                            <span class="value" id="weeks-display">—</span>
+                            <span class="label">Tuần</span>
+                        </article>
+                        <article class="intent-breakdown-unit">
+                            <span class="intent-breakdown-icon intent-breakdown-icon--hours" aria-hidden="true"><i data-lucide="clock"></i></span>
+                            <span class="value" id="total-hours-display">—</span>
+                            <span class="label">Giờ</span>
+                        </article>
+                        <article class="intent-breakdown-unit">
+                            <span class="intent-breakdown-icon intent-breakdown-icon--minutes" aria-hidden="true"><i data-lucide="timer"></i></span>
+                            <span class="value" id="total-minutes-display">—</span>
+                            <span class="label">Phút</span>
+                        </article>
+                        <article class="intent-breakdown-unit">
+                            <span class="intent-breakdown-icon intent-breakdown-icon--seconds" aria-hidden="true"><i data-lucide="stopwatch"></i></span>
+                            <span class="value" id="total-seconds-display">—</span>
+                            <span class="label">Giây</span>
+                        </article>
+                    </div>
+                    <p class="intent-breakdown-note">Tháng tính theo lịch dương (giờ Việt Nam); tuần quy đổi từ tổng số ngày còn lại; giờ, phút và giây là tổng thời gian còn lại đến 00:00 ngày 06/02/2027.</p>
+                </div>
+            </div>
+        </section>
+
         <section class="intent-quick-links" aria-labelledby="quick-links-heading">
             <div class="container">
                 <h2 id="quick-links-heading" class="visually-hidden">Tiện ích Tết</h2>
@@ -342,12 +381,38 @@
                 return String(n).padStart(2, '0');
             }
 
+            function getVnCalendarParts(ms) {
+                const parts = new Intl.DateTimeFormat('en-CA', {
+                    timeZone: 'Asia/Ho_Chi_Minh',
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric'
+                }).formatToParts(new Date(ms));
+                const pick = function (type) {
+                    return Number(parts.find(function (part) { return part.type === type; }).value);
+                };
+                return { year: pick('year'), month: pick('month'), day: pick('day') };
+            }
+
+            function calendarMonthsBetween(fromMs, toMs) {
+                const from = getVnCalendarParts(fromMs);
+                const to = getVnCalendarParts(toMs);
+                let months = (to.year - from.year) * 12 + (to.month - from.month);
+                if (to.day < from.day) months -= 1;
+                return Math.max(0, months);
+            }
+
             function updateCountdown() {
                 const distance = TET_DATE.getTime() - Date.now();
                 const daysEl = document.getElementById('days-display');
                 const hoursEl = document.getElementById('hours-display');
                 const minutesEl = document.getElementById('minutes-display');
                 const secondsEl = document.getElementById('seconds-display');
+                const monthsEl = document.getElementById('months-display');
+                const weeksEl = document.getElementById('weeks-display');
+                const totalHoursEl = document.getElementById('total-hours-display');
+                const totalMinutesEl = document.getElementById('total-minutes-display');
+                const totalSecondsEl = document.getElementById('total-seconds-display');
                 const daysAnswer = document.querySelector('[data-seo="live-days-answer"]');
                 const faqDaysAnswer = document.querySelector('[data-seo="faq-days-answer"]');
                 const faqGiaoThuaAnswer = document.querySelector('[data-seo="faq-giao-thua-answer"]');
@@ -357,6 +422,11 @@
                     if (hoursEl) hoursEl.textContent = '00';
                     if (minutesEl) minutesEl.textContent = '00';
                     if (secondsEl) secondsEl.textContent = '00';
+                    if (monthsEl) monthsEl.textContent = '0';
+                    if (weeksEl) weeksEl.textContent = '0';
+                    if (totalHoursEl) totalHoursEl.textContent = '0';
+                    if (totalMinutesEl) totalMinutesEl.textContent = '0';
+                    if (totalSecondsEl) totalSecondsEl.textContent = '0';
                     if (daysAnswer) daysAnswer.innerHTML = '<strong>Tết Nguyên Đán 2027 đã đến.</strong>';
                     return;
                 }
@@ -368,16 +438,28 @@
                 const hours = totalHours % 24;
                 const minutes = totalMinutes % 60;
                 const seconds = totalSeconds % 60;
+                const totalMonths = calendarMonthsBetween(Date.now(), TET_DATE.getTime());
+                const totalWeeks = Math.floor(totalDays / 7);
 
                 const formattedDays = totalDays.toLocaleString('vi-VN');
                 const formattedHours = pad2(hours);
                 const formattedMinutes = pad2(minutes);
                 const formattedSeconds = pad2(seconds);
+                const formattedMonths = totalMonths.toLocaleString('vi-VN');
+                const formattedWeeks = totalWeeks.toLocaleString('vi-VN');
+                const formattedTotalHours = totalHours.toLocaleString('vi-VN');
+                const formattedTotalMinutes = totalMinutes.toLocaleString('vi-VN');
+                const formattedTotalSeconds = totalSeconds.toLocaleString('vi-VN');
 
                 if (daysEl) daysEl.textContent = formattedDays;
                 if (hoursEl) hoursEl.textContent = formattedHours;
                 if (minutesEl) minutesEl.textContent = formattedMinutes;
                 if (secondsEl) secondsEl.textContent = formattedSeconds;
+                if (monthsEl) monthsEl.textContent = formattedMonths;
+                if (weeksEl) weeksEl.textContent = formattedWeeks;
+                if (totalHoursEl) totalHoursEl.textContent = formattedTotalHours;
+                if (totalMinutesEl) totalMinutesEl.textContent = formattedTotalMinutes;
+                if (totalSecondsEl) totalSecondsEl.textContent = formattedTotalSeconds;
 
                 if (daysAnswer) {
                     daysAnswer.innerHTML = '<strong>Còn <span class="seo-days-number">' + formattedDays + '</span> ngày ' + formattedHours + ' giờ ' + formattedMinutes + ' phút ' + formattedSeconds + ' giây nữa đến Tết Nguyên Đán 2027.</strong>';

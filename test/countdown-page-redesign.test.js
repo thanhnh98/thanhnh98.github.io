@@ -25,6 +25,10 @@ test('countdown intent page uses restrained static visual design', () => {
   assert.doesNotMatch(css, /countdown-page-corners\.png/);
   assert.doesNotMatch(css, /url\(['"]?\/assets\/images\/countdown/);
   assert.match(html, /class="intent-countdown-timer"/);
+  assert.match(html, /class="intent-breakdown"/);
+  assert.match(html, /id="months-display"/);
+  assert.match(html, /id="weeks-display"/);
+  assert.match(html, /id="total-hours-display"/);
   assert.match(html, /class="intent-page-deco"/);
   assert.doesNotMatch(html, /intentGradient/);
   assert.doesNotMatch(html, /animation:\s*intentGradient/);

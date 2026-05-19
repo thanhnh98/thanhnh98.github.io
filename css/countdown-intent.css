@@ -374,6 +374,117 @@
     line-height: 1.5;
 }
 
+/* Time breakdown (months / weeks / hours / minutes / seconds) */
+.intent-breakdown {
+    padding: 0 0 clamp(2rem, 4vw, 2.75rem);
+}
+
+.intent-breakdown-card {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid rgba(179, 29, 29, 0.1);
+    border-radius: 18px;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    box-shadow: 0 10px 28px rgba(124, 45, 18, 0.08);
+}
+
+.intent-breakdown-card h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0 0 0.65rem;
+    font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+    color: var(--intent-red-deep);
+    text-align: center;
+    line-height: 1.3;
+}
+
+.intent-breakdown-card h2 i,
+.intent-breakdown-card h2 svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--intent-red);
+}
+
+.intent-breakdown-lead {
+    margin: 0 auto 1.15rem;
+    max-width: 44rem;
+    text-align: center;
+    color: var(--intent-muted);
+    font-size: 0.96rem;
+    line-height: 1.65;
+}
+
+.intent-breakdown-lead strong {
+    color: var(--intent-red-deep);
+    font-weight: 800;
+}
+
+.intent-breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(0.65rem, 2vw, 1rem);
+}
+
+.intent-breakdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    text-align: center;
+    background: linear-gradient(180deg, #fffaf3 0%, #fff4e8 100%);
+    border: 1px solid rgba(179, 29, 29, 0.1);
+    border-radius: 14px;
+    padding: 0.95rem 0.55rem 0.85rem;
+    min-height: 100%;
+}
+
+.intent-breakdown-icon {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intent-breakdown-icon i,
+.intent-breakdown-icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.intent-breakdown-icon--months { background: #fde8e8; color: #b91c1c; }
+.intent-breakdown-icon--weeks { background: #e8f5e9; color: #2e7d32; }
+.intent-breakdown-icon--hours { background: #fff3e0; color: #e65100; }
+.intent-breakdown-icon--minutes { background: #f3e8fd; color: #7b1fa2; }
+.intent-breakdown-icon--seconds { background: #e3f2fd; color: #1565c0; }
+
+.intent-breakdown-unit .value {
+    font-size: clamp(1.35rem, 3.8vw, 1.95rem);
+    font-weight: 800;
+    color: var(--intent-red);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.intent-breakdown-unit .label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--intent-muted);
+}
+
+.intent-breakdown-note {
+    margin: 1rem 0 0;
+    text-align: center;
+    color: var(--intent-muted);
+    font-size: 0.84rem;
+    line-height: 1.55;
+}
+
 /* Quick links */
 .intent-quick-links {
     padding: 0 0 clamp(2rem, 4vw, 2.75rem);
@@ -702,6 +813,10 @@
 }
 
 @media (max-width: 960px) {
+    .intent-breakdown-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .intent-quick-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -748,6 +863,10 @@
 }
 
 @media (max-width: 480px) {
+    .intent-breakdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .intent-quick-grid {
         grid-template-columns: 1fr;
     }
