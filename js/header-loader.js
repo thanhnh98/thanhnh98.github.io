@@ -12,6 +12,8 @@ class HeaderLoader {
         
         if (filename === 'mon-an-tet.html') {
             return 'mon-an-tet';
+        } else if (filename === 'loi-chuc-tet.html') {
+            return 'loi-chuc';
         } else if (
             filename === 'qrcode.html' ||
             normalizedPath === '/qrcode' ||

@@ -35,13 +35,13 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, rgba(139, 0, 0, 0.98) 0%, rgba(190, 24, 35, 0.97) 52%, rgba(126, 18, 18, 0.98) 100%);
+    background: #fff7ed;
     padding: 0.55rem 0;
     position: relative;
     width: 100%;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.32);
-    box-shadow: 0 10px 30px rgba(122, 20, 20, 0.22);
-    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(220, 38, 38, 0.14);
+    box-shadow: 0 8px 24px rgba(124, 45, 18, 0.08);
+    backdrop-filter: blur(14px);
 }
 
 header::before {
@@ -49,17 +49,15 @@ header::before {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-        linear-gradient(90deg, rgba(255, 215, 0, 0.16), transparent 22%, transparent 78%, rgba(255, 215, 0, 0.12)),
-        radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.16), transparent 30%);
+    background: linear-gradient(90deg, rgba(255, 243, 205, 0.85), rgba(255, 247, 237, 0.2), rgba(254, 226, 226, 0.72));
 }
 
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: var(--color-text-header);
+    border: 1px solid rgba(185, 28, 28, 0.18);
+    color: #8f1d1d;
     font-size: 1.4rem;
     cursor: pointer;
     padding: 0.55rem;
@@ -72,8 +70,8 @@ header::before {
 }
 
 .mobile-menu-toggle:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 215, 0, 0.45);
+    background: #fee2e2;
+    border-color: rgba(185, 28, 28, 0.28);
 }
 
 /* Ensure body has top padding to account for fixed header */
@@ -111,14 +109,14 @@ header .container {
     box-shadow: 0 8px 20px rgba(58, 8, 8, 0.28), 0 0 0 1px rgba(255, 215, 0, 0.28);
 }
 
-header h1 a {
-    color: var(--color-text-header);
+header .brand-title a {
+    color: #9f1239;
     text-decoration: none;
-    font-family: var(--font-heading);
-    font-size: 2.05rem;
-    font-weight: 700;
-    line-height: 1;
-    text-shadow: 0 2px 10px rgba(54, 8, 8, 0.28);
+    font-family: var(--font-body);
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-shadow: none;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -140,10 +138,11 @@ header nav ul {
 }
 
 header nav a {
-    color: var(--color-text-header);
+    color: #6f1d1b;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.94rem;
     line-height: 1.2;
     padding: 0.68rem 0.85rem;
     border-radius: 999px;
@@ -172,9 +171,9 @@ header nav a {
 }
 
 .see-more-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: var(--color-text-header);
+    background: #fff;
+    border: 1px solid rgba(185, 28, 28, 0.12);
+    color: #6f1d1b;
     padding: 0.68rem 0.9rem;
     border-radius: 999px;
     cursor: pointer;
@@ -191,10 +190,10 @@ header nav a {
 }
 
 .see-more-btn:hover {
-    background: rgba(255, 255, 255, 0.17);
-    border-color: rgba(255, 215, 0, 0.45);
+    background: #fee2e2;
+    border-color: rgba(185, 28, 28, 0.2);
     transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(69, 10, 10, 0.18);
+    box-shadow: 0 8px 18px rgba(124, 45, 18, 0.1);
 }
 
 .see-more-icon {
@@ -276,26 +275,27 @@ header nav a {
 }
 
 header nav a:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: #fee2e2;
+    border-color: rgba(185, 28, 28, 0.16);
     transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(69, 10, 10, 0.14);
+    box-shadow: 0 8px 18px rgba(124, 45, 18, 0.1);
 }
 
 header nav a:hover .nav-icon {
     transform: none;
-    color: #FFD700;
+    color: #dc2626;
 }
 
 header nav a.active {
-    background: rgba(255, 246, 214, 0.18);
-    border-color: rgba(255, 215, 0, 0.4);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 20px rgba(69, 10, 10, 0.14);
+    background: #dc2626;
+    color: #fff;
+    border-color: #dc2626;
+    box-shadow: 0 8px 18px rgba(220, 38, 38, 0.18);
     font-weight: 700;
 }
 
 header nav a.active .nav-icon {
-    color: #FFD700;
+    color: #fff7ed;
     transform: none;
 }
 
@@ -6424,8 +6424,8 @@ footer::after {
     }
     
     
-    header h1 a {
-        font-size: 1.75rem;
+    header .brand-title a {
+        font-size: 1.25rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -6480,6 +6480,16 @@ footer::after {
         border-bottom: none;
         background: transparent;
         color: #5f1616;
+    }
+
+    header nav a.active {
+        background: #dc2626;
+        color: #fff;
+        border-color: #dc2626;
+    }
+
+    header nav a.active .nav-icon {
+        color: #fff7ed;
     }
     
     header nav a:last-child {
@@ -8116,4 +8126,166 @@ footer::after {
         padding: 0;
         justify-content: center;
     }
+}
+
+/* Final cascade: flat CTA and centered footer overrides */
+.download-btn-footer,
+.download-btn,
+.download-btn-intro,
+.app-download-intro-card .download-btn-intro,
+.app-see-more-btn,
+.home-news-more-btn,
+.home-shop-more-btn,
+.calendar-detail-btn .detail-btn,
+.event-modal-detail-btn,
+.share-countdown-btn,
+.countdown-preview-btn.download-btn,
+.countdown-preview-btn.share-btn,
+.share-download-btn,
+.events-thpt-btn,
+.calendar-banner .banner-btn {
+    background: #dc2626;
+    background-image: none;
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 18px rgba(185, 28, 28, 0.16);
+    animation: none;
+    transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.download-btn-footer:hover,
+.download-btn:hover,
+.download-btn-intro:hover,
+.app-download-intro-card .download-btn-intro:hover,
+.app-see-more-btn:hover,
+.home-news-more-btn:hover,
+.home-shop-more-btn:hover,
+.calendar-detail-btn .detail-btn:hover,
+.event-modal-detail-btn:hover,
+.share-countdown-btn:hover,
+.countdown-preview-btn.download-btn:hover,
+.countdown-preview-btn.share-btn:hover,
+.share-download-btn:hover,
+.events-thpt-btn:hover,
+.calendar-banner .banner-btn:hover {
+    background: #b91c1c;
+    background-image: none;
+    border-color: rgba(185, 28, 28, 0.18);
+    box-shadow: 0 10px 22px rgba(185, 28, 28, 0.2);
+    transform: translateY(-1px);
+}
+
+.google-play-btn,
+.app-download-intro-card .download-btn-intro.google-play-btn {
+    background: #2e7d32;
+    background-image: none;
+    animation: none;
+}
+
+.google-play-btn:hover,
+.app-download-intro-card .download-btn-intro.google-play-btn:hover {
+    background: #256c2a;
+}
+
+.app-store-btn,
+.app-download-intro-card .download-btn-intro.app-store-btn {
+    background: #1f2937;
+    background-image: none;
+    animation: none;
+}
+
+.app-store-btn:hover,
+.app-download-intro-card .download-btn-intro.app-store-btn:hover {
+    background: #111827;
+}
+
+.download-btn::before,
+.download-btn::after,
+.share-countdown-btn::before,
+.event-modal-detail-btn::before,
+.calendar-detail-btn .detail-btn::before {
+    display: none;
+}
+
+.combined-footer-section {
+    background: #fff7ed;
+    color: #4b2b24;
+    margin-top: 0;
+    padding: clamp(2rem, 4vw, 3rem) 0;
+    box-shadow: inset 0 1px 0 rgba(185, 28, 28, 0.12);
+    animation: none;
+}
+
+.combined-footer-section::before {
+    background: none;
+}
+
+.combined-footer-section .container {
+    max-width: 980px;
+}
+
+.combined-footer-section .container,
+.footer-main-content,
+.footer-app-section,
+.app-info,
+.footer-social-section,
+.footer-bottom,
+.app-description {
+    text-align: center;
+}
+
+.app-title-container,
+.download-buttons,
+.social-links-compact {
+    justify-content: center;
+}
+
+.app-icon-small,
+.app-title,
+.social-icon-img,
+.social-link-compact .social-icon {
+    animation: none;
+}
+
+.app-title,
+.download-title,
+.social-section-title {
+    color: #9f1239;
+    font-family: var(--font-body);
+    text-shadow: none;
+}
+
+.app-download-section {
+    max-width: 680px;
+    margin: 1.25rem auto 0;
+    background: #fff;
+    border: 1px solid rgba(185, 28, 28, 0.12);
+    border-radius: 12px;
+    backdrop-filter: none;
+}
+
+.app-description,
+.app-features,
+.footer-bottom,
+.developer-info,
+.app-info-footer {
+    color: #6b4a3f;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(185, 28, 28, 0.14);
+}
+
+.social-link-compact {
+    background: #fff;
+    color: #9f1239;
+    border: 1px solid rgba(185, 28, 28, 0.12);
+    backdrop-filter: none;
+}
+
+.social-link-compact:hover {
+    background: #fee2e2;
+    color: #b91c1c;
+    box-shadow: 0 8px 18px rgba(124, 45, 18, 0.1);
+    transform: translateY(-1px);
 }

@@ -56,7 +56,7 @@ function buildTetSeoPayload(now = getVietnamNow()) {
   const tetDate = '06/02/2027';
   const giaoThuaDate = '05/02/2027';
 
-  const snippetParagraph = `Hôm nay là ${todayWeekday}, ngày ${todayDate}. Còn ${daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027. Tết 2027 rơi vào ${tetWeekday}, ngày ${tetDate} dương lịch.`;
+  const snippetParagraph = `Hôm nay là ${todayWeekday}, ngày ${todayDate}. Tết Nguyên Đán 2027 rơi vào ${tetWeekday}, ngày ${tetDate} dương lịch. Đồng hồ đếm ngược trên Sắp Tết cập nhật số ngày, giờ và phút còn lại theo giờ Việt Nam.`;
 
   const landingDetailLine = `Hôm nay là ${todayWeekday}, ngày ${todayDate}. Tết Nguyên Đán 2027 rơi vào ${tetWeekday}, ngày ${tetDate} dương lịch.`;
 
@@ -74,18 +74,19 @@ function buildTetSeoPayload(now = getVietnamNow()) {
     landingDetailLine,
     answerLead,
     faq: {
-      daysUntilTetAnswer: `Tính từ 00:00 hôm nay (giờ Việt Nam, ${todayDate}) đến 00:00 ngày 06/02/2027, hôm nay còn ${daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027. Đồng hồ bên dưới cập nhật theo giờ, phút, giây.`,
+      daysUntilTetAnswer: `Đồng hồ ở đầu trang hiển thị số ngày, giờ và phút còn lại đến 00:00 ngày 06/02/2027 theo giờ Việt Nam. Số ngày được cập nhật realtime để bạn không phải tự tính lại.`,
       tetDateAnswer:
         'Tết Nguyên Đán 2027 là Thứ Bảy, ngày 6 tháng 2 năm 2027 dương lịch (mùng 1 tháng Giêng năm Đinh Mùi).',
-      giaoThuaAnswer: `Giao thừa 2027 là đêm 30 Tết, ngày ${giaoThuaDate} dương lịch. Hôm nay còn ${daysUntilGiaoThua} ngày nữa đến giao thừa (tính cùng quy ước lịch trên Sắp Tết).`,
+      giaoThuaAnswer: `Giao thừa 2027 là đêm 30 Tết, ngày ${giaoThuaDate} dương lịch. Bạn có thể mở trang đếm ngược giao thừa để xem số ngày và giờ còn lại theo thời gian thực.`,
       zodiacAnswer: 'Tết 2027 là năm Đinh Mùi – năm con Dê theo 12 con giáp Việt Nam.',
       whyChangesAnswer:
-        'Số ngày giảm 1 sau mỗi 00:00 giờ Việt Nam vì ngày hiện tại tiến gần hơn tới mùng 1 Tết (06/02/2027). Trang được cập nhật lại mỗi ngày để số ngày trong câu trả lời luôn khớp.',
+        'Số ngày giảm dần khi thời gian tiến gần hơn tới mùng 1 Tết (06/02/2027). Đồng hồ trên trang tự cập nhật theo giờ Việt Nam để câu trả lời luôn khớp thời điểm bạn mở trang.',
     },
-    metaDescriptionLanding: `Xem ngay còn bao nhiêu ngày nữa đến Tết Nguyên Đán 2027. Hôm nay còn ${daysUntilTet} ngày. Đồng hồ đếm ngược realtime, chính xác từng ngày, giờ, phút.`,
+    metaDescriptionLanding:
+      'Xem còn bao nhiêu ngày nữa đến Tết Nguyên Đán 2027 với đồng hồ đếm ngược realtime theo giờ Việt Nam, kèm ngày Tết, giao thừa và FAQ nhanh.',
     metaDescriptionHome:
       'Đếm ngược Tết Nguyên Đán 2027 theo giờ Việt Nam. Xem còn bao nhiêu ngày nữa đến Tết, lịch Tết, lời chúc, ảnh Tết và tiện ích Tết.',
-    titleLanding: 'Còn Bao Nhiêu Ngày Nữa Đến Tết 2027? | Đếm Ngược Realtime | Sắp Tết',
+    titleLanding: 'Còn Bao Nhiêu Ngày Nữa Đến Tết 2027? | Sắp Tết',
     titleHome: 'Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán',
   };
 }

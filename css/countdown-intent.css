@@ -1,0 +1,761 @@
+/* Countdown intent page — Tết 2027 landing layout */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.intent-page {
+    --intent-cream: #fff9f0;
+    --intent-peach: #ffe8d9;
+    --intent-pink: #ffdfe6;
+    --intent-mint: #e5f7e8;
+    --intent-red: #c41e1e;
+    --intent-red-deep: #8f1d1d;
+    --intent-gold: #ffd54f;
+    --intent-gold-deep: #f5b800;
+    --intent-brown: #3f2a22;
+    --intent-muted: #68433b;
+    --intent-panel: #b91c1c;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(255, 223, 230, 0.92) 0 12rem, transparent 12.2rem),
+        radial-gradient(circle at 88% 12%, rgba(229, 247, 232, 0.88) 0 11rem, transparent 11.2rem),
+        linear-gradient(180deg, var(--intent-cream) 0%, var(--intent-peach) 48%, #fffaf3 100%);
+}
+
+.intent-page-deco {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 8% 78%, rgba(255, 213, 79, 0.18) 0 8rem, transparent 8.2rem),
+        radial-gradient(circle at 92% 76%, rgba(196, 30, 30, 0.09) 0 9rem, transparent 9.2rem);
+    opacity: 1;
+}
+
+.intent-page #main-content,
+.intent-page #footer-container {
+    position: relative;
+    z-index: 1;
+}
+
+.intent-page #header-container {
+    position: fixed;
+    z-index: 1000;
+}
+
+.intent-hero {
+    background: transparent;
+    color: var(--intent-brown);
+    border-bottom: none;
+    padding: clamp(1.5rem, 3.5vw, 2.75rem) 0 clamp(1.75rem, 4vw, 2.5rem);
+    position: relative;
+    overflow: visible;
+}
+
+.intent-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.intent-hero-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+    gap: clamp(1.25rem, 3.5vw, 3rem);
+    align-items: center;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.intent-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--intent-red);
+    font-weight: 800;
+    font-size: 0.92rem;
+    margin-bottom: 0.75rem;
+}
+
+.intent-eyebrow i,
+.intent-eyebrow svg {
+    width: 1.05rem;
+    height: 1.05rem;
+}
+
+.intent-hero h1 {
+    font-size: clamp(1.85rem, 4.2vw, 3.1rem);
+    font-weight: 800;
+    color: var(--intent-red-deep);
+    margin: 0 0 0.85rem;
+    line-height: 1.14;
+    text-wrap: balance;
+}
+
+.intent-hero h1 .intent-h1-accent {
+    color: var(--intent-red);
+}
+
+.intent-hero-date {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: var(--intent-brown);
+    font-size: clamp(1rem, 2vw, 1.12rem);
+    margin: 0 0 0.75rem;
+    line-height: 1.55;
+    max-width: 38rem;
+}
+
+.intent-hero-date i,
+.intent-hero-date svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--intent-red);
+}
+
+.intent-hero-date strong {
+    color: var(--intent-red-deep);
+}
+
+.seo-answer-lead {
+    color: var(--intent-brown);
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    margin: 0 0 0.65rem;
+    max-width: 40rem;
+    line-height: 1.6;
+}
+
+.seo-answer-lead .seo-days-number {
+    color: #be123c;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.seo-answer-support {
+    color: var(--intent-muted);
+    font-size: 0.98rem;
+    max-width: 38rem;
+    margin: 0 0 1rem;
+    line-height: 1.65;
+}
+
+.seo-landing-detail {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: #fff4dc;
+    border: 1px solid rgba(248, 195, 74, 0.55);
+    border-radius: 12px;
+    padding: 0.75rem 0.95rem;
+    max-width: 40rem;
+    margin: 0;
+    color: #5b3a32;
+    font-size: 0.94rem;
+    line-height: 1.55;
+}
+
+.seo-landing-detail i,
+.seo-landing-detail svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.12rem;
+    color: #b45309;
+}
+
+.app-tip-card {
+    gap: 0.65rem;
+}
+
+.app-tip-card h2 {
+    color: var(--intent-red-deep);
+    font-size: 1rem;
+    line-height: 1.35;
+    margin: 0 0 0.2rem;
+}
+
+.app-tip-card p {
+    color: var(--intent-muted);
+    font-size: 0.93rem;
+    line-height: 1.55;
+    margin: 0 0 0.45rem;
+}
+
+.app-tip-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--intent-red);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.app-tip-link:hover {
+    color: var(--intent-red-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.app-tip-link i,
+.app-tip-link svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    color: currentColor;
+    margin-top: 0;
+}
+
+/* Countdown panel */
+.intent-countdown-panel {
+    position: relative;
+    border-radius: 18px;
+    padding: 0;
+    box-shadow: 0 18px 40px rgba(79, 18, 18, 0.22);
+    overflow: hidden;
+    border: 1px solid rgba(185, 28, 28, 0.15);
+    background: #fff7ed;
+}
+
+.intent-countdown-panel-inner {
+    position: relative;
+    z-index: 1;
+    padding: clamp(1.1rem, 2.8vw, 1.5rem) clamp(1rem, 2.5vw, 1.35rem) clamp(1rem, 2.5vw, 1.25rem);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 237, 213, 0.78)),
+        radial-gradient(circle at 100% 0, rgba(255, 213, 79, 0.28), transparent 45%);
+}
+
+.intent-countdown-panel-title {
+    position: relative;
+    color: var(--intent-red-deep);
+    font-size: clamp(0.88rem, 1.9vw, 0.98rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem;
+    line-height: 1.4;
+    text-align: center;
+    text-shadow: none;
+}
+
+.intent-countdown-timer {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.intent-countdown-unit {
+    text-align: center;
+    min-width: 3.25rem;
+}
+
+.intent-countdown-unit .value {
+    display: block;
+    font-size: clamp(1.85rem, 5.2vw, 2.75rem);
+    font-weight: 800;
+    color: var(--intent-red);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: none;
+}
+
+.intent-countdown-unit .label {
+    display: block;
+    font-size: 0.76rem;
+    color: var(--intent-muted);
+    margin-top: 0.3rem;
+    font-weight: 700;
+}
+
+.intent-countdown-dot {
+    color: rgba(196, 30, 30, 0.35);
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    font-weight: 800;
+    line-height: 1;
+    padding: 0 0.05rem 1.15rem;
+    user-select: none;
+}
+
+.intent-cta-row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.intent-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    width: 100%;
+    background: #dc2626;
+    color: #fff;
+    font-weight: 800;
+    padding: 0.82rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(104, 19, 19, 0.12);
+    cursor: pointer;
+    font-size: 0.98rem;
+    min-height: 48px;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intent-cta-primary:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(185, 28, 28, 0.18);
+}
+
+.intent-cta-primary:focus-visible,
+.intent-quick-card:focus-visible,
+.intent-faq-list summary:focus-visible,
+.intent-related-links a:focus-visible {
+    outline: 3px solid rgba(248, 195, 74, 0.55);
+    outline-offset: 3px;
+}
+
+.intent-panel-links {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem 0.5rem;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(185, 28, 28, 0.12);
+    font-size: 0.86rem;
+}
+
+.intent-panel-links a {
+    color: var(--intent-red-deep);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.intent-panel-links a:hover {
+    color: var(--intent-red);
+}
+
+.intent-panel-links i,
+.intent-panel-links svg {
+    width: 0.95rem;
+    height: 0.95rem;
+}
+
+.intent-panel-links .sep {
+    color: rgba(196, 30, 30, 0.3);
+    user-select: none;
+}
+
+.intent-emotional {
+    position: relative;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.88rem;
+    margin: 0.75rem 0 0;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Quick links */
+.intent-quick-links {
+    padding: 0 0 clamp(2rem, 4vw, 2.75rem);
+}
+
+.intent-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.75rem, 2vw, 1.1rem);
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.intent-quick-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    background: #fff;
+    border: 1px solid rgba(179, 29, 29, 0.1);
+    border-radius: 16px;
+    padding: 1.1rem 1rem 1rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 8px 24px rgba(124, 45, 18, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    min-height: 100%;
+}
+
+.intent-quick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(124, 45, 18, 0.12);
+    border-color: rgba(179, 29, 29, 0.22);
+}
+
+.intent-quick-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intent-quick-icon i,
+.intent-quick-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.intent-quick-icon--calendar { background: #fde8e8; color: #b91c1c; }
+.intent-quick-icon--wishes { background: #e8f5e9; color: #2e7d32; }
+.intent-quick-icon--photos { background: #f3e8fd; color: #7b1fa2; }
+.intent-quick-icon--gifts { background: #fff3e0; color: #e65100; }
+
+.intent-quick-card h3 {
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--intent-red-deep);
+    font-weight: 800;
+}
+
+.intent-quick-card p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--intent-muted);
+    line-height: 1.5;
+    flex: 1;
+}
+
+.intent-quick-arrow {
+    align-self: flex-start;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: rgba(179, 29, 29, 0.08);
+    color: var(--intent-red);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intent-quick-arrow i,
+.intent-quick-arrow svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Tet info */
+.intent-tet-info {
+    padding: 0 0 clamp(2.25rem, 4vw, 3rem);
+}
+
+.intent-tet-info-card {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid rgba(179, 29, 29, 0.12);
+    border-radius: 18px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    box-shadow: 0 10px 28px rgba(124, 45, 18, 0.06);
+}
+
+.intent-tet-info-card h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    text-align: center;
+    color: var(--intent-red-deep);
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+    margin: 0 0 1.25rem;
+    line-height: 1.3;
+}
+
+.intent-tet-info-card h2 img {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+
+.intent-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem 1.25rem;
+}
+
+.intent-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.65rem 0.5rem;
+    border-radius: 12px;
+    background: #fffaf6;
+    border: 1px solid rgba(179, 29, 29, 0.06);
+}
+
+.intent-info-item i,
+.intent-info-item svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--intent-red);
+}
+
+.intent-info-label {
+    display: block;
+    font-size: 0.82rem;
+    color: #8a6a62;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+
+.intent-info-value {
+    display: block;
+    font-size: 0.98rem;
+    color: var(--intent-brown);
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.intent-info-value em {
+    font-style: normal;
+    color: var(--intent-red);
+}
+
+/* FAQ */
+.intent-faq-section {
+    padding: 0 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.intent-faq-card {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid rgba(179, 29, 29, 0.12);
+    border-radius: 18px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    box-shadow: 0 10px 28px rgba(124, 45, 18, 0.06);
+}
+
+.intent-faq-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--intent-red-deep);
+    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    margin: 0 0 1.1rem;
+}
+
+.intent-faq-section h2 img {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.intent-faq-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem 1rem;
+}
+
+.intent-faq-list details {
+    background: #fffaf8;
+    border: 1px solid rgba(179, 29, 29, 0.1);
+    border-radius: 12px;
+    padding: 0.15rem 0.95rem;
+}
+
+.intent-faq-list summary {
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    padding: 0.85rem 1.5rem 0.85rem 0;
+    list-style: none;
+    position: relative;
+    line-height: 1.45;
+    font-size: 0.95rem;
+}
+
+.intent-faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.intent-faq-list summary::after {
+    content: '';
+    position: absolute;
+    right: 0.1rem;
+    top: 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid #9f1239;
+    border-bottom: 2px solid #9f1239;
+    transform: translateY(-65%) rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.intent-faq-list details[open] summary::after {
+    transform: translateY(-35%) rotate(225deg);
+}
+
+.intent-faq-list details p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0 0 1rem;
+    font-size: 0.94rem;
+}
+
+.intent-faq-extra {
+    margin-top: 0.75rem;
+    background: #fffaf8;
+    border: 1px solid rgba(179, 29, 29, 0.1);
+    border-radius: 12px;
+    padding: 0.15rem 0.95rem;
+}
+
+.intent-faq-extra summary {
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    padding: 0.85rem 1.5rem 0.85rem 0;
+    list-style: none;
+    position: relative;
+}
+
+.intent-faq-extra summary::-webkit-details-marker {
+    display: none;
+}
+
+.intent-faq-extra summary::after {
+    content: '';
+    position: absolute;
+    right: 0.1rem;
+    top: 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid #9f1239;
+    border-bottom: 2px solid #9f1239;
+    transform: translateY(-65%) rotate(45deg);
+}
+
+.intent-faq-extra[open] summary::after {
+    transform: translateY(-35%) rotate(225deg);
+}
+
+.intent-faq-extra p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0 0 1rem;
+    font-size: 0.94rem;
+}
+
+.intent-page #main-content {
+    padding-top: 5.5rem;
+}
+
+/* Related */
+.intent-related {
+    padding: 0 0 3rem;
+    text-align: center;
+}
+
+.intent-related h2 {
+    font-size: 1.35rem;
+    color: var(--intent-red);
+    margin-bottom: 1rem;
+}
+
+.intent-related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.intent-related-links a {
+    padding: 0.6rem 1rem;
+    background: rgba(179, 29, 29, 0.08);
+    color: var(--intent-red);
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.intent-related-links a:hover {
+    background: rgba(179, 29, 29, 0.15);
+}
+
+@media (max-width: 960px) {
+    .intent-quick-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .intent-info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 840px) {
+    .intent-hero-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .intent-countdown-panel-title {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .intent-countdown-timer {
+        gap: 0.1rem 0.2rem;
+    }
+
+    .intent-countdown-unit {
+        min-width: 2.75rem;
+    }
+
+    .intent-countdown-unit .value {
+        font-size: clamp(1.65rem, 8vw, 2.15rem);
+    }
+
+    .intent-countdown-dot {
+        padding-bottom: 0.95rem;
+    }
+
+    .intent-faq-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .intent-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .intent-quick-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intent-quick-card,
+    .intent-cta-primary {
+        transition: none;
+    }
+}

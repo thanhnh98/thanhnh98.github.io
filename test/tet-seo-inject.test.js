@@ -19,11 +19,12 @@ test('giao thua is one day before tet in day count', () => {
   assert.equal(toTet - toGiaoThua, 1);
 });
 
-test('buildTetSeoPayload includes FAQ answers with day counts', () => {
+test('buildTetSeoPayload keeps landing SEO copy evergreen', () => {
   const ref = new Date('2026-12-01T00:00:00+07:00');
   const payload = buildTetSeoPayload(ref);
   assert.ok(payload.daysUntilTet > 0);
-  assert.match(payload.faq.daysUntilTetAnswer, /\d+ ngày/);
+  assert.doesNotMatch(payload.metaDescriptionLanding, /Hôm nay còn \d+ ngày/);
+  assert.doesNotMatch(payload.faq.daysUntilTetAnswer, /hôm nay còn \d+ ngày/);
   assert.match(payload.snippetParagraph, /Tết Nguyên Đán 2027/);
   assert.equal(payload.tetWeekday, 'Thứ Bảy');
 });

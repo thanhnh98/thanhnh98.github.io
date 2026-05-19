@@ -52,9 +52,15 @@ test('intent landing page has self-canonical, FAQ visible and FAQPage schema', (
     html,
     /<link rel="canonical" href="https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet">/
   );
-  assert.match(html, /<h1[^>]*>Còn bao nhiêu ngày nữa đến Tết 2027\?<\/h1>/);
-  assert.match(html, /class="seo-landing-detail"/);
+  assert.match(
+    html,
+    /<h1[^>]*>Còn bao nhiêu ngày nữa đến <span class="intent-h1-accent">Tết 2027<\/span>\?<\/h1>/
+  );
+  assert.match(html, /class="[^"]*\bseo-landing-detail\b[^"]*"/);
+  assert.match(html, /Nhiều điều thú vị có tại ứng dụng Sắp Tết/);
+  assert.match(html, /href="\/ung-dung\.html"/);
   assert.match(html, /<summary>Còn bao nhiêu ngày nữa đến Tết 2027\?<\/summary>/);
+  assert.match(html, /data-seo="faq-days-answer"/);
   assert.doesNotMatch(html, /Còn \d+ ngày nữa đến Tết Nguyên Đán 2027\. Tết 2027 rơi vào/);
 
   const schemas = getJsonLdObjects(html);
@@ -68,9 +74,37 @@ test('intent landing page has self-canonical, FAQ visible and FAQPage schema', (
   assert.equal(faqSchema.mainEntity.length, 5);
 
   const firstFaqAnswer = html.match(
-    /<summary>Còn bao nhiêu ngày nữa đến Tết 2027\?<\/summary>\s*<p>([^<]+)<\/p>/
+    /data-seo="faq-days-answer"[^>]*>([^<]+)</
   )?.[1];
-  assert.equal(faqSchema.mainEntity[0].acceptedAnswer.text, firstFaqAnswer);
+  assert.equal(faqSchema.mainEntity[0].name, 'Còn bao nhiêu ngày nữa đến Tết 2027?');
+  assert.match(faqSchema.mainEntity[0].acceptedAnswer.text, /ngày, giờ, phút và giây/);
+  assert.ok(firstFaqAnswer && firstFaqAnswer.includes('ngày'));
+});
+
+test('loi chuc tet page is indexable and supports the wishes CTA', () => {
+  const html = read('loi-chuc-tet.html');
+  const header = read('components/header.html');
+  const loader = read('js/header-loader.js');
+  const sitemap = read('sitemap.xml');
+
+  assert.match(html, /<link rel="canonical" href="https:\/\/saptet\.vn\/loi-chuc-tet\.html">/);
+  assert.match(html, /<h1>Lời chúc Tết 2027 hay, ngắn gọn và ý nghĩa<\/h1>/);
+  assert.match(html, /class="copy-wish-btn"/);
+  assert.match(header, /href="\/loi-chuc-tet\.html" data-page="loi-chuc"/);
+  assert.match(loader, /filename === 'loi-chuc-tet\.html'/);
+  assert.match(sitemap, /https:\/\/saptet\.vn\/loi-chuc-tet\.html/);
+});
+
+test('tro choi tet page uses refreshed game hero', () => {
+  const html = read('tro-choi-tet.html');
+  const css = read('css/game.css');
+
+  assert.match(html, /class="game-hero-copy"/);
+  assert.match(html, /class="game-hero-preview"/);
+  assert.match(html, /href="#noi-chu-game" class="game-hero-btn game-hero-btn-primary"/);
+  assert.match(html, /href="\/ung-dung\.html" class="game-hero-btn game-hero-btn-secondary"/);
+  assert.match(css, /Refreshed game page header/);
+  assert.match(css, /\.game-hero\s*\{[\s\S]*background:\s*transparent/);
 });
 
 test('homepage title and meta use brand-first copy from inject payload', () => {
