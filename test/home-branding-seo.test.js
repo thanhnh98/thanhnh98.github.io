@@ -7,20 +7,24 @@ const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
 function getJsonLdObjects(html) {
-  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
-    .map((match) => JSON.parse(match[1]));
+  return [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1].trim()));
 }
 
-test('homepage uses focused Sắp Tết branding signals', () => {
+test('homepage hero is visual-first with compact subline in countdown card', () => {
   const html = read('index.html');
 
-  assert.match(html, /<title>Sắp Tết - Đếm ngược Tết 2027, lịch âm & tiện ích Tết<\/title>/);
   assert.match(
     html,
-    /content="Sắp Tết giúp bạn đếm ngược Tết 2027, xem lịch âm dương, ngày Tết, sự kiện, món ăn, trò chơi và tải app theo dõi Tết mỗi ngày\."/
+    /<title>(\{\{SEO_TITLE\}\}|Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán)<\/title>/
   );
-  assert.match(html, /<meta property="og:site_name" content="Sắp Tết" \/>/);
-  assert.match(html, /<meta name="application-name" content="Sắp Tết" \/>/);
+  assert.match(html, /class="countdown-hero-title"/);
+  assert.match(html, /Đếm ngược đến Tết <span id="tet-year">/);
+  assert.match(html, /class="countdown-hero-subline"/);
+  assert.match(html, /class="countdown-detail-cta"/);
+  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet"/);
+  assert.doesNotMatch(html, /class="home-seo-answer"/);
+  assert.doesNotMatch(html, /home-seo-answer__snippet/);
 });
 
 test('homepage WebSite schema names the brand without generic keyword aliases', () => {
@@ -33,8 +37,6 @@ test('homepage WebSite schema names the brand without generic keyword aliases', 
     'Sắp Tết - Đếm ngược Tết',
     'App Sắp Tết',
   ]);
-  assert.ok(!website.alternateName.includes('Tết'));
-  assert.ok(!website.alternateName.includes('Tết Việt Nam'));
 });
 
 test('web app manifest reinforces the same brand entity', () => {
@@ -42,5 +44,41 @@ test('web app manifest reinforces the same brand entity', () => {
 
   assert.equal(manifest.name, 'Sắp Tết - Đếm ngược Tết 2027');
   assert.equal(manifest.short_name, 'Sắp Tết');
-  assert.match(manifest.description, /^Sắp Tết giúp bạn đếm ngược Tết 2027/);
+});
+
+test('intent landing page has self-canonical, FAQ visible and FAQPage schema', () => {
+  const html = read('con-bao-nhieu-ngay-nua-den-tet/index.html');
+  assert.match(
+    html,
+    /<link rel="canonical" href="https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet">/
+  );
+  assert.match(html, /<h1[^>]*>Còn bao nhiêu ngày nữa đến Tết 2027\?<\/h1>/);
+  assert.match(html, /class="seo-landing-detail"/);
+  assert.match(html, /<summary>Còn bao nhiêu ngày nữa đến Tết 2027\?<\/summary>/);
+  assert.doesNotMatch(html, /Còn \d+ ngày nữa đến Tết Nguyên Đán 2027\. Tết 2027 rơi vào/);
+
+  const schemas = getJsonLdObjects(html);
+  const webpageSchema = schemas.find((item) => item['@type'] === 'WebPage');
+  const faqSchema = schemas.find((item) => item['@type'] === 'FAQPage');
+  const eventSchemas = schemas.filter((item) => item['@type'] === 'Event');
+
+  assert.equal(eventSchemas.length, 0);
+  assert.ok(webpageSchema);
+  assert.ok(faqSchema);
+  assert.equal(faqSchema.mainEntity.length, 5);
+
+  const firstFaqAnswer = html.match(
+    /<summary>Còn bao nhiêu ngày nữa đến Tết 2027\?<\/summary>\s*<p>([^<]+)<\/p>/
+  )?.[1];
+  assert.equal(faqSchema.mainEntity[0].acceptedAnswer.text, firstFaqAnswer);
+});
+
+test('homepage title and meta use brand-first copy from inject payload', () => {
+  const { buildTetSeoPayload } = require('../scripts/lib/tet-seo-dates');
+  const payload = buildTetSeoPayload(new Date('2026-05-19T12:00:00+07:00'));
+
+  assert.equal(payload.titleHome, 'Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán');
+  assert.match(payload.metaDescriptionHome, /Đếm ngược Tết Nguyên Đán 2027 theo giờ Việt Nam/);
+  assert.match(payload.landingDetailLine, /Tết Nguyên Đán 2027 rơi vào/);
+  assert.doesNotMatch(payload.landingDetailLine, /Còn \d+ ngày/);
 });

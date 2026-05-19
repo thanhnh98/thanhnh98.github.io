@@ -28,6 +28,9 @@ jobs:
       - name: Generate tin-tuc extensionless URL stubs (GitHub Pages)
         run: node scripts/generate-tin-tuc-clean-urls.js
 
+      - name: Inject Tết SEO snippets (VN timezone)
+        run: node scripts/inject-tet-seo-snippets.js
+
       - name: Update version for Service Worker
         run: node scripts/update-version.js
       

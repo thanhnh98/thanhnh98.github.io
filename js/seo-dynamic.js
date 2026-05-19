@@ -1,45 +1,19 @@
-// Dynamic SEO metadata manager focused on crawl quality.
+// Dynamic SEO: only tightens title/description on homepage when Tết is near.
+// Static HTML from inject-tet-seo-snippets.js is the primary source for crawlers.
 class DynamicSEO {
     constructor() {
         this.tetDate = new Date("2027-02-06T00:00:00+07:00");
         this.updateEveryMs = 60 * 60 * 1000;
         this.schemaScriptId = "dynamic-webpage-schema";
-        this.baseTitle = "Sắp Tết - Đếm Ngược Tết 2027";
         this.defaultImage = "https://saptet.vn/assets/images/img_sharing.png";
         this.defaultCanonical = "https://saptet.vn/";
         this.enableHourlyRefresh = false;
         this.allowedHomepagePaths = new Set(["/", "/index.html"]);
         this.lastSeoSignature = "";
         this.cachedElements = {};
-        this.titleRules = [
-            {
-                condition: (daysUntilTet) => daysUntilTet <= 7,
-                build: (daysUntilTet) =>
-                    `${this.baseTitle} | Chỉ Còn ${daysUntilTet} Ngày Nữa`,
-            },
-            {
-                condition: (daysUntilTet) => daysUntilTet <= 30,
-                build: (daysUntilTet) =>
-                    `${this.baseTitle} | Còn ${daysUntilTet} Ngày Nữa Tới Tết`,
-            },
-        ];
-        this.descriptionRules = [
-            {
-                condition: (daysUntilTet) => daysUntilTet <= 7,
-                build: (daysUntilTet) =>
-                    `Đếm ngược Tết Nguyên Đán 2027: chỉ còn ${daysUntilTet} ngày. Xem lịch âm dương, giờ hoàng đạo, gợi ý món ăn và phong tục Tết Việt Nam cập nhật mỗi ngày.`,
-            },
-            {
-                condition: (daysUntilTet) => daysUntilTet <= 30,
-                build: (daysUntilTet) =>
-                    `Còn ${daysUntilTet} ngày tới Tết 2027. Theo dõi đếm ngược Tết Nguyên Đán, tra cứu lịch âm dương, giờ hoàng đạo và khám phá văn hóa Tết Việt Nam.`,
-            },
-            {
-                condition: () => true,
-                build: () =>
-                    "Đếm ngược Tết Nguyên Đán 2027 chính xác từng ngày. Xem lịch âm dương, giờ hoàng đạo, món ăn và phong tục Tết Việt Nam trên Sắp Tết.",
-            },
-        ];
+        this.staticTitle = document.title;
+        this.staticDescription =
+            document.querySelector('meta[name="description"]')?.getAttribute("content") || "";
     }
 
     init() {
@@ -57,28 +31,21 @@ class DynamicSEO {
 
     refreshSeo() {
         const daysUntilTet = this.getDaysUntilTet();
+        const pageUrl = this.getCurrentPageUrl();
         const title = this.buildTitle(daysUntilTet);
         const description = this.buildDescription(daysUntilTet);
-        const pageUrl = this.getCurrentPageUrl();
         const signature = `${title}|${description}|${pageUrl}|${daysUntilTet}`;
         if (signature === this.lastSeoSignature) return;
         this.lastSeoSignature = signature;
 
         document.title = title;
         this.setMetaByName("description", this.clampText(description, 160));
-        this.setMetaByName(
-            "robots",
-            "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-        );
         this.setMetaByProperty("og:title", title);
         this.setMetaByProperty("og:description", this.clampText(description, 200));
-        this.setMetaByProperty("og:url", pageUrl);
         this.setMetaByProperty("twitter:title", title);
         this.setMetaByProperty("twitter:description", this.clampText(description, 200));
-        this.setMetaByProperty("twitter:url", pageUrl);
-        this.setCanonical(pageUrl);
-        this.setHrefLang(pageUrl);
-        this.updateWebPageSchema(title, description, pageUrl, this.getDaysUntilTet());
+        this.updateWebPageSchema(title, description, pageUrl, daysUntilTet);
+        this.syncVisibleDayCount(daysUntilTet);
     }
 
     getDaysUntilTet() {
@@ -89,21 +56,27 @@ class DynamicSEO {
     }
 
     buildTitle(daysUntilTet) {
-        for (const rule of this.titleRules) {
-            if (rule.condition(daysUntilTet)) {
-                return rule.build(daysUntilTet);
-            }
+        if (daysUntilTet > 30) {
+            return this.staticTitle;
         }
-        return `${this.baseTitle} | Còn Bao Nhiêu Ngày Nữa Tới Tết?`;
+        if (daysUntilTet <= 7) {
+            return `Sắp Tết 2027 – Còn ${daysUntilTet} Ngày Đến Tết Nguyên Đán`;
+        }
+        return `Sắp Tết 2027 – Còn ${daysUntilTet} Ngày Đến Tết Nguyên Đán`;
     }
 
     buildDescription(daysUntilTet) {
-        for (const rule of this.descriptionRules) {
-            if (rule.condition(daysUntilTet)) {
-                return rule.build(daysUntilTet);
-            }
+        if (daysUntilTet > 30) {
+            return this.staticDescription;
         }
-        return this.descriptionRules[this.descriptionRules.length - 1].build(daysUntilTet);
+        return `Hôm nay còn ${daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027. Sắp Tết – đếm ngược realtime, lịch âm dương và tiện ích Tết Việt Nam.`;
+    }
+
+    syncVisibleDayCount(daysUntilTet) {
+        const formatted = daysUntilTet.toLocaleString("vi-VN");
+        document.querySelectorAll('[data-seo="days-until-tet"]').forEach((el) => {
+            el.textContent = formatted;
+        });
     }
 
     getCurrentPageUrl() {
@@ -121,28 +94,6 @@ class DynamicSEO {
         return this.allowedHomepagePaths.has(path);
     }
 
-    setCanonical(url) {
-        const canonical = this.ensureHeadElement('link[rel="canonical"]', "link", {
-            rel: "canonical",
-        });
-        canonical.setAttribute("href", url);
-    }
-
-    setHrefLang(url) {
-        const vi = this.ensureHeadElement('link[rel="alternate"][hreflang="vi-VN"]', "link", {
-            rel: "alternate",
-            hreflang: "vi-VN",
-        });
-        vi.setAttribute("href", url);
-
-        const xDefault = this.ensureHeadElement(
-            'link[rel="alternate"][hreflang="x-default"]',
-            "link",
-            { rel: "alternate", hreflang: "x-default" }
-        );
-        xDefault.setAttribute("href", this.defaultCanonical);
-    }
-
     updateWebPageSchema(title, description, url, daysUntilTet) {
         const schema = {
             "@context": "https://schema.org",
@@ -153,7 +104,7 @@ class DynamicSEO {
             inLanguage: "vi-VN",
             isPartOf: {
                 "@type": "WebSite",
-                name: "Sắp Tết - Đếm Ngược Tết",
+                name: "Sắp Tết",
                 url: "https://saptet.vn/",
             },
             primaryImageOfPage: {
@@ -163,13 +114,6 @@ class DynamicSEO {
             about: {
                 "@type": "Thing",
                 name: "Tết Nguyên Đán 2027",
-            },
-            mainEntity: {
-                "@type": "Event",
-                name: "Tết Nguyên Đán 2027",
-                startDate: this.tetDate.toISOString(),
-                eventStatus: "https://schema.org/EventScheduled",
-                inLanguage: "vi-VN",
             },
             additionalProperty: [
                 {

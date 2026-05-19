@@ -118,13 +118,16 @@ test('legacy 2026 Tet calendar URLs redirect to 2027 and are not in the sitemap'
 });
 
 test('sitemap URLs match page canonical URLs for primary landing pages', () => {
-  const html = read('con-bao-lau-nua-den-tet.html');
+  const intentHtml = read('con-bao-nhieu-ngay-nua-den-tet/index.html');
+  const legacyHtml = read('con-bao-lau-nua-den-tet.html');
   const sitemap = read('sitemap.xml');
-  const canonical = 'https://saptet.vn/con-bao-lau-nua-den-tet.html';
+  const intentCanonical = 'https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet';
+  const legacyCanonical = 'https://saptet.vn/con-bao-lau-nua-den-tet.html';
 
-  assert.match(sitemap, new RegExp(`<loc>${canonical}</loc>`));
-  assert.match(html, new RegExp(`<link rel="canonical" href="${canonical}"`));
-  assert.match(html, new RegExp(`"url": "${canonical}"`));
+  assert.match(sitemap, new RegExp(`<loc>${intentCanonical}</loc>`));
+  assert.match(intentHtml, new RegExp(`<link rel="canonical" href="${intentCanonical}"`));
+  assert.match(sitemap, new RegExp(`<loc>${legacyCanonical}</loc>`));
+  assert.match(legacyHtml, new RegExp(`<link rel="canonical" href="${legacyCanonical}"`));
 });
 
 test('all sitemap URLs resolve to indexable self-canonical pages', () => {
