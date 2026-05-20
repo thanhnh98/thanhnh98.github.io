@@ -1788,6 +1788,39 @@
         "url": "https://s.shopee.vn/40dJzAa8Rv"
       },
       "detailPage": "./tin-tuc/review-gay-chup-anh-4-chan-p185-remote-180cm.html"
+    },
+    {
+      "id": "news-042",
+      "slug": "con-bao-nhieu-ngay-nua-den-tet-ung-dung-sap-tet-2027",
+      "title": "Còn bao nhiêu ngày nữa đến Tết 2027? App Sắp Tết — đếm ngược và nhiều tính năng thú vị",
+      "summary": "\"Còn bao nhiêu ngày nữa đến tết\" là câu hỏi phổ biến; Sắp Tết 2027 không chỉ đếm ngược mà còn có lịch Tết, mini game, Bầu Cua, nối chữ, gửi thiệp và hình nền động. Bài giới thiệu app và trang đếm ngược theo giờ Việt Nam.",
+      "category": "technology",
+      "publishedAt": "2026-05-20T12:22:41Z",
+      "author": "Thanh Nguyen",
+      "tags": [
+        "con-bao-nhieu-ngay-nua-den-tet",
+        "sap-tet-2027",
+        "dem-nguoc-tet-2027",
+        "tro-choi-tet",
+        "tinh-nang-app",
+        "ung-dung-di-dong",
+        "tet-nguyen-dan-2027"
+      ],
+      "source": {
+        "name": "Sắp Tết",
+        "url": "https://saptet.vn/"
+      },
+      "links": {
+        "canonicalUrl": "https://saptet.vn/tin-tuc/con-bao-nhieu-ngay-nua-den-tet-ung-dung-sap-tet-2027.html",
+        "affiliateUrl": "https://saptet.vn/tai-ung-dung.html",
+        "useAffiliate": false
+      },
+      "thumbnailUrl": "https://saptet.vn/assets/images/img_sharing.png",
+      "thumbnailSource": {
+        "name": "Sắp Tết",
+        "url": "https://saptet.vn/assets/images/img_sharing.png"
+      },
+      "detailPage": "./tin-tuc/con-bao-nhieu-ngay-nua-den-tet-ung-dung-sap-tet-2027.html"
     }
   ]
 }

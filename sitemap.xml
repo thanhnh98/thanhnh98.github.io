@@ -324,6 +324,12 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://saptet.vn/tin-tuc/con-bao-nhieu-ngay-nua-den-tet-ung-dung-sap-tet-2027.html</loc>
+        <lastmod>2026-05-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
 
     <!-- Seasonal Pages - Medium Priority -->
     <url>
