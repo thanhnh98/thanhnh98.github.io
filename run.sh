@@ -54,16 +54,16 @@ PORT=$DEFAULT_PORT
 if is_port_in_use $DEFAULT_PORT; then
     echo "⚠️  Port $DEFAULT_PORT đang được sử dụng."
     echo "🔄 Đang thử dừng process cũ..."
-    
+
     # Thử dừng process Python HTTP server
     pkill -f "python3 -m http.server $DEFAULT_PORT" 2>/dev/null
     sleep 2
-    
+
     # Nếu vẫn còn process, thử kill trực tiếp
     if is_port_in_use $DEFAULT_PORT; then
         stop_port_process $DEFAULT_PORT
     fi
-    
+
     # Nếu vẫn không được, tìm port khác
     if is_port_in_use $DEFAULT_PORT; then
         echo "⚠️  Không thể giải phóng port $DEFAULT_PORT."
@@ -81,8 +81,8 @@ echo "🚀 Khởi chạy server tại http://localhost:$PORT"
 echo "📱 Các trang chính:"
 echo "   • Trang chủ: http://localhost:$PORT/index.html"
 echo "   • Blog: http://localhost:$PORT/blog.html"
-echo "   • Lịch nghỉ Tết 2026: http://localhost:$PORT/lich-nghi-tet-2026.html"
-echo "   • Lịch Tết 2026: http://localhost:$PORT/lich-tet-2026.html"
+echo "   • Lịch nghỉ Tết 2027: http://localhost:$PORT/lich-nghi-tet-2027.html"
+echo "   • Lịch Tết 2027: http://localhost:$PORT/lich-tet-2027.html"
 echo "   • Lịch âm dương / Lịch vạn niên: http://localhost:$PORT/lich-van-nien.html"
 echo "   • Máy tính lì xì: http://localhost:$PORT/may-tinh-li-xi.html"
 echo ""

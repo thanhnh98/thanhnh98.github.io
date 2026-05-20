@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <title>Cửa Hàng Tết - Mua Sắm Đồ Tết Shopee & TikTok Shop 2027 | Sắp Tết</title>
     <meta name="description" content="🛍️ Mua sắm đồ Tết từ Shopee và TikTok Shop. Bao lì xì, trang trí Tết, bánh kẹo, thời trang Tết và nhiều sản phẩm Tết truyền thống Việt Nam. Giao hàng nhanh, giá tốt.">
     <meta name="keywords" content="cửa hàng tết, mua sắm tết, shopee tết, tiktok shop tết, bao lì xì, trang trí tết, bánh kẹo tết, đồ trang trí tết, quà tết, sản phẩm tết 2027, mua đồ tết online">
@@ -114,8 +114,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/colors.css?v=20260513-color-system">
+    <link rel="stylesheet" href="css/shop.css?v=20260513-shop-color-system">
     
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -127,9 +127,13 @@
     <div id="header-container"></div>
 
     <section class="shop-hero">
-        <div class="container">
-            <h1>Cửa Hàng Sắp Tết - Mua Sắm Đồ Tết Shopee & TikTok Shop</h1>
-            <p>Sản phẩm gợi ý từ Shopee & TikTok Shop – mua sắm Tết dễ dàng</p>
+        <div class="container shop-hero-inner">
+            <div>
+                <p class="shop-kicker">Cửa hàng gợi ý</p>
+                <h1>Cửa Hàng Sắp Tết</h1>
+                <p>Sản phẩm chọn lọc từ Shopee và TikTok Shop cho mua sắm Tết, đồ dùng hằng ngày và phụ kiện tiện ích.</p>
+            </div>
+            <a class="shop-hero-cta" href="#shop-products-heading">Xem sản phẩm</a>
         </div>
     </section>
 
@@ -145,21 +149,36 @@
             
             <section aria-labelledby="shop-intro-heading">
                 <h2 id="shop-intro-heading" class="sr-only">Giới thiệu cửa hàng Tết</h2>
-                <p class="shop-intro-text">Khám phá bộ sưu tập sản phẩm Tết đa dạng từ Shopee và TikTok Shop. Từ bao lì xì đỏ may mắn, đồ trang trí Tết truyền thống, đến bánh kẹo và thời trang Tết - tất cả đều có tại cửa hàng của chúng tôi.</p>
+                <p class="shop-intro-text">Lọc nhanh theo danh mục hoặc nền tảng, rồi mở trực tiếp sang trang sản phẩm gốc để xem giá, voucher và đánh giá mới nhất.</p>
+            </section>
+
+            <section class="shop-controls" aria-label="Bộ lọc cửa hàng">
+                <div class="shop-search-row">
+                    <label class="shop-search-label" for="shop-search">Tìm sản phẩm</label>
+                    <div class="shop-search-field">
+                        <i data-lucide="search" aria-hidden="true"></i>
+                        <input id="shop-search" type="search" autocomplete="off" placeholder="Tìm bao lì xì, phụ kiện, đồ dùng..." />
+                    </div>
+                </div>
+
+                <div class="shop-filter-row">
+                    <section aria-labelledby="shop-categories-heading" class="shop-filter-group">
+                        <h2 id="shop-categories-heading" class="shop-filter-label">Danh mục</h2>
+                        <div id="shop-categories" class="shop-categories" role="group" aria-label="Lọc theo danh mục"></div>
+                    </section>
+
+                    <section aria-labelledby="shop-platforms-heading" class="shop-filter-group shop-platforms-section">
+                        <h2 id="shop-platforms-heading" class="shop-filter-label">Nền tảng</h2>
+                        <div id="shop-platforms" class="shop-platforms" role="group" aria-label="Lọc theo nền tảng"></div>
+                    </section>
+                </div>
             </section>
             
-            <section aria-labelledby="shop-categories-heading">
-                <h2 id="shop-categories-heading" class="sr-only">Danh mục sản phẩm</h2>
-                <div id="shop-categories" class="shop-categories" role="tablist" aria-label="Lọc theo danh mục"></div>
-            </section>
-            
-            <section aria-labelledby="shop-platforms-heading" class="shop-platforms-section">
-                <h2 id="shop-platforms-heading" class="sr-only">Lọc theo nền tảng</h2>
-                <div id="shop-platforms" class="shop-platforms" role="tablist" aria-label="Lọc theo nền tảng"></div>
-            </section>
-            
-            <section aria-labelledby="shop-products-heading">
-                <h2 id="shop-products-heading" class="sr-only">Danh sách sản phẩm</h2>
+            <section class="shop-results" aria-labelledby="shop-products-heading">
+                <div class="shop-results-header">
+                    <h2 id="shop-products-heading">Sản phẩm đang hiển thị</h2>
+                    <p id="shop-result-count" class="shop-result-count" aria-live="polite"></p>
+                </div>
                 <div id="shop-grid" class="shop-grid" role="list"></div>
             </section>
         </div>
@@ -172,7 +191,7 @@
     <script src="js/header-loader.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/analytics.js"></script>
-    <script src="js/shop.js"></script>
+    <script src="js/shop.js?v=20260513-shop-color-system"></script>
     <script src="js/footer.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

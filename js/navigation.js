@@ -7,6 +7,8 @@ class Router {
             '/': 'index.html',
             '/index': 'index.html',
             '/index.html': 'index.html', // Keep for backward compatibility
+            '/con-bao-nhieu-ngay-nua-den-tet': 'con-bao-nhieu-ngay-nua-den-tet/index.html',
+            '/con-bao-nhieu-ngay-nua-den-tet/': 'con-bao-nhieu-ngay-nua-den-tet/index.html',
             '/con-bao-lau-nua-den-tet': 'con-bao-lau-nua-den-tet.html',
             '/con-bao-lau-nua-den-tet.html': 'con-bao-lau-nua-den-tet.html', // Keep for backward compatibility
             '/mon-an-tet': 'mon-an-tet.html',
@@ -28,6 +30,8 @@ class Router {
             '/cua-hang.html': 'cua-hang.html',
             '/may-tinh-li-xi': 'may-tinh-li-xi.html',
             '/may-tinh-li-xi.html': 'may-tinh-li-xi.html',
+            '/qr-code': 'qr-code/index.html',
+            '/qr-code/': 'qr-code/index.html',
             '/huong-dan-tet': 'huong-dan-tet.html',
             '/huong-dan-tet.html': 'huong-dan-tet.html',
             '/ung-dung': 'ung-dung.html',
@@ -93,6 +97,28 @@ class Router {
         if (normalizedPath !== '/' && normalizedPath.endsWith('/')) {
             normalizedPath = normalizedPath.slice(0, -1);
         }
+
+        // Chuẩn hóa URL trang QR: alias cũ / đường index thô → /qr-code (giữ query/hash)
+        if (
+            normalizedPath === '/qrcode' ||
+            normalizedPath === '/qrcode.html' ||
+            normalizedPath.endsWith('/qr-code/index.html')
+        ) {
+            window.location.replace('/qr-code' + window.location.search + window.location.hash);
+            return;
+        }
+
+        // Đang ở /qr-code và đã serve qr-code/index.html — không ép chuyển file (tránh /qr-code/index.html trên thanh địa chỉ)
+        if (
+            normalizedPath === '/qr-code' ||
+            cleanPath === '/qr-code' ||
+            cleanPath === '/qr-code/'
+        ) {
+            const currentFile = this.getCurrentPageFile();
+            if (currentFile === 'qr-code/index.html') {
+                return;
+            }
+        }
         
         // Special handling for directory routes (like /tai-ung-dung/ and /tin-tuc/)
         // GitHub Pages automatically serves index.html from directories
@@ -144,6 +170,9 @@ class Router {
         if (currentPath === '/tin-tuc' || currentPath === '/tin-tuc/') {
             return;
         }
+        if (currentPath === '/qr-code' || currentPath === '/qr-code/') {
+            return;
+        }
         // Redirect to 404 page
         window.location.href = '/404.html';
     }
@@ -152,6 +181,12 @@ class Router {
         const path = window.location.pathname;
         if (path === '/' || path === '/index' || path === '/index.html') {
             return 'index.html';
+        }
+        if (path === '/qr-code' || path === '/qr-code/') {
+            return 'qr-code/index.html';
+        }
+        if (path.endsWith('/qr-code/index.html') || path === '/qr-code/index.html') {
+            return 'qr-code/index.html';
         }
         // Handle directory routes
         if (path === '/tin-tuc' || path === '/tin-tuc/') {
@@ -254,6 +289,7 @@ class NavigationMenu {
                 (currentPath === '/' && href === 'index.html') ||
                 (currentPath === '/index.html' && href === '/') ||
                 (currentPath.includes('mon-an-tet') && href.includes('mon-an-tet')) ||
+                (currentPath.includes('con-bao-nhieu-ngay-nua-den-tet') && href.includes('con-bao-nhieu-ngay-nua-den-tet')) ||
                 (currentPath.includes('con-bao-lau-nua-den-tet') && href.includes('con-bao-lau-nua-den-tet'))) {
                 link.classList.add('active');
             }
@@ -280,23 +316,26 @@ class NavigationMenu {
         
         // Toggle mobile menu
         mobileToggle.addEventListener('click', () => {
-            nav.classList.toggle('mobile-open');
+            const isOpen = nav.classList.toggle('mobile-menu-open');
             mobileToggle.classList.toggle('active');
+            mobileToggle.setAttribute('aria-expanded', String(isOpen));
         });
         
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!header.contains(e.target)) {
-                nav.classList.remove('mobile-open');
+                nav.classList.remove('mobile-menu-open');
                 mobileToggle.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
             }
         });
         
         // Close mobile menu when clicking on a link
         nav.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                nav.classList.remove('mobile-open');
+            if (e.target.closest('a')) {
+                nav.classList.remove('mobile-menu-open');
                 mobileToggle.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
             }
         });
     }
@@ -458,83 +497,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Add CSS for mobile menu and animations
 const navigationStyles = document.createElement('style');
 navigationStyles.textContent = `
-    /* Mobile Menu Styles */
-    .mobile-menu-toggle {
-        display: none;
-        flex-direction: column;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem;
-        gap: 4px;
-    }
-    
-    .mobile-menu-toggle span {
-        width: 25px;
-        height: 3px;
-        background: white;
-        transition: all 0.3s ease;
-        border-radius: 2px;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-    }
-    
-    @media (max-width: 768px) {
-        .mobile-menu-toggle {
-            display: flex;
-        }
-        
-        nav {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--color-primary);
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        
-        nav.mobile-open {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        nav ul {
-            flex-direction: column;
-            padding: 1rem 0;
-        }
-        
-        nav li {
-            margin: 0;
-        }
-        
-        nav a {
-            display: block;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-    }
-    
-    /* Active link styles */
-    nav a.active {
-        background: rgba(255,255,255,0.2);
-        border-radius: 25px;
-    }
-    
     /* Page loading animation */
     .page-loading main {
         opacity: 0;

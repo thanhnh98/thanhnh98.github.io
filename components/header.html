@@ -1,17 +1,17 @@
 <header>
     <div class="container">
         <div class="header-brand">
-            <img src="/assets/images/ic_app.png" alt="Sắp Tết" class="app-icon">
-            <h1><a href="/" title="Sắp Tết - Đếm ngược Tết Nguyên Đán">Sắp Tết</a></h1>
+            <img src="/assets/images/ic_app.png" alt="Sắp Tết" class="app-icon" width="46" height="46">
+            <div class="brand-title"><a href="/" title="Sắp Tết - Đếm ngược Tết 2027">Sắp Tết</a></div>
         </div>
-        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <button class="mobile-menu-toggle" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="site-navigation">
             ☰
         </button>
-        <nav>
+        <nav id="site-navigation" aria-label="Điều hướng chính">
             <ul class="nav-primary">
-                <li><a href="/con-bao-lau-nua-den-tet" data-page="countdown">
+                <li><a href="/con-bao-nhieu-ngay-nua-den-tet" data-page="countdown">
                     <i data-lucide="timer" class="nav-icon"></i>
-                    <span>Còn Bao Lâu</span>
+                    <span>Còn Bao Nhiêu Ngày</span>
                 </a></li>
                 <li><a href="/tin-tuc/" data-page="tin-tuc">
                     <i data-lucide="newspaper" class="nav-icon"></i>
@@ -30,13 +30,17 @@
                     <span>Ứng Dụng</span>
                 </a></li>
             </ul>
-            
+
             <div class="nav-expandable">
-                <button class="see-more-btn" aria-label="Thêm mục điều hướng">
+                <button class="see-more-btn" aria-label="Thêm mục điều hướng" aria-expanded="false" aria-controls="nav-secondary-menu">
                     <span class="see-more-text">Thêm</span>
                     <i data-lucide="chevron-down" class="see-more-icon"></i>
                 </button>
-                <ul class="nav-secondary">
+                <ul class="nav-secondary" id="nav-secondary-menu">
+                    <li><a href="/qr-code" data-page="qrcode">
+                        <i data-lucide="qr-code" class="nav-icon"></i>
+                        <span>Tạo mã QR</span>
+                    </a></li>
                     <li><a href="/tin-tuc/" data-page="blog">
                         <i data-lucide="book-open" class="nav-icon"></i>
                         <span>Blog Tết</span>
@@ -53,9 +57,9 @@
                         <i data-lucide="gamepad-2" class="nav-icon"></i>
                         <span>Trò Chơi</span>
                     </a></li>
-                    <li><a href="/huong-dan-tet.html" data-page="huong-dan">
-                        <i data-lucide="book" class="nav-icon"></i>
-                        <span>Hướng Dẫn</span>
+                    <li><a href="/loi-chuc-tet.html" data-page="loi-chuc">
+                        <i data-lucide="mail" class="nav-icon"></i>
+                        <span>Lời Chúc Tết</span>
                     </a></li>
                     <li><a href="/mon-an-tet.html" data-page="mon-an-tet">
                         <i data-lucide="utensils-crossed" class="nav-icon"></i>

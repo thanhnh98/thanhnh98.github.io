@@ -37,6 +37,15 @@
     return '';
   }
 
+  function normalizeText(value) {
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd')
+      .trim();
+  }
+
   function toAbsoluteUrl(url) {
     if (!url || typeof url !== 'string') return '';
     url = url.trim();
@@ -145,6 +154,7 @@
       btn.className = 'shop-category-btn' + (isActive ? ' active' : '');
       btn.textContent = cat.displayName || cat.category;
       btn.dataset.category = cat.category;
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       btn.addEventListener('click', function (e) {
         createRipple(e, btn);
         onSelect(cat.category);
@@ -169,9 +179,11 @@
     PLATFORMS.forEach(function (plat) {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'shop-platform-btn' + (plat.id === activePlatform ? ' active' : '') + (plat.id !== 'all' && plat.id !== 'other' ? ' ' + plat.id : '');
+      var isActive = plat.id === activePlatform;
+      btn.className = 'shop-platform-btn' + (isActive ? ' active' : '') + (plat.id !== 'all' && plat.id !== 'other' ? ' ' + plat.id : '');
       btn.textContent = plat.displayName;
       btn.dataset.platform = plat.id;
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       btn.addEventListener('click', function (e) {
         createRipple(e, btn);
         onSelect(plat.id);
@@ -183,11 +195,13 @@
   function setPlatformActive(platform) {
     var btns = document.querySelectorAll('.shop-platform-btn');
     btns.forEach(function (btn) {
-      btn.classList.toggle('active', btn.dataset.platform === platform);
+      var isActive = btn.dataset.platform === platform;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
   }
 
-  function renderProducts(products, activeCategory, activePlatform) {
+  function renderProducts(products, activeCategory, activePlatform, searchTerm) {
     const grid = document.getElementById('shop-grid');
     if (!grid) return;
     grid.innerHTML = '';
@@ -205,8 +219,23 @@
       });
     }
 
+    var normalizedQuery = normalizeText(searchTerm);
+    if (normalizedQuery) {
+      filtered = filtered.filter(function (p) {
+        var haystack = normalizeText([
+          p.name,
+          p.description,
+          p.category,
+          getBrandLabel(getBrandFromUrl(p.url))
+        ].join(' '));
+        return haystack.indexOf(normalizedQuery) !== -1;
+      });
+    }
+
+    updateResultCount(filtered.length, products.length, normalizedQuery);
+
     if (filtered.length === 0) {
-      grid.innerHTML = '<p class="shop-empty">Chưa có sản phẩm nào phù hợp với bộ lọc này.</p>';
+      grid.innerHTML = '<p class="shop-empty">Không tìm thấy sản phẩm phù hợp. Thử đổi từ khóa hoặc bỏ bớt bộ lọc.</p>';
       return;
     }
 
@@ -226,7 +255,7 @@
       const link = document.createElement('a');
       link.href = url;
       link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+      link.rel = 'noopener noreferrer nofollow';
       link.className = 'shop-card-link';
       link.setAttribute('aria-label', 'Xem sản phẩm: ' + name);
       link.addEventListener('click', function () {
@@ -284,7 +313,7 @@
       var ctaLink = document.createElement('a');
       ctaLink.href = url;
       ctaLink.target = '_blank';
-      ctaLink.rel = 'noopener noreferrer';
+      ctaLink.rel = 'noopener noreferrer nofollow';
       ctaLink.className = 'shop-card-cta';
       ctaLink.textContent = buyText;
       ctaLink.addEventListener('click', function () {
@@ -307,12 +336,23 @@
     });
   }
 
+  function updateResultCount(count, total, hasSearch) {
+    var el = document.getElementById('shop-result-count');
+    if (!el) return;
+    if (hasSearch) {
+      el.textContent = count + '/' + total + ' sản phẩm phù hợp';
+      return;
+    }
+    el.textContent = count + ' sản phẩm';
+  }
+
   function setCategoryActive(category) {
     var btns = document.querySelectorAll('.shop-category-btn');
     var activeBtn = null;
     btns.forEach(function (btn) {
       var isActive = btn.dataset.category === category;
       btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       if (isActive) {
         activeBtn = btn;
       }
@@ -426,6 +466,7 @@
   function init() {
     var grid = document.getElementById('shop-grid');
     var categoriesEl = document.getElementById('shop-categories');
+    var searchInput = document.getElementById('shop-search');
     if (!grid) return;
 
     trackShopEvent('open', { page_path: typeof window !== 'undefined' && window.location ? window.location.pathname : '' });
@@ -442,6 +483,7 @@
 
       var activeCategory = ALL_CATEGORY;
       var activePlatform = ALL_PLATFORM;
+      var activeSearch = '';
       var fromUrl = getCategoryFromUrl(categories);
       if (fromUrl) {
         activeCategory = fromUrl;
@@ -456,17 +498,27 @@
       renderCategories(categories, activeCategory, function (cat) {
         activeCategory = cat;
         setCategoryActive(cat);
-        renderProducts(products, activeCategory, activePlatform);
+        renderProducts(products, activeCategory, activePlatform, activeSearch);
         updateUrlCategory(activeCategory);
       });
       
       renderPlatforms(activePlatform, function (plat) {
         activePlatform = plat;
         setPlatformActive(plat);
-        renderProducts(products, activeCategory, activePlatform);
+        renderProducts(products, activeCategory, activePlatform, activeSearch);
       });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          activeSearch = searchInput.value || '';
+          renderProducts(products, activeCategory, activePlatform, activeSearch);
+        });
+      }
       
-      renderProducts(products, activeCategory, activePlatform);
+      renderProducts(products, activeCategory, activePlatform, activeSearch);
+      if (window.lucide && window.lucide.createIcons) {
+        window.lucide.createIcons();
+      }
     });
   }
 

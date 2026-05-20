@@ -7,9 +7,10 @@
     "crawl": "node crawl-tet-articles.js",
     "crawl:dev": "node --inspect crawl-tet-articles.js",
     "install-deps": "npm install",
-    "test": "node -e \"console.log('Test script - crawling functionality')\"",
+    "test": "node --test test/*.test.js",
     "update-version": "node scripts/update-version.js",
     "generate-tin-tuc-clean-urls": "node scripts/generate-tin-tuc-clean-urls.js",
+    "inject-tet-seo": "node scripts/inject-tet-seo-snippets.js",
     "predeploy": "npm run update-version",
     "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
   },

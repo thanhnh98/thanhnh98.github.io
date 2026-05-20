@@ -62,7 +62,7 @@
     var url = post.detailUrl || '#';
     return (
       '<article class="home-news-card home-news-card--featured" role="listitem">' +
-        '<a href="' + escapeHtml(url) + '" class="home-news-card-link" aria-label="Đọc bài: ' + escapeHtml(post.title) + '">' +
+        '<a href="' + escapeHtml(url) + '" class="home-news-card-link" aria-label="Đọc bài: ' + escapeHtml(post.title) + '" data-home-news-preview-track="1" data-blog-title="' + escapeHtml(post.title) + '" data-blog-url="' + escapeHtml(url) + '" data-blog-id="' + escapeHtml(post.id) + '" data-blog-category="' + escapeHtml(post.category) + '">' +
           '<div class="home-news-card-thumb-wrap">' +
             '<img class="home-news-card-thumb" src="' + escapeHtml(post.thumbnailUrl) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">' +
           '</div>' +
@@ -75,6 +75,19 @@
         '</a>' +
       '</article>'
     );
+  }
+
+  function trackHomeNewsPreviewClick(link) {
+    if (!link || !window.webAnalytics || !window.webAnalytics.trackEvent) return;
+
+    window.webAnalytics.trackEvent('web_blogs_visit', {
+      blog_title: link.getAttribute('data-blog-title') || '',
+      blog: link.getAttribute('data-blog-url') || link.getAttribute('href') || '',
+      preview: 'home_news_preview',
+      blog_id: link.getAttribute('data-blog-id') || '',
+      blog_category: link.getAttribute('data-blog-category') || '',
+      page_path: window.location.pathname
+    });
   }
 
   function render(posts) {
@@ -163,4 +176,10 @@
   } else {
     loadNews();
   }
+
+  document.addEventListener('click', function(event) {
+    var link = event.target.closest('a[data-home-news-preview-track="1"]');
+    if (!link) return;
+    trackHomeNewsPreviewClick(link);
+  });
 })();

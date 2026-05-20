@@ -59,6 +59,19 @@
       ],
       "products":[
 {
+  "id": "165146",
+  "shopId": "163488888",
+  "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lynfvor4i6qpc0",
+  "images": [],
+  "name": "Bảo Hành 12 tháng - Đồng hồ treo tường 30cm, 20cm Kim Trôi Phòng khách ẢNH &VIDEO THẬT -  DHTT | Shopee Việt Nam",
+  "description": "Mua Bảo Hành 12 tháng - Đồng hồ treo tường 30cm, 20cm Kim Trôi Phòng khách ẢNH &VIDEO THẬT -  DHTT giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+  "type": "shopee",
+  "category": "electric",
+  "coinBonus": 10,
+  "buyText": "Xem sản phẩm",
+  "url": "https://s.shopee.vn/2qRYM4DQBF"
+},
+{
   "id": "964055",
   "shopId": "127805122",
   "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvy2h2amd715c5",
@@ -1747,6 +1760,21 @@
             "coinBonus":10,
             "buyText":"Xem sản phẩm",
             "url":"https://s.shopee.vn/6VK9Z7m5k4"
+         },
+         {
+            "id":"566899",
+            "shopId":"24470650285",
+            "thumbnail":"https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lt96mazoek04dd",
+            "images":[
+
+            ],
+            "name":"Gậy Chụp Ảnh 4 Chân P185 - Gậy Selfie Cầm Tay Tặng Kèm Remote, Chiều Dài Sử Dụng 30-180cm - Chính Hãng | Shopee Việt Nam",
+            "description":"Mua Gậy Chụp Ảnh 4 Chân P185 - Gậy Selfie Cầm Tay Tặng Kèm Remote, Chiều Dài Sử Dụng 30-180cm - Chính Hãng giá tốt. Mua hàng qua mạng uy tín, tiện lợi. Shopee đảm bảo nhận hàng, hoặc được hoàn lại tiền Giao Hàng Miễn Phí. XEM NGAY!",
+            "type":"shopee",
+            "category":"decor",
+            "coinBonus":10,
+            "buyText":"Xem sản phẩm",
+            "url":"https://s.shopee.vn/40dJzAa8Rv"
          }
       ]
    }

@@ -102,6 +102,11 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 /news /tin-tuc/index.html 301!
 /news/ /tin-tuc/index.html 301!
 /con-bao-lau-nua-den-tet /con-bao-lau-nua-den-tet.html 301!
+# Trang tạo QR: URL sạch /qr-code (rewrite 200 giữ địa chỉ); alias cũ → /qr-code
+/qr-code /qr-code/index.html 200!
+/qr-code/ /qr-code/index.html 200!
+/qrcode.html /qr-code 301!
+/qrcode /qr-code 301!
 /ung-dung /ung-dung.html 301!
 /lich-van-nien /lich-van-nien.html 301!
 /su-kien-quan-trong /su-kien-quan-trong.html 301!
@@ -112,8 +117,8 @@ http://www.saptet.vn/* https://saptet.vn/:splat 301!
 
 # Alias URL sai thư mục → trang đúng
 /tin-tuc/cua-hang.html /cua-hang.html 301!
-/lich-tet-2027.html /lich-tet-2026.html 301!
-/lich-nghi-tet-2027.html /lich-nghi-tet-2026.html 301!
+/lich-tet-2026.html /lich-tet-2027.html 301!
+/lich-nghi-tet-2026.html /lich-nghi-tet-2027.html 301!
 
 # Handle common 404s
 /404 /404.html 404!

@@ -408,6 +408,201 @@
             background: rgba(255, 215, 0, 0.12);
         }
 
+        .exam-aff-showcase {
+            margin: 1.25rem 0 1rem;
+            padding: 1.1rem 1rem 1.15rem;
+            border-radius: 18px;
+            border: 1px solid rgba(230, 0, 38, 0.22);
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 248, 248, 0.98) 100%),
+                radial-gradient(900px 120px at 10% 0%, rgba(220, 20, 60, 0.08), transparent 55%);
+            box-shadow: 0 12px 32px rgba(180, 0, 20, 0.08);
+        }
+
+        .exam-aff-showcase h2 {
+            margin: 0 0 0.35rem;
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            font-weight: 800;
+            color: #991b1b;
+            letter-spacing: -0.02em;
+        }
+
+        .exam-aff-badge {
+            display: inline-block;
+            margin-bottom: 0.55rem;
+            padding: 0.2rem 0.55rem;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #b91c1c;
+            background: rgba(220, 20, 60, 0.1);
+            border-radius: 999px;
+        }
+
+        .exam-aff-lead {
+            margin: 0 0 0.9rem;
+            color: #4b5563;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            max-width: 52rem;
+        }
+
+        .exam-aff-disclosure {
+            margin: 0.65rem 0 0;
+            font-size: 0.78rem;
+            color: #6b7280;
+            line-height: 1.45;
+        }
+
+        .exam-aff-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.85rem;
+            justify-items: start;
+            max-width: 60rem;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .exam-aff-card {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            min-height: 0;
+            width: 100%;
+            max-width: 12.5rem;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid rgba(230, 0, 38, 0.16);
+            border-radius: 12px;
+            background: #fff;
+            text-decoration: none;
+            color: inherit;
+            text-align: left;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+            box-sizing: border-box;
+        }
+
+        .exam-aff-card:hover {
+            border-color: rgba(220, 20, 60, 0.38);
+            box-shadow: 0 8px 22px rgba(230, 0, 38, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .exam-aff-card:focus-visible {
+            outline: 2px solid var(--color-primary, #e60026);
+            outline-offset: 2px;
+        }
+
+        .exam-aff-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 0;
+            background: #f3f4f6;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+        }
+
+        .exam-aff-card-body {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.3rem;
+            padding: 0.65rem 0.7rem 0;
+            text-align: left;
+        }
+
+        .exam-aff-card-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #111827;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .exam-aff-card-meta {
+            flex: 1 1 auto;
+            font-size: 0.75rem;
+            color: #6b7280;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .exam-aff-card-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% + 1.4rem);
+            margin: 0.55rem -0.7rem 0;
+            padding: 0.5rem 0.65rem;
+            border: 0;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: 0.02em;
+            color: #fff;
+            background: #ee4d2d;
+            text-align: center;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            transition: background 0.15s ease;
+        }
+
+        .exam-aff-card:hover .exam-aff-card-cta:not(.exam-aff-card-cta--secondary) {
+            background: #f05d40;
+        }
+
+        .exam-aff-card-cta--secondary {
+            color: #991b1b;
+            background: #fff5f5;
+            border-top: 1px solid rgba(220, 20, 60, 0.12);
+        }
+
+        .exam-aff-card-more:hover .exam-aff-card-cta--secondary {
+            background: #ffecec;
+        }
+
+        .exam-aff-card-more .exam-aff-card-more-visual {
+            width: 100%;
+            aspect-ratio: 1;
+            margin: 0;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+            background: linear-gradient(160deg, #fef2f2 0%, #fff7ed 50%, #fce7f3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.45rem, 3.5vw, 1.85rem);
+            line-height: 1;
+        }
+
+        .exam-aff-more {
+            margin-top: 0.65rem;
+            font-size: 0.88rem;
+        }
+
+        .exam-aff-more a {
+            color: #c41e3a;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+            .exam-aff-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .countdown-layout {
                 grid-template-columns: 1fr;
@@ -421,6 +616,25 @@
             .exam-image-card img {
                 max-height: none;
                 min-height: 200px;
+            }
+
+            .exam-aff-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                max-width: none;
+            }
+
+            .exam-aff-card {
+                max-width: none;
+            }
+
+            .exam-aff-card-cta {
+                width: calc(100% + 1.4rem);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .exam-aff-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -482,6 +696,48 @@
                         <p class="exam-image-caption">Giữ tinh thần tập trung, nỗ lực từng ngày để bước vào kỳ thi với sự tự tin cao nhất.</p>
                     </article>
                 </div>
+
+                <section class="exam-aff-showcase" aria-labelledby="exam-aff-shop-heading-1">
+                    <span class="exam-aff-badge">Giới thiệu sản phẩm</span>
+                    <h2 id="exam-aff-shop-heading-1">Đồ dùng ôn thi &amp; mang theo</h2>
+                    <p class="exam-aff-lead">Highlight, bút chì và bình nước nhỏ gọn — gợi ý từ cửa hàng liên kết Shopee (affiliate).</p>
+                    <div class="exam-aff-grid" role="list">
+                        <a class="exam-aff-card" role="listitem" href="https://s.shopee.vn/Ljo1VwzTC" target="_blank" rel="sponsored noopener noreferrer">
+                            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lvy2h2amd715c5" alt="Bút highlight pastel Deli" width="200" height="200" loading="lazy" decoding="async">
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Bút highlight pastel Deli</span>
+                                <span class="exam-aff-card-meta">Đánh dấu công thức, định nghĩa.</span>
+                                <span class="exam-aff-card-cta">Xem trên Shopee</span>
+                            </div>
+                        </a>
+                        <a class="exam-aff-card" role="listitem" href="https://shopee.vn/-VC-40K-LIVE-H%E1%BB%99p-10-B%C3%BUt-Ch%C3%AC-G%E1%BB%97-2B-HB-Cao-C%E1%BA%A5p-Deli-N%C3%A9t-%C4%90%E1%BA%ADm-R%C3%B5-Nh%E1%BA%A1y-V%E1%BB%9Bi-M%C3%A1y-Ch%E1%BA%A5m-Thi-Thi%E1%BA%BFt-K%E1%BA%BF-Basic-H%E1%BB%8Dc-Sinh-Sinh-Vi%C3%AAn-i.348955539.26466221228?extraParams=%7B%22display_model_id%22%3A223405572186%2C%22model_selection_logic%22%3A3%7D&sp_atk=3de3f125-84a1-4018-91ed-63bd2c33557c&xptdk=3de3f125-84a1-4018-91ed-63bd2c33557c" target="_blank" rel="sponsored noopener noreferrer">
+                            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m21xzge0pp5nc3" alt="Bút chì gỗ 2B Deli" width="200" height="200" loading="lazy" decoding="async">
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Bút chì gỗ 2B/HB Deli (hộp 10)</span>
+                                <span class="exam-aff-card-meta">Nét đậm, phù hợp nhiều máy chấm TN.</span>
+                                <span class="exam-aff-card-cta">Xem trên Shopee</span>
+                            </div>
+                        </a>
+                        <a class="exam-aff-card" role="listitem" href="https://s.shopee.vn/4AwWaQLMtJ" target="_blank" rel="sponsored noopener noreferrer">
+                            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mn16hejogb28f5" alt="Bình giữ nhiệt mini TAFUCO" width="200" height="200" loading="lazy" decoding="async">
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Bình giữ nhiệt mini 220 ml</span>
+                                <span class="exam-aff-card-meta">TAFUCO inox 316, gọn trong cặp.</span>
+                                <span class="exam-aff-card-cta">Xem trên Shopee</span>
+                            </div>
+                        </a>
+                        <a class="exam-aff-card exam-aff-card-more" role="listitem" href="/cua-hang.html">
+                            <div class="exam-aff-card-more-visual" aria-hidden="true">🛒</div>
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Thêm đồ dùng học tập</span>
+                                <span class="exam-aff-card-meta">Bút, vở, dụng cụ khác trên cửa hàng.</span>
+                                <span class="exam-aff-card-cta exam-aff-card-cta--secondary">Xem cửa hàng</span>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="exam-aff-disclosure">Liên kết affiliate: mua qua link có thể hỗ trợ duy trì website, không phát sinh thêm chi phí cho bạn.</p>
+                    <p class="exam-aff-more"><a href="/cua-hang.html">Mở cửa hàng Sắp Tết</a></p>
+                </section>
 
                 <article class="exam-card" id="lich-thi-thpt-2026">
                     <h2 style="margin-top:0;">Lịch thi THPT 2026</h2>
@@ -561,6 +817,48 @@
                         Lưu ý: bảng trên theo lịch thi đã công bố; bộ đếm tự động chạy theo từng môn theo đúng giờ phát đề và thời lượng làm bài.
                     </p>
                 </article>
+
+                <section class="exam-aff-showcase" aria-labelledby="exam-aff-shop-heading-2">
+                    <span class="exam-aff-badge">Giới thiệu sản phẩm</span>
+                    <h2 id="exam-aff-shop-heading-2">Toán, tài liệu &amp; ánh sáng ôn đêm</h2>
+                    <p class="exam-aff-lead">Máy tính cầm tay, bìa đựng giấy và đèn bàn — luôn đối chiếu quy chế thi trước khi mua máy tính hoặc đồ mang vào phòng.</p>
+                    <div class="exam-aff-grid" role="list">
+                        <a class="exam-aff-card" role="listitem" href="https://s.shopee.vn/9ALCXhVFVq" target="_blank" rel="sponsored noopener noreferrer">
+                            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-ml7jve2i134f3d" alt="Máy tính Casio FX-580" width="200" height="200" loading="lazy" decoding="async">
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Máy tính Casio FX-580</span>
+                                <span class="exam-aff-card-meta">Kiểm tra kỹ loại máy được phép dự thi.</span>
+                                <span class="exam-aff-card-cta">Xem trên Shopee</span>
+                            </div>
+                        </a>
+                        <a class="exam-aff-card" role="listitem" href="https://shopee.vn/B%C3%ACa-C%C3%BAc-T%C3%BAi-N%C3%BAt-My-Clear-Bag-File-%C4%90%E1%BB%B1ng-T%C3%A0i-Li%E1%BB%87u-A4-Deli-Trong-Su%E1%BB%91t-T%C3%BAi-%C4%90%E1%BB%B1ng-H%E1%BB%93-S%C6%A1-L%C6%B0u-Tr%E1%BB%AF-Gi%E1%BA%A5y-T%E1%BB%9D-Gi%E1%BA%A5y-Ki%E1%BB%83m-Tra-S%E1%BB%95-V%E1%BA%BD-i.348955539.22958960401?extraParams=%7B%22display_model_id%22%3A89224797742%2C%22model_selection_logic%22%3A3%7D&sp_atk=5bc08982-74a4-4ef5-a537-ca89e69af898&xptdk=5bc08982-74a4-4ef5-a537-ca89e69af898" target="_blank" rel="sponsored noopener noreferrer">
+                            <img src="https://down-vn.img.susercontent.com/file/sg-11134201-7rbn6-ln8jv418ljso57" alt="Bìa cúc túi A4 Deli" width="200" height="200" loading="lazy" decoding="async">
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Bìa / túi nút A4 Deli</span>
+                                <span class="exam-aff-card-meta">Tài liệu, đề cương, giấy kiểm tra.</span>
+                                <span class="exam-aff-card-cta">Xem trên Shopee</span>
+                            </div>
+                        </a>
+                        <a class="exam-aff-card" role="listitem" href="https://shopee.vn/%C4%90%C3%A8n-H%E1%BB%8Dc-G%E1%BA%AFn-T%C6%B0%E1%BB%9Dng-Ch%E1%BB%91ng-C%E1%BA%ADn-Th%E1%BB%8B-Pin-S%E1%BA%A1c-T%C3%ADch-H%E1%BB%A3p-%C4%90%E1%BB%93ng-H%E1%BB%93-B%C3%A1o-Th%E1%BB%A9c-3-M%C3%A0u-%C3%81nh-S%C3%A1ng-T%C4%83ng-Gi%E1%BA%A3m-%C4%90%E1%BB%99-S%C3%A1ng-i.14811394.56350113260" target="_blank" rel="sponsored noopener noreferrer">
+                            <img src="https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mg89hjogjua17a" alt="Đèn LED gắn bàn học" width="200" height="200" loading="lazy" decoding="async">
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Đèn LED gắn bàn, tích điện</span>
+                                <span class="exam-aff-card-meta">Chỉnh độ sáng, tiện ôn khuya.</span>
+                                <span class="exam-aff-card-cta">Xem trên Shopee</span>
+                            </div>
+                        </a>
+                        <a class="exam-aff-card exam-aff-card-more" role="listitem" href="/cua-hang.html">
+                            <div class="exam-aff-card-more-visual" aria-hidden="true">📚</div>
+                            <div class="exam-aff-card-body">
+                                <span class="exam-aff-card-title">Khám phá thêm</span>
+                                <span class="exam-aff-card-meta">Đồ dùng, thực phẩm và gợi ý khác.</span>
+                                <span class="exam-aff-card-cta exam-aff-card-cta--secondary">Xem cửa hàng</span>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="exam-aff-disclosure">Liên kết affiliate (Shopee). Giá và khuyến mãi do từng shop quy định.</p>
+                    <p class="exam-aff-more"><a href="/cua-hang.html">Xem đầy đủ sản phẩm tại cửa hàng Sắp Tết</a></p>
+                </section>
 
                 <article class="exam-card">
                     <h2 style="margin-top:0;">Thông tin nhanh</h2>
