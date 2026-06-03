@@ -52,6 +52,12 @@
         <priority>0.95</priority>
     </url>
     <url>
+        <loc>https://saptet.vn/lich-am-hom-nay.html</loc>
+        <lastmod>2026-06-03</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
         <loc>https://saptet.vn/su-kien-quan-trong.html</loc>
         <lastmod>2026-02-23</lastmod>
         <changefreq>monthly</changefreq>

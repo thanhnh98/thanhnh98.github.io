@@ -25,6 +25,7 @@ RewriteRule ^huong-dan-tet/?$ /huong-dan-tet.html [NC,L]
 RewriteRule ^trung-thu/?$ /trung-thu.html [NC,L]
 RewriteRule ^noel/?$ /noel.html [NC,L]
 RewriteRule ^lich-van-nien/?$ /lich-van-nien.html [NC,L]
+RewriteRule ^lich-am-hom-nay/?$ /lich-am-hom-nay.html [NC,L]
 # Lịch âm dương → cùng trang lịch vạn niên
 RewriteRule ^lich-am-duong/?$ /lich-van-nien.html [NC,L,R=301]
 RewriteRule ^lich-am-duong\.html$ /lich-van-nien.html [NC,L,R=301]
