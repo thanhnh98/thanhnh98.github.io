@@ -8,20 +8,36 @@
   const PRODUCTS_PATH = 'data/aff/products';
   const ALL_CATEGORY = 'other';
   const ALL_PLATFORM = 'all';
-  
+
+  // Emoji icons for each category slug
+  const CATEGORY_ICONS = {
+    'other':       '🛍️',
+    'lixi':        '🧧',
+    'quatet':      '🎁',
+    'decor':       '🏮',
+    'clothes':     '👘',
+    'banhkeo':     '🍬',
+    'thucpham':    '🥘',
+    'thucphamkho': '🏺',
+    'assets':      '📦',
+    'bachhoa':     '🛒',
+    'tech':        '💡',
+    'electric':    '⚡',
+    'oplung':      '📱',
+  };
+
   // Platform filter options
   const PLATFORMS = [
-    { id: 'all', displayName: 'Tất cả' },
-    { id: 'tiktok', displayName: 'TikTok' },
+    { id: 'all',    displayName: 'Tất cả' },
+    { id: 'tiktok', displayName: 'TikTok Shop' },
     { id: 'shopee', displayName: 'Shopee' },
-    { id: 'other', displayName: 'Khác' }
   ];
 
   function getBrandFromUrl(url) {
     if (!url || typeof url !== 'string') return 'other';
     const u = url.toLowerCase();
     if (u.includes('shopee')) return 'shopee';
-    if (u.includes('tiktok')) return 'tiktok';
+    if (u.includes('tiktok') || u.includes('vt.tiktok')) return 'tiktok';
     return 'other';
   }
 
@@ -35,6 +51,51 @@
     if (brand === 'shopee') return 'shopee';
     if (brand === 'tiktok') return 'tiktok';
     return '';
+  }
+
+  /**
+   * Strip noise suffixes from Shopee/TikTok product names.
+   * e.g. "Sản phẩm ABC | Shopee Việt Nam" → "Sản phẩm ABC"
+   */
+  function cleanName(raw) {
+    if (!raw) return '';
+    return raw
+      .replace(/\s*\|\s*shopee việt nam/i, '')
+      .replace(/\s*\|\s*shopee/i, '')
+      .replace(/\s*\|\s*tiktok shop/i, '')
+      .trim();
+  }
+
+  /**
+   * Parse sold-count badge from description.
+   * Returns { soldText, cleanDesc } where soldText may be null.
+   * Hides generic Shopee boilerplate copy.
+   */
+  function parseDescription(raw) {
+    if (!raw || typeof raw !== 'string') return { soldText: null, cleanDesc: '' };
+    const trimmed = raw.trim();
+
+    // Detect "Xk+ lượt bán" or "X lượt bán" pattern
+    const soldMatch = trimmed.match(/(\d[\d.,k+]+\+?\s*lượt bán)/i);
+    const soldText = soldMatch ? soldMatch[1].trim() : null;
+
+    // Detect generic Shopee boilerplate (starts with "Mua " and contains "Shopee đảm bảo" / "XEM NGAY")
+    const isBoilerplate = /^Mua .+giá tốt/i.test(trimmed) ||
+                          /shopee đảm bảo nhận hàng/i.test(trimmed) ||
+                          /XEM NGAY!/i.test(trimmed) ||
+                          /Sản phẩm từ Shopee/i.test(trimmed);
+
+    const cleanDesc = isBoilerplate ? '' : trimmed;
+    return { soldText, cleanDesc };
+  }
+
+  /**
+   * CTA text and CSS class per platform.
+   */
+  function getCtaInfo(brand, fallbackText) {
+    if (brand === 'shopee') return { text: 'Mua trên Shopee', cls: 'cta-shopee' };
+    if (brand === 'tiktok') return { text: 'Xem TikTok Shop', cls: 'cta-tiktok' };
+    return { text: fallbackText || 'Xem sản phẩm', cls: '' };
   }
 
   function normalizeText(value) {
@@ -118,6 +179,126 @@
     }
   }
 
+  /**
+   * Pick N random items from array.
+   * Seed = today's date string so picks stay stable within the same day
+   * but refresh daily (gives "hôm nay" feel without needing a server).
+   */
+  function pickHighlightProducts(products, count) {
+    if (!products || !products.length) return [];
+    count = Math.min(count, products.length);
+
+    // Simple date-seeded shuffle (Fisher-Yates with lcg)
+    var today = new Date();
+    var seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+
+    function lcg(s) { return (s * 1664525 + 1013904223) & 0xffffffff; }
+
+    // Clone & shuffle
+    var arr = products.slice();
+    var s = seed;
+    for (var i = arr.length - 1; i > 0; i--) {
+      s = lcg(s);
+      var j = Math.abs(s) % (i + 1);
+      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr.slice(0, count);
+  }
+
+  /**
+   * Render the "\u0110\u01b0\u1ee3c l\u1ef1a ch\u1ecdn nhi\u1ec1u nh\u1ea5t" highlight strip.
+   * Shows HIGHLIGHT_COUNT random products in a horizontal-scroll track.
+   */
+  var HIGHLIGHT_COUNT = 6;
+
+  function renderHighlight(products) {
+    var track = document.getElementById('shop-highlight-track');
+    var section = document.getElementById('shop-highlight-section');
+    if (!track || !section) return;
+
+    var picks = pickHighlightProducts(products, HIGHLIGHT_COUNT);
+    if (!picks.length) {
+      section.style.display = 'none';
+      return;
+    }
+
+    track.innerHTML = '';
+
+    picks.forEach(function (p) {
+      var brand = getBrandFromUrl(p.url);
+      var brandLabel = getBrandLabel(brand);
+      var brandClass = getBrandClass(brand);
+      var name = cleanName((p.name && p.name.trim()) || 'S\u1ea3n ph\u1ea9m');
+      var thumb = (p.thumbnail && p.thumbnail.trim()) ? p.thumbnail : '';
+      var url = (p.url && p.url.trim()) || '#';
+      var ctaInfo = getCtaInfo(brand, p.buyText);
+
+      // Card wrapper
+      var card = document.createElement('article');
+      card.className = 'hl-card';
+      card.setAttribute('role', 'listitem');
+
+      // Entire card is a link
+      var link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer nofollow';
+      link.className = 'hl-card-link';
+      link.setAttribute('aria-label', name);
+      link.addEventListener('click', function () {
+        trackShopEvent('highlight_click', { item_name: name, item_url: url, brand: brand });
+      });
+
+      // Thumbnail
+      var thumbEl = document.createElement('div');
+      thumbEl.className = 'hl-card-thumb';
+      if (thumb) {
+        var img = document.createElement('img');
+        img.src = thumb;
+        img.alt = name;
+        img.loading = 'lazy';
+        img.onerror = function () {
+          thumbEl.innerHTML = '<span aria-hidden="true" class="hl-card-placeholder">\uD83D\uDECD\uFE0F</span>';
+        };
+        thumbEl.appendChild(img);
+      } else {
+        thumbEl.innerHTML = '<span aria-hidden="true" class="hl-card-placeholder">\uD83D\uDECD\uFE0F</span>';
+      }
+
+      // Platform badge
+      if (brandLabel) {
+        var badge = document.createElement('span');
+        badge.className = 'shop-card-badge ' + brandClass;
+        badge.textContent = brandLabel;
+        thumbEl.appendChild(badge);
+      }
+
+      link.appendChild(thumbEl);
+
+      // Name
+      var nameEl = document.createElement('p');
+      nameEl.className = 'hl-card-name';
+      nameEl.textContent = name;
+      link.appendChild(nameEl);
+
+      card.appendChild(link);
+
+      // CTA button
+      var cta = document.createElement('a');
+      cta.href = url;
+      cta.target = '_blank';
+      cta.rel = 'noopener noreferrer nofollow';
+      cta.className = 'hl-card-cta ' + ctaInfo.cls;
+      cta.textContent = ctaInfo.text;
+      cta.addEventListener('click', function () {
+        trackShopEvent('highlight_click', { item_name: name, item_url: url, brand: brand });
+      });
+      card.appendChild(cta);
+
+      track.appendChild(card);
+    });
+  }
+
   async function loadProducts() {
     var paths = [PRODUCTS_PATH, 'data/aff/products.json'];
     for (var i = 0; i < paths.length; i++) {
@@ -128,8 +309,16 @@
         var json = JSON.parse(text);
         var data = json?.data;
         if (!data || !Array.isArray(data.products)) continue;
+        // Deduplicate categories by category slug (keep first occurrence)
+        var rawCats = Array.isArray(data.categories) ? data.categories : [];
+        var seenCats = {};
+        var dedupedCats = rawCats.filter(function (c) {
+          if (seenCats[c.category]) return false;
+          seenCats[c.category] = true;
+          return true;
+        });
         return {
-          categories: Array.isArray(data.categories) ? data.categories : [],
+          categories: dedupedCats,
           products: data.products
         };
       } catch (err) {
@@ -152,8 +341,14 @@
       btn.type = 'button';
       var isActive = cat.category === activeCategory;
       btn.className = 'shop-category-btn' + (isActive ? ' active' : '');
-      btn.textContent = cat.displayName || cat.category;
+      // Add emoji icon if available
+      var icon = CATEGORY_ICONS[cat.category] || '';
+      var label = cat.displayName || cat.category;
+      btn.innerHTML = icon
+        ? '<span class="cat-icon" aria-hidden="true">' + icon + '</span><span class="cat-label">' + label + '</span>'
+        : '<span class="cat-label">' + label + '</span>';
       btn.dataset.category = cat.category;
+      btn.setAttribute('aria-label', label);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       btn.addEventListener('click', function (e) {
         createRipple(e, btn);
@@ -244,9 +439,10 @@
       const brandLabel = getBrandLabel(brand);
       const brandClass = getBrandClass(brand);
       const thumb = (p.thumbnail && p.thumbnail.trim()) ? p.thumbnail : '';
-      const name = (p.name && p.name.trim()) || 'Sản phẩm';
-      const desc = (p.description && p.description.trim()) || '';
-      const buyText = (p.buyText && p.buyText.trim()) || 'Xem sản phẩm';
+      const rawName = (p.name && p.name.trim()) || 'Sản phẩm';
+      const name = cleanName(rawName);
+      const { soldText, cleanDesc } = parseDescription(p.description);
+      const ctaInfo = getCtaInfo(brand, p.buyText);
       const url = (p.url && p.url.trim()) || '#';
 
       const card = document.createElement('article');
@@ -262,6 +458,7 @@
         trackShopEvent('click_item', { item_name: name, item_url: url, brand: brand });
       });
 
+      // Thumbnail
       const thumbEl = document.createElement('div');
       thumbEl.className = 'shop-card-thumb';
       if (thumb) {
@@ -285,6 +482,7 @@
         ph.textContent = '🛍️';
         thumbEl.appendChild(ph);
       }
+      // Platform badge
       if (brandLabel) {
         var badge = document.createElement('span');
         badge.className = 'shop-card-badge ' + brandClass;
@@ -293,44 +491,47 @@
       }
       link.appendChild(thumbEl);
 
+      // Card body
       const body = document.createElement('div');
       body.className = 'shop-card-body';
+
       var nameEl = document.createElement('h3');
       nameEl.className = 'shop-card-name';
       nameEl.textContent = name;
       body.appendChild(nameEl);
-      if (desc) {
+
+      // "Được chọn nhiều" pill from description soldText
+      if (soldText) {
+        var soldEl = document.createElement('p');
+        soldEl.className = 'shop-card-sold';
+        soldEl.innerHTML = '<span class="shop-card-sold-icon" aria-hidden="true">🔥</span>' + soldText + ' đã chọn';
+        body.appendChild(soldEl);
+      } else if (cleanDesc) {
+        // Only show description if it's custom/useful (not Shopee boilerplate)
         var descEl = document.createElement('p');
         descEl.className = 'shop-card-desc';
-        descEl.textContent = desc;
+        descEl.textContent = cleanDesc;
         body.appendChild(descEl);
       }
+
       link.appendChild(body);
       card.appendChild(link);
 
+      // Actions row
       var actions = document.createElement('div');
       actions.className = 'shop-card-actions';
+
       var ctaLink = document.createElement('a');
       ctaLink.href = url;
       ctaLink.target = '_blank';
       ctaLink.rel = 'noopener noreferrer nofollow';
-      ctaLink.className = 'shop-card-cta';
-      ctaLink.textContent = buyText;
+      ctaLink.className = 'shop-card-cta ' + ctaInfo.cls;
+      ctaLink.textContent = ctaInfo.text;
       ctaLink.addEventListener('click', function () {
         trackShopEvent('click_item', { item_name: name, item_url: url, brand: brand });
       });
       actions.appendChild(ctaLink);
-      var shareBtn = document.createElement('button');
-      shareBtn.type = 'button';
-      shareBtn.className = 'shop-card-share';
-      shareBtn.setAttribute('aria-label', 'Chia sẻ sản phẩm');
-      shareBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
-      shareBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        shareProduct(url, name);
-      });
-      actions.appendChild(shareBtn);
+
       card.appendChild(actions);
       grid.appendChild(card);
     });
@@ -514,7 +715,10 @@
           renderProducts(products, activeCategory, activePlatform, activeSearch);
         });
       }
-      
+
+      // Highlight section — render before main grid
+      renderHighlight(products);
+
       renderProducts(products, activeCategory, activePlatform, activeSearch);
       if (window.lucide && window.lucide.createIcons) {
         window.lucide.createIcons();

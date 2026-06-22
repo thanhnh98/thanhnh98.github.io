@@ -9,20 +9,20 @@
             "displayName":"Tất cả"
          },
          {
-            "category":"clothes",
-            "displayName":"Thời trang"
-         },
-         {
-            "category":"oplung",
-            "displayName":"Ốp lưng xinh"
-         },
-         {
             "category":"lixi",
             "displayName":"Bao Lì Xì"
          },
          {
             "category":"quatet",
             "displayName":"Quà Tết"
+         },
+         {
+            "category":"decor",
+            "displayName":"Trang Trí"
+         },
+         {
+            "category":"clothes",
+            "displayName":"Thời trang"
          },
          {
             "category":"banhkeo",
@@ -35,10 +35,6 @@
          {
             "category":"thucphamkho",
             "displayName":"Thực phẩm khô"
-         },
-         {
-            "category":"tech",
-            "displayName":"Trang Trí"
          },
          {
             "category":"assets",
@@ -54,7 +50,11 @@
          },
          {
             "category":"electric",
-            "displayName":"Đồ dùng Điện Tử"
+            "displayName":"Điện tử"
+         },
+         {
+            "category":"oplung",
+            "displayName":"Ốp lưng xinh"
          }
       ],
       "products":[

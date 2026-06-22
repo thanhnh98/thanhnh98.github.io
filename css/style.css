@@ -104,6 +104,7 @@ header .container {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+    color: #9f1239;
     min-width: 0;
 }
 
@@ -114,7 +115,9 @@ header .container {
     box-shadow: 0 8px 20px rgba(58, 8, 8, 0.28), 0 0 0 1px rgba(255, 215, 0, 0.28);
 }
 
-header .header-brand .brand-title, .brand-title a {
+header .header-brand .brand-title,
+.header-brand-link .brand-title,
+.brand-title a {
     color: #9f1239;
     text-decoration: none;
     font-family: var(--font-body);

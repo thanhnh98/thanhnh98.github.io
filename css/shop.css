@@ -1,24 +1,21 @@
 /* Shop / Referral products page - responsive */
 
+/* =============================================
+   HERO — compact, sản phẩm lên gần fold hơn
+   ============================================= */
 .shop-hero {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  padding: 5rem 0 3.5rem;
-  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.95), rgba(var(--color-accent-primary-rgb), 0.88)),
+    url('../images/tet-background-pattern.svg') repeat;
+  padding: 1.25rem 0 1rem;
+  text-align: left;
   color: white;
   position: relative;
   overflow: hidden;
 }
 
 .shop-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('../images/tet-background-pattern.svg') repeat;
-  opacity: 0.1;
-  z-index: 1;
+  display: none;
 }
 
 .shop-hero .container {
@@ -27,16 +24,18 @@
 }
 
 .shop-hero h1 {
-  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-weight: 800;
-  margin-bottom: 0.75rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.15rem;
+  line-height: 1.15;
+  text-shadow: none;
 }
 
 .shop-hero p {
-  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
   margin-bottom: 0;
-  opacity: 0.95;
+  opacity: 0.88;
+  line-height: 1.45;
 }
 
 .shop-section {
@@ -128,17 +127,234 @@
   }
 }
 
-/* Categories: desktop = wrap & center; mobile = 1 hàng scroll ngang */
-.shop-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+/* =============================================
+   HIGHLIGHT SECTION — "Được lựa chọn nhiều nhất"
+   ============================================= */
+.shop-highlight {
   margin-bottom: 1.5rem;
-  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-primary-rgb), 0.05) 0%,
+    rgba(var(--color-accent-primary-rgb), 0.03) 100%
+  );
+  border: 1px solid rgba(var(--color-primary-rgb), 0.12);
+  overflow: hidden;
 }
 
+/* Header row */
+.shop-highlight-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 0.75rem 0.625rem;
+}
+
+.shop-highlight-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+  animation: hl-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes hl-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.2); opacity: 0.8; }
+}
+
+.shop-highlight-title {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  flex: 1;
+}
+
+
+/* Horizontal scroll track */
+.shop-highlight-track {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 0.75rem 1rem 0.75rem; /* padding left/right matches gap (1 gap away from border) */
+  scroll-padding: 0 0.75rem; /* forces scroll snap to respect padding left/right */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.shop-highlight-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual highlight card */
+.hl-card {
+  flex: 0 0 160px;
+  min-width: 0;
+  scroll-snap-align: start;
+  background: var(--color-surface);
+  border-radius: 12px;
+  border: 1px solid rgba(var(--color-text-primary-rgb), 0.07);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* Entrance animation */
+  animation: hl-card-in 0.35s ease both;
+}
+
+.hl-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes hl-card-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger animation delay for each card */
+.hl-card:nth-child(1) { animation-delay: 0.05s; }
+.hl-card:nth-child(2) { animation-delay: 0.10s; }
+.hl-card:nth-child(3) { animation-delay: 0.15s; }
+.hl-card:nth-child(4) { animation-delay: 0.20s; }
+.hl-card:nth-child(5) { animation-delay: 0.25s; }
+.hl-card:nth-child(6) { animation-delay: 0.30s; }
+
+.hl-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+/* Square thumbnail */
+.hl-card-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--color-background-secondary, #f5f5f5);
+  overflow: hidden;
+}
+
+.hl-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.hl-card:hover .hl-card-thumb img {
+  transform: scale(1.05);
+}
+
+.hl-card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+}
+
+/* Product name — 2 lines max */
+.hl-card-name {
+  margin: 0 0 0.45rem 0;
+  padding: 0.5rem 0.5rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.7em; /* reserve space for 2 lines (2 * 1.35) */
+}
+
+/* CTA button */
+.hl-card-cta {
+  display: block;
+  margin: auto 0.5rem 0.5rem; /* margin-top: auto pushes button to bottom */
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary, #e53935));
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hl-card-cta.cta-shopee {
+  background: linear-gradient(135deg, #ee4d2d, #d73211);
+}
+
+.hl-card-cta.cta-tiktok {
+  background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
+.hl-card-cta:hover {
+  opacity: 0.88;
+  transform: scale(1.02);
+}
+
+/* Desktop: wider cards */
+@media (min-width: 768px) {
+  .shop-highlight {
+    margin-bottom: 1.75rem;
+  }
+
+  .shop-highlight-header {
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .shop-highlight-track {
+    gap: 1rem;
+    padding: 0 1rem 1.25rem 1rem; /* padding left/right matches desktop gap */
+    scroll-padding: 0 1rem;
+  }
+
+  .hl-card {
+    flex: 0 0 190px;
+    border-radius: 14px;
+  }
+
+  .hl-card-name {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.6rem 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .hl-card-cta {
+    margin: auto 0.6rem 0.6rem;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.76rem;
+  }
+}
+
+/* Large desktop: even wider */
+@media (min-width: 1100px) {
+  .hl-card {
+    flex: 0 0 210px;
+  }
+}
+
+/* =============================================
+   CATEGORY BUTTONS — icon + label layout
+   ============================================= */
 .shop-category-btn {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   border: 2px solid var(--color-primary);
@@ -151,6 +367,16 @@
   white-space: nowrap;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
+}
+
+.shop-category-btn .cat-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.shop-category-btn .cat-label {
+  line-height: 1;
 }
 
 .shop-category-btn:hover {
@@ -432,6 +658,9 @@
   flex-shrink: 0;
 }
 
+/* =============================================
+   CTA BUTTON — per-platform colours
+   ============================================= */
 .shop-card-cta {
   display: inline-flex;
   align-items: center;
@@ -439,7 +668,7 @@
   padding: 0 0.75rem;
   border-radius: 10px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: var(--color-text-header);
@@ -451,10 +680,21 @@
   height: 100%;
   box-sizing: border-box;
   transition: opacity 0.2s, transform 0.15s;
+  letter-spacing: 0.01em;
+}
+
+/* Shopee — brand orange */
+.shop-card-cta.cta-shopee {
+  background: linear-gradient(135deg, #ee4d2d, #d73211);
+}
+
+/* TikTok Shop — dark/black */
+.shop-card-cta.cta-tiktok {
+  background: linear-gradient(135deg, #1a1a1a, #333);
 }
 
 .shop-card-cta:hover {
-  opacity: 0.95;
+  opacity: 0.92;
   transform: scale(1.02);
 }
 
@@ -494,27 +734,27 @@
   display: block;
 }
 
-.shop-loading,
-.shop-error {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--color-text-secondary, #666);
-}
-
-.shop-loading {
-  font-size: 1.1rem;
-}
-
-.shop-error {
+/* =============================================
+   SOLD COUNT BADGE — "🔥 Xk+ đã chọn"
+   ============================================= */
+.shop-card-sold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--color-primary);
-  font-weight: 600;
+  background: rgba(var(--color-primary-rgb), 0.08);
+  border-radius: 9999px;
+  padding: 0.2rem 0.55rem;
+  width: fit-content;
+  line-height: 1.4;
 }
 
-.shop-empty {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: var(--color-text-secondary);
-  font-size: 1rem;
+.shop-card-sold-icon {
+  font-size: 0.8rem;
+  line-height: 1;
 }
 
 /* Mobile: categories 1 hàng scroll ngang, full-bleed, không xuống dòng */
@@ -644,11 +884,9 @@ body {
   background: var(--color-background-primary);
 }
 
+/* COMPACT HERO OVERRIDES */
 .shop-hero {
-  background:
-    linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.95), rgba(var(--color-accent-primary-rgb), 0.88)),
-    url('../images/tet-background-pattern.svg') repeat;
-  padding: 4.25rem 0 2.75rem;
+  padding: 1.25rem 0 1rem;
   text-align: left;
 }
 
@@ -658,48 +896,40 @@ body {
 
 .shop-hero-inner {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
 }
 
 .shop-kicker {
-  margin: 0 0 0.5rem;
-  font-size: 0.78rem;
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(var(--color-text-header-rgb), 0.78);
+  color: rgba(var(--color-text-header-rgb), 0.72);
 }
 
 .shop-hero h1 {
   max-width: 680px;
-  margin-bottom: 0.5rem;
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: 1.05;
+  margin-bottom: 0.15rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.15;
   letter-spacing: 0;
   text-shadow: none;
 }
 
 .shop-hero p:not(.shop-kicker) {
   max-width: 680px;
-  color: rgba(var(--color-text-header-rgb), 0.9);
-  line-height: 1.6;
+  color: rgba(var(--color-text-header-rgb), 0.88);
+  font-size: clamp(0.8rem, 2vw, 0.92rem);
+  line-height: 1.45;
+  margin: 0;
 }
 
+/* Hide the scroll CTA button — not needed with compact hero */
 .shop-hero-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 1rem;
-  border: 1px solid rgba(var(--color-text-header-rgb), 0.54);
-  border-radius: 8px;
-  color: var(--color-text-header);
-  font-weight: 800;
-  text-decoration: none;
-  white-space: nowrap;
-  background: rgba(var(--color-text-header-rgb), 0.12);
+  display: none;
 }
 
 .shop-hero-cta:focus-visible,
@@ -707,8 +937,7 @@ body {
 .shop-category-btn:focus-visible,
 .shop-platform-btn:focus-visible,
 .shop-card-link:focus-visible .shop-card-thumb,
-.shop-card-cta:focus-visible,
-.shop-card-share:focus-visible {
+.shop-card-cta:focus-visible {
   outline: 3px solid rgba(var(--color-secondary-rgb), 0.92);
   outline-offset: 3px;
 }
@@ -798,7 +1027,17 @@ body {
   min-width: 0;
 }
 
-.shop-categories,
+/* =============================================
+   CARD LAYOUT — list on mobile, grid >=640px
+   ============================================= */
+.shop-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  justify-content: flex-start;
+}
+
 .shop-platforms {
   justify-content: flex-start;
   gap: 0.45rem;
@@ -963,6 +1202,14 @@ body {
   border: 1px dashed rgba(var(--color-text-primary-rgb), 0.18);
   border-radius: 8px;
   background: var(--color-surface);
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-text-secondary, #666);
+}
+
+.shop-error {
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 @media (min-width: 640px) {
@@ -1013,15 +1260,16 @@ body {
 
 @media (max-width: 767px) {
   .shop-hero {
-    padding: 3.25rem 0 2rem;
+    padding: 0.875rem 0 0.75rem;
   }
 
   .shop-hero-inner {
     display: block;
   }
 
+  /* CTA already hidden globally, keep clean */
   .shop-hero-cta {
-    margin-top: 1rem;
+    display: none;
   }
 
   .shop-section section[aria-labelledby="shop-categories-heading"] {
@@ -1044,5 +1292,11 @@ body {
   .shop-categories::-webkit-scrollbar,
   .shop-platforms::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Tighter card actions on mobile */
+  .shop-card-cta {
+    font-size: 0.78rem;
+    min-height: 40px;
   }
 }
