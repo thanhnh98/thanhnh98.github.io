@@ -1027,6 +1027,54 @@ body {
   min-width: 0;
 }
 
+.shop-filter-group[aria-labelledby="shop-categories-heading"] {
+  width: 100%;
+}
+
+.shop-select-wrap {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.shop-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  width: 0.48rem;
+  height: 0.48rem;
+  border-right: 2px solid rgba(var(--color-text-primary-rgb), 0.58);
+  border-bottom: 2px solid rgba(var(--color-text-primary-rgb), 0.58);
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+.shop-category-select {
+  width: 100%;
+  min-height: 38px;
+  padding: 0.45rem 2rem 0.45rem 0.75rem;
+  border: 1px solid rgba(var(--color-text-primary-rgb), 0.14);
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  font: inherit;
+  font-size: 0.84rem;
+  line-height: 1.2;
+  appearance: none;
+  cursor: pointer;
+}
+
+.shop-category-select:hover {
+  border-color: rgba(var(--color-primary-rgb), 0.34);
+  background: var(--color-background-accent);
+}
+
+.shop-category-select:focus-visible {
+  outline: 2px solid rgba(var(--color-primary-rgb), 0.48);
+  outline-offset: 2px;
+}
+
 /* =============================================
    CARD LAYOUT — list on mobile, grid >=640px
    ============================================= */
@@ -1238,8 +1286,12 @@ body {
 
 @media (min-width: 900px) {
   .shop-filter-row {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(190px, 240px) auto;
     align-items: start;
+  }
+
+  .shop-filter-group[aria-labelledby="shop-categories-heading"] {
+    min-width: 190px;
   }
 
   .shop-platforms-section {
@@ -1287,6 +1339,10 @@ body {
     overflow-x: auto;
     padding-bottom: 0.25rem;
     scrollbar-width: none;
+  }
+
+  .shop-category-select {
+    min-height: 42px;
   }
 
   .shop-categories::-webkit-scrollbar,

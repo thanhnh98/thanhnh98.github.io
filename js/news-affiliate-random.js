@@ -96,9 +96,11 @@
     if (!product || !product.url || !product.name) return -1;
     var score = 0;
     var targetCategory = (primaryAffiliate && primaryAffiliate.category) || (item && item.affiliate && item.affiliate.category) || '';
+    var targetGroup = (primaryAffiliate && primaryAffiliate.group) || (item && item.affiliate && item.affiliate.group) || '';
     var targetType = (primaryAffiliate && primaryAffiliate.type) || (item && item.affiliate && item.affiliate.type) || '';
 
     if (targetCategory && product.category && String(product.category) === String(targetCategory)) score += 8;
+    if (targetGroup && product.group && String(product.group) === String(targetGroup)) score += 5;
     if (targetType && product.type && String(product.type) === String(targetType)) score += 3;
 
     var productTokens = tokenizeText(product.name + ' ' + (product.description || ''));

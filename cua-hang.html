@@ -115,7 +115,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css?v=20260513-color-system">
-    <link rel="stylesheet" href="css/shop.css?v=20260622-shop-layout-fix-5">
+    <link rel="stylesheet" href="css/shop.css?v=20260629-shop-filter-select">
     
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -163,7 +163,6 @@
                 </div>
             </section>
 
-
             <section class="shop-controls" aria-label="Bộ lọc cửa hàng">
                 <div class="shop-search-row">
                     <label class="shop-search-label" for="shop-search">Tìm sản phẩm</label>
@@ -174,9 +173,16 @@
                 </div>
 
                 <div class="shop-filter-row">
+                    <section aria-labelledby="shop-groups-heading" class="shop-filter-group">
+                        <h2 id="shop-groups-heading" class="shop-filter-label">Nhu cầu</h2>
+                        <div id="shop-groups" class="shop-categories" role="group" aria-label="Lọc theo nhu cầu"></div>
+                    </section>
+
                     <section aria-labelledby="shop-categories-heading" class="shop-filter-group">
                         <h2 id="shop-categories-heading" class="shop-filter-label">Danh mục</h2>
-                        <div id="shop-categories" class="shop-categories" role="group" aria-label="Lọc theo danh mục"></div>
+                        <div class="shop-select-wrap">
+                            <select id="shop-categories" class="shop-category-select" aria-label="Lọc theo danh mục"></select>
+                        </div>
                     </section>
 
                     <section aria-labelledby="shop-platforms-heading" class="shop-filter-group shop-platforms-section">
@@ -203,7 +209,7 @@
     <script src="js/header-loader.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/analytics.js"></script>
-    <script src="js/shop.js?v=20260513-shop-color-system"></script>
+    <script src="js/shop.js?v=20260629-shop-groups-categories-fix"></script>
     <script src="js/footer.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

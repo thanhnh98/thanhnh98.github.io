@@ -6,24 +6,72 @@
 
 (function () {
   const PRODUCTS_PATH = 'data/aff/products';
-  const ALL_CATEGORY = 'other';
+  const ALL_GROUP = 'all';
+  const ALL_CATEGORY = 'all';
   const ALL_PLATFORM = 'all';
 
-  // Emoji icons for each category slug
+  const GROUP_ICONS = {
+    'all':                '🛍️',
+    'tech-accessories':   '📱',
+    'fashion-personal':   '👗',
+    'home-living':        '🏠',
+    'food-drink':         '🍽️',
+    'gifts-decor':        '🎁',
+    'learning-office':    '✏️',
+    'other':              '✨',
+  };
+
+  const GROUP_LABELS = {
+    'tech-accessories': 'Công nghệ & phụ kiện',
+    'fashion-personal': 'Thời trang & cá nhân',
+    'home-living': 'Nhà cửa & đời sống',
+    'food-drink': 'Đồ ăn & thức uống',
+    'gifts-decor': 'Quà tặng & trang trí',
+    'learning-office': 'Học tập & văn phòng',
+    'other': 'Khác',
+  };
+
   const CATEGORY_ICONS = {
-    'other':       '🛍️',
-    'lixi':        '🧧',
-    'quatet':      '🎁',
-    'decor':       '🏮',
-    'clothes':     '👘',
-    'banhkeo':     '🍬',
-    'thucpham':    '🥘',
-    'thucphamkho': '🏺',
-    'assets':      '📦',
-    'bachhoa':     '🛒',
-    'tech':        '💡',
-    'electric':    '⚡',
-    'oplung':      '📱',
+    'all':                 '🛍️',
+    'phone-tablet':        '📱',
+    'smart-wearables':     '⌚',
+    'phone-accessories':   '🔌',
+    'phone-cases':         '📲',
+    'electronics-gadgets': '💡',
+    'apparel':             '👘',
+    'shoes-bags':          '👟',
+    'personal-accessories':'🧢',
+    'beauty-personal-care':'🧴',
+    'home-appliances':     '⚡',
+    'kitchen-dining':      '🍳',
+    'home-essentials':     '📦',
+    'home-comfort':        '🛏️',
+    'snacks-sweets':       '🍬',
+    'drinks':              '☕',
+    'pantry-food':         '🥘',
+    'gift-sets':           '🎁',
+    'decorations':         '🏮',
+    'lucky-money':         '🧧',
+    'stationery':          '🖊️',
+    'learning-tools':      '🧮',
+    'misc':                '✨',
+  };
+
+  const LEGACY_CATEGORY_ALIASES = {
+    'other':       { group: ALL_GROUP, category: ALL_CATEGORY },
+    'lixi':        { group: 'gifts-decor', category: 'lucky-money' },
+    'quatet':      { group: 'gifts-decor', category: 'gift-sets' },
+    'decor':       { group: 'gifts-decor', category: 'decorations' },
+    'clothes':     { group: 'fashion-personal', category: 'apparel' },
+    'banhkeo':     { group: 'food-drink', category: 'snacks-sweets' },
+    'thucpham':    { group: 'food-drink', category: 'pantry-food' },
+    'thucphamkho': { group: 'food-drink', category: 'drinks' },
+    'assets':      { group: 'home-living', category: 'home-essentials' },
+    'bachhoa':     { group: 'home-living', category: 'home-essentials' },
+    'tech':        { group: 'tech-accessories', category: ALL_CATEGORY },
+    'electric':    { group: 'home-living', category: 'home-appliances' },
+    'Điện tử':     { group: 'tech-accessories', category: 'electronics-gadgets' },
+    'oplung':      { group: 'tech-accessories', category: 'phone-cases' },
   };
 
   // Platform filter options
@@ -105,6 +153,56 @@
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/đ/g, 'd')
       .trim();
+  }
+
+  function dedupeByKey(items, key) {
+    var seen = {};
+    return (items || []).filter(function (item) {
+      var value = item && item[key];
+      if (!value || seen[value]) return false;
+      seen[value] = true;
+      return true;
+    });
+  }
+
+  function getCategoryMeta(categories, category) {
+    for (var i = 0; i < (categories || []).length; i++) {
+      if (categories[i].category === category) return categories[i];
+    }
+    return null;
+  }
+
+  function getProductGroup(product, categories) {
+    var meta = getCategoryMeta(categories, product && product.category);
+    if (meta && meta.group) return meta.group;
+    if (product && product.group) return product.group;
+    return 'other';
+  }
+
+  function buildGroups(rawGroups, categories, products) {
+    var groups = dedupeByKey(rawGroups, 'group');
+    if (groups.length) return groups;
+
+    var seen = {};
+    var derived = [];
+
+    function addGroup(group) {
+      if (!group || seen[group] || group === ALL_GROUP) return;
+      seen[group] = true;
+      derived.push({
+        group: group,
+        displayName: GROUP_LABELS[group] || group
+      });
+    }
+
+    (categories || []).forEach(function (cat) {
+      addGroup(cat && cat.group);
+    });
+    (products || []).forEach(function (product) {
+      addGroup(getProductGroup(product, categories));
+    });
+
+    return derived;
   }
 
   function toAbsoluteUrl(url) {
@@ -309,62 +407,85 @@
         var json = JSON.parse(text);
         var data = json?.data;
         if (!data || !Array.isArray(data.products)) continue;
-        // Deduplicate categories by category slug (keep first occurrence)
+        var rawGroups = Array.isArray(data.groups) ? data.groups : [];
         var rawCats = Array.isArray(data.categories) ? data.categories : [];
-        var seenCats = {};
-        var dedupedCats = rawCats.filter(function (c) {
-          if (seenCats[c.category]) return false;
-          seenCats[c.category] = true;
-          return true;
+        var dedupedCats = dedupeByKey(rawCats, 'category');
+        var dedupedGroups = buildGroups(rawGroups, dedupedCats, data.products);
+        var products = data.products.map(function (p) {
+          var copy = Object.assign({}, p);
+          copy.group = getProductGroup(copy, dedupedCats);
+          return copy;
         });
         return {
+          groups: dedupedGroups,
           categories: dedupedCats,
-          products: data.products
+          products: products
         };
       } catch (err) {
         if (i === paths.length - 1) {
           console.error('Shop: failed to load products', err);
-          return { categories: [], products: [] };
+          return { groups: [], categories: [], products: [] };
         }
       }
     }
-    return { categories: [], products: [] };
+    return { groups: [], categories: [], products: [] };
   }
 
-  function renderCategories(categories, activeCategory, onSelect) {
-    const container = document.getElementById('shop-categories');
+  function renderGroups(groups, activeGroup, onSelect) {
+    const container = document.getElementById('shop-groups');
     if (!container) return;
+    var list = [{ group: ALL_GROUP, displayName: 'Tất cả' }].concat(groups || []);
     container.innerHTML = '';
     var activeBtn = null;
-    categories.forEach(function (cat) {
+    list.forEach(function (group) {
       const btn = document.createElement('button');
       btn.type = 'button';
-      var isActive = cat.category === activeCategory;
+      var isActive = group.group === activeGroup;
       btn.className = 'shop-category-btn' + (isActive ? ' active' : '');
-      // Add emoji icon if available
-      var icon = CATEGORY_ICONS[cat.category] || '';
-      var label = cat.displayName || cat.category;
+      var icon = GROUP_ICONS[group.group] || '';
+      var label = group.displayName || group.group;
       btn.innerHTML = icon
         ? '<span class="cat-icon" aria-hidden="true">' + icon + '</span><span class="cat-label">' + label + '</span>'
         : '<span class="cat-label">' + label + '</span>';
-      btn.dataset.category = cat.category;
+      btn.dataset.group = group.group;
       btn.setAttribute('aria-label', label);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       btn.addEventListener('click', function (e) {
         createRipple(e, btn);
-        onSelect(cat.category);
+        onSelect(group.group);
       });
       container.appendChild(btn);
-      if (isActive) {
-        activeBtn = btn;
-      }
+      if (isActive) activeBtn = btn;
     });
-    // Scroll active button to center on initial render (after a small delay for DOM)
     if (activeBtn) {
       setTimeout(function () {
         scrollButtonToCenter(activeBtn);
       }, 150);
     }
+  }
+
+  function renderCategories(categories, activeGroup, activeCategory, onSelect) {
+    const select = document.getElementById('shop-categories');
+    if (!select) return;
+    select.innerHTML = '';
+    var visibleCategories = (categories || []).filter(function (cat) {
+      return activeGroup === ALL_GROUP || cat.group === activeGroup;
+    });
+    var list = [{ category: ALL_CATEGORY, displayName: 'Tất cả', group: activeGroup }].concat(visibleCategories);
+    list.forEach(function (cat) {
+      const option = document.createElement('option');
+      var label = cat.displayName || cat.category;
+      option.value = cat.category;
+      option.textContent = label;
+      if (cat.category === activeCategory) option.selected = true;
+      select.appendChild(option);
+    });
+    if (!list.some(function (cat) { return cat.category === activeCategory; })) {
+      select.value = ALL_CATEGORY;
+    }
+    select.onchange = function () {
+      onSelect(select.value || ALL_CATEGORY);
+    };
   }
 
   function renderPlatforms(activePlatform, onSelect) {
@@ -396,15 +517,18 @@
     });
   }
 
-  function renderProducts(products, activeCategory, activePlatform, searchTerm) {
+  function renderProducts(products, activeGroup, activeCategory, activePlatform, searchTerm) {
     const grid = document.getElementById('shop-grid');
     if (!grid) return;
     grid.innerHTML = '';
 
-    // Filter by category
-    var filtered = activeCategory === ALL_CATEGORY
+    var filtered = activeGroup === ALL_GROUP
       ? products
-      : products.filter(function (p) { return p.category === activeCategory; });
+      : products.filter(function (p) { return p.group === activeGroup; });
+
+    if (activeCategory !== ALL_CATEGORY) {
+      filtered = filtered.filter(function (p) { return p.category === activeCategory; });
+    }
     
     // Filter by platform
     if (activePlatform && activePlatform !== ALL_PLATFORM) {
@@ -420,6 +544,7 @@
         var haystack = normalizeText([
           p.name,
           p.description,
+          p.group,
           p.category,
           getBrandLabel(getBrandFromUrl(p.url))
         ].join(' '));
@@ -548,17 +673,19 @@
   }
 
   function setCategoryActive(category) {
-    var btns = document.querySelectorAll('.shop-category-btn');
+    var select = document.getElementById('shop-categories');
+    if (select) select.value = category || ALL_CATEGORY;
+  }
+
+  function setGroupActive(group) {
+    var btns = document.querySelectorAll('#shop-groups .shop-category-btn');
     var activeBtn = null;
     btns.forEach(function (btn) {
-      var isActive = btn.dataset.category === category;
+      var isActive = btn.dataset.group === group;
       btn.classList.toggle('active', isActive);
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      if (isActive) {
-        activeBtn = btn;
-      }
+      if (isActive) activeBtn = btn;
     });
-    // Scroll active button to center on mobile (with small delay to ensure DOM is updated)
     if (activeBtn) {
       requestAnimationFrame(function () {
         scrollButtonToCenter(activeBtn);
@@ -622,51 +749,57 @@
     }, 500);
   }
 
-  /**
-   * Lấy category từ URL: ?category=xxx hoặc #xxx
-   * Trả về category id nếu hợp lệ, null nếu không có hoặc không khớp danh sách.
-   */
-  function getCategoryFromUrl(validCategories) {
-    if (!validCategories || !validCategories.length) return null;
-    var set = {};
-    validCategories.forEach(function (c) {
-      set[c.category] = true;
+  function getFiltersFromUrl(validGroups, validCategories) {
+    var groupSet = {};
+    var categorySet = {};
+    (validGroups || []).forEach(function (g) {
+      groupSet[g.group] = true;
+    });
+    (validCategories || []).forEach(function (c) {
+      categorySet[c.category] = c;
     });
     var search = typeof window !== 'undefined' && window.location ? window.location.search : '';
     var hash = typeof window !== 'undefined' && window.location ? window.location.hash : '';
-    var fromQuery = null;
+    var group = null;
+    var category = null;
     var fromHash = null;
     if (search) {
-      var m = search.match(/\bcategory=([^&]+)/i);
-      if (m) fromQuery = decodeURIComponent(m[1].replace(/\+/g, ' ')).trim();
+      var groupMatch = search.match(/\bgroup=([^&]+)/i);
+      var categoryMatch = search.match(/\bcategory=([^&]+)/i);
+      if (groupMatch) group = decodeURIComponent(groupMatch[1].replace(/\+/g, ' ')).trim();
+      if (categoryMatch) category = decodeURIComponent(categoryMatch[1].replace(/\+/g, ' ')).trim();
     }
     if (hash && hash.length > 1) {
       fromHash = decodeURIComponent(hash.slice(1).replace(/\+/g, ' ')).trim();
     }
-    var slug = fromQuery || fromHash;
-    if (!slug) return null;
-    if (set[slug]) return slug;
-    return null;
+    if (!category && fromHash) category = fromHash;
+
+    if (category && LEGACY_CATEGORY_ALIASES[category]) {
+      return LEGACY_CATEGORY_ALIASES[category];
+    }
+    if (category && categorySet[category]) {
+      return { group: groupSet[group] ? group : categorySet[category].group, category: category };
+    }
+    if (group && groupSet[group]) {
+      return { group: group, category: ALL_CATEGORY };
+    }
+    return { group: ALL_GROUP, category: ALL_CATEGORY };
   }
 
-  /**
-   * Cập nhật URL với category hiện tại (không reload trang).
-   * Dùng query ?category= để dễ share và SEO.
-   */
-  function updateUrlCategory(category) {
+  function updateUrlFilters(group, category) {
     if (typeof window === 'undefined' || !window.history || !window.location) return;
     var base = window.location.pathname || '/cua-hang.html';
-    var url = category && category !== ALL_CATEGORY
-      ? base + '?category=' + encodeURIComponent(category)
-      : base;
-    if (window.location.search + (window.location.hash || '') !== (url === base ? '' : url.slice(base.length))) {
-      window.history.replaceState({ category: category }, '', url);
+    var params = [];
+    if (group && group !== ALL_GROUP) params.push('group=' + encodeURIComponent(group));
+    if (category && category !== ALL_CATEGORY) params.push('category=' + encodeURIComponent(category));
+    var url = params.length ? base + '?' + params.join('&') : base;
+    if (window.location.pathname + window.location.search !== url) {
+      window.history.replaceState({ group: group, category: category }, '', url);
     }
   }
 
   function init() {
     var grid = document.getElementById('shop-grid');
-    var categoriesEl = document.getElementById('shop-categories');
     var searchInput = document.getElementById('shop-search');
     if (!grid) return;
 
@@ -674,6 +807,7 @@
     grid.innerHTML = '<p class="shop-loading">Đang tải sản phẩm...</p>';
 
     loadProducts().then(function (result) {
+      var groups = result.groups;
       var categories = result.categories;
       var products = result.products;
 
@@ -685,41 +819,47 @@
       var activeCategory = ALL_CATEGORY;
       var activePlatform = ALL_PLATFORM;
       var activeSearch = '';
-      var fromUrl = getCategoryFromUrl(categories);
-      if (fromUrl) {
-        activeCategory = fromUrl;
-      } else if (categories.length && categories[0].category === ALL_CATEGORY) {
-        activeCategory = ALL_CATEGORY;
-      } else if (categories.length) {
-        activeCategory = categories[0].category;
-      }
+      var fromUrl = getFiltersFromUrl(groups, categories);
+      var activeGroup = fromUrl.group || ALL_GROUP;
+      activeCategory = fromUrl.category || ALL_CATEGORY;
 
-      updateUrlCategory(activeCategory);
+      updateUrlFilters(activeGroup, activeCategory);
 
-      renderCategories(categories, activeCategory, function (cat) {
+      function selectCategory(cat) {
         activeCategory = cat;
         setCategoryActive(cat);
-        renderProducts(products, activeCategory, activePlatform, activeSearch);
-        updateUrlCategory(activeCategory);
+        renderProducts(products, activeGroup, activeCategory, activePlatform, activeSearch);
+        updateUrlFilters(activeGroup, activeCategory);
+      }
+
+      renderGroups(groups, activeGroup, function (group) {
+        activeGroup = group;
+        activeCategory = ALL_CATEGORY;
+        setGroupActive(group);
+        renderCategories(categories, activeGroup, activeCategory, selectCategory);
+        renderProducts(products, activeGroup, activeCategory, activePlatform, activeSearch);
+        updateUrlFilters(activeGroup, activeCategory);
       });
+
+      renderCategories(categories, activeGroup, activeCategory, selectCategory);
       
       renderPlatforms(activePlatform, function (plat) {
         activePlatform = plat;
         setPlatformActive(plat);
-        renderProducts(products, activeCategory, activePlatform, activeSearch);
+        renderProducts(products, activeGroup, activeCategory, activePlatform, activeSearch);
       });
 
       if (searchInput) {
         searchInput.addEventListener('input', function () {
           activeSearch = searchInput.value || '';
-          renderProducts(products, activeCategory, activePlatform, activeSearch);
+          renderProducts(products, activeGroup, activeCategory, activePlatform, activeSearch);
         });
       }
 
       // Highlight section — render before main grid
       renderHighlight(products);
 
-      renderProducts(products, activeCategory, activePlatform, activeSearch);
+      renderProducts(products, activeGroup, activeCategory, activePlatform, activeSearch);
       if (window.lucide && window.lucide.createIcons) {
         window.lucide.createIcons();
       }
