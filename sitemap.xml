@@ -140,155 +140,51 @@
         <priority>0.85</priority>
     </url>
 
-    <!-- News Detail Pages -->
+    <!-- News Detail Pages (review sản phẩm) -->
     <url>
-        <loc>https://saptet.vn/tin-tuc/chi-so-gia-tieu-dung-thang-03-2026.html</loc>
-        <lastmod>2026-03-14</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/ty-gia-trung-tam-ngan-hang-nha-nuoc-ngay-14-03-2026.html</loc>
-        <lastmod>2026-03-14</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/luong-khach-hang-khong-noi-dia-truoc-cao-diem-tet-2027.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/ve-tau-tet-2027-lich-mo-ban-va-ap-luc-cao-diem.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/doanh-nghiep-tang-phuc-loi-giu-chan-lao-dong-truoc-tet-2027.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/du-bao-thoi-tiet-cuoi-thang-03-2026-va-ke-hoach-mua-sam.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/an-toan-thuc-pham-mua-le-hoi-truoc-tet-2027.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/cong-suat-tieu-thu-dien-tang-trong-dot-nang-nong-som-2026.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/du-lich-noi-dia-ghi-nhan-xu-huong-dat-som-cho-dip-le.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/ban-le-online-tang-toc-som-truoc-mua-tet-2027.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/ung-dung-sap-tet-2027-ban-cap-nhat-moi.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/suc-hut-openclaw-hien-tai-thang-03-2026.html</loc>
-        <lastmod>2026-03-16</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/cac-dia-diem-du-lich-khong-the-bo-lo-trong-thang-3-den-6-2026.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/xu-huong-trend-hot-hom-nay-17-03-2026.html</loc>
-        <lastmod>2026-03-17</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/thoi-tiet-nhung-thang-dau-nam-2026-so-voi-2025.html</loc>
-        <lastmod>2026-03-17</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026.html</loc>
-        <lastmod>2026-03-17</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/goi-y-qua-tang-tinh-te-cho-cac-dip-dac-biet-2026.html</loc>
-        <lastmod>2026-03-18</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/openclaw-cap-nhat-ban-phat-hanh-2026-3-13-1.html</loc>
-        <lastmod>2026-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/thong-bao-lich-thi-tot-nghiep-thpt-2026.html</loc>
-        <lastmod>2026-03-20</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-gay-chup-anh-4-chan-p185-remote-180cm.html</loc>
+        <lastmod>2026-05-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-quat-mini-goojodoq-100-cap-gio-2026.html</loc>
-        <lastmod>2026-04-01</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-sac-du-phong-20000mah-4-cap-sac-nhanh-r08.html</loc>
+        <lastmod>2026-04-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-op-lung-iphone-tpu-hoa-tiet-da-mem.html</loc>
-        <lastmod>2026-04-01</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-quat-cam-tay-hson-100-cap-do-gio-5000mah.html</loc>
+        <lastmod>2026-04-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-tra-duong-huyet-detonic-thanh-phan-cach-dung.html</loc>
+        <loc>https://saptet.vn/tin-tuc/review-quat-sac-tich-dien-honjianda-fl323-fl313.html</loc>
+        <lastmod>2026-04-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-man-hinh-di-dong-arzopa-a1-156-fhd.html</loc>
+        <lastmod>2026-04-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://saptet.vn/tin-tuc/review-huawei-watch-gt6-series-pin-lau-cho-nguoi-di-lam.html</loc>
         <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-garmin-forerunner-165-gps-pin-11-ngay.html</loc>
-        <lastmod>2026-04-01</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/review-amazfit-active-3-premium-trong-tam-gia.html</loc>
-        <lastmod>2026-04-01</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/tin-tuc/review-huawei-watch-gt6-pin-21-ngay.html</loc>
+        <loc>https://saptet.vn/tin-tuc/review-amazfit-active-3-premium-cho-nguoi-moi-dung-smartwatch.html</loc>
         <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -300,39 +196,45 @@
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-amazfit-active-3-premium-cho-nguoi-moi-dung-smartwatch.html</loc>
+        <loc>https://saptet.vn/tin-tuc/review-huawei-watch-gt6-pin-21-ngay.html</loc>
         <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-huawei-watch-gt6-series-pin-lau-cho-nguoi-di-lam.html</loc>
+        <loc>https://saptet.vn/tin-tuc/review-amazfit-active-3-premium-trong-tam-gia.html</loc>
         <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-man-hinh-di-dong-arzopa-a1-156-fhd.html</loc>
-        <lastmod>2026-04-08</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-garmin-forerunner-165-gps-pin-11-ngay.html</loc>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/gioi-thieu-ung-dung-tinh-ngay-date-calculator-date-tools.html</loc>
-        <lastmod>2026-04-23</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-op-lung-iphone-tpu-hoa-tiet-da-mem.html</loc>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/review-gay-chup-anh-4-chan-p185-remote-180cm.html</loc>
-        <lastmod>2026-05-13</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-quat-mini-goojodoq-100-cap-gio-2026.html</loc>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
     <url>
-        <loc>https://saptet.vn/tin-tuc/con-bao-nhieu-ngay-nua-den-tet-ung-dung-sap-tet-2027.html</loc>
-        <lastmod>2026-05-20</lastmod>
+        <loc>https://saptet.vn/tin-tuc/review-tra-duong-huyet-detonic-thanh-phan-cach-dung.html</loc>
+        <lastmod>2026-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
