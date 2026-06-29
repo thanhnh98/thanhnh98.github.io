@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crawl Shopee Products"
+  short_description: "Crawl Shopee affiliate product cards"
+  default_prompt: "Use $crawl-product-shoppee to crawl Shopee Affiliate product cards into data/aff/products."
