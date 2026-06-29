@@ -116,3 +116,22 @@ test('homepage title and meta use brand-first copy from inject payload', () => {
   assert.match(payload.landingDetailLine, /Tết Nguyên Đán 2027 rơi vào/);
   assert.doesNotMatch(payload.landingDetailLine, /Còn \d+ ngày/);
 });
+
+test('homepage has smart Sắp Tết download CTA instead of THPT button', () => {
+  const html = read('index.html');
+  const css = read('css/style.css');
+
+  assert.match(html, /id="smart-app-download-btn"/);
+  assert.match(html, /id="smart-app-download-fab"/);
+  assert.match(html, /class="events-download-app-btn smart-app-download-trigger"/);
+  assert.match(html, /class="fab-main fab-main--download-app smart-app-download-trigger"/);
+  assert.match(html, /data-android-url="https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.thanh_nguyen\.tet_count_down"/);
+  assert.match(html, /data-ios-url="https:\/\/apps\.apple\.com\/gb\/app\/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027\/id6743064990\?platform=iphone"/);
+  assert.match(html, /getElementById\('app-intro'\) \|\| document\.getElementById\('app-download'\)/);
+  assert.match(html, /querySelectorAll\('\.smart-app-download-trigger'\)/);
+  assert.doesNotMatch(html, /THPT 2026/);
+  assert.doesNotMatch(html, /events-thpt-btn|fab-main--thpt/);
+  assert.match(css, /\.events-download-app-btn/);
+  assert.match(css, /\.fab-main--download-app/);
+  assert.doesNotMatch(css, /events-thpt-btn|fab-main--thpt/);
+});

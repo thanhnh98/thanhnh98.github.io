@@ -963,6 +963,17 @@
             <button class="carousel-btn prev" id="carousel-prev">‹</button>
             <button class="carousel-btn next" id="carousel-next">›</button>
           </div>
+          <div class="events-extra-cta">
+            <button type="button"
+                    id="smart-app-download-btn"
+                    class="events-download-app-btn smart-app-download-trigger"
+                    data-android-url="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down"
+                    data-ios-url="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027/id6743064990?platform=iphone"
+                    aria-label="Tải ứng dụng Sắp Tết">
+              <i data-lucide="download" aria-hidden="true"></i>
+              <span>Tải Sắp Tết</span>
+            </button>
+          </div>
         </div>
       </section>
       <!-- Event Modal removed - no longer needed -->
@@ -1293,6 +1304,44 @@
             }
           });
         }
+
+        document.querySelectorAll('.smart-app-download-trigger').forEach(function(smartDownloadBtn) {
+          smartDownloadBtn.addEventListener('click', function() {
+            const ua = navigator.userAgent || navigator.vendor || '';
+            const isAndroid = /Android/i.test(ua);
+            const isIOS = /iPad|iPhone|iPod/i.test(ua) ||
+              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const androidUrl = smartDownloadBtn.getAttribute('data-android-url');
+            const iosUrl = smartDownloadBtn.getAttribute('data-ios-url');
+
+            if (isAndroid && androidUrl) {
+              if (window.webAnalytics) window.webAnalytics.trackDownloadClick('android', 'homepage_events_cta');
+              window.location.href = androidUrl;
+              return;
+            }
+
+            if (isIOS && iosUrl) {
+              if (window.webAnalytics) window.webAnalytics.trackDownloadClick('ios', 'homepage_events_cta');
+              window.location.href = iosUrl;
+              return;
+            }
+
+            if (window.webAnalytics) {
+              window.webAnalytics.trackImportantAction('download_app_scroll', {
+                from: 'homepage_events_cta',
+                to: 'app_intro'
+              });
+            }
+
+            const appSection = document.getElementById('app-intro') || document.getElementById('app-download');
+            if (appSection) {
+              appSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
 
         // Universal scroll animation for all sections with .scroll-section class
         const scrollSections = document.querySelectorAll('.scroll-section');
@@ -1832,6 +1881,19 @@
 </section>
 
     <div id="footer-container"></div>
+
+<div class="fab-container">
+  <button type="button"
+          id="smart-app-download-fab"
+          class="fab-main fab-main--download-app smart-app-download-trigger"
+          data-android-url="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down"
+          data-ios-url="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027/id6743064990?platform=iphone"
+          aria-label="Tải ứng dụng Sắp Tết">
+    <span class="fab-icon"><i data-lucide="download"></i></span>
+    <span class="fab-text">Tải Sắp Tết</span>
+  </button>
+  <div class="fab-tooltip">Tải ứng dụng Sắp Tết</div>
+</div>
 
 <!-- Countdown Preview Modal -->
 <div id="countdown-preview-modal" class="countdown-preview-modal">

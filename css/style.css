@@ -1584,7 +1584,7 @@ main {
     justify-content: center;
 }
 
-.events-thpt-btn {
+.events-download-app-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1598,21 +1598,23 @@ main {
     border: 1px solid rgba(185, 28, 28, 0.28);
     box-shadow: 0 8px 18px rgba(127, 29, 29, 0.22);
     font-weight: 800;
+    font: inherit;
+    cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.events-thpt-btn:hover {
+.events-download-app-btn:hover {
     transform: translateY(-2px);
     border-color: rgba(185, 28, 28, 0.48);
     box-shadow: 0 12px 24px rgba(127, 29, 29, 0.32);
 }
 
-.events-thpt-btn:focus-visible {
+.events-download-app-btn:focus-visible {
     outline: 2px solid #FACC15;
     outline-offset: 2px;
 }
 
-.events-thpt-btn i {
+.events-download-app-btn i {
     width: 20px;
     height: 20px;
 }
@@ -1622,7 +1624,7 @@ main {
         margin-top: 1rem;
     }
 
-    .events-thpt-btn {
+    .events-download-app-btn {
         width: 100%;
         max-width: 360px;
         padding: 0.76rem 1rem;
@@ -7978,6 +7980,9 @@ footer::after {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .fab-main::before {
@@ -8005,13 +8010,13 @@ footer::after {
     color: white;
 }
 
-.fab-main--thpt {
+.fab-main--download-app {
     background: linear-gradient(135deg, #b91c1c 0%, #dc2626 55%, #ef4444 100%);
     border: 1px solid rgba(255, 215, 0, 0.55);
     box-shadow: 0 8px 24px rgba(185, 28, 28, 0.35);
 }
 
-.fab-main--thpt:hover {
+.fab-main--download-app:hover {
     box-shadow: 0 10px 28px rgba(127, 29, 29, 0.45), 0 0 0 3px rgba(250, 204, 21, 0.18);
 }
 
@@ -8150,7 +8155,7 @@ footer::after {
 .countdown-preview-btn.download-btn,
 .countdown-preview-btn.share-btn,
 .share-download-btn,
-.events-thpt-btn,
+.events-download-app-btn,
 .calendar-banner .banner-btn {
     background: #dc2626;
     background-image: none;
@@ -8174,7 +8179,7 @@ footer::after {
 .countdown-preview-btn.download-btn:hover,
 .countdown-preview-btn.share-btn:hover,
 .share-download-btn:hover,
-.events-thpt-btn:hover,
+.events-download-app-btn:hover,
 .calendar-banner .banner-btn:hover {
     background: #b91c1c;
     background-image: none;
