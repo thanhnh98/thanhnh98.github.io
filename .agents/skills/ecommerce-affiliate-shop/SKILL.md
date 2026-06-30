@@ -19,4 +19,4 @@ Read the Cursor skill before changing affiliate product data or ecommerce UI.
 
 ## Data Expectations
 
-Products in `data/aff/products` should preserve the repo schema: `id`, `shopId`, `thumbnail`, `images`, `name`, `description`, `type`, `category`, `coinBonus`, `buyText`, and `url`.
+Products in `data/aff/products` should preserve the repo schema: `id`, `shopId`, `thumbnail`, `images`, `name`, `description`, `type`, `group`, `category`, `coinBonus`, `buyText`, and `url`. Store `category` as an array ordered from most specific to broader related categories, for example `["phone-cases", "phone-accessories"]`.

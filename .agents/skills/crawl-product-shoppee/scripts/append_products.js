@@ -25,6 +25,12 @@ function requiredString(record, field) {
   return typeof record[field] === "string" && record[field].trim() !== "";
 }
 
+function categoryArray(record) {
+  const value = Array.isArray(record.category) ? record.category : record.categories;
+  const arr = Array.isArray(value) ? value : [record.category];
+  return [...new Set(arr.map((category) => String(category || "").trim()).filter(Boolean))];
+}
+
 function validateRecord(record) {
   const required = [
     "id",
@@ -33,12 +39,12 @@ function validateRecord(record) {
     "name",
     "description",
     "type",
-    "category",
     "buyText",
     "url",
   ];
   const missing = required.filter((field) => !requiredString(record, field));
   if (missing.length) return `missing ${missing.join(", ")}`;
+  if (!categoryArray(record).length) return "missing category";
   if (record.type !== "shopee") return "type must be shopee";
   if (!Array.isArray(record.images)) return "images must be an array";
   if (!record.url.startsWith("https://s.shopee.vn/")) return "url must be a Shopee shortlink";
@@ -64,7 +70,7 @@ function recordBlock(record, isLast) {
   lines.push(`            "name":${q(record.name)},`);
   lines.push(`            "description":${q(record.description)},`);
   lines.push('            "type":"shopee",');
-  lines.push(`            "category":${q(record.category)},`);
+  lines.push(`            "category":${JSON.stringify(categoryArray(record))},`);
   lines.push('            "coinBonus":10,');
   lines.push('            "buyText":"Xem sản phẩm",');
   lines.push(`            "url":${q(record.url)}`);
@@ -102,6 +108,7 @@ function appendRecords(productsPath, records, dryRun) {
     seenPairs.add(pair);
     inserted.push({
       ...record,
+      category: categoryArray(record),
       coinBonus: 10,
       buyText: "Xem sản phẩm",
       type: "shopee",
@@ -109,13 +116,8 @@ function appendRecords(productsPath, records, dryRun) {
   }
 
   if (!dryRun && inserted.length) {
-    const tail = "\n         }\n      ]\n   }\n}\n";
-    if (!text.endsWith(tail)) {
-      throw new Error("Unexpected products file tail; append manually after inspecting format");
-    }
-    const block = inserted.map((record, index) => recordBlock(record, index === inserted.length - 1)).join("\n");
-    const updated = text.slice(0, -tail.length) + "\n         },\n" + block + "\n      ]\n   }\n}\n";
-    fs.writeFileSync(productsPath, updated);
+    data.data.products.push(...inserted);
+    fs.writeFileSync(productsPath, `${JSON.stringify(data, null, 2)}\n`);
     JSON.parse(fs.readFileSync(productsPath, "utf8"));
   }
 

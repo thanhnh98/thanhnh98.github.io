@@ -1,6 +1,6 @@
 /**
  * Shop / Referral products page
- * Loads products from data/aff/products, filters by category and platform,
+ * Loads products from data/aff/products, filters by category/categories and platform,
  * opens Shopee or TikTok based on product URL (brand from URL).
  */
 
@@ -52,6 +52,7 @@
     'gift-sets':           '🎁',
     'decorations':         '🏮',
     'lucky-money':         '🧧',
+    'games-toys':          '🎲',
     'stationery':          '🖊️',
     'learning-tools':      '🧮',
     'misc':                '✨',
@@ -172,8 +173,83 @@
     return null;
   }
 
+  function getProductCategories(product) {
+    if (!product) return [];
+    var value = Array.isArray(product.category) ? product.category : product.categories;
+    if (!Array.isArray(value)) value = product.category ? [product.category] : [];
+    var seen = {};
+    return value.map(function (category) {
+      return String(category || '').trim();
+    }).filter(function (category) {
+      if (!category || seen[category]) return false;
+      seen[category] = true;
+      return true;
+    });
+  }
+
+  function getPrimaryCategory(product) {
+    return getProductCategories(product)[0] || '';
+  }
+
+  function productHasCategory(product, category) {
+    if (!category || category === ALL_CATEGORY) return true;
+    return getProductCategories(product).indexOf(category) !== -1;
+  }
+
+  function getProductGroups(product) {
+    if (!product) return [];
+    var value = Array.isArray(product.groups) ? product.groups : [product.group];
+    var seen = {};
+    return value.map(function (group) {
+      return String(group || '').trim();
+    }).filter(function (group) {
+      if (!group || seen[group]) return false;
+      seen[group] = true;
+      return true;
+    });
+  }
+
+  function productHasGroup(product, group) {
+    if (!group || group === ALL_GROUP) return true;
+    return getProductGroups(product).indexOf(group) !== -1;
+  }
+
   function getProductGroup(product, categories) {
-    var meta = getCategoryMeta(categories, product && product.category);
+    var productCategories = getProductCategories(product);
+    for (var i = 0; i < productCategories.length; i++) {
+      var meta = getCategoryMeta(categories, productCategories[i]);
+      if (meta && meta.group) return meta.group;
+    }
+    if (product && product.group) return product.group;
+    return 'other';
+  }
+
+  function getProductCategorySearchText(product) {
+    return getProductCategories(product).join(' ');
+  }
+
+  function getProductGroupSearchText(product) {
+    return getProductGroups(product).join(' ');
+  }
+
+  function normalizeProduct(product, categories) {
+    var copy = Object.assign({}, product);
+    var productCategories = getProductCategories(copy);
+    if (!productCategories.length && copy.category) productCategories = [copy.category];
+    copy.category = productCategories;
+    copy.group = getProductGroup(copy, categories);
+    copy.groups = [copy.group];
+    productCategories.forEach(function (category) {
+      var meta = getCategoryMeta(categories, category);
+      if (meta && meta.group && copy.groups.indexOf(meta.group) === -1) {
+        copy.groups.push(meta.group);
+      }
+    });
+    return copy;
+  }
+
+  function getLegacyProductGroup(product, categories) {
+    var meta = getCategoryMeta(categories, getPrimaryCategory(product));
     if (meta && meta.group) return meta.group;
     if (product && product.group) return product.group;
     return 'other';
@@ -199,7 +275,7 @@
       addGroup(cat && cat.group);
     });
     (products || []).forEach(function (product) {
-      addGroup(getProductGroup(product, categories));
+      addGroup(getLegacyProductGroup(product, categories));
     });
 
     return derived;
@@ -412,9 +488,7 @@
         var dedupedCats = dedupeByKey(rawCats, 'category');
         var dedupedGroups = buildGroups(rawGroups, dedupedCats, data.products);
         var products = data.products.map(function (p) {
-          var copy = Object.assign({}, p);
-          copy.group = getProductGroup(copy, dedupedCats);
-          return copy;
+          return normalizeProduct(p, dedupedCats);
         });
         return {
           groups: dedupedGroups,
@@ -524,10 +598,10 @@
 
     var filtered = activeGroup === ALL_GROUP
       ? products
-      : products.filter(function (p) { return p.group === activeGroup; });
+      : products.filter(function (p) { return productHasGroup(p, activeGroup); });
 
     if (activeCategory !== ALL_CATEGORY) {
-      filtered = filtered.filter(function (p) { return p.category === activeCategory; });
+      filtered = filtered.filter(function (p) { return productHasCategory(p, activeCategory); });
     }
     
     // Filter by platform
@@ -544,8 +618,8 @@
         var haystack = normalizeText([
           p.name,
           p.description,
-          p.group,
-          p.category,
+          getProductGroupSearchText(p),
+          getProductCategorySearchText(p),
           getBrandLabel(getBrandFromUrl(p.url))
         ].join(' '));
         return haystack.indexOf(normalizedQuery) !== -1;

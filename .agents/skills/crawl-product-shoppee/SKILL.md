@@ -1,6 +1,6 @@
 ---
 name: crawl-product-shoppee
-description: Use when crawling Shopee Affiliate product offers from https://affiliate.shopee.vn/offer/product_offer, including category tabs, copying affiliate shortlinks, resolving Shopee product URLs, parsing product metadata, and appending non-duplicate records to data/aff/products.
+description: Use when crawling Shopee Affiliate product offers from https://affiliate.shopee.vn/offer/product_offer, including category tabs, keyword searches, paginated results, copying affiliate shortlinks, resolving Shopee product URLs, parsing product metadata, and appending non-duplicate records to data/aff/products.
 ---
 
 # Crawl Product Shoppee
@@ -24,7 +24,8 @@ Each product record must preserve the existing fields:
   "name": "Product name | Shopee Việt Nam",
   "description": "Verified description or Shopee meta description",
   "type": "shopee",
-  "category": "clothes",
+  "group": "tech-accessories",
+  "category": ["phone-cases", "phone-accessories"],
   "coinBonus": 10,
   "buyText": "Xem sản phẩm",
   "url": "https://s.shopee.vn/..."
@@ -37,9 +38,11 @@ Never invent price, rating, sold count, voucher, or shipping claims. Only store 
 
 1. Open or claim the Chrome tab at `https://affiliate.shopee.vn/offer/product_offer`.
 2. If the user asks for specific tabs, click each requested tab first; otherwise process the currently visible tab.
-3. Read visible offer cards from anchors matching `/offer/product_offer/{itemId}`.
-4. Load `data/aff/products` and build duplicate sets by both `id` and `shopId/id`.
-5. For each visible card:
+3. If the user provides a keyword, fill the search input, press Enter, and confirm the input value and visible results changed before crawling.
+4. If the user asks for multiple pages, collect cards page by page from the pagination controls before crawling. Return to each page before clicking that page's card-scoped `Lấy link` buttons.
+5. Read visible offer cards from anchors matching `/offer/product_offer/{itemId}`.
+6. Load `data/aff/products` and build duplicate sets by both `id` and `shopId/id`.
+7. For each visible card:
    - Skip if the offer `itemId` is already present.
    - Click that card's own `Lấy link` button.
    - Read the shortlink from the open dialog textbox, not from stale page text.
@@ -49,9 +52,9 @@ Never invent price, rating, sold count, voucher, or shipping claims. Only store 
    - Parse the resolved URL as `/product/{shopId}/{itemId}` or `-i.{shopId}.{itemId}`.
    - Reject the record if resolved `itemId` does not equal the source offer `itemId`.
    - Reject the record if title is generic Shopee homepage text, thumbnail is missing, or no product metadata is available.
-6. Build records from JSON-LD `Product` first, then Open Graph meta tags, then visible product page text.
-7. Append valid records with `scripts/append_products.js`.
-8. Verify with `JSON.parse`, item count, required fields, and no new duplicate `shopId/id` pairs.
+8. Build records from JSON-LD `Product` first, then Open Graph meta tags, then visible product page text.
+9. Append valid records with `scripts/append_products.js`.
+10. Verify with `JSON.parse`, item count, required fields, and no new duplicate `shopId/id` pairs.
 
 ## Chrome Extraction Pattern
 
@@ -66,6 +69,29 @@ const cards = await affTab.playwright.evaluate(() =>
     return { index, id, href, text, buttonCount: a.querySelectorAll('button').length };
   }).filter(x => x.id)
 );
+```
+
+For keyword crawling, use the page's search input and preserve whatever commission/filter tab is already active unless the user asks to change it:
+
+```js
+const search = affTab.playwright.locator('input[placeholder="Tìm kiếm tất cả sản phẩm Shopee"]');
+if (await search.count() !== 1) throw new Error("search input not found");
+await search.fill(keyword, { timeoutMs: 10000 });
+await search.press("Enter", { timeoutMs: 10000 });
+await affTab.playwright.waitForTimeout(2500);
+const state = await affTab.playwright.evaluate(() => ({
+  keyword: document.querySelector('input[placeholder="Tìm kiếm tất cả sản phẩm Shopee"]')?.value || "",
+  count: document.querySelectorAll('a[href*="/offer/product_offer/"]').length,
+}));
+```
+
+For pagination, scroll to the bottom if needed, collect each requested page's cards, then return to that page before copying links:
+
+```js
+const pageButton = affTab.playwright.locator("span.page-item.page-page").filter({ hasText: String(pageNumber) });
+if (await pageButton.count() !== 1) throw new Error(`page ${pageNumber} button not found`);
+await pageButton.click({ timeoutMs: 10000 });
+await affTab.playwright.waitForTimeout(2200);
 ```
 
 For copying a link, close any previous dialog first, click the card-scoped button, then read the dialog textbox:
@@ -108,14 +134,29 @@ Reject a candidate when:
 
 ## Category Heuristic
 
-Choose from the categories already present in `data/aff/products`.
+Choose from the categories already present in `data/aff/products`; do not use legacy aliases as stored category values.
 
-- `clothes`: áo, váy, dép, giày, quần, bra, mũ, găng tay, khẩu trang, phụ kiện tóc
-- `thucpham`: dầu ăn, ôliu, sữa, bánh kẹo, thực phẩm
-- `assets`: đồ bếp, hộp, ly, chảo, máy xay, dụng cụ tập, đồ dùng gia đình
-- `tech`: gậy chụp ảnh, sạc, máy điện tử, LED, USB
+- `apparel`: áo, váy, quần, bra, áo dài, đồ mặc.
+- `shoes-bags`: dép, sandal, giày, túi xách.
+- `personal-accessories`: mũ, găng tay, khẩu trang, băng đô, tất, phụ kiện tóc.
+- `drinks`: sữa, trà, cà phê, nước uống.
+- `snacks-sweets`: bánh, kẹo, socola, mứt, hạt ăn vặt.
+- `pantry-food`: dầu ăn, ôliu, lạp xưởng, thực phẩm/gia vị nấu ăn.
+- `kitchen-dining`: đồ bếp, hộp đựng, ly, cốc, chảo, khay, máy xay bếp.
+- `home-essentials`: khăn giấy, túi rác, móc treo, kệ để đồ, đồ dùng gia đình.
+- `home-appliances`: quạt, đèn, thiết bị điện gia dụng.
+- `decorations`: lịch Tết, bình/lọ hoa, decal, đồ trang trí nhà, quạt trang trí.
+- `gift-sets`: hộp quà, giỏ quà, set quà. If the item is food in gift packaging, keep the food category too, ordered by the primary product type.
+- `lucky-money`: bao lì xì.
+- `games-toys`: bài tây, bầu cua, đồ chơi/giải trí Tết.
+- `phone-cases`: ốp lưng, case điện thoại, vỏ điện thoại. Also include `phone-accessories` in the same category array for phone cases.
+- `phone-accessories`: AirPods, tai nghe, case AirPods, phụ kiện điện thoại không phải ốp lưng
+- `phone-tablet`: điện thoại, iPad, máy tính bảng.
+- `smart-wearables`: đồng hồ thông minh, vòng đeo thông minh.
+- `electronics-gadgets`: màn hình, thiết bị điện tử không thuộc các nhóm tech cụ thể ở trên.
 
 Prefer a conservative category over creating a new one.
+Store product `category` as an array ordered from most specific to broader related categories. When the products file has `groups`, set a matching primary `group` too, such as `tech-accessories` for `phone-cases` and `phone-accessories`, or `home-living` for home/kitchen products.
 
 ## Append And Validate
 

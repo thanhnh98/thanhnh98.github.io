@@ -92,6 +92,30 @@
     return Array.from(new Set(tokens)).filter(function (t) { return t.length >= 3; });
   }
 
+  function getProductCategories(product) {
+    if (!product) return [];
+    var value = Array.isArray(product.category) ? product.category : product.categories;
+    if (!Array.isArray(value)) value = product.category ? [product.category] : [];
+    var seen = {};
+    return value.map(function (category) {
+      return String(category || '').trim();
+    }).filter(function (category) {
+      if (!category || seen[category]) return false;
+      seen[category] = true;
+      return true;
+    });
+  }
+
+  function categoryMatches(product, targetCategory) {
+    if (!targetCategory) return false;
+    if (Array.isArray(targetCategory)) {
+      return targetCategory.some(function (category) {
+        return categoryMatches(product, category);
+      });
+    }
+    return getProductCategories(product).indexOf(String(targetCategory)) !== -1;
+  }
+
   function scoreProductRelevance(product, item, primaryAffiliate) {
     if (!product || !product.url || !product.name) return -1;
     var score = 0;
@@ -99,7 +123,7 @@
     var targetGroup = (primaryAffiliate && primaryAffiliate.group) || (item && item.affiliate && item.affiliate.group) || '';
     var targetType = (primaryAffiliate && primaryAffiliate.type) || (item && item.affiliate && item.affiliate.type) || '';
 
-    if (targetCategory && product.category && String(product.category) === String(targetCategory)) score += 8;
+    if (targetCategory && categoryMatches(product, targetCategory)) score += 8;
     if (targetGroup && product.group && String(product.group) === String(targetGroup)) score += 5;
     if (targetType && product.type && String(product.type) === String(targetType)) score += 3;
 

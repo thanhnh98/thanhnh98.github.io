@@ -71,6 +71,10 @@ class FakeElement {
     this.eventListeners[type] = handler;
   }
 
+  getBoundingClientRect() {
+    return { left: 0, top: 0, width: 1, height: 1 };
+  }
+
   scrollTo() {}
   select() {}
 }
@@ -164,9 +168,111 @@ test('known shop products map to the right nhu cau groups', () => {
   for (const [id, expected] of Object.entries(expectations)) {
     const product = productsById.get(id);
     assert.ok(product, `expected product ${id} to exist`);
-    const category = categories.get(product.category);
-    assert.equal(product.category, expected.category, `wrong category for ${id}: ${product.name}`);
+    const productCategories = Array.isArray(product.category) ? product.category : [product.category];
+    const category = categories.get(productCategories[0]);
+    assert.ok(productCategories.includes(expected.category), `wrong category for ${id}: ${product.name}`);
     assert.equal(product.group, expected.group, `wrong stored group for ${id}: ${product.name}`);
     assert.equal(category?.group, expected.group, `category group mismatch for ${id}: ${product.name}`);
   }
+});
+
+test('shop URL category filter renders matching real products', async () => {
+  const source = fs.readFileSync(path.join(root, 'js/shop.js'), 'utf8');
+  const fixture = JSON.parse(fs.readFileSync(path.join(root, 'data/aff/products'), 'utf8'));
+  const document = makeDocument();
+  let replacedUrl = '';
+  const context = {
+    console,
+    document,
+    navigator: {},
+    requestAnimationFrame: (fn) => fn(),
+    setTimeout: (fn) => fn(),
+    window: {
+      document,
+      location: {
+        pathname: '/cua-hang.html',
+        search: '?category=smart-wearables',
+        hash: '',
+        origin: 'https://saptet.vn',
+      },
+      history: { replaceState: (_state, _title, url) => { replacedUrl = url; } },
+      lucide: { createIcons() {} },
+    },
+    fetch: async () => ({
+      ok: true,
+      text: async () => JSON.stringify(fixture),
+    }),
+  };
+
+  vm.runInNewContext(source, context, { filename: 'js/shop.js' });
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.equal(document._ids['shop-grid'].children.length, 7);
+  assert.equal(document._ids['shop-result-count'].textContent, '7 sản phẩm');
+  assert.equal(replacedUrl, '/cua-hang.html?group=tech-accessories&category=smart-wearables');
+});
+
+test('shop category filter includes products whose secondary category belongs to the active group', async () => {
+  const source = fs.readFileSync(path.join(root, 'js/shop.js'), 'utf8');
+  const fixture = {
+    data: {
+      groups: [
+        { group: 'gifts-decor', displayName: 'Quà tặng & trang trí' },
+        { group: 'home-living', displayName: 'Nhà cửa & đời sống' },
+      ],
+      categories: [
+        { category: 'decorations', displayName: 'Trang trí', group: 'gifts-decor' },
+        { category: 'home-appliances', displayName: 'Đồ điện gia dụng', group: 'home-living' },
+      ],
+      products: [
+        {
+          id: 'secondary-category-product',
+          shopId: 'shop',
+          thumbnail: '',
+          images: [],
+          name: 'Đèn ngủ cảm ứng decor',
+          description: '',
+          type: 'shopee',
+          group: 'gifts-decor',
+          category: ['decorations', 'home-appliances'],
+          coinBonus: 10,
+          buyText: 'Xem sản phẩm',
+          url: 'https://s.shopee.vn/example',
+        },
+      ],
+    },
+  };
+  const document = makeDocument();
+  const context = {
+    console,
+    document,
+    navigator: {},
+    requestAnimationFrame: (fn) => fn(),
+    setTimeout: (fn) => fn(),
+    window: {
+      document,
+      location: { pathname: '/cua-hang.html', search: '', hash: '', origin: 'https://saptet.vn' },
+      history: { replaceState() {} },
+      lucide: { createIcons() {} },
+    },
+    fetch: async () => ({
+      ok: true,
+      text: async () => JSON.stringify(fixture),
+    }),
+  };
+
+  vm.runInNewContext(source, context, { filename: 'js/shop.js' });
+  await new Promise((resolve) => setImmediate(resolve));
+
+  const homeGroupButton = document._ids['shop-groups'].children.find(
+    (child) => child.dataset.group === 'home-living'
+  );
+  assert.ok(homeGroupButton, 'expected home-living group button');
+  homeGroupButton.eventListeners.click({ clientX: 0, clientY: 0 });
+
+  const categorySelect = document._ids['shop-categories'];
+  categorySelect.value = 'home-appliances';
+  categorySelect.onchange();
+
+  assert.equal(document._ids['shop-grid'].children.length, 1);
 });
