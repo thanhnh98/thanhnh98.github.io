@@ -266,4 +266,16 @@
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
+    <url>
+        <loc>https://saptet.vn/terms-of-use/vi/</loc>
+        <lastmod>2026-08-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/terms-of-use/en/</loc>
+        <lastmod>2026-08-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
 </urlset>
