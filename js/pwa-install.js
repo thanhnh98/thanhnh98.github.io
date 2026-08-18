@@ -36,6 +36,19 @@ class PWAInstaller {
 
     async registerServiceWorker() {
         if ('serviceWorker' in navigator) {
+            const hadController = Boolean(navigator.serviceWorker.controller);
+
+            // The new worker calls skipWaiting() and claims this page. Reload once
+            // when it takes control so the page immediately uses the new assets.
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!hadController || this.isReloadingForUpdate) {
+                    return;
+                }
+
+                this.isReloadingForUpdate = true;
+                window.location.reload();
+            });
+
             try {
                 // Luôn check version mới từ server khi register
                 const registration = await navigator.serviceWorker.register('/sw.js', {
@@ -51,12 +64,6 @@ class PWAInstaller {
                 // Check for updates
                 registration.addEventListener('updatefound', () => {
                     console.log('PWA: New service worker found');
-                    const newWorker = registration.installing;
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            this.showUpdateAvailable();
-                        }
-                    });
                 });
             } catch (error) {
                 console.log('PWA: Service Worker registration failed:', error);
@@ -247,27 +254,6 @@ class PWAInstaller {
         this.showModal(
             '🎉 Cài đặt thành công!', 
             '<p>Ứng dụng Sắp Tết đã được cài đặt thành công! Bạn có thể tìm thấy nó trên màn hình chính của thiết bị.</p>'
-        );
-    }
-
-    showUpdateAvailable() {
-        const updateModal = this.showModal(
-            '🔄 Cập nhật có sẵn', 
-            '<p>Có phiên bản mới của ứng dụng. Bạn có muốn cập nhật ngay không?</p>',
-            [
-                {
-                    text: 'Cập nhật ngay',
-                    action: () => {
-                        window.location.reload();
-                    }
-                },
-                {
-                    text: 'Để sau',
-                    action: () => {
-                        updateModal.remove();
-                    }
-                }
-            ]
         );
     }
 

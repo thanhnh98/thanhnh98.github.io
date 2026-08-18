@@ -29,8 +29,6 @@ const urlsToCache = [
   '/css/style.css',
   '/css/colors.css',
   '/js/script.js',
-  '/js/main.js',
-  '/js/countdown.js',
   '/js/faq-modal.js',
   '/js/footer.js',
   '/assets/images/background.webp',
