@@ -519,6 +519,41 @@ a.news-cover-link:focus-visible {
     color: rgba(24, 24, 27, 0.7);
 }
 
+/* Editorial app-intro articles: prose-first layout, light figure captions */
+.news-article--editorial .news-content figure.article-inline-figure {
+    margin: 1rem 0 1.15rem;
+}
+
+.news-article--editorial .news-content figure.article-inline-figure img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fafafa;
+}
+
+.news-article--editorial .news-cover.app-shot {
+    aspect-ratio: auto;
+    max-height: 520px;
+    object-fit: contain;
+}
+
+.news-article--editorial .news-content figure.article-inline-figure figcaption {
+    margin-top: 0.45rem;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+.news-article--editorial .news-download-links {
+    margin: 0.65rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.news-article--editorial .news-download-links a {
+    font-weight: 600;
+}
+
 .cta-row {
     display: flex;
     flex-wrap: wrap;

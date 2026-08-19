@@ -1474,10 +1474,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Logo click to scroll to top functionality
 function initializeLogoScrollToTop() {
-    // Add click event to entire header brand area
-    const headerBrand = document.querySelector('.header-brand');
-    if (headerBrand) {
-        headerBrand.addEventListener('click', function(e) {
+    // Use event delegation on document body to handle dynamically loaded headers
+    document.body.addEventListener('click', function(e) {
+        const brandLink = e.target.closest('.header-brand-link') || e.target.closest('.header-brand');
+        if (brandLink) {
             e.preventDefault();
             e.stopPropagation();
             
@@ -1495,10 +1495,8 @@ function initializeLogoScrollToTop() {
                 // If on other page, navigate to home page with clean URL
                 window.location.href = '/';
             }
-        });
-        // Add cursor pointer style
-        headerBrand.style.cursor = 'pointer';
-    }
+        }
+    });
 }
 
 // Event Modal Functions

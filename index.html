@@ -260,60 +260,22 @@
       }
     </script>
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "Sắp Tết - Đếm ngược Tết 2027",
-        "description": "Sắp Tết giúp đếm ngược Tết Nguyên Đán 2027 (năm Đinh Mùi), xem ngày Tết, lịch âm, món ăn Tết, trò chơi và phong tục chuẩn bị Tết.",
-        "keywords": "Sắp Tết, Sắp Tết 2027, Sắp Tết - Đếm ngược Tết, app Sắp Tết, đếm ngược Tết 2027, Tết Nguyên Đán 2027, Tết Đinh Mùi 2027, lịch âm, món ăn Tết, trò chơi Tết, phong tục Tết",
-        "startDate": "2027-02-06",
-        "endDate": "2027-02-16",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-        "image": "https://saptet.vn/images/tet-background-pattern.svg",
-        "location": {
-          "@type": "VirtualLocation",
-          "name": "Sắp Tết - Đếm ngược Tết 2027",
-          "url": "https://saptet.vn"
-        },
-        "organizer": {
-          "@type": "Organization",
-          "name": "Sắp Tết",
-          "url": "https://saptet.vn",
-          "description": "Nền tảng chia sẻ văn hóa Tết truyền thống Việt Nam"
-        },
-        "performer": {
-          "@type": "Organization",
-          "name": "Sắp Tết",
-          "description": "Cộng đồng yêu thích và bảo tồn văn hóa Tết truyền thống"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "VND",
-          "availability": "https://schema.org/InStock",
-          "url": "https://saptet.vn",
-          "description": "Trải nghiệm miễn phí đầy đủ về văn hóa Tết: đếm ngược, món ăn, trò chơi và phong tục truyền thống"
-        },
-        "audience": {
-          "@type": "Audience",
-          "audienceType": "Người Việt Nam và những ai yêu thích văn hóa Tết"
-        },
-        "inLanguage": "vi-VN",
-        "category": "Văn hóa truyền thống, Lễ hội, Tết Nguyên Đán"
-      }
-    </script>
-
     <!-- Additional Schema for Tet Keywords -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Thing",
         "name": "Tết Việt Nam",
-        "alternateName": ["Tết Việt", "Tết 2027", "Tết", "Tết Nguyên Đán", "Tết Đinh Mùi 2027"],
-        "description": "Tết Việt Nam là lễ hội truyền thống quan trọng nhất của người Việt, đánh dấu sự khởi đầu năm mới âm lịch",
-        "url": "https://saptet.vn",
+        "alternateName": ["Tết Việt", "Tết 2027", "Tết", "Tết Nguyên Đán", "Tết Đinh Mùi 2027", "Tết Nguyên Đán 2027"],
+        "description": "Tết Việt Nam là lễ hội truyền thống quan trọng nhất của người Việt. Tết Nguyên Đán 2027 (Đinh Mùi) là ngày 6 tháng 2 năm 2027 dương lịch.",
+        "url": "https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Ngày Tết 2027 (dương lịch)",
+            "value": "2027-02-06"
+          }
+        ],
         "sameAs": [
           "https://saptet.vn",
           "https://www.facebook.com/saptet2027",
@@ -369,31 +331,6 @@
             }
           }
         ]
-      }
-    </script>
-
-    <!-- Event Schema: Tết Nguyên Đán 2027 - trả lời "Khi nào Tết" -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "Tết Nguyên Đán 2027 - Tết Đinh Mùi",
-        "description": "Tết 2027 vào ngày 6 tháng 2 năm 2027. Còn bao nhiêu ngày tới Tết? Xem đếm ngược Tết Nguyên Đán chính xác tại Sắp Tết.",
-        "startDate": "2027-02-06T00:00:00+07:00",
-        "endDate": "2027-02-06T23:59:59+07:00",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {
-          "@type": "Place",
-          "name": "Việt Nam"
-        },
-        "organizer": {
-          "@type": "Organization",
-          "name": "Sắp Tết",
-          "url": "https://saptet.vn"
-        },
-        "url": "https://saptet.vn",
-        "inLanguage": "vi-VN"
       }
     </script>
 
@@ -463,7 +400,7 @@
                 <i data-lucide="calendar-heart" class="countdown-info-icon" aria-hidden="true"></i>
                 Tết Nguyên Đán: <span id="tet-date-solar">06/02/2027</span>
               </p>
-              <a href="lich-van-nien.html" class="countdown-info-today-link" aria-label="Xem lịch vạn niên chi tiết">
+              <a href="lich-am-hom-nay.html" class="countdown-info-today-link" aria-label="Xem lịch âm hôm nay chi tiết">
                 <span id="today-label">Hôm nay:</span>
                 <span id="today-date"></span>
                 <span id="today-lunar" class="today-lunar"></span>
@@ -589,7 +526,7 @@
 
       <!-- Home News Preview - Blog mới nhất (data từ news.json) -->
       <section id="home-news-preview" class="home-news-preview-section scroll-section">
-        <script type="application/json" id="news-json-inline">{"items":[{"id":"news-019","slug":"lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026","title":"Lịch nghỉ lễ Giỗ Tổ Hùng Vương và 30/4-1/5 năm 2026: Chính thức theo Bộ Luật Lao động","summary":"Cục Việc làm (Bộ Nội vụ) khẳng định lịch nghỉ lễ thực hiện đúng quy định. Giỗ Tổ 10/3 âm lịch (26/4) nghỉ 3 ngày (25-27/4); 30/4-1/5 nghỉ 4 ngày (30/4-3/5).","category":"policy","publishedAt":"2026-03-17T14:30:00Z","thumbnailUrl":"https://resource.kinhtedothi.vn/2025/03/27/ky-nghi-1.jpg","detailPage":"./tin-tuc/lich-nghi-le-gio-to-hung-vuong-30-4-1-5-2026.html"}]}</script>
+        <script type="application/json" id="news-json-inline">{"items":[{"id":"news-041","slug":"review-gay-chup-anh-4-chan-p185-remote-180cm","title":"Review gậy chụp ảnh 4 chân P185: remote rời, chiều dài 30-180cm có hợp quay chụp hằng ngày?","summary":"Gậy chụp ảnh 4 chân P185 nổi bật với thiết kế vừa cầm tay vừa dựng tripod, tặng kèm remote và chiều dài sử dụng 30-180cm, phù hợp nhu cầu selfie, quay video ngắn và chụp nhóm trong các chuyến đi.","category":"technology","publishedAt":"2026-05-13T03:38:27Z","thumbnailUrl":"https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lt96mazoek04dd","detailPage":"./tin-tuc/review-gay-chup-anh-4-chan-p185-remote-180cm.html"}]}</script>
         <div class="container container--news-preview">
           <h2 class="home-news-preview-title">
             <i data-lucide="newspaper" class="home-news-preview-icon" aria-hidden="true"></i>
@@ -1027,12 +964,15 @@
             <button class="carousel-btn next" id="carousel-next">›</button>
           </div>
           <div class="events-extra-cta">
-            <a href="/dem-nguoc-thi-thpt-2026.html#lich-thi-thpt-2026"
-               class="events-thpt-btn"
-               aria-label="Xem lịch thi và đếm ngược kỳ thi tốt nghiệp THPT 2026">
-              <i data-lucide="graduation-cap" aria-hidden="true"></i>
-              <span>Xem lịch thi THPT 2026</span>
-            </a>
+            <button type="button"
+                    id="smart-app-download-btn"
+                    class="events-download-app-btn smart-app-download-trigger"
+                    data-android-url="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down"
+                    data-ios-url="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027/id6743064990?platform=iphone"
+                    aria-label="Tải ứng dụng Sắp Tết">
+              <i data-lucide="download" aria-hidden="true"></i>
+              <span>Tải Sắp Tết</span>
+            </button>
           </div>
         </div>
       </section>
@@ -1364,6 +1304,44 @@
             }
           });
         }
+
+        document.querySelectorAll('.smart-app-download-trigger').forEach(function(smartDownloadBtn) {
+          smartDownloadBtn.addEventListener('click', function() {
+            const ua = navigator.userAgent || navigator.vendor || '';
+            const isAndroid = /Android/i.test(ua);
+            const isIOS = /iPad|iPhone|iPod/i.test(ua) ||
+              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            const androidUrl = smartDownloadBtn.getAttribute('data-android-url');
+            const iosUrl = smartDownloadBtn.getAttribute('data-ios-url');
+
+            if (isAndroid && androidUrl) {
+              if (window.webAnalytics) window.webAnalytics.trackDownloadClick('android', 'homepage_events_cta');
+              window.location.href = androidUrl;
+              return;
+            }
+
+            if (isIOS && iosUrl) {
+              if (window.webAnalytics) window.webAnalytics.trackDownloadClick('ios', 'homepage_events_cta');
+              window.location.href = iosUrl;
+              return;
+            }
+
+            if (window.webAnalytics) {
+              window.webAnalytics.trackImportantAction('download_app_scroll', {
+                from: 'homepage_events_cta',
+                to: 'app_intro'
+              });
+            }
+
+            const appSection = document.getElementById('app-intro') || document.getElementById('app-download');
+            if (appSection) {
+              appSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
 
         // Universal scroll animation for all sections with .scroll-section class
         const scrollSections = document.querySelectorAll('.scroll-section');
@@ -1904,13 +1882,17 @@
 
     <div id="footer-container"></div>
 
-<!-- Floating Action Button for THPT Exam Schedule -->
 <div class="fab-container">
-  <a href="/dem-nguoc-thi-thpt-2026.html#lich-thi-thpt-2026" class="fab-main fab-main--thpt" title="Xem lịch thi THPT quốc gia 2026">
-    <span class="fab-icon"><i data-lucide="graduation-cap"></i></span>
-    <span class="fab-text">Lịch thi THPT</span>
-  </a>
-  <div class="fab-tooltip">Xem lịch thi THPT quốc gia 2026</div>
+  <button type="button"
+          id="smart-app-download-fab"
+          class="fab-main fab-main--download-app smart-app-download-trigger"
+          data-android-url="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down"
+          data-ios-url="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027/id6743064990?platform=iphone"
+          aria-label="Tải ứng dụng Sắp Tết">
+    <span class="fab-icon"><i data-lucide="download"></i></span>
+    <span class="fab-text">Tải Sắp Tết</span>
+  </button>
+  <div class="fab-tooltip">Tải ứng dụng Sắp Tết</div>
 </div>
 
 <!-- Countdown Preview Modal -->

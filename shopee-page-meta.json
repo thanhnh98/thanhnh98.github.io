@@ -1,0 +1,50 @@
+{
+  "href": "https://shopee.vn/verify/traffic/error?home_url=https%3A%2F%2Fshopee.vn&is_from_fu=1782723564790&is_logged_in=false&next=https%3A%2F%2Fshopee.vn%2Fproduct%2F779091641%2F51609382766%3Fcredential_token%3D8wEwiDL7ZRTMjYYD8tD6tWA9A8KnZKW68nJvVBRigz%26exp_group%3Drollout%26gads_t_sig%3DgqRjZGVrxHCFomtpsTE0MjUxOnRzc19zZGtfa2V5omt20QABpGFsZ2_SAAAAZKNkZWvAomN0xEAAAAAMfaLqlfFS4JwQPCoOJZHE2YMfq1tWF61pnIIHqGuyOlpkjBotHu7Xpb0YRK1tULWVZdcpI_r9hw6jgE9CqmNpcGhlcnRleHTEkwAAAAx7V8aQtDigKAg33nVOCSGCNGOgBlCRRf5W3gMQ9vbPZUchb1-ZlcsLHYgL6yrtPuj9FhK17BIaZ6L4SLqw7IT3xMCdkVU_JDMz8rjRMKiVGfgGJBYYOPfe7KpPPKh2atF1f7ADBLhIUF3tFIwF-krQ2wA-cXxMqWkMv3FgYsjvKLOyL2ruNoo5iZTDFWK4OA%26mmp_pid%3Dan_17366990225%26uls_trackid%3D560tohok00n6%26utm_campaign%3Did_1248sJ2KrLD%26utm_content%3D----%26utm_medium%3Daffiliates%26utm_source%3Dan_17366990225%26utm_term%3Df5czg45pwq4s&tracking_id=92248ecc24b-e19f-466b-8d25-d15cbb96dade&type=4",
+  "title": "Shopee Việt Nam | Hot Deals, Best Prices",
+  "metas": [
+    {
+      "property": null,
+      "name": "viewport",
+      "content": "width=1240,shrink-to-fit=no"
+    },
+    {
+      "property": null,
+      "name": "shopee:git-sha",
+      "content": "c495950fc6640b1d1545134e6d46f8e498948481"
+    },
+    {
+      "property": null,
+      "name": "shopee:version",
+      "content": "sw-WEBFE-MKP-2026.06.v3-1-1"
+    },
+    {
+      "property": null,
+      "name": "robots",
+      "content": "noindex"
+    },
+    {
+      "property": null,
+      "name": "theme-color",
+      "content": "#f53d2d"
+    },
+    {
+      "property": "og:title",
+      "name": null,
+      "content": "Shopee Việt Nam | Hot Deals, Best Prices"
+    }
+  ],
+  "bodyText": "Skip to main content\nNeed help?\nPage Unavailable\nLooks like you’re not logged in yet. Log in to continue or head back to the homepage.\nLog InBack to Home Page\nID: 92248ecc24b-e19f-466b-8d25-d15cbb96dade",
+  "scriptsCount": 35,
+  "scripts": [
+    "let browserYear=2017;navigator.userAgent.includes(\"Firefox\")?Uint8Array.prototype.setFromBase64&&(browserYear=2023):Intl.DurationFormat&&(browserYear=2023),window.BROWSER_YEAR=browserYear",
+    "\nwindow.__APP_ID__ = 1;\n      window.__LOCALE__ = 'VN';\n      window.__ENV__ = 'live';\n      window.__META_APP_DETAILS__ = {\"apmsPromotionLiveKey\":\"a5d1f0ec50dfb01a8f66086733613696fe5dceeb8c440326ca3340240183c965\",\"apmsPromotionNonLiveKey\":\"a4d4f25de385e05a506e0b6dd6facfc10c0961935d9e447a5d6737d0997b6b49\",\"googleMapsApiKey_Live\":\"AIzaSyA1MgLuZuyqR_OGY3ob3M52N46TDBRI_9k\",\"googleMapsApiKey_NonLive\":\"AIzaSyA1MgLuZuyqR_OGY3ob3M52N46TDBRI_9k\",\"googleMapsBuyerApiKey_Live\":\"AIzaSyDgWFqI-lfuuUk8md8g8ZgCsvol72s5RuE\",\"googleMapsBuyerApiKey_NonLive\":\"AIzaSyApXSJ2O8u6ni_MCl4TMhxFGhlVFFynXGI\",\"googleMapsOrderOpsApiKey_Live\":\"AIzaSyDPHNQoGkV7vlj4wdfm_98yWvpK2m3uo9A\",\"googleMapsOrderOpsApiKey_NonLive\":\"AIzaSyCqFdAv5RRYV9cZG1zEII8v3td4_hIU1-4\"};\n      window.__ASSETS__ = {\"CHECKOUT_CONFIGS\":{\"live\":{\"display_fast_edt_opc_web\":{\"default\":\"hide_fast_edt\",\"id|tw|th|vn|ph|my|sg\":\"display_fast_edt\"},\"display_pc_shipping_recommendation\":{\"default\":false,\"id|tw|th|vn|ph|my|sg\":true},\"invalid_address_softbloc",
+    "location.replace(\"/unsupported.html\")",
+    "!function(){var t=/^\\/(?:supermarket|cart|checkout|search)(?:\\/|$)/,e=/^(?:[a-zA-Z0-9_-]{2,30}|shopeefood[a-zA-Z0-9_-]{0,40})$/,o=document&&document.querySelector('script[type^=\"text/shopee-short-url-checked\"]'),n=!(!o||\"1\"!==o.textContent),i=location&&location.origin||\"\";function a(){document&&document.body&&(document.body.style.visibility=\"visible\")}var r=\"\";function c(o){var n=new URL(o,location.href),c=n.pathname,l=n.hash,u=c.replace(/\\/+$/,\"\");if(r!==u){r=u;var s=c.slice(1);if(!function(e){return t.test(e)}(c)&&\"\"===l&&e.test(s)){document&&document.body&&(document.body.style.visibility=\"hidden\");var h=\"undefined\"!=typeof AbortController?new AbortController:null,d=setTimeout((function(){h&&h.abort(),a()}),5e3);fetch(i+\"/api/v4/pages/is_short_url/?path=\"+c.slice(1),{headers:{Accept:\"application/json\"},signal:h?h.signal:void 0}).then((function(t){return t.ok?t.json():null})).then((function(t){clearTimeout(d),t&&t.data&&t.data.url?location.href=t.data.url:a()})).catch((function(){clea",
+    "\"loading\"in HTMLImageElement.prototype?document.addEventListener(\"DOMContentLoaded\",(()=>{document.querySelectorAll(\"img[loading].lazyload\").forEach((e=>{e.dataset.src&&(e.src=e.dataset.src),e.dataset.srcset&&(e.srcset=e.dataset.srcset);var t,s,a=e.parentElement;if(a&&\"PICTURE\"===a.nodeName)for(t=a.getElementsByTagName(\"source\"),s=0;s<t.length;s++)t[s].dataset.src&&(t[s].src=t[s].dataset.src),t[s].dataset.srcset&&(t[s].srcset=t[s].dataset.srcset)}))})):document.write('<script type=\"text/javascript\" src=\"https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/polyfill.d86e5ceef3caefa1.js\"><\\/script>')",
+    "window.MutationObserver||document.write('<script type=\"text/javascript\" src=\"https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/polyfill.6d66a9f4abfc0453.js\"><\\/script>')",
+    "\"IntersectionObserver\"in window&&\"IntersectionObserverEntry\"in window&&\"intersectionRatio\"in window.IntersectionObserverEntry.prototype&&\"isIntersecting\"in window.IntersectionObserverEntry.prototype||document.write('<script type=\"text/javascript\" src=\"https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/polyfill.7b130ff53107c239.js\"><\\/script>')",
+    "(()=>{var e=document.createElement(\"div\").style;e.setProperty&&e.setProperty(\"--x\",\"x\"),e.getPropertyValue&&\"x\"===e.getPropertyValue(\"--x\")||(document.write('<script type=\"text/javascript\" src=\"https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/polyfill.e91a033830f038f9.js\"><\\/script>'),document.write(\"<script>window.cssVars({preserveVars:!0,watch:!0});<\\/script>\"))})()",
+    "!function(){var e,t,n=performance,r=\"PerformanceElementTiming\"in window,i=function(e){try{var t=n.measure(e,{start:n.now(),detail:42});if(n.clearMeasures(e),t&&42===t.detail)return!0}catch(e){}return!1}(\"__test\"),a=window,o=document,s=PerformanceObserver,u=addEventListener,f=removeEventListener,c=\"element\",m=\"measure\",v=\"mark\",l=\"load\",d=\"hidden\",p=\"prerendering\",g=\"visibilitychange\",h=\"prerenderingchange\",w=\"visibilityState\",y=\"getEntriesByType\",E=function(){},b=new Map,T=0,M=-1,_=function(r,a,o){if(r.startsWith(\"shopee:\")&&!b.has(r)){b.set(r,T);var s=0===T,u=e?Object.assign({},e,o):o,f=\"shopee:softNavigate\",c=a;if(s){if(c||(c=n.now()),c>=M)return;f=0,c=Math.max(c-(t||0),0)}i?n.measure(r,{detail:u,start:f,end:c}):(n.mark(r),n.measure(r,0===f?void 0:f,r))}};if(new s((function(t){t.getEntries().forEach((function(t){var n=t.entryType,r=t.name,i=t.startTime,a=t.detail;if(n===v&&\"shopee:softNavigate\"===r&&i>T&&(T=i,e=a,Array.from(b.entries()).forEach((function(e){var t=e[0];e[1]>T||b.delet",
+    "!function(){\"use strict\";function e(e,n,o){if(o||2===arguments.length)for(var i,r=0,t=n.length;r<t;r++)!i&&r in n||(i||(i=Array.prototype.slice.call(n,0,r)),i[r]=n[r]);return e.concat(i||Array.prototype.slice.call(n))}var n=\"1.1.0\",o={initialized:!1},i={version:n,store:{},load:function(n){Array.isArray(n)&&(i.dep=e(e([],i.dep||[],!0),n,!0),n.forEach((function(e){var n;null===(n=i.__generateModule)||void 0===n||n.call(i,\"string\"==typeof e?e:e[0])})))},init:function(r,t,a){if(void 0===a&&(a=n),o.initialized)console.warn(\"trackingSDK is already initialized.\");else{o.initialized=!0,i.param=t;var c,l,s=Array.isArray(r)?r:Object.keys(r);i.dep=e(e([],s,!0),i.dep||[],!0),i.version=a,s.forEach((function(e){var n;null===(n=i.__generateModule)||void 0===n||n.call(i,e)})),c=\"@shopee/tracking-loader@\".concat(i.version,\".min.js\"),(l=document.createElement(\"script\")).async=!0,l.src=\"\".concat(\"https://deo.shopeemobile.com/shopee/shopee-trackingsdk-live-sg\",\"/\").concat(c),document.body.appendChild(l)}}"
+  ]
+}

@@ -14,6 +14,8 @@ Allow: /tro-choi-tet.html
 Allow: /cua-hang.html
 Allow: /con-bao-lau-nua-den-tet.html
 Allow: /lich-van-nien.html
+Allow: /lich-am-hom-nay.html
+Allow: /lich-am-hom-nay
 Allow: /qr-code
 
 # Allow crawling of assets

@@ -10,7 +10,9 @@ class HeaderLoader {
         const normalizedPath = path.replace(/\/$/, '');
         const filename = path.split('/').pop();
         
-        if (filename === 'mon-an-tet.html') {
+        if (filename === 'lich-am-hom-nay.html' || normalizedPath === '/lich-am-hom-nay') {
+            return 'lich-am-hom-nay';
+        } else if (filename === 'mon-an-tet.html') {
             return 'mon-an-tet';
         } else if (filename === 'loi-chuc-tet.html') {
             return 'loi-chuc';

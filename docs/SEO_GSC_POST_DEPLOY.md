@@ -5,7 +5,8 @@
 1. **Rich Results Test**  
    URL: https://search.google.com/test/rich-results  
    Kiểm tra: `https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet`  
-   Kỳ vọng: **WebPage** + **FAQPage** hợp lệ; **không** có Event (tránh lỗi thiếu `location`).
+   Kiểm tra thêm: `https://saptet.vn/`  
+   Kỳ vọng: **WebPage** / **FAQPage** / **Thing** hợp lệ; **không** có `@type: Event` (site đếm ngược, không phải sự kiện — tránh lỗi thiếu `location`).
 
 2. **Google Search Console – URL Inspection**  
    - `https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet` → Request indexing (**một lần**)  
