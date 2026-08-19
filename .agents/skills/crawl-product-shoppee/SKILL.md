@@ -54,7 +54,8 @@ Never invent price, rating, sold count, voucher, or shipping claims. Only store 
    - Reject the record if title is generic Shopee homepage text, thumbnail is missing, or no product metadata is available.
 8. Build records from JSON-LD `Product` first, then Open Graph meta tags, then visible product page text.
 9. Append valid records with `scripts/append_products.js`.
-10. Verify with `JSON.parse`, item count, required fields, and no new duplicate `shopId/id` pairs.
+10. In the same command, sync records to `../tet-count-down-api-v2/affiliate/tiki/products`. The script maps the website's category array to the mobile apps' legacy category string.
+11. Verify both files with `JSON.parse`, item count, required fields, and no new duplicate IDs, URLs, or `shopId/id` pairs.
 
 ## Chrome Extraction Pattern
 
@@ -123,6 +124,7 @@ Parse in priority order:
 - JSON-LD Product: `name`, `description`, `image`, `productID`
 - Open Graph: `og:title`, `og:description`, `og:image`
 - Images: `down-vn.img.susercontent.com/file/...`, normalized by removing `_tn` and `@resize_w..._nl.webp`
+- Offer-list images on `down-zl-vn.img.susercontent.com/...webp` may be normalized to `down-vn.img.susercontent.com/file/...`; verify the normalized URL returns an image before storing it.
 
 Reject a candidate when:
 
@@ -165,7 +167,8 @@ Save crawled records to a temporary JSON array, then run:
 ```bash
 node .agents/skills/crawl-product-shoppee/scripts/append_products.js \
   --records /tmp/shopee-aff-records.json \
-  --products data/aff/products
+  --products data/aff/products \
+  --mobile-products ../tet-count-down-api-v2/affiliate/tiki/products
 ```
 
 For a dry run:
@@ -174,13 +177,25 @@ For a dry run:
 node .agents/skills/crawl-product-shoppee/scripts/append_products.js \
   --records /tmp/shopee-aff-records.json \
   --products data/aff/products \
+  --mobile-products ../tet-count-down-api-v2/affiliate/tiki/products \
   --dry-run
 ```
 
-After appending, verify:
+Do not copy website records directly into the mobile file: Android and iOS currently decode `category` as a single `String`. After appending, verify both counts:
+
+To backfill every website product missing from mobile without modifying the website catalog, run a dry run first and then remove `--dry-run`:
+
+```bash
+node .agents/skills/crawl-product-shoppee/scripts/append_products.js \
+  --products data/aff/products \
+  --mobile-products ../tet-count-down-api-v2/affiliate/tiki/products \
+  --sync-mobile \
+  --dry-run
+```
 
 ```bash
 node -e "const fs=require('fs'); const j=JSON.parse(fs.readFileSync('data/aff/products','utf8')); console.log(j.data.products.length)"
+node -e "const fs=require('fs'); const j=JSON.parse(fs.readFileSync('../tet-count-down-api-v2/affiliate/tiki/products','utf8')); console.log(j.data.products.length)"
 ```
 
-Report how many visible offers were found, skipped as duplicates, rejected for mismatch/missing metadata, and appended.
+Report how many visible offers were found, skipped as duplicates, rejected for mismatch/missing metadata, appended to the website, and appended to mobile.

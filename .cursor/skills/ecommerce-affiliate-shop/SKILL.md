@@ -543,7 +543,8 @@ function trackShopEvent(action, params) {
         "displayName": "Tất cả"
       },
       {
-        "category": "lixi",
+        "group": "gifts-decor",
+        "category": ["lucky-money"],
         "displayName": "Bao Lì Xì 🧧"
       }
     ],
@@ -565,7 +566,8 @@ function trackShopEvent(action, params) {
 ### Required Fields
 - `name`: Tên sản phẩm (required)
 - `url`: Affiliate link (required)
-- `category`: Category ID (required)
+- `group`: Group ID (required)
+- `category`: Ordered array of category IDs (required)
 - `thumbnail`: Image URL (optional, có placeholder)
 - `description`: Mô tả ngắn (optional)
 - `buyText`: Custom CTA text (optional, default: "Xem sản phẩm")
@@ -651,13 +653,13 @@ function trackShopEvent(action, params) {
 ```html
 <a href="[affiliate-url]" 
    target="_blank"
-   rel="noopener noreferrer"
+   rel="noopener noreferrer sponsored nofollow"
    class="shop-card-link">
 ```
 
 - ✅ `target="_blank"`: Mở tab mới
-- ✅ `rel="noopener noreferrer"`: Security + SEO
-- ✅ Không dùng `rel="nofollow"` (Google không khuyến nghị)
+- ✅ `rel="noopener noreferrer"`: bảo vệ tab gốc và quyền riêng tư
+- ✅ `rel="sponsored nofollow"`: khai báo rõ liên kết affiliate/trả phí cho công cụ tìm kiếm
 
 ### 2. Disclosure
 - ✅ Hiển thị rõ "Affiliate" hoặc badge brand
@@ -757,7 +759,7 @@ Khi implement shop affiliate, test:
 - [ ] Keyboard navigation hoạt động
 - [ ] Screen reader đọc đúng
 - [ ] Loading/empty/error states hiển thị
-- [ ] Performance: LCP < 2.5s, FID < 100ms
+- [ ] Performance: LCP < 2.5s, INP < 200ms
 - [ ] Images lazy load đúng
 - [ ] Touch targets đủ lớn trên mobile
 
@@ -769,7 +771,7 @@ Khi implement shop affiliate, test:
 <article class="shop-card">
   <a href="https://shopee.vn/product?affiliate=xxx" 
      target="_blank"
-     rel="noopener noreferrer"
+     rel="noopener noreferrer sponsored nofollow"
      class="shop-card-link"
      aria-label="Xem sản phẩm: Bao lì xì đỏ in chữ vàng năm 2027"
      onclick="trackShopEvent('click_item', {item_name: 'Bao lì xì đỏ', brand: 'shopee'})">
@@ -791,7 +793,7 @@ Khi implement shop affiliate, test:
   <div class="shop-card-actions">
     <a href="https://shopee.vn/product?affiliate=xxx"
        target="_blank"
-       rel="noopener noreferrer"
+       rel="noopener noreferrer sponsored nofollow"
        class="shop-card-cta"
        onclick="trackShopEvent('click_item', {item_name: 'Bao lì xì đỏ', brand: 'shopee'})">
       Xem sản phẩm

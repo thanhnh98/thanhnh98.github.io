@@ -1,7 +1,7 @@
 {
   "data": {
     "agency": {
-      "name": "TIKI"
+      "name": "SHOPEE"
     },
     "categories": [
       {
@@ -5297,6 +5297,328 @@
         "coinBonus": 10,
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/18RGiVfWL"
+      },
+      {
+        "id": "29558026394",
+        "shopId": "1255723336",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mn6ms17jltkzba",
+        "images": [],
+        "name": "Máy Massage Cầm Tay Mini, Súng Massage Cầm Tay Mini Toàn Thân 6 Cấp Độ Chuyên Sâu Đa Năng KH-720 | Shopee Việt Nam",
+        "description": "Máy massage cầm tay mini toàn thân với 6 cấp độ",
+        "category": [
+          "beauty-personal-care"
+        ],
+        "url": "https://s.shopee.vn/LmYfxlEA5",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "42573798292",
+        "shopId": "1430999577",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mfqt5yjfwc2789",
+        "images": [],
+        "name": "RII Bộ sạc nhanh PD 45W dây sạc nhanh cho iPhone | Shopee Việt Nam",
+        "description": "Bộ sạc nhanh PD 45W kèm dây sạc cho điện thoại",
+        "category": [
+          "phone-accessories"
+        ],
+        "url": "https://s.shopee.vn/BT8TevD9n",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "2235168049",
+        "shopId": "140586149",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-8259w-ms272uldmigw93",
+        "images": [],
+        "name": "[SVIP] Tắm gội cho nam 2 trong 1 hương nước hoa Romano 650g | Shopee Việt Nam",
+        "description": "Tắm gội nam Romano 2 trong 1 dung tích 650g",
+        "category": [
+          "beauty-personal-care"
+        ],
+        "url": "https://s.shopee.vn/2LXd3dr1E4",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "44606828138",
+        "shopId": "1255702550",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmvu03n37aiuee",
+        "images": [],
+        "name": "Máy bơm lốp ô tô mini điện tử cho xe máy, xe đạp, ô tô | Shopee Việt Nam",
+        "description": "Máy bơm lốp mini điện tử dùng cho nhiều loại phương tiện",
+        "category": [
+          "electronics-gadgets"
+        ],
+        "url": "https://s.shopee.vn/5AroRixoJa",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "9112078121",
+        "shopId": "28367802",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljp3abmv1qd076",
+        "images": [],
+        "name": "Sách Đánh Thức Con Người Phi Thường Trong Bạn (Bìa mềm) | Shopee Việt Nam",
+        "description": "Sách Đánh Thức Con Người Phi Thường Trong Bạn bản bìa mềm",
+        "category": [
+          "learning-tools"
+        ],
+        "url": "https://s.shopee.vn/5q7VE4r20d",
+        "type": "shopee",
+        "group": "learning-office",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "26766460371",
+        "shopId": "322094848",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mokuj0otc6byce",
+        "images": [],
+        "name": "Dây và củ sạc nhanh 20W–30W C-L, C-C | Shopee Việt Nam",
+        "description": "Bộ dây và củ sạc nhanh 20W–30W cho điện thoại",
+        "category": [
+          "phone-accessories"
+        ],
+        "url": "https://s.shopee.vn/9zx4BjjpZx",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "20644354501",
+        "shopId": "255704819",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrjsjtjyji0xdb",
+        "images": [],
+        "name": "Giày thể thao chạy bộ nam nữ Goya Plus 2026 | Shopee Việt Nam",
+        "description": "Giày thể thao chạy bộ nam nữ Goya Plus",
+        "category": [
+          "shoes-bags"
+        ],
+        "url": "https://s.shopee.vn/8AVQ0MvxzZ",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "25676379719",
+        "shopId": "740144125",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mkpnpvtgsdmpdf",
+        "images": [],
+        "name": "Loa Bluetooth BoomBox đèn LED công suất 20W REMI | Shopee Việt Nam",
+        "description": "Loa Bluetooth BoomBox có đèn LED và công suất 20W",
+        "category": [
+          "electronics-gadgets"
+        ],
+        "url": "https://s.shopee.vn/7AcsoX7g9S",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "27484697336",
+        "shopId": "294817838",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-ma7ugakscmnc4e",
+        "images": [],
+        "name": "Áo điều hòa Nhật Bản SWI/KAW kèm pin và quạt | Shopee Việt Nam",
+        "description": "Áo điều hòa SWI/KAW kèm pin và quạt làm mát",
+        "category": [
+          "apparel"
+        ],
+        "url": "https://s.shopee.vn/8KoqDXzdrD",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "27706747428",
+        "shopId": "699159587",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-me9vzu1kmozk27",
+        "images": [],
+        "name": "Sạc dự phòng 30000mAh sạc nhanh tích hợp 2 đầu sạc | Shopee Việt Nam",
+        "description": "Sạc dự phòng 30000mAh có màn hình LED và hai đầu sạc",
+        "category": [
+          "phone-accessories"
+        ],
+        "url": "https://s.shopee.vn/60QvQORFCq",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "54407073060",
+        "shopId": "1771676354",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-82632-mlp6euhqof0va5",
+        "images": [],
+        "name": "Combo túi rác tự phân hủy An Lành 55 × 65cm | Shopee Việt Nam",
+        "description": "Combo túi rác tự phân hủy kích thước 55 × 65cm",
+        "category": [
+          "home-essentials"
+        ],
+        "url": "https://s.shopee.vn/9pddzRFOvq",
+        "type": "shopee",
+        "group": "home-living",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "14582887112",
+        "shopId": "758111427",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrch847krnk512",
+        "images": [],
+        "name": "Sữa tắm gội nam 3 trong 1 RHYS MAN Rhys Legend 350ml | Shopee Việt Nam",
+        "description": "Sữa tắm gội nam hương nước hoa RHYS MAN 350ml",
+        "category": [
+          "beauty-personal-care"
+        ],
+        "url": "https://s.shopee.vn/4qEy2FhiTQ",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "29807844451",
+        "shopId": "1255702550",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmhiwjn84bnpb7",
+        "images": [],
+        "name": "Máy rửa xe cầm tay cao áp chạy pin sạc | Shopee Việt Nam",
+        "description": "Máy rửa xe cầm tay chạy pin có chế độ phun sương tạo bọt",
+        "category": [
+          "home-appliances"
+        ],
+        "url": "https://s.shopee.vn/AAGUO3R7oi",
+        "type": "shopee",
+        "group": "home-living",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "47100745325",
+        "shopId": "1308293395",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mglpkiitqvpq54",
+        "images": [],
+        "name": "Sách Tỉnh Thức – Cú Mèo Của Lão Dương | Shopee Việt Nam",
+        "description": "Sách Tỉnh Thức – Không Viết Để An Ủi Bạn, Mà Để Đánh Thức Bạn",
+        "category": [
+          "learning-tools"
+        ],
+        "url": "https://s.shopee.vn/4AzHFtNxZb",
+        "type": "shopee",
+        "group": "learning-office",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "51603577724",
+        "shopId": "1333410007",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mimvwn89m7eo9c",
+        "images": [],
+        "name": "Chai tẩy dầu mỡ nhà bếp đa năng 500ml | Shopee Việt Nam",
+        "description": "Chai lau bếp đa năng và tẩy dầu mỡ dung tích 500ml",
+        "category": [
+          "home-essentials",
+          "kitchen-dining"
+        ],
+        "url": "https://s.shopee.vn/5AroQrxuOR",
+        "type": "shopee",
+        "group": "home-living",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "29029784452",
+        "shopId": "1344125952",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m7ekmpklql8c5d",
+        "images": [],
+        "name": "Tai nghe Bluetooth PRO4 không dây TWS | Shopee Việt Nam",
+        "description": "Tai nghe Bluetooth PRO4 TWS cảm ứng chạm có micro",
+        "category": [
+          "phone-accessories"
+        ],
+        "url": "https://s.shopee.vn/BT8TgLH41",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "16765092719",
+        "shopId": "758111427",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrchp9kprls4f7",
+        "images": [],
+        "name": "Bộ quà tặng chăm sóc cá nhân nam RHYS MAN | Shopee Việt Nam",
+        "description": "Bộ quà tặng gồm sữa tắm gội, sữa rửa mặt và dung dịch vệ sinh nam",
+        "category": [
+          "beauty-personal-care",
+          "gift-sets"
+        ],
+        "url": "https://s.shopee.vn/3g30e7I7mk",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "24438735904",
+        "shopId": "1113586002",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrqveskdm51ec3",
+        "images": [],
+        "name": "Dép sục nam nữ NESTY đế mềm cao 4cm | Shopee Việt Nam",
+        "description": "Dép sục NESTY kiểu dáng basic với đế mềm cao 4cm",
+        "category": [
+          "shoes-bags"
+        ],
+        "url": "https://s.shopee.vn/60QvQPG7Fo",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "51709270374",
+        "shopId": "1771676354",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/sg-11134201-820m8-mnbqann6am0x5c",
+        "images": [],
+        "name": "Giấy ăn rút Topgia cao cấp 240 tờ 4 lớp | Shopee Việt Nam",
+        "description": "Giấy ăn rút Topgia 240 tờ, 4 lớp và dập vân 4D",
+        "category": [
+          "home-essentials"
+        ],
+        "url": "https://s.shopee.vn/50YOEZPpqB",
+        "type": "shopee",
+        "group": "home-living",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
+      },
+      {
+        "id": "24783585081",
+        "shopId": "403464559",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m4vgdh6m9wood9",
+        "images": [],
+        "name": "Tai nghe Bluetooth Hoco EW25 TWS 5.3 chính hãng | Shopee Việt Nam",
+        "description": "Tai nghe Bluetooth Hoco EW25 TWS 5.3 có micro",
+        "category": [
+          "phone-accessories"
+        ],
+        "url": "https://s.shopee.vn/70JScFQOz0",
+        "type": "shopee",
+        "group": "tech-accessories",
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm"
       }
     ],
     "groups": [
