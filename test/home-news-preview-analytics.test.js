@@ -15,6 +15,8 @@ test('home news preview tracks blog open with preview params', () => {
   assert.match(script, /preview: 'home_news_preview'/);
 });
 
-test('home page cache-busts the blog preview tracking script', () => {
-  assert.match(indexPage, /js\/home-news-preview\.js\?v=20260513/);
+test('home page removes the review preview section and script', () => {
+  assert.doesNotMatch(indexPage, /news-json-inline|home-news-grid|home-news-preview\.js/);
+  assert.doesNotMatch(indexPage, /Bài mới nhất|Review gậy chụp ảnh/);
+  assert.match(indexPage, /Gợi ý sắm Tết/);
 });

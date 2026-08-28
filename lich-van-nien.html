@@ -2800,19 +2800,18 @@
                     if (!list) return;
                     list.forEach(function (ev) {
                         const key = year + '-' + String(ev.month).padStart(2, '0') + '-' + String(ev.day).padStart(2, '0');
-                        if (!fixedHolidays[key]) fixedHolidays[key] = { name: ev.name, type: ev.type || 'national', description: ev.description };
+                        if (!fixedHolidays[key]) {
+                            fixedHolidays[key] = {
+                                name: ev.name,
+                                type: ev.type || 'national',
+                                description: ev.description,
+                                isHoliday: ev.isHoliday === true
+                            };
+                        }
                     });
                 });
             }
             if (fixedHolidays[dateKey]) return fixedHolidays[dateKey];
-            // Giỗ Tổ Hùng Vương - 10/3 âm lịch (trùng ngày âm)
-            let lunarInfo;
-            try {
-                if (typeof calculateLunarDate === 'function') lunarInfo = calculateLunarDate(date);
-            } catch (e) {}
-            if (lunarInfo && lunarInfo.month === 3 && lunarInfo.day === 10) {
-                return { name: 'Giỗ Tổ Hùng Vương', type: 'national', description: 'Quốc lễ – nghỉ lễ chính thức. Ngày giỗ các Vua Hùng, tưởng nhớ công ơn dựng nước.' };
-            }
             return null;
         }
         
@@ -2915,12 +2914,12 @@
                 ${holidayInfo ? `
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>Ngày nghỉ lễ</span>
+                        <span>${holidayInfo.isHoliday ? 'Ngày nghỉ lễ' : 'Sự kiện dương lịch'}</span>
                     </div>
                     <div class="detail-section-content">
                         <p><strong>${holidayInfo.name}</strong></p>
-                        <p>${holidayInfo.description || 'Ngày nghỉ lễ quốc gia Việt Nam'}</p>
-                        <p style="color: #64748B; font-size: 0.9rem; margin-top: 0.5rem;">Đây là ngày nghỉ lễ chính thức</p>
+                        <p>${holidayInfo.description || 'Sự kiện được ghi nhận theo dương lịch.'}</p>
+                        ${holidayInfo.isHoliday ? '<p style="color: #64748B; font-size: 0.9rem; margin-top: 0.5rem;">Đây là ngày nghỉ lễ chính thức tại Việt Nam</p>' : ''}
                     </div>
                 </div>
                 ` : ''}
