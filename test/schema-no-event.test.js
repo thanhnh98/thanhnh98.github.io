@@ -39,9 +39,9 @@ for (const file of htmlFiles) {
   });
 }
 
-test('homepage keeps Thing date hint for Tet 2027 without Event', () => {
+test('homepage keeps the Tet 2027 date in visible copy without generic Thing schema', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  const thing = getJsonLdObjects(html).find((item) => item['@type'] === 'Thing' && item.name === 'Tết Việt Nam');
-  assert.ok(thing);
-  assert.ok(thing.additionalProperty?.some((prop) => prop.value === '2027-02-06'));
+  const thing = getJsonLdObjects(html).find((item) => item['@type'] === 'Thing');
+  assert.equal(thing, undefined);
+  assert.match(html, /06\/02\/2027/);
 });

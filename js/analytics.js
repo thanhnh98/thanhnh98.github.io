@@ -5,10 +5,24 @@
 
 // Global analytics instance (will be set when Firebase is initialized)
 let analyticsInstance = null;
+const pendingEvents = [];
+
+function flushPendingEvents() {
+    if (!isAnalyticsAvailable() || !logEventFunction) return;
+    while (pendingEvents.length) {
+        const event = pendingEvents.shift();
+        try {
+            logEventFunction(analyticsInstance, event.name, event.params);
+        } catch (error) {
+            console.warn('Analytics queued event error:', error);
+        }
+    }
+}
 
 // Set analytics instance (called from Firebase initialization)
 function setAnalyticsInstance(analytics) {
     analyticsInstance = analytics;
+    flushPendingEvents();
 }
 
 // Check if Firebase Analytics is available
@@ -24,6 +38,7 @@ let logEventFunction = null;
  */
 function setLogEventFunction(logEvent) {
     logEventFunction = logEvent;
+    flushPendingEvents();
 }
 
 /**
@@ -65,6 +80,8 @@ function trackEvent(eventName, eventParams = {}) {
         } catch (error) {
             console.warn('Analytics tracking error:', error);
         }
+    } else if (pendingEvents.length < 100) {
+        pendingEvents.push({ name: fullEventName, params: normalizedParams });
     }
     
     // Console log for debugging
@@ -227,4 +244,3 @@ window.addEventListener('load', function() {
         }
     }, 1000);
 });
-

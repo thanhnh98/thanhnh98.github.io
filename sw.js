@@ -28,11 +28,27 @@ const urlsToCache = [
   '/index.html',
   '/css/style.css',
   '/css/colors.css',
-  '/js/script.js',
-  '/js/faq-modal.js',
-  '/js/footer.js',
-  '/assets/images/background.webp',
+  '/css/pwa.css',
+  '/css/home-retention.css',
+  '/components/header.html',
+  '/js/header-loader.js',
+  '/js/analytics.js',
+  '/js/lunar-calendar.js',
+  '/js/home-retention.js',
+  '/js/home-shop-preview.js',
+  '/js/home-fireworks.js',
+  '/data/events-data.js',
+  '/images/floating-peach-blossom.svg',
+  '/images/tet-background-pattern.svg',
+  '/images/tet-corner-decoration.svg',
   '/assets/images/ic_app.png',
+  '/assets/images/app-demo-countdown.webp',
+  '/assets/images/app-demo-game.webp',
+  '/assets/images/app-demo-features.webp',
+  '/assets/images/google_play.png',
+  '/assets/images/apple_store.png',
+  '/assets/images/facebook.png',
+  '/assets/images/tiktok.png',
   '/favicon.ico',
   '/favicon.png',
   '/android-chrome-192x192.png',
@@ -133,7 +149,7 @@ self.addEventListener('fetch', event => {
   }
 
   event.respondWith(
-    caches.match(event.request)
+    caches.match(event.request, { ignoreSearch: true })
       .then(response => {
         // Return cached version or fetch from network
         if (response) {

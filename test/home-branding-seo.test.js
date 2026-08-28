@@ -11,20 +11,65 @@ function getJsonLdObjects(html) {
     .map((match) => JSON.parse(match[1].trim()));
 }
 
-test('homepage hero is visual-first with compact subline in countdown card', () => {
+test('homepage hero is compact, branded and links to the countdown intent page', () => {
   const html = read('index.html');
 
   assert.match(
     html,
     /<title>(\{\{SEO_TITLE\}\}|Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán)<\/title>/
   );
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.match(html, /class="countdown-hero-title"/);
   assert.match(html, /Đếm ngược đến Tết <span id="tet-year">/);
-  assert.match(html, /class="countdown-hero-subline"/);
-  assert.match(html, /class="countdown-detail-cta"/);
+  assert.match(html, /class="countdown-info-card"/);
+  assert.match(html, /class="timer-box"/);
+  assert.match(html, /id="countdown-timer"/);
+  assert.match(html, /id="share-countdown-btn"/);
   assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet"/);
-  assert.doesNotMatch(html, /class="home-seo-answer"/);
-  assert.doesNotMatch(html, /home-seo-answer__snippet/);
+  assert.doesNotMatch(html, /class="countdown-detail-cta"/);
+});
+
+test('homepage keeps sharing below the full-screen hero greeting', () => {
+  const html = read('index.html');
+  const css = read('css/home-retention.css');
+  const heroStart = html.indexOf('<section id="countdown"');
+  const heroEnd = html.indexOf('</section>', heroStart);
+  const greeting = html.indexOf('class="tet-greeting"', heroStart);
+  const shareButton = html.indexOf('id="share-countdown-btn"');
+  const todaySection = html.indexOf('<section id="hom-nay"');
+
+  assert.ok(heroStart >= 0 && greeting > heroStart && greeting < heroEnd);
+  assert.ok(shareButton > heroEnd && shareButton < todaySection);
+  assert.match(css, /#countdown-timer \.timer-box[\s\S]*?min-height:\s*clamp\(174px,\s*19vw,\s*222px\)/);
+  assert.match(css, /\.countdown-content-wrapper[\s\S]*?justify-content:\s*space-between/);
+  assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?#countdown-timer[\s\S]*?grid-template-columns:\s*repeat\(2,/);
+  assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-content-wrapper\s*\{\s*padding:\s*0\.65rem 0\.25rem/);
+});
+
+test('homepage stays compact with six focused content sections', () => {
+  const html = read('index.html');
+  const primarySections = [...html.matchAll(/<section\b[^>]*data-home-section="[^"]+"/g)];
+
+  assert.equal(primarySections.length, 6);
+  assert.match(html, /data-home-section="hero"/);
+  assert.match(html, /data-home-section="today"/);
+  assert.match(html, /data-home-section="quick-links"/);
+  assert.match(html, /data-home-section="app"/);
+  assert.match(html, /data-home-section="discovery"/);
+  assert.match(html, /data-home-section="seo"/);
+  assert.doesNotMatch(html, /id="calendar-grid"|id="events-carousel"|id="games-carousel"/);
+  assert.doesNotMatch(html, /id="smart-app-download-fab"|id="app-download"/);
+});
+
+test('homepage keeps three crawlable FAQs and useful internal links', () => {
+  const html = read('index.html');
+
+  assert.equal((html.match(/<details\b[^>]*class="home-faq-item"/g) || []).length, 3);
+  assert.match(html, /href="\/lich-am-hom-nay\.html"/);
+  assert.match(html, /href="\/loi-chuc-tet\.html"/);
+  assert.match(html, /href="\/may-tinh-li-xi\.html"/);
+  assert.match(html, /href="\/tro-choi-tet\.html"/);
+  assert.match(html, /href="\/su-kien-quan-trong\.html"/);
 });
 
 test('homepage WebSite schema names the brand without generic keyword aliases', () => {
@@ -44,6 +89,7 @@ test('web app manifest reinforces the same brand entity', () => {
 
   assert.equal(manifest.name, 'Sắp Tết - Đếm ngược Tết 2027');
   assert.equal(manifest.short_name, 'Sắp Tết');
+  assert.equal(manifest.shortcuts.find((item) => item.short_name === 'Lịch').url, '/lich-am-hom-nay.html');
 });
 
 test('intent landing page has self-canonical, FAQ visible and FAQPage schema', () => {
@@ -117,21 +163,33 @@ test('homepage title and meta use brand-first copy from inject payload', () => {
   assert.doesNotMatch(payload.landingDetailLine, /Còn \d+ ngày/);
 });
 
-test('homepage has smart Sắp Tết download CTA instead of THPT button', () => {
+test('homepage prioritizes one screenshot-led app showcase with one floating entry point', () => {
   const html = read('index.html');
-  const css = read('css/style.css');
 
-  assert.match(html, /id="smart-app-download-btn"/);
-  assert.match(html, /id="smart-app-download-fab"/);
-  assert.match(html, /class="events-download-app-btn smart-app-download-trigger"/);
-  assert.match(html, /class="fab-main fab-main--download-app smart-app-download-trigger"/);
-  assert.match(html, /data-android-url="https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.thanh_nguyen\.tet_count_down"/);
-  assert.match(html, /data-ios-url="https:\/\/apps\.apple\.com\/gb\/app\/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027\/id6743064990\?platform=iphone"/);
-  assert.match(html, /getElementById\('app-intro'\) \|\| document\.getElementById\('app-download'\)/);
-  assert.match(html, /querySelectorAll\('\.smart-app-download-trigger'\)/);
-  assert.doesNotMatch(html, /THPT 2026/);
-  assert.doesNotMatch(html, /events-thpt-btn|fab-main--thpt/);
-  assert.match(css, /\.events-download-app-btn/);
-  assert.match(css, /\.fab-main--download-app/);
-  assert.doesNotMatch(css, /events-thpt-btn|fab-main--thpt/);
+  assert.equal((html.match(/class="home-app-showcase"/g) || []).length, 1);
+  assert.equal((html.match(/class="home-phone-preview /g) || []).length, 3);
+  assert.match(html, /data-home-app-download="android"/);
+  assert.match(html, /data-home-app-download="ios"/);
+  assert.equal((html.match(/data-home-floating-app/g) || []).length, 1);
+  assert.match(html, /class="home-floating-app-cta"[^>]+href="#app-intro"/);
+  assert.match(html, /href="\/ung-dung\.html"/);
+  assert.doesNotMatch(html, /smart-app-download-fab|app-intro-section|app-download-seo-section/);
+});
+
+test('homepage only uses the three relevant JSON-LD entity types', () => {
+  const html = read('index.html');
+  const schemas = getJsonLdObjects(html);
+
+  assert.deepEqual(schemas.map((item) => item['@type']).sort(), ['Organization', 'WebPage', 'WebSite']);
+  assert.doesNotMatch(html, /aggregateRating|"@type"\s*:\s*"Food"|"@type"\s*:\s*"Thing"/);
+});
+
+test('homepage lazily loads optimized app demos and does not eagerly load html2canvas', () => {
+  const html = read('index.html');
+
+  assert.doesNotMatch(html, /image-b277c8ee|image-3cecc9f2|image-20046f91/);
+  assert.equal((html.match(/assets\/images\/app-demo-[^" ]+\.webp/g) || []).length, 3);
+  assert.equal((html.match(/class="home-phone-preview[^>]+>[\s\S]*?loading="lazy"/g) || []).length, 3);
+  assert.doesNotMatch(html, /<script[^>]+src="[^"]*html2canvas/i);
+  assert.match(html, /js\/home-retention\.js/);
 });
