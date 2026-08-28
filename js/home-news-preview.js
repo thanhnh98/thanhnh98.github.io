@@ -148,6 +148,8 @@
     if (!gridEl) return;
 
     var inlineItems = parseInlineNews();
+    var inlineLatest = getLatestItem(inlineItems || []);
+    if (inlineLatest) render([inlineLatest]);
     var urls = getNewsJsonUrls();
 
     function tryLoad(index) {
@@ -171,10 +173,26 @@
 
     tryLoad(0);
   }
+  function init() {
+    var inlineLatest = getLatestItem(parseInlineNews() || []);
+    if (inlineLatest) render([inlineLatest]);
+    var section = document.getElementById('kham-pha');
+    if (!section || !('IntersectionObserver' in window)) {
+      loadNews();
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      if (!entries.some(function(entry) { return entry.isIntersecting; })) return;
+      observer.disconnect();
+      loadNews();
+    }, { rootMargin: '240px 0px' });
+    observer.observe(section);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadNews);
+    document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
-    loadNews();
+    init();
   }
 
   document.addEventListener('click', function(event) {
