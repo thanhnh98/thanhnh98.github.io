@@ -1,13 +1,13 @@
 /* Homepage retention additions. The original Tết theme remains the visual base. */
 :root {
-  --home-deep-red: #8b0000;
-  --home-card-red: #b91c1c;
-  --home-gold: #ffd700;
-  --home-cream: #fff9e6;
-  --home-ink: #4b241d;
-  --home-muted: #805b50;
-  --home-border: rgba(185, 28, 28, 0.16);
-  --home-shadow: 0 16px 42px rgba(124, 45, 18, 0.11);
+  --home-deep-red: var(--brand-red-deep);
+  --home-card-red: var(--brand-red);
+  --home-gold: var(--brand-gold);
+  --home-cream: var(--brand-cream);
+  --home-ink: var(--brand-ink);
+  --home-muted: var(--brand-muted);
+  --home-border: var(--brand-border);
+  --home-shadow: var(--brand-shadow);
 }
 
 .home-compact-container {

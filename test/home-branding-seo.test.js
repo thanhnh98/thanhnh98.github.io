@@ -141,16 +141,16 @@ test('loi chuc tet page is indexable and supports the wishes CTA', () => {
   assert.match(sitemap, /https:\/\/saptet\.vn\/loi-chuc-tet\.html/);
 });
 
-test('tro choi tet page uses refreshed game hero', () => {
+test('tro choi tet page uses the compact game-first experience', () => {
   const html = read('tro-choi-tet.html');
   const css = read('css/game.css');
 
-  assert.match(html, /class="game-hero-copy"/);
-  assert.match(html, /class="game-hero-preview"/);
-  assert.match(html, /href="#noi-chu-game" class="game-hero-btn game-hero-btn-primary"/);
-  assert.match(html, /href="\/ung-dung\.html" class="game-hero-btn game-hero-btn-secondary"/);
-  assert.match(css, /Refreshed game page header/);
-  assert.match(css, /\.game-hero\s*\{[\s\S]*background:\s*transparent/);
+  assert.match(html, /class="game-intro"/);
+  assert.match(html, /<h1 id="game-title">Nối Chữ<\/h1>/);
+  assert.match(html, /id="start-game" class="primary-game-button"/);
+  assert.match(html, /class="game-hud"/);
+  assert.match(css, /Nối Chữ — compact, game-first layout/);
+  assert.match(css, /\.game-hud\s*\{[\s\S]*grid-template-columns:\s*repeat\(4,/);
 });
 
 test('homepage title and meta use brand-first copy from inject payload', () => {
