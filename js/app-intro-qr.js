@@ -8,6 +8,7 @@
         var modalTitle = document.getElementById('app-intro-qr-modal-title');
         var modalBackdrop = modal && modal.querySelector('.app-intro-qr-modal-backdrop');
         var modalClose = modal && modal.querySelector('.app-intro-qr-modal-close');
+        var lastFocusedElement = null;
 
         if (!modal || !modalImg || !modalTitle) return;
 
@@ -18,18 +19,25 @@
         }
 
         function openZoom(imageSrc, label) {
+            lastFocusedElement = document.activeElement;
             modalImg.src = imageSrc;
             modalImg.alt = label;
             modalTitle.textContent = getTitleForLabel(label);
             modal.classList.add('is-open');
             modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            if (modalClose) modalClose.focus();
         }
 
         function closeZoom() {
+            if (!modal.classList.contains('is-open')) return;
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            modalImg.src = '';
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
         }
 
         document.querySelectorAll('.app-intro-qr-item').forEach(function (btn) {
@@ -42,7 +50,7 @@
 
         if (modalBackdrop) modalBackdrop.addEventListener('click', closeZoom);
         if (modalClose) modalClose.addEventListener('click', closeZoom);
-        modal.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && modal.classList.contains('is-open')) closeZoom();
         });
     }
