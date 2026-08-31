@@ -197,15 +197,30 @@
         .event-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.75rem;
+            gap: 1rem;
         }
-        .event-card {
+        .event-grid > .event-card {
+            width: 100%;
+            min-width: 0;
+            max-width: none;
+            height: auto;
+            min-height: 0;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            align-items: stretch;
+            justify-content: stretch;
             padding: 0.95rem;
             background: #fff;
             border-radius: 14px;
             border: 1px solid #e5e7eb;
             box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+            text-align: left;
+            cursor: default;
+            backdrop-filter: none;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .event-grid > .event-card::before {
+            content: none;
         }
         .event-card:hover {
             transform: translateY(-2px);
