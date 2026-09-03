@@ -203,7 +203,7 @@
 .home-streak {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.65rem;
   margin-left: auto;
   padding: 0.55rem 0.9rem;
   border: 1px solid rgba(245, 158, 11, 0.32);
@@ -213,6 +213,10 @@
   box-shadow: 0 5px 16px rgba(124, 45, 18, 0.06);
   font-size: 0.88rem;
 }
+.home-streak-stat { display: inline-flex; align-items: center; gap: .3rem; white-space: nowrap; }
+.home-streak-divider { width: 1px; height: 18px; background: rgba(154,52,18,.22); }
+.home-streak-fireworks-icon { width: 17px; height: 17px; overflow: visible; fill: none; stroke: #c2410c; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.home-streak-fireworks-rocket { fill: #fbbf24; stroke: #c2410c; }
 
 .home-streak[hidden] { display: none; }
 .countdown-info-nearest-event[hidden] { display: none; }
@@ -491,8 +495,8 @@
   left: max(1.25rem, env(safe-area-inset-left));
   bottom: max(1.25rem, env(safe-area-inset-bottom));
   z-index: 10011;
-  width: 62px;
-  height: 62px;
+  width: 70px;
+  height: 70px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -507,12 +511,117 @@
 }
 .home-fireworks-trigger:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 15px 34px rgba(111,8,22,.42), 0 0 0 6px rgba(255,215,0,.2); }
 .home-fireworks-trigger:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.home-fireworks-trigger svg { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(70,0,0,.35)); }
-.home-fireworks-trigger svg circle { fill: #ffd95a; stroke: #fff8d6; }
+.home-fireworks-icon { display: grid; place-items: center; width: 47px; height: 47px; }
+.home-fireworks-trigger svg { width: 47px; height: 47px; overflow: visible; fill: none; stroke: currentColor; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(70,0,0,.35)); }
+.home-fireworks-trigger svg circle, .home-fireworks-icon-rocket path:last-child { fill: #ffd95a; stroke: #fff8d6; }
+.home-fireworks-icon-vip { display: none; }
+.home-fireworks-trigger[data-tier="silver"] { color: #fff7df; background: radial-gradient(circle at 35% 28%, #ff6959 0%, #b91c34 46%, #65091a 100%); box-shadow: 0 10px 28px rgba(91,8,24,.36), 0 0 0 5px rgba(224,231,239,.28); }
+.home-fireworks-trigger[data-tier="silver"] .home-fireworks-icon-vip--silver,
+.home-fireworks-trigger[data-tier="gold"] .home-fireworks-icon-vip--silver,
+.home-fireworks-trigger[data-tier="gold"] .home-fireworks-icon-vip--gold,
+.home-fireworks-trigger[data-tier="jade"] .home-fireworks-icon-vip--silver,
+.home-fireworks-trigger[data-tier="jade"] .home-fireworks-icon-vip--gold,
+.home-fireworks-trigger[data-tier="jade"] .home-fireworks-icon-vip--jade,
+.home-fireworks-trigger[data-tier="royal"] .home-fireworks-icon-vip { display: block; }
+.home-fireworks-trigger[data-tier="gold"] { color: #fff1a8; background: radial-gradient(circle at 35% 28%, #ef5138 0%, #b51429 43%, #5f0717 100%); box-shadow: 0 11px 30px rgba(111,8,22,.42), 0 0 0 5px rgba(255,201,48,.35); }
+.home-fireworks-trigger[data-tier="jade"] { color: #fff3a6; background: radial-gradient(circle at 35% 28%, #ec4940 0%, #9b1630 45%, #143f35 100%); box-shadow: 0 12px 32px rgba(24,63,53,.42), 0 0 0 5px rgba(52,211,153,.3); }
+.home-fireworks-trigger[data-tier="royal"] { color: #fff0a8; background: radial-gradient(circle at 35% 28%, #f45b42 0%, #a30f2b 42%, #35105e 100%); box-shadow: 0 14px 36px rgba(53,16,94,.52), 0 0 0 5px rgba(255,210,63,.48), 0 0 28px rgba(255,196,54,.35); }
 .home-fireworks-trigger.is-launching svg { animation: home-fireworks-icon-pop .65s ease; }
-.home-fireworks-tooltip { position: absolute; left: calc(100% + .7rem); top: 50%; transform: translateY(-50%) translateX(-6px); padding: .5rem .7rem; border-radius: 999px; color: #fff; background: #7f1d1d; box-shadow: 0 6px 16px rgba(80,0,0,.2); font-size: .75rem; font-weight: 800; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity .18s ease, transform .18s ease, visibility .18s ease; }
-.home-fireworks-trigger:hover .home-fireworks-tooltip, .home-fireworks-trigger:focus-visible .home-fireworks-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
 @keyframes home-fireworks-icon-pop { 0%, 100% { transform: scale(1) rotate(0); } 35% { transform: scale(.86) rotate(-8deg); } 65% { transform: scale(1.16) rotate(8deg); } }
+.home-fireworks-test-panel { position: fixed; left: max(1.25rem, env(safe-area-inset-left)); bottom: calc(max(1.25rem, env(safe-area-inset-bottom)) + 88px); z-index: 10012; width: min(340px, calc(100vw - 2rem)); padding: .8rem; border: 1px solid rgba(255,215,80,.45); border-radius: 16px; color: #fff; background: rgba(77,8,22,.94); box-shadow: 0 12px 34px rgba(45,0,10,.32); font-size: .72rem; }
+.home-fireworks-test-panel strong { display: block; margin-bottom: .5rem; color: #ffe889; }
+.home-fireworks-test-days { display: flex; flex-wrap: wrap; gap: .35rem; }
+.home-fireworks-test-panel button { padding: .38rem .55rem; border: 1px solid rgba(255,255,255,.38); border-radius: 999px; color: #fff; background: rgba(255,255,255,.1); font: inherit; font-weight: 800; cursor: pointer; }
+.home-fireworks-test-panel button.is-active { color: #7d1022; background: #ffd95a; border-color: #fff1a4; }
+.home-fireworks-collection { position: relative; margin-top: 1.2rem; padding: 1.15rem; overflow: hidden; border: 1px solid rgba(139,20,38,.16); border-radius: 22px; background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(255,244,221,.78)); box-shadow: 0 12px 30px rgba(91,14,28,.07); }
+.home-fireworks-collection::before { content: ''; position: absolute; width: 190px; height: 190px; right: -76px; top: -105px; border-radius: 50%; background: radial-gradient(circle, rgba(255,202,58,.2), rgba(255,202,58,0) 68%); pointer-events: none; }
+.home-fireworks-collection-heading, .home-fireworks-collection-experience, .home-fireworks-return-note, .home-fireworks-collection-meter { position: relative; z-index: 1; }
+.home-fireworks-collection-heading, .home-fireworks-collection-title-row, .home-fireworks-gallery-heading, .home-fireworks-daily-heading { display: flex; align-items: center; }
+.home-fireworks-collection-heading { justify-content: space-between; gap: .8rem; }
+.home-fireworks-collection-title-row { gap: .65rem; }
+.home-fireworks-collection-icon { display: grid; place-items: center; flex: 0 0 auto; width: 38px; height: 38px; border-radius: 12px; color: #fff6cf; background: linear-gradient(145deg, #d92c36, #801125); box-shadow: 0 6px 14px rgba(123,16,34,.2); }
+.home-fireworks-collection-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.home-fireworks-collection-icon svg path:last-child { fill: #ffd45d; stroke: #fff2b8; }
+.home-fireworks-collection-kicker { margin: 0 0 .1rem; color: #a23343; font-size: .62rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; }
+.home-fireworks-collection h3 { margin: 0; color: #671323; font-size: 1.02rem; }
+.home-fireworks-collection-progress { flex: 0 0 auto; padding: .36rem .68rem; border: 1px solid rgba(139,20,38,.1); border-radius: 999px; color: #8c2637; background: rgba(255,255,255,.72); font-size: .7rem; font-weight: 900; }
+.home-fireworks-collection-meter, .home-fireworks-daily-meter { width: 100%; overflow: hidden; border: 0; border-radius: 999px; appearance: none; -webkit-appearance: none; background: rgba(122,34,48,.1); }
+.home-fireworks-collection-meter { display: block; height: 6px; margin: .8rem 0 1rem; }
+.home-fireworks-collection-meter::-webkit-progress-bar, .home-fireworks-daily-meter::-webkit-progress-bar { border-radius: 999px; background: rgba(122,34,48,.1); }
+.home-fireworks-collection-meter::-webkit-progress-value { border-radius: 999px; background: linear-gradient(90deg, #d22235, #f4b72f); }
+.home-fireworks-collection-meter::-moz-progress-bar { border-radius: 999px; background: linear-gradient(90deg, #d22235, #f4b72f); }
+.home-fireworks-collection-experience { display: grid; grid-template-columns: minmax(230px,.72fr) minmax(0,1.45fr); gap: .9rem; }
+.home-fireworks-mission, .home-fireworks-gallery { min-width: 0; border-radius: 16px; }
+.home-fireworks-mission { padding: .9rem; color: rgba(255,255,255,.84); background: linear-gradient(145deg, #7c1024, #a8192d); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.home-fireworks-collection.is-complete .home-fireworks-mission { background: linear-gradient(145deg, #511353, #8a183c 58%, #a21a2f); }
+.home-fireworks-collection.is-daily-claimed .home-fireworks-mission { background: radial-gradient(circle at 92% 5%, rgba(255,222,102,.18), transparent 32%), linear-gradient(145deg, #18594c, #277863); }
+.home-fireworks-mission-label { color: #ffd974; font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.home-fireworks-daily-heading { justify-content: space-between; gap: .65rem; margin-top: .3rem; }
+.home-fireworks-daily-heading strong { color: #fff; font-size: .86rem; }
+.home-fireworks-daily-heading span { flex: 0 0 auto; color: #ffe481; font-size: .72rem; font-weight: 900; }
+.home-fireworks-daily-meter { display: block; height: 8px; margin: .65rem 0; background: rgba(255,255,255,.16); }
+.home-fireworks-daily-meter::-webkit-progress-bar { background: rgba(255,255,255,.16); }
+.home-fireworks-daily-meter::-webkit-progress-value { border-radius: 999px; background: linear-gradient(90deg, #ffd659, #fff1a8); }
+.home-fireworks-daily-meter::-moz-progress-bar { border-radius: 999px; background: linear-gradient(90deg, #ffd659, #fff1a8); }
+.home-fireworks-mission p { margin: 0 0 .75rem; font-size: .68rem; line-height: 1.5; }
+.home-fireworks-collection-launch { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .52rem .75rem; border: 1px solid #fff1ae; border-radius: 10px; color: #761126; background: linear-gradient(180deg, #fff1a8, #ffd45d); box-shadow: 0 5px 12px rgba(54,0,10,.18); font: inherit; font-size: .72rem; font-weight: 900; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+.home-fireworks-collection-launch:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(54,0,10,.24); }
+.home-fireworks-collection-launch:focus-visible { outline: 3px solid rgba(255,231,123,.5); outline-offset: 2px; }
+.home-fireworks-collection-launch svg { width: 15px; height: 15px; stroke-width: 2.5; }
+.home-fireworks-gallery { padding: .75rem; border: 1px solid rgba(139,20,38,.08); background: rgba(255,255,255,.62); }
+.home-fireworks-featured { position: relative; min-height: 118px; display: flex; align-items: center; padding: 1rem 1.25rem 1rem 6.2rem; overflow: hidden; border-radius: 14px; color: rgba(255,255,255,.72); background: radial-gradient(circle at 14% 18%, rgba(255,218,87,.22), transparent 28%), linear-gradient(135deg, #5f1727, #8d1830); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 8px 18px rgba(83,13,31,.12); }
+.home-fireworks-featured::before, .home-fireworks-featured::after { content: ''; position: absolute; border: 1px solid rgba(255,223,112,.18); border-radius: 50%; }
+.home-fireworks-featured::before { width: 110px; height: 110px; right: -42px; top: -56px; }
+.home-fireworks-featured::after { width: 64px; height: 64px; right: -16px; top: -30px; }
+.home-fireworks-featured-mark { position: absolute; left: 1.1rem; top: 50%; width: 66px; height: 66px; transform: translateY(-50%) rotate(-8deg); fill: none; stroke: rgba(255,227,131,.38); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+.home-fireworks-featured-mark circle, .home-fireworks-featured-mark path:last-child { fill: rgba(255,211,75,.28); }
+.home-fireworks-featured > div { position: relative; z-index: 1; min-width: 0; display: flex; flex-direction: column; }
+.home-fireworks-featured span { color: #ffd96d; font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.home-fireworks-featured strong { margin: .2rem 0; color: #fff4c5; font-family: 'Dancing Script', cursive; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.08; }
+.home-fireworks-featured small { font-size: .62rem; font-weight: 700; }
+.home-fireworks-featured.is-revealed[data-variant="0"] { background: radial-gradient(circle at 15% 15%, rgba(255,221,95,.28), transparent 30%), linear-gradient(135deg, #8b1027, #c72835); }
+.home-fireworks-featured.is-revealed[data-variant="1"] { background: radial-gradient(circle at 15% 15%, rgba(255,247,190,.3), transparent 30%), linear-gradient(135deg, #9b4f08, #d88b13); }
+.home-fireworks-featured.is-revealed[data-variant="2"] { background: radial-gradient(circle at 15% 15%, rgba(202,255,224,.2), transparent 30%), linear-gradient(135deg, #155c4e, #268168); }
+.home-fireworks-featured.is-revealed[data-variant="3"] { background: radial-gradient(circle at 15% 15%, rgba(243,210,255,.22), transparent 30%), linear-gradient(135deg, #52205f, #8a2f72); }
+.home-fireworks-gallery-heading { justify-content: space-between; gap: .6rem; margin: .75rem .15rem .55rem; }
+.home-fireworks-gallery-heading strong { color: #6f1727; font-size: .78rem; }
+.home-fireworks-gallery-heading span { color: #9a6a72; font-size: .62rem; font-weight: 700; }
+.home-fireworks-collection-list { display: grid; grid-auto-flow: column; grid-auto-columns: 148px; grid-template-rows: repeat(2, 72px); gap: .55rem; padding: .35rem .4rem .65rem .2rem; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: rgba(139,20,38,.2) transparent; }
+.home-fireworks-collection-item { position: relative; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: .18rem; padding: .65rem .75rem; overflow: hidden; border: 1px dashed rgba(119,79,87,.2); border-radius: 13px; color: #9f878c; background: linear-gradient(145deg, rgba(255,255,255,.68), rgba(139,20,38,.035)); font: inherit; text-align: left; scroll-snap-align: start; }
+.home-fireworks-collection-item::before { content: ''; position: absolute; width: 42px; height: 42px; right: -23px; top: -23px; border: 1px solid currentColor; border-radius: 50%; opacity: .12; }
+.home-fireworks-card-number { color: currentColor; font-size: .52rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; opacity: .68; }
+.home-fireworks-card-text { display: -webkit-box; overflow: hidden; color: currentColor; font-size: .68rem; font-weight: 900; line-height: 1.22; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.home-fireworks-collection-item.is-unlocked { border-style: solid; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 4px 10px rgba(97,28,39,.07); transition: transform .18s ease, box-shadow .18s ease; }
+.home-fireworks-collection-item.is-unlocked:hover { transform: translateY(-3px) rotate(-.5deg); box-shadow: inset 0 0 0 1px rgba(255,255,255,.62), 0 9px 16px rgba(97,28,39,.14); }
+.home-fireworks-collection-item.is-unlocked:focus-visible { outline: 3px solid rgba(174,31,49,.2); outline-offset: 2px; }
+.home-fireworks-collection-item.is-unlocked.is-active { transform: translateY(-2px); box-shadow: inset 0 0 0 2px rgba(255,255,255,.76), 0 0 0 2px #d7a21e, 0 9px 18px rgba(97,28,39,.16); }
+.home-fireworks-collection-item.is-unlocked[data-variant="0"] { border-color: rgba(206,52,65,.3); color: #8f172b; background: linear-gradient(145deg, #fff6e3, #ffd9cf); }
+.home-fireworks-collection-item.is-unlocked[data-variant="1"] { border-color: rgba(208,145,23,.35); color: #87520c; background: linear-gradient(145deg, #fff9d9, #ffe39b); }
+.home-fireworks-collection-item.is-unlocked[data-variant="2"] { border-color: rgba(39,131,103,.3); color: #17614f; background: linear-gradient(145deg, #effff4, #ccebd9); }
+.home-fireworks-collection-item.is-unlocked[data-variant="3"] { border-color: rgba(128,62,126,.3); color: #6b2d68; background: linear-gradient(145deg, #fff2fb, #e8d1ed); }
+.home-fireworks-collection-item.is-new { animation: home-fireworks-collection-glow 1.4s ease; }
+.home-fireworks-return-note { display: flex; align-items: center; gap: .35rem; margin: .7rem 0 0; color: #96505c; font-size: .65rem; font-weight: 700; }
+.home-fireworks-return-note svg { flex: 0 0 auto; width: 13px; height: 13px; }
+@keyframes home-fireworks-collection-glow { 0%, 100% { transform: scale(1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55); } 40% { transform: scale(1.035); box-shadow: 0 0 0 4px rgba(255,205,57,.22), 0 5px 16px rgba(129,28,45,.18); } }
+.home-fireworks-reward-modal { position: fixed; inset: 0; z-index: 10030; display: grid; place-items: center; padding: 1.25rem; background: rgba(46,4,15,.68); backdrop-filter: blur(7px); }
+.home-fireworks-reward-modal[hidden] { display: none; }
+.home-fireworks-reward-open { overflow: hidden; }
+.home-fireworks-reward-card { position: relative; width: min(430px,100%); padding: 2.1rem 1.6rem 1.5rem; overflow: hidden; border: 2px solid #ffe183; border-radius: 28px; color: rgba(255,255,255,.82); background: radial-gradient(circle at 50% 0, rgba(255,222,101,.28), transparent 32%), linear-gradient(145deg, #8f1028, #c52332 62%, #861022); box-shadow: 0 28px 70px rgba(37,0,9,.45), inset 0 1px 0 rgba(255,255,255,.22); text-align: center; animation: home-fireworks-reward-enter .48s cubic-bezier(.2,.8,.2,1); }
+.home-fireworks-reward-card::before, .home-fireworks-reward-card::after { content: ''; position: absolute; width: 110px; height: 110px; border: 1px solid rgba(255,225,123,.2); border-radius: 50%; }
+.home-fireworks-reward-card::before { left: -58px; top: -45px; }
+.home-fireworks-reward-card::after { right: -58px; bottom: -50px; }
+.home-fireworks-reward-rays { position: absolute; inset: -35%; background: repeating-conic-gradient(from 0deg, rgba(255,230,137,.08) 0deg 5deg, transparent 5deg 22deg); animation: home-fireworks-reward-rays 18s linear infinite; }
+.home-fireworks-reward-icon { position: relative; width: 72px; height: 72px; fill: none; stroke: #ffe783; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 5px 12px rgba(52,0,10,.25)); }
+.home-fireworks-reward-icon circle, .home-fireworks-reward-icon path:last-child { fill: #ffd350; stroke: #fff1af; }
+.home-fireworks-reward-card p, .home-fireworks-reward-card h2, .home-fireworks-reward-card strong, .home-fireworks-reward-card > span:not(.home-fireworks-reward-rays), .home-fireworks-reward-card button { position: relative; }
+.home-fireworks-reward-card p { margin: .45rem 0 .1rem; color: #ffe783; font-size: .65rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.home-fireworks-reward-card h2 { margin: 0; color: #fff; font-size: 1.45rem; }
+.home-fireworks-reward-card strong { display: block; margin: .6rem 0; color: #fff1a9; font-family: 'Dancing Script', cursive; font-size: clamp(2rem,7vw,3rem); line-height: 1.05; text-shadow: 0 3px 10px rgba(69,0,12,.3); }
+.home-fireworks-reward-card > span:not(.home-fireworks-reward-rays) { display: block; font-size: .76rem; }
+.home-fireworks-reward-card button { min-height: 44px; margin-top: 1.2rem; padding: .68rem 1.1rem; border: 1px solid #fff3b8; border-radius: 12px; color: #791126; background: linear-gradient(180deg, #fff4bb, #ffd75f); box-shadow: 0 8px 18px rgba(61,0,11,.2); font: inherit; font-size: .78rem; font-weight: 900; cursor: pointer; }
+.home-fireworks-reward-card button:focus-visible { outline: 3px solid rgba(255,255,255,.48); outline-offset: 3px; }
+@keyframes home-fireworks-reward-enter { from { opacity: 0; transform: translateY(18px) scale(.92); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes home-fireworks-reward-rays { to { transform: rotate(360deg); } }
 .home-floating-app-cta {
   position: fixed;
   right: max(1.25rem, env(safe-area-inset-right));
@@ -540,6 +649,7 @@
 @media (max-width: 900px) {
   .home-today-grid { grid-template-columns: 1fr 1fr; }
   .home-daily-card { grid-column: 1 / -1; }
+  .home-fireworks-collection-experience { grid-template-columns: 1fr; }
   .home-quick-grid { grid-template-columns: 1fr 1fr; }
   .home-app-showcase-grid { grid-template-columns: 1fr; }
   .home-app-showcase-copy { max-width: 680px; margin-inline: auto; }
@@ -592,6 +702,17 @@
   .home-today-grid { grid-template-columns: 1fr; }
   .home-daily-card { grid-column: auto; }
   .home-tet-card { min-height: 158px; padding: 1.05rem; }
+  .home-fireworks-collection { padding: .9rem; border-radius: 18px; }
+  .home-fireworks-collection-heading { align-items: flex-start; }
+  .home-fireworks-collection-icon { width: 34px; height: 34px; border-radius: 10px; }
+  .home-fireworks-collection h3 { font-size: .92rem; }
+  .home-fireworks-collection-launch { width: 100%; }
+  .home-fireworks-gallery { padding-inline: .75rem; }
+  .home-fireworks-featured { min-height: 126px; padding: .9rem .85rem .9rem 4.7rem; }
+  .home-fireworks-featured-mark { left: .55rem; width: 54px; height: 54px; }
+  .home-fireworks-featured strong { font-size: 1.45rem; }
+  .home-fireworks-collection-list { grid-auto-columns: 136px; grid-template-rows: repeat(2, 70px); }
+  .home-fireworks-return-note { align-items: flex-start; line-height: 1.45; }
   .home-quick-grid { gap: 0.65rem; }
   .home-quick-card { min-height: 135px; padding: 0.9rem 0.5rem; border-radius: 16px; }
   .home-quick-icon { width: 50px; height: 50px; border-radius: 15px; }
@@ -614,9 +735,9 @@
   .home-footer-grid { grid-template-columns: 1fr; }
   .home-footer-brand, .home-footer-community { grid-column: auto; }
   .home-footer-bottom { align-items: flex-start; flex-direction: column; }
-  .home-fireworks-trigger { left: max(.9rem, env(safe-area-inset-left)); bottom: max(.9rem, env(safe-area-inset-bottom)); width: 54px; height: 54px; border-width: 2px; }
-  .home-fireworks-trigger svg { width: 31px; height: 31px; }
-  .home-fireworks-tooltip { display: none; }
+  .home-fireworks-trigger { left: max(.9rem, env(safe-area-inset-left)); bottom: max(.9rem, env(safe-area-inset-bottom)); width: 60px; height: 60px; border-width: 2px; }
+  .home-fireworks-icon, .home-fireworks-trigger svg { width: 39px; height: 39px; }
+  .home-fireworks-test-panel { left: max(.9rem, env(safe-area-inset-left)); bottom: calc(max(.9rem, env(safe-area-inset-bottom)) + 76px); }
   .home-floating-app-cta { right: max(.9rem, env(safe-area-inset-right)); bottom: max(.9rem, env(safe-area-inset-bottom)); width: 58px; height: 58px; border-width: 2px; }
   .home-floating-app-tooltip { display: none; }
 }
@@ -631,4 +752,5 @@
   .countdown-section *, .home-retention-section * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
   .home-fireworks-trigger { transition: none; }
   .home-fireworks-trigger.is-launching svg { animation: none; }
+  .home-fireworks-reward-card, .home-fireworks-reward-rays { animation: none; }
 }

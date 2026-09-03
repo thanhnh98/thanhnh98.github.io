@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css?v=20260830">
     <link rel="stylesheet" href="css/pwa.css">
-    <link rel="stylesheet" href="css/home-retention.css?v=20260828-5">
+    <link rel="stylesheet" href="css/home-retention.css?v=20260904">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -110,13 +110,45 @@
           <div class="home-section-heading">
             <span class="home-section-icon"><i data-lucide="sun" aria-hidden="true"></i></span>
             <div><p class="home-section-kicker">Mỗi ngày một niềm vui nhỏ</p><h2 id="today-heading">Hôm nay trên Sắp Tết</h2></div>
-            <div id="home-streak" class="home-streak" hidden><span aria-hidden="true">🔥</span><strong id="visit-streak">1</strong><span>ngày liên tiếp</span></div>
+            <div id="home-streak" class="home-streak" hidden>
+              <span class="home-streak-stat"><span aria-hidden="true">🔥</span><strong id="visit-streak">1</strong><span>ngày liên tiếp</span></span>
+              <span class="home-streak-divider" aria-hidden="true"></span>
+              <span class="home-streak-stat"><svg class="home-streak-fireworks-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2v3M4.9 4.9 7 7M2 12h3M19 12h3M17 7l2.1-2.1"/><path d="M8 22c0-7 2.5-11.5 8-15M6.5 18.5 4 21M7 15l-3 .8"/><path class="home-streak-fireworks-rocket" d="m15.5 6.5 3.5-1-1 3.5-2.5-2.5Z"/></svg><strong id="home-fireworks-shot-count">1</strong><span>viên mỗi lượt</span></span>
+            </div>
           </div>
           <div class="home-today-grid">
             <a class="home-tet-card home-date-card" href="/lich-am-hom-nay.html" aria-label="Xem lịch âm hôm nay"><span class="home-card-label"><i data-lucide="calendar-days" aria-hidden="true"></i> Hôm nay</span><strong id="today-solar-date">Đang xem ngày…</strong><span id="today-lunar-date">Đang tính lịch âm…</span><span class="home-card-link">Xem lịch âm <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
             <a id="today-nearest-event-link" class="home-tet-card home-event-card" href="/su-kien-quan-trong.html"><span class="home-card-label"><i data-lucide="bell-ring" aria-hidden="true"></i> Sự kiện gần nhất</span><strong id="nearest-event-name">Đang tìm sự kiện…</strong><span id="nearest-event-countdown">Xem các ngày đáng nhớ trong năm</span><span class="home-card-link">Xem sự kiện <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
             <article id="home-daily-card" class="home-tet-card home-daily-card" role="link" tabindex="0" data-home-card-action="#daily-action"><span id="daily-phase-label" class="home-card-label"><i data-lucide="sparkles" aria-hidden="true"></i> Gợi ý hôm nay</span><strong id="daily-title">Một tiện ích dành cho bạn</strong><p id="daily-description">Đang chuẩn bị nội dung hôm nay…</p><a id="daily-action" class="home-daily-action" href="/lich-am-hom-nay.html">Khám phá ngay →</a></article>
           </div>
+          <aside id="home-fireworks-collection" class="home-fireworks-collection" aria-labelledby="home-fireworks-collection-title">
+            <div class="home-fireworks-collection-heading">
+              <div class="home-fireworks-collection-title-row">
+                <span class="home-fireworks-collection-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 2v3M4.9 4.9 7 7M2 12h3M19 12h3M17 7l2.1-2.1"/><path d="M8 22c0-7 2.5-11.5 8-15M6.5 18.5 4 21M7 15l-3 .8"/><path d="m15.5 6.5 3.5-1-1 3.5-2.5-2.5Z"/></svg></span>
+                <div><p class="home-fireworks-collection-kicker">Sưu tầm mỗi ngày</p><h3 id="home-fireworks-collection-title">Bộ sưu tập lời chúc pháo hoa</h3></div>
+              </div>
+              <span id="home-fireworks-collection-progress" class="home-fireworks-collection-progress">0/64</span>
+            </div>
+            <progress id="home-fireworks-collection-meter" class="home-fireworks-collection-meter" max="64" value="0" aria-label="Tiến độ bộ sưu tập lời chúc"></progress>
+            <div class="home-fireworks-collection-experience">
+              <div class="home-fireworks-mission">
+                <span id="home-fireworks-mission-label" class="home-fireworks-mission-label">Thử thách hôm nay</span>
+                <div class="home-fireworks-daily-heading"><strong id="home-fireworks-mission-title">Tìm lời chúc trong pháo hoa</strong><span id="home-fireworks-daily-count">0 viên</span></div>
+                <progress id="home-fireworks-daily-meter" class="home-fireworks-daily-meter" max="100" value="0" aria-label="Số viên pháo đã bắn hôm nay"></progress>
+                <p id="home-fireworks-mission-copy">Mỗi 20 lần bấm sẽ hiện một lời chúc đã có; mỗi ngày còn có cơ hội tìm 1 thẻ mới.</p>
+                <button id="home-fireworks-collection-launch" class="home-fireworks-collection-launch" type="button"><i data-lucide="sparkles" aria-hidden="true"></i><span id="home-fireworks-launch-label">Bắn pháo hoa</span></button>
+              </div>
+              <div class="home-fireworks-gallery">
+                <div id="home-fireworks-featured" class="home-fireworks-featured" aria-live="polite">
+                  <svg class="home-fireworks-featured-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 4v10M12 12l7 7M4 32h10M50 32h10M45 19l7-7"/><circle cx="32" cy="27" r="4"/><path d="M23 58c1-17 8-29 24-42M19 53l-7 6M19 46l-9 2"/><path d="m43 15 8-2-2 8-6-6Z"/></svg>
+                  <div><span id="home-fireworks-featured-label">Lời chúc đầu tiên đang chờ</span><strong id="home-fireworks-featured-wish">Bắn pháo hoa để mở khóa</strong><small id="home-fireworks-featured-hint">Lời chúc mới nhất sẽ xuất hiện tại đây</small></div>
+                </div>
+                <div class="home-fireworks-gallery-heading"><strong>Bộ thẻ lời chúc</strong><span id="home-fireworks-unlocked-summary">Chưa có lời chúc</span></div>
+                <div id="home-fireworks-collection-list" class="home-fireworks-collection-list" role="group" aria-label="Bộ thẻ lời chúc"></div>
+              </div>
+            </div>
+            <p class="home-fireworks-return-note"><i data-lucide="calendar-heart" aria-hidden="true"></i><span id="home-fireworks-return-note-copy">Mỗi ngày mở 1 lời chúc mới. Lời chúc đã có xuất hiện sau mỗi 20 lần bấm.</span></p>
+          </aside>
         </div>
       </section>
 
@@ -236,18 +268,33 @@
     </footer>
 
     <button id="home-fireworks-trigger" class="home-fireworks-trigger" type="button" aria-label="Bắn pháo hoa đón Tết">
-      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-        <path d="M16 7v6M7 16h6M9.6 9.6l4.2 4.2M22.4 9.6l-4.2 4.2M34 11v7M25 20h7M27.7 13.7l4.9 4.9M40.3 13.7l-4.9 4.9" />
-        <path d="M24 43c0-10.5 2.5-17.5 8-23M19 39c-.2-7.6-1.8-12.8-5-17" />
-        <circle cx="16" cy="16" r="2.4" /><circle cx="34" cy="20" r="2.4" />
-      </svg>
-      <span class="home-fireworks-tooltip" aria-hidden="true">Bắn pháo hoa</span>
+      <span class="home-fireworks-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" focusable="false">
+          <g class="home-fireworks-icon-rays"><path d="M32 3v8M13 11l6 6M51 11l-6 6M5 29h9M50 29h9" /><circle cx="32" cy="24" r="4" /></g>
+          <g class="home-fireworks-icon-rocket"><path d="M24 54c1-16 7-27 21-36M20 50l-5 6M19 44l-8 2" /><path d="M41 17l7-2-2 7-5-5Z" /></g>
+          <g class="home-fireworks-icon-vip home-fireworks-icon-vip--silver"><path d="M17 25l3 3-3 3-3-3 3-3ZM48 34l3 3-3 3-3-3 3-3Z" /></g>
+          <g class="home-fireworks-icon-vip home-fireworks-icon-vip--gold"><path d="M9 16c5-5 9-5 14 0-5-1-9 1-14 0ZM47 43c5-5 9-5 14 0-5-1-9 1-14 0Z" /></g>
+          <g class="home-fireworks-icon-vip home-fireworks-icon-vip--jade"><path d="M11 37c4-5 8-5 12 0M42 9c4-5 8-5 12 0" /></g>
+          <g class="home-fireworks-icon-vip home-fireworks-icon-vip--royal"><path d="M22 10l5 4 5-8 5 8 5-4-2 11H24l-2-11Z" /></g>
+        </svg>
+      </span>
     </button>
     <a class="home-floating-app-cta" href="#app-intro" data-home-floating-app data-home-smart-app data-home-smart-app-source="floating" aria-label="Tải ứng dụng Sắp Tết">
       <img src="assets/images/ic_app.png" alt="" width="64" height="64">
       <span class="home-floating-app-badge" aria-hidden="true"><i data-lucide="download"></i></span>
       <span class="home-floating-app-tooltip" aria-hidden="true">Tải ứng dụng</span>
     </a>
+    <div id="home-fireworks-reward-modal" class="home-fireworks-reward-modal" role="dialog" aria-modal="true" aria-labelledby="home-fireworks-reward-title" hidden>
+      <div class="home-fireworks-reward-card">
+        <span class="home-fireworks-reward-rays" aria-hidden="true"></span>
+        <svg class="home-fireworks-reward-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 4v10M12 12l7 7M4 32h10M50 32h10M45 19l7-7"/><circle cx="32" cy="27" r="4"/><path d="M23 58c1-17 8-29 24-42M19 53l-7 6M19 46l-9 2"/><path d="m43 15 8-2-2 8-6-6Z"/></svg>
+        <p>Bạn vừa tìm thấy một thẻ mới</p>
+        <h2 id="home-fireworks-reward-title">Chúc mừng!</h2>
+        <strong id="home-fireworks-reward-wish">Vạn Sự Như Ý</strong>
+        <span id="home-fireworks-reward-copy">Lời chúc mới đã được thêm vào bộ sưu tập của bạn.</span>
+        <button id="home-fireworks-reward-close" type="button">Nhận lời chúc</button>
+      </div>
+    </div>
     <div id="home-toast" class="home-toast" role="status" aria-live="polite" hidden></div>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="js/header-loader.js"></script>
@@ -256,7 +303,7 @@
     <script src="data/events-data.js"></script>
     <script src="js/home-retention.js?v=20260828"></script>
     <script src="js/home-shop-preview.js?v=20260828"></script>
-    <script src="js/home-fireworks.js?v=20260828-2"></script>
+    <script src="js/home-fireworks.js?v=20260904c"></script>
     <script>if (window.lucide) window.lucide.createIcons();</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {
