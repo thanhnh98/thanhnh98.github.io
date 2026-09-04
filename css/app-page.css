@@ -28,7 +28,7 @@
     position: relative;
     min-height: 650px;
     overflow: hidden;
-    padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(4rem, 7vw, 6rem);
+    padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 5vw, 4rem);
     color: #fff;
     background:
         radial-gradient(circle at 82% 20%, rgba(255, 216, 94, 0.28), transparent 24rem),
@@ -330,6 +330,34 @@
 .app-stage-badge--bottom {
     left: 1%;
     bottom: 5%;
+    animation: app-stage-badge-enter 0.7s 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    will-change: transform;
+}
+
+.app-stage-badge--bottom:hover {
+    animation: app-stage-badge-hover 0.48s ease both;
+    box-shadow: 0 20px 38px rgba(65, 0, 9, 0.3);
+}
+
+@keyframes app-stage-badge-enter {
+    from {
+        opacity: 0;
+        transform: translate(-16px, 12px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes app-stage-badge-hover {
+    0%, 100% {
+        transform: translateY(-3px) scale(1.02);
+    }
+    50% {
+        transform: translateY(-7px) rotate(-1deg) scale(1.035);
+    }
 }
 
 .app-trust-bar {
@@ -1006,7 +1034,7 @@
 
     .app-landing-hero {
         min-height: 0;
-        padding: 3rem 0 2.5rem;
+        padding: 2rem 0;
     }
 
     .app-hero-grid {
@@ -1175,7 +1203,10 @@
 
     .app-store-button,
     .app-feature-card,
+    .app-stage-badge--bottom,
     .app-mobile-sticky-download {
+        animation: none;
+        transform: none;
         transition: none;
     }
 }
