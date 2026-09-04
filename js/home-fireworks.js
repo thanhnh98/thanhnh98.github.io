@@ -852,7 +852,7 @@
     var rewardClose = doc.getElementById('home-fireworks-reward-close');
     var rewardModal = doc.getElementById('home-fireworks-reward-modal');
     if (rewardClose) rewardClose.addEventListener('click', closeRewardCelebration);
-    if (rewardModal) rewardModal.addEventListener('click', function (event) { if (event.target === rewardModal) closeRewardCelebration(); });
+    // Keep backdrop taps inert so rapid firework taps cannot dismiss a newly opened reward.
     doc.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') closeRewardCelebration();
       if (event.key === 'Tab' && rewardModal && !rewardModal.hidden && rewardClose) {

@@ -199,6 +199,8 @@ test('collection UI exposes inline launch and live progress without masked place
   assert.match(html, /id="home-fireworks-reward-modal"/);
   assert.match(html, /role="dialog" aria-modal="true"/);
   assert.match(html, /id="home-fireworks-reward-close"/);
+  assert.match(script, /rewardClose\.addEventListener\('click', closeRewardCelebration\)/);
+  assert.doesNotMatch(script, /rewardModal\.addEventListener\('click'/);
   assert.match(script, /mỗi ngày lại có một lời chúc mới chờ bạn khám phá/);
   assert.match(script, /todayMessage \? todayMessage\.text : 'Đã mở khóa thành công'/);
   assert.match(script, /todayMessage \? 'Lời chúc hôm nay' : 'Lời chúc nổi bật'/);
