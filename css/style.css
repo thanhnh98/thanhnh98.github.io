@@ -34,7 +34,7 @@ body {
     width: 100%;
 }
 
-header {
+#header-container > header {
     background: #fff7ed;
     padding: 0.55rem 0;
     position: relative;
@@ -44,7 +44,7 @@ header {
     backdrop-filter: blur(14px);
 }
 
-header::before {
+#header-container > header::before {
     content: '';
     position: absolute;
     inset: 0;

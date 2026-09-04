@@ -17,6 +17,7 @@ Allow: /lich-van-nien.html
 Allow: /lich-am-hom-nay.html
 Allow: /lich-am-hom-nay
 Allow: /qr-code
+Allow: /su-kien/
 
 # Allow crawling of assets
 Allow: /css/

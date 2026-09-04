@@ -3065,12 +3065,12 @@
             if (typeof lunarToSolar === 'function' && EVENTS_DATA.LUNAR_EVENTS) {
                 EVENTS_DATA.LUNAR_EVENTS.forEach(function (ev) {
                     let d = lunarToSolar(year, ev.lunarMonth, ev.lunarDay);
-                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: ev.lunarLabel }); }
                     d = lunarToSolar(year + 1, ev.lunarMonth, ev.lunarDay);
-                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                    if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: ev.lunarLabel }); }
                     if (ev.lunarMonth === 12) {
                         d = lunarToSolar(year - 1, 12, ev.lunarDay);
-                        if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel }); }
+                        if (d) { d = new Date(d.getFullYear(), d.getMonth(), d.getDate()); d.setHours(0, 0, 0, 0); if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: ev.lunarLabel }); }
                     }
                 });
             }
@@ -3079,10 +3079,10 @@
                 list.forEach(function (ev) {
                     let d = new Date(year, ev.month - 1, ev.day);
                     d.setHours(0, 0, 0, 0);
-                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                    if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: null });
                     d = new Date(year + 1, ev.month - 1, ev.day);
                     d.setHours(0, 0, 0, 0);
-                    if (d >= today) items.push({ date: d, name: ev.name, lunar: null });
+                    if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: null });
                 });
             });
             items.sort(function (a, b) { return a.date - b.date; });
@@ -3103,14 +3103,14 @@
                     if (d) {
                         d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
                         d.setHours(0, 0, 0, 0);
-                        if (d >= yearStart && d <= yearEnd) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel });
+                        if (d >= yearStart && d <= yearEnd) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: ev.lunarLabel });
                     }
                     if (ev.lunarMonth === 12) {
                         d = lunarToSolar(year - 1, 12, ev.lunarDay);
                         if (d) {
                             d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
                             d.setHours(0, 0, 0, 0);
-                            if (d >= yearStart && d <= yearEnd) items.push({ date: d, name: ev.name, lunar: ev.lunarLabel });
+                            if (d >= yearStart && d <= yearEnd) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: ev.lunarLabel });
                         }
                     }
                 });
@@ -3120,7 +3120,7 @@
                 list.forEach(function (ev) {
                     const d = new Date(year, ev.month - 1, ev.day);
                     d.setHours(0, 0, 0, 0);
-                    items.push({ date: d, name: ev.name, lunar: null });
+                    items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: null });
                 });
             });
             items.sort(function (a, b) { return a.date - b.date; });
@@ -3145,10 +3145,10 @@
                 el.innerHTML = inOneMonth.map(function (x) {
                     const days = daysFromToday(x.date);
                     const dStr = formatDate(x.date);
-                    const dateParam = formatDateParam(x.date);
                     const typeClass = x.lunar ? 'event-upcoming-item--lunar' : 'event-upcoming-item--solar';
                     const daysText = days === 0 ? 'Hôm nay' : 'Còn ' + days + ' ngày';
-                    return '<a href="chi-tiet-su-kien.html#' + formatDateParam(x.date) + '" class="event-upcoming-item ' + typeClass + ' event-item-link"><span class="event-days-left">' + daysText + '</span> – ' + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
+                    const url = x.slug ? '/su-kien/' + encodeURIComponent(x.slug) + '/' : 'chi-tiet-su-kien.html#' + formatDateParam(x.date);
+                    return '<a href="' + url + '" class="event-upcoming-item ' + typeClass + ' event-item-link"><span class="event-days-left">' + daysText + '</span> – ' + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + (/âm lịch/i.test(x.lunar) ? '' : ' âm lịch') : '') + '</a>';
                 }).join('');
             }
         }
@@ -3176,8 +3176,8 @@
                 if (x.date.getTime() === today.getTime()) prefix = '<span class="event-days-left">Hôm nay</span> – ';
                 else if (days > 0) prefix = '<span class="event-days-left">Còn ' + days + ' ngày</span> – ';
                 else prefix = '<span class="event-days-past">Đã qua</span> – ';
-                const url = 'chi-tiet-su-kien.html#' + formatDateParam(x.date);
-                return '<a href="' + url + '" class="event-year-item ' + typeClass + ' event-item-link">' + prefix + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + ' âm lịch' : '') + '</a>';
+                const url = x.slug ? '/su-kien/' + encodeURIComponent(x.slug) + '/' : 'chi-tiet-su-kien.html#' + formatDateParam(x.date);
+                return '<a href="' + url + '" class="event-year-item ' + typeClass + ' event-item-link">' + prefix + x.name + ' (' + dStr + ')' + (x.lunar ? ' – ' + x.lunar + (/âm lịch/i.test(x.lunar) ? '' : ' âm lịch') : '') + '</a>';
             }).join('');
         }
 

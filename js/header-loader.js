@@ -30,6 +30,12 @@ class HeaderLoader {
         } else if (filename === 'ung-dung.html' || normalizedPath === '/ung-dung') {
             return 'app';
         } else if (
+            filename === 'su-kien-quan-trong.html' ||
+            normalizedPath === '/su-kien-quan-trong' ||
+            path.indexOf('/su-kien/') !== -1
+        ) {
+            return 'events';
+        } else if (
             filename === 'tin-tuc.html' ||
             normalizedPath === '/tin-tuc' ||
             path.indexOf('/tin-tuc/') !== -1
@@ -107,7 +113,6 @@ class HeaderLoader {
         script.async = true;
         script.crossOrigin = 'anonymous';
         script.src = scriptSrc;
-        script.setAttribute('data-adsense-loader', 'true');
         document.head.appendChild(script);
     }
 

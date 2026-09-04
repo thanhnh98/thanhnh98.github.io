@@ -10,7 +10,7 @@ test('homepage exposes a corner fireworks trigger without an eager canvas', () =
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   assert.match(html, /id="home-fireworks-trigger"/);
   assert.match(html, /aria-label="Bắn pháo hoa đón Tết"/);
-  assert.match(html, /id="home-fireworks-trigger-label"[^>]*>Bắn pháo hoa</);
+  assert.match(html, /id="home-fireworks-trigger-label"[^>]*>Bấm để bắn pháo hoa</);
   assert.match(html, /id="home-streak"[\s\S]*id="visit-streak"[\s\S]*id="home-fireworks-shot-count"/);
   assert.match(html, /class="home-streak-fireworks-icon"/);
   assert.doesNotMatch(html, /🎆/);
@@ -207,7 +207,8 @@ test('collection UI exposes inline launch and live progress without masked place
   assert.match(script, /action \+ ' · ' \+ clicks \+ '\/20'/);
   assert.match(script, /Lời chúc đã xuất hiện!/);
   assert.match(script, /launcherHintSeen/);
-  assert.match(script, /6000/);
+  assert.match(script, /classList\.add\('has-launched'\)/);
+  assert.match(script, /5000/);
   assert.match(script, /if \(!modal \|\| !message \|\| !newlyUnlocked\) return/);
   assert.doesNotMatch(html, /combo/i);
   assert.doesNotMatch(script, /advanceCombo|COMBO_RESET_MS/);
@@ -251,6 +252,7 @@ test('fireworks styles keep the canvas non-interactive and respect reduced motio
   assert.match(css, /\.home-fireworks-canvas[\s\S]*?pointer-events:\s*none/);
   assert.match(css, /\.home-fireworks-trigger[\s\S]*?position:\s*fixed/);
   assert.match(css, /\.home-fireworks-trigger\.is-discovering/);
-  assert.match(css, /home-fireworks-discovery-ring/);
+  assert.doesNotMatch(css, /\.home-fireworks-trigger:not\(\.has-launched\):hover/);
+  assert.doesNotMatch(css, /home-fireworks-discovery-ring/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?home-fireworks-trigger/);
 });

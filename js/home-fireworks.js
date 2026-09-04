@@ -400,12 +400,13 @@
       }, 1500);
     }
 
-    function dismissLauncherDiscovery() {
+    function dismissLauncherDiscovery(markAsLaunched) {
       if (launcherDiscoveryTimer) {
         win.clearTimeout(launcherDiscoveryTimer);
         launcherDiscoveryTimer = 0;
       }
       trigger.classList.remove('is-discovering');
+      if (markAsLaunched) trigger.classList.add('has-launched');
       if (collectionState.launcherHintSeen) return;
       collectionState.launcherHintSeen = true;
       if (!testMode) {
@@ -416,7 +417,7 @@
     function setupLauncherDiscovery() {
       if (collectionState.launcherHintSeen) return;
       trigger.classList.add('is-discovering');
-      launcherDiscoveryTimer = win.setTimeout(dismissLauncherDiscovery, 6000);
+      launcherDiscoveryTimer = win.setTimeout(function () { dismissLauncherDiscovery(false); }, 5000);
     }
 
     function renderReward(reward) {
@@ -909,7 +910,7 @@
     var controller = createController(win, doc, trigger);
     createTestPanel(doc, controller);
     function launchAndTrack(source) {
-      controller.dismissLauncherDiscovery();
+      controller.dismissLauncherDiscovery(true);
       var result = controller.launch();
       if (result && result.launched && win.webAnalytics && typeof win.webAnalytics.trackEvent === 'function') {
         win.webAnalytics.trackEvent('home_fireworks_launch', {

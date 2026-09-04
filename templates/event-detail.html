@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Sắp Tết">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:image" content="https://saptet.vn/assets/images/img_sharing.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{OG_TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="https://saptet.vn/assets/images/img_sharing.png">
+  <meta name="saptet:generated-signature" content="{{SIGNATURE}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/events-page.css?v={{ASSET_VERSION}}">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script type="application/ld+json">{{SCHEMA}}</script>
+</head>
+<body class="event-article-page">
+  <div id="header-container"></div>
+
+  <nav class="events-shell event-article-breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Trang chủ</a></li>
+      <li><a href="/su-kien-quan-trong.html">Sự kiện</a></li>
+      <li aria-current="page">{{EVENT_NAME}}</li>
+    </ol>
+  </nav>
+
+  <header class="event-article-hero">
+    <div class="events-shell event-article-hero-grid">
+      <div>
+        <p class="event-article-eyebrow">{{CATEGORY_LABEL}}</p>
+        <h1>{{H1}}</h1>
+        <p class="event-article-lead">{{DESCRIPTION}}</p>
+        <div class="event-article-meta">{{BADGES}}</div>
+      </div>
+      <div class="event-article-date-card">
+        <p class="event-article-date-card-label">Lần diễn ra tiếp theo</p>
+        <strong>{{DATE_LONG}}</strong>
+        <p>{{CALENDAR_NOTE}}</p>
+        <p class="event-article-countdown" data-event-countdown data-date="{{DATE_KEY}}">{{COUNTDOWN}}</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="event-article-main">
+    <div class="events-shell event-article-layout">
+      <article class="event-article-content">
+        <section class="event-article-section">
+          <h2>{{EVENT_NAME}} diễn ra khi nào?</h2>
+          {{WHEN_CONTENT}}
+        </section>
+        <section class="event-article-section">
+          <h2>Ý nghĩa của {{EVENT_NAME}}</h2>
+          <p>{{DESCRIPTION}}</p>
+          <p>{{CONTEXT}}</p>
+        </section>
+        <section class="event-article-section">
+          <h2>Gợi ý để ngày này thêm ý nghĩa</h2>
+          <ul>{{ACTIVITIES}}</ul>
+        </section>
+        <section class="event-article-section">
+          <h2>Lưu ý nhỏ</h2>
+          <p>{{TIP}}</p>
+        </section>
+        <section class="events-faq event-article-section" aria-labelledby="event-faq-title">
+          <h2 id="event-faq-title">Câu hỏi thường gặp</h2>
+          {{FAQ}}
+        </section>
+        <section class="event-related" aria-labelledby="related-events-title">
+          <h2 id="related-events-title">Sự kiện gần ngày này</h2>
+          <div class="event-related-grid">{{RELATED}}</div>
+        </section>
+      </article>
+
+      <aside class="event-article-aside" aria-label="Thông tin nhanh">
+        <section class="event-article-aside-card">
+          <h2>Thông tin nhanh</h2>
+          <dl>
+            <div><dt>Ngày dương</dt><dd>{{DATE_SHORT}}</dd></div>
+            <div><dt>Loại lịch</dt><dd>{{CALENDAR_TYPE}}</dd></div>
+            <div><dt>Phân loại</dt><dd>{{CATEGORY_LABEL}}</dd></div>
+            {{HOLIDAY_ROW}}
+          </dl>
+        </section>
+        <section class="event-article-aside-card">
+          <h2>Khám phá thêm</h2>
+          <div class="event-article-aside-links">
+            <a href="/lich-van-nien.html">Mở lịch vạn niên</a>
+            <a href="/su-kien-quan-trong.html">Xem mọi sự kiện</a>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/header-loader.js?v=events-20260904"></script>
+  <script src="/js/icons.js"></script>
+  <script src="/data/events-data.js"></script>
+  <script src="/js/events-page.js"></script>
+  <script src="/js/footer.js"></script>
+</body>
+</html>

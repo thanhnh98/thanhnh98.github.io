@@ -24,11 +24,14 @@ jobs:
       - name: Inject Tết SEO snippets
         run: node scripts/inject-tet-seo-snippets.js
 
+      - name: Generate event pages
+        run: node scripts/generate-event-pages.js
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html con-bao-nhieu-ngay-nua-den-tet/index.html con-bao-nhieu-ngay-nua-den-giao-thua/index.html
+          git add index.html con-bao-nhieu-ngay-nua-den-tet/index.html con-bao-nhieu-ngay-nua-den-giao-thua/index.html su-kien-quan-trong.html su-kien sitemap.xml
           if git diff --staged --quiet; then
             echo "No SEO snippet changes."
             exit 0

@@ -54,6 +54,109 @@
     { id: 'solar-giang-sinh', month: 12, day: 25, name: 'Giáng Sinh', description: 'Lễ Giáng Sinh 25/12 là ngày lễ quan trọng của Kitô giáo và cũng là dịp văn hóa được đón nhận tại nhiều nơi trên thế giới.', type: 'international' }
   ];
 
+  function getCategory(event) {
+    if (typeof event.lunarMonth === 'number') return 'lunar';
+    return event.type === 'international' ? 'international' : 'vietnam';
+  }
+
+  function getSlug(event) {
+    return event.id.replace(/^(lunar|solar)-/, '');
+  }
+
+  [LUNAR_EVENTS, SOLAR_EVENTS_VIETNAM, SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
+    list.forEach(function (event) {
+      event.slug = event.slug || getSlug(event);
+      event.category = event.category || getCategory(event);
+    });
+  });
+
+  function getAllEvents() {
+    return LUNAR_EVENTS.concat(SOLAR_EVENTS_VIETNAM, SOLAR_EVENTS_INTERNATIONAL);
+  }
+
+  function getEventBySlug(slug) {
+    return getAllEvents().find(function (event) { return event.slug === slug; }) || null;
+  }
+
+  function getVietnamTodayKey(now) {
+    var value = now instanceof Date ? now : new Date();
+    try {
+      var parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Asia/Ho_Chi_Minh',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).formatToParts(value);
+      var values = {};
+      parts.forEach(function (part) { values[part.type] = part.value; });
+      return values.year + '-' + values.month + '-' + values.day;
+    } catch (error) {
+      return value.getFullYear() + '-' + String(value.getMonth() + 1).padStart(2, '0') + '-' + String(value.getDate()).padStart(2, '0');
+    }
+  }
+
+  function keyFromDate(date) {
+    return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+  }
+
+  function partsFromKey(key) {
+    var parts = String(key).split('-').map(Number);
+    return { year: parts[0], month: parts[1], day: parts[2] };
+  }
+
+  function daysBetweenKeys(fromKey, toKey) {
+    var from = partsFromKey(fromKey);
+    var to = partsFromKey(toKey);
+    var fromUtc = Date.UTC(from.year, from.month - 1, from.day);
+    var toUtc = Date.UTC(to.year, to.month - 1, to.day);
+    return Math.round((toUtc - fromUtc) / 86400000);
+  }
+
+  function getNextOccurrence(event, options) {
+    var opts = options || {};
+    var todayKey = opts.todayKey || getVietnamTodayKey(opts.now);
+    var todayParts = partsFromKey(todayKey);
+    var occurrenceKey = '';
+
+    if (typeof event.month === 'number') {
+      occurrenceKey = todayParts.year + '-' + String(event.month).padStart(2, '0') + '-' + String(event.day).padStart(2, '0');
+      if (occurrenceKey < todayKey) {
+        occurrenceKey = (todayParts.year + 1) + '-' + String(event.month).padStart(2, '0') + '-' + String(event.day).padStart(2, '0');
+      }
+    } else {
+      var converter = opts.lunarToSolar || (typeof lunarToSolar === 'function' ? lunarToSolar : null);
+      if (!converter) return null;
+      for (var lunarYear = todayParts.year - 1; lunarYear <= todayParts.year + 2; lunarYear += 1) {
+        var date = converter(lunarYear, event.lunarMonth, event.lunarDay, false);
+        if (!date) continue;
+        var candidateKey = keyFromDate(date);
+        if (candidateKey >= todayKey && (!occurrenceKey || candidateKey < occurrenceKey)) {
+          occurrenceKey = candidateKey;
+        }
+      }
+    }
+
+    if (!occurrenceKey) return null;
+    var dateParts = partsFromKey(occurrenceKey);
+    return {
+      dateKey: occurrenceKey,
+      year: dateParts.year,
+      month: dateParts.month,
+      day: dateParts.day,
+      daysUntil: daysBetweenKeys(todayKey, occurrenceKey)
+    };
+  }
+
+  function getUpcomingEvents(options) {
+    return getAllEvents().map(function (event) {
+      return { event: event, occurrence: getNextOccurrence(event, options) };
+    }).filter(function (item) {
+      return !!item.occurrence;
+    }).sort(function (a, b) {
+      return a.occurrence.dateKey.localeCompare(b.occurrence.dateKey) || a.event.name.localeCompare(b.event.name, 'vi');
+    });
+  }
+
   /** Map lunar "month-day" -> event (để tra theo ngày âm trên lịch) */
   function getLunarEventMap() {
     var map = {};
@@ -79,6 +182,11 @@
     LUNAR_EVENTS: LUNAR_EVENTS,
     SOLAR_EVENTS_VIETNAM: SOLAR_EVENTS_VIETNAM,
     SOLAR_EVENTS_INTERNATIONAL: SOLAR_EVENTS_INTERNATIONAL,
+    getAllEvents: getAllEvents,
+    getEventBySlug: getEventBySlug,
+    getVietnamTodayKey: getVietnamTodayKey,
+    getNextOccurrence: getNextOccurrence,
+    getUpcomingEvents: getUpcomingEvents,
     getLunarEventMap: getLunarEventMap,
     getSolarEventMap: getSolarEventMap
   };

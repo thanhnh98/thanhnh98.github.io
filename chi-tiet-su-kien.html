@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết sự kiện | Đếm ngược & Ý nghĩa | Sắp Tết</title>
     <meta name="description" content="Xem đếm ngược đến ngày sự kiện, ý nghĩa và thông tin chi tiết về các ngày lễ âm lịch, dương lịch.">
+    <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://saptet.vn/chi-tiet-su-kien.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css">
@@ -235,7 +236,7 @@
             if (!arr) return;
             arr.forEach(function (ev) {
                 if (ev.month === month && ev.day === day) {
-                    list.push({ name: ev.name, description: ev.description || '', lunar: null, type: 'solar', typeLabel: 'Dương lịch' });
+                    list.push({ id: ev.id, slug: ev.slug, name: ev.name, description: ev.description || '', lunar: null, type: 'solar', typeLabel: 'Dương lịch' });
                 }
             });
         });
@@ -247,7 +248,7 @@
                     var sd = new Date(solar.getFullYear(), solar.getMonth(), solar.getDate());
                     sd.setHours(0, 0, 0, 0);
                     if (sd.getTime() === target.getTime()) {
-                        list.push({ name: ev.name, description: ev.description || '', lunar: ev.lunarLabel, type: 'lunar', typeLabel: 'Âm lịch' });
+                        list.push({ id: ev.id, slug: ev.slug, name: ev.name, description: ev.description || '', lunar: ev.lunarLabel, type: 'lunar', typeLabel: 'Âm lịch' });
                     }
                 }
                 if (ev.lunarMonth === 12) {
@@ -256,7 +257,7 @@
                         var sd2 = new Date(solar.getFullYear(), solar.getMonth(), solar.getDate());
                         sd2.setHours(0, 0, 0, 0);
                         if (sd2.getTime() === target.getTime()) {
-                            list.push({ name: ev.name, description: ev.description || '', lunar: ev.lunarLabel, type: 'lunar', typeLabel: 'Âm lịch' });
+                            list.push({ id: ev.id, slug: ev.slug, name: ev.name, description: ev.description || '', lunar: ev.lunarLabel, type: 'lunar', typeLabel: 'Âm lịch' });
                         }
                     }
                 }
@@ -346,6 +347,10 @@
         if (dateDisplayEl) dateDisplayEl.textContent = formatDateLong(targetDate) + ' (' + formatDate(targetDate) + ')';
 
         var events = getEventsOnDate(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+        if (hasDateParam && events.length === 1 && events[0].slug) {
+            window.location.replace('/su-kien/' + encodeURIComponent(events[0].slug) + '/');
+            return;
+        }
         if (events.length === 0) {
             if (cardsEl) cardsEl.innerHTML = '';
             if (emptyEl) { emptyEl.style.display = 'block'; }

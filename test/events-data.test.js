@@ -79,13 +79,13 @@ test('perpetual calendar labels only official holidays as days off', () => {
     );
 });
 
-test('important events page isolates its grid cards from the homepage carousel styles', () => {
+test('important events page uses namespaced cards isolated from homepage carousel styles', () => {
     const html = fs.readFileSync(path.join(root, 'su-kien-quan-trong.html'), 'utf8');
+    const css = fs.readFileSync(path.join(root, 'css/events-page.css'), 'utf8');
 
-    assert.match(html, /\.event-grid\s*>\s*\.event-card\s*\{/);
-    assert.match(html, /min-width:\s*0;/);
-    assert.match(html, /max-width:\s*none;/);
-    assert.match(html, /width:\s*100%;/);
-    assert.match(html, /grid-template-rows:\s*auto auto 1fr auto;/);
-    assert.match(html, /\.event-grid\s*>\s*\.event-card::before\s*\{\s*content:\s*none;/);
+    assert.match(html, /class="events-timeline"/);
+    assert.match(html, /class="events-index-card"/);
+    assert.match(css, /\.events-index-card-link\s*\{/);
+    assert.match(css, /min-width:\s*0;/);
+    assert.doesNotMatch(css, /(^|\n)\.event-card\s*\{/);
 });
