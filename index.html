@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css?v=20260830">
     <link rel="stylesheet" href="css/pwa.css">
-    <link rel="stylesheet" href="css/home-retention.css?v=20260904">
+    <link rel="stylesheet" href="css/home-retention.css?v=20260904d">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -136,7 +136,7 @@
                 <div class="home-fireworks-daily-heading"><strong id="home-fireworks-mission-title">Tìm lời chúc trong pháo hoa</strong><span id="home-fireworks-daily-count">0 viên</span></div>
                 <progress id="home-fireworks-daily-meter" class="home-fireworks-daily-meter" max="100" value="0" aria-label="Số viên pháo đã bắn hôm nay"></progress>
                 <p id="home-fireworks-mission-copy">Mỗi 20 lần bấm sẽ hiện một lời chúc đã có; mỗi ngày còn có cơ hội tìm 1 thẻ mới.</p>
-                <button id="home-fireworks-collection-launch" class="home-fireworks-collection-launch" type="button"><i data-lucide="sparkles" aria-hidden="true"></i><span id="home-fireworks-launch-label">Bắn pháo hoa</span></button>
+                <button id="home-fireworks-collection-launch" class="home-fireworks-collection-launch" type="button"><i data-lucide="sparkles" aria-hidden="true"></i><span id="home-fireworks-launch-label">Bắn pháo · 0/20</span></button>
               </div>
               <div class="home-fireworks-gallery">
                 <div id="home-fireworks-featured" class="home-fireworks-featured" aria-live="polite">
@@ -278,6 +278,7 @@
           <g class="home-fireworks-icon-vip home-fireworks-icon-vip--royal"><path d="M22 10l5 4 5-8 5 8 5-4-2 11H24l-2-11Z" /></g>
         </svg>
       </span>
+      <span id="home-fireworks-trigger-label" class="home-fireworks-trigger-label" aria-hidden="true">Bắn pháo hoa</span>
     </button>
     <a class="home-floating-app-cta" href="#app-intro" data-home-floating-app data-home-smart-app data-home-smart-app-source="floating" aria-label="Tải ứng dụng Sắp Tết">
       <img src="assets/images/ic_app.png" alt="" width="64" height="64">
@@ -303,7 +304,7 @@
     <script src="data/events-data.js"></script>
     <script src="js/home-retention.js?v=20260828"></script>
     <script src="js/home-shop-preview.js?v=20260828"></script>
-    <script src="js/home-fireworks.js?v=20260904c"></script>
+    <script src="js/home-fireworks.js?v=20260904e"></script>
     <script>if (window.lucide) window.lucide.createIcons();</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {

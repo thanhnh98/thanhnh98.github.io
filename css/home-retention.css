@@ -500,6 +500,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0;
   padding: 0;
   border: 3px solid #ffd95a;
   border-radius: 50%;
@@ -507,11 +508,15 @@
   background: radial-gradient(circle at 35% 28%, #f8513d 0%, #cf202b 48%, #7f0e20 100%);
   box-shadow: 0 10px 28px rgba(111,8,22,.34), 0 0 0 5px rgba(255,215,0,.14);
   cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition: width .38s cubic-bezier(.2,.8,.2,1), padding .38s cubic-bezier(.2,.8,.2,1), gap .38s ease, transform .2s ease, box-shadow .2s ease;
 }
 .home-fireworks-trigger:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 15px 34px rgba(111,8,22,.42), 0 0 0 6px rgba(255,215,0,.2); }
 .home-fireworks-trigger:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.home-fireworks-icon { display: grid; place-items: center; width: 47px; height: 47px; }
+.home-fireworks-icon { display: grid; place-items: center; flex: 0 0 auto; width: 47px; height: 47px; }
+.home-fireworks-trigger-label { max-width: 0; overflow: hidden; color: #fff6cb; font-size: .78rem; font-weight: 900; line-height: 1; white-space: nowrap; opacity: 0; transform: translateX(-8px); transition: max-width .38s cubic-bezier(.2,.8,.2,1), opacity .2s ease, transform .38s cubic-bezier(.2,.8,.2,1); }
+.home-fireworks-trigger.is-discovering { width: 178px; justify-content: flex-start; gap: .45rem; padding: 0 .95rem 0 .55rem; border-radius: 999px; }
+.home-fireworks-trigger.is-discovering .home-fireworks-trigger-label { max-width: 104px; opacity: 1; transform: translateX(0); }
+.home-fireworks-trigger.is-discovering::after { content: ''; position: absolute; inset: -7px; border: 2px solid rgba(255,211,74,.58); border-radius: inherit; pointer-events: none; animation: home-fireworks-discovery-ring 1.35s ease-out 2; }
 .home-fireworks-trigger svg { width: 47px; height: 47px; overflow: visible; fill: none; stroke: currentColor; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(70,0,0,.35)); }
 .home-fireworks-trigger svg circle, .home-fireworks-icon-rocket path:last-child { fill: #ffd95a; stroke: #fff8d6; }
 .home-fireworks-icon-vip { display: none; }
@@ -528,6 +533,7 @@
 .home-fireworks-trigger[data-tier="royal"] { color: #fff0a8; background: radial-gradient(circle at 35% 28%, #f45b42 0%, #a30f2b 42%, #35105e 100%); box-shadow: 0 14px 36px rgba(53,16,94,.52), 0 0 0 5px rgba(255,210,63,.48), 0 0 28px rgba(255,196,54,.35); }
 .home-fireworks-trigger.is-launching svg { animation: home-fireworks-icon-pop .65s ease; }
 @keyframes home-fireworks-icon-pop { 0%, 100% { transform: scale(1) rotate(0); } 35% { transform: scale(.86) rotate(-8deg); } 65% { transform: scale(1.16) rotate(8deg); } }
+@keyframes home-fireworks-discovery-ring { 0% { opacity: 0; transform: scale(.94); } 35% { opacity: 1; } 100% { opacity: 0; transform: scale(1.08); } }
 .home-fireworks-test-panel { position: fixed; left: max(1.25rem, env(safe-area-inset-left)); bottom: calc(max(1.25rem, env(safe-area-inset-bottom)) + 88px); z-index: 10012; width: min(340px, calc(100vw - 2rem)); padding: .8rem; border: 1px solid rgba(255,215,80,.45); border-radius: 16px; color: #fff; background: rgba(77,8,22,.94); box-shadow: 0 12px 34px rgba(45,0,10,.32); font-size: .72rem; }
 .home-fireworks-test-panel strong { display: block; margin-bottom: .5rem; color: #ffe889; }
 .home-fireworks-test-days { display: flex; flex-wrap: wrap; gap: .35rem; }
@@ -736,6 +742,7 @@
   .home-footer-brand, .home-footer-community { grid-column: auto; }
   .home-footer-bottom { align-items: flex-start; flex-direction: column; }
   .home-fireworks-trigger { left: max(.9rem, env(safe-area-inset-left)); bottom: max(.9rem, env(safe-area-inset-bottom)); width: 60px; height: 60px; border-width: 2px; }
+  .home-fireworks-trigger.is-discovering { width: 164px; padding: 0 .85rem 0 .45rem; }
   .home-fireworks-icon, .home-fireworks-trigger svg { width: 39px; height: 39px; }
   .home-fireworks-test-panel { left: max(.9rem, env(safe-area-inset-left)); bottom: calc(max(.9rem, env(safe-area-inset-bottom)) + 76px); }
   .home-floating-app-cta { right: max(.9rem, env(safe-area-inset-right)); bottom: max(.9rem, env(safe-area-inset-bottom)); width: 58px; height: 58px; border-width: 2px; }
@@ -751,6 +758,8 @@
 @media (prefers-reduced-motion: reduce) {
   .countdown-section *, .home-retention-section * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
   .home-fireworks-trigger { transition: none; }
+  .home-fireworks-trigger-label { transition: none; }
+  .home-fireworks-trigger.is-discovering::after { animation: none; }
   .home-fireworks-trigger.is-launching svg { animation: none; }
   .home-fireworks-reward-card, .home-fireworks-reward-rays { animation: none; }
 }

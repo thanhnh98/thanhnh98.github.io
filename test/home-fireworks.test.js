@@ -10,6 +10,7 @@ test('homepage exposes a corner fireworks trigger without an eager canvas', () =
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   assert.match(html, /id="home-fireworks-trigger"/);
   assert.match(html, /aria-label="Bắn pháo hoa đón Tết"/);
+  assert.match(html, /id="home-fireworks-trigger-label"[^>]*>Bắn pháo hoa</);
   assert.match(html, /id="home-streak"[\s\S]*id="visit-streak"[\s\S]*id="home-fireworks-shot-count"/);
   assert.match(html, /class="home-streak-fireworks-icon"/);
   assert.doesNotMatch(html, /🎆/);
@@ -21,6 +22,7 @@ test('homepage exposes a corner fireworks trigger without an eager canvas', () =
   assert.match(html, /id="home-fireworks-collection-meter"/);
   assert.match(html, /id="home-fireworks-daily-meter"/);
   assert.match(html, /id="home-fireworks-collection-launch"/);
+  assert.match(html, /id="home-fireworks-launch-label">Bắn pháo · 0\/20</);
   assert.match(html, /Mỗi 20 lần bấm sẽ hiện một lời chúc/);
   assert.match(html, /Mỗi ngày mở 1 lời chúc mới/);
   assert.match(html, /src="js\/home-fireworks\.js/);
@@ -74,7 +76,8 @@ test('daily wish state persists on the same Vietnam day and resets the next day'
   const firstDay = new Date('2026-09-03T12:00:00+07:00');
   const nextDay = new Date('2026-09-04T00:01:00+07:00');
   const existing = { version: 1, dateKey: '2026-09-03', target: 77, rocketsFired: 44, rewardClaimed: true, messageId: 'sap-tet' };
-  assert.deepEqual(fireworks.normalizeDailyRewardState(existing, firstDay, () => 0), existing);
+  const migrated = { ...existing, messageId: 'tet-vui-nhu-hoi' };
+  assert.deepEqual(fireworks.normalizeDailyRewardState(existing, firstDay, () => 0), migrated);
   assert.deepEqual(fireworks.normalizeDailyRewardState(existing, nextDay, () => 0), {
     version: 1,
     dateKey: '2026-09-04',
@@ -89,21 +92,33 @@ test('daily wish state persists on the same Vietnam day and resets the next day'
     setItem(key, value) { values.set(key, value); }
   };
   fireworks.saveDailyRewardState(storage, existing);
-  assert.deepEqual(fireworks.readDailyRewardState(storage, firstDay, () => 0), existing);
+  assert.deepEqual(fireworks.readDailyRewardState(storage, firstDay, () => 0), migrated);
 });
 
-test('signature message randomizes a large, unique Tet phrase collection', () => {
+test('collectible wishes stay unique and exclude ambient firework text', () => {
   const now = new Date('2026-08-28T12:00:00+07:00');
   const messages = fireworks.getSignatureMessages(now);
   assert.equal(fireworks.getDaysUntilTet(now), 161);
-  assert.ok(messages.length >= 60);
+  assert.equal(messages.length, 64);
   assert.equal(new Set(messages.map((item) => item.id)).size, messages.length);
   assert.equal(new Set(messages.map((item) => item.text)).size, messages.length);
-  assert.equal(fireworks.createSignatureMessage(() => 0, now), 'Sắp Tết');
-  assert.equal(fireworks.createSignatureMessage(() => 1 / messages.length, now), 'Tết còn 161 ngày');
-  assert.equal(fireworks.createSignatureMessage(() => 2 / messages.length, now), 'Chúc Mừng Năm Mới');
+  assert.equal(fireworks.createSignatureMessage(() => 0, now), 'Tết Vui Như Hội');
+  assert.equal(fireworks.createSignatureMessage(() => 1 / messages.length, now), 'Lộc Đỏ Cả Năm');
+  assert.equal(fireworks.createSignatureMessage(() => 2 / messages.length, now), 'Sum Vầy Đón Xuân');
   assert.ok(messages.some((item) => item.text === 'Phúc Lộc Đầy Nhà'));
   assert.ok(messages.some((item) => item.text === 'Đón Xuân Bình An'));
+  assert.ok(!messages.some((item) => item.special));
+  assert.ok(!messages.some((item) => item.text === 'Happy New Year'));
+});
+
+test('special firework text includes the live Tet countdown and fixed greetings', () => {
+  const now = new Date('2026-08-28T12:00:00+07:00');
+  assert.deepEqual(fireworks.getSpecialFireworkMessages(now).map((item) => item.text), [
+    'Còn 161 ngày nữa đến Tết',
+    'Sắp Tết 2027',
+    'Happy New Year',
+    'Chúc Mừng Năm Mới'
+  ]);
 });
 
 test('signature selection prioritizes wishes that are not unlocked yet', () => {
@@ -121,6 +136,18 @@ test('regular launches only randomize wishes already in the collection', () => {
   assert.equal(fireworks.createUnlockedSignatureSelection(() => .999, now, [messages[4].id, messages[8].id]).id, messages[8].id);
 });
 
+test('twentieth click chooses special text or an unlocked wish with a fifty-fifty split', () => {
+  const now = new Date('2026-08-28T12:00:00+07:00');
+  const messages = fireworks.getSignatureMessages(now);
+  const sequence = (values) => {
+    let index = 0;
+    return () => values[index++];
+  };
+  assert.equal(fireworks.createFireworkDisplaySelection(sequence([.49, .99]), now, [messages[0].id]).text, 'Chúc Mừng Năm Mới');
+  assert.equal(fireworks.createFireworkDisplaySelection(sequence([.5, 0]), now, [messages[4].id]).id, messages[4].id);
+  assert.equal(fireworks.createFireworkDisplaySelection(() => .5, now, []).text, 'Happy New Year');
+});
+
 test('an owned wish is replayed once every twenty fireworks clicks', () => {
   assert.deepEqual(fireworks.advanceWishReplayCounter(0), { clicksSinceWish: 1, wishReached: false });
   assert.deepEqual(fireworks.advanceWishReplayCounter(18), { clicksSinceWish: 19, wishReached: false });
@@ -130,10 +157,10 @@ test('an owned wish is replayed once every twenty fireworks clicks', () => {
 
 test('collection state hides invalid entries, deduplicates, and persists new unlocks', () => {
   const normalized = fireworks.normalizeCollectionState({ unlockedIds: ['sap-tet', 'sap-tet', 'khong-ton-tai'] });
-  assert.deepEqual(normalized, { version: 1, unlockedIds: ['sap-tet'], clicksSinceWish: 0 });
+  assert.deepEqual(normalized, { version: 1, unlockedIds: ['tet-vui-nhu-hoi'], clicksSinceWish: 0, launcherHintSeen: false });
   const unlocked = fireworks.unlockCollectionItem(normalized, 'van-su-nhu-y');
   assert.equal(unlocked.newlyUnlocked, true);
-  assert.deepEqual(unlocked.state, { version: 1, unlockedIds: ['sap-tet', 'van-su-nhu-y'], clicksSinceWish: 0 });
+  assert.deepEqual(unlocked.state, { version: 1, unlockedIds: ['tet-vui-nhu-hoi', 'van-su-nhu-y'], clicksSinceWish: 0, launcherHintSeen: false });
   assert.equal(fireworks.unlockCollectionItem(unlocked.state, 'van-su-nhu-y').newlyUnlocked, false);
 
   const values = new Map();
@@ -143,6 +170,20 @@ test('collection state hides invalid entries, deduplicates, and persists new unl
   };
   fireworks.saveCollectionState(storage, unlocked.state);
   assert.deepEqual(fireworks.readCollectionState(storage), unlocked.state);
+});
+
+test('collection migration preserves legacy unlocks and launcher discovery state', () => {
+  const state = fireworks.normalizeCollectionState({
+    unlockedIds: ['sap-tet', 'tet-countdown', 'happy-new-year'],
+    clicksSinceWish: 7,
+    launcherHintSeen: true
+  });
+  assert.deepEqual(state, {
+    version: 1,
+    unlockedIds: ['tet-vui-nhu-hoi', 'loc-do-ca-nam', 'sum-vay-don-xuan'],
+    clicksSinceWish: 7,
+    launcherHintSeen: true
+  });
 });
 
 test('collection UI exposes inline launch and live progress without masked placeholders', () => {
@@ -158,12 +199,15 @@ test('collection UI exposes inline launch and live progress without masked place
   assert.match(html, /id="home-fireworks-reward-modal"/);
   assert.match(html, /role="dialog" aria-modal="true"/);
   assert.match(html, /id="home-fireworks-reward-close"/);
-  assert.match(script, /Đã thêm 1 lời chúc mới/);
+  assert.match(script, /mỗi ngày lại có một lời chúc mới chờ bạn khám phá/);
   assert.match(script, /todayMessage \? todayMessage\.text : 'Đã mở khóa thành công'/);
   assert.match(script, /todayMessage \? 'Lời chúc hôm nay' : 'Lời chúc nổi bật'/);
   assert.match(script, /daily_reward_unlocked/);
-  assert.match(script, /createUnlockedSignatureSelection\(Math\.random, nowDate, collectionState\.unlockedIds\)/);
-  assert.match(script, /replayResult\.wishReached \? createUnlockedSignatureSelection/);
+  assert.match(script, /createFireworkDisplaySelection\(Math\.random, nowDate, collectionState\.unlockedIds\)/);
+  assert.match(script, /action \+ ' · ' \+ clicks \+ '\/20'/);
+  assert.match(script, /Lời chúc đã xuất hiện!/);
+  assert.match(script, /launcherHintSeen/);
+  assert.match(script, /6000/);
   assert.match(script, /if \(!modal \|\| !message \|\| !newlyUnlocked\) return/);
   assert.doesNotMatch(html, /combo/i);
   assert.doesNotMatch(script, /advanceCombo|COMBO_RESET_MS/);
@@ -206,5 +250,7 @@ test('fireworks styles keep the canvas non-interactive and respect reduced motio
   const css = fs.readFileSync(path.join(root, 'css', 'home-retention.css'), 'utf8');
   assert.match(css, /\.home-fireworks-canvas[\s\S]*?pointer-events:\s*none/);
   assert.match(css, /\.home-fireworks-trigger[\s\S]*?position:\s*fixed/);
+  assert.match(css, /\.home-fireworks-trigger\.is-discovering/);
+  assert.match(css, /home-fireworks-discovery-ring/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?home-fireworks-trigger/);
 });

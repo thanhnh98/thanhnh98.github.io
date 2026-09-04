@@ -25,10 +25,15 @@
   var COLLECTION_STATE_KEY = 'saptet_home_fireworks_collection_v1';
   var DAILY_REWARD_STATE_KEY = 'saptet_home_fireworks_daily_v1';
   var VIETNAM_TIME_ZONE = 'Asia/Ho_Chi_Minh';
+  var LEGACY_MESSAGE_REPLACEMENTS = {
+    'sap-tet': 'tet-vui-nhu-hoi',
+    'tet-countdown': 'loc-do-ca-nam',
+    'happy-new-year': 'sum-vay-don-xuan'
+  };
   var SIGNATURE_MESSAGES = [
-    { id: 'sap-tet', text: 'Sắp Tết' },
-    { id: 'tet-countdown', countdown: true },
-    { id: 'happy-new-year', text: 'Chúc Mừng Năm Mới' },
+    { id: 'tet-vui-nhu-hoi', text: 'Tết Vui Như Hội' },
+    { id: 'loc-do-ca-nam', text: 'Lộc Đỏ Cả Năm' },
+    { id: 'sum-vay-don-xuan', text: 'Sum Vầy Đón Xuân' },
     { id: 'van-su-nhu-y', text: 'Vạn Sự Như Ý' },
     { id: 'an-khang-thinh-vuong', text: 'An Khang Thịnh Vượng' },
     { id: 'tan-tai-tan-loc', text: 'Tấn Tài Tấn Lộc' },
@@ -162,7 +167,7 @@
       target: target,
       rocketsFired: clamp(Math.floor(Number(value.rocketsFired) || 0), 0, target),
       rewardClaimed: Boolean(value.rewardClaimed),
-      messageId: typeof value.messageId === 'string' ? value.messageId : ''
+      messageId: typeof value.messageId === 'string' ? (LEGACY_MESSAGE_REPLACEMENTS[value.messageId] || value.messageId) : ''
     };
   }
 
@@ -226,9 +231,18 @@
     return SIGNATURE_MESSAGES.map(function (item) {
       return {
         id: item.id,
-        text: item.countdown ? 'Tết còn ' + getDaysUntilTet(now) + ' ngày' : item.text
+        text: item.text
       };
     });
+  }
+
+  function getSpecialFireworkMessages(now) {
+    return [
+      { id: 'special-countdown', text: 'Còn ' + getDaysUntilTet(now) + ' ngày nữa đến Tết', special: true },
+      { id: 'special-sap-tet-2027', text: 'Sắp Tết 2027', special: true },
+      { id: 'special-happy-new-year', text: 'Happy New Year', special: true },
+      { id: 'special-chuc-mung-nam-moi', text: 'Chúc Mừng Năm Mới', special: true }
+    ];
   }
 
   function createSignatureSelection(random, now, excludedIds) {
@@ -252,13 +266,24 @@
     return pool[Math.floor(randomValue() * pool.length) % pool.length];
   }
 
+  function createFireworkDisplaySelection(random, now, unlockedIds) {
+    var randomValue = typeof random === 'function' ? random : Math.random;
+    var unlocked = new Set(Array.isArray(unlockedIds) ? unlockedIds : []);
+    var unlockedPool = getSignatureMessages(now).filter(function (message) { return unlocked.has(message.id); });
+    var specialPool = getSpecialFireworkMessages(now);
+    var pool = !unlockedPool.length || randomValue() < .5 ? specialPool : unlockedPool;
+    return pool[Math.floor(randomValue() * pool.length) % pool.length];
+  }
+
   function normalizeCollectionState(value) {
     var validIds = new Set(SIGNATURE_MESSAGES.map(function (item) { return item.id; }));
     var ids = value && Array.isArray(value.unlockedIds) ? value.unlockedIds : [];
+    var migratedIds = ids.map(function (id) { return LEGACY_MESSAGE_REPLACEMENTS[id] || id; });
     return {
       version: 1,
-      unlockedIds: Array.from(new Set(ids.filter(function (id) { return typeof id === 'string' && validIds.has(id); }))),
-      clicksSinceWish: clamp(Math.floor(Number(value && value.clicksSinceWish) || 0), 0, 19)
+      unlockedIds: Array.from(new Set(migratedIds.filter(function (id) { return typeof id === 'string' && validIds.has(id); }))),
+      clicksSinceWish: clamp(Math.floor(Number(value && value.clicksSinceWish) || 0), 0, 19),
+      launcherHintSeen: Boolean(value && value.launcherHintSeen)
     };
   }
 
@@ -320,6 +345,8 @@
     var storage;
     var dailyRewardState;
     var rewardModalLastFocus = null;
+    var launcherDiscoveryTimer = 0;
+    var launchFeedbackTimer = 0;
 
     try {
       storage = win.localStorage;
@@ -356,11 +383,46 @@
       element.setAttribute('value', String(Number(value) || 0));
     }
 
+    function renderLaunchProgress(showSuccess) {
+      var clicks = collectionState.clicksSinceWish;
+      var action = dailyRewardState.rewardClaimed ? 'Bắn tiếp' : 'Bắn pháo';
+      setElementText('home-fireworks-launch-label', showSuccess ? 'Lời chúc đã xuất hiện!' : action + ' · ' + clicks + '/20');
+      var reward = getReward();
+      trigger.setAttribute('aria-label', 'Bắn pháo hoa. Tiến độ ' + clicks + ' trên 20 lượt đến lời chúc tiếp theo. Mỗi lần bắn ' + reward.rockets + ' viên.');
+    }
+
+    function showLaunchSuccess() {
+      if (launchFeedbackTimer) win.clearTimeout(launchFeedbackTimer);
+      renderLaunchProgress(true);
+      launchFeedbackTimer = win.setTimeout(function () {
+        launchFeedbackTimer = 0;
+        renderLaunchProgress(false);
+      }, 1500);
+    }
+
+    function dismissLauncherDiscovery() {
+      if (launcherDiscoveryTimer) {
+        win.clearTimeout(launcherDiscoveryTimer);
+        launcherDiscoveryTimer = 0;
+      }
+      trigger.classList.remove('is-discovering');
+      if (collectionState.launcherHintSeen) return;
+      collectionState.launcherHintSeen = true;
+      if (!testMode) {
+        try { saveCollectionState(storage, collectionState); } catch (error) {}
+      }
+    }
+
+    function setupLauncherDiscovery() {
+      if (collectionState.launcherHintSeen) return;
+      trigger.classList.add('is-discovering');
+      launcherDiscoveryTimer = win.setTimeout(dismissLauncherDiscovery, 6000);
+    }
+
     function renderReward(reward) {
       var value = reward || getReward();
       trigger.setAttribute('data-tier', value.tier.key);
       trigger.removeAttribute('data-used');
-      trigger.setAttribute('aria-label', 'Chuỗi ' + value.streak + ' ngày. Mỗi click bắn ' + value.rockets + ' viên pháo hoa đón Tết');
       setElementText('visit-streak', String(value.streak));
       setElementText('home-fireworks-shot-count', String(value.rockets));
       return value;
@@ -464,15 +526,14 @@
       if (claimed) {
         setElementText('home-fireworks-mission-label', 'Lời chúc hôm nay');
         setElementText('home-fireworks-mission-title', todayMessage ? todayMessage.text : 'Đã mở khóa thành công');
-        setElementText('home-fireworks-mission-copy', collectionComplete ? 'Bộ sưu tập đã trọn vẹn. Cứ mỗi 20 lần bấm sẽ trình diễn ngẫu nhiên một lời chúc.' : 'Đã thêm 1 lời chúc mới. Cứ mỗi 20 lần bấm sẽ xuất hiện một lời chúc bạn đã sở hữu.');
-        setElementText('home-fireworks-launch-label', 'Bắn thêm cho vui');
+        setElementText('home-fireworks-mission-copy', collectionComplete ? 'Bộ sưu tập đã trọn vẹn. Cứ mỗi 20 lần bấm sẽ trình diễn ngẫu nhiên một lời chúc.' : 'Bạn vừa sưu tầm thêm một lời chúc mới! Cứ mỗi 20 lần bấm, pháo hoa sẽ trình diễn một lời chúc đã mở khóa; mỗi ngày lại có một lời chúc mới chờ bạn khám phá.');
       } else {
         setElementText('home-fireworks-mission-label', 'Thử thách hôm nay');
         setElementText('home-fireworks-mission-title', dailyRewardState.rocketsFired >= 30 ? 'Lời chúc sắp xuất hiện' : 'Tìm lời chúc trong pháo hoa');
         setElementText('home-fireworks-mission-copy', dailyRewardState.rocketsFired >= 30 ? 'Thẻ mới có thể xuất hiện trong bất kỳ lượt bắn nào tiếp theo.' : (collectionComplete ? 'Cứ mỗi 20 lần bấm sẽ trình diễn ngẫu nhiên một lời chúc trong bộ sưu tập.' : 'Mỗi 20 lần bấm sẽ hiện một lời chúc đã có; mỗi ngày còn có cơ hội tìm 1 thẻ mới.'));
-        setElementText('home-fireworks-launch-label', 'Bắn pháo hoa');
       }
       setElementText('home-fireworks-return-note-copy', collectionComplete ? 'Bộ sưu tập đã trọn vẹn — mỗi 20 lần bấm sẽ hiện một lời chúc ngẫu nhiên.' : 'Mỗi ngày mở 1 lời chúc mới. Lời chúc đã có xuất hiện sau mỗi 20 lần bấm.');
+      renderLaunchProgress(false);
     }
 
     function closeRewardCelebration() {
@@ -731,7 +792,7 @@
       trigger.classList.add('is-launching');
       win.setTimeout(function () { trigger.classList.remove('is-launching'); }, 700);
 
-      var signatureMessage = replayResult.wishReached ? createUnlockedSignatureSelection(Math.random, nowDate, collectionState.unlockedIds) : null;
+      var signatureMessage = replayResult.wishReached ? createFireworkDisplaySelection(Math.random, nowDate, collectionState.unlockedIds) : null;
       var newlyUnlocked = false;
       if (dailyResult.rewardReached) {
         var dailyMessage = createSignatureSelection(Math.random, nowDate, collectionState.unlockedIds);
@@ -747,6 +808,7 @@
         try { saveCollectionState(storage, collectionState); } catch (error) {}
       }
       renderDailyMission();
+      if (replayResult.wishReached) showLaunchSuccess();
       var result = {
         launched: true,
         reward: reward,
@@ -781,7 +843,9 @@
     function setTestDay(value) {
       if (!testMode) return getReward();
       testStreak = normalizeStreak(value);
-      return renderReward(getReward());
+      var reward = renderReward(getReward());
+      renderLaunchProgress(false);
+      return reward;
     }
 
     var rewardClose = doc.getElementById('home-fireworks-reward-close');
@@ -798,8 +862,10 @@
     renderReward(getReward());
     renderCollection('');
     renderDailyMission();
+    setupLauncherDiscovery();
     return {
       launch: launch,
+      dismissLauncherDiscovery: dismissLauncherDiscovery,
       getReward: getReward,
       getDailyRewardState: function () { return Object.assign({}, dailyRewardState); },
       getCollectionState: function () { return normalizeCollectionState(collectionState); },
@@ -843,6 +909,7 @@
     var controller = createController(win, doc, trigger);
     createTestPanel(doc, controller);
     function launchAndTrack(source) {
+      controller.dismissLauncherDiscovery();
       var result = controller.launch();
       if (result && result.launched && win.webAnalytics && typeof win.webAnalytics.trackEvent === 'function') {
         win.webAnalytics.trackEvent('home_fireworks_launch', {
@@ -870,8 +937,10 @@
     createSignatureRocket: createSignatureRocket,
     createSignatureSelection: createSignatureSelection,
     createUnlockedSignatureSelection: createUnlockedSignatureSelection,
+    createFireworkDisplaySelection: createFireworkDisplaySelection,
     createSignatureMessage: createSignatureMessage,
     getSignatureMessages: getSignatureMessages,
+    getSpecialFireworkMessages: getSpecialFireworkMessages,
     getDaysUntilTet: getDaysUntilTet,
     getRewardTier: getRewardTier,
     getStreakReward: getStreakReward,
