@@ -33,6 +33,15 @@ test('all required precache files exist', () => {
     '/js/home-retention.js',
     '/js/home-shop-preview.js',
     '/js/home-fireworks.js',
+    '/css/tet-runner.css',
+    '/js/tet-runner-engine.js',
+    '/js/tet-runner-loader.js',
+  '/js/tet-runner-three.bundle.js',
+  '/assets/images/tet-runner/vietnam-north.webp',
+  '/assets/images/tet-runner/vietnam-central.webp',
+  '/assets/images/tet-runner/vietnam-south.webp',
+  '/assets/sounds/tet-runner-crash.mp3',
+  '/assets/sounds/tet-runner-failed.mp3',
   ]) {
     assert.ok(urls.includes(homepageAsset), `${homepageAsset} must be precached`);
   }

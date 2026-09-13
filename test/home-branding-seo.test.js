@@ -46,13 +46,14 @@ test('homepage keeps sharing below the full-screen hero greeting', () => {
   assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-content-wrapper\s*\{\s*padding:\s*0\.65rem 0\.25rem/);
 });
 
-test('homepage stays compact with six focused content sections', () => {
+test('homepage stays compact with seven focused content sections', () => {
   const html = read('index.html');
   const primarySections = [...html.matchAll(/<section\b[^>]*data-home-section="[^"]+"/g)];
 
-  assert.equal(primarySections.length, 6);
+  assert.equal(primarySections.length, 7);
   assert.match(html, /data-home-section="hero"/);
   assert.match(html, /data-home-section="today"/);
+  assert.match(html, /data-home-section="game"/);
   assert.match(html, /data-home-section="quick-links"/);
   assert.match(html, /data-home-section="app"/);
   assert.match(html, /data-home-section="discovery"/);

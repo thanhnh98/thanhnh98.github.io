@@ -4,15 +4,17 @@
   "description": "Script crawl dữ liệu blog Tết từ VNExpress và cập nhật vào website",
   "main": "crawl-tet-articles.js",
   "scripts": {
+    "build:tet-runner": "esbuild js/tet-runner-three.js --bundle --format=esm --minify --outfile=js/tet-runner-three.bundle.js",
     "crawl": "node crawl-tet-articles.js",
     "crawl:dev": "node --inspect crawl-tet-articles.js",
     "install-deps": "npm install",
+    "pretest": "npm run build:tet-runner",
     "test": "node --test test/*.test.js",
     "update-version": "node scripts/update-version.js",
     "generate-tin-tuc-clean-urls": "node scripts/generate-tin-tuc-clean-urls.js",
     "generate-events": "node scripts/generate-event-pages.js",
     "inject-tet-seo": "node scripts/inject-tet-seo-snippets.js",
-    "predeploy": "npm run update-version",
+    "predeploy": "npm run build:tet-runner && npm run update-version",
     "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
   },
   "keywords": [
@@ -32,9 +34,11 @@
     "cheerio": "^1.0.0-rc.12",
     "chinese-lunar-calendar": "^1.0.1",
     "lunar-calendar": "^0.1.4",
-    "lunar-javascript": "^1.7.4"
+    "lunar-javascript": "^1.7.4",
+    "three": "0.186.0"
   },
   "devDependencies": {
+    "esbuild": "0.21.5",
     "nodemon": "^3.0.2"
   },
   "engines": {

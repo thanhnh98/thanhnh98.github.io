@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/colors.css?v=20260830">
     <link rel="stylesheet" href="css/pwa.css">
     <link rel="stylesheet" href="css/home-retention.css?v=20260904g">
+    <link rel="stylesheet" href="css/tet-runner.css?v=20260913e">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -103,6 +104,66 @@
           </div>
         </div>
       </div>
+
+      <section id="tet-mascot-runner" class="tet-runner-section" data-home-section="game" data-theme="tet" aria-labelledby="tet-runner-heading" google-side-rail-overlap="false">
+        <div class="container tet-runner-shell">
+          <header class="tet-runner-heading">
+            <div>
+              <p class="tet-runner-kicker">Minigame</p>
+              <h2 id="tet-runner-heading">Ngựa Phi Đón Tết</h2>
+              <p id="tet-runner-description">Nhảy, cúi né và gom điểm thưởng trên hành trình xuyên Việt.</p>
+            </div>
+            <button id="tet-runner-sound" class="tet-runner-icon-button" type="button" aria-pressed="false" aria-label="Bật âm thanh trò chơi">
+              <i data-lucide="volume-x" aria-hidden="true"></i><span>Âm thanh</span>
+            </button>
+          </header>
+
+          <div id="tet-runner-stage" class="tet-runner-stage" role="application" tabindex="0" aria-label="Game Ngựa Phi Đón Tết. Chạm, click hoặc nhấn Space để nhảy; nhấn mũi tên xuống để cúi né.">
+            <div id="tet-runner-canvas" class="tet-runner-canvas" aria-hidden="true"></div>
+            <div class="tet-runner-hud" aria-label="Thông tin ván chơi">
+              <span class="tet-runner-score"><small>Quãng đường</small><strong id="tet-runner-score">0,00 km</strong><em>Kỷ lục <b id="tet-runner-high-score">0,00 km</b></em></span>
+              <span class="tet-runner-points"><small>Điểm</small><strong id="tet-runner-points">0</strong></span>
+              <span class="tet-runner-combo"><small>Combo</small><strong id="tet-runner-combo">×1</strong></span>
+            </div>
+            <div id="tet-runner-location" class="tet-runner-location" aria-live="polite">
+              <small>Hành trình xuyên Việt</small>
+              <strong id="tet-runner-province">Hà Nội</strong>
+              <span id="tet-runner-landmark-name">Hồ Gươm</span>
+              <em id="tet-runner-next-location">Còn 10,00 km đến điểm tiếp theo</em>
+            </div>
+            <div id="tet-runner-ready" class="tet-runner-message tet-runner-ready" role="status" aria-live="polite">
+              <span class="tet-runner-tap-icon" aria-hidden="true"><i data-lucide="mouse-pointer-click"></i></span>
+              <span><strong>Chạm để phi</strong><small>Chạm hoặc nhấn Space để nhảy · ↓ để cúi né</small></span>
+            </div>
+            <button id="tet-runner-duck" class="tet-runner-duck" type="button" aria-label="Giữ để ngựa cúi né chùm pháo"><i data-lucide="arrow-down" aria-hidden="true"></i><span>Cúi né</span></button>
+            <div id="tet-runner-points-burst" class="tet-runner-points-burst" aria-hidden="true" hidden></div>
+            <div id="tet-runner-combo-burst" class="tet-runner-combo-burst" aria-hidden="true" hidden></div>
+            <div id="tet-runner-landmark" class="tet-runner-landmark" aria-hidden="true" hidden></div>
+            <div id="tet-runner-paused" class="tet-runner-message" role="status" hidden>
+              <strong>Tạm dừng</strong><span>Quay lại game để tiếp tục</span>
+            </div>
+            <div id="tet-runner-result" class="tet-runner-result" role="dialog" aria-modal="false" aria-labelledby="tet-runner-result-title" hidden>
+              <canvas id="tet-runner-result-horse" class="tet-runner-result-horse" width="180" height="130" aria-hidden="true"></canvas>
+              <p>Chuyến phi tạm dừng</p>
+              <h3 id="tet-runner-result-title">Bạn đã phi <strong id="tet-runner-final-score">0,00 km</strong></h3>
+              <span id="tet-runner-result-copy">Thử thêm một lượt để phá kỷ lục nhé!</span>
+              <div class="tet-runner-result-stats"><span>Điểm <b id="tet-runner-final-points">0</b></span><span>Combo cao nhất <b id="tet-runner-final-combo">0</b></span></div>
+              <div class="tet-runner-result-actions">
+                <button id="tet-runner-share-score" class="tet-runner-share-score" type="button"><i data-lucide="share-2" aria-hidden="true"></i> Chia sẻ điểm</button>
+                <button id="tet-runner-replay" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i> Chơi lại</button>
+              </div>
+            </div>
+            <div id="tet-runner-fallback" class="tet-runner-fallback" role="status" hidden>
+              <i data-lucide="gamepad-2" aria-hidden="true"></i>
+              <strong>Thiết bị chưa hỗ trợ đồ họa 3D</strong>
+              <span>Bạn vẫn có thể chơi mini game Nối Chữ của Sắp Tết.</span>
+              <a href="/tro-choi-tet.html">Chơi Nối Chữ</a>
+            </div>
+          </div>
+
+          <p class="tet-runner-help"><span><i data-lucide="smartphone" aria-hidden="true"></i> Chạm để nhảy</span><span><i data-lucide="keyboard" aria-hidden="true"></i> Space · ↑ nhảy · ↓ cúi</span><span><i data-lucide="map-pin" aria-hidden="true"></i> Mỗi 10 km · địa danh mới</span><span><i data-lucide="gift" aria-hidden="true"></i> Lì xì · Bánh chưng · bánh tét</span></p>
+        </div>
+      </section>
 
       <section id="hom-nay" class="home-retention-section" data-home-section="today" aria-labelledby="today-heading">
         <div class="home-retention-deco" aria-hidden="true">🌸</div>
@@ -305,6 +366,8 @@
     <script src="js/home-retention.js?v=20260828"></script>
     <script src="js/home-shop-preview.js?v=20260828"></script>
     <script src="js/home-fireworks.js?v=20260904f"></script>
+    <script src="js/tet-runner-engine.js?v=20260913d"></script>
+    <script src="js/tet-runner-loader.js?v=20260913g"></script>
     <script>if (window.lucide) window.lucide.createIcons();</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {

@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1788529551633-51d85f8';
+const CACHE_NAME = 'sap-tet-v1.0.1788529551633-51d85f8-game-tracking';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
@@ -30,6 +30,7 @@ const urlsToCache = [
   '/css/colors.css',
   '/css/pwa.css',
   '/css/home-retention.css',
+  '/css/tet-runner.css',
   '/components/header.html',
   '/js/header-loader.js',
   '/js/analytics.js',
@@ -37,6 +38,26 @@ const urlsToCache = [
   '/js/home-retention.js',
   '/js/home-shop-preview.js',
   '/js/home-fireworks.js',
+  '/js/tet-runner-engine.js',
+  '/js/tet-runner-loader.js',
+  '/js/tet-runner-three.bundle.js',
+  '/assets/images/tet-runner/vietnam-north.webp',
+  '/assets/images/tet-runner/vietnam-central.webp',
+  '/assets/images/tet-runner/vietnam-south.webp',
+  '/assets/images/tet-runner/north-trang-an.webp',
+  '/assets/images/tet-runner/north-sapa.webp',
+  '/assets/images/tet-runner/north-ha-long.webp',
+  '/assets/images/tet-runner/central-hue.webp',
+  '/assets/images/tet-runner/central-da-lat.webp',
+  '/assets/images/tet-runner/south-mekong.webp',
+  '/assets/sounds/tet-runner-gallop.mp3',
+  '/assets/sounds/tet-runner-envelope.mp3',
+  '/assets/sounds/tet-runner-crash.mp3',
+  '/assets/sounds/tet-runner-failed.mp3',
+  '/assets/sounds/tet-runner-action.mp3',
+  '/assets/sounds/tet-runner-landmark.mp3',
+  '/assets/sounds/tet-runner-background.mp3',
+  '/assets/sounds/noichu_background.mp3',
   '/data/events-data.js',
   '/images/floating-peach-blossom.svg',
   '/images/tet-background-pattern.svg',

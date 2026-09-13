@@ -189,6 +189,7 @@ test('collection migration preserves legacy unlocks and launcher discovery state
 test('collection UI exposes inline launch and live progress without masked placeholders', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const script = fs.readFileSync(path.join(root, 'js', 'home-fireworks.js'), 'utf8');
+  const collectionMarkup = html.match(/<aside id="home-fireworks-collection"[\s\S]*?<\/aside>/)?.[0] || '';
   assert.match(html, /id="home-fireworks-mission-copy"/);
   assert.match(html, /id="home-fireworks-featured"/);
   assert.match(script, /home-fireworks-daily-count/);
@@ -212,7 +213,7 @@ test('collection UI exposes inline launch and live progress without masked place
   assert.match(script, /classList\.add\('has-launched'\)/);
   assert.match(script, /5000/);
   assert.match(script, /if \(!modal \|\| !message \|\| !newlyUnlocked\) return/);
-  assert.doesNotMatch(html, /combo/i);
+  assert.doesNotMatch(collectionMarkup, /combo/i);
   assert.doesNotMatch(script, /advanceCombo|COMBO_RESET_MS/);
   assert.doesNotMatch(script, /••••••/);
 });
