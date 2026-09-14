@@ -94,6 +94,7 @@ const LANDMARK_BACKGROUNDS = {
   'Quảng Ngãi': '/assets/images/tet-runner/central-ly-son.webp',
   'Lâm Đồng': '/assets/images/tet-runner/central-da-lat.webp',
   'Thành phố Hồ Chí Minh': '/assets/images/tet-runner/south-saigon.webp',
+  'Đồng Nai': '/assets/images/tet-runner/south-cat-tien.webp',
   'Cần Thơ': '/assets/images/tet-runner/south-cai-rang.webp',
   'Vĩnh Long': '/assets/images/tet-runner/south-mekong.webp',
   'Đồng Tháp': '/assets/images/tet-runner/south-mekong.webp',

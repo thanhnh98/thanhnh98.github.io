@@ -103,6 +103,25 @@ test('runner runtime and pinned Three.js are loaded locally', () => {
   assert.ok(fs.existsSync(path.join(root, 'js/vendor/THREE-LICENSE.txt')));
 });
 
+test('runner landmark registry covers the current 34 province-level units exactly once', () => {
+  const controller = read('js/tet-runner-three.js');
+  const journeyRegistry = controller.match(/const VIETNAM_JOURNEY = \[([\s\S]*?)\n\];/)?.[1] || '';
+  const actualProvinces = [...journeyRegistry.matchAll(/province: '([^']+)'/g)]
+    .map((match) => match[1])
+    .sort((a, b) => a.localeCompare(b, 'vi'));
+  const expectedProvinces = [
+    'An Giang', 'Bắc Ninh', 'Cà Mau', 'Cần Thơ', 'Cao Bằng', 'Đà Nẵng',
+    'Đắk Lắk', 'Điện Biên', 'Đồng Nai', 'Đồng Tháp', 'Gia Lai', 'Hà Nội',
+    'Hà Tĩnh', 'Hải Phòng', 'Hưng Yên', 'Huế', 'Khánh Hòa', 'Lai Châu',
+    'Lâm Đồng', 'Lạng Sơn', 'Lào Cai', 'Nghệ An', 'Ninh Bình', 'Phú Thọ',
+    'Quảng Ngãi', 'Quảng Ninh', 'Quảng Trị', 'Sơn La', 'Tây Ninh',
+    'Thái Nguyên', 'Thanh Hóa', 'Thành phố Hồ Chí Minh', 'Tuyên Quang', 'Vĩnh Long',
+  ].sort((a, b) => a.localeCompare(b, 'vi'));
+
+  assert.deepEqual(actualProvinces, expectedProvinces);
+  assert.equal(new Set(actualProvinces).size, 34);
+});
+
 test('runner visual refresh keeps gameplay readable and rewards player feedback', () => {
   const html = read('ngua-phi-don-tet.html');
   const css = read('css/tet-runner.css');
@@ -142,6 +161,8 @@ test('runner visual refresh keeps gameplay readable and rewards player feedback'
   assert.ok(new Set(controller.match(/assets\/images\/tet-runner\/[^']+\.webp/g) || []).size >= 15);
   assert.match(controller, /'Nghệ An': '\/assets\/images\/tet-runner\/central-lang-sen\.webp'/);
   assert.match(controller, /'Hà Tĩnh': '\/assets\/images\/tet-runner\/central-dong-loc-v2\.webp'/);
+  assert.match(controller, /'Đồng Nai': '\/assets\/images\/tet-runner\/south-cat-tien\.webp'/);
+  assert.ok(fs.existsSync(path.join(root, 'assets/images/tet-runner/south-cat-tien.webp')));
   assert.match(controller, /UNLOCKED_LANDMARKS_STORAGE_KEY/);
   assert.match(controller, /sap_tet_runner_v1_landmarks_unlocked/);
   assert.match(controller, /loading = 'lazy'/);
