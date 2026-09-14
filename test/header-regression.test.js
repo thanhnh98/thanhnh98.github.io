@@ -32,3 +32,14 @@ test('mobile secondary navigation can reveal all shared header items', () => {
   assert.doesNotMatch(expandedRule, /max-height:\s*200px/);
   assert.match(expandedRule, /max-height:\s*(?:5|6|7|8|9)\d{2}px/);
 });
+
+test('desktop secondary navigation keeps a compact vertical menu and visible active item', () => {
+  const styles = read('css/style.css');
+  const secondaryRule = styles.match(/\.nav-secondary\s*\{[^}]+\}/)?.[0] || '';
+  const activeRule = styles.match(/\.nav-expandable\.expanded \.nav-secondary a\.active\s*\{[^}]+\}/)?.[0] || '';
+
+  assert.match(secondaryRule, /flex-direction:\s*column/);
+  assert.match(activeRule, /background:\s*#dc2626/);
+  assert.match(activeRule, /color:\s*#fff/);
+  assert.match(activeRule, /border:\s*1px solid #dc2626/);
+});

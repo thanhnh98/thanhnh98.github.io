@@ -218,6 +218,8 @@ header nav a {
 
 .nav-secondary {
     position: absolute;
+    flex-direction: column;
+    gap: 0.15rem;
     top: calc(100% + 0.65rem);
     right: 0;
     background: rgba(255, 251, 241, 0.98);
@@ -6265,6 +6267,13 @@ footer::after {
         padding: 0.72rem 0.85rem;
         background: transparent;
         border-bottom: none;
+    }
+
+    .nav-expandable.expanded .nav-secondary a.active {
+        background: #dc2626;
+        color: #fff;
+        border: 1px solid #dc2626;
+        box-shadow: 0 8px 18px rgba(220, 38, 38, 0.18);
     }
 }
 
