@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1789273749069-games-hub';
+const CACHE_NAME = 'sap-tet-v1.0.1789360418818-0a5e3be';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
