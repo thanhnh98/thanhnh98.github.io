@@ -23,7 +23,7 @@
     { title: 'Xem lịch âm hôm nay', description: 'Tra cứu ngày âm, giờ hoàng đạo và việc nên làm trong ngày.', href: '/lich-am-hom-nay.html', action: 'Xem lịch hôm nay' },
     { title: 'Chuẩn bị một lời chúc', description: 'Lưu sẵn một câu chúc ấm áp để gửi tới người thân khi Tết đến.', href: '/loi-chuc-tet.html', action: 'Chọn lời chúc' },
     { title: 'Khám phá một món Tết', description: 'Mỗi vùng miền có một hương vị riêng cho mâm cơm sum họp.', href: '/mon-an-tet.html', action: 'Xem món Tết' },
-    { title: 'Chơi một ván nối chữ', description: 'Một thử thách ngắn để thư giãn và làm nóng không khí Tết.', href: '/tro-choi-tet.html', action: 'Chơi ngay' },
+    { title: 'Chơi một ván nối chữ', description: 'Một thử thách ngắn để thư giãn và làm nóng không khí Tết.', href: '/noi-chu.html', action: 'Chơi ngay' },
     { title: 'Xem sự kiện sắp tới', description: 'Đừng bỏ lỡ những ngày lễ và cột mốc đáng nhớ trong năm.', href: '/su-kien-quan-trong.html', action: 'Xem sự kiện' },
     { title: 'Lên ngân sách lì xì', description: 'Ước tính trước khoản lì xì để việc chuẩn bị nhẹ nhàng hơn.', href: '/may-tinh-li-xi.html', action: 'Tính thử' }
   ];
@@ -431,6 +431,12 @@
   }
 
   function bindAnalytics() {
+    document.querySelector('[data-home-game-entry]')?.addEventListener('click', function () {
+      window.webAnalytics?.trackEvent('home_game_open', {
+        game_name: 'tet_mascot_runner',
+        destination: '/ngua-phi-don-tet.html'
+      });
+    });
     document.querySelectorAll('[data-home-quick-link]').forEach(function (link) {
       link.addEventListener('click', function () {
         trackQuickLink({ destination: link.getAttribute('href'), item_id: link.getAttribute('data-home-quick-link') });

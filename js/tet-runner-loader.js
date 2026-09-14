@@ -35,7 +35,7 @@
       showFallback('engine_unavailable');
       return;
     }
-    import('./tet-runner-three.bundle.js?v=20260913f')
+    import('./tet-runner-three.bundle.js?v=20260914n')
       .then((module) => module.initTetRunner({ section, engine: window.TetRunnerEngine, track, showFallback }))
       .then(() => { loaded = true; })
       .catch((error) => {

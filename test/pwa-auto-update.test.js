@@ -33,15 +33,7 @@ test('all required precache files exist', () => {
     '/js/home-retention.js',
     '/js/home-shop-preview.js',
     '/js/home-fireworks.js',
-    '/css/tet-runner.css',
-    '/js/tet-runner-engine.js',
-    '/js/tet-runner-loader.js',
-  '/js/tet-runner-three.bundle.js',
-  '/assets/images/tet-runner/vietnam-north.webp',
-  '/assets/images/tet-runner/vietnam-central.webp',
-  '/assets/images/tet-runner/vietnam-south.webp',
-  '/assets/sounds/tet-runner-crash.mp3',
-  '/assets/sounds/tet-runner-failed.mp3',
+    '/assets/images/tet-runner/horse-mascot.webp',
   ]) {
     assert.ok(urls.includes(homepageAsset), `${homepageAsset} must be precached`);
   }
@@ -49,5 +41,16 @@ test('all required precache files exist', () => {
   for (const url of urls) {
     const relativePath = url === '/' ? 'index.html' : url.slice(1);
     assert.ok(fs.existsSync(path.join(root, relativePath)), `${url} must exist`);
+  }
+
+  for (const gameOnlyAsset of [
+    '/css/tet-runner.css',
+    '/js/tet-runner-engine.js',
+    '/js/tet-runner-loader.js',
+    '/js/tet-runner-three.bundle.js',
+    '/assets/images/tet-runner/vietnam-north.webp',
+    '/assets/sounds/tet-runner-background.mp3',
+  ]) {
+    assert.ok(!urls.includes(gameOnlyAsset), `${gameOnlyAsset} must load only after opening the game page`);
   }
 });

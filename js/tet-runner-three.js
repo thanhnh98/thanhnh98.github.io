@@ -53,7 +53,8 @@ const VIETNAM_JOURNEY = [
   { province: 'Cà Mau', landmark: 'Mũi Cà Mau', region: 'south' },
 ];
 
-const LANDMARK_INTERVAL_KM = 10;
+const LANDMARK_INTERVAL_KM = 5;
+const UNLOCKED_LANDMARKS_STORAGE_KEY = 'sap_tet_runner_v1_landmarks_unlocked';
 
 function interleaveRegions(stops) {
   const queues = ['north', 'central', 'south'].map((region) => stops.filter((stop) => stop.region === region));
@@ -71,37 +72,56 @@ const VIETNAM_ROUTE = interleaveRegions(VIETNAM_JOURNEY);
 const REGION_BACKGROUNDS = {
   north: [
     '/assets/images/tet-runner/vietnam-north.webp',
-    '/assets/images/tet-runner/north-trang-an.webp',
-    '/assets/images/tet-runner/north-sapa.webp',
-    '/assets/images/tet-runner/north-ha-long.webp',
   ],
   central: [
     '/assets/images/tet-runner/vietnam-central.webp',
-    '/assets/images/tet-runner/central-hue.webp',
-    '/assets/images/tet-runner/central-da-lat.webp',
   ],
   south: [
     '/assets/images/tet-runner/vietnam-south.webp',
-    '/assets/images/tet-runner/south-mekong.webp',
   ],
+};
+
+const LANDMARK_BACKGROUNDS = {
+  'Hà Nội': '/assets/images/tet-runner/north-ho-guom.webp',
+  'Ninh Bình': '/assets/images/tet-runner/north-trang-an.webp',
+  'Lào Cai': '/assets/images/tet-runner/north-sapa.webp',
+  'Cao Bằng': '/assets/images/tet-runner/north-ban-gioc.webp',
+  'Quảng Ninh': '/assets/images/tet-runner/north-ha-long.webp',
+  'Nghệ An': '/assets/images/tet-runner/central-lang-sen.webp',
+  'Hà Tĩnh': '/assets/images/tet-runner/central-dong-loc-v2.webp',
+  'Huế': '/assets/images/tet-runner/central-hue.webp',
+  'Đà Nẵng': '/assets/images/tet-runner/central-hoi-an.webp',
+  'Quảng Ngãi': '/assets/images/tet-runner/central-ly-son.webp',
+  'Lâm Đồng': '/assets/images/tet-runner/central-da-lat.webp',
+  'Thành phố Hồ Chí Minh': '/assets/images/tet-runner/south-saigon.webp',
+  'Cần Thơ': '/assets/images/tet-runner/south-cai-rang.webp',
+  'Vĩnh Long': '/assets/images/tet-runner/south-mekong.webp',
+  'Đồng Tháp': '/assets/images/tet-runner/south-mekong.webp',
+  'An Giang': '/assets/images/tet-runner/south-mekong.webp',
+  'Cà Mau': '/assets/images/tet-runner/south-mekong.webp',
 };
 
 const regionSceneCursor = { north: 0, central: 0, south: 0 };
 VIETNAM_ROUTE.forEach((stop) => {
   const sceneIndex = regionSceneCursor[stop.region] % REGION_BACKGROUNDS[stop.region].length;
-  stop.sceneKey = `${stop.region}-${sceneIndex}`;
+  stop.backgroundUrl = LANDMARK_BACKGROUNDS[stop.province] || REGION_BACKGROUNDS[stop.region][sceneIndex];
+  stop.sceneKey = stop.backgroundUrl;
   regionSceneCursor[stop.region] += 1;
 });
 
+const BACKGROUND_SCENES = [...new Set(VIETNAM_ROUTE.map((stop) => stop.backgroundUrl))]
+  .map((url) => ({ key: url, url }));
+
 const SOUND_URLS = {
   background: '/assets/sounds/tet-runner-background.mp3',
-  gallop: '/assets/sounds/tet-runner-gallop.mp3',
+  gallop: '/assets/sounds/tet-runner-gallop.mp3?v=20260914b',
   envelope: '/assets/sounds/tet-runner-envelope.mp3',
   crash: '/assets/sounds/tet-runner-crash.mp3',
   failed: '/assets/sounds/tet-runner-failed.mp3',
   action: '/assets/sounds/tet-runner-action.mp3',
   landmark: '/assets/sounds/tet-runner-landmark.mp3',
 };
+const GALLOP_START_OFFSET_S = 0;
 
 function material(color, extra = {}) {
   return new THREE.MeshStandardMaterial({ color, flatShading: true, roughness: 0.86, metalness: 0.02, ...extra });
@@ -490,6 +510,11 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   const result = section.querySelector('#tet-runner-result');
   const replayButton = section.querySelector('#tet-runner-replay');
   const shareScoreButton = section.querySelector('#tet-runner-share-score');
+  const sharePreview = section.querySelector('#tet-runner-share-preview');
+  const sharePreviewImage = section.querySelector('#tet-runner-share-preview-image');
+  const sharePreviewClose = section.querySelector('#tet-runner-share-preview-close');
+  const sharePreviewBack = section.querySelector('#tet-runner-share-preview-back');
+  const sharePreviewConfirm = section.querySelector('#tet-runner-share-preview-confirm');
   const duckButton = section.querySelector('#tet-runner-duck');
   const soundButton = section.querySelector('#tet-runner-sound');
   const scoreNode = section.querySelector('#tet-runner-score');
@@ -508,6 +533,8 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   const finalComboNode = section.querySelector('#tet-runner-final-combo');
   const resultCopy = section.querySelector('#tet-runner-result-copy');
   const resultHorse = section.querySelector('#tet-runner-result-horse');
+  const landmarkLibraryGrid = document.querySelector('#tet-landmark-library-grid');
+  const unlockedLandmarkCount = document.querySelector('#tet-landmark-unlocked-count');
   if (!stage || !canvasHost || !duckButton) throw new Error('runner_dom_missing');
 
   const lowQuality = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
@@ -592,14 +619,11 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   world.add(festivalLayer);
 
   const travelBackgrounds = new Map();
-  let targetBackgroundScene = 'north-0';
+  let targetBackgroundScene = VIETNAM_ROUTE[0].sceneKey;
   let generatedBackgroundReady = false;
   const proceduralScenery = [backdrop, hills, clouds, sun, sunGlow];
   const textureLoader = new THREE.TextureLoader();
-  const backgroundScenes = Object.entries(REGION_BACKGROUNDS).flatMap(([region, urls]) => (
-    urls.map((url, index) => ({ key: `${region}-${index}`, url }))
-  ));
-  backgroundScenes.forEach(({ key, url }, index) => {
+  BACKGROUND_SCENES.forEach(({ key, url }, index) => {
     const backgroundMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, fog: false });
     const backgroundPlane = new THREE.Mesh(new THREE.PlaneGeometry(22, 12.38), backgroundMaterial);
     backgroundPlane.position.set(.4, 3.55, -8.8 - index * .02);
@@ -613,7 +637,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
       backgroundMaterial.needsUpdate = true;
       const entry = travelBackgrounds.get(key);
       entry.loaded = true;
-      if (!generatedBackgroundReady && key === 'north-0') {
+      if (!generatedBackgroundReady && key === VIETNAM_ROUTE[0].sceneKey) {
         generatedBackgroundReady = true;
         backgroundMaterial.opacity = 1;
         proceduralScenery.forEach((object) => { object.visible = false; });
@@ -656,6 +680,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   });
 
   const game = engine.createGame({ random: Math.random, storage: window.localStorage });
+  const unlockedLandmarks = new Set([0]);
   const entityMeshes = new Map();
   let soundEnabled = false;
   let audioContext = null;
@@ -674,6 +699,86 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   let currentJourneyIndex = -1;
   let duckVisual = 0;
   let runCyclePhase = 0;
+
+  try {
+    const storedLandmarks = JSON.parse(window.localStorage.getItem(UNLOCKED_LANDMARKS_STORAGE_KEY) || '[]');
+    if (Array.isArray(storedLandmarks)) {
+      storedLandmarks.forEach((index) => {
+        if (Number.isInteger(index) && index >= 0 && index < VIETNAM_ROUTE.length) unlockedLandmarks.add(index);
+      });
+    }
+  } catch (_error) {}
+
+  const historicalUnlockCount = Math.min(
+    VIETNAM_ROUTE.length,
+    Math.floor(Math.max(0, game.getState().highScore) / LANDMARK_INTERVAL_KM) + 1,
+  );
+  for (let index = 0; index < historicalUnlockCount; index += 1) unlockedLandmarks.add(index);
+
+  function persistUnlockedLandmarks() {
+    try {
+      window.localStorage.setItem(UNLOCKED_LANDMARKS_STORAGE_KEY, JSON.stringify([...unlockedLandmarks].sort((a, b) => a - b)));
+    } catch (_error) {}
+  }
+
+  function renderLandmarkLibrary() {
+    if (!landmarkLibraryGrid || !unlockedLandmarkCount) return;
+    unlockedLandmarkCount.textContent = String(unlockedLandmarks.size);
+    landmarkLibraryGrid.replaceChildren(...VIETNAM_ROUTE.map((stop, index) => {
+      const unlocked = unlockedLandmarks.has(index);
+      const card = document.createElement('article');
+      card.className = `tet-landmark-card${unlocked ? ' is-unlocked' : ' is-locked'}`;
+      card.dataset.landmarkIndex = String(index);
+      card.setAttribute('role', 'listitem');
+
+      const imageWrap = document.createElement('div');
+      imageWrap.className = 'tet-landmark-card-image';
+      const image = document.createElement('img');
+      image.src = stop.backgroundUrl;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.alt = unlocked ? `${stop.landmark}, ${stop.province}` : '';
+      imageWrap.appendChild(image);
+
+      const status = document.createElement('span');
+      status.className = 'tet-landmark-card-status';
+      status.innerHTML = unlocked
+        ? '<i data-lucide="badge-check" aria-hidden="true"></i> Đã mở khóa'
+        : '<i data-lucide="lock-keyhole" aria-hidden="true"></i> Chưa mở khóa';
+      imageWrap.appendChild(status);
+
+      const copy = document.createElement('div');
+      copy.className = 'tet-landmark-card-copy';
+      const province = document.createElement('small');
+      province.textContent = stop.province;
+      const name = document.createElement('h3');
+      name.textContent = unlocked ? stop.landmark : 'Địa danh bí mật';
+      const requirement = document.createElement('span');
+      requirement.textContent = index === 0 ? 'Điểm khởi hành' : `Mở khóa ở ${index * LANDMARK_INTERVAL_KM} km`;
+      copy.append(province, name, requirement);
+      card.append(imageWrap, copy);
+      return card;
+    }));
+    window.lucide?.createIcons();
+  }
+
+  function unlockLandmark(index, kilometers) {
+    if (unlockedLandmarks.has(index)) return;
+    unlockedLandmarks.add(index);
+    persistUnlockedLandmarks();
+    renderLandmarkLibrary();
+    const stop = VIETNAM_ROUTE[index];
+    track('landmark_unlock', {
+      landmark_index: index,
+      province: stop.province,
+      landmark: stop.landmark,
+      distance_km: Number(kilometers.toFixed(2)),
+      mascot_year: mascotYear,
+    });
+  }
+
+  persistUnlockedLandmarks();
+  renderLandmarkLibrary();
 
   try { soundEnabled = window.localStorage.getItem('sap_tet_runner_v1_sound') === 'true'; } catch (_error) {}
 
@@ -706,8 +811,8 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     if (soundEffects) return soundEffects;
     soundEffects = Object.fromEntries(Object.entries(SOUND_URLS).map(([name, url]) => {
       const audio = new Audio(url);
-      audio.preload = 'none';
-      audio.volume = name === 'background' ? .075 : (name === 'gallop' ? .085 : (name === 'failed' ? .2 : (name === 'action' ? .14 : .22)));
+      audio.preload = name === 'background' || name === 'gallop' ? 'auto' : 'none';
+      audio.volume = name === 'background' ? .095 : (name === 'gallop' ? .28 : (name === 'failed' ? .2 : (name === 'action' ? .14 : .22)));
       if (name === 'background') audio.loop = true;
       if (name === 'gallop') audio.loop = true;
       return [name, audio];
@@ -744,25 +849,39 @@ export function initTetRunner({ section, engine, track, showFallback }) {
       window.setTimeout(() => playTone(frequency, .18, index === melody.length - 1 ? 'triangle' : 'sine', .035), index * 115);
     });
     window.setTimeout(() => {
-      if (soundEnabled) background.volume = .075;
+      if (soundEnabled) background.volume = .095;
     }, 1250);
   }
 
-  function syncGameAudio(shouldPlay, speed) {
+  let gallopHoldUntil = 0;
+
+  function restartGallop(speed, minimumPlayMs = 0) {
+    if (!soundEnabled) return;
+    const gallop = ensureSoundEffects().gallop;
+    gallop.playbackRate = THREE.MathUtils.clamp((speed || 8) / 9, .88, 1.45);
+    const seekToFirstStride = () => {
+      try { gallop.currentTime = GALLOP_START_OFFSET_S; } catch (_error) {}
+    };
+    if (gallop.readyState >= 1) seekToFirstStride();
+    else gallop.addEventListener('loadedmetadata', seekToFirstStride, { once: true });
+    gallopHoldUntil = performance.now() + minimumPlayMs;
+    gallop.play().catch(() => {});
+  }
+
+  function syncGameAudio(shouldPlay, speed, grounded = true) {
     if (!soundEnabled && !soundEffects) return;
     const effects = ensureSoundEffects();
     const gallop = effects.gallop;
     const background = effects.background;
     gallop.playbackRate = THREE.MathUtils.clamp((speed || 8) / 9, .88, 1.45);
+    const shouldPlayGallop = soundEnabled && shouldPlay && (grounded || performance.now() < gallopHoldUntil);
     if (soundEnabled && shouldPlay) {
-      if (gallop.paused) gallop.play().catch(() => {});
       if (background.paused) background.play().catch(() => {});
-    } else if (!gallop.paused) {
-      gallop.pause();
-      if (!background.paused) background.pause();
     } else if (!background.paused) {
       background.pause();
     }
+    if (shouldPlayGallop && gallop.paused) gallop.play().catch(() => {});
+    if (!shouldPlayGallop && !gallop.paused) gallop.pause();
   }
 
   function stopAllSounds() {
@@ -786,7 +905,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   }
 
   function updateResultHorsePortrait() {
-    if (!resultHorse) return;
+    if (!resultHorse || typeof resultHorse.getContext !== 'function') return;
     renderer.render(scene, camera);
     const source = renderer.domElement;
     const context = resultHorse.getContext('2d');
@@ -877,9 +996,27 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     return new File([bytes], 'ngua-phi-don-tet.png', { type: mimeType });
   }
 
+  let pendingShareCanvas = null;
+
+  function closeSharePreview() {
+    sharePreview?.setAttribute('hidden', '');
+    if (sharePreviewImage) sharePreviewImage.removeAttribute('src');
+    pendingShareCanvas = null;
+    shareScoreButton?.focus({ preventScroll: true });
+  }
+
+  function openSharePreview() {
+    const state = game.getState();
+    pendingShareCanvas = createScoreShareImage(state);
+    sharePreviewImage.src = pendingShareCanvas.toDataURL('image/png');
+    sharePreview.removeAttribute('hidden');
+    sharePreviewConfirm.focus({ preventScroll: true });
+    track('share_preview', { score: state.score, bonus_points: state.bonusPoints, mascot_year: mascotYear });
+  }
+
   async function shareScore() {
     const state = game.getState();
-    const file = canvasToPngFile(createScoreShareImage(state));
+    const file = canvasToPngFile(pendingShareCanvas || createScoreShareImage(state));
     const shareData = {
       title: 'Ngựa Phi Đón Tết',
       text: `Mình đã phi được ${formatKilometers(state.score)} trong Ngựa Phi Đón Tết. Bạn có vượt được không?`,
@@ -902,6 +1039,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
         shareScoreButton.classList.add('is-done');
         shareScoreButton.innerHTML = '<i data-lucide="download" aria-hidden="true"></i> Đã lưu ảnh';
       }
+      closeSharePreview();
       window.lucide?.createIcons();
       track('share_score', { score: state.score, bonus_points: state.bonusPoints, method, mascot_year: mascotYear });
     } catch (error) {
@@ -965,6 +1103,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     const completedInLeg = Math.max(0, kilometers) % LANDMARK_INTERVAL_KM;
     const remaining = LANDMARK_INTERVAL_KM - completedInLeg;
     if (nextLocationNode) nextLocationNode.textContent = `Còn ${remaining.toFixed(2).replace('.', ',')} km đến điểm tiếp theo`;
+    unlockLandmark(journeyIndex, kilometers);
     if (journeyIndex === currentJourneyIndex) return;
     currentJourneyIndex = journeyIndex;
     const stop = VIETNAM_ROUTE[journeyIndex];
@@ -1056,7 +1195,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   }
 
   function animateScene(time, delta, state) {
-    syncGameAudio(state.status === 'running', state.speed);
+    syncGameAudio(state.status === 'running', state.speed, state.grounded);
     runCyclePhase += delta * (state.status === 'running' ? 12 + state.speed * .7 : 2.5);
     const runCycle = runCyclePhase;
     const jumpStretch = state.grounded ? 0 : Math.min(.14, state.playerY * .045);
@@ -1112,6 +1251,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     if (!state.grounded && wasGrounded) emitParticles(-4.8, .15, lowQuality ? 5 : 10, 'dust');
     if (state.grounded && !wasGrounded) {
       emitParticles(-4.5, .13, lowQuality ? 7 : 14, 'dust');
+      restartGallop(state.speed);
       if (!reducedMotion) shakeUntil = time + 90;
     }
     wasGrounded = state.grounded;
@@ -1186,7 +1326,8 @@ export function initTetRunner({ section, engine, track, showFallback }) {
       track('start', { input_method: inputMethod, quality: lowQuality ? 'low' : 'standard', mascot_year: mascotYear, mascot_fallback: mascot.isFallback });
       track('first_jump', { input_method: inputMethod, mascot_year: mascotYear });
       playEffect('action', 500);
-      syncGameAudio(true, game.getState().speed);
+      restartGallop(game.getState().speed, 900);
+      syncGameAudio(true, game.getState().speed, game.getState().grounded);
       return;
     }
     if (state.status !== 'running') return;
@@ -1254,7 +1395,16 @@ export function initTetRunner({ section, engine, track, showFallback }) {
 
   shareScoreButton.addEventListener('click', (event) => {
     event.stopPropagation();
-    shareScore();
+    openSharePreview();
+  });
+  sharePreviewConfirm.addEventListener('click', shareScore);
+  sharePreviewClose.addEventListener('click', closeSharePreview);
+  sharePreviewBack.addEventListener('click', closeSharePreview);
+  sharePreview.addEventListener('click', (event) => {
+    if (event.target === sharePreview) closeSharePreview();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !sharePreview.hasAttribute('hidden')) closeSharePreview();
   });
 
   replayButton.addEventListener('click', () => {
@@ -1271,13 +1421,15 @@ export function initTetRunner({ section, engine, track, showFallback }) {
       runCyclePhase = 0;
       track('first_jump', { input_method: 'replay', mascot_year: mascotYear });
       result.setAttribute('hidden', '');
+      closeSharePreview();
       shareScoreButton.classList.remove('is-done');
       shareScoreButton.innerHTML = '<i data-lucide="share-2" aria-hidden="true"></i> Chia sẻ điểm';
       stage.classList.add('is-playing');
       duckButton.classList.remove('is-pressed');
       stage.focus({ preventScroll: true });
       playEffect('action', 500);
-      syncGameAudio(true, game.getState().speed);
+      restartGallop(game.getState().speed, 900);
+      syncGameAudio(true, game.getState().speed, game.getState().grounded);
     });
   });
 
@@ -1290,7 +1442,9 @@ export function initTetRunner({ section, engine, track, showFallback }) {
       ensureSoundEffects();
       playTone(540, .1, 'sine');
       playEffect('envelope', 500);
-      syncGameAudio(game.getState().status === 'running', game.getState().speed);
+      const currentState = game.getState();
+      if (currentState.status === 'running' && currentState.grounded) restartGallop(currentState.speed);
+      syncGameAudio(currentState.status === 'running', currentState.speed, currentState.grounded);
     } else {
       stopAllSounds();
     }

@@ -41,6 +41,15 @@ class HeaderLoader {
             path.indexOf('/tin-tuc/') !== -1
         ) {
             return 'tin-tuc';
+        } else if (
+            filename === 'tro-choi-tet.html' ||
+            normalizedPath === '/tro-choi-tet' ||
+            filename === 'noi-chu.html' ||
+            normalizedPath === '/noi-chu' ||
+            filename === 'ngua-phi-don-tet.html' ||
+            normalizedPath === '/ngua-phi-don-tet'
+        ) {
+            return 'games';
         } else if (filename === 'index.html' || filename === '') {
             const hash = window.location.hash;
             if (hash === '#app-intro') return 'app';

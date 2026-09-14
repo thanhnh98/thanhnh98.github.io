@@ -6,32 +6,50 @@ const test = require('node:test');
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('homepage places one-viewport runner between sharing and daily content', () => {
+test('homepage places a lightweight game entry between sharing and daily content', () => {
   const html = read('index.html');
-  const css = read('css/tet-runner.css');
   const share = html.indexOf('class="home-share-strip"');
-  const runner = html.indexOf('id="tet-mascot-runner"');
+  const runner = html.indexOf('id="tet-runner-entry"');
   const today = html.indexOf('id="hom-nay"');
 
   assert.ok(share >= 0 && runner > share && today > runner);
-  assert.match(html, /id="tet-mascot-runner"[^>]*data-home-section="game"/);
-  assert.match(html, /<h2 id="tet-runner-heading">Ngựa Phi Đón Tết<\/h2>/);
-  assert.match(css, /\.tet-runner-section\s*\{[\s\S]*?min-height:\s*100svh/);
+  assert.match(html, /id="tet-runner-entry"[^>]*data-home-section="game"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
+  assert.match(html, /home-game-entry-mascot[\s\S]*horse-mascot\.webp/);
+  assert.doesNotMatch(html, /🐎/);
+  assert.doesNotMatch(html, /id="tet-mascot-runner"|tet-runner-engine\.js|tet-runner-loader\.js|css\/tet-runner\.css/);
 });
 
-test('runner is quick-play accessible and contains no in-page ad markup', () => {
-  const html = read('index.html');
+test('standalone runner is one viewport, quick-play accessible and contains no in-page ad markup', () => {
+  const html = read('ngua-phi-don-tet.html');
+  const css = read('css/tet-runner.css');
+  const sitemap = read('sitemap.xml');
   const section = html.match(/<section id="tet-mascot-runner"[\s\S]*?<\/section>/)?.[0] || '';
 
+  assert.match(html, /<link rel="canonical" href="https:\/\/saptet\.vn\/ngua-phi-don-tet\.html">/);
+  assert.match(sitemap, /https:\/\/saptet\.vn\/ngua-phi-don-tet\.html/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.match(section, /<h1 id="tet-runner-heading">Ngựa Phi Đón Tết<\/h1>/);
+  assert.match(css, /\.tet-runner-section\s*\{[\s\S]*?min-height:\s*100svh/);
+  assert.match(css, /\.tet-runner-page \.tet-runner-section\s*\{[\s\S]*?height:\s*calc\(100svh - 74px\)/);
+  assert.match(css, /\.tet-runner-page \.tet-runner-stage\s*\{[\s\S]*?height:\s*100%;[\s\S]*?max-height:\s*none;[\s\S]*?aspect-ratio:\s*auto/);
+  assert.match(css, /@media \(max-width: 680px\) and \(orientation: portrait\)/);
   assert.match(section, /role="application"/);
   assert.match(section, /Chạm hoặc nhấn Space để nhảy/);
   assert.match(section, /id="tet-runner-replay"/);
   assert.match(section, /id="tet-runner-share-score"/);
   assert.match(section, /id="tet-runner-points-burst"/);
-  assert.match(section, /id="tet-runner-result-horse"/);
+  assert.match(section, /<canvas id="tet-runner-result-horse"/);
+  assert.match(section, /id="tet-runner-share-preview"[^>]+role="dialog"/);
+  assert.match(section, /id="tet-runner-share-preview-image"/);
+  assert.match(section, /id="tet-runner-share-preview-confirm"/);
   assert.match(section, /Chơi lại<\/button>/);
   assert.match(section, /google-side-rail-overlap="false"/);
   assert.doesNotMatch(section, /<ins\b|adsbygoogle|data-ad-slot/);
+  assert.match(html, /id="tet-landmark-library"/);
+  assert.match(html, /id="tet-landmark-library-grid"[^>]+role="list"/);
+  assert.match(html, /id="tet-landmark-unlocked-count">1</);
+  assert.ok(html.indexOf('id="tet-landmark-library"') > html.indexOf('id="tet-mascot-runner"'));
 });
 
 test('runner lazy loads Three.js and exposes lifecycle analytics without jump spam', () => {
@@ -44,15 +62,35 @@ test('runner lazy loads Three.js and exposes lifecycle analytics without jump sp
   assert.match(loader, /game_name:\s*'tet_mascot_runner'/);
   assert.match(loader, /analytics\.trackEvent/);
   assert.match(loader, /analytics\.trackGameAction/);
-  for (const action of ['section_view', 'start', 'first_jump', 'score_milestone', 'game_over', 'replay', 'share_score']) {
+  for (const action of ['section_view', 'start', 'first_jump', 'score_milestone', 'game_over', 'replay', 'share_preview', 'share_score', 'landmark_unlock']) {
     assert.match(controller, new RegExp(`track\\('${action}'`));
   }
   assert.doesNotMatch(controller, /track\('jump'/);
   assert.match(controller, /function requestReplayAd\([^)]*onComplete/);
 });
 
-test('runner runtime and pinned Three.js are loaded locally', () => {
+test('homepage game entry tracks the handoff without loading the runner', () => {
   const html = read('index.html');
+  const retention = read('js/home-retention.js');
+
+  assert.match(html, /data-home-game-entry/);
+  assert.match(retention, /trackEvent\('home_game_open'/);
+  assert.match(retention, /game_name:\s*'tet_mascot_runner'/);
+});
+
+test('game pages keep the games navigation tab active', () => {
+  const loader = read('js/header-loader.js');
+  const navigation = read('js/navigation.js');
+
+  for (const page of ['tro-choi-tet.html', 'noi-chu.html', 'ngua-phi-don-tet.html']) {
+    assert.match(loader, new RegExp(`filename === '${page.replace('.', '\\.')}'`));
+    assert.match(navigation, new RegExp(`'/${page.replace('.', '\\.')}'`));
+  }
+  assert.match(loader, /return 'games'/);
+});
+
+test('runner runtime and pinned Three.js are loaded locally', () => {
+  const html = read('ngua-phi-don-tet.html');
   const controller = read('js/tet-runner-three.js');
   const packageJson = JSON.parse(read('package.json'));
 
@@ -66,7 +104,7 @@ test('runner runtime and pinned Three.js are loaded locally', () => {
 });
 
 test('runner visual refresh keeps gameplay readable and rewards player feedback', () => {
-  const html = read('index.html');
+  const html = read('ngua-phi-don-tet.html');
   const css = read('css/tet-runner.css');
   const controller = read('js/tet-runner-three.js');
   const loader = read('js/tet-runner-loader.js');
@@ -96,10 +134,18 @@ test('runner visual refresh keeps gameplay readable and rewards player feedback'
   assert.match(controller, /REGION_BACKGROUNDS/);
   const journeyRegistry = controller.match(/const VIETNAM_JOURNEY = \[([\s\S]*?)\n\];/)?.[1] || '';
   assert.equal((journeyRegistry.match(/province:/g) || []).length, 34);
-  assert.match(controller, /const LANDMARK_INTERVAL_KM = 10/);
+  assert.match(controller, /const LANDMARK_INTERVAL_KM = 5/);
+  assert.match(html, /Mỗi 5 km · địa danh mới/);
+  assert.match(html, /Còn 5,00 km đến điểm tiếp theo/);
   assert.match(controller, /const VIETNAM_ROUTE = interleaveRegions/);
   assert.match(controller, /Còn .* km đến điểm tiếp theo/);
-  assert.ok((controller.match(/assets\/images\/tet-runner\/[^']+\.webp/g) || []).length >= 9);
+  assert.ok(new Set(controller.match(/assets\/images\/tet-runner\/[^']+\.webp/g) || []).size >= 15);
+  assert.match(controller, /'Nghệ An': '\/assets\/images\/tet-runner\/central-lang-sen\.webp'/);
+  assert.match(controller, /'Hà Tĩnh': '\/assets\/images\/tet-runner\/central-dong-loc-v2\.webp'/);
+  assert.match(controller, /UNLOCKED_LANDMARKS_STORAGE_KEY/);
+  assert.match(controller, /sap_tet_runner_v1_landmarks_unlocked/);
+  assert.match(controller, /loading = 'lazy'/);
+  assert.match(controller, /historicalUnlockCount/);
   assert.match(controller, /event\.key === 'ArrowDown'/);
   assert.match(controller, /assets\/sounds\/tet-runner-/);
   assert.match(controller, /background: '\/assets\/sounds\/tet-runner-background\.mp3'/);
@@ -111,6 +157,15 @@ test('runner visual refresh keeps gameplay readable and rewards player feedback'
   assert.ok(controller.indexOf("playEffect('crash'") < controller.indexOf("playEffect('failed'"));
   assert.ok((controller.match(/playEffect\('action'/g) || []).length >= 3);
   assert.match(controller, /name === 'background'\) audio\.loop = true/);
+  assert.match(controller, /name === 'background' \? \.095/);
+  assert.match(controller, /gallop: '\/assets\/sounds\/tet-runner-gallop\.mp3\?v=20260914b'/);
+  assert.match(controller, /const GALLOP_START_OFFSET_S = 0/);
+  assert.match(controller, /name === 'gallop' \? \.28/);
+  assert.match(controller, /function restartGallop\(speed, minimumPlayMs = 0\)/);
+  assert.match(controller, /gallop\.currentTime = GALLOP_START_OFFSET_S/);
+  assert.match(controller, /restartGallop\(game\.getState\(\)\.speed, 900\)/);
+  assert.match(controller, /state\.grounded && !wasGrounded[\s\S]*restartGallop\(state\.speed\)/);
+  assert.match(controller, /syncGameAudio\(state\.status === 'running', state\.speed, state\.grounded\)/);
   assert.match(controller, /function playLandmarkTransition/);
   assert.match(controller, /background\.volume =/);
   assert.match(html, /<p class="tet-runner-kicker">Minigame<\/p>/);

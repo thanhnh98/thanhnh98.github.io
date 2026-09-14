@@ -54,6 +54,7 @@ test('homepage stays compact with seven focused content sections', () => {
   assert.match(html, /data-home-section="hero"/);
   assert.match(html, /data-home-section="today"/);
   assert.match(html, /data-home-section="game"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
   assert.match(html, /data-home-section="quick-links"/);
   assert.match(html, /data-home-section="app"/);
   assert.match(html, /data-home-section="discovery"/);
@@ -70,6 +71,7 @@ test('homepage keeps three crawlable FAQs and useful internal links', () => {
   assert.match(html, /href="\/loi-chuc-tet\.html"/);
   assert.match(html, /href="\/may-tinh-li-xi\.html"/);
   assert.match(html, /href="\/tro-choi-tet\.html"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
   assert.match(html, /href="\/su-kien-quan-trong\.html"/);
 });
 
@@ -142,16 +144,18 @@ test('loi chuc tet page is indexable and supports the wishes CTA', () => {
   assert.match(sitemap, /https:\/\/saptet\.vn\/loi-chuc-tet\.html/);
 });
 
-test('tro choi tet page uses the compact game-first experience', () => {
+test('tro choi tet page is a two-game hub', () => {
   const html = read('tro-choi-tet.html');
-  const css = read('css/game.css');
+  const css = read('css/games-hub.css');
 
-  assert.match(html, /class="game-intro"/);
-  assert.match(html, /<h1 id="game-title">Nối Chữ<\/h1>/);
-  assert.match(html, /id="start-game" class="primary-game-button"/);
-  assert.match(html, /class="game-hud"/);
-  assert.match(css, /Nối Chữ — compact, game-first layout/);
-  assert.match(css, /\.game-hud\s*\{[\s\S]*grid-template-columns:\s*repeat\(4,/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.equal((html.match(/data-game-card=/g) || []).length, 2);
+  assert.match(html, /class="games-hub-grid"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
+  assert.match(html, /href="\/noi-chu\.html"/);
+  assert.match(html, /horse-mascot\.webp/);
+  assert.match(html, /"@type":"CollectionPage"/);
+  assert.match(css, /grid-template-columns:\s*repeat\(2,/);
 });
 
 test('homepage title and meta use brand-first copy from inject payload', () => {

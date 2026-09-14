@@ -15,6 +15,10 @@ class Router {
             '/mon-an-tet.html': 'mon-an-tet.html', // Keep for backward compatibility
             '/tro-choi-tet': 'tro-choi-tet.html',
             '/tro-choi-tet.html': 'tro-choi-tet.html', // Keep for backward compatibility
+            '/noi-chu': 'noi-chu.html',
+            '/noi-chu.html': 'noi-chu.html',
+            '/ngua-phi-don-tet': 'ngua-phi-don-tet.html',
+            '/ngua-phi-don-tet.html': 'ngua-phi-don-tet.html',
             '/tai-ung-dung': 'tai-ung-dung.html',
             '/tai-ung-dung/': 'tai-ung-dung.html',
             '/tai-ung-dung.html': 'tai-ung-dung.html',
@@ -71,6 +75,9 @@ class Router {
             '/tin-tuc',
             '/tai-ung-dung.html',
             '/chi-tiet-mon-an.html',
+            '/tro-choi-tet.html',
+            '/noi-chu.html',
+            '/ngua-phi-don-tet.html',
         ];
         const shouldKeepHtml = keepHtmlPages.some(p => currentPath === p || currentPath.startsWith(p));
         if (shouldKeepHtml) return;

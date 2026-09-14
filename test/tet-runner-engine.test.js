@@ -31,6 +31,8 @@ test('score represents travelled kilometres and advances landmarks by the config
   assert.equal(runner.journeyIndexAtKilometers(9.99, 34, 10), 0);
   assert.equal(runner.journeyIndexAtKilometers(10, 34, 10), 1);
   assert.equal(runner.journeyIndexAtKilometers(340, 34, 10), 0);
+  assert.equal(runner.journeyIndexAtKilometers(4.99, 34, 5), 0);
+  assert.equal(runner.journeyIndexAtKilometers(5, 34, 5), 1);
 });
 
 test('mascot registry resolves the Vietnam calendar year and falls back safely', () => {
