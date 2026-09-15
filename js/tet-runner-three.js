@@ -516,6 +516,8 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   const sharePreviewClose = section.querySelector('#tet-runner-share-preview-close');
   const sharePreviewBack = section.querySelector('#tet-runner-share-preview-back');
   const sharePreviewConfirm = section.querySelector('#tet-runner-share-preview-confirm');
+  const sharePreviewCopy = section.querySelector('#tet-runner-share-preview-copy');
+  const sharePreviewDownload = section.querySelector('#tet-runner-share-preview-download');
   const duckButton = section.querySelector('#tet-runner-duck');
   const soundButton = section.querySelector('#tet-runner-sound');
   const scoreNode = section.querySelector('#tet-runner-score');
@@ -1020,8 +1022,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     const file = canvasToPngFile(pendingShareCanvas || createScoreShareImage(state));
     const shareData = {
       title: 'Ngựa Phi Đón Tết',
-      text: `Mình đã phi được ${formatKilometers(state.score)} trong Ngựa Phi Đón Tết. Bạn có vượt được không?`,
-      url: window.location.href.split('#')[0],
+      text: `Mình đã phi được ${formatKilometers(state.score)} trong Ngựa Phi Đón Tết. Bạn có vượt được không? saptet.vn/ngua-phi-don-tet.html`,
       files: [file],
     };
     let method = 'download';
@@ -1032,11 +1033,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
         shareScoreButton.classList.add('is-done');
         shareScoreButton.innerHTML = '<i data-lucide="check" aria-hidden="true"></i> Đã chia sẻ';
       } else {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(file);
-        link.download = file.name;
-        link.click();
-        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        downloadScoreImage();
         shareScoreButton.classList.add('is-done');
         shareScoreButton.innerHTML = '<i data-lucide="download" aria-hidden="true"></i> Đã lưu ảnh';
       }
@@ -1046,6 +1043,48 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     } catch (error) {
       if (error?.name !== 'AbortError') {
         shareScoreButton.textContent = 'Thử chia sẻ lại';
+      }
+    }
+  }
+
+  function downloadScoreImage() {
+    const state = game.getState();
+    const file = canvasToPngFile(pendingShareCanvas || createScoreShareImage(state));
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(file);
+    link.download = file.name;
+    link.click();
+    window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    track('download_score_image', { score: state.score, bonus_points: state.bonusPoints, mascot_year: mascotYear });
+  }
+
+  async function copyScoreImage() {
+    const state = game.getState();
+    const canvas = pendingShareCanvas || createScoreShareImage(state);
+    try {
+      if (!navigator.clipboard?.write || typeof ClipboardItem === 'undefined') {
+        throw new Error('Clipboard API not supported');
+      }
+      const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/png');
+      });
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      if (sharePreviewCopy) {
+        sharePreviewCopy.innerHTML = '<i data-lucide="check" aria-hidden="true"></i> Đã sao chép';
+        sharePreviewCopy.classList.add('is-done');
+        window.lucide?.createIcons();
+        window.setTimeout(() => {
+          sharePreviewCopy.innerHTML = '<i data-lucide="copy" aria-hidden="true"></i> Sao chép ảnh';
+          sharePreviewCopy.classList.remove('is-done');
+          window.lucide?.createIcons();
+        }, 2000);
+      }
+      track('copy_score_image', { score: state.score, bonus_points: state.bonusPoints, mascot_year: mascotYear });
+    } catch (error) {
+      downloadScoreImage();
+      if (sharePreviewCopy) {
+        sharePreviewCopy.innerHTML = '<i data-lucide="download" aria-hidden="true"></i> Đã lưu ảnh';
+        window.lucide?.createIcons();
       }
     }
   }
@@ -1401,6 +1440,8 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   sharePreviewConfirm.addEventListener('click', shareScore);
   sharePreviewClose.addEventListener('click', closeSharePreview);
   sharePreviewBack.addEventListener('click', closeSharePreview);
+  if (sharePreviewCopy) sharePreviewCopy.addEventListener('click', copyScoreImage);
+  if (sharePreviewDownload) sharePreviewDownload.addEventListener('click', downloadScoreImage);
   sharePreview.addEventListener('click', (event) => {
     if (event.target === sharePreview) closeSharePreview();
   });

@@ -234,8 +234,11 @@
 .tet-runner-share-preview-close { position: absolute; top: .65rem; right: .65rem; width: 38px; height: 38px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; color: #741a29; background: #f7e4ba; cursor: pointer; }
 .tet-runner-share-preview-close svg { width: 18px; height: 18px; }
 .tet-runner-share-preview-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .55rem; margin-top: .15rem; }
-.tet-runner-share-preview-actions button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .65rem 1rem; border: 0; border-radius: 999px; color: #fff; background: linear-gradient(135deg, #b61928, #7b0b18); font: inherit; font-weight: 900; cursor: pointer; }
+.tet-runner-share-preview-actions button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .65rem 1rem; border: 0; border-radius: 999px; color: #fff; background: linear-gradient(135deg, #b61928, #7b0b18); font: inherit; font-weight: 900; cursor: pointer; transition: background .15s ease, color .15s ease; }
 .tet-runner-share-preview-actions #tet-runner-share-preview-back { color: #761522; background: #f3dfb3; }
+.tet-runner-share-preview-actions #tet-runner-share-preview-copy,
+.tet-runner-share-preview-actions #tet-runner-share-preview-download { color: #761522; background: #f3dfb3; }
+.tet-runner-share-preview-actions #tet-runner-share-preview-copy.is-done { color: #245745; background: #dff4de; }
 .tet-runner-share-preview-actions svg { width: 17px; height: 17px; }
 .tet-runner-fallback > svg { width: 44px; height: 44px; }
 
