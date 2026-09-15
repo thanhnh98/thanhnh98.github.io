@@ -9,7 +9,8 @@
     return Math.min(16, 8 + Math.max(0, elapsedSeconds) * 0.08);
   }
 
-  const KM_PER_WORLD_UNIT = 0.02;
+  // Keep the physical game pace unchanged while the travelled-kilometre counter advances 1.4× faster.
+  const KM_PER_WORLD_UNIT = 0.028;
 
   function kilometersAtDistance(distanceUnits) {
     const kilometers = Math.max(0, Number(distanceUnits) || 0) * KM_PER_WORLD_UNIT;

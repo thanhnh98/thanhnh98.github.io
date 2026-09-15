@@ -6,45 +6,70 @@ on:
       - master
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+concurrency:
+  group: github-pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Cần full history để lấy git hash
-      
+          fetch-depth: 1
+
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
+      - name: Build Tết runner
+        run: npm run build:tet-runner
+
       - name: Generate tin-tuc extensionless URL stubs (GitHub Pages)
-        run: node scripts/generate-tin-tuc-clean-urls.js
+        run: npm run generate-tin-tuc-clean-urls
 
       - name: Inject Tết SEO snippets (VN timezone)
-        run: node scripts/inject-tet-seo-snippets.js
+        run: npm run inject-tet-seo
 
-      - name: Update version for Service Worker
-        run: node scripts/update-version.js
-      
-      - name: Commit version changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add sw.js .version .last_build_id
-          git diff --staged --quiet || git commit -m "chore: auto-update version for deployment [skip ci]"
-          git push origin master || echo "No changes to commit"
-      
+      # Mỗi lần deploy dùng cache name mới, buộc Service Worker và web
+      # assets được refresh mà không cần tạo commit rác trên master.
+      - name: Force-update Service Worker cache version
+        run: npm run update-version
+
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+          publish_branch: gh-pages
+          commit_message: "deploy: ${{ github.sha }}"
+
+      - name: Notify successful deploy on Telegram
+        if: success()
+        continue-on-error: true
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message || github.sha }}
+        run: |
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+            --data-urlencode "text=🎉 Sap Tet web deploy SUCCEEDED: ${COMMIT_MESSAGE}
+
+          👤 Pushed by: ${{ github.actor }}
+          🌐 Website: https://saptet.vn
+          🔎 Details: ${RUN_URL}"

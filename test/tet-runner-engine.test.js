@@ -25,9 +25,9 @@ test('replay always resets elapsed time and speed after a fast run', () => {
   assert.equal(replayed.distance, 0);
 });
 
-test('score represents travelled kilometres and advances landmarks by the configured interval', () => {
+test('score counts travelled kilometres at 1.4x while landmarks keep their configured interval', () => {
   assert.equal(runner.kilometersAtDistance(0), 0);
-  assert.equal(runner.kilometersAtDistance(50), 1);
+  assert.equal(runner.kilometersAtDistance(50), 1.4);
   assert.equal(runner.journeyIndexAtKilometers(9.99, 34, 10), 0);
   assert.equal(runner.journeyIndexAtKilometers(10, 34, 10), 1);
   assert.equal(runner.journeyIndexAtKilometers(340, 34, 10), 0);

@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=20260914a">
   <link rel="stylesheet" href="css/colors.css?v=20260830">
-  <link rel="stylesheet" href="css/tet-runner.css?v=20260915a">
+  <link rel="stylesheet" href="css/tet-runner.css?v=20260915e">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -112,16 +112,44 @@
           <div>
             <p>Hành trình xuyên Việt</p>
             <h2 id="tet-landmark-library-title">Thư viện địa danh</h2>
-            <span>Mỗi 5 km là một khung cảnh mới. Chạy càng xa, bộ sưu tập càng đầy.</span>
+            <span>70 địa danh thuộc 34 tỉnh, thành. Mỗi 5 km mở khóa một mốc riêng.</span>
           </div>
           <div class="tet-landmark-library-progress" aria-live="polite">
-            <strong id="tet-landmark-unlocked-count">1</strong><span>/ 34<br>đã mở khóa</span>
+            <strong id="tet-landmark-unlocked-count">1</strong><span id="tet-landmark-progress-label">/ 70<br>đã mở khóa</span>
           </div>
         </header>
         <div id="tet-landmark-library-grid" class="tet-landmark-library-grid" role="list" aria-label="Các địa danh trên hành trình"></div>
+        <p class="tet-landmark-ai-disclaimer"><i data-lucide="info" aria-hidden="true"></i><span>Các hình ảnh được sinh bằng AI (Trí tuệ nhân tạo), có thể không đúng ở một số chi tiết, mong bạn thông cảm và vui lòng góp ý nếu thấy sai sót.</span></p>
       </div>
     </section>
+
   </main>
+
+  <div id="tet-landmark-viewer" class="tet-landmark-viewer" role="dialog" aria-modal="true" aria-labelledby="tet-landmark-viewer-title" hidden>
+    <div class="tet-landmark-viewer-card">
+      <button id="tet-landmark-viewer-close" class="tet-landmark-viewer-close" type="button" aria-label="Đóng ảnh địa danh"><i data-lucide="x" aria-hidden="true"></i></button>
+      <img id="tet-landmark-viewer-image" src="" alt="">
+      <div class="tet-landmark-viewer-copy">
+        <p id="tet-landmark-viewer-province"></p>
+        <h2 id="tet-landmark-viewer-title"></h2>
+        <div class="tet-landmark-viewer-details">
+          <section>
+            <h3>Vị trí &amp; địa lý</h3>
+            <p id="tet-landmark-viewer-geography"></p>
+          </section>
+          <section>
+            <h3>Giá trị &amp; ý nghĩa</h3>
+            <p id="tet-landmark-viewer-significance"></p>
+          </section>
+          <section id="tet-landmark-viewer-history-section">
+            <h3>Dấu ấn lịch sử</h3>
+            <p id="tet-landmark-viewer-history"></p>
+          </section>
+        </div>
+        <a id="tet-landmark-viewer-source" class="tet-landmark-viewer-source" href="" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" aria-hidden="true"></i><span></span></a>
+      </div>
+    </div>
+  </div>
 
   <div id="footer-container"></div>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -129,8 +157,8 @@
   <script src="js/navigation.js"></script>
   <script src="js/icons.js"></script>
   <script src="js/analytics.js"></script>
-  <script src="js/tet-runner-engine.js?v=20260915a"></script>
-  <script src="js/tet-runner-loader.js?v=20260915a"></script>
+  <script src="js/tet-runner-engine.js?v=20260915e"></script>
+  <script src="js/tet-runner-loader.js?v=20260915e"></script>
   <script src="js/footer.js"></script>
   <script type="module">
     if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {

@@ -17,57 +17,232 @@ const COLORS = {
 };
 
 const VIETNAM_JOURNEY = [
-  { province: 'Hà Nội', landmark: 'Hồ Gươm', region: 'north' },
-  { province: 'Ninh Bình', landmark: 'Tràng An', region: 'north' },
-  { province: 'Phú Thọ', landmark: 'Đền Hùng', region: 'north' },
-  { province: 'Tuyên Quang', landmark: 'Na Hang', region: 'north' },
-  { province: 'Lào Cai', landmark: 'Fansipan · Sa Pa', region: 'north' },
-  { province: 'Lai Châu', landmark: 'Đèo Ô Quy Hồ', region: 'north' },
-  { province: 'Điện Biên', landmark: 'Đồi A1', region: 'north' },
-  { province: 'Sơn La', landmark: 'Cao nguyên Mộc Châu', region: 'north' },
-  { province: 'Thái Nguyên', landmark: 'Hồ Núi Cốc', region: 'north' },
-  { province: 'Cao Bằng', landmark: 'Thác Bản Giốc', region: 'north' },
-  { province: 'Lạng Sơn', landmark: 'Núi Mẫu Sơn', region: 'north' },
-  { province: 'Quảng Ninh', landmark: 'Vịnh Hạ Long', region: 'north' },
-  { province: 'Hải Phòng', landmark: 'Quần đảo Cát Bà', region: 'north' },
-  { province: 'Bắc Ninh', landmark: 'Chùa Dâu', region: 'north' },
-  { province: 'Hưng Yên', landmark: 'Phố Hiến', region: 'north' },
-  { province: 'Thanh Hóa', landmark: 'Thành Nhà Hồ', region: 'north' },
-  { province: 'Nghệ An', landmark: 'Làng Sen', region: 'central' },
-  { province: 'Hà Tĩnh', landmark: 'Ngã ba Đồng Lộc', region: 'central' },
-  { province: 'Quảng Trị', landmark: 'Phong Nha · Kẻ Bàng', region: 'central' },
-  { province: 'Huế', landmark: 'Kinh thành Huế', region: 'central' },
-  { province: 'Đà Nẵng', landmark: 'Cầu Rồng · Hội An', region: 'central' },
-  { province: 'Quảng Ngãi', landmark: 'Lý Sơn · Măng Đen', region: 'central' },
-  { province: 'Gia Lai', landmark: 'Biển Hồ', region: 'central' },
-  { province: 'Đắk Lắk', landmark: 'Buôn Đôn', region: 'central' },
-  { province: 'Khánh Hòa', landmark: 'Vịnh Nha Trang', region: 'central' },
-  { province: 'Lâm Đồng', landmark: 'Đà Lạt · Langbiang', region: 'central' },
-  { province: 'Thành phố Hồ Chí Minh', landmark: 'Sông Sài Gòn', region: 'south' },
-  { province: 'Đồng Nai', landmark: 'Vườn quốc gia Cát Tiên', region: 'south' },
-  { province: 'Tây Ninh', landmark: 'Núi Bà Đen', region: 'south' },
-  { province: 'Cần Thơ', landmark: 'Chợ nổi Cái Răng', region: 'south' },
-  { province: 'Vĩnh Long', landmark: 'Miệt vườn sông nước', region: 'south' },
-  { province: 'Đồng Tháp', landmark: 'Sen Tháp Mười', region: 'south' },
-  { province: 'An Giang', landmark: 'Núi Sam · Phú Quốc', region: 'south' },
-  { province: 'Cà Mau', landmark: 'Mũi Cà Mau', region: 'south' },
+  // Each landmark is its own milestone; provinces follow the north-to-south route.
+  { province: 'Cao Bằng', landmark: 'Thác Bản Giốc', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-ban-gioc.webp' },
+  { province: 'Cao Bằng', landmark: 'Núi Mắt Thần', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-mat-than.webp' },
+  { province: 'Tuyên Quang', landmark: 'Hồ Na Hang', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-na-hang.webp' },
+  { province: 'Tuyên Quang', landmark: 'Cao nguyên đá Đồng Văn', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-dong-van.webp' },
+  { province: 'Lai Châu', landmark: 'Đèo Ô Quy Hồ', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-o-quy-ho.webp' },
+  { province: 'Lai Châu', landmark: 'Pu Ta Leng', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-pu-ta-leng.webp' },
+  { province: 'Lào Cai', landmark: 'Fansipan', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-sapa.webp' },
+  { province: 'Lào Cai', landmark: 'Mù Cang Chải', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-mu-cang-chai.webp' },
+  { province: 'Lạng Sơn', landmark: 'Núi Mẫu Sơn', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-mau-son.webp' },
+  { province: 'Lạng Sơn', landmark: 'Ải Chi Lăng', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-chi-lang.webp' },
+  { province: 'Thái Nguyên', landmark: 'Hồ Núi Cốc', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-nui-coc.webp' },
+  { province: 'Thái Nguyên', landmark: 'Hồ Ba Bể', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-ba-be.webp' },
+  { province: 'Điện Biên', landmark: 'Đồi A1', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-doi-a1.webp' },
+  { province: 'Điện Biên', landmark: 'Hồ Pá Khoang', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-pa-khoang.webp' },
+  { province: 'Phú Thọ', landmark: 'Đền Hùng', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-den-hung.webp' },
+  { province: 'Phú Thọ', landmark: 'Thung lũng Mai Châu', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-mai-chau.webp' },
+  { province: 'Bắc Ninh', landmark: 'Chùa Dâu', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-chua-dau.webp' },
+  { province: 'Bắc Ninh', landmark: 'Tây Yên Tử', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-tay-yen-tu.webp' },
+  { province: 'Hà Nội', landmark: 'Hồ Gươm', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-ho-guom.webp' },
+  { province: 'Hà Nội', landmark: 'Hoàng thành Thăng Long', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-thang-long.webp' },
+  { province: 'Quảng Ninh', landmark: 'Vịnh Hạ Long', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-ha-long.webp' },
+  { province: 'Quảng Ninh', landmark: 'Yên Tử', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-yen-tu.webp' },
+  { province: 'Sơn La', landmark: 'Cao nguyên Mộc Châu', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-moc-chau.webp' },
+  { province: 'Sơn La', landmark: 'Tà Xùa', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-ta-xua.webp' },
+  { province: 'Hải Phòng', landmark: 'Quần đảo Cát Bà', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-cat-ba.webp' },
+  { province: 'Hải Phòng', landmark: 'Côn Sơn - Kiếp Bạc', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-con-son-kiep-bac.webp' },
+  { province: 'Hưng Yên', landmark: 'Phố Hiến', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-pho-hien.webp' },
+  { province: 'Hưng Yên', landmark: 'Chùa Keo', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-chua-keo.webp' },
+  { province: 'Ninh Bình', landmark: 'Tràng An', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-trang-an.webp' },
+  { province: 'Ninh Bình', landmark: 'Chùa Tam Chúc', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-tam-chuc.webp' },
+  { province: 'Thanh Hóa', landmark: 'Thành Nhà Hồ', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-thanh-nha-ho.webp' },
+  { province: 'Thanh Hóa', landmark: 'Pù Luông', region: 'north', backgroundUrl: '/assets/images/tet-runner/north-pu-luong.webp' },
+  { province: 'Nghệ An', landmark: 'Làng Sen', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-lang-sen.webp' },
+  { province: 'Nghệ An', landmark: 'Biển Cửa Lò', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-cua-lo.webp' },
+  { province: 'Hà Tĩnh', landmark: 'Ngã ba Đồng Lộc', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-dong-loc-v2.webp' },
+  { province: 'Hà Tĩnh', landmark: 'Biển Thiên Cầm', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-thien-cam.webp' },
+  { province: 'Quảng Trị', landmark: 'Phong Nha - Kẻ Bàng', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-phong-nha.webp' },
+  { province: 'Quảng Trị', landmark: 'Cầu Hiền Lương', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-hien-luong.webp' },
+  { province: 'Huế', landmark: 'Kinh thành Huế', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-hue.webp' },
+  { province: 'Huế', landmark: 'Phá Tam Giang', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-tam-giang.webp' },
+  { province: 'Đà Nẵng', landmark: 'Quần đảo Hoàng Sa', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-hoang-sa.webp' },
+  { province: 'Đà Nẵng', landmark: 'Cầu Rồng', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-cau-rong.webp' },
+  { province: 'Đà Nẵng', landmark: 'Phố cổ Hội An', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-hoi-an.webp' },
+  { province: 'Quảng Ngãi', landmark: 'Đảo Lý Sơn', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-ly-son.webp' },
+  { province: 'Quảng Ngãi', landmark: 'Măng Đen', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-mang-den.webp' },
+  { province: 'Gia Lai', landmark: 'Biển Hồ', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-bien-ho.webp' },
+  { province: 'Gia Lai', landmark: 'Kỳ Co', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-ky-co.webp' },
+  { province: 'Đắk Lắk', landmark: 'Buôn Đôn', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-buon-don.webp' },
+  { province: 'Đắk Lắk', landmark: 'Gành Đá Đĩa', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-ganh-da-dia.webp' },
+  { province: 'Khánh Hòa', landmark: 'Vịnh Nha Trang', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-nha-trang.webp' },
+  { province: 'Khánh Hòa', landmark: 'Vịnh Vĩnh Hy', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-vinh-hy.webp' },
+  { province: 'Khánh Hòa', landmark: 'Quần đảo Trường Sa', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-truong-sa.webp' },
+  { province: 'Lâm Đồng', landmark: 'Đà Lạt', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-da-lat.webp' },
+  { province: 'Lâm Đồng', landmark: 'Mũi Né', region: 'central', backgroundUrl: '/assets/images/tet-runner/central-mui-ne.webp' },
+  { province: 'Đồng Nai', landmark: 'Vườn quốc gia Cát Tiên', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-cat-tien.webp' },
+  { province: 'Đồng Nai', landmark: 'Bù Gia Mập', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-bu-gia-map.webp' },
+  { province: 'Tây Ninh', landmark: 'Núi Bà Đen', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-nui-ba-den.webp' },
+  { province: 'Tây Ninh', landmark: 'Làng nổi Tân Lập', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-tan-lap.webp' },
+  { province: 'Thành phố Hồ Chí Minh', landmark: 'Sông Sài Gòn', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-saigon.webp' },
+  { province: 'Thành phố Hồ Chí Minh', landmark: 'Côn Đảo', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-con-dao.webp' },
+  { province: 'An Giang', landmark: 'Núi Sam', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-nui-sam.webp' },
+  { province: 'An Giang', landmark: 'Phú Quốc', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-phu-quoc.webp' },
+  { province: 'Đồng Tháp', landmark: 'Vườn quốc gia Tràm Chim', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-tram-chim.webp' },
+  { province: 'Đồng Tháp', landmark: 'Chợ nổi Cái Bè', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-cai-be.webp' },
+  { province: 'Vĩnh Long', landmark: 'Cồn Phụng', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-con-phung.webp' },
+  { province: 'Vĩnh Long', landmark: 'Ao Bà Om', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-ao-ba-om.webp' },
+  { province: 'Cần Thơ', landmark: 'Chợ nổi Cái Răng', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-cai-rang.webp' },
+  { province: 'Cần Thơ', landmark: 'Chùa Dơi', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-chua-doi.webp' },
+  { province: 'Cà Mau', landmark: 'Mũi Cà Mau', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-mui-ca-mau.webp' },
+  { province: 'Cà Mau', landmark: 'Điện gió Bạc Liêu', region: 'south', backgroundUrl: '/assets/images/tet-runner/south-dien-gio-bac-lieu.webp' },
 ];
 
+const LANDMARK_DETAILS = {
+  'Thác Bản Giốc': 'Thác nước nhiều tầng trên sông Quây Sơn, nổi bật giữa thung lũng đá vôi và những cánh đồng xanh của vùng biên Cao Bằng.',
+  'Núi Mắt Thần': 'Ngọn núi thủng độc đáo ở thung lũng Nặm Trá, được nhận ra bởi vòm đá tròn lớn nhìn xuống hồ và đồng cỏ rộng.',
+  'Hồ Na Hang': 'Hồ sinh thái giữa núi đá vôi và rừng nguyên sinh, có mặt nước xanh, đảo nhỏ và những bản làng yên bình của Tuyên Quang.',
+  'Cao nguyên đá Đồng Văn': 'Miền cao nguyên đá vôi hùng vĩ, gìn giữ dấu tích địa chất lâu đời cùng văn hóa đặc sắc của các cộng đồng vùng cao.',
+  'Đèo Ô Quy Hồ': 'Một trong những cung đèo nổi tiếng của dãy Hoàng Liên Sơn, uốn qua biển mây và mở ra tầm nhìn núi cao ngoạn mục.',
+  'Pu Ta Leng': 'Đỉnh núi cao trên 3.000 m của dãy Hoàng Liên Sơn, hấp dẫn bởi rừng nguyên sinh, suối đá và mùa hoa đỗ quyên.',
+  Fansipan: 'Nóc nhà Đông Dương cao 3.143 m, biểu tượng của dãy Hoàng Liên Sơn với biển mây và quần thể tâm linh trên đỉnh.',
+  'Mù Cang Chải': 'Vùng ruộng bậc thang ôm theo sườn núi, rực rỡ nhất vào mùa nước đổ và mùa lúa chín của miền Tây Bắc.',
+  'Núi Mẫu Sơn': 'Vùng núi cao khí hậu mát lạnh, thường phủ sương và còn lưu dấu những biệt thự đá cổ giữa rừng núi Lạng Sơn.',
+  'Ải Chi Lăng': 'Thung lũng hiểm yếu gắn với nhiều chiến công giữ nước, được bao bọc bởi các dãy núi đá và dòng sông Thương.',
+  'Hồ Núi Cốc': 'Hồ nước rộng với nhiều đảo xanh, gắn với huyền thoại nàng Công chàng Cốc và cảnh quan trung du Thái Nguyên.',
+  'Hồ Ba Bể': 'Hồ nước ngọt tự nhiên giữa Vườn quốc gia Ba Bể, được bao quanh bởi núi đá vôi, hang động và rừng già.',
+  'Đồi A1': 'Di tích trọng điểm của Chiến dịch Điện Biên Phủ, nơi còn lưu giữ hệ thống giao thông hào và dấu tích trận địa lịch sử.',
+  'Hồ Pá Khoang': 'Hồ nước trong vùng Mường Phăng, nổi bật với những bán đảo nhỏ, rừng xanh và màn sương đặc trưng của Điện Biên.',
+  'Đền Hùng': 'Quần thể đền trên núi Nghĩa Lĩnh, nơi người Việt tưởng nhớ các Vua Hùng và cội nguồn dựng nước.',
+  'Thung lũng Mai Châu': 'Thung lũng ruộng lúa dưới chân núi, nổi tiếng với nhà sàn, nghề dệt và đời sống văn hóa của người Thái.',
+  'Chùa Dâu': 'Trung tâm Phật giáo cổ của vùng Luy Lâu, nổi bật với tháp Hòa Phong bằng gạch và kiến trúc chùa Bắc Bộ.',
+  'Tây Yên Tử': 'Sườn phía tây của dãy Yên Tử, nơi con đường hành hương kết nối những ngôi chùa giữa rừng núi và biển mây.',
+  'Hồ Gươm': 'Trái tim lịch sử của Hà Nội, gắn với truyền thuyết trả gươm và những biểu tượng quen thuộc như Tháp Rùa, cầu Thê Húc.',
+  'Hoàng thành Thăng Long': 'Di sản ghi dấu hơn một thiên niên kỷ lịch sử kinh đô, với Đoan Môn, nền điện Kính Thiên và nhiều tầng khảo cổ.',
+  'Vịnh Hạ Long': 'Di sản thiên nhiên thế giới với hàng nghìn đảo đá vôi, hang động và mặt vịnh xanh tạo nên cảnh quan đặc hữu.',
+  'Yên Tử': 'Trung tâm Phật giáo Trúc Lâm trên dãy núi linh thiêng, có hệ thống chùa tháp trải từ chân núi tới đỉnh Đồng.',
+  'Cao nguyên Mộc Châu': 'Cao nguyên mát lành nổi tiếng với đồi chè, đồng cỏ cùng mùa hoa mận và hoa cải phủ khắp thung lũng.',
+  'Tà Xùa': 'Vùng núi săn mây nổi tiếng với sống lưng khủng long, nơi những dãy núi hẹp vươn lên giữa biển mây Tây Bắc.',
+  'Quần đảo Cát Bà': 'Quần đảo đá vôi xanh giữa vịnh Lan Hạ, hội tụ bãi tắm, rừng quốc gia và hệ sinh thái biển phong phú.',
+  'Côn Sơn - Kiếp Bạc': 'Quần thể di tích gắn với Nguyễn Trãi và Trần Hưng Đạo, nằm giữa núi rừng, suối đá và những mái đền cổ.',
+  'Phố Hiến': 'Thương cảng cổ từng hưng thịnh bên sông Hồng, còn lưu lại đình, đền, chùa và dấu ấn giao thương nhiều nền văn hóa.',
+  'Chùa Keo': 'Ngôi chùa cổ nổi bật bởi nghệ thuật chạm khắc gỗ và gác chuông nhiều tầng, một dấu ấn kiến trúc đồng bằng Bắc Bộ.',
+  'Tràng An': 'Quần thể danh thắng nơi thuyền đi qua sông, hang xuyên thủy và thung lũng đá vôi, thuộc Di sản thế giới Tràng An.',
+  'Chùa Tam Chúc': 'Quần thể chùa bên hồ rộng và núi đá vôi, tạo nên không gian tâm linh khoáng đạt giữa cảnh quan Hà Nam.',
+  'Thành Nhà Hồ': 'Tòa thành đá thế kỷ XIV với những cổng vòm ghép từ khối đá lớn, được UNESCO công nhận là Di sản thế giới.',
+  'Pù Luông': 'Khu bảo tồn thiên nhiên nổi tiếng với ruộng bậc thang, núi đá vôi và những bản nhà sàn của người Thái, người Mường.',
+  'Làng Sen': 'Quê nội Chủ tịch Hồ Chí Minh, lưu giữ mái nhà tranh, hàng tre, ao sen và không gian làng quê xứ Nghệ.',
+  'Biển Cửa Lò': 'Bãi biển dài, cát mịn và thoải, nhìn ra đảo Hòn Ngư và là điểm nghỉ biển quen thuộc của vùng Bắc Trung Bộ.',
+  'Ngã ba Đồng Lộc': 'Di tích tưởng niệm mười nữ thanh niên xung phong, biểu tượng của lòng quả cảm trên tuyến đường Trường Sơn.',
+  'Biển Thiên Cầm': 'Bãi biển hình cánh cung với nước trong, cát sáng và núi Thiên Cầm tạo nên đường bờ biển yên bình.',
+  'Phong Nha - Kẻ Bàng': 'Di sản thiên nhiên thế giới nổi tiếng với địa hình karst cổ, sông ngầm và hệ thống hang động quy mô lớn.',
+  'Cầu Hiền Lương': 'Cây cầu lịch sử bắc qua sông Bến Hải, gắn với giới tuyến quân sự tạm thời và khát vọng thống nhất đất nước.',
+  'Kinh thành Huế': 'Trung tâm của Quần thể di tích Cố đô Huế, quy tụ Hoàng thành, cung điện, cổng thành và kiến trúc triều Nguyễn.',
+  'Phá Tam Giang': 'Đầm phá rộng lớn với làng chài, nò sáo và mặt nước đổi màu theo ánh sáng, tiêu biểu cho vẻ đẹp sông nước xứ Huế.',
+  'Quần đảo Hoàng Sa': 'Quần đảo san hô của Việt Nam giữa Biển Đông, hiện là đặc khu hành chính thuộc thành phố Đà Nẵng.',
+  'Cầu Rồng': 'Cây cầu mang hình rồng bắc qua sông Hàn, nổi bật với màn phun lửa, phun nước và ánh sáng về đêm.',
+  'Phố cổ Hội An': 'Đô thị thương cảng cổ bên sông Hoài, nổi tiếng với nhà mái ngói, hội quán, Chùa Cầu và đèn lồng.',
+  'Đảo Lý Sơn': 'Đảo tiền tiêu hình thành từ núi lửa, có vách đá, miệng núi cổ, ruộng tỏi và làn nước trong xanh.',
+  'Măng Đen': 'Cao nguyên mát mẻ giữa rừng thông, hồ và thác nước, mang vẻ yên tĩnh đặc trưng của vùng núi Kon Tum.',
+  'Biển Hồ': 'Hồ T’Nưng nằm trong miệng núi lửa cổ, có mặt nước xanh sâu và rừng thông bao quanh giữa cao nguyên Pleiku.',
+  'Kỳ Co': 'Vịnh nhỏ tựa lưng vào núi đá, nổi bật với bãi cát cong và làn nước chuyển nhiều sắc xanh.',
+  'Buôn Đôn': 'Vùng đất bên sông Sêrêpốk nổi tiếng với cầu treo, nhà sàn và văn hóa lâu đời của các cộng đồng Tây Nguyên.',
+  'Gành Đá Đĩa': 'Bờ biển với hàng nghìn cột đá bazan xếp khít như chồng đĩa, hình thành từ hoạt động núi lửa cổ.',
+  'Vịnh Nha Trang': 'Vịnh biển ôm lấy thành phố Nha Trang, có bãi cát dài, nhiều đảo và hệ sinh thái san hô phong phú.',
+  'Vịnh Vĩnh Hy': 'Vịnh nhỏ được núi đá che chắn, nổi bật với nước xanh trong, rạn san hô và cung đường ven biển ngoạn mục.',
+  'Quần đảo Trường Sa': 'Quần đảo của Việt Nam giữa Biển Đông, là đặc khu hành chính thuộc tỉnh Khánh Hòa với nhiều đảo và rạn san hô.',
+  'Đà Lạt': 'Thành phố cao nguyên của rừng thông, hồ nước và kiến trúc nghỉ dưỡng, nổi tiếng với khí hậu mát cùng nhiều mùa hoa.',
+  'Mũi Né': 'Vùng biển nổi bật với đồi cát đỏ, đồi cát trắng, làng chài và đường bờ đầy nắng gió của Bình Thuận.',
+  'Vườn quốc gia Cát Tiên': 'Khu rừng nhiệt đới và vùng đất ngập nước giàu đa dạng sinh học, nơi cư trú của nhiều loài động thực vật quý.',
+  'Bù Gia Mập': 'Vườn quốc gia bảo tồn rừng thường xanh, suối thác và hệ sinh thái đặc trưng ở khu vực chuyển tiếp Tây Nguyên–Đông Nam Bộ.',
+  'Núi Bà Đen': 'Ngọn núi cao nổi bật giữa đồng bằng Tây Ninh, gắn với hệ thống chùa, hành hương và tầm nhìn rộng khắp Nam Bộ.',
+  'Làng nổi Tân Lập': 'Không gian rừng tràm ngập nước với con đường xuyên rừng và kênh rạch đan xen, tiêu biểu cho vùng Đồng Tháp Mười.',
+  'Sông Sài Gòn': 'Dòng sông gắn với lịch sử và nhịp sống Thành phố Hồ Chí Minh, phản chiếu bến cảng cùng đường chân trời hiện đại.',
+  'Côn Đảo': 'Quần đảo kết hợp di tích lịch sử với rừng, bãi biển và hệ sinh thái biển, là nơi rùa biển về làm tổ.',
+  'Núi Sam': 'Ngọn núi tâm linh của vùng Châu Đốc, tập trung nhiều đền chùa và nhìn ra cánh đồng rộng sát biên giới.',
+  'Phú Quốc': 'Đảo lớn nổi tiếng với bãi biển, rừng quốc gia, làng chài và mặt nước trong xanh của vịnh Thái Lan.',
+  'Vườn quốc gia Tràm Chim': 'Vùng đất ngập nước Ramsar bảo tồn hệ sinh thái Đồng Tháp Mười, đặc biệt nổi tiếng với loài sếu đầu đỏ.',
+  'Chợ nổi Cái Bè': 'Không gian giao thương trên sông Tiền, nơi ghe thuyền chở trái cây và nông sản tạo nên nhịp sống miền Tây.',
+  'Cồn Phụng': 'Cù lao xanh giữa sông Tiền với vườn dừa, kênh rạch, nghề thủ công và không gian miệt vườn Bến Tre.',
+  'Ao Bà Om': 'Hồ cổ của cộng đồng Khmer, được bao quanh bởi những cây dầu cổ thụ có bộ rễ nổi và quần thể chùa Âng.',
+  'Chợ nổi Cái Răng': 'Chợ đầu mối trên sông Cần Thơ, nơi ghe lớn treo nông sản trên cây bẹo và họp nhộn nhịp từ sáng sớm.',
+  'Chùa Dơi': 'Ngôi chùa Khmer đặc sắc ở Sóc Trăng, nổi bật với mái chạm trổ rực rỡ và đàn dơi quạ sống trong khuôn viên.',
+  'Mũi Cà Mau': 'Điểm cực Nam trên đất liền Việt Nam, nơi rừng ngập mặn vươn ra biển và phù sa tiếp tục bồi đắp bờ cõi.',
+  'Điện gió Bạc Liêu': 'Cánh đồng tua-bin ngoài bãi bồi ven biển, tạo nên nét giao thoa giữa năng lượng sạch và cảnh quan Nam Bộ.',
+};
+
+// Concise, reader-friendly notes distilled from Vietnamese public authorities,
+// heritage agencies and official tourism portals. The original source remains
+// linked in the viewer so visitors can verify and continue reading.
+const LANDMARK_CONTEXT = {
+  'Thác Bản Giốc': { significance: 'Cảnh quan thác nhiều tầng giữa địa hình karst và đồng ruộng tạo nên một biểu tượng du lịch vùng biên Đông Bắc.', history: 'Dòng Quây Sơn và không gian biên giới khiến Bản Giốc vừa có giá trị cảnh quan, vừa gắn với đời sống lâu đời của cộng đồng Tày, Nùng.', sourceLabel: 'Cổng du lịch quốc gia Việt Nam', sourceUrl: 'https://vietnamtourism.gov.vn/' },
+  'Núi Mắt Thần': { significance: 'Lỗ thủng tự nhiên xuyên qua khối núi đá vôi là dạng địa mạo hiếm, nằm trong Công viên địa chất toàn cầu UNESCO Non nước Cao Bằng.', history: 'Địa danh còn được gọi là núi Thủng; cảnh quan Nặm Trá xung quanh gắn với sinh hoạt nông nghiệp và văn hóa bản địa.', sourceLabel: 'Cục Du lịch Quốc gia Việt Nam', sourceUrl: 'https://dantoc.vietnamtourism.gov.vn/nui-mat-than-cao-bang-ve-dep-dieu-ky-cua-tao-hoa/' },
+  'Hồ Na Hang': { significance: 'Mặt hồ, núi đá vôi và rừng nguyên sinh tạo thành không gian sinh thái tiêu biểu của vùng thượng nguồn sông Gâm.', history: 'Khu vực Na Hang – Lâm Bình lưu giữ nhiều truyền thuyết, lễ hội và bản sắc của các dân tộc Tày, Dao, Mông.', sourceLabel: 'Cổng thông tin đối ngoại Tuyên Quang', sourceUrl: 'https://doingoai.tuyenquang.gov.vn/vi/post/suc-song-tu-du-lich-xanh?id=209752&type=NEWS' },
+  'Cao nguyên đá Đồng Văn': { significance: 'Công viên địa chất toàn cầu UNESCO ghi lại lịch sử tiến hóa địa chất hàng trăm triệu năm và có đa dạng sinh học, văn hóa nổi bật.', history: 'Những thị trấn, dinh thự, chợ phiên và nếp sống trên đá phản ánh quá trình cư trú bền bỉ của nhiều cộng đồng vùng cao.', sourceLabel: 'Cổng thông tin đối ngoại Tuyên Quang', sourceUrl: 'https://doingoai.tuyenquang.gov.vn/vi/post/suc-song-tu-du-lich-xanh?id=209752&type=NEWS' },
+  'Đèo Ô Quy Hồ': { significance: 'Cung đèo vượt dãy Hoàng Liên Sơn mở ra cảnh quan núi cao, thung lũng và biển mây đặc trưng của Tây Bắc.', history: 'Tên Ô Quy Hồ gắn với truyền thuyết dân gian địa phương; con đèo lâu nay là tuyến kết nối quan trọng giữa Lai Châu và Lào Cai.', sourceLabel: 'Sở Văn hóa, Thể thao và Du lịch Lai Châu', sourceUrl: 'https://svhttdl.laichau.gov.vn/du-lich/lay-y-kien-cong-dong-dan-cu-xa-ta-leng-hoan-thien-do-an-quy-hoach-chung-khu-du-lich-quoc-gia-o-quy-ho2.html' },
+  'Pu Ta Leng': { significance: 'Đỉnh núi cao 3.049 m cùng rừng nguyên sinh và quần thể đỗ quyên là tài nguyên nổi bật của dãy Hoàng Liên Sơn.', history: '', sourceLabel: 'Cổng thông tin du lịch Lai Châu', sourceUrl: 'https://dulich.laichau.gov.vn/vi/blog/details/ve-lai-chau-du-le-hoi-then-kin-pang-2026-trai-nghiem-van-hoa-kham-pha-ve-dep-nui-rung-tay-bac-1303' },
+  Fansipan: { significance: 'Đỉnh cao 3.143 m được gọi là “nóc nhà Đông Dương”, có giá trị đặc biệt về cảnh quan núi cao và hệ sinh thái Hoàng Liên.', history: 'Các cộng đồng quanh Hoàng Liên Sơn coi núi rừng là một phần không gian văn hóa; hành trình chinh phục Fansipan đã trở thành biểu tượng khám phá Việt Nam.', sourceLabel: 'Cục Du lịch Quốc gia Việt Nam', sourceUrl: 'https://vietnamtourism.gov.vn/' },
+  'Mù Cang Chải': { significance: 'Ruộng bậc thang là kết quả của lao động thích nghi với địa hình dốc, đồng thời là sản phẩm du lịch sinh thái – văn hóa đặc trưng của người Mông.', history: 'Các khu ruộng La Pán Tẩn, Chế Cu Nha và Dế Xu Phình đã được xếp hạng danh thắng quốc gia.', sourceLabel: 'Cục Du lịch Quốc gia Việt Nam', sourceUrl: 'https://vietnamtourism.gov.vn/post/33699' },
+  'Núi Mẫu Sơn': { significance: 'Độ cao, khí hậu mát lạnh và hệ sinh thái núi tạo cho Mẫu Sơn cảnh sắc khác biệt của vùng Đông Bắc.', history: 'Dấu tích biệt thự nghỉ dưỡng xây từ đầu thế kỷ XX cùng văn hóa Dao bản địa tạo nên lớp ký ức riêng cho vùng núi.', sourceLabel: 'Bộ Văn hóa, Thể thao và Du lịch', sourceUrl: 'https://bvhttdl.gov.vn/Pages/chi-tiet.aspx?url=%2Flang-son-danh-thuc-tiem-nang-khu-du-lich-mau-son-20241003083820222.htm' },
+  'Ải Chi Lăng': { significance: 'Địa thế thung lũng hẹp giữa núi đá từng tạo nên một cửa ải chiến lược trên con đường từ biên giới vào đồng bằng Bắc Bộ.', history: 'Chi Lăng gắn với nhiều chiến thắng chống ngoại xâm, nổi bật là trận năm 1427 góp phần kết thúc cuộc kháng chiến chống quân Minh.', sourceLabel: 'Cổng du lịch Lạng Sơn', sourceUrl: 'https://lspa.langson.gov.vn/diem-den-du-lich/ai-chi-lang-341489' },
+  'Hồ Núi Cốc': { significance: 'Hồ và hệ thống đảo tạo nên cảnh quan trung du, đồng thời cung cấp nguồn nước và không gian phát triển du lịch cho Thái Nguyên.', history: 'Tên hồ được kể cùng truyền thuyết nàng Công – chàng Cốc, một câu chuyện dân gian về tình yêu đã trở thành dấu ấn văn hóa địa phương.', sourceLabel: 'Cục Du lịch Quốc gia Việt Nam', sourceUrl: 'https://vietnamtourism.gov.vn/printer/67595?type=1' },
+  'Hồ Ba Bể': { significance: 'Hồ nước ngọt tự nhiên nằm trong Vườn quốc gia Ba Bể, kết nối với sông, hang động và rừng trên núi đá vôi.', history: 'Không gian quanh hồ là nơi sinh sống lâu đời của người Tày; truyền thuyết hồ Ba Bể được lưu truyền như cách cộng đồng lý giải nguồn gốc cảnh quan.', sourceLabel: 'Cơ sở dữ liệu du lịch Việt Nam', sourceUrl: 'https://csdl.vietnamtourism.gov.vn/dest/?item=176' },
+  'Đồi A1': { significance: 'Đồi giữ vị trí then chốt ở phía đông tập đoàn cứ điểm Điện Biên Phủ và nay là điểm giáo dục lịch sử quan trọng.', history: 'Trận đánh kéo dài tại A1 kết thúc rạng sáng 7/5/1954, tạo điều kiện cho quân ta tiến vào sở chỉ huy đối phương trong ngày chiến thắng.', sourceLabel: 'Cổng du lịch Điện Biên', sourceUrl: 'https://dulichdienbien.vn/' },
+  'Hồ Pá Khoang': { significance: 'Hồ nằm giữa địa hình núi rừng Mường Phăng, có nhiều nhánh nước, bán đảo và thảm thực vật phong phú.', history: 'Pá Khoang nằm gần không gian di tích Sở Chỉ huy Chiến dịch Điện Biên Phủ tại Mường Phăng, thuận lợi cho hành trình kết hợp sinh thái và lịch sử.', sourceLabel: 'Cổng du lịch Điện Biên', sourceUrl: 'https://dulichdienbien.vn/' },
+  'Đền Hùng': { significance: 'Quần thể trên núi Nghĩa Lĩnh là trung tâm thực hành tín ngưỡng thờ cúng Hùng Vương, biểu đạt ý thức về cội nguồn chung của người Việt.', history: 'Tín ngưỡng thờ cúng Hùng Vương được UNESCO ghi danh là di sản văn hóa phi vật thể đại diện của nhân loại năm 2012.', sourceLabel: 'Cổng du lịch Phú Thọ', sourceUrl: 'https://dulichphutho.gov.vn/tour-du-lich/den-hung-long-coc-thanh-thuy-ho-hoa-binh-mai-chau' },
+  'Thung lũng Mai Châu': { significance: 'Thung lũng lúa và các bản nhà sàn là không gian tiêu biểu để tìm hiểu nghề dệt, ẩm thực và văn hóa Thái.', history: 'Du lịch cộng đồng tại các bản như Lác, Pom Coọng phát triển trên nền nếp sống và kiến trúc truyền thống của cư dân địa phương.', sourceLabel: 'Cổng du lịch Phú Thọ', sourceUrl: 'https://dulichphutho.gov.vn/diemden/thung-lung-mai-chau' },
+  'Chùa Dâu': { significance: 'Chùa là một trong những trung tâm Phật giáo sớm nhất ở Việt Nam, nơi Phật giáo giao thoa với tín ngưỡng Tứ Pháp bản địa.', history: 'Chùa gắn với trung tâm Luy Lâu từ những thế kỷ đầu Công nguyên; bộ mộc bản chùa Dâu được công nhận là bảo vật quốc gia.', sourceLabel: 'Sở Dân tộc và Tôn giáo Bắc Ninh', sourceUrl: 'https://sdttg.bacninh.gov.vn/news/-/details/194272/le-hoi-truyen-thong-vung-dau-trung-tam-phat-giao-co-xua-nhat-viet-nam-116341415' },
+  'Tây Yên Tử': { significance: 'Sườn tây dãy Yên Tử kết nối cảnh quan rừng núi với hệ thống chùa, am, tháp của không gian Phật giáo Trúc Lâm.', history: 'Con đường hành hương gắn với dấu chân Phật hoàng Trần Nhân Tông và quá trình hình thành Thiền phái Trúc Lâm Yên Tử.', sourceLabel: 'Khu du lịch Tây Yên Tử', sourceUrl: 'https://tayyentu.bacninh.gov.vn/gioi-thieu-chung' },
+  'Hồ Gươm': { significance: 'Hồ là không gian công cộng, cảnh quan và biểu tượng văn hóa ở trung tâm Thủ đô.', history: 'Tên Hồ Hoàn Kiếm gắn với truyền thuyết vua Lê Lợi trả gươm báu sau cuộc khởi nghĩa Lam Sơn; quanh hồ tập trung nhiều di tích của Thăng Long – Hà Nội.', sourceLabel: 'Cổng thông tin Hà Nội', sourceUrl: 'https://hanoi.gov.vn/van-hien-thang-long/thang-long-ha-noi-hanh-trinh-nghin-nam-doi-thay-phat-trien-42813733.htm' },
+  'Hoàng thành Thăng Long': { significance: 'Các tầng kiến trúc và khảo cổ phản ánh trung tâm quyền lực liên tục của quốc gia qua nhiều triều đại.', history: 'Khu trung tâm Hoàng thành được UNESCO ghi danh Di sản văn hóa thế giới năm 2010, với chiều dài lịch sử từ thời tiền Thăng Long đến hiện đại.', sourceLabel: 'Cổng thông tin Hà Nội', sourceUrl: 'https://hanoi.gov.vn/dia-ly-dia-hinh/vi-tri-hoang-thanh-thang-long-4241009115110957.htm' },
+  'Vịnh Hạ Long': { significance: 'Quần thể đảo tháp đá vôi trên biển có giá trị thẩm mỹ, địa chất – địa mạo nổi bật toàn cầu và hệ sinh thái đa dạng.', history: 'Vịnh Hạ Long nhiều lần được UNESCO ghi danh, hiện cùng quần đảo Cát Bà tạo thành di sản thiên nhiên thế giới liên tỉnh.', sourceLabel: 'Cổng du lịch Quảng Ninh', sourceUrl: 'https://dulich.quangninh.gov.vn/' },
+  'Yên Tử': { significance: 'Hệ thống chùa, am và tháp giữa rừng núi tạo nên trung tâm văn hóa – tâm linh đặc biệt của Phật giáo Trúc Lâm.', history: 'Vua Trần Nhân Tông tu hành và sáng lập Thiền phái Trúc Lâm tại Yên Tử; quần thể Yên Tử – Vĩnh Nghiêm – Côn Sơn, Kiếp Bạc được UNESCO ghi danh năm 2025.', sourceLabel: 'Cổng du lịch Quảng Ninh', sourceUrl: 'https://dulich.quangninh.gov.vn/' },
+  'Cao nguyên Mộc Châu': { significance: 'Khí hậu cao nguyên, đồng cỏ, đồi chè và mùa hoa tạo nên vùng du lịch nông nghiệp – sinh thái đặc trưng.', history: 'Mộc Châu là không gian cư trú, giao thoa văn hóa của nhiều dân tộc, trong đó nổi bật cộng đồng Thái và Mông.', sourceLabel: 'Cổng thông tin Sơn La', sourceUrl: 'https://sonla.gov.vn/4/469/61708/630360/cac-huyen-thanh-pho/huyen-moc-chau' },
+  'Tà Xùa': { significance: 'Địa hình núi cao, sống núi hẹp và điều kiện khí tượng tạo nên cảnh biển mây nổi tiếng ở Bắc Yên.', history: 'Bên cạnh cảnh quan, Tà Xùa còn gắn với các bản người Mông và vùng chè Shan tuyết cổ thụ.', sourceLabel: 'Cục Du lịch Quốc gia Việt Nam', sourceUrl: 'https://vietnamtourism.gov.vn/post/31427' },
+  'Quần đảo Cát Bà': { significance: 'Rừng mưa nhiệt đới trên đảo đá vôi, hệ sinh thái biển và địa hình karst ngập nước tạo nên giá trị đa dạng sinh học đặc biệt.', history: 'Cát Bà thuộc Di sản thiên nhiên thế giới Vịnh Hạ Long – Quần đảo Cát Bà và Khu dự trữ sinh quyển thế giới.', sourceLabel: 'Cổng thông tin Cát Hải – Hải Phòng', sourceUrl: 'https://cathai.haiphong.gov.vn/dang-uy-dac-khu/dac-khu-cat-hai-ban-hanh-nghi-quyet-chuyen-doi-xanh-tren-dao-cat-ba-giai-doan-2026-2030-tam-nhin-897523' },
+  'Côn Sơn - Kiếp Bạc': { significance: 'Cảnh quan núi, rừng, suối và hệ thống đền chùa hợp thành không gian văn hóa – tâm linh quan trọng của xứ Đông.', history: 'Côn Sơn gắn với Nguyễn Trãi; Kiếp Bạc gắn với Hưng Đạo Đại vương Trần Quốc Tuấn và các cuộc kháng chiến thời Trần.', sourceLabel: 'Cổng thông tin Hải Phòng', sourceUrl: 'https://www.haiphong.gov.vn/di-tich-danh-thang/thang-canh-con-son-852317' },
+  'Phố Hiến': { significance: 'Hệ thống đền, chùa, đình, phố cổ phản ánh một đô thị giao thương từng quy tụ nhiều cộng đồng và tín ngưỡng.', history: 'Phố Hiến phát triển thịnh đạt từ thế kỷ XVI–XVII bên sông Hồng, từng được nhắc trong câu “Thứ nhất Kinh Kỳ, thứ nhì Phố Hiến”.', sourceLabel: 'Cổng thông tin Hưng Yên', sourceUrl: 'https://thuvu.hungyen.gov.vn/phat-huy-gia-tri-van-hoa-cua-manh-dat-hung-yen-c2161.html' },
+  'Chùa Keo': { significance: 'Kiến trúc gỗ, chạm khắc và gác chuông tạo nên một mẫu mực nghệ thuật của đồng bằng Bắc Bộ.', history: 'Ngôi chùa hiện còn mang đậm phong cách kiến trúc thời Lê Trung Hưng và gắn với việc thờ Thiền sư Không Lộ.', sourceLabel: 'Cổng thông tin Hưng Yên', sourceUrl: 'https://thuvu.hungyen.gov.vn/phat-huy-gia-tri-van-hoa-cua-manh-dat-hung-yen-c2161.html' },
+  'Tràng An': { significance: 'Cảnh quan karst nhiệt đới ngập nước kết hợp di chỉ khảo cổ cho thấy mối quan hệ lâu dài giữa con người và môi trường.', history: 'Quần thể danh thắng Tràng An được UNESCO ghi danh là Di sản văn hóa và thiên nhiên thế giới năm 2014.', sourceLabel: 'Cơ sở dữ liệu du lịch Việt Nam', sourceUrl: 'https://csdl.vietnamtourism.gov.vn/dest/?item=236' },
+  'Chùa Tam Chúc': { significance: 'Hồ, núi đá vôi, thung lũng và các công trình tôn giáo tạo thành một không gian cảnh quan – tâm linh quy mô lớn.', history: 'Khu vực Tam Chúc còn có dấu tích khảo cổ, danh thắng và các truyền thuyết dân gian được bảo tồn cùng quần thể chùa.', sourceLabel: 'Cục Di sản văn hóa', sourceUrl: 'https://dsvh.gov.vn/danh-lam-thang-canh-va-khao-co-quan-the-tam-chuc-phuong-tam-chuc-tinh-ninh-binh-22335' },
+  'Thành Nhà Hồ': { significance: 'Kỹ thuật xây thành bằng những khối đá lớn và quy hoạch theo nguyên tắc phong thủy thể hiện bước phát triển nổi bật của kiến trúc cuối thế kỷ XIV.', history: 'Hồ Quý Ly cho xây thành năm 1397; di tích được UNESCO ghi danh Di sản văn hóa thế giới năm 2011.', sourceLabel: 'Cục Di sản văn hóa', sourceUrl: 'https://dsvh.gov.vn/' },
+  'Pù Luông': { significance: 'Khu bảo tồn rộng 17.662 ha bảo vệ rừng, núi đá vôi, nguồn nước và đa dạng sinh học của miền tây Thanh Hóa.', history: 'Tên Pù Luông trong tiếng Thái chỉ ngọn núi cao nhất; cảnh quan gắn chặt với các bản và canh tác ruộng bậc thang của người Thái, Mường.', sourceLabel: 'Cục Bảo tồn thiên nhiên và Đa dạng sinh học', sourceUrl: 'https://nbca.gov.vn/khu-du-tru-thien-nhien-pu-luong-thanh-hoa/' },
+  'Làng Sen': { significance: 'Không gian làng quê với nhà tranh, vườn, ao sen và hiện vật giúp người xem hiểu tuổi thơ, gia đình của Chủ tịch Hồ Chí Minh.', history: 'Làng Sen là quê nội của Chủ tịch Hồ Chí Minh và là một bộ phận quan trọng của Khu di tích quốc gia đặc biệt Kim Liên.', sourceLabel: 'Cổng du lịch Nam Đàn – Nghệ An', sourceUrl: 'https://dulichnamdan.nghean.gov.vn/vi/dinhlangsen' },
+  'Biển Cửa Lò': { significance: 'Bãi cát dài, độ dốc thoải và cụm đảo ven bờ tạo nên trung tâm nghỉ dưỡng biển lâu đời của Bắc Trung Bộ.', history: 'Cửa Lò phát triển từ vùng cửa biển – làng chài thành đô thị du lịch, với lễ hội du lịch biển được tổ chức thường niên.', sourceLabel: 'Cổng thông tin Nghệ An', sourceUrl: 'https://nghean.gov.vn/tin-tuc-su-kien-73053/khai-mac-le-hoi-du-lich-bien-cua-lo-nam-2025-723384' },
+  'Ngã ba Đồng Lộc': { significance: 'Vị trí trên tuyến giao thông chiến lược từng là “yết hầu” vận chuyển chi viện cho chiến trường miền Nam.', history: 'Ngày 24/7/1968, mười nữ thanh niên xung phong hy sinh khi làm nhiệm vụ bảo đảm giao thông; nơi đây nay là di tích quốc gia đặc biệt và địa chỉ tri ân.', sourceLabel: 'Cổng thông tin Hà Tĩnh', sourceUrl: 'https://hatinh.gov.vn/vi/bai-viet/dong-loc-trong-trai-tim-ca-nuoc' },
+  'Biển Thiên Cầm': { significance: 'Bờ biển hình cánh cung, cát sáng và núi sát biển tạo nên không gian nghỉ dưỡng đặc trưng của Hà Tĩnh.', history: 'Tên Thiên Cầm thường được giải nghĩa là “đàn trời”, gắn với âm thanh sóng và gió trong truyền thuyết dân gian địa phương.', sourceLabel: 'Cổng thông tin Thiên Cầm – Hà Tĩnh', sourceUrl: 'https://thiencam.hatinh.gov.vn/vi/chuyen-muc/gioi-thieu-chung' },
+  'Phong Nha - Kẻ Bàng': { significance: 'Khối karst cổ, sông ngầm, hang động và rừng nhiệt đới tạo nên giá trị địa chất, địa mạo và đa dạng sinh học nổi bật toàn cầu.', history: 'Phong Nha – Kẻ Bàng được UNESCO ghi danh Di sản thiên nhiên thế giới năm 2003 và mở rộng tiêu chí đa dạng sinh học năm 2015.', sourceLabel: 'Cổng thông tin Quảng Trị', sourceUrl: 'https://www.quangtri.gov.vn/tin-tuc/ve-phong-nha-noi-nguoi-dan-lam-du-lich-2' },
+  'Cầu Hiền Lương': { significance: 'Cầu bắc qua sông Bến Hải là chứng tích trực quan về giới tuyến quân sự tạm thời và khát vọng hòa bình, thống nhất.', history: 'Sau Hiệp định Genève 1954, khu vực vĩ tuyến 17 tạm thời chia cắt đất nước cho đến năm 1975; đôi bờ từng diễn ra cuộc đấu tranh biểu tượng bằng cờ, loa và màu sơn cầu.', sourceLabel: 'Sở Khoa học và Công nghệ Quảng Trị', sourceUrl: 'https://skhcn.quangtri.gov.vn/documents/45562/0/DS_2024_02.pdf' },
+  'Kinh thành Huế': { significance: 'Kinh thành, Hoàng thành và Tử Cấm Thành thể hiện quy hoạch kinh đô, nghệ thuật kiến trúc và cảnh quan triều Nguyễn.', history: 'Huế là kinh đô của Việt Nam dưới triều Nguyễn từ 1802 đến 1945; Quần thể di tích Cố đô Huế được UNESCO ghi danh năm 1993.', sourceLabel: 'Trung tâm Bảo tồn Di tích Cố đô Huế', sourceUrl: 'https://www.hueworldheritage.org.vn/' },
+  'Phá Tam Giang': { significance: 'Đầm phá nước lợ kéo dài ven biển tạo sinh cảnh phong phú, nguồn sinh kế thủy sản và cảnh quan đặc trưng của Huế.', history: 'Làng chài, nò sáo và phương thức khai thác thủy sản truyền thống phản ánh quá trình cộng đồng thích nghi với môi trường đầm phá.', sourceLabel: 'Cổng du lịch thông minh Huế', sourceUrl: 'https://huetripo.hue.gov.vn/diem-tham-quan' },
+  'Quần đảo Hoàng Sa': { significance: 'Quần đảo gồm các đảo, đá, bãi cạn và bãi ngầm giữa Biển Đông, có vị trí đặc biệt về chủ quyền, hàng hải và môi trường biển.', history: 'Tư liệu Việt Nam ghi Hoàng Sa với tên Bãi Cát Vàng; Nhà nước Việt Nam đã xác lập, thực thi chủ quyền liên tục từ lâu đời. Hoàng Sa hiện thuộc đặc khu Hoàng Sa, thành phố Đà Nẵng.', sourceLabel: 'Cổng thông tin thành phố Đà Nẵng', sourceUrl: 'https://duynghia.danang.gov.vn/vi/web/dng-old/w/ubnd-huy%E1%BB%87n-ho%C3%A0ng-sa' },
+  'Cầu Rồng': { significance: 'Thiết kế hình rồng vươn ra biển vừa giải quyết kết nối đông – tây, vừa trở thành biểu tượng kiến trúc của Đà Nẵng hiện đại.', history: 'Cầu khởi công năm 2009 và thông xe ngày 29/3/2013, đúng dịp kỷ niệm ngày giải phóng thành phố.', sourceLabel: 'Cổng thông tin thành phố Đà Nẵng', sourceUrl: 'https://50nam.danang.gov.vn/thanh-pho-hom-nay/khi-giac-mo-hoa-thanh-bieu-tuong-40421.html' },
+  'Phố cổ Hội An': { significance: 'Cấu trúc phố, nhà ở, hội quán và tín ngưỡng còn được bảo tồn tốt, phản ánh sự giao lưu văn hóa Việt – Hoa – Nhật và phương Tây.', history: 'Hội An từng là thương cảng quốc tế thịnh đạt từ thế kỷ XVI–XVII và được UNESCO ghi danh Di sản văn hóa thế giới năm 1999.', sourceLabel: 'Trung tâm Quản lý Bảo tồn Di sản Văn hóa Hội An', sourceUrl: 'https://www.hoianworldheritage.org.vn/vi/news/print/Tong-quan-Hoi-An/Gioi-thieu-63.hwh' },
+  'Đảo Lý Sơn': { significance: 'Dấu tích núi lửa, vách biển, ruộng tỏi và văn hóa cư dân biển tạo nên nhận diện riêng của đảo tiền tiêu.', history: 'Lý Sơn gắn với đội Hoàng Sa kiêm quản Bắc Hải; lễ khao lề thế lính Hoàng Sa tưởng nhớ những người từng ra biển thực thi nhiệm vụ chủ quyền.', sourceLabel: 'Sở Văn hóa, Thể thao và Du lịch Quảng Ngãi', sourceUrl: 'https://sovhttdl.quangngai.gov.vn/danh-muc-cot-phai/tin-tuc/hoat-dong-du-lich/dinh-hinh-tam-giac-du-lich-ly-son-mang-den-van-hoa-sa-huynh.html' },
+  'Măng Đen': { significance: 'Cao nguyên có rừng nguyên sinh, khí hậu mát, hệ thống hồ – thác và bản sắc các dân tộc Tây Nguyên, phù hợp du lịch sinh thái.', history: 'Không gian Măng Đen gắn với truyền thuyết “bảy hồ, ba thác” và đời sống văn hóa của các cộng đồng bản địa.', sourceLabel: 'Cổng thông tin xã Măng Đen', sourceUrl: 'https://mangden.quangngai.gov.vn/tin-tuc/thong-tin-chi-dao-dieu-hanh-cua-ubnd-tinh-chu-tich-ubnd-tinh/hoat-dong-cua-lanh-dao/xa-mang-den-va-dac-khu-ly-son-ky-ket-hop-tac-phat-trien-kinh-te-xa-hoi.html' },
+  'Biển Hồ': { significance: 'Hồ T’Nưng rộng khoảng 240 ha, là nguồn nước sinh hoạt quan trọng và một cảnh quan tiêu biểu của cao nguyên Pleiku.', history: 'Tên gọi Ia Nueng của người Jrai và Tum Tơnueng của người Bahnar cho thấy địa danh hiện diện lâu dài trong không gian văn hóa bản địa.', sourceLabel: 'Cổng thông tin xã Biển Hồ – Gia Lai', sourceUrl: 'https://bienho.gialai.gov.vn/thong-bao-van-ban-moi/gioi-thieu-diem-van-hoa-du-lich-tren-dia-ban-xa-bien-ho.html' },
+  'Kỳ Co': { significance: 'Vịnh nhỏ có bãi cát hình lưỡi liềm, nước đổi sắc theo độ sâu và các vách đá bao bọc, tiêu biểu cho cảnh quan biển Quy Nhơn.', history: 'Kỳ Co nằm trong không gian văn hóa – biển đảo của bán đảo Phương Mai, gắn với sinh kế ngư nghiệp của cộng đồng ven biển.', sourceLabel: 'Cổng thông tin phường Quy Nhơn Đông', sourceUrl: 'https://quynhondong.gialai.gov.vn/du-lich/du-lich-ky-co.html' },
+  'Buôn Đôn': { significance: 'Sông Sêrêpốk, rừng khộp, buôn làng và kỹ nghệ săn bắt – thuần dưỡng voi tạo nên một không gian văn hóa Tây Nguyên đặc sắc.', history: 'Tên Bản Đôn có nghĩa là “làng đảo”; vùng đất nổi tiếng qua câu chuyện các vua săn voi, nhà sàn cổ và giao lưu của nhiều dân tộc.', sourceLabel: 'Cổng thông tin Buôn Đôn – Đắk Lắk', sourceUrl: 'https://buondon.daklak.gov.vn/tong-quan-du-lich' },
+  'Gành Đá Đĩa': { significance: 'Các cột bazan có tiết diện đa giác hình thành khi dung nham nguội và co rút, tạo một cấu trúc địa chất hiếm bên bờ biển.', history: 'Danh thắng được xếp hạng quốc gia năm 1998 và là một điểm cốt lõi trong định hướng bảo tồn di sản địa chất khu vực.', sourceLabel: 'Cổng thông tin tỉnh Đắk Lắk', sourceUrl: 'https://songhinh.daklak.gov.vn/upload/103900/20221005/Bao_cao_TH_cuoi_ky_QHT_Phu_Yen_68733.pdf' },
+  'Vịnh Nha Trang': { significance: 'Vịnh kín gió với hệ thống đảo, bãi biển và rạn san hô tạo nên trung tâm du lịch biển và nghiên cứu hải dương quan trọng.', history: 'Không gian vịnh gắn với quá trình hình thành đô thị Nha Trang và các cộng đồng làng biển, cảng biển lâu đời.', sourceLabel: 'Cổng du lịch số Khánh Hòa', sourceUrl: 'https://dulichso.khanhhoa.gov.vn/' },
+  'Vịnh Vĩnh Hy': { significance: 'Vịnh được núi thuộc Vườn quốc gia Núi Chúa che chắn, có nước trong và hệ sinh thái san hô giàu giá trị.', history: 'Làng biển Vĩnh Hy lưu giữ sinh kế đánh bắt và văn hóa cư dân duyên hải Nam Trung Bộ.', sourceLabel: 'Cổng du lịch số Khánh Hòa', sourceUrl: 'https://dulichso.khanhhoa.gov.vn/article/vinh-vinh-hy-8ea' },
+  'Quần đảo Trường Sa': { significance: 'Hơn 100 đảo, đá, bãi cạn và rạn san hô trải trên vùng biển rộng ở phía nam Biển Đông, có vị trí chiến lược về quốc phòng, hàng hải và kinh tế biển.', history: 'Tư liệu và bản đồ qua nhiều thế kỷ ghi nhận quá trình xác lập chủ quyền của Việt Nam; bia chủ quyền tại Song Tử Tây và Nam Yết được xếp hạng di tích lịch sử quốc gia năm 2014.', sourceLabel: 'Sở Văn hóa, Thể thao và Du lịch Khánh Hòa', sourceUrl: 'https://svhttdl.khanhhoa.gov.vn/vi/di-tichdi-san-cap-quoc-gia/bia-chu-quyen-quan-dao-truong-sa-tai-dao-song-tu-tay-va-dao-nam-yet' },
+  'Đà Lạt': { significance: 'Độ cao khoảng 1.500 m, khí hậu ôn hòa, rừng thông, hồ và quỹ kiến trúc nghỉ dưỡng tạo nên bản sắc đô thị cao nguyên.', history: 'Đà Lạt được hình thành từ cuối thế kỷ XIX và phát triển thành đô thị nghỉ dưỡng; văn hóa K’Ho bản địa cùng nhiều lớp cư dân góp phần làm nên tính cách thành phố.', sourceLabel: 'Địa chí Đà Lạt – Cổng thông tin Lâm Đồng', sourceUrl: 'https://lamdong.gov.vn/sites/book/diachidalat/Phan2/chuong1.htm' },
+  'Mũi Né': { significance: 'Bờ biển, đồi cát đỏ – trắng, địa hình “cát” và điều kiện gió tạo thế mạnh cho nghỉ dưỡng cùng thể thao biển.', history: 'Từ một làng chài, Mũi Né phát triển thành khu du lịch quốc gia nhưng vẫn lưu giữ sinh hoạt nghề biển và lễ hội cộng đồng ven biển.', sourceLabel: 'Sở Văn hóa, Thể thao và Du lịch Lâm Đồng', sourceUrl: 'https://lamdong.gov.vn/sites/svhttdl/hoatdongdulich/quyhoachdautu/Shared%20Documents/Quy%E1%BA%BFt%20%C4%91%E1%BB%8Bnh%20ph%C3%AA%20duy%E1%BB%87t%20%28k%C3%BD%20s%E1%BB%91%20ph%C3%A1t%20h%C3%A0nh%29.signed.signed.pdf' },
+  'Vườn quốc gia Cát Tiên': { significance: 'Rừng nhiệt đới, sông Đồng Nai và vùng đất ngập nước Bàu Sấu bảo tồn nhiều loài quý hiếm cùng các quá trình sinh thái quan trọng.', history: 'Bàu Sấu được công nhận là vùng đất ngập nước Ramsar năm 2005; Cát Tiên còn lưu giữ di chỉ khảo cổ của các cộng đồng cổ.', sourceLabel: 'Cổng thông tin tỉnh Đồng Nai', sourceUrl: 'https://hvhnt.dongnai.gov.vn/Pages/newsdetail.aspx?CatId=100&NewsId=4535' },
+  'Bù Gia Mập': { significance: 'Vườn quốc gia nằm ở vùng chuyển tiếp Đông Nam Bộ – Tây Nguyên, bảo vệ rừng thường xanh, đầu nguồn và hành lang đa dạng sinh học.', history: 'Khu vực từng là địa bàn căn cứ trong kháng chiến; ngày nay giá trị rừng và văn hóa cộng đồng S’tiêng, M’nông là nền tảng cho giáo dục, du lịch sinh thái.', sourceLabel: 'Cổng thông tin tỉnh Đồng Nai', sourceUrl: 'https://dongnai.gov.vn/' },
+  'Núi Bà Đen': { significance: 'Đỉnh cao 986 m là “nóc nhà Nam Bộ”, nổi bật giữa đồng bằng và kết hợp giá trị cảnh quan, tâm linh, sinh thái.', history: 'Núi gắn với truyền thuyết Linh Sơn Thánh Mẫu, hệ thống chùa hang và nhiều căn cứ cách mạng; lễ vía Bà được ghi danh di sản văn hóa phi vật thể quốc gia.', sourceLabel: 'Ban quản lý Khu du lịch quốc gia Núi Bà Đen', sourceUrl: 'https://khudulichnuibaden.tayninh.gov.vn/gioi-thieu-nui-ba-den' },
+  'Làng nổi Tân Lập': { significance: 'Rừng tràm, kênh rạch và vùng ngập nước tái hiện hệ sinh thái đặc trưng của Đồng Tháp Mười.', history: 'Không gian này gợi lại quá trình khai phá, thích nghi với mùa nước của cư dân vùng trũng Nam Bộ.', sourceLabel: 'Cổng du lịch Tây Ninh', sourceUrl: 'https://dulich.tayninh.gov.vn/tin-tuc/lang-noi-tan-lap-67' },
+  'Sông Sài Gòn': { significance: 'Là phụ lưu của sông Đồng Nai, dòng sông kết nối nội địa với cửa Cần Giờ và giữ vai trò lớn trong giao thông, cảnh quan, kinh tế đô thị.', history: 'Dọc sông hình thành bến cảng và mạng lưới giao thương giúp Sài Gòn sớm phát triển thành đô thị quốc tế.', sourceLabel: 'Sở Quy hoạch – Kiến trúc TP.HCM', sourceUrl: 'https://qhkt.hochiminhcity.gov.vn/Media/Uploads/H%C3%ACnh%20H%E1%BB%99i%20th%E1%BA%A3o%20-%20H%E1%BB%99i%20ngh%E1%BB%8B/2019%20-%20b%E1%BB%9D%20s%C3%B4ng%20SG%20den%202015/kiyeu_hoithao_bsong%20SG-%C4%91%C3%A3%20n%C3%A9n.pdf' },
+  'Côn Đảo': { significance: 'Quần đảo có rừng, rạn san hô, thảm cỏ biển và bãi đẻ của rùa biển, mang giá trị bảo tồn biển – đảo đặc biệt.', history: 'Hệ thống nhà tù Côn Đảo là di tích quốc gia đặc biệt, ghi dấu sự hy sinh và ý chí của nhiều thế hệ chiến sĩ cách mạng.', sourceLabel: 'Cổng thông tin Côn Đảo', sourceUrl: 'https://condao.com.vn/' },
+  'Núi Sam': { significance: 'Ngọn núi đá cao 284 m nổi giữa đồng bằng Châu Đốc, tập trung quần thể di tích và thực hành tín ngưỡng quan trọng của Nam Bộ.', history: 'Núi còn có tên Vĩnh Tế Sơn, được vua Minh Mạng đặt để ghi công Thoại Ngọc Hầu; lễ vía Bà Chúa Xứ phản ánh giao thoa văn hóa Kinh, Hoa, Chăm, Khmer.', sourceLabel: 'Cổng thông tin An Giang', sourceUrl: 'https://angiang.gov.vn/vi/thuong-truc-ubnd-tinh-lam-viec-voi-ban-quan-ly-khu-du-lich-quoc-gia-nui-sam' },
+  'Phú Quốc': { significance: 'Đảo có bãi biển, rừng quốc gia, suối, rạn san hô và nguồn tài nguyên biển đa dạng của vịnh Thái Lan.', history: 'Làng chài, nghề làm nước mắm, trồng hồ tiêu và các di tích như Nhà tù Phú Quốc tạo nên nhiều lớp văn hóa – lịch sử của đảo.', sourceLabel: 'Cổng thông tin đặc khu Phú Quốc', sourceUrl: 'https://phuquoc.angiang.gov.vn/dinh-huong-quy-hoach-cac-khu-du-lich' },
+  'Vườn quốc gia Tràm Chim': { significance: 'Hệ sinh thái đất ngập nước tiêu biểu của Đồng Tháp Mười bảo tồn khoảng 130 loài thực vật và hơn 198 loài chim nước.', history: 'Tràm Chim được công nhận là khu Ramsar thứ tư của Việt Nam, đồng thời lưu giữ cảnh quan từng phổ biến của vùng Đồng Tháp Mười.', sourceLabel: 'Cổng du lịch Đồng Tháp', sourceUrl: 'https://dulich.dongthap.gov.vn/vi/tramchim' },
+  'Chợ nổi Cái Bè': { significance: 'Chợ trên sông Tiền thể hiện phương thức phân phối nông sản và nếp sống thương hồ của cư dân đồng bằng sông Cửu Long.', history: 'Chợ hình thành từ nhu cầu trao đổi hàng hóa ở vàm Cái Bè và từng phát triển thành một đầu mối lớn của vùng.', sourceLabel: 'Cổng du lịch Đồng Tháp', sourceUrl: 'https://dulich.dongthap.gov.vn/iv/chonoicaibe' },
+  'Cồn Phụng': { significance: 'Cù lao giữa sông Tiền tiêu biểu cho cảnh quan miệt vườn, kênh rạch, cây trái và nghề thủ công xứ dừa.', history: 'Cồn còn gắn với dấu tích Đạo Dừa hình thành trong thế kỷ XX, một hiện tượng tín ngưỡng đặc biệt ở Nam Bộ.', sourceLabel: 'Cổng du lịch Vĩnh Long', sourceUrl: 'https://vinhlong.gov.vn/du-khach/diadanh_test' },
+  'Ao Bà Om': { significance: 'Hồ cổ, hàng cây dầu có bộ rễ nổi và quần thể chùa Âng tạo nên trung tâm cảnh quan – văn hóa Khmer đặc sắc.', history: 'Địa danh gắn với nhiều truyền thuyết Khmer về việc đào ao; không gian quanh ao là nơi diễn ra các sinh hoạt lễ hội, cộng đồng lâu đời.', sourceLabel: 'Cổng thông tin Vĩnh Long', sourceUrl: 'https://vinhlong.gov.vn/du-khach/diadanh_test' },
+  'Chợ nổi Cái Răng': { significance: 'Chợ đầu mối trên sông Cần Thơ thể hiện mạng lưới thương mại đường thủy và văn hóa “cây bẹo” đặc trưng miền Tây.', history: 'Văn hóa chợ nổi Cái Răng được đưa vào Danh mục di sản văn hóa phi vật thể quốc gia năm 2016.', sourceLabel: 'Cổng du lịch Cần Thơ', sourceUrl: 'https://dulich.cantho.gov.vn/' },
+  'Chùa Dơi': { significance: 'Kiến trúc, mỹ thuật Phật giáo Nam tông Khmer và đàn dơi quạ trong khuôn viên tạo nên một không gian văn hóa – sinh thái độc đáo.', history: 'Tên chính Wathsêrâytêchô – Mahatup; di tích phản ánh lịch sử, tín ngưỡng và nghệ thuật của cộng đồng Khmer Sóc Trăng qua nhiều thế kỷ.', sourceLabel: 'Cổng thông tin thành phố Sóc Trăng', sourceUrl: 'https://ubndtp.soctrang.gov.vn/mDefault.aspx?catid=53984&catname=Di+t%C3%ADch%2C+danh+th%E1%BA%AFng&id=366150&pageid=39&sid=1279&sname=tpsoctrang&title=ly-lich-di-tich-kien-truc-nghe-thuat-chua-wathseraytecho-mahatup-chua-ma-toc-chua-doi' },
+  'Mũi Cà Mau': { significance: 'Đây là vùng cực Nam trên đất liền, nơi rừng ngập mặn, bãi bồi và hệ sinh thái cửa sông – ven biển liên tục biến đổi theo phù sa.', history: 'Mũi Cà Mau là biểu tượng địa lý và chủ quyền lãnh thổ; cột mốc tọa độ, biểu tượng con tàu và đường Hồ Chí Minh là các điểm ghi dấu hành trình đất nước.', sourceLabel: 'Cổng xúc tiến đầu tư Cà Mau', sourceUrl: 'https://xuctiendautu.camau.gov.vn/ca-mau-diem-den-hap-dan-tap-trung-phat-trien-du-lich-sinh-thai-du-lich-van-hoa-tam-linh-du-lich-trai-nghiem897-2/' },
+  'Điện gió Bạc Liêu': { significance: 'Các tua-bin đặt trên vùng bãi bồi ven biển vừa sản xuất năng lượng tái tạo, vừa tạo nên cảnh quan công nghiệp đặc trưng.', history: 'Công trình đánh dấu giai đoạn Bạc Liêu khai thác tiềm năng gió ven biển và trở thành một điểm du lịch được địa phương công nhận.', sourceLabel: 'Sở Văn hóa, Thể thao và Du lịch Cà Mau', sourceUrl: 'https://svhttdl.baclieu.gov.vn/documents/404650/0/1.%2BBao%2Bcao%2Bhoat%2Bdong%2BVHTTDL%2Bnam%2B2023%2Bphuc%2Bvu%2BHN%2Btong%2Bket%2Bcua%2BNganh.pdf/8facfeff-ce09-a556-4cf5-c556173c2b49?t=1703563798854' },
+};
+
 const LANDMARK_INTERVAL_KM = 5;
-const UNLOCKED_LANDMARKS_STORAGE_KEY = 'sap_tet_runner_v1_landmarks_unlocked';
+const UNLOCKED_LANDMARKS_STORAGE_KEY = 'sap_tet_runner_v3_landmarks_unlocked';
 
-function interleaveRegions(stops) {
-  const queues = ['north', 'central', 'south'].map((region) => stops.filter((stop) => stop.region === region));
-  const route = [];
-  while (queues.some((queue) => queue.length)) {
-    queues.forEach((queue) => {
-      if (queue.length) route.push(queue.shift());
-    });
-  }
-  return route;
-}
-
-const VIETNAM_ROUTE = interleaveRegions(VIETNAM_JOURNEY);
+const VIETNAM_ROUTE = VIETNAM_JOURNEY;
 
 const REGION_BACKGROUNDS = {
   north: [
@@ -81,33 +256,9 @@ const REGION_BACKGROUNDS = {
   ],
 };
 
-const LANDMARK_BACKGROUNDS = {
-  'Hà Nội': '/assets/images/tet-runner/north-ho-guom.webp',
-  'Ninh Bình': '/assets/images/tet-runner/north-trang-an.webp',
-  'Lào Cai': '/assets/images/tet-runner/north-sapa.webp',
-  'Cao Bằng': '/assets/images/tet-runner/north-ban-gioc.webp',
-  'Quảng Ninh': '/assets/images/tet-runner/north-ha-long.webp',
-  'Nghệ An': '/assets/images/tet-runner/central-lang-sen.webp',
-  'Hà Tĩnh': '/assets/images/tet-runner/central-dong-loc-v2.webp',
-  'Huế': '/assets/images/tet-runner/central-hue.webp',
-  'Đà Nẵng': '/assets/images/tet-runner/central-hoi-an.webp',
-  'Quảng Ngãi': '/assets/images/tet-runner/central-ly-son.webp',
-  'Lâm Đồng': '/assets/images/tet-runner/central-da-lat.webp',
-  'Thành phố Hồ Chí Minh': '/assets/images/tet-runner/south-saigon.webp',
-  'Đồng Nai': '/assets/images/tet-runner/south-cat-tien.webp',
-  'Cần Thơ': '/assets/images/tet-runner/south-cai-rang.webp',
-  'Vĩnh Long': '/assets/images/tet-runner/south-mekong.webp',
-  'Đồng Tháp': '/assets/images/tet-runner/south-mekong.webp',
-  'An Giang': '/assets/images/tet-runner/south-mekong.webp',
-  'Cà Mau': '/assets/images/tet-runner/south-mekong.webp',
-};
-
-const regionSceneCursor = { north: 0, central: 0, south: 0 };
 VIETNAM_ROUTE.forEach((stop) => {
-  const sceneIndex = regionSceneCursor[stop.region] % REGION_BACKGROUNDS[stop.region].length;
-  stop.backgroundUrl = LANDMARK_BACKGROUNDS[stop.province] || REGION_BACKGROUNDS[stop.region][sceneIndex];
+  stop.backgroundUrl ||= REGION_BACKGROUNDS[stop.region][0];
   stop.sceneKey = stop.backgroundUrl;
-  regionSceneCursor[stop.region] += 1;
 });
 
 const BACKGROUND_SCENES = [...new Set(VIETNAM_ROUTE.map((stop) => stop.backgroundUrl))]
@@ -504,6 +655,7 @@ function requestReplayAd(_context, onComplete) {
 }
 
 export function initTetRunner({ section, engine, track, showFallback }) {
+  const previewAllLandmarks = new URLSearchParams(window.location.search).get('showAllLandmarks') === '1';
   const stage = section.querySelector('#tet-runner-stage');
   const canvasHost = section.querySelector('#tet-runner-canvas');
   const ready = section.querySelector('#tet-runner-ready');
@@ -538,6 +690,17 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   const resultHorse = section.querySelector('#tet-runner-result-horse');
   const landmarkLibraryGrid = document.querySelector('#tet-landmark-library-grid');
   const unlockedLandmarkCount = document.querySelector('#tet-landmark-unlocked-count');
+  const landmarkProgressLabel = document.querySelector('#tet-landmark-progress-label');
+  const landmarkViewer = document.querySelector('#tet-landmark-viewer');
+  const landmarkViewerClose = document.querySelector('#tet-landmark-viewer-close');
+  const landmarkViewerImage = document.querySelector('#tet-landmark-viewer-image');
+  const landmarkViewerProvince = document.querySelector('#tet-landmark-viewer-province');
+  const landmarkViewerTitle = document.querySelector('#tet-landmark-viewer-title');
+  const landmarkViewerGeography = document.querySelector('#tet-landmark-viewer-geography');
+  const landmarkViewerSignificance = document.querySelector('#tet-landmark-viewer-significance');
+  const landmarkViewerHistorySection = document.querySelector('#tet-landmark-viewer-history-section');
+  const landmarkViewerHistory = document.querySelector('#tet-landmark-viewer-history');
+  const landmarkViewerSource = document.querySelector('#tet-landmark-viewer-source');
   if (!stage || !canvasHost || !duckButton) throw new Error('runner_dom_missing');
 
   const lowQuality = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
@@ -702,6 +865,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   let currentJourneyIndex = -1;
   let duckVisual = 0;
   let runCyclePhase = 0;
+  let landmarkViewerTrigger = null;
 
   try {
     const storedLandmarks = JSON.parse(window.localStorage.getItem(UNLOCKED_LANDMARKS_STORAGE_KEY) || '[]');
@@ -724,13 +888,53 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     } catch (_error) {}
   }
 
+  function closeLandmarkViewer() {
+    if (!landmarkViewer || landmarkViewer.hidden) return;
+    landmarkViewer.hidden = true;
+    document.body.classList.remove('is-landmark-viewer-open');
+    landmarkViewerTrigger?.focus({ preventScroll: true });
+    landmarkViewerTrigger = null;
+  }
+
+  function openLandmarkViewer(stop, index, trigger) {
+    if (!landmarkViewer || !landmarkViewerImage || !unlockedLandmarks.has(index)) return;
+    const context = LANDMARK_CONTEXT[stop.landmark] || {};
+    landmarkViewerTrigger = trigger;
+    landmarkViewerImage.src = stop.backgroundUrl;
+    landmarkViewerImage.alt = `${stop.landmark}, ${stop.province}`;
+    landmarkViewerProvince.textContent = stop.province;
+    landmarkViewerTitle.textContent = stop.landmark;
+    landmarkViewerGeography.textContent = LANDMARK_DETAILS[stop.landmark] || `Địa danh tiêu biểu tại ${stop.province}.`;
+    landmarkViewerSignificance.textContent = context.significance || 'Một phần của cảnh quan và bản sắc văn hóa trên hành trình xuyên Việt.';
+    landmarkViewerHistory.textContent = context.history || '';
+    landmarkViewerHistorySection.hidden = !context.history;
+    landmarkViewerSource.href = context.sourceUrl || 'https://vietnamtourism.gov.vn/';
+    landmarkViewerSource.querySelector('span').textContent = `Nguồn chính thức: ${context.sourceLabel || 'Cục Du lịch Quốc gia Việt Nam'}`;
+    landmarkViewer.hidden = false;
+    document.body.classList.add('is-landmark-viewer-open');
+    landmarkViewerClose?.focus({ preventScroll: true });
+    track('landmark_view', { landmark_index: index, province: stop.province, landmark: stop.landmark });
+  }
+
+  landmarkViewerClose?.addEventListener('click', closeLandmarkViewer);
+  landmarkViewer?.addEventListener('click', (event) => {
+    if (event.target === landmarkViewer) closeLandmarkViewer();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && landmarkViewer && !landmarkViewer.hidden) closeLandmarkViewer();
+  });
+
   function renderLandmarkLibrary() {
     if (!landmarkLibraryGrid || !unlockedLandmarkCount) return;
-    unlockedLandmarkCount.textContent = String(unlockedLandmarks.size);
+    unlockedLandmarkCount.textContent = String(previewAllLandmarks ? VIETNAM_ROUTE.length : unlockedLandmarks.size);
+    if (landmarkProgressLabel) landmarkProgressLabel.innerHTML = previewAllLandmarks
+      ? `/ ${VIETNAM_ROUTE.length}<br>đang xem thử`
+      : `/ ${VIETNAM_ROUTE.length}<br>đã mở khóa`;
     landmarkLibraryGrid.replaceChildren(...VIETNAM_ROUTE.map((stop, index) => {
-      const unlocked = unlockedLandmarks.has(index);
+      const earned = unlockedLandmarks.has(index);
+      const unlocked = previewAllLandmarks || earned;
       const card = document.createElement('article');
-      card.className = `tet-landmark-card${unlocked ? ' is-unlocked' : ' is-locked'}`;
+      card.className = `tet-landmark-card${unlocked ? ' is-unlocked' : ' is-locked'}${previewAllLandmarks && !earned ? ' is-preview' : ''}`;
       card.dataset.landmarkIndex = String(index);
       card.setAttribute('role', 'listitem');
 
@@ -745,7 +949,9 @@ export function initTetRunner({ section, engine, track, showFallback }) {
 
       const status = document.createElement('span');
       status.className = 'tet-landmark-card-status';
-      status.innerHTML = unlocked
+      status.innerHTML = previewAllLandmarks && !earned
+        ? '<i data-lucide="eye" aria-hidden="true"></i> Xem thử'
+        : unlocked
         ? '<i data-lucide="badge-check" aria-hidden="true"></i> Đã mở khóa'
         : '<i data-lucide="lock-keyhole" aria-hidden="true"></i> Chưa mở khóa';
       imageWrap.appendChild(status);
@@ -760,6 +966,15 @@ export function initTetRunner({ section, engine, track, showFallback }) {
       requirement.textContent = index === 0 ? 'Điểm khởi hành' : `Mở khóa ở ${index * LANDMARK_INTERVAL_KM} km`;
       copy.append(province, name, requirement);
       card.append(imageWrap, copy);
+      if (earned) {
+        card.classList.add('is-interactive');
+        const openButton = document.createElement('button');
+        openButton.type = 'button';
+        openButton.className = 'tet-landmark-card-open';
+        openButton.setAttribute('aria-label', `Xem ảnh và thông tin ${stop.landmark}, ${stop.province}`);
+        openButton.addEventListener('click', () => openLandmarkViewer(stop, index, openButton));
+        card.appendChild(openButton);
+      }
       return card;
     }));
     window.lucide?.createIcons();
@@ -951,7 +1166,19 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     return `${Number(value || 0).toFixed(2).replace('.', ',')} km`;
   }
 
+  function reachedLandmarkAt(kilometers) {
+    const distance = Math.max(0, Number(kilometers) || 0);
+    const journeyIndex = engine.journeyIndexAtKilometers(distance, VIETNAM_ROUTE.length, LANDMARK_INTERVAL_KM);
+    const milestoneKm = Math.floor(distance / LANDMARK_INTERVAL_KM) * LANDMARK_INTERVAL_KM;
+    return {
+      ...VIETNAM_ROUTE[journeyIndex],
+      milestoneKm,
+      milestoneLabel: milestoneKm === 0 ? 'ĐIỂM KHỞI HÀNH' : `CỘT MỐC ${milestoneKm} KM`,
+    };
+  }
+
   function createScoreShareImage(state) {
+    const reachedLandmark = reachedLandmarkAt(state.score);
     const shareCanvas = document.createElement('canvas');
     shareCanvas.width = 1200;
     shareCanvas.height = 630;
@@ -982,11 +1209,17 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     context.font = '700 25px system-ui, sans-serif';
     context.fillText(`${state.bonusPoints} điểm · Combo cao nhất ${state.maxCombo}`, 760, 375);
     context.fillStyle = '#ffd45c';
-    context.font = '800 24px system-ui, sans-serif';
-    context.fillText('Bạn có vượt được mình không?', 760, 455);
+    context.font = '900 19px system-ui, sans-serif';
+    context.fillText(reachedLandmark.milestoneLabel, 760, 420);
+    context.fillStyle = '#ffffff';
+    context.font = '800 27px system-ui, sans-serif';
+    context.fillText(`${reachedLandmark.province} · ${reachedLandmark.landmark}`, 760, 454, 390);
+    context.fillStyle = '#ffd45c';
+    context.font = '800 22px system-ui, sans-serif';
+    context.fillText('Bạn có vượt được mình không?', 760, 505);
     context.fillStyle = 'rgba(255, 248, 232, .82)';
     context.font = '600 20px system-ui, sans-serif';
-    context.fillText('saptet.vn', 760, 510);
+    context.fillText('saptet.vn', 760, 550);
     return shareCanvas;
   }
 
@@ -1019,10 +1252,11 @@ export function initTetRunner({ section, engine, track, showFallback }) {
 
   async function shareScore() {
     const state = game.getState();
+    const reachedLandmark = reachedLandmarkAt(state.score);
     const file = canvasToPngFile(pendingShareCanvas || createScoreShareImage(state));
     const shareData = {
       title: 'Ngựa Phi Đón Tết',
-      text: `Mình đã phi được ${formatKilometers(state.score)} trong Ngựa Phi Đón Tết. Bạn có vượt được không? saptet.vn/ngua-phi-don-tet.html`,
+      text: `Mình đã phi được ${formatKilometers(state.score)}, đến ${reachedLandmark.landmark} · ${reachedLandmark.province} trong Ngựa Phi Đón Tết. Bạn có vượt được không? saptet.vn/ngua-phi-don-tet.html`,
       files: [file],
     };
     let method = 'download';
