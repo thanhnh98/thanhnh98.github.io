@@ -1,0 +1,149 @@
+.editorial-refresh {
+    background: #fffaf2;
+}
+
+.editorial-refresh .countdown-hero,
+.editorial-refresh .article-hero,
+.editorial-refresh .guide-hero {
+    min-height: 0;
+    padding: clamp(3.75rem, 7vw, 5.5rem) 0;
+    color: #fff;
+    background: radial-gradient(circle at 82% 18%, rgba(255, 216, 102, 0.28), transparent 22rem), linear-gradient(135deg, #7c111d, #bd2833 62%, #df603a);
+    animation: none;
+    text-align: left;
+}
+
+.editorial-refresh .countdown-hero::before,
+.editorial-refresh .article-hero::before,
+.editorial-refresh .guide-hero::before {
+    opacity: 0.08;
+}
+
+.editorial-refresh .countdown-hero h1,
+.editorial-refresh .article-hero h1,
+.editorial-refresh .guide-hero h1 {
+    max-width: 940px;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
+    text-shadow: none !important;
+    text-wrap: balance;
+}
+
+.editorial-refresh .countdown-hero .subtitle,
+.editorial-refresh .article-hero .subtitle,
+.editorial-refresh .guide-hero p {
+    max-width: 740px;
+    margin: 1rem 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
+.editorial-refresh .countdown-hero {
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.editorial-refresh .countdown-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.editorial-refresh .countdown-card {
+    min-height: 170px;
+    padding: 1.15rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 17px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+
+.editorial-refresh .countdown-card .value {
+    color: #ffde76 !important;
+    text-shadow: none !important;
+}
+
+.editorial-refresh .countdown-card .icon,
+.editorial-refresh .countdown-card .label,
+.editorial-refresh .countdown-card .unit {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.editorial-refresh .countdown-card .icon svg {
+    color: #ffde76;
+    stroke: #ffde76;
+}
+
+.editorial-refresh .tet-date-simple {
+    display: inline-flex;
+    margin-top: 1.15rem;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffdf7a;
+    background: rgba(54, 0, 7, 0.16);
+}
+
+.editorial-refresh main > .container:first-child {
+    margin-top: 1rem !important;
+}
+
+.editorial-refresh .tet-date-info,
+.editorial-refresh .article,
+.editorial-refresh .guide-section {
+    border: 1px solid rgba(126, 34, 30, 0.12);
+    border-left-width: 1px;
+    border-radius: 20px;
+    box-shadow: 0 14px 42px rgba(78, 29, 21, 0.08);
+}
+
+.editorial-refresh .article-content,
+.editorial-refresh .guide-content {
+    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+}
+
+.editorial-refresh .article,
+.editorial-refresh .guide-section {
+    padding: clamp(1.4rem, 4vw, 2.5rem);
+}
+
+.editorial-refresh .article h2,
+.editorial-refresh .guide-section h2 {
+    color: #8e2026;
+    border-bottom-color: rgba(200, 48, 52, 0.2);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+}
+
+.editorial-refresh .guide-step,
+.editorial-refresh .calendar-box,
+.editorial-refresh .table-of-contents {
+    border: 1px solid rgba(126, 34, 30, 0.1);
+    border-left-width: 1px;
+    border-radius: 15px;
+    background: #fffaf2;
+}
+
+@media (max-width: 720px) {
+    .editorial-refresh .countdown-hero,
+    .editorial-refresh .article-hero,
+    .editorial-refresh .guide-hero {
+        padding: 3.4rem 0;
+    }
+
+    .editorial-refresh .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .editorial-refresh .countdown-card {
+        min-height: 145px;
+    }
+
+    .editorial-refresh .article-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.55rem;
+    }
+}

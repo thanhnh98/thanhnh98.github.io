@@ -1,93 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Sắp Tết 2026 - Local Development Server
-# Script để khởi chạy local server cho website
+set -euo pipefail
 
-echo "🎊 Đang khởi chạy Sắp Tết 2026 Local Server..."
-echo "📅 Lịch nghỉ Tết 2027: đang chờ thông báo chính thức"
-echo ""
+PROJECT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+START_PORT="${PORT:-8000}"
+PAGE="${1:-/ung-dung.html}"
+PAGE="/${PAGE#/}"
 
-# Hàm kiểm tra port có đang được sử dụng không
 is_port_in_use() {
-    lsof -Pi :$1 -sTCP:LISTEN -t >/dev/null 2>&1
+    lsof -nP -iTCP:"$1" -sTCP:LISTEN -t >/dev/null 2>&1
 }
 
-# Hàm tìm port trống
-find_available_port() {
-    local start_port=$1
-    local port=$start_port
-    while is_port_in_use $port; do
-        port=$((port + 1))
-        if [ $port -gt 8100 ]; then
-            echo "❌ Không tìm thấy port trống trong khoảng $start_port-8100"
-            exit 1
-        fi
-    done
-    echo $port
-}
-
-# Hàm dừng process trên port
-stop_port_process() {
-    local port=$1
-    local pid=$(lsof -ti :$port)
-    if [ ! -z "$pid" ]; then
-        echo "⚠️  Đang dừng process (PID: $pid) trên port $port..."
-        kill -9 $pid 2>/dev/null
-        sleep 1
-        # Kiểm tra lại
-        if is_port_in_use $port; then
-            echo "⚠️  Không thể dừng process trên port $port. Tìm port khác..."
-            return 1
-        else
-            echo "✅ Đã dừng process trên port $port"
-            return 0
-        fi
+PORT_NUMBER="$START_PORT"
+while is_port_in_use "$PORT_NUMBER"; do
+    PORT_NUMBER=$((PORT_NUMBER + 1))
+    if (( PORT_NUMBER > START_PORT + 100 )); then
+        echo "❌ Không tìm thấy cổng trống từ $START_PORT đến $((START_PORT + 100))."
+        exit 1
     fi
-    return 0
-}
+done
 
-# Port mặc định
-DEFAULT_PORT=8000
-PORT=$DEFAULT_PORT
+cd "$PROJECT_DIR"
 
-# Kiểm tra và xử lý port 8000
-if is_port_in_use $DEFAULT_PORT; then
-    echo "⚠️  Port $DEFAULT_PORT đang được sử dụng."
-    echo "🔄 Đang thử dừng process cũ..."
+RUN_ID="$(date +%s)"
+URL="http://127.0.0.1:${PORT_NUMBER}${PAGE}?dev=${RUN_ID}"
 
-    # Thử dừng process Python HTTP server
-    pkill -f "python3 -m http.server $DEFAULT_PORT" 2>/dev/null
-    sleep 2
-
-    # Nếu vẫn còn process, thử kill trực tiếp
-    if is_port_in_use $DEFAULT_PORT; then
-        stop_port_process $DEFAULT_PORT
-    fi
-
-    # Nếu vẫn không được, tìm port khác
-    if is_port_in_use $DEFAULT_PORT; then
-        echo "⚠️  Không thể giải phóng port $DEFAULT_PORT."
-        echo "🔍 Đang tìm port trống..."
-        PORT=$(find_available_port $((DEFAULT_PORT + 1)))
-        echo "✅ Tìm thấy port trống: $PORT"
-    else
-        echo "✅ Port $DEFAULT_PORT đã được giải phóng"
-    fi
-fi
-
-# Khởi chạy server
-echo ""
-echo "🚀 Khởi chạy server tại http://localhost:$PORT"
-echo "📱 Các trang chính:"
-echo "   • Trang chủ: http://localhost:$PORT/index.html"
-echo "   • Blog: http://localhost:$PORT/blog.html"
-echo "   • Lịch nghỉ Tết 2027: http://localhost:$PORT/lich-nghi-tet-2027.html"
-echo "   • Lịch Tết 2027: http://localhost:$PORT/lich-tet-2027.html"
-echo "   • Lịch âm dương / Lịch vạn niên: http://localhost:$PORT/lich-van-nien.html"
-echo "   • Máy tính lì xì: http://localhost:$PORT/may-tinh-li-xi.html"
-echo ""
+echo "🎊 Sắp Tết 2027 — local preview"
+echo "🚀 Đang chạy source mới nhất tại: $URL"
 echo "🛑 Nhấn Ctrl+C để dừng server"
 echo ""
 
-# Chạy server
-python3 -m http.server $PORT
+if command -v open >/dev/null 2>&1; then
+    (
+        sleep 0.5
+        open "$URL"
+    ) &
+fi
+
+# Disable browser caching so every reload reflects the newest local files.
+exec python3 - "$PORT_NUMBER" <<'PY'
+import http.server
+import sys
+
+
+class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
+        super().end_headers()
+
+
+port = int(sys.argv[1])
+server = http.server.ThreadingHTTPServer(("127.0.0.1", port), NoCacheHandler)
+try:
+    server.serve_forever()
+except KeyboardInterrupt:
+    pass
+finally:
+    server.server_close()
+PY

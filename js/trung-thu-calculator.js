@@ -33,11 +33,11 @@ function calculateTrungThuDate(year) {
     const trungThuDates = {
         2024: new Date(2024, 8, 17), // 17/9/2024
         2025: new Date(2025, 9, 6),  // 6/10/2025
-        2026: new Date(2026, 9, 25), // 25/10/2026
-        2027: new Date(2027, 9, 15), // 15/10/2027
+        2026: new Date(2026, 8, 25), // 25/9/2026
+        2027: new Date(2027, 8, 15), // 15/9/2027
         2028: new Date(2028, 9, 3),  // 3/10/2028
         2029: new Date(2029, 8, 22), // 22/9/2029
-        2030: new Date(2030, 9, 11),  // 11/10/2030
+        2030: new Date(2030, 8, 12),  // 12/9/2030
     };
     
     if (trungThuDates[year]) {

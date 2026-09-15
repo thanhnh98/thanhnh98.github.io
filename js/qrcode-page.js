@@ -69,15 +69,6 @@ function debounce(fn, ms) {
     };
 }
 
-function isValidHttpUrl(str) {
-    try {
-        const u = new URL(str.trim());
-        return u.protocol === "http:" || u.protocol === "https:";
-    } catch {
-        return false;
-    }
-}
-
 function fillSelect(select, options) {
     select.innerHTML = "";
     for (const o of options) {
@@ -172,7 +163,7 @@ function readControls() {
         data: urlInput.value.trim(),
         width: s,
         height: s,
-        margin: Math.min(48, Math.max(0, Number.isFinite(margin) ? margin : 8)),
+        margin: Math.min(48, Math.max(0, Number.isFinite(margin) ? margin : 16)),
         dotColor: dotColor || "#000000",
         bgColor,
         bgTransparent,
@@ -229,6 +220,26 @@ function showError(msg) {
 
 function setEmptyHintVisible(visible) {
     document.getElementById("qr-empty-hint")?.classList.toggle("is-hidden", !visible);
+}
+
+function setQrReady(ready, statusText) {
+    const status = document.getElementById("qr-status");
+    const downloadPng = document.getElementById("qr-download-png");
+    const downloadSvg = document.getElementById("qr-download-svg");
+    const clearContent = document.getElementById("qr-clear-content");
+    const hasContent = !!document.getElementById("qr-url")?.value.trim();
+
+    if (status) status.textContent = statusText;
+    if (downloadPng) downloadPng.disabled = !ready;
+    if (downloadSvg) downloadSvg.disabled = !ready;
+    if (clearContent) clearContent.disabled = !hasContent;
+}
+
+function updateCharacterCount() {
+    const input = document.getElementById("qr-url");
+    const count = document.getElementById("qr-character-count");
+    if (!input || !count) return;
+    count.textContent = `${input.value.length.toLocaleString("vi-VN")} / 2.000`;
 }
 
 function clearQrMount() {
@@ -386,16 +397,7 @@ function renderQr() {
         showError("");
         clearQrMount();
         setEmptyHintVisible(true);
-        syncAllSelectChips();
-        syncValueChips(document.getElementById("qr-size-chips"), document.getElementById("qr-size")?.value);
-        syncValueChips(document.getElementById("qr-margin-chips"), document.getElementById("qr-margin")?.value);
-        return;
-    }
-
-    if (!isValidHttpUrl(ctrl.data)) {
-        showError("Vui lòng nhập URL hợp lệ (bắt đầu bằng http:// hoặc https://).");
-        clearQrMount();
-        setEmptyHintVisible(false);
+        setQrReady(false, "Đang chờ nội dung");
         syncAllSelectChips();
         syncValueChips(document.getElementById("qr-size-chips"), document.getElementById("qr-size")?.value);
         syncValueChips(document.getElementById("qr-margin-chips"), document.getElementById("qr-margin")?.value);
@@ -411,14 +413,23 @@ function renderQr() {
 
     const optsKey = JSON.stringify(opts);
 
-    if (!qrInstance) {
-        qrInstance = new QRCodeStyling(opts);
-        mount.innerHTML = "";
-        qrInstance.append(mount);
-        lastAppliedQrOptsKey = optsKey;
-    } else if (optsKey !== lastAppliedQrOptsKey) {
-        qrInstance.update(opts);
-        lastAppliedQrOptsKey = optsKey;
+    try {
+        if (!qrInstance) {
+            qrInstance = new QRCodeStyling(opts);
+            mount.innerHTML = "";
+            qrInstance.append(mount);
+            lastAppliedQrOptsKey = optsKey;
+        } else if (optsKey !== lastAppliedQrOptsKey) {
+            qrInstance.update(opts);
+            lastAppliedQrOptsKey = optsKey;
+        }
+        setQrReady(true, "Mã QR đã sẵn sàng");
+    } catch (error) {
+        console.error("Không thể tạo mã QR", error);
+        clearQrMount();
+        setEmptyHintVisible(true);
+        showError("Nội dung quá dài hoặc không thể tạo mã QR. Hãy rút gọn và thử lại.");
+        setQrReady(false, "Chưa thể tạo mã QR");
     }
 
     syncAllSelectChips();
@@ -428,10 +439,10 @@ function renderQr() {
 
 function initFromQuery() {
     const params = new URLSearchParams(window.location.search);
-    const u = params.get("url");
-    if (u) {
+    const content = params.get("text") || params.get("url");
+    if (content) {
         const input = document.getElementById("qr-url");
-        if (input) input.value = u;
+        if (input) input.value = content;
     }
 }
 
@@ -502,18 +513,52 @@ function wireColorPresetSelect() {
     });
 }
 
-function ensureUrlBeforeDownload() {
+function ensureContentBeforeDownload() {
     const ctrl = readControls();
     if (!ctrl.data.trim()) {
-        showError("Nhập URL trước khi tải xuống.");
+        showError("Nhập nội dung trước khi tải xuống.");
         setEmptyHintVisible(true);
         return false;
     }
-    if (!isValidHttpUrl(ctrl.data)) {
-        showError("URL không hợp lệ; sửa lại trước khi tải.");
-        return false;
-    }
     return true;
+}
+
+function wireQuickActions() {
+    const input = document.getElementById("qr-url");
+    const pasteButton = document.getElementById("qr-paste-btn");
+    const clearButton = document.getElementById("qr-clear-content");
+    if (!input) return;
+
+    pasteButton?.addEventListener("click", async () => {
+        try {
+            const clipboardText = await navigator.clipboard.readText();
+            if (!clipboardText.trim()) {
+                showError("Bộ nhớ tạm chưa có nội dung để dán.");
+                input.focus();
+                return;
+            }
+            input.value = clipboardText.slice(0, 2000);
+            updateCharacterCount();
+            renderQr();
+        } catch {
+            showError("Trình duyệt chưa cho phép đọc bộ nhớ tạm. Bạn có thể nhấn Ctrl/⌘ + V để dán.");
+            input.focus();
+        }
+    });
+
+    clearButton?.addEventListener("click", () => {
+        input.value = "";
+        updateCharacterCount();
+        renderQr();
+        input.focus();
+    });
+
+    input.addEventListener("keydown", (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+            event.preventDefault();
+            renderQr();
+        }
+    });
 }
 
 function init() {
@@ -547,9 +592,11 @@ function init() {
     );
 
     initFromQuery();
+    updateCharacterCount();
     syncHexFromColorPickers();
     wireImageUpload();
     wireColorPresetSelect();
+    wireQuickActions();
 
     const debouncedRender = debounce(scheduleRenderQr, 380);
     wireColorHexSync(debouncedRender);
@@ -560,10 +607,10 @@ function init() {
     });
     document.getElementById("qr-container-bg-transparent")?.addEventListener("change", scheduleRenderQr);
 
-    document.getElementById("qr-url")?.addEventListener("input", debouncedRender);
-    document.getElementById("qr-apply-btn")?.addEventListener("click", (e) => {
-        e.preventDefault();
-        renderQr();
+    document.getElementById("qr-url")?.addEventListener("input", () => {
+        updateCharacterCount();
+        setQrReady(false, document.getElementById("qr-url")?.value.trim() ? "Đang tạo mã QR…" : "Đang chờ nội dung");
+        debouncedRender();
     });
 
     const rerenderIds = [
@@ -587,12 +634,12 @@ function init() {
     }
 
     document.getElementById("qr-download-png")?.addEventListener("click", () => {
-        if (!ensureUrlBeforeDownload()) return;
+        if (!ensureContentBeforeDownload()) return;
         renderQr();
         qrInstance?.download({ name: "qrcode-saptet", extension: "png" });
     });
     document.getElementById("qr-download-svg")?.addEventListener("click", () => {
-        if (!ensureUrlBeforeDownload()) return;
+        if (!ensureContentBeforeDownload()) return;
         renderQr();
         qrInstance?.download({ name: "qrcode-saptet", extension: "svg" });
     });

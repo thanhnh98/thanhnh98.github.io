@@ -26,26 +26,27 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/lucky-money-calculator.css">
+    <link rel="stylesheet" href="css/lucky-money-calculator.css?v=20260831-ui-audit">
     
     <!-- PWA -->
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#dc2626">
 </head>
-<body>
+<body class="lucky-money-page">
     <!-- Header will be loaded dynamically -->
     <div id="header-container"></div>
 
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="hero-section" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); padding: 4rem 0; text-align: center; color: white;">
+        <section class="lucky-money-hero" aria-labelledby="lucky-money-title">
             <div class="container">
-                <h1 style="font-size: 3rem; margin-bottom: 1rem; font-weight: 700;">🧧 Máy Tính Lì Xì Thông Minh</h1>
-                <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ trong dịp Tết Nguyên Đán 2027</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="/" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#dc2626'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">🏠 Về trang chủ</a>
-                    <a href="tro-choi-tet.html" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#dc2626'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'">🎮 Trò chơi Tết</a>
+                <p class="lucky-money-kicker">Công cụ lập ngân sách Tết</p>
+                <h1 id="lucky-money-title">Máy tính lì xì thông minh</h1>
+                <p class="lucky-money-lead">Ước tính số tiền phù hợp theo độ tuổi, mối quan hệ và số lượng người nhận trong dịp Tết 2027.</p>
+                <div class="lucky-money-hero-actions">
+                    <a href="#lucky-money-calculator">Bắt đầu tính lì xì</a>
+                    <a href="huong-dan-tet.html">Xem hướng dẫn Tết</a>
                 </div>
             </div>
         </section>
@@ -53,8 +54,8 @@
         <!-- Calculator Section -->
         <section class="lucky-money-calculator-section">
             <div class="container">
-                <div class="lucky-money-calculator">
-                    <h3>🧧 Máy Tính Lì Xì Thông Minh</h3>
+                <div class="lucky-money-calculator" id="lucky-money-calculator">
+                    <h3>Lập danh sách lì xì</h3>
                     <p class="calculator-subtitle">Tính toán lì xì phù hợp cho từng độ tuổi và mối quan hệ</p>
                     
                     <div class="calculator-form">
@@ -166,9 +167,9 @@
         </section>
 
         <!-- Features Section -->
-        <section class="features-section" style="padding: 4rem 0; background: linear-gradient(135deg, #fff5f5 0%, #ffe4e4 100%);">
+        <section class="lucky-money-benefits">
             <div class="container">
-                <h2 style="text-align: center; color: #dc2626; font-size: 2.5rem; margin-bottom: 3rem;">✨ Tính Năng Nổi Bật</h2>
+                <h2>Tính năng nổi bật</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🧮</div>
@@ -195,21 +196,21 @@
         </section>
 
         <!-- Tips Section -->
-        <section class="tips-section" style="padding: 4rem 0; background: white;">
+        <section class="lucky-money-etiquette">
             <div class="container">
-                <h2 style="text-align: center; color: #dc2626; font-size: 2.5rem; margin-bottom: 3rem;">💡 Lưu Ý Khi Lì Xì</h2>
-                <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div class="tip-card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 2rem; border-radius: 15px; text-align: center; border: 2px solid #f59e0b;">
-                        <h5 style="color: #92400e; margin-bottom: 1rem; font-size: 1.2rem;">🎯 Nguyên Tắc Chung</h5>
-                        <p style="color: #78350f; line-height: 1.6;">Lì xì nên phù hợp với khả năng tài chính và mối quan hệ. Không nên quá ít hoặc quá nhiều.</p>
+                <h2>Lưu ý khi lì xì</h2>
+                <div class="lucky-money-etiquette-grid">
+                    <div class="lucky-money-note">
+                        <h3>Phù hợp ngân sách</h3>
+                        <p>Lì xì nên phù hợp với khả năng tài chính và mối quan hệ. Giá trị nằm ở lời chúc, không phải áp lực số tiền.</p>
                     </div>
-                    <div class="tip-card" style="background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%); padding: 2rem; border-radius: 15px; text-align: center; border: 2px solid #3b82f6;">
-                        <h5 style="color: #1e40af; margin-bottom: 1rem; font-size: 1.2rem;">💰 Số Tiền Phù Hợp</h5>
-                        <p style="color: #1e3a8a; line-height: 1.6;">Trẻ em thường nhận ít hơn người lớn. Người thân ruột thịt thường nhận nhiều hơn người quen.</p>
+                    <div class="lucky-money-note">
+                        <h3>Ưu tiên sự công bằng</h3>
+                        <p>Với trẻ em cùng nhóm tuổi hoặc cùng vai vế, nên chuẩn bị mức lì xì tương đương để mọi người đều vui.</p>
                     </div>
-                    <div class="tip-card" style="background: linear-gradient(135deg, #dcfce7 0%, #86efac 100%); padding: 2rem; border-radius: 15px; text-align: center; border: 2px solid #16a34a;">
-                        <h5 style="color: #15803d; margin-bottom: 1rem; font-size: 1.2rem;">🎁 Ý Nghĩa Tết</h5>
-                        <p style="color: #166534; line-height: 1.6;">Lì xì không chỉ là tiền mà còn là lời chúc may mắn, sức khỏe và thành công trong năm mới.</p>
+                    <div class="lucky-money-note">
+                        <h3>Gửi kèm lời chúc</h3>
+                        <p>Một lời chúc sức khỏe, bình an hoặc học tập tiến bộ giúp phong bao trở nên ý nghĩa và gần gũi hơn.</p>
                     </div>
                 </div>
             </div>
@@ -228,4 +229,4 @@
 <script src="js/footer.js"></script>
 
 </body>
-</html> 
+</html>

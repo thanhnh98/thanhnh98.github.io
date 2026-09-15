@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lịch sự kiện sắp tới {{YEAR}}: Ngày lễ âm & dương lịch | Sắp Tết</title>
+  <meta name="description" content="Tra cứu 37 ngày lễ và sự kiện sắp tới tại Việt Nam: ngày âm lịch, ngày nghỉ lễ, ngày kỷ niệm và sự kiện quốc tế. Xem ngày diễn ra, ý nghĩa và đếm ngược.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://saptet.vn/su-kien-quan-trong.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sắp Tết">
+  <meta property="og:url" content="https://saptet.vn/su-kien-quan-trong.html">
+  <meta property="og:title" content="Lịch sự kiện sắp tới {{YEAR}} | Sắp Tết">
+  <meta property="og:description" content="Xem sự kiện gần nhất, ngày âm dương và ý nghĩa của 37 ngày đáng nhớ trong năm.">
+  <meta property="og:image" content="https://saptet.vn/assets/images/img_sharing.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lịch sự kiện sắp tới {{YEAR}} | Sắp Tết">
+  <meta name="twitter:description" content="Xem sự kiện gần nhất, ngày âm dương và ý nghĩa của 37 ngày đáng nhớ trong năm.">
+  <meta name="twitter:image" content="https://saptet.vn/assets/images/img_sharing.png">
+  <meta name="saptet:generated-signature" content="{{SIGNATURE}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/events-page.css?v={{ASSET_VERSION}}">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script type="application/ld+json">{{SCHEMA}}</script>
+</head>
+<body class="events-page">
+  <div id="header-container"></div>
+
+  <header class="events-index-hero">
+    <nav class="events-shell events-index-breadcrumb" aria-label="Breadcrumb">
+      <ol><li><a href="/">Trang chủ</a></li><li aria-current="page">Sự kiện quan trọng</li></ol>
+    </nav>
+    <div class="events-shell events-index-hero-grid">
+      <div>
+        <p class="events-eyebrow">Nhịp lịch quanh năm</p>
+        <h1>Lịch sự kiện sắp tới</h1>
+        <p class="events-index-lead">Biết ngày nào đang đến gần, vì sao ngày ấy đáng nhớ và chuẩn bị điều gì — từ Tết truyền thống đến những ngày kỷ niệm quen thuộc.</p>
+        <ul class="events-index-summary" aria-label="Tóm tắt danh mục">
+          <li>37 sự kiện đã chọn lọc</li>
+          <li>Ngày âm và dương lịch</li>
+          <li>Tự cập nhật lần diễn ra tiếp theo</li>
+        </ul>
+      </div>
+      {{NEXT_EVENT}}
+    </div>
+  </header>
+
+  <main class="events-index-main">
+    <div class="events-shell">
+      <section class="events-explorer" data-events-explorer aria-labelledby="events-list-heading">
+        <div class="events-explorer-heading">
+          <div>
+            <p class="events-eyebrow">Đừng bỏ lỡ</p>
+            <h2 id="events-list-heading">Sắp diễn ra theo thứ tự gần nhất</h2>
+          </div>
+          <p data-events-result-count aria-live="polite">37 sự kiện phù hợp</p>
+        </div>
+
+        <div class="events-filter-panel" aria-label="Tìm và lọc sự kiện">
+          <div class="events-search-row">
+            <div class="events-search-wrap">
+              <i data-lucide="search" aria-hidden="true"></i>
+              <label class="sr-only" for="events-search">Tìm sự kiện</label>
+              <input id="events-search" class="events-search" type="search" placeholder="Tìm Tết, Trung Thu, 20/11..." autocomplete="off" data-events-search>
+              <button class="events-search-clear" type="button" aria-label="Xóa nội dung tìm kiếm" data-events-search-clear>
+                <i data-lucide="x" aria-hidden="true"></i>
+              </button>
+            </div>
+            <ul class="events-filter-list" aria-label="Lọc theo loại sự kiện">
+              <li><button class="events-filter-button" type="button" aria-pressed="true" data-events-filter="all">Tất cả</button></li>
+              <li><button class="events-filter-button" type="button" aria-pressed="false" data-events-filter="lunar">Âm lịch</button></li>
+              <li><button class="events-filter-button" type="button" aria-pressed="false" data-events-filter="vietnam">Việt Nam</button></li>
+              <li><button class="events-filter-button" type="button" aria-pressed="false" data-events-filter="international">Quốc tế</button></li>
+              <li><button class="events-filter-button" type="button" aria-pressed="false" data-events-filter="holiday">Ngày nghỉ lễ</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="events-timeline" data-events-list>
+{{EVENT_CARDS}}
+        </div>
+        <div class="events-empty" data-events-empty>
+          <h3>Chưa tìm thấy sự kiện phù hợp</h3>
+          <p>Thử một từ khóa ngắn hơn hoặc quay lại xem toàn bộ danh sách.</p>
+          <button class="events-reset" type="button" data-events-reset>Xem tất cả sự kiện</button>
+        </div>
+        <button class="events-load-more" type="button" data-events-load-more>
+          Xem thêm sự kiện <i data-lucide="chevron-down" aria-hidden="true"></i>
+        </button>
+      </section>
+
+      <div class="events-editorial-grid">
+        <section class="events-about" aria-labelledby="events-about-title">
+          <p class="events-eyebrow">Một lịch, nhiều câu chuyện</p>
+          <h2 id="events-about-title">Ngày đáng nhớ không chỉ là một con số</h2>
+          <p>Danh sách kết hợp ngày lễ âm lịch, ngày kỷ niệm tại Việt Nam và một số ngày quốc tế quen thuộc. Mỗi sự kiện được tính theo lần diễn ra kế tiếp để bạn không phải dò lại những ngày đã qua.</p>
+          <p>Với sự kiện âm lịch, ngày dương tương ứng thay đổi theo từng năm. Hãy mở trang chi tiết để xem ngày chính xác, ý nghĩa, hoạt động gợi ý và những lưu ý hữu ích.</p>
+        </section>
+        <section class="events-faq" aria-labelledby="events-faq-title">
+          <p class="events-eyebrow">Hỏi nhanh</p>
+          <h2 id="events-faq-title">Cách xem lịch sự kiện</h2>
+          <details>
+            <summary>Vì sao ngày âm lịch thay đổi theo từng năm?</summary>
+            <p>Âm lịch vận hành theo chu kỳ Mặt Trăng nên khi quy đổi sang dương lịch, ngày tương ứng sẽ khác nhau qua từng năm.</p>
+          </details>
+          <details>
+            <summary>Nhãn “Ngày nghỉ lễ” có nghĩa gì?</summary>
+            <p>Nhãn này chỉ dùng cho các ngày nghỉ lễ chính thức được ghi nhận trong dữ liệu. Lịch nghỉ cụ thể vẫn cần đối chiếu thông báo áp dụng cho từng năm.</p>
+          </details>
+          <details>
+            <summary>Danh sách được sắp xếp như thế nào?</summary>
+            <p>Sự kiện gần hôm nay nhất được đặt trước. Khi một ngày đã qua, hệ thống tự chuyển sang lần diễn ra của năm tiếp theo.</p>
+          </details>
+        </section>
+      </div>
+
+      <section class="events-cross-cta" aria-labelledby="events-cta-title">
+        <div>
+          <h2 id="events-cta-title">Mang lịch Việt vào từng ngày</h2>
+          <p>Tra cứu ngày âm chi tiết hoặc theo dõi đếm ngược ngay trong ứng dụng Sắp Tết.</p>
+        </div>
+        <div class="events-cross-links">
+          <a href="/lich-van-nien.html">Xem lịch vạn niên</a>
+          <a href="/ung-dung.html">Tải ứng dụng</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/header-loader.js?v=events-20260904"></script>
+  <script src="/js/icons.js"></script>
+  <script src="/js/lunar-calendar.js"></script>
+  <script src="/data/events-data.js"></script>
+  <script src="/js/events-page.js"></script>
+  <script src="/js/footer.js"></script>
+</body>
+</html>

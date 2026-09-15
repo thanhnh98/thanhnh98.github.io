@@ -1,5 +1,15 @@
 /* Vibrant Tết Theme Colors */
 :root {
+    /* Shared Sắp Tết brand tokens */
+    --brand-red-deep: #8b0000;
+    --brand-red: #b91c1c;
+    --brand-gold: #ffd700;
+    --brand-cream: #fff9e6;
+    --brand-ink: #4b241d;
+    --brand-muted: #805b50;
+    --brand-border: rgba(185, 28, 28, 0.16);
+    --brand-shadow: 0 16px 42px rgba(124, 45, 18, 0.11);
+
     /* Primary Tết Colors - Enhanced Vibrancy */
     --color-primary: #E60026; /* More vibrant red */
     --color-primary-rgb: 230, 0, 38;

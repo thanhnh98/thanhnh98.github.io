@@ -25,3 +25,12 @@ test('selecting a date updates inline detail instead of opening a modal', () => 
 
   assert.doesNotMatch(selectDateBody, /openDialog\(\)/);
 });
+
+test('calendar colors use shared brand tokens with accessible day states', () => {
+  assert.match(page, /--calendar-primary:\s*var\(--brand-red/);
+  assert.match(page, /--calendar-primary-strong:\s*var\(--brand-red-deep/);
+  assert.match(page, /--calendar-text:\s*var\(--brand-ink/);
+  assert.match(page, /\.calendar-day\.other-month\s*\{[\s\S]*?opacity:\s*1;/);
+  assert.match(page, /\.calendar-day\.selected \.day-number,[\s\S]*?color:\s*#fff !important;/);
+  assert.match(page, /outline:\s*3px solid var\(--calendar-accent\)/);
+});

@@ -46,13 +46,15 @@ test('homepage keeps sharing below the full-screen hero greeting', () => {
   assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-content-wrapper\s*\{\s*padding:\s*0\.65rem 0\.25rem/);
 });
 
-test('homepage stays compact with six focused content sections', () => {
+test('homepage stays compact with seven focused content sections', () => {
   const html = read('index.html');
   const primarySections = [...html.matchAll(/<section\b[^>]*data-home-section="[^"]+"/g)];
 
-  assert.equal(primarySections.length, 6);
+  assert.equal(primarySections.length, 7);
   assert.match(html, /data-home-section="hero"/);
   assert.match(html, /data-home-section="today"/);
+  assert.match(html, /data-home-section="game"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
   assert.match(html, /data-home-section="quick-links"/);
   assert.match(html, /data-home-section="app"/);
   assert.match(html, /data-home-section="discovery"/);
@@ -69,6 +71,7 @@ test('homepage keeps three crawlable FAQs and useful internal links', () => {
   assert.match(html, /href="\/loi-chuc-tet\.html"/);
   assert.match(html, /href="\/may-tinh-li-xi\.html"/);
   assert.match(html, /href="\/tro-choi-tet\.html"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
   assert.match(html, /href="\/su-kien-quan-trong\.html"/);
 });
 
@@ -141,16 +144,18 @@ test('loi chuc tet page is indexable and supports the wishes CTA', () => {
   assert.match(sitemap, /https:\/\/saptet\.vn\/loi-chuc-tet\.html/);
 });
 
-test('tro choi tet page uses refreshed game hero', () => {
+test('tro choi tet page is a two-game hub', () => {
   const html = read('tro-choi-tet.html');
-  const css = read('css/game.css');
+  const css = read('css/games-hub.css');
 
-  assert.match(html, /class="game-hero-copy"/);
-  assert.match(html, /class="game-hero-preview"/);
-  assert.match(html, /href="#noi-chu-game" class="game-hero-btn game-hero-btn-primary"/);
-  assert.match(html, /href="\/ung-dung\.html" class="game-hero-btn game-hero-btn-secondary"/);
-  assert.match(css, /Refreshed game page header/);
-  assert.match(css, /\.game-hero\s*\{[\s\S]*background:\s*transparent/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.equal((html.match(/data-game-card=/g) || []).length, 2);
+  assert.match(html, /class="games-hub-grid"/);
+  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
+  assert.match(html, /href="\/noi-chu\.html"/);
+  assert.match(html, /horse-mascot\.webp/);
+  assert.match(html, /"@type":"CollectionPage"/);
+  assert.match(css, /grid-template-columns:\s*repeat\(2,/);
 });
 
 test('homepage title and meta use brand-first copy from inject payload', () => {

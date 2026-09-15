@@ -78,3 +78,14 @@ test('perpetual calendar labels only official holidays as days off', () => {
         /holidayInfo\.isHoliday \? '<p style="color: #64748B;/,
     );
 });
+
+test('important events page uses namespaced cards isolated from homepage carousel styles', () => {
+    const html = fs.readFileSync(path.join(root, 'su-kien-quan-trong.html'), 'utf8');
+    const css = fs.readFileSync(path.join(root, 'css/events-page.css'), 'utf8');
+
+    assert.match(html, /class="events-timeline"/);
+    assert.match(html, /class="events-index-card"/);
+    assert.match(css, /\.events-index-card-link\s*\{/);
+    assert.match(css, /min-width:\s*0;/);
+    assert.doesNotMatch(css, /(^|\n)\.event-card\s*\{/);
+});
