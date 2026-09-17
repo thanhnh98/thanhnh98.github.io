@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=20260914a">
   <link rel="stylesheet" href="css/colors.css?v=20260830">
-  <link rel="stylesheet" href="css/tet-runner.css?v=20260915e">
+  <link rel="stylesheet" href="css/tet-runner.css?v=20260918a">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -62,43 +62,69 @@
             <span class="tet-runner-tap-icon" aria-hidden="true"><i data-lucide="mouse-pointer-click"></i></span>
             <span><strong>Chạm để phi</strong><small>Chạm hoặc nhấn Space để nhảy · ↓ để cúi né</small></span>
           </div>
-          <button id="tet-runner-duck" class="tet-runner-duck" type="button" aria-label="Giữ để ngựa cúi né chùm pháo"><i data-lucide="arrow-down" aria-hidden="true"></i><span>Cúi né</span></button>
           <div id="tet-runner-points-burst" class="tet-runner-points-burst" aria-hidden="true" hidden></div>
           <div id="tet-runner-combo-burst" class="tet-runner-combo-burst" aria-hidden="true" hidden></div>
           <div id="tet-runner-landmark" class="tet-runner-landmark" aria-hidden="true" hidden></div>
           <div id="tet-runner-paused" class="tet-runner-message" role="status" hidden>
             <strong>Tạm dừng</strong><span>Quay lại game để tiếp tục</span>
           </div>
-          <div id="tet-runner-result" class="tet-runner-result" role="dialog" aria-modal="false" aria-labelledby="tet-runner-result-title" hidden>
-            <canvas id="tet-runner-result-horse" class="tet-runner-result-horse" width="180" height="130" aria-hidden="true"></canvas>
-            <p>Chuyến phi tạm dừng</p>
-            <h2 id="tet-runner-result-title">Bạn đã phi <strong id="tet-runner-final-score">0,00 km</strong></h2>
-            <span id="tet-runner-result-copy">Thử thêm một lượt để phá kỷ lục nhé!</span>
-            <div class="tet-runner-result-stats"><span>Điểm <b id="tet-runner-final-points">0</b></span><span>Combo cao nhất <b id="tet-runner-final-combo">0</b></span></div>
-            <div class="tet-runner-result-actions">
-              <button id="tet-runner-share-score" class="tet-runner-share-score" type="button"><i data-lucide="share-2" aria-hidden="true"></i> Chia sẻ điểm</button>
-              <button id="tet-runner-replay" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i> Chơi lại</button>
-            </div>
-          </div>
-          <div id="tet-runner-share-preview" class="tet-runner-share-preview" role="dialog" aria-modal="true" aria-labelledby="tet-runner-share-preview-title" hidden>
-            <div class="tet-runner-share-preview-card">
-              <button id="tet-runner-share-preview-close" class="tet-runner-share-preview-close" type="button" aria-label="Đóng xem trước"><i data-lucide="x" aria-hidden="true"></i></button>
-              <p>Xem trước ảnh chia sẻ</p>
-              <h2 id="tet-runner-share-preview-title">Khoe thành tích của bạn</h2>
-              <img id="tet-runner-share-preview-image" alt="Ảnh thành tích Ngựa Phi Đón Tết sẽ được chia sẻ">
-              <div class="tet-runner-share-preview-actions">
-                <button id="tet-runner-share-preview-back" type="button">Quay lại</button>
-                <button id="tet-runner-share-preview-copy" type="button"><i data-lucide="copy" aria-hidden="true"></i> Sao chép ảnh</button>
-                <button id="tet-runner-share-preview-download" type="button"><i data-lucide="download" aria-hidden="true"></i> Tải ảnh</button>
-                <button id="tet-runner-share-preview-confirm" type="button"><i data-lucide="share-2" aria-hidden="true"></i> Chia sẻ ảnh</button>
-              </div>
-            </div>
-          </div>
           <div id="tet-runner-fallback" class="tet-runner-fallback" role="status" hidden>
             <i data-lucide="gamepad-2" aria-hidden="true"></i>
             <strong>Thiết bị chưa hỗ trợ đồ họa 3D</strong>
             <span>Bạn vẫn có thể chơi mini game Nối Chữ của Sắp Tết.</span>
             <a href="/noi-chu.html">Chơi Nối Chữ</a>
+          </div>
+        </div>
+
+        <button id="tet-runner-duck" class="tet-runner-duck" type="button" aria-label="Giữ để ngựa cúi né chùm pháo"><i data-lucide="arrow-down" aria-hidden="true"></i><span>Cúi né</span></button>
+
+        <div id="tet-runner-result" class="tet-runner-result" role="dialog" aria-modal="false" aria-labelledby="tet-runner-result-title" hidden>
+          <div class="tet-runner-result-card">
+            <figure class="tet-runner-result-shot">
+              <canvas id="tet-runner-result-horse" class="tet-runner-result-horse" width="720" height="405" aria-hidden="true"></canvas>
+              <figcaption>
+                <span id="tet-runner-result-milestone" class="tet-runner-result-milestone">Điểm khởi hành</span>
+                <span id="tet-runner-result-obstacle" class="tet-runner-result-obstacle"><i data-lucide="alert-triangle" aria-hidden="true"></i><b>Chướng ngại chặn đường</b></span>
+              </figcaption>
+            </figure>
+            <p>Chuyến phi tạm dừng</p>
+            <h2 id="tet-runner-result-title">Bạn đã phi <strong id="tet-runner-final-score">0,00 km</strong></h2>
+            <span id="tet-runner-result-copy">Thử thêm một lượt để phá kỷ lục nhé!</span>
+            <div class="tet-runner-result-stats">
+              <span><b id="tet-runner-final-points">0</b><small>Điểm</small></span>
+              <span><b id="tet-runner-final-combo">0</b><small>Combo</small></span>
+              <span><b id="tet-runner-final-items">0</b><small>Quà</small></span>
+              <span><b id="tet-runner-final-time">0:00</b><small>Thời gian</small></span>
+            </div>
+            <div class="tet-runner-result-journey">
+              <img id="tet-runner-result-landmark-image" alt="" width="76" height="57" loading="lazy" decoding="async">
+              <span>
+                <small>Dừng chân tại</small>
+                <strong id="tet-runner-result-landmark">Hồ Gươm · Hà Nội</strong>
+                <em id="tet-runner-result-progress">Đã mở khóa 1/70 địa danh</em>
+              </span>
+            </div>
+            <div id="tet-runner-result-record" class="tet-runner-result-record"><i data-lucide="trophy" aria-hidden="true"></i><span>Kỷ lục 0,00 km</span></div>
+            <div class="tet-runner-result-actions">
+              <button id="tet-runner-share-score" class="tet-runner-share-score" type="button"><i data-lucide="share-2" aria-hidden="true"></i> Chia sẻ điểm</button>
+              <button id="tet-runner-view-landmarks" class="tet-runner-view-landmarks" type="button"><i data-lucide="map-pin" aria-hidden="true"></i> Xem địa danh</button>
+              <button id="tet-runner-replay" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i> Chơi lại</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="tet-runner-share-preview" class="tet-runner-share-preview" role="dialog" aria-modal="true" aria-labelledby="tet-runner-share-preview-title" hidden>
+          <div class="tet-runner-share-preview-card">
+            <button id="tet-runner-share-preview-close" class="tet-runner-share-preview-close" type="button" aria-label="Đóng xem trước"><i data-lucide="x" aria-hidden="true"></i></button>
+            <p>Xem trước ảnh chia sẻ</p>
+            <h2 id="tet-runner-share-preview-title">Khoe thành tích của bạn</h2>
+            <img id="tet-runner-share-preview-image" alt="Ảnh thành tích Ngựa Phi Đón Tết sẽ được chia sẻ">
+            <div class="tet-runner-share-preview-actions">
+              <button id="tet-runner-share-preview-back" type="button">Quay lại</button>
+              <button id="tet-runner-share-preview-copy" type="button"><i data-lucide="copy" aria-hidden="true"></i> Sao chép ảnh</button>
+              <button id="tet-runner-share-preview-download" type="button"><i data-lucide="download" aria-hidden="true"></i> Tải ảnh</button>
+              <button id="tet-runner-share-preview-confirm" type="button"><i data-lucide="share-2" aria-hidden="true"></i> Chia sẻ ảnh</button>
+            </div>
           </div>
         </div>
 
@@ -157,8 +183,8 @@
   <script src="js/navigation.js"></script>
   <script src="js/icons.js"></script>
   <script src="js/analytics.js"></script>
-  <script src="js/tet-runner-engine.js?v=20260915e"></script>
-  <script src="js/tet-runner-loader.js?v=20260915e"></script>
+  <script src="js/tet-runner-engine.js?v=20260918a"></script>
+  <script src="js/tet-runner-loader.js?v=20260918a"></script>
   <script src="js/footer.js"></script>
   <script type="module">
     if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {

@@ -60,6 +60,65 @@ test('standalone runner is one viewport, quick-play accessible and contains no i
   assert.ok(html.indexOf('id="tet-landmark-library"') > html.indexOf('id="tet-mascot-runner"'));
 });
 
+test('phone controls split left/right and the result screen links to the landmark library', () => {
+  const html = read('ngua-phi-don-tet.html');
+  const css = read('css/tet-runner.css');
+  const controller = read('js/tet-runner-three.js');
+
+  // Nút cúi né nằm ngoài khung game để chạm được ở đáy màn hình điện thoại.
+  assert.ok(html.indexOf('id="tet-runner-duck"') > html.indexOf('id="tet-runner-fallback"'));
+  assert.ok(html.indexOf('id="tet-runner-duck"') < html.indexOf('class="tet-runner-help"'));
+  assert.match(css, /\.tet-runner-stage\.is-playing ~ \.tet-runner-duck/);
+  assert.match(css, /\.tet-runner-page \.tet-runner-icon-button\s*\{[^}]*left:\s*max\(1rem, env\(safe-area-inset-left\)\)/);
+  assert.match(css, /\.tet-runner-page \.tet-runner-duck\s*\{[^}]*right:\s*max\(1rem, env\(safe-area-inset-right\)\)/);
+
+  // Chạm vùng trống quanh khung game cũng nhảy.
+  assert.match(controller, /section\.addEventListener\('pointerdown'/);
+  assert.match(controller, /if \(stage\.contains\(event\.target\)\) return;/);
+
+  assert.match(html, /id="tet-runner-view-landmarks"[^>]*>.*Xem địa danh<\/button>/);
+  assert.match(controller, /viewLandmarksButton/);
+  assert.match(controller, /track\('view_landmarks'/);
+  assert.match(controller, /landmarkLibrary\.scrollIntoView/);
+  assert.match(css, /\.tet-landmark-library\s*\{[^}]*scroll-margin-top:/);
+});
+
+test('game-over dialog shows a wide crash snapshot with the full run breakdown', () => {
+  const html = read('ngua-phi-don-tet.html');
+  const css = read('css/tet-runner.css');
+  const controller = read('js/tet-runner-three.js');
+
+  // Bảng kết quả và preview chia sẻ nằm ngoài khung game để phủ trọn viewport điện thoại.
+  assert.ok(html.indexOf('id="tet-runner-result"') > html.indexOf('id="tet-runner-fallback"'));
+  assert.ok(html.indexOf('id="tet-runner-share-preview"') > html.indexOf('id="tet-runner-result"'));
+  assert.match(css, /\.tet-runner-result-card\s*\{[\s\S]*?overflow-y:\s*auto/);
+
+  // Ảnh khoảnh khắc thua: nguyên khung hình đang chơi, không crop.
+  assert.match(html, /<canvas id="tet-runner-result-horse"[^>]*width="720"/);
+  assert.match(controller, /targetWidth \* \(source\.height \/ source\.width\)/);
+  assert.match(controller, /drawImage\(source, 0, 0, source\.width, source\.height, 0, 0, resultHorse\.width, resultHorse\.height\)/);
+  assert.doesNotMatch(controller, /source\.width \* \.38/);
+  // Ảnh bị giới hạn chiều cao theo tỉ lệ thật của khung game, cả bảng vừa 1 màn hình.
+  assert.match(css, /\.tet-runner-result-horse\s*\{[^}]*var\(--shot-max-h/);
+  assert.match(controller, /setProperty\('--shot-ratio'/);
+  // Khối số liệu gọn: một hàng bốn ô liền mạch.
+  assert.match(css, /\.tet-runner-result-stats\s*\{[^}]*grid-template-columns:\s*repeat\(4/);
+
+  for (const id of [
+    'tet-runner-result-milestone', 'tet-runner-result-obstacle', 'tet-runner-final-items',
+    'tet-runner-final-time', 'tet-runner-result-landmark', 'tet-runner-result-progress',
+    'tet-runner-result-record',
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`));
+  }
+  assert.match(controller, /finalItemsNode\.textContent = String\(state\.envelopes\)/);
+  assert.match(controller, /finalTimeNode\.textContent = formatDuration\(state\.elapsed\)/);
+  assert.match(controller, /function formatDuration/);
+  assert.match(controller, /resultMilestone\.textContent = reached\.milestoneLabel/);
+  assert.match(controller, /resultRecord\.classList\.toggle\('is-record'/);
+  assert.match(controller, /Đã mở khóa \$\{unlockedLandmarks\.size\}\/\$\{VIETNAM_ROUTE\.length\} địa danh/);
+});
+
 test('runner lazy loads Three.js and exposes lifecycle analytics without jump spam', () => {
   const loader = read('js/tet-runner-loader.js');
   const controller = read('js/tet-runner-three.js');

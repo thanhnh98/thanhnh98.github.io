@@ -662,6 +662,7 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   const paused = section.querySelector('#tet-runner-paused');
   const result = section.querySelector('#tet-runner-result');
   const replayButton = section.querySelector('#tet-runner-replay');
+  const viewLandmarksButton = section.querySelector('#tet-runner-view-landmarks');
   const shareScoreButton = section.querySelector('#tet-runner-share-score');
   const sharePreview = section.querySelector('#tet-runner-share-preview');
   const sharePreviewImage = section.querySelector('#tet-runner-share-preview-image');
@@ -686,8 +687,17 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   const finalScoreNode = section.querySelector('#tet-runner-final-score');
   const finalPointsNode = section.querySelector('#tet-runner-final-points');
   const finalComboNode = section.querySelector('#tet-runner-final-combo');
+  const finalItemsNode = section.querySelector('#tet-runner-final-items');
+  const finalTimeNode = section.querySelector('#tet-runner-final-time');
   const resultCopy = section.querySelector('#tet-runner-result-copy');
   const resultHorse = section.querySelector('#tet-runner-result-horse');
+  const resultMilestone = section.querySelector('#tet-runner-result-milestone');
+  const resultObstacle = section.querySelector('#tet-runner-result-obstacle');
+  const resultJourneyImage = section.querySelector('#tet-runner-result-landmark-image');
+  const resultJourneyName = section.querySelector('#tet-runner-result-landmark');
+  const resultJourneyProgress = section.querySelector('#tet-runner-result-progress');
+  const resultRecord = section.querySelector('#tet-runner-result-record');
+  const landmarkLibrary = document.querySelector('#tet-landmark-library');
   const landmarkLibraryGrid = document.querySelector('#tet-landmark-library-grid');
   const unlockedLandmarkCount = document.querySelector('#tet-landmark-unlocked-count');
   const landmarkProgressLabel = document.querySelector('#tet-landmark-progress-label');
@@ -1122,17 +1132,21 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     renderer.render(scene, camera);
   }
 
+  // Ảnh khoảnh khắc thua: giữ nguyên toàn khung hình đang chơi, không cắt xén.
   function updateResultHorsePortrait() {
     if (!resultHorse || typeof resultHorse.getContext !== 'function') return;
     renderer.render(scene, camera);
     const source = renderer.domElement;
+    if (!source.width || !source.height) return;
+    const targetWidth = 720;
+    const targetHeight = Math.max(1, Math.round(targetWidth * (source.height / source.width)));
+    if (resultHorse.width !== targetWidth) resultHorse.width = targetWidth;
+    if (resultHorse.height !== targetHeight) resultHorse.height = targetHeight;
+    // Tỉ lệ thật của khung game để CSS giới hạn chiều cao mà không cắt ảnh.
+    resultHorse.parentElement?.style.setProperty('--shot-ratio', (source.width / source.height).toFixed(3));
     const context = resultHorse.getContext('2d');
-    const cropX = Math.round(source.width * .1);
-    const cropY = Math.round(source.height * .5);
-    const cropWidth = Math.round(source.width * .38);
-    const cropHeight = Math.round(source.height * .5);
     context.clearRect(0, 0, resultHorse.width, resultHorse.height);
-    context.drawImage(source, cropX, cropY, cropWidth, cropHeight, 0, 0, resultHorse.width, resultHorse.height);
+    context.drawImage(source, 0, 0, source.width, source.height, 0, 0, resultHorse.width, resultHorse.height);
   }
 
   function syncEntityMeshes(state) {
@@ -1164,6 +1178,11 @@ export function initTetRunner({ section, engine, track, showFallback }) {
 
   function formatKilometers(value) {
     return `${Number(value || 0).toFixed(2).replace('.', ',')} km`;
+  }
+
+  function formatDuration(seconds) {
+    const total = Math.max(0, Math.round(Number(seconds) || 0));
+    return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
   }
 
   function reachedLandmarkAt(kilometers) {
@@ -1422,7 +1441,31 @@ export function initTetRunner({ section, engine, track, showFallback }) {
     const scoreGap = Math.max(0, state.highScore - state.score);
     resultCopy.textContent = state.isHighScore
       ? 'Kỷ lục mới! Mã đáo thành công rồi!'
-      : `${obstacleNames[state.crashObstacleType] || 'Chướng ngại'} chặn đường — còn ${formatKilometers(scoreGap)} để bắt kịp kỷ lục.`;
+      : `Còn ${formatKilometers(scoreGap)} nữa là chạm kỷ lục của bạn.`;
+
+    const reached = reachedLandmarkAt(state.score);
+    const remainingToNext = LANDMARK_INTERVAL_KM - (Math.max(0, state.score) % LANDMARK_INTERVAL_KM);
+    if (resultMilestone) resultMilestone.textContent = reached.milestoneLabel;
+    if (resultObstacle) {
+      const obstacleLabel = obstacleNames[state.crashObstacleType] || 'Chướng ngại';
+      resultObstacle.querySelector('b').textContent = `${obstacleLabel} chặn đường`;
+    }
+    if (finalItemsNode) finalItemsNode.textContent = String(state.envelopes);
+    if (finalTimeNode) finalTimeNode.textContent = formatDuration(state.elapsed);
+    if (resultJourneyName) resultJourneyName.textContent = `${reached.landmark} · ${reached.province}`;
+    if (resultJourneyImage) {
+      resultJourneyImage.src = reached.backgroundUrl || '';
+      resultJourneyImage.alt = `${reached.landmark}, ${reached.province}`;
+    }
+    if (resultJourneyProgress) {
+      resultJourneyProgress.textContent = `Đã mở khóa ${unlockedLandmarks.size}/${VIETNAM_ROUTE.length} địa danh · còn ${formatKilometers(remainingToNext)} tới mốc kế tiếp`;
+    }
+    if (resultRecord) {
+      resultRecord.classList.toggle('is-record', Boolean(state.isHighScore));
+      resultRecord.querySelector('span').textContent = state.isHighScore
+        ? `Kỷ lục mới ${formatKilometers(state.score)}`
+        : `Kỷ lục ${formatKilometers(state.highScore)}`;
+    }
     shakeUntil = performance.now() + 280;
     emitParticles(-4.1, 1.1, lowQuality ? 8 : 16, 'petal');
     playEffect('crash', 900);
@@ -1622,6 +1665,16 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   });
   stage.addEventListener('contextmenu', (event) => event.preventDefault());
 
+  // Trên điện thoại khung game không phủ hết màn hình: chạm vùng trống quanh khung cũng nhảy.
+  section.addEventListener('pointerdown', (event) => {
+    if (stage.contains(event.target)) return;
+    if (event.target.closest('button, a, input, textarea')) return;
+    if (!sharePreview.hasAttribute('hidden')) return;
+    if (landmarkViewer && !landmarkViewer.hasAttribute('hidden')) return;
+    stage.focus({ preventScroll: true });
+    begin(event.pointerType === 'touch' ? 'touch' : 'pointer');
+  });
+
   function setDuck(active) {
     const wasDucking = game.getState().ducking;
     const ducking = game.requestDuck(active);
@@ -1682,6 +1735,22 @@ export function initTetRunner({ section, engine, track, showFallback }) {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !sharePreview.hasAttribute('hidden')) closeSharePreview();
   });
+
+  if (viewLandmarksButton) {
+    viewLandmarksButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (!landmarkLibrary) return;
+      const state = game.getState();
+      track('view_landmarks', {
+        from: 'game_over',
+        score: state.score,
+        unlocked_landmarks: unlockedLandmarks.size,
+      });
+      closeSharePreview();
+      stage.blur();
+      landmarkLibrary.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
 
   replayButton.addEventListener('click', () => {
     const previous = game.getState();

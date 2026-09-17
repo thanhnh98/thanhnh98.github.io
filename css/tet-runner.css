@@ -173,7 +173,8 @@
   font-weight: 900;
 }
 .tet-runner-duck svg { width: 18px; height: 18px; }
-.tet-runner-stage.is-playing .tet-runner-duck { opacity: 1; transform: none; pointer-events: auto; }
+.tet-runner-stage.is-playing .tet-runner-duck,
+.tet-runner-stage.is-playing ~ .tet-runner-duck { opacity: 1; transform: none; pointer-events: auto; }
 .tet-runner-duck.is-pressed { color: #4b1625; background: var(--runner-gold); transform: translateY(3px) scale(.96); }
 
 .tet-runner-message,
@@ -211,21 +212,58 @@
 .tet-runner-landmark { top: 34%; color: #ffe487; font-size: clamp(1rem, 3vw, 1.8rem); }
 .tet-runner-landmark.is-visible { animation: tet-runner-landmark 1.5s ease both; }
 
-.tet-runner-result { inset: auto auto 50% 50%; width: min(420px, calc(100% - 2rem)); transform: translate(-50%, 50%); padding: clamp(1rem, 3vw, 1.6rem); border: 1px solid rgba(255, 210, 89, .72); border-radius: 22px; background: rgba(255, 248, 225, .96); box-shadow: 0 20px 50px rgba(30, 10, 30, .42); }
-.tet-runner-result-horse { width: 108px; height: 78px; display: block; margin: -.45rem auto -.1rem; border: 1px solid rgba(190, 40, 55, .2); border-radius: 16px; background: linear-gradient(145deg, #6d2742, #1d2941); box-shadow: 0 8px 18px rgba(69, 15, 31, .18); }
+/* Bảng kết quả: ảnh chụp đúng khoảnh khắc thua + toàn bộ số liệu của ván chơi. */
+.tet-runner-result { z-index: 8; padding: clamp(.5rem, 2vw, 1rem); }
+.tet-runner-result-card {
+  width: min(480px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .42rem;
+  padding: clamp(.85rem, 2.6vw, 1.4rem);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 210, 89, .72);
+  border-radius: 22px;
+  background: rgba(255, 248, 225, .97);
+  box-shadow: 0 20px 50px rgba(30, 10, 30, .42);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ảnh giữ nguyên khung hình (không crop), chỉ giới hạn chiều cao để cả bảng nằm gọn trong 1 màn hình. */
+.tet-runner-result-shot { width: 100%; margin: 0; }
+.tet-runner-result-horse { width: min(100%, calc(var(--shot-max-h, 26svh) * var(--shot-ratio, 1.6))); height: auto; display: block; margin: 0 auto; border: 1px solid rgba(190, 40, 55, .2); border-radius: 16px; background: linear-gradient(145deg, #6d2742, #1d2941); box-shadow: 0 10px 22px rgba(69, 15, 31, .2); }
+.tet-runner-result-shot figcaption { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .3rem .45rem; margin: .38rem 0 0; }
+.tet-runner-result-milestone { padding: .18rem .5rem; border-radius: 999px; color: #6b3a05; background: #ffe6a8; font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.tet-runner-result-obstacle { display: inline-flex; align-items: center; gap: .28rem; color: #96301f; font-size: .72rem; font-weight: 800; }
+.tet-runner-result-obstacle svg { width: 13px; height: 13px; color: #c9541f; }
 .tet-runner-result p { margin: 0; color: #a14b35; font-size: .73rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .tet-runner-result h2,
 .tet-runner-result h3 { margin: 0; color: #67111a; font-size: clamp(1.25rem, 4vw, 1.8rem); }
-.tet-runner-result > span:not(.tet-runner-result-badge) { color: #7c4a42; }
-.tet-runner-result-stats { width: 100%; display: flex; justify-content: center; gap: .5rem; margin-top: .2rem; }
-.tet-runner-result-stats span { padding: .38rem .6rem; border-radius: 9px; color: #70403b; background: #f8e7bf; font-size: .76rem; }
-.tet-runner-result-stats b { color: #9e192a; }
+.tet-runner-result-card > span { color: #7c4a42; font-size: .86rem; }
+.tet-runner-result-stats { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: .15rem; border-radius: 12px; background: #f8e7bf; }
+.tet-runner-result-stats span { display: grid; gap: 0; padding: .32rem .2rem; color: #70403b; }
+.tet-runner-result-stats span + span { box-shadow: inset 1px 0 0 rgba(158, 25, 42, .14); }
+.tet-runner-result-stats small { color: #9a6a54; font-size: .56rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.tet-runner-result-stats b { color: #9e192a; font-size: .95rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.tet-runner-result-journey { width: 100%; display: flex; align-items: center; gap: .6rem; padding: .45rem .55rem; border: 1px dashed rgba(158, 25, 42, .3); border-radius: 14px; background: rgba(248, 231, 191, .55); text-align: left; }
+.tet-runner-result-journey img { width: 76px; height: 57px; flex: 0 0 auto; border-radius: 10px; object-fit: cover; background: #ecd9b4; }
+.tet-runner-result-journey img:not([src]), .tet-runner-result-journey img[src=""] { display: none; }
+.tet-runner-result-journey > span { min-width: 0; display: grid; gap: .04rem; }
+.tet-runner-result-journey small { color: #a14b35; font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.tet-runner-result-journey strong { color: #67111a; font-size: .92rem; line-height: 1.18; }
+.tet-runner-result-journey em { color: #7c4a42; font-size: .7rem; font-style: normal; }
+.tet-runner-result-record { display: inline-flex; align-items: center; gap: .35rem; padding: .3rem .72rem; border-radius: 999px; color: #7a4a10; background: #fdf0cd; box-shadow: inset 0 0 0 1px rgba(214, 160, 46, .35); font-size: .76rem; font-weight: 900; }
+.tet-runner-result-record svg { width: 15px; height: 15px; color: #d99a1f; }
+.tet-runner-result-record.is-record { color: #245745; background: #dff4de; box-shadow: inset 0 0 0 1px rgba(36, 87, 69, .28); }
+.tet-runner-result-record.is-record svg { color: #2e7d5b; }
 .tet-runner-result-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .55rem; margin-top: .45rem; }
 .tet-runner-result button, .tet-runner-fallback a { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; margin: 0; padding: .7rem 1.15rem; border: 0; border-radius: 999px; color: #fff; background: linear-gradient(135deg, #b61928, #7b0b18); box-shadow: 0 8px 18px rgba(107, 7, 21, .22); font: inherit; font-weight: 900; text-decoration: none; cursor: pointer; }
-.tet-runner-result .tet-runner-share-score { color: #761522; background: #f8e7bf; box-shadow: inset 0 0 0 1px rgba(158, 25, 42, .22); }
+.tet-runner-result .tet-runner-share-score,
+.tet-runner-result .tet-runner-view-landmarks { color: #761522; background: #f8e7bf; box-shadow: inset 0 0 0 1px rgba(158, 25, 42, .22); }
 .tet-runner-result .tet-runner-share-score.is-done { color: #245745; background: #dff4de; }
 .tet-runner-result button svg { width: 17px; height: 17px; }
-.tet-runner-share-preview { position: absolute; z-index: 7; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgba(20, 10, 27, .72); backdrop-filter: blur(8px); }
+.tet-runner-share-preview { position: absolute; z-index: 9; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgba(20, 10, 27, .72); backdrop-filter: blur(8px); }
 .tet-runner-share-preview[hidden] { display: none; }
 .tet-runner-share-preview-card { position: relative; width: min(520px, 100%); display: grid; justify-items: center; gap: .55rem; padding: clamp(1rem, 3vw, 1.45rem); border: 1px solid rgba(255, 210, 89, .72); border-radius: 22px; color: #6b2630; background: #fff8e1; box-shadow: 0 24px 60px rgba(22, 7, 24, .5); }
 .tet-runner-share-preview-card > p { margin: 0; color: #a14b35; font-size: .7rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
@@ -249,6 +287,7 @@
 .tet-landmark-library {
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 74px;
   padding: clamp(3.5rem, 7vw, 6.5rem) 0;
   color: #4a2330;
   background:
@@ -329,8 +368,13 @@ body.is-landmark-viewer-open { overflow: hidden; }
   .tet-runner-location span { font-size: .57rem; }
   .tet-runner-location em { font-size: .52rem; }
   .tet-runner-stage { max-height: none; aspect-ratio: 4 / 3; border-radius: 18px; }
-  .tet-runner-duck { min-width: 64px; min-height: 48px; }
+  .tet-runner-duck { min-width: 72px; min-height: 52px; }
   .tet-runner-duck span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .tet-runner-result-card { width: min(420px, 100%); gap: .35rem; padding: .8rem; }
+  .tet-runner-result-stats small { font-size: .52rem; }
+  .tet-runner-result-stats b { font-size: .88rem; }
+  .tet-runner-result-journey img { width: 62px; height: 47px; }
+  .tet-runner-result-actions button { min-height: 42px; padding: .6rem .9rem; font-size: .82rem; }
   .tet-runner-share-preview { padding: .4rem; }
   .tet-runner-share-preview-card { width: min(390px, 100%); max-height: calc(100% - .25rem); gap: .3rem; padding: .65rem; overflow-y: auto; }
   .tet-runner-share-preview-card > p { display: none; }
@@ -362,6 +406,15 @@ body.is-landmark-viewer-open { overflow: hidden; }
 @media (max-width: 420px) {
   .tet-landmark-library-heading { display: grid; }
   .tet-landmark-library-progress { justify-self: start; }
+}
+
+/* Màn hình thấp: co bảng kết quả để nút hành động luôn nằm trong tầm nhìn. */
+@media (max-height: 740px) {
+  .tet-runner-result-card { gap: .3rem; padding: .75rem; }
+  .tet-runner-result-card { --shot-max-h: 21svh; }
+  .tet-runner-result-stats span { padding: .28rem .18rem; }
+  .tet-runner-result-journey { padding: .35rem .45rem; }
+  .tet-runner-result-journey img { width: 58px; height: 44px; }
 }
 
 @media (max-height: 690px) and (min-width: 681px) {
@@ -418,14 +471,21 @@ body.is-landmark-viewer-open { overflow: hidden; }
   white-space: nowrap;
 }
 
+/* Controls sit on the bottom row of the viewport: sound on the left, duck on the right. */
 .tet-runner-page .tet-runner-icon-button {
   position: absolute;
-  right: max(1rem, env(safe-area-inset-right));
-  bottom: calc(5rem + env(safe-area-inset-bottom));
+  left: max(1rem, env(safe-area-inset-left));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
   width: 46px;
   min-width: 46px;
   padding: 0;
   pointer-events: auto;
+}
+
+.tet-runner-page .tet-runner-duck {
+  z-index: 6;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
 .tet-runner-page .tet-runner-icon-button span {
