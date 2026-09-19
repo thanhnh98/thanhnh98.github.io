@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-`saptet.vn` — the marketing/SEO/utility website for the **Sắp Tết** Vietnamese Lunar New Year countdown product. Plain HTML/CSS/vanilla JS, no framework, no bundler except one esbuild call for the Tết Runner game. Deployed to GitHub Pages (`thanhnh98/thanhnh98.github.io`, push `master` → Actions publishes `gh-pages`). Node scripts exist only as build/codegen/test tooling — nothing runs server-side.
+`saptet.vn` — the marketing/SEO/utility website for the **Sắp Tết** Vietnamese Lunar New Year countdown product. Plain HTML/CSS/vanilla JS, no framework, no bundler except one esbuild call for the Tết Runner game. Deployed to GitHub Pages (`thanhnh98/thanhnh98.github.io`): GitHub's own "pages build and deployment" builds straight from `master` on every push. Node scripts exist only as build/codegen/test tooling — nothing runs server-side.
 
 Content language is Vietnamese; all date math is Vietnam time (UTC+7). The sibling repos (Android, iOS, backend, static JSON API) are described in `../CLAUDE.md`; this site does **not** consume them — it only links to the store listings.
 
@@ -24,7 +24,7 @@ Content language is Vietnamese; all date math is Vietnam time (UTC+7). The sibli
 | `npm run deploy` | `predeploy` (build runner + `update-version`) then commits `sw.js .version .last_build_id` and pushes `master`. |
 | `npm run crawl` | VNExpress Tết-article crawler (`crawl-tet-articles.js`) that rewrites `blog.html`. Legacy; `tin-tuc/` is the live blog. |
 
-No lint step. `.github/workflows/deploy.yml` re-runs build → clean-urls → inject-seo → update-version on every push to `master`, so a forgotten generator step self-heals on deploy — but the repo then differs from what is published. `.github/workflows/seo-daily-update.yml` runs inject-seo + generate-events daily at 00:00 VN time and commits with `[skip ci]`.
+No lint step. `.github/workflows/deploy.yml` would re-run build → clean-urls → inject-seo → update-version and publish a `gh-pages` branch, but in practice it rarely runs: `deploy.sh` ends with a `[skip ci]` commit, which skips Actions. Treat the generator steps as something you must run locally before deploying. `.github/workflows/seo-daily-update.yml` runs inject-seo + generate-events daily at 00:00 VN time and commits with `[skip ci]`.
 
 ## Generated files — never hand-edit
 
