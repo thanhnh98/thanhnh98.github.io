@@ -43,6 +43,9 @@
     setText('bloc-lunar-day', a.lunar.day === 1 ? 'Mùng 1' : String(a.lunar.day));
     setText('bloc-lunar-month', 'Tháng ' + a.lunarMonthName + (a.lunar.isLeapMonth ? ' (nhuận)' : '') + ' Âm Lịch');
     setText('bloc-canchi', 'Ngày ' + a.canChi.day.can + ' ' + a.canChi.day.chi);
+    if (isToday) {
+      setText('lunar-today-summary', 'Hôm nay, ' + a.weekday + ' ' + formatSolar(date) + ', là ngày ' + lunarLabel(a) + ' năm ' + a.canChi.year.can + ' ' + a.canChi.year.chi + ' (ngày ' + a.canChi.day.can + ' ' + a.canChi.day.chi + ').');
+    }
 
     setText('details-heading', isToday ? 'Thông Tin Chi Tiết Ngày Hôm Nay' : 'Thông Tin Chi Tiết Ngày ' + formatSolar(date));
     setText('detail-canchi', 'Ngày ' + a.canChi.day.can + ' ' + a.canChi.day.chi + ', Tháng ' + a.canChi.month.can + ' ' + a.canChi.month.chi + ', Năm ' + a.canChi.year.can + ' ' + a.canChi.year.chi);
@@ -219,10 +222,11 @@
 
   function bindKeepActions() {
     var app = $('lunar-keep-app');
-    if (app && window.APP_RESOURCES && window.APP_RESOURCES.appStore) {
+    var resources = typeof APP_RESOURCES !== 'undefined' ? APP_RESOURCES : null;
+    if (app && resources && resources.appStore) {
       var ua = navigator.userAgent || '';
       var isIos = /iphone|ipad|ipod/i.test(ua) || (/mac/i.test(navigator.platform || '') && navigator.maxTouchPoints > 1);
-      app.href = isIos ? window.APP_RESOURCES.appStore.ios : window.APP_RESOURCES.appStore.android;
+      app.href = isIos ? resources.appStore.ios : resources.appStore.android;
       app.addEventListener('click', function () { track('lunar_keep_action', { type: isIos ? 'app_ios' : 'app_android' }); });
     }
 
