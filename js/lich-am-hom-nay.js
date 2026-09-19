@@ -284,7 +284,19 @@
 
     bindConverter();
     bindKeepActions();
+    bindCalendarToggle();
     bindFaq();
+  }
+
+  function bindCalendarToggle() {
+    var toggle = $('toggle-calendar-btn');
+    var section = $('month-section');
+    if (!toggle || !section) return;
+    toggle.addEventListener('click', function () {
+      var open = section.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.lastChild.textContent = open ? ' Ẩn lịch' : ' Chọn ngày khác';
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

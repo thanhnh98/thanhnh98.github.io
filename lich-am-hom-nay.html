@@ -683,6 +683,7 @@
         }
 
         .keep-btn {
+            white-space: nowrap;
             flex: 1 1 140px;
             display: inline-flex;
             align-items: center;
@@ -807,6 +808,136 @@
             color: #64748B;
             margin: 0 0 12px;
         }
+        /* Compact hero */
+        .licham-hero--compact {
+            padding: 0.85rem 1rem 0.9rem;
+            animation: none;
+        }
+        .licham-hero--compact h1 {
+            font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+            margin-bottom: 0.15rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+        }
+        .licham-hero--compact .hero-today-summary {
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* Month picker in the left column */
+        .month-section--side {
+            width: 100%;
+            max-width: 320px;
+            padding: 12px;
+            margin: 14px 0 0;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(220, 20, 60, 0.05);
+        }
+        .month-section--side .month-header {
+            margin-bottom: 8px;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+        .month-section--side .month-header-left {
+            gap: 4px;
+            min-width: 0;
+        }
+        .month-section--side .month-title {
+            font-size: 0.95rem;
+        }
+        .month-section--side .month-nav-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.9rem;
+        }
+        .month-section--side .today-btn {
+            padding: 5px 9px;
+            font-size: 0.72rem;
+            border-radius: 999px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .month-section--side .today-btn svg {
+            width: 13px;
+            height: 13px;
+        }
+        .bloc-container .bloc-body {
+            padding: 16px 18px;
+        }
+        .bloc-container .bloc-solar-day {
+            font-size: 4.2rem;
+            margin: 4px 0;
+        }
+        .month-section--side .calendar-grid {
+            gap: 3px;
+        }
+        .month-section--side .calendar-day-header {
+            padding: 2px 0 4px;
+            font-size: 0.68rem;
+            border-radius: 0;
+            background: transparent !important;
+            color: #64748B !important;
+            border: none;
+            border-bottom: 1px solid #F1F5F9;
+            box-shadow: none;
+        }
+        .month-section--side .calendar-day {
+            min-height: 40px;
+            padding: 3px 2px;
+            border-radius: 7px;
+            gap: 1px;
+        }
+        .month-section--side .solar-date {
+            font-size: 0.85rem;
+        }
+        .month-section--side .lunar-date {
+            font-size: 0.6rem;
+        }
+        .toggle-calendar-btn {
+            display: none;
+            width: 100%;
+            max-width: 320px;
+            margin-top: 12px;
+            padding: 9px 12px;
+            border-radius: 12px;
+            border: 1px dashed var(--brand-red, #b91c1c);
+            background: #fff;
+            color: var(--brand-red, #b91c1c);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        @media (max-width: 768px) {
+            .toggle-calendar-btn {
+                display: inline-flex;
+            }
+            .month-section--side {
+                display: none;
+            }
+            .month-section--side.open {
+                display: block;
+            }
+        }
+
+        /* Compact keep actions */
+        .keep-actions--compact {
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .keep-actions--compact .keep-btn {
+            flex: 0 0 auto;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            border-radius: 999px;
+            border-width: 1px;
+        }
+        .keep-actions--compact .keep-btn svg {
+            width: 14px;
+            height: 14px;
+        }
     </style>
 <!-- Microsoft Clarity -->
 <script>
@@ -822,10 +953,9 @@
     <div id="header-container"></div>
 
     <main>
-        <section class="licham-hero">
+        <section class="licham-hero licham-hero--compact">
             <div class="container">
                 <h1>Lịch Âm Hôm Nay</h1>
-                <p class="subtitle">Ngày âm lịch, can chi, giờ hoàng đạo, hướng xuất hành và việc nên làm theo lịch dân gian, chỉ để tham khảo</p>
                 <!-- LUNAR_TODAY:START -->
                 <p class="hero-today-summary" id="lunar-today-summary">Hôm nay, Thứ Bảy 19/9/2026, là ngày 9 tháng Tám năm Bính Ngọ (ngày Bính Thân).</p>
                 <!-- LUNAR_TODAY:END -->
@@ -856,7 +986,25 @@
                             </div>
                         </div>
                     </article>
-                    <div class="keep-actions">
+                    <button type="button" class="toggle-calendar-btn" id="toggle-calendar-btn" aria-expanded="false" aria-controls="month-section"><i data-lucide="calendar-days"></i> Chọn ngày khác</button>
+                    <section class="month-section month-section--side" id="month-section" aria-label="Chọn ngày">
+                <div class="month-header">
+                    <div class="month-header-left">
+                        <button class="month-nav-btn" id="prev-month-btn" aria-label="Tháng trước">&lt;</button>
+                        <h3 class="month-title" id="month-title-display">Tháng 6 năm 2026</h3>
+                        <button class="month-nav-btn" id="next-month-btn" aria-label="Tháng sau">&gt;</button>
+                    </div>
+                    <button class="today-btn" id="today-btn">
+                        <i data-lucide="calendar-days"></i>
+                        Hôm nay
+                    </button>
+                </div>
+
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- Dynamic Month Calendar generated by JS -->
+                </div>
+            </section>
+                    <div class="keep-actions keep-actions--compact">
                         <a id="lunar-keep-app" class="keep-btn keep-btn-primary" href="/ung-dung.html" rel="noopener"><i data-lucide="smartphone"></i> Tải app Sắp Tết</a>
                         <button id="lunar-keep-share" type="button" class="keep-btn"><i data-lucide="share-2"></i> Chia sẻ</button>
                     </div>
@@ -948,25 +1096,6 @@
                     </form>
                 </div>
                 <p id="convert-result" class="convert-result" hidden></p>
-            </section>
-
-            <!-- Month Calendar section -->
-            <section class="month-section">
-                <div class="month-header">
-                    <div class="month-header-left">
-                        <button class="month-nav-btn" id="prev-month-btn" aria-label="Tháng trước">&lt;</button>
-                        <h3 class="month-title" id="month-title-display">Tháng 6 năm 2026</h3>
-                        <button class="month-nav-btn" id="next-month-btn" aria-label="Tháng sau">&gt;</button>
-                    </div>
-                    <button class="today-btn" id="today-btn">
-                        <i data-lucide="calendar-days"></i>
-                        Về Hôm Nay
-                    </button>
-                </div>
-
-                <div class="calendar-grid" id="calendar-grid">
-                    <!-- Dynamic Month Calendar generated by JS -->
-                </div>
             </section>
 
             <!-- SEO Content Section -->

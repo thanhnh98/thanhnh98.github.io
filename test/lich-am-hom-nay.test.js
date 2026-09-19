@@ -85,3 +85,24 @@ test('page carries idempotent markers for the daily pre-render', () => {
   assert.match(page, /<!-- LUNAR_TODAY:START -->/);
   assert.match(page, /<!-- LUNAR_TODAY:END -->/);
 });
+
+test('month picker lives in the left column next to the bloc so selection binds to the details beside it', () => {
+  const blocContainer = page.match(/<div class="bloc-container">[\s\S]*?<!-- Right: /)?.[0] || '';
+  assert.match(blocContainer, /id="calendar-grid"/);
+  assert.match(blocContainer, /id="prev-month-btn"/);
+  assert.match(blocContainer, /id="toggle-calendar-btn"/);
+  const afterWrapper = page.slice(page.indexOf('<!-- Đổi ngày âm dương -->'));
+  assert.doesNotMatch(afterWrapper, /id="calendar-grid"/);
+});
+
+test('hero is compact: no long subtitle paragraph, summary stays', () => {
+  const hero = page.match(/<section class="licham-hero[^"]*">[\s\S]*?<\/section>/)?.[0] || '';
+  assert.match(hero, /licham-hero--compact/);
+  assert.doesNotMatch(hero, /class="subtitle"/);
+  assert.match(hero, /id="lunar-today-summary"/);
+});
+
+test('keep actions are compact pills', () => {
+  assert.match(page, /class="keep-actions keep-actions--compact"/);
+  assert.match(page, /\.keep-btn \{[^}]*white-space:\s*nowrap/);
+});
