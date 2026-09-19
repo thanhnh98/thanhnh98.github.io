@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <title>Lịch Vạn Niên 2027 - Lịch Âm Dương | Xem Ngày Tốt Xấu</title>
-    <meta name="description" content="Lịch vạn niên 2027 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng. Lịch vạn niên Việt Nam chính xác nhất.">
+    <meta name="description" content="Lịch vạn niên 2027 - Xem lịch âm dương đầy đủ, tra cứu ngày tốt xấu, giờ hoàng đạo, ngày đẹp để làm các việc quan trọng.">
     <meta name="keywords" content="lịch vạn niên, lịch âm dương, lịch vạn niên 2027, xem ngày tốt, ngày đẹp, giờ hoàng đạo, lịch âm dương 2027">
     
     <!-- Open Graph / Facebook -->
@@ -1167,6 +1167,17 @@
             border-bottom: 2px solid #E2E8F0;
         }
         
+        .almanac-disclaimer {
+            margin: 0.75rem 0 0;
+            padding: 0.75rem 0.9rem;
+            border-radius: 12px;
+            background: #F8FAFC;
+            border-left: 4px solid #94A3B8;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #64748B;
+        }
+
         .detail-section-content {
             color: #475569;
             line-height: 1.6;
@@ -2334,6 +2345,7 @@
                                 <p>Chọn một ngày trong lịch để xem thông tin chi tiết</p>
                             </div>
                         </div>
+                        <p class="almanac-disclaimer" id="almanacDisclaimer">Thông tin giờ hoàng đạo, ngày tốt xấu, hướng xuất hành, tuổi xung và việc nên làm/kiêng kỵ được tổng hợp theo quan niệm dân gian và lịch can chi truyền thống, chỉ mang tính tham khảo, không phải lời khuyên. Bạn tự cân nhắc khi đưa ra quyết định.</p>
 
                         <div id="eventsUpcomingWrap" class="events-upcoming-wrap" aria-live="polite">
                             <p class="events-upcoming-title">Sự kiện sắp tới</p>
@@ -2373,6 +2385,7 @@
     <script src="js/header-loader.js"></script>
     <script src="js/icons.js"></script>
     <script src="js/lunar-calendar.js"></script>
+    <script src="js/lunar-almanac.js?v=20260919"></script>
     <script src="js/trung-thu-calculator.js"></script>
     <script src="data/events-data.js"></script>
     <script>
@@ -2755,88 +2768,17 @@
             return dayElement;
         }
         
-        // Tính toán giờ hoàng đạo và hắc đạo
+        // Giờ hoàng đạo, trực, sao và việc nên/kiêng lấy từ module dùng chung js/lunar-almanac.js
         function calculateAuspiciousHours(date) {
-            const dayOfWeek = date.getDay();
-            
-            // Giờ hoàng đạo và hắc đạo theo ngày trong tuần
-            const auspiciousHours = {
-                0: ['23:00-01:00', '05:00-07:00', '11:00-13:00'], // Chủ nhật
-                1: ['01:00-03:00', '07:00-09:00', '13:00-15:00'], // Thứ hai
-                2: ['03:00-05:00', '09:00-11:00', '15:00-17:00'], // Thứ ba
-                3: ['05:00-07:00', '11:00-13:00', '17:00-19:00'], // Thứ tư
-                4: ['07:00-09:00', '13:00-15:00', '19:00-21:00'], // Thứ năm
-                5: ['09:00-11:00', '15:00-17:00', '21:00-23:00'], // Thứ sáu
-                6: ['11:00-13:00', '17:00-19:00', '23:00-01:00']  // Thứ bảy
-            };
-            
-            const inauspiciousHours = {
-                0: ['09:00-11:00', '15:00-17:00', '21:00-23:00'],
-                1: ['11:00-13:00', '17:00-19:00', '23:00-01:00'],
-                2: ['13:00-15:00', '19:00-21:00', '01:00-03:00'],
-                3: ['15:00-17:00', '21:00-23:00', '03:00-05:00'],
-                4: ['17:00-19:00', '23:00-01:00', '05:00-07:00'],
-                5: ['19:00-21:00', '01:00-03:00', '07:00-09:00'],
-                6: ['21:00-23:00', '03:00-05:00', '09:00-11:00']
-            };
-            
+            const almanac = LunarAlmanac.getAlmanac(date);
+            const label = (h) => `${h.chi} (${h.range})`;
             return {
-                auspicious: auspiciousHours[dayOfWeek] || [],
-                inauspicious: inauspiciousHours[dayOfWeek] || []
+                auspicious: almanac.luckyHours.good.map(label),
+                inauspicious: almanac.luckyHours.bad.map(label),
+                truc: almanac.truc,
+                star: almanac.star,
+                canChi: almanac.canChi
             };
-        }
-        
-        // Lấy việc nên làm và không nên làm
-        function getGoodActivities(lunarDay) {
-            const activities = {
-                1: ['Khai trương', 'Khởi công', 'Cưới hỏi', 'Xuất hành'],
-                2: ['Xuất hành', 'Giao dịch', 'Mua sắm', 'Ký hợp đồng'],
-                3: ['Cầu nguyện', 'Thờ cúng', 'Học tập', 'Thi cử'],
-                4: ['An táng', 'Dọn nhà', 'Sửa chữa', 'Trang trí'],
-                5: ['Khai trương', 'Ký hợp đồng', 'Đầu tư', 'Khởi nghiệp'],
-                6: ['Cưới hỏi', 'Xuất hành', 'Gặp gỡ', 'Sum họp'],
-                7: ['Thờ cúng', 'Cầu nguyện', 'Tu tập', 'Tĩnh tâm'],
-                8: ['Khởi công', 'Xây dựng', 'Trồng trọt', 'Gieo hạt'],
-                9: ['Giao dịch', 'Mua bán', 'Kinh doanh', 'Đàm phán'],
-                10: ['Cưới hỏi', 'Lễ hội', 'Vui chơi', 'Tổ chức tiệc'],
-                11: ['Xuất hành', 'Du lịch', 'Di chuyển', 'Khám phá'],
-                12: ['Học tập', 'Nghiên cứu', 'Sáng tác', 'Viết lách'],
-                13: ['Khai trương', 'Khởi nghiệp', 'Đầu tư', 'Mở rộng'],
-                14: ['Cầu nguyện', 'Thờ cúng', 'Từ thiện', 'Giúp đỡ'],
-                15: ['Cưới hỏi', 'Lễ hội', 'Sum họp', 'Tổ chức sự kiện'],
-                16: ['Xuất hành', 'Giao dịch', 'Hợp tác', 'Ký kết'],
-                17: ['Sửa chữa', 'Tu bổ', 'Cải tạo', 'Nâng cấp'],
-                18: ['Học tập', 'Thi cử', 'Nghiên cứu', 'Phát triển'],
-                19: ['Khai trương', 'Kinh doanh', 'Đầu tư', 'Mở cửa'],
-                20: ['Cưới hỏi', 'Lễ hội', 'Vui chơi', 'Giải trí'],
-                21: ['Xuất hành', 'Du lịch', 'Khám phá', 'Tham quan'],
-                22: ['Thờ cúng', 'Cầu nguyện', 'Tu tập', 'Thiền định'],
-                23: ['Giao dịch', 'Mua bán', 'Hợp tác', 'Đàm phán'],
-                24: ['Sửa chữa', 'Dọn dẹp', 'Trang trí', 'Tổ chức'],
-                25: ['Cưới hỏi', 'Sum họp', 'Gặp gỡ', 'Hội họp'],
-                26: ['Học tập', 'Nghiên cứu', 'Sáng tác', 'Phát triển'],
-                27: ['Khai trương', 'Khởi công', 'Đầu tư', 'Mở rộng'],
-                28: ['Xuất hành', 'Giao dịch', 'Kinh doanh', 'Hợp tác'],
-                29: ['Cầu nguyện', 'Thờ cúng', 'Từ thiện', 'Giúp đỡ'],
-                30: ['Nghỉ ngơi', 'Tĩnh tâm', 'Suy ngẫm', 'Thư giãn']
-            };
-            return activities[lunarDay] || ['Các việc thông thường'];
-        }
-        
-        function getBadActivities(lunarDay) {
-            const activities = {
-                1: ['An táng', 'Phá dỡ', 'Tranh cãi', 'Kiện tụng'],
-                2: ['Khởi công', 'Xây dựng', 'Động thổ', 'Đào đất'],
-                3: ['Cưới hỏi', 'Khai trương', 'Xuất hành', 'Giao dịch'],
-                4: ['Cầu nguyện', 'Thờ cúng', 'Học tập', 'Thi cử'],
-                5: ['An táng', 'Chôn cất', 'Tranh cãi', 'Kiện tụng'],
-                6: ['Sửa chữa', 'Phá dỡ', 'Động thổ', 'Xây dựng'],
-                7: ['Cưới hỏi', 'Khai trương', 'Xuất hành', 'Giao dịch'],
-                8: ['Cầu nguyện', 'Thờ cúng', 'Học tập', 'Thi cử'],
-                9: ['An táng', 'Chôn cất', 'Tranh cãi', 'Kiện tụng'],
-                10: ['Sửa chữa', 'Phá dỡ', 'Động thổ', 'Xây dựng']
-            };
-            return activities[lunarDay] || ['Các việc không phù hợp'];
         }
         
         // Kiểm tra ngày nghỉ lễ / sự kiện dương lịch (đầy đủ từ EVENTS_DATA)
@@ -2917,8 +2859,8 @@
             const holidayInfo = getHolidayInfo(date);
             
             // Lấy việc nên làm và không nên làm
-            const goodActivities = getGoodActivities(lunarInfo.day);
-            const badActivities = getBadActivities(lunarInfo.day);
+            const goodActivities = hoursData.truc.nen;
+            const badActivities = hoursData.truc.kieng;
             
             // Update dialog title
             dialogTitle.textContent = `${dayName}, ${solarDateStr}`;
@@ -2988,10 +2930,20 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
+                        <span>Can chi, trực và sao ngày</span>
+                    </div>
+                    <div class="detail-section-content">
+                        <p>Ngày ${hoursData.canChi.day.can} ${hoursData.canChi.day.chi}, tháng ${hoursData.canChi.month.can} ${hoursData.canChi.month.chi}, năm ${hoursData.canChi.year.can} ${hoursData.canChi.year.chi}. Trực ${hoursData.truc.name}, sao ${hoursData.star.star} (${hoursData.star.status === 'hoang-dao' ? 'Hoàng Đạo' : 'Hắc Đạo'}).</p>
+                        <p class="almanac-disclaimer">${LunarAlmanac.DISCLAIMER_TEXT}</p>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">
                         <span>Giờ hoàng đạo</span>
                     </div>
                     <div class="detail-section-content">
-                        <p style="margin-bottom: 0.75rem;"><strong>Giờ tốt để làm việc quan trọng:</strong></p>
+                        <p style="margin-bottom: 0.75rem;"><strong>Giờ hoàng đạo theo lịch can chi:</strong></p>
                         <div class="hour-list">
                             ${hoursData.auspicious.map(hour => `
                                 <div class="hour-item auspicious">
@@ -3007,7 +2959,7 @@
                         <span>Giờ hắc đạo</span>
                     </div>
                     <div class="detail-section-content">
-                        <p style="margin-bottom: 0.75rem;"><strong>Nên tránh làm việc quan trọng:</strong></p>
+                        <p style="margin-bottom: 0.75rem;"><strong>Giờ hắc đạo theo lịch can chi:</strong></p>
                         <div class="hour-list">
                             ${hoursData.inauspicious.map(hour => `
                                 <div class="hour-item inauspicious">
@@ -3020,7 +2972,7 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>Việc nên làm</span>
+                        <span>Việc nên làm (theo Trực)</span>
                     </div>
                     <div class="detail-section-content">
                         <ul class="activity-list">
@@ -3031,7 +2983,7 @@
                 
                 <div class="detail-section">
                     <div class="detail-section-title">
-                        <span>Việc không nên làm</span>
+                        <span>Việc kiêng kỵ (theo Trực)</span>
                     </div>
                     <div class="detail-section-content">
                         <ul class="activity-list">
