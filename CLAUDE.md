@@ -21,6 +21,7 @@ Content language is Vietnamese; all date math is Vietnam time (UTC+7). The sibli
 | `npm run generate-tin-tuc-clean-urls` | **Required after creating/renaming any `tin-tuc/<slug>.html`.** |
 | `npm run generate-events` | Regenerates the 37 event pages + hub + sitemap event block. |
 | `npm run inject-tet-seo` | Pre-renders day-count SEO text/JSON-LD into the countdown landing pages. |
+| `npm run inject-lunar-today` | Pre-renders today's lunar/almanac data (bloc, details, FAQ, JSON-LD, title, meta) into `lich-am-hom-nay.html`. Idempotent; also runs in the daily workflow. |
 | `npm run deploy` | `predeploy` (build runner + `update-version`) then commits `sw.js .version .last_build_id` and pushes `master`. |
 | `npm run crawl` | VNExpress Tết-article crawler (`crawl-tet-articles.js`) that rewrites `blog.html`. Legacy; `tin-tuc/` is the live blog. |
 
@@ -34,6 +35,7 @@ No lint step. `.github/workflows/deploy.yml` would re-run build → clean-urls �
 - `tin-tuc/<slug>/index.html` redirect stubs (GitHub Pages ignores `_redirects`; the file is kept but inert).
 - `.version`, `.last_build_id`, the `CACHE_NAME` line in `sw.js`.
 - The injected SEO snippet blocks in `index.html`, `con-bao-nhieu-ngay-nua-den-tet/index.html`, `con-bao-nhieu-ngay-nua-den-giao-thua/index.html`.
+- The `<!-- LUNAR_TODAY -->` block, the `#bloc-*`/`#detail-*`/`#faq-*` texts, `<title>`, meta description and `#faq-schema` in `lich-am-hom-nay.html` (rewritten by `inject-lunar-today`).
 
 Hand-written: page HTML, `css/*`, `js/*` (except the bundle), `data/*.js`, `data/foods/*.json`, `data/aff/products*`, `news.json`, `tin-tuc/<slug>.html`, the rest of `sitemap.xml`.
 
@@ -45,7 +47,7 @@ Hand-written: page HTML, `css/*`, `js/*` (except the bundle), `data/*.js`, `data
 
 **Data layer.** Static JS/JSON in `data/` loaded either by `<script src>` (exposing a global like `EVENTS_DATA`, which is also `require()`d by the Node generators and tests) or by `fetch` (`data/aff/products.json` for the shop, `news.json` for the blog listing, `data/foods/*.json` for dishes). Site-wide constants — store URLs, socials, asset paths — live in `js/resources.js`; read from there rather than hardcoding.
 
-**Lunar dates.** `js/lunar-calendar.js` is the shared implementation (also `require()`d by `scripts/generate-event-pages.js`). The npm lunar packages are leftovers from experiments; prefer the in-repo module.
+**Lunar dates.** `js/lunar-calendar.js` is the shared implementation (also `require()`d by `scripts/generate-event-pages.js`). The npm lunar packages are leftovers from experiments; prefer the in-repo module. `js/lunar-almanac.js` (UMD, tested in `test/lunar-almanac.test.js`) layers the folk almanac on top: can chi, giờ hoàng đạo by day branch, 12 trực, 12 sao, nạp âm, Hỷ/Tài Thần directions, tuổi xung, and the shared `DISCLAIMER_TEXT`. Every page showing that content must include the disclaimer text (`test/folk-disclaimer.test.js` enforces it) and must not claim to be "chính xác nhất".
 
 **Games.** `js/word-chain-*.js` (engine / storage / DOM split, each with its own test) and the Three.js `tet-runner` (`js/tet-runner-engine.js` + `tet-runner-three.js` bundled, loaded lazily by `js/tet-runner-loader.js`).
 

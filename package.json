@@ -14,6 +14,7 @@
     "generate-tin-tuc-clean-urls": "node scripts/generate-tin-tuc-clean-urls.js",
     "generate-events": "node scripts/generate-event-pages.js",
     "inject-tet-seo": "node scripts/inject-tet-seo-snippets.js",
+    "inject-lunar-today": "node scripts/inject-lunar-today.js",
     "predeploy": "npm run build:tet-runner && npm run update-version",
     "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
   },

@@ -27,14 +27,17 @@ jobs:
       - name: Generate event pages
         run: node scripts/generate-event-pages.js
 
+      - name: Inject lunar calendar snapshot
+        run: node scripts/inject-lunar-today.js
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html con-bao-nhieu-ngay-nua-den-tet/index.html con-bao-nhieu-ngay-nua-den-giao-thua/index.html su-kien-quan-trong.html su-kien sitemap.xml
+          git add index.html con-bao-nhieu-ngay-nua-den-tet/index.html con-bao-nhieu-ngay-nua-den-giao-thua/index.html lich-am-hom-nay.html su-kien-quan-trong.html su-kien sitemap.xml
           if git diff --staged --quiet; then
             echo "No SEO snippet changes."
             exit 0
           fi
-          git commit -m "chore(seo): refresh Tết day-count snippets [skip ci]"
+          git commit -m "chore(seo): refresh Tết day-count and lunar snippets [skip ci]"
           git push
