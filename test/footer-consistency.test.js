@@ -50,7 +50,7 @@ test('every page with a shared footer container loads the footer component', () 
 });
 
 test('standalone public pages now use the shared footer', () => {
-    for (const file of ['404.html', 'chi-tiet-mon-an.html', 'tai-ung-dung.html']) {
+    for (const file of ['404.html', 'chi-tiet-mon-an.html', 'ung-dung.html']) {
         const html = read(file);
         assert.match(html, /id="footer-container"/);
         assert.match(html, /js\/footer\.js/);

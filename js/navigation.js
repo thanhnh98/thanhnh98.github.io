@@ -19,9 +19,10 @@ class Router {
             '/noi-chu.html': 'noi-chu.html',
             '/ngua-phi-don-tet': 'ngua-phi-don-tet.html',
             '/ngua-phi-don-tet.html': 'ngua-phi-don-tet.html',
-            '/tai-ung-dung': 'tai-ung-dung.html',
-            '/tai-ung-dung/': 'tai-ung-dung.html',
-            '/tai-ung-dung.html': 'tai-ung-dung.html',
+            // Trang tải app cũ đã gộp vào trang giới thiệu ứng dụng
+            '/tai-ung-dung': 'ung-dung.html',
+            '/tai-ung-dung/': 'ung-dung.html',
+            '/tai-ung-dung.html': 'ung-dung.html',
             '/blog': 'tin-tuc/index.html',
             '/blog.html': 'tin-tuc/index.html',
             '/news': 'tin-tuc/index.html',
@@ -73,7 +74,6 @@ class Router {
             '/tin-tuc.html',
             '/tin-tuc/index.html',
             '/tin-tuc',
-            '/tai-ung-dung.html',
             '/chi-tiet-mon-an.html',
             '/tro-choi-tet.html',
             '/noi-chu.html',
@@ -127,7 +127,7 @@ class Router {
             }
         }
         
-        // Special handling for directory routes (like /tai-ung-dung/ and /tin-tuc/)
+        // Special handling for directory routes (like /tin-tuc/)
         // GitHub Pages automatically serves index.html from directories
         if (
             normalizedPath === '/tin-tuc' ||
@@ -490,9 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Only initialize router on pages that need it
     const currentPath = window.location.pathname;
-    if (!currentPath.includes('404.html') && 
-        currentPath !== '/tai-ung-dung' && 
-        currentPath !== '/tai-ung-dung/') {
+    if (!currentPath.includes('404.html')) {
         new Router();
     }
     
