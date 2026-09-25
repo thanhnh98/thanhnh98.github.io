@@ -218,7 +218,6 @@ const HOLIDAYS_EN = [
     startTime: '00:00',
     durationDays: 1,
     rule: { type: 'fixed', month: 12, day: 25 },
-    hreflangVi: 'https://saptet.vn/noel.html',
     tagline: 'December 25, wherever you are in the world.',
     shareMessage: 'The magic is getting closer.',
     origin: {

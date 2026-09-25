@@ -149,14 +149,11 @@ test('share-image renderer captures the click-time countdown and offers share pl
   assert.match(source, /downloadBlob\(latestBlob, latestFileName\)/);
 });
 
-test('Christmas and Noel pages point at each other with hreflang', () => {
+test('Christmas pairs with /vi/christmas; noel.html no longer claims to be its alternate', () => {
   const christmas = read('christmas.html');
-  const noel = read('noel.html');
-  for (const html of [christmas, noel]) {
-    assert.match(html, /hreflang="en" href="https:\/\/saptet\.vn\/christmas"/);
-    assert.match(html, /hreflang="vi" href="https:\/\/saptet\.vn\/noel\.html"/);
-    assert.match(html, /hreflang="x-default" href="https:\/\/saptet\.vn\/christmas"/);
-  }
+  assert.match(christmas, /hreflang="vi" href="https:\/\/saptet\.vn\/vi\/christmas"/);
+  assert.doesNotMatch(read('noel.html'), /hreflang="(en|x-default)" href="https:\/\/saptet\.vn\/christmas"/);
+  assert.match(read('vi/christmas.html'), /<a href="\/noel\.html">/, 'Vietnamese Christmas page links to the existing Noel page');
 });
 
 test('Ramadan and Eid use local timing without a geographic scope label', () => {

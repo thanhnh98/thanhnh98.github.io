@@ -1,7 +1,7 @@
 /**
- * Render ảnh chia sẻ (og:image, 1200×630) cho các trang đếm ngược tiếng Anh.
+ * Render ảnh chia sẻ (og:image, 1200×630) cho các trang đếm ngược tiếng Anh, tiếng Việt (vi-*) và tiếng Ả Rập (ar-*).
  * Ảnh không chứa năm/số ngày nên chỉ cần chạy lại khi thêm sự kiện hoặc đổi màu/tên.
- * Chạy: npm run render-holiday-og   (cần Google Chrome và `sips` của macOS; đặt CHROME_PATH nếu Chrome không ở vị trí mặc định)
+ * Chạy: npm run render-holiday-og [-- en|vi|ar]   (cần Google Chrome và `sips` của macOS; đặt CHROME_PATH nếu Chrome không ở vị trí mặc định)
  */
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -13,6 +13,9 @@ const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'assets/images/og');
 const { HOLIDAYS_EN } = require(path.join(ROOT, 'data/holidays-en.js'));
 const { HOLIDAYS_AR } = require(path.join(ROOT, 'data/holidays-ar.js'));
+const { HOLIDAYS_VI } = require(path.join(ROOT, 'data/holidays-vi.js'));
+// Tham số tuỳ chọn en | vi | ar: chỉ render một nhóm ngôn ngữ.
+const ONLY = process.argv[2] || null;
 
 const CHROME_CANDIDATES = [
   process.env.CHROME_PATH,
@@ -36,17 +39,17 @@ function assetUrl(webPath) {
   return pathToFileURL(path.join(ROOT, webPath.replace(/^\//, ''))).href;
 }
 
-function cardHtml({ icon, background, title, subtitle, url, palette, kicker = 'Live countdown', rtl = false }) {
+function cardHtml({ icon, background, title, subtitle, url, palette, kicker = 'Live countdown', rtl = false, vi = false }) {
   // Dùng cùng illustration/mark với landing page để ảnh chia sẻ không phụ thuộc emoji hệ thống.
   const display = rtl ? '"Noto Kufi Arabic", sans-serif' : '"Fraunces", Georgia, serif';
   return `<!DOCTYPE html><html${rtl ? ' lang="ar" dir="rtl"' : ''}><head><meta charset="utf-8">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800&family=Noto+Kufi+Arabic:wght@800&family=Noto+Sans+Arabic:wght@600&display=block">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800&family=Be+Vietnam+Pro:wght@600;800&family=Noto+Kufi+Arabic:wght@800&family=Noto+Sans+Arabic:wght@600&display=block">
   <style>
   html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
   body {
     position: relative; display: flex; flex-direction: column; justify-content: center; gap: 26px;
     box-sizing: border-box; padding: 0 96px;
-    font-family: ${rtl ? '"Noto Sans Arabic", ' : ''}-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: ${rtl ? '"Noto Sans Arabic", ' : vi ? '"Be Vietnam Pro", ' : ''}-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     color: ${palette.ink}; background: ${palette.paper};
   }
   .background { position: absolute; inset: -18px; width: 1236px; height: 666px; object-fit: cover; filter: blur(4px) saturate(1.08); opacity: .7; }
@@ -89,25 +92,55 @@ function render(chrome, name, html) {
 function main() {
   const chrome = findChrome();
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  for (const holiday of HOLIDAYS_EN) {
-    render(chrome, holiday.slug, cardHtml({
-      icon: assetUrl(holiday.visual.icon),
-      background: assetUrl(holiday.visual.background),
-      title: `${holiday.name} Countdown`,
-      subtitle: `How many days until ${holiday.name}?`,
-      url: `saptet.vn/${holiday.slug}`,
-      palette: holiday.palette,
+  let count = 0;
+  if (!ONLY || ONLY === 'en') {
+    for (const holiday of HOLIDAYS_EN) {
+      render(chrome, holiday.slug, cardHtml({
+        icon: assetUrl(holiday.visual.icon),
+        background: assetUrl(holiday.visual.background),
+        title: `${holiday.name} Countdown`,
+        subtitle: `How many days until ${holiday.name}?`,
+        url: `saptet.vn/${holiday.slug}`,
+        palette: holiday.palette,
+      }));
+    }
+    render(chrome, 'countdowns', cardHtml({
+      icon: assetUrl('/assets/images/ic_app.png'),
+      background: assetUrl('/assets/images/holiday-countdowns/countdowns-hero.webp'),
+      title: 'Holiday Countdowns',
+      subtitle: 'Christmas, Ramadan, Diwali, Lunar New Year and more',
+      url: 'saptet.vn/countdowns',
+      palette: { paper: '#f0ede6', ink: '#1c1c24', accent: '#c2410c' },
     }));
+    count += HOLIDAYS_EN.length + 1;
   }
-  render(chrome, 'countdowns', cardHtml({
-    icon: assetUrl('/assets/images/ic_app.png'),
-    background: assetUrl('/assets/images/holiday-countdowns/countdowns-hero.webp'),
-    title: 'Holiday Countdowns',
-    subtitle: 'Christmas, Ramadan, Diwali, Lunar New Year and more',
-    url: 'saptet.vn/countdowns',
-    palette: { paper: '#f0ede6', ink: '#1c1c24', accent: '#c2410c' },
-  }));
-  const arabic = Object.entries(HOLIDAYS_AR);
+  if (!ONLY || ONLY === 'vi') {
+    for (const holiday of HOLIDAYS_EN) {
+      const vi = HOLIDAYS_VI[holiday.slug];
+      render(chrome, `vi-${holiday.slug}`, cardHtml({
+        icon: assetUrl(holiday.visual.icon),
+        background: assetUrl(holiday.visual.background),
+        title: vi.h1,
+        subtitle: `Còn bao nhiêu ngày nữa đến ${vi.name}?`,
+        url: `saptet.vn/vi/${holiday.slug}`,
+        palette: holiday.palette,
+        kicker: 'Đếm ngược trực tiếp',
+        vi: true,
+      }));
+    }
+    render(chrome, 'vi-countdowns', cardHtml({
+      icon: assetUrl('/assets/images/ic_app.png'),
+      background: assetUrl('/assets/images/holiday-countdowns/countdowns-hero.webp'),
+      title: 'Đếm ngược ngày lễ',
+      subtitle: 'Giáng sinh, Halloween, Ramadan, Diwali và nhiều dịp khác',
+      url: 'saptet.vn/vi/countdowns',
+      palette: { paper: '#f0ede6', ink: '#1c1c24', accent: '#c2410c' },
+      kicker: 'Đếm ngược trực tiếp',
+      vi: true,
+    }));
+    count += HOLIDAYS_EN.length + 1;
+  }
+  const arabic = !ONLY || ONLY === 'ar' ? Object.entries(HOLIDAYS_AR) : [];
   for (const [slug, ar] of arabic) {
     const holiday = HOLIDAYS_EN.find((item) => item.slug === slug);
     render(chrome, `ar-${slug}`, cardHtml({
@@ -121,7 +154,7 @@ function main() {
       rtl: true,
     }));
   }
-  console.log(`render-holiday-og: wrote ${HOLIDAYS_EN.length + 1 + arabic.length} images to assets/images/og/`);
+  console.log(`render-holiday-og: wrote ${count + arabic.length} images to assets/images/og/`);
 }
 
 main();

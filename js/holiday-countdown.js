@@ -1,5 +1,5 @@
 /**
- * Đồng hồ đếm ngược cho các trang /christmas, /ramadan, /ar/ramadan, … và hub /countdowns.
+ * Đồng hồ đếm ngược cho các trang /christmas, /vi/christmas, /ar/ramadan, … và hub /countdowns, /vi/countdowns.
  * Cần js/zoned-time.js nạp trước. Cấu hình trang nằm trong <script id="holiday-config" type="application/json">;
  * chuỗi hiển thị lấy từ config.i18n (mặc định tiếng Anh), nên cùng một file phục vụ cả trang LTR và RTL.
  */
@@ -501,6 +501,31 @@
         });
     }
 
+    // Menu "More / Xem thêm" (<details>): đóng khi bấm ra ngoài, nhấn Esc hoặc chọn một mục.
+    function initMenus() {
+        var menus = document.querySelectorAll('[data-hc-menu]');
+        if (!menus.length) return;
+        document.addEventListener('click', function (event) {
+            menus.forEach(function (menu) {
+                if (menu.open && !menu.contains(event.target)) menu.open = false;
+            });
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape') return;
+            menus.forEach(function (menu) {
+                if (!menu.open) return;
+                menu.open = false;
+                var toggle = menu.querySelector('summary');
+                if (toggle) toggle.focus();
+            });
+        });
+        menus.forEach(function (menu) {
+            menu.addEventListener('click', function (event) {
+                if (event.target.closest && event.target.closest('a')) menu.open = false;
+            });
+        });
+    }
+
     // Section bên dưới hiện dần khi cuộn tới; hiệu ứng nền tạm dừng khi hero khuất.
     function initMotion() {
         if (reduceMotion || !('IntersectionObserver' in window)) return;
@@ -542,5 +567,6 @@
     var pageStrings = strings(config);
     initCards(pageStrings);
     initWorldTimes(pageStrings);
+    initMenus();
     initMotion();
 })();
