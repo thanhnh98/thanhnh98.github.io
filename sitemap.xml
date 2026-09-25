@@ -267,6 +267,12 @@
 
     <!-- Legal Pages - Low Priority -->
     <url>
+        <loc>https://saptet.vn/support</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <url>
         <loc>https://saptet.vn/privacy-policy/vi/</loc>
         <lastmod>2026-05-14</lastmod>
         <changefreq>yearly</changefreq>
@@ -512,5 +518,96 @@
         <lastmod>2026-09-19</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
+    </url>
+    <!-- Holiday countdown pages (EN) -->
+    <url>
+        <loc>https://saptet.vn/countdowns</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/halloween</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/diwali</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/thanksgiving</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/hanukkah</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/christmas</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/new-year</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/chinese-new-year</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/ramadan</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/valentines-day</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/eid-al-fitr</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/easter</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/songkran</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/ar/ramadan</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/ar/eid-al-fitr</loc>
+        <lastmod>2026-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
     </url>
 </urlset>

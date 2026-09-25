@@ -28,13 +28,13 @@ const APP_RESOURCES = {
     // Social Media Links (optional)
     socialMedia: {
         facebook: 'https://www.facebook.com/saptet2027/',
-        youtube: 'https://youtube.com/@sap.tet',
+        youtube: 'https://www.youtube.com/@saptet',
         tiktok: 'https://tiktok.com/@sap.tet'
     },
     
     // Contact Information
     contact: {
-        email: 'support@sap.tet.vn',
+        email: 'tlife1001@gmail.com',
         website: 'https://saptet.vn'
     },
     

@@ -15,7 +15,8 @@ function sitemapFiles() {
         const relative = pathname.replace(/^\//, '');
         if (relative.endsWith('/')) return `${relative}index.html`;
         if (relative.endsWith('.html')) return relative;
-        return `${relative}/index.html`;
+        // GitHub Pages phục vụ /slug từ slug.html hoặc slug/index.html
+        return fs.existsSync(path.join(root, `${relative}.html`)) ? `${relative}.html` : `${relative}/index.html`;
     });
 }
 

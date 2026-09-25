@@ -27,6 +27,9 @@ jobs:
       - name: Generate event pages
         run: node scripts/generate-event-pages.js
 
+      - name: Generate English holiday countdown pages
+        run: node scripts/generate-holiday-pages.js
+
       - name: Inject lunar calendar snapshot
         run: node scripts/inject-lunar-today.js
 
@@ -34,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html con-bao-nhieu-ngay-nua-den-tet/index.html con-bao-nhieu-ngay-nua-den-giao-thua/index.html lich-am-hom-nay.html su-kien-quan-trong.html su-kien sitemap.xml
+          git add index.html con-bao-nhieu-ngay-nua-den-tet/index.html con-bao-nhieu-ngay-nua-den-giao-thua/index.html lich-am-hom-nay.html su-kien-quan-trong.html su-kien sitemap.xml countdowns.html halloween.html diwali.html thanksgiving.html hanukkah.html christmas.html new-year.html chinese-new-year.html ramadan.html valentines-day.html eid-al-fitr.html easter.html songkran.html ar
           if git diff --staged --quiet; then
             echo "No SEO snippet changes."
             exit 0

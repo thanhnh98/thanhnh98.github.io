@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="home-footer-bottom">
                     <span>© 2026 Sắp Tết · Phát triển bởi TLife</span>
-                    <nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a></nav>
+                    <nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
                 </div>
             </div>
         </footer>`;
