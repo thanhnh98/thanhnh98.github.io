@@ -51,10 +51,12 @@
 <body class="hc-page">
 {{HEADER}}
   <main>
-    <section class="hc-hero" aria-labelledby="hc-title" data-hc-root>
+    <section class="hc-hero" aria-labelledby="hc-title" data-hc-root style="--hc-focus:{{FOCAL_POINT}}">
+      <img class="hc-hero-bg" src="{{HERO_BACKGROUND}}" alt="" aria-hidden="true" width="1600" height="1000" fetchpriority="high" decoding="async">
+      <span class="hc-hero-wash" aria-hidden="true"></span>
 {{SKY}}
       <div class="hc-hero-inner hc-container">
-        <p class="hc-kicker">{{KICKER}}</p>
+        <img class="hc-hero-mark" src="{{HERO_ICON}}" alt="" aria-hidden="true" width="68" height="68" decoding="async">
         <h1 id="hc-title" class="hc-title">{{NAME}} Countdown <span data-hc-year>{{YEAR}}</span></h1>
 
         <div class="hc-info">
@@ -73,8 +75,8 @@
 
         <div class="hc-controls">
 {{ZONE_PICKER}}
-          <button type="button" class="hc-share" data-hc-share><span aria-hidden="true">↗</span> Share Countdown</button>
-          <a class="hc-more" href="#details">About {{NAME}} <span aria-hidden="true">↓</span></a>
+          <button type="button" class="hc-share" data-hc-share><svg class="hc-control-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M6 13v6h12v-6"/></svg> Share Countdown</button>
+          <a class="hc-more" href="#details">About {{NAME}} <svg class="hc-control-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v14m0 0-5-5m5 5 5-5"/></svg></a>
         </div>
         <p class="hc-share-status" data-hc-share-status aria-live="polite"></p>
       </div>
@@ -100,6 +102,13 @@
           <p class="hc-tagline">{{TAGLINE}}</p>
           <p class="hc-aka"><strong>Also known as:</strong> {{ALIASES}}</p>
 {{ABOUT}}
+          <section class="hc-origin" aria-labelledby="hc-origin-title">
+            <h3 id="hc-origin-title">Origins &amp; communities</h3>
+            <dl>
+              <div><dt>Historical roots</dt><dd>{{ORIGIN_ROOTS}}</dd></div>
+              <div><dt>Communities &amp; traditions</dt><dd>{{ORIGIN_COMMUNITIES}}</dd></div>
+            </dl>
+          </section>
           <h3>Traditions</h3>
           <ul class="hc-list">{{TRADITIONS}}</ul>
         </article>
@@ -109,6 +118,7 @@
     <section class="hc-section hc-section--world" aria-labelledby="hc-world">
       <div class="hc-container">
         <h2 id="hc-world">{{NAME}} Around the World</h2>
+        <p class="hc-world-note">{{WORLD_NOTE}}</p>
         <div class="hc-regions">{{REGIONS}}
         </div>{{WORLD_TIMES}}
       </div>
@@ -131,6 +141,25 @@
       </div>
     </section>
   </main>
+  <dialog class="hc-share-dialog" data-hc-share-dialog aria-labelledby="hc-share-title">
+    <div class="hc-share-dialog-inner">
+      <button type="button" class="hc-share-close" data-hc-share-close aria-label="Close image preview"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <div class="hc-share-heading">
+        <p>Ready to share</p>
+        <h2 id="hc-share-title">Your {{NAME}} countdown image</h2>
+        <span>Captured with the exact countdown from this moment.</span>
+      </div>
+      <div class="hc-share-preview" data-hc-share-preview aria-busy="true">
+        <canvas data-hc-share-canvas width="1200" height="1500" role="img" aria-label="{{NAME}} countdown image preview"></canvas>
+        <div class="hc-share-loading" data-hc-share-loading>Creating your countdown image…</div>
+      </div>
+      <p class="hc-share-dialog-status" data-hc-share-dialog-status aria-live="polite"></p>
+      <div class="hc-share-actions">
+        <button type="button" data-hc-share-image disabled><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M6 13v6h12v-6"/></svg> Share image</button>
+        <button type="button" class="hc-share-download" data-hc-share-download disabled><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg> Download image</button>
+      </div>
+    </div>
+  </dialog>
 {{FOOTER}}
   <script id="holiday-config" type="application/json">{{CONFIG}}</script>
   <script src="/js/zoned-time.js?v={{ASSET_VERSION}}"></script>

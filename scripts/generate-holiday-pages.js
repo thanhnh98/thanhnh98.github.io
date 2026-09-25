@@ -264,9 +264,10 @@ function cardHtml(item) {
   const days = occurrence.live ? 'Today!' : `${daysLeft} ${dayWord(daysLeft)}`;
   return `
           <a class="hc-mini" href="/${holiday.slug}" data-hc-card data-dates="${dates.join(',')}" data-start-time="${holiday.startTime}" data-duration="${holiday.durationDays}"${zoneAttr}>
+            <img class="hc-mini-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="46" height="46" loading="lazy" decoding="async">
             <span class="hc-mini-body">
               <strong>${escapeHtml(holiday.name)}</strong>
-              <span>${formatShort(occurrence.dateKey)} · ${escapeHtml(holiday.country)}</span>
+              <span>${formatShort(occurrence.dateKey)}</span>
             </span>
             <span class="hc-mini-days" data-hc-card-days>${days}</span>
           </a>`;
@@ -312,7 +313,7 @@ function zonePickerHtml(holiday) {
   const options = GLOBAL_ZONE_CHOICES
     .map((choice) => `<option value="${choice.zone}">${escapeHtml(choice.label)}</option>`)
     .join('');
-  return `          <label class="hc-zone"><span aria-hidden="true">🌐</span><span class="hc-visually-hidden">Time zone</span>
+  return `          <label class="hc-zone"><svg class="hc-control-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9Z"/></svg><span class="hc-visually-hidden">Time zone</span>
             <select data-hc-zone name="timezone" autocomplete="off"><option value="local">My time zone</option>${options}</select>
           </label>`;
 }
@@ -344,7 +345,7 @@ const PARTICLE_MOTION = {
   snow: 'fall', leaf: 'fall', petal: 'fall', confetti: 'fall', drop: 'rain',
   heart: 'rise', ember: 'rise', star: 'twinkle', bat: 'drift',
 };
-const PARTICLE_COUNT = { snow: 26, confetti: 22, drop: 18, ember: 18, star: 16, leaf: 12, petal: 14, heart: 12, bat: 7 };
+const PARTICLE_COUNT = { snow: 16, confetti: 14, drop: 12, ember: 12, star: 11, leaf: 9, petal: 10, heart: 9, bat: 6 };
 
 function seededRandom(seedText) {
   let seed = 0;
@@ -414,9 +415,12 @@ function worldTimesHtml(item) {
       return `<tr><th scope="row">${escapeHtml(city.label)}</th><td>${utcLabel}</td><td data-hc-your-time="${city.start}">—</td></tr>`;
     }).join('');
   const year = occurrence.dateKey.slice(0, 4);
+  const intro = holiday.moonDisclaimer
+    ? `The expected first day is shown at ${formatTime(holiday.startTime)} in each city. Local religious authorities may announce a different date after the crescent moon is sighted.`
+    : `${holiday.name} begins at ${formatTime(holiday.startTime)} local time, so it reaches the islands of Kiribati first and Hawaii last. Here is when it starts in major cities, and what time that is for you.`;
   return `
           <h3>When does ${escapeHtml(holiday.name)} ${year} start around the world?</h3>
-          <p>${escapeHtml(holiday.name)} begins at ${formatTime(holiday.startTime)} local time, so it reaches the islands of Kiribati first and Hawaii last. Here is when it starts in major cities, and what time that is for you.</p>
+          <p>${escapeHtml(intro)}</p>
           <div class="hc-table-wrap">
             <table class="hc-table">
               <thead><tr><th scope="col">City</th><th scope="col">Starts (UTC)</th><th scope="col">Your time</th></tr></thead>
@@ -496,7 +500,9 @@ function generateDetail(item, items, shared) {
   const config = {
     slug: holiday.slug,
     name: holiday.name,
-    emoji: holiday.emoji,
+    shareMessage: holiday.shareMessage,
+    visual: holiday.visual,
+    palette: holiday.palette,
     scope: holiday.scope,
     zone: holiday.zone || null,
     zoneLabel: holiday.zoneLabel || null,
@@ -512,20 +518,23 @@ function generateDetail(item, items, shared) {
     OG_IMAGE_ALT: escapeHtml(`${holiday.name} countdown: how many days until ${holiday.name}`),
     ALIASES: escapeHtml(holiday.aliases.join(', ')),
     REGIONS: regionsHtml(holiday),
+    WORLD_NOTE: escapeHtml(`These examples cover major regional and diaspora traditions. They are representative, not an exhaustive list of every country or community that observes ${holiday.name}; customs can also vary within a country.`),
     WORLD_TIMES: worldTimesHtml(item),
-    OG_TITLE: escapeHtml(`${holiday.name} Countdown ${year} ${holiday.emoji}`),
+    OG_TITLE: escapeHtml(`${holiday.name} Countdown ${year}`),
     META_DESCRIPTION: escapeHtml(description),
     KEYWORDS: escapeHtml(holiday.keywords.concat(holiday.aliases.map((alias) => `${alias.toLowerCase()} countdown`)).join(', ')),
     CANONICAL: canonical,
     HREFLANG: hreflangHtml(holiday, canonical),
     PALETTE: paletteStyle(holiday),
+    HERO_BACKGROUND: holiday.visual.background,
+    HERO_ICON: holiday.visual.icon,
+    FOCAL_POINT: holiday.visual.focalPoint,
     SKY: skyHtml(holiday),
     ASSET_VERSION,
     HEADER: HOLIDAYS_AR[holiday.slug]
       ? headerHtml(items, `<a href="/ar/${holiday.slug}" hreflang="ar" lang="ar">العربية</a>`)
       : shared.header,
     FOOTER: shared.footer,
-    KICKER: escapeHtml(holiday.scope === 'national' ? `${holiday.country} · ${holiday.zoneLabel} time` : 'Worldwide · your local time'),
     DATE_LONG: escapeHtml(formatLong(occurrence.dateKey) + (holiday.moonDisclaimer ? ' (expected)' : '')),
     SUMMARY_DAYS: escapeHtml(occurrence.live ? `${holiday.name} is here!` : `${daysLeft} ${dayWord(daysLeft)}`),
     SUMMARY_REST: escapeHtml(occurrence.live ? 'Enjoy the celebration.' : `to go until ${holiday.name} ${year}`),
@@ -542,6 +551,8 @@ function generateDetail(item, items, shared) {
       return `<tr><td>${p.year}</td><td>${MONTHS[p.month - 1]} ${p.day}</td><td>${p.weekday}</td></tr>`;
     }).join(''),
     ABOUT: holiday.about.map((paragraph) => `          <p>${escapeHtml(paragraph)}</p>`).join('\n'),
+    ORIGIN_ROOTS: escapeHtml(holiday.origin.roots),
+    ORIGIN_COMMUNITIES: escapeHtml(holiday.origin.communities),
     TRADITIONS: holiday.traditions.map((entry) => `<li>${escapeHtml(entry)}</li>`).join(''),
     FAQ: faq.map((entry) => `<details><summary>${escapeHtml(entry.q)}</summary><p>${escapeHtml(entry.a)}</p></details>`).join(''),
     RELATED: related,
@@ -689,6 +700,7 @@ function arabicCardHtml(item) {
   const days = occurrence.live ? UI_AR.today : dayLabelAr(daysLeft);
   return `
           <a class="hc-mini" href="/ar/${holiday.slug}" data-hc-card data-dates="${dates.join(',')}" data-start-time="${holiday.startTime}" data-duration="${holiday.durationDays}"${zoneAttr}>
+            <img class="hc-mini-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="46" height="46" loading="lazy" decoding="async">
             <span class="hc-mini-body">
               <strong>${escapeHtml(ar.name)}</strong>
               <span>${escapeHtml(formatLongAr(occurrence.dateKey))}</span>
@@ -776,7 +788,9 @@ function generateArabicDetail(item, items, shared) {
   const config = {
     slug: holiday.slug,
     name: ar.name,
-    emoji: holiday.emoji,
+    shareMessage: ar.shareMessage,
+    visual: holiday.visual,
+    palette: holiday.palette,
     scope: holiday.scope,
     zone: holiday.zone || null,
     zoneLabel: ar.zoneLabel,
@@ -790,6 +804,8 @@ function generateArabicDetail(item, items, shared) {
       dayForms: UI_AR.dayForms,
       summaryRest: UI_AR.summaryRest,
       target: UI_AR.target,
+      yourZone: UI_AR.yourZone,
+      myZone: UI_AR.myZone,
       local: UI_AR.local,
       expected: UI_AR.expected,
       liveTitle: ar.liveTitle,
@@ -799,12 +815,20 @@ function generateArabicDetail(item, items, shared) {
       today: UI_AR.today,
       shareText: UI_AR.shareText,
       shareCopied: UI_AR.shareCopied,
+      shareCaptured: UI_AR.shareCaptured,
+      shareEyebrow: UI_AR.shareEyebrow,
+      shareReady: UI_AR.shareReady,
+      shareFailed: UI_AR.shareFailed,
+      shareDownloaded: UI_AR.shareDownloaded,
+      shareUnavailable: UI_AR.shareUnavailable,
+      shareFooter: UI_AR.shareFooter,
+      shareUnits: UI_AR.units,
     },
   };
   const template = read('templates/holiday-countdown-ar.html');
   const values = {
     TITLE: escapeHtml(title),
-    OG_TITLE: escapeHtml(`${ar.ogTitle} ${year} ${holiday.emoji}`),
+    OG_TITLE: escapeHtml(`${ar.ogTitle} ${year}`),
     META_DESCRIPTION: escapeHtml(description),
     KEYWORDS: escapeHtml(ar.keywords.flatMap((keyword) => [keyword, `${keyword} ${year}`]).join('، ')),
     CANONICAL: canonical,
@@ -816,21 +840,25 @@ function generateArabicDetail(item, items, shared) {
     OG_IMAGE: `${SITE_ORIGIN}/assets/images/og/ar-${holiday.slug}.jpg`,
     OG_IMAGE_ALT: escapeHtml(`${ar.ogTitle}: ${ar.ogSubtitle}`),
     PALETTE: paletteStyle(holiday),
+    HERO_BACKGROUND: holiday.visual.background,
+    HERO_ICON: holiday.visual.icon,
+    FOCAL_POINT: holiday.visual.focalPoint,
     SKY: skyHtml(holiday),
     ASSET_VERSION,
     HEADER: arabicHeaderHtml(holiday.slug),
     FOOTER: arabicFooterHtml(holiday.slug),
-    KICKER: escapeHtml(ar.kicker),
     H1: escapeHtml(ar.h1),
     YEAR: year,
     NAME: escapeHtml(ar.name),
     DATE_LONG: escapeHtml(vars.date + (holiday.moonDisclaimer ? UI_AR.expected : '')),
     HIJRI: escapeHtml(vars.hijri),
-    TARGET_TEXT: escapeHtml(fillAr(UI_AR.target, {
-      time: new Intl.DateTimeFormat(UI_AR.locale, { timeZone: holiday.zone, hour: 'numeric', minute: '2-digit' }).format(new Date(occurrence.start)),
-      zone: ar.zoneLabel,
-      offset: `\u2068${zoneOffset}\u2069`,
-    })),
+    TARGET_TEXT: escapeHtml(holiday.scope === 'global'
+      ? 'يبدأ عند منتصف الليل بتوقيتك المحلي'
+      : fillAr(UI_AR.target, {
+        time: new Intl.DateTimeFormat(UI_AR.locale, { timeZone: holiday.zone, hour: 'numeric', minute: '2-digit' }).format(new Date(occurrence.start)),
+        zone: ar.zoneLabel,
+        offset: `\u2068${zoneOffset}\u2069`,
+      })),
     SUMMARY_DAYS: escapeHtml(occurrence.live ? ar.liveTitle : vars.days),
     SUMMARY_REST: escapeHtml(occurrence.live ? ar.liveText : fillAr(UI_AR.summaryRest, vars)),
     TIMER_LABEL: escapeHtml(fillAr(UI_AR.timerLabel, vars)),
@@ -840,6 +868,13 @@ function generateArabicDetail(item, items, shared) {
     UNIT_SECONDS: UI_AR.units.seconds,
     DAYS_LEFT: String(daysLeft),
     SHARE_BUTTON: escapeHtml(UI_AR.shareButton),
+    SHARE_READY_LABEL: escapeHtml(UI_AR.shareReadyLabel),
+    SHARE_PREVIEW_TITLE: escapeHtml(fillAr(UI_AR.sharePreviewTitle, vars)),
+    SHARE_PREVIEW_INTRO: escapeHtml(UI_AR.sharePreviewIntro),
+    SHARE_PREVIEW_ALT: escapeHtml(fillAr(UI_AR.sharePreviewAlt, vars)),
+    SHARE_RENDERING: escapeHtml(UI_AR.shareRendering),
+    SHARE_IMAGE: escapeHtml(UI_AR.shareImage),
+    SHARE_DOWNLOAD: escapeHtml(UI_AR.shareDownload),
     ABOUT_LINK: escapeHtml(fillAr(UI_AR.aboutLink, vars)),
     BREADCRUMB_HUB: escapeHtml(UI_AR.breadcrumbHub),
     HOW_MANY_HEADING: escapeHtml(fillAr(UI_AR.howManyHeading, vars)),
@@ -853,9 +888,15 @@ function generateArabicDetail(item, items, shared) {
     ALSO_KNOWN_AS: escapeHtml(UI_AR.alsoKnownAs),
     ALIASES: escapeHtml(ar.aliases.join('، ')),
     ABOUT: ar.about.map((paragraph) => `          <p>${escapeHtml(paragraph)}</p>`).join('\n'),
+    ORIGIN_HEADING: escapeHtml(UI_AR.originHeading),
+    ORIGIN_ROOTS_LABEL: escapeHtml(UI_AR.originRoots),
+    ORIGIN_COMMUNITIES_LABEL: escapeHtml(UI_AR.originCommunities),
+    ORIGIN_ROOTS: escapeHtml(ar.origin.roots),
+    ORIGIN_COMMUNITIES: escapeHtml(ar.origin.communities),
     TRADITIONS_HEADING: escapeHtml(UI_AR.traditionsHeading),
     TRADITIONS: ar.traditions.map((entry) => `<li>${escapeHtml(entry)}</li>`).join(''),
     WORLD_HEADING: escapeHtml(fillAr(UI_AR.worldHeading, vars)),
+    WORLD_NOTE: escapeHtml(fillAr(UI_AR.worldNote, vars)),
     REGIONS: ar.regions.map((region) => `
             <article class="hc-region">
               <h3>${escapeHtml(region.country)}</h3>

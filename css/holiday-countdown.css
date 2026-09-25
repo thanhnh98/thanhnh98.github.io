@@ -126,10 +126,34 @@
     isolation: isolate;
     display: flex;
     align-items: center;
-    min-height: min(calc(100svh - var(--hc-header-h)), 820px);
-    padding: 1.75rem 0 2rem;
+    min-height: min(calc(100svh - var(--hc-header-h)), 760px);
+    padding: 1.1rem 0 1.4rem;
     overflow: hidden;
     background: var(--hc-paper);
+}
+
+.hc-hero-bg {
+    position: absolute;
+    inset: -24px;
+    z-index: -3;
+    width: calc(100% + 48px);
+    height: calc(100% + 48px);
+    object-fit: cover;
+    object-position: var(--hc-focus, 50% 50%);
+    filter: blur(7px) saturate(1.08);
+    opacity: 0.58;
+    transform: scale(1.035);
+    animation: hc-hero-drift 18s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.hc-hero-wash {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--hc-paper);
+    opacity: 0.69;
+    pointer-events: none;
 }
 
 /* Hạt giấy rất nhẹ để nền phẳng không bị "trơn máy". */
@@ -152,11 +176,18 @@
     text-align: center;
 }
 
+.hc-hero-mark {
+    width: clamp(52px, 6vw, 68px);
+    height: auto;
+    margin-bottom: 0.55rem;
+    filter: drop-shadow(0 8px 18px color-mix(in srgb, var(--hc-ink) 18%, transparent));
+}
+
 .hc-kicker {
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-    margin: 0 0 1rem;
+    margin: 0 0 0.65rem;
     color: var(--hc-ink);
     font-size: 0.78rem;
     font-weight: 700;
@@ -175,7 +206,7 @@
     margin: 0;
     color: var(--hc-ink);
     font-family: var(--hc-display);
-    font-size: clamp(2.5rem, 8.5vw, 5.2rem);
+    font-size: clamp(2.35rem, 7.2vw, 4.75rem);
     font-weight: 800;
     font-variation-settings: "opsz" 144;
     line-height: 1;
@@ -187,8 +218,8 @@
 
 .hc-info {
     width: min(100%, 520px);
-    margin: 1.4rem 0 1.5rem;
-    padding: 0.9rem 0;
+    margin: 1rem 0 1.1rem;
+    padding: 0.7rem 0;
     border-block: 1px solid var(--hc-line);
 }
 
@@ -322,6 +353,24 @@
 .hc-share:hover { background: var(--hc-accent); }
 .hc-share:active { transform: scale(0.97); }
 
+.hc-control-icon {
+    display: block;
+    flex: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hc-zone .hc-control-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--hc-accent);
+}
+
 .hc-more {
     display: inline-flex;
     align-items: center;
@@ -334,8 +383,8 @@
     text-underline-offset: 4px;
 }
 
-.hc-more span { display: inline-block; transition: transform 0.25s var(--hc-ease); }
-.hc-more:hover span { transform: translateY(3px); }
+.hc-more .hc-control-icon { transition: transform 0.25s var(--hc-ease); }
+.hc-more:hover .hc-control-icon { transform: translateY(3px); }
 
 .hc-share-status {
     min-height: 1.4em;
@@ -344,6 +393,108 @@
     font-size: 0.88rem;
     overflow-wrap: anywhere;
 }
+
+/* Ảnh chia sẻ được dựng đúng tại thời điểm bấm, không tải thêm thư viện hay ảnh biến thể. */
+.hc-share-dialog {
+    width: min(94vw, 760px);
+    max-height: 92dvh;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--hc-line);
+    border-radius: 18px;
+    color: var(--hc-ink);
+    background: var(--hc-surface);
+    box-shadow: 0 24px 80px color-mix(in srgb, var(--hc-ink) 30%, transparent);
+    overflow: auto;
+}
+
+.hc-share-dialog::backdrop { background: color-mix(in srgb, var(--hc-ink) 64%, transparent); }
+.hc-share-dialog-inner { position: relative; padding: clamp(1rem, 3vw, 1.6rem); }
+.hc-share-close {
+    position: absolute;
+    inset-block-start: 0.85rem;
+    inset-inline-end: 0.85rem;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--hc-line);
+    border-radius: 50%;
+    color: var(--hc-ink);
+    background: var(--hc-paper);
+    cursor: pointer;
+}
+.hc-share-close svg, .hc-share-actions svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.hc-share-heading { padding-inline-end: 3.25rem; }
+.hc-share-heading p {
+    margin: 0 0 0.25rem;
+    color: var(--hc-accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+.hc-share-heading h2 {
+    margin: 0;
+    font-family: var(--hc-display);
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    line-height: 1.15;
+}
+.hc-share-heading span { display: block; margin-top: 0.35rem; color: var(--hc-muted); font-size: 0.92rem; }
+.hc-share-preview {
+    position: relative;
+    /* Giữ cả ảnh và hai thao tác trong khung nhìn ở laptop thấp; ảnh vẫn giữ tỉ lệ 4:5. */
+    width: min(100%, 440px, calc((92dvh - 250px) * 0.8));
+    min-width: min(100%, 260px);
+    margin: 1.1rem auto 0;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--hc-line);
+    border-radius: 14px;
+    background: var(--hc-paper);
+    overflow: hidden;
+}
+.hc-share-preview canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+.hc-share-loading {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    color: var(--hc-ink);
+    background: color-mix(in srgb, var(--hc-paper) 90%, transparent);
+    font-weight: 700;
+    text-align: center;
+}
+.hc-share-loading[hidden] { display: none; }
+.hc-share-dialog-status { min-height: 1.4em; margin: 0.75rem 0 0; color: var(--hc-muted); font-size: 0.88rem; text-align: center; }
+.hc-share-actions { display: grid; grid-template-columns: 1fr; gap: 0.65rem; margin-top: 0.75rem; }
+.hc-share-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--hc-ink);
+    border-radius: 9px;
+    color: var(--hc-paper);
+    background: var(--hc-ink);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+.hc-share-actions .hc-share-download { color: var(--hc-ink); background: transparent; }
+.hc-share-actions button:hover:not(:disabled) { color: var(--hc-paper); border-color: var(--hc-accent); background: var(--hc-accent); }
+.hc-share-actions button:disabled { cursor: wait; opacity: 0.5; }
 
 /* ---------- Hiệu ứng nền theo từng sự kiện ---------- */
 .hc-sky {
@@ -388,7 +539,10 @@
 .hc-sky--drop .hc-p { width: calc(var(--s) * 0.7); }
 
 /* Tạm dừng khi hero ra khỏi màn hình (JS gắn class) để tiết kiệm pin. */
-.hc-hero.is-offscreen .hc-p { animation-play-state: paused; }
+.hc-hero.is-offscreen .hc-p,
+.hc-hero.is-offscreen .hc-hero-bg,
+.hc-hero.is-page-hidden .hc-p,
+.hc-hero.is-page-hidden .hc-hero-bg { animation-play-state: paused; }
 
 /* ---------- Nội dung SEO bên dưới ---------- */
 .hc-section { padding: clamp(2.5rem, 6vw, 4.25rem) 0; scroll-margin-top: var(--hc-header-h); }
@@ -434,6 +588,18 @@
 .hc-list li { margin-bottom: 0.35rem; }
 .hc-list li::marker { color: var(--hc-accent); }
 
+.hc-origin {
+  margin: 1.35rem 0;
+  padding: 1rem 1.1rem;
+  border-inline-start: 4px solid var(--hc-accent);
+  background: color-mix(in srgb, var(--hc-accent) 8%, var(--hc-paper));
+}
+.hc-panel .hc-origin h3 { margin: 0 0 0.8rem; }
+.hc-origin dl, .hc-origin dd { margin: 0; }
+.hc-origin dl { display: grid; gap: 0.8rem; }
+.hc-origin dt { margin-bottom: 0.15rem; font-weight: 800; color: var(--hc-ink); }
+.hc-origin dd { color: var(--hc-muted); }
+
 .hc-breadcrumb { margin-bottom: 1.25rem; font-size: 0.85rem; }
 .hc-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; padding: 0; list-style: none; color: var(--hc-muted); }
 .hc-breadcrumb li + li::before { content: "›"; margin-inline-end: 0.35rem; }
@@ -443,6 +609,7 @@
 /* Theo quốc gia: danh sách hàng, không thẻ. */
 .hc-section--world { background: var(--hc-surface); }
 .hc-regions { border-bottom: 1px solid var(--hc-line); }
+.hc-world-note { max-width: 70ch; margin: -0.35rem 0 1.2rem; color: var(--hc-muted); }
 
 .hc-region {
     display: grid;
@@ -518,6 +685,17 @@
 }
 
 .hc-mini:hover { padding-inline: 0.75rem; background: var(--hc-paper); }
+.hc-mini-mark {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    transition: transform 0.28s var(--hc-ease), filter 0.28s ease;
+}
+
+.hc-mini:hover .hc-mini-mark {
+    filter: drop-shadow(0 7px 10px color-mix(in srgb, var(--hc-ink) 16%, transparent));
+    transform: translateY(-3px) rotate(-3deg);
+}
 .hc-mini-body { display: flex; flex: 1; flex-direction: column; min-width: 0; }
 .hc-mini-body strong { font-family: var(--hc-display); font-size: 1.1rem; font-weight: 700; }
 .hc-mini-body span { color: var(--hc-muted); font-size: 0.85rem; }
@@ -532,7 +710,9 @@
 }
 
 /* ---------- Hub ---------- */
-.hc-hero--hub { min-height: 0; padding: clamp(2.75rem, 7vw, 4.5rem) 0; }
+.hc-hero--hub { min-height: 0; padding: clamp(3.4rem, 9vw, 6rem) 0; }
+.hc-hero--hub .hc-hero-bg { opacity: 0.64; }
+.hc-hero--hub .hc-hero-wash { opacity: 0.63; }
 .hc-hub-lead { max-width: 40rem; margin: 1rem auto 0; color: var(--hc-muted); font-size: 1.05rem; }
 
 .hc-category-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem; margin-top: 1.5rem; }
@@ -591,6 +771,8 @@
 @keyframes hc-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 /* Tiêu đề là phần tử LCP: chỉ trượt, không bắt đầu từ opacity 0 để không làm chậm LCP. */
 @keyframes hc-enter-title { from { transform: translateY(10px); } to { transform: none; } }
+@keyframes hc-mark-enter { from { opacity: 0; transform: translateY(8px) scale(0.78) rotate(-8deg); } to { opacity: 1; transform: none; } }
+@keyframes hc-hero-drift { from { transform: scale(1.035) translate3d(-0.35%, -0.2%, 0); } to { transform: scale(1.07) translate3d(0.45%, 0.25%, 0); } }
 @keyframes hc-roll { from { opacity: 0; transform: translateY(-55%); } to { opacity: 1; transform: none; } }
 @keyframes hc-fade-down { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
@@ -630,11 +812,13 @@
 
 /* Hero xuất hiện lần lượt. */
 .hc-hero-inner > * { animation: hc-enter 0.8s var(--hc-ease) both; }
+.hc-hero-inner > .hc-hero-mark { animation-name: hc-mark-enter; animation-duration: 0.72s; }
 .hc-hero-inner > .hc-title { animation-name: hc-enter-title; animation-duration: 0.6s; }
-.hc-hero-inner > :nth-child(2) { animation-delay: 0.08s; }
-.hc-hero-inner > :nth-child(3) { animation-delay: 0.16s; }
-.hc-hero-inner > :nth-child(4) { animation-delay: 0.24s; }
-.hc-hero-inner > :nth-child(5) { animation-delay: 0.36s; }
+.hc-hero-inner > :nth-child(2) { animation-delay: 0.06s; }
+.hc-hero-inner > :nth-child(3) { animation-delay: 0.12s; }
+.hc-hero-inner > :nth-child(4) { animation-delay: 0.18s; }
+.hc-hero-inner > :nth-child(5) { animation-delay: 0.24s; }
+.hc-hero-inner > :nth-child(6) { animation-delay: 0.34s; }
 .hc-timer .hc-timer-box { animation: hc-enter 0.7s var(--hc-ease) both; }
 .hc-timer .hc-timer-box:nth-child(1) { animation-delay: 0.26s; }
 .hc-timer .hc-timer-box:nth-child(2) { animation-delay: 0.32s; }
@@ -647,11 +831,12 @@
 
 /* ---------- Responsive ---------- */
 @media (min-width: 640px) {
-    .hc-hero { padding: 2rem 0 2.5rem; }
-    .hc-info { margin: 1.6rem 0 1.75rem; }
+    .hc-hero { padding: 1.35rem 0 1.65rem; }
+    .hc-info { margin: 1.05rem 0 1.2rem; }
     .hc-timer { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.85rem; }
-    .hc-timer-box { aspect-ratio: 4 / 5; }
+    .hc-timer-box { aspect-ratio: 5 / 4; }
     .hc-timer-box strong { font-size: clamp(2.6rem, 7vw, 5rem); }
+    .hc-share-actions { grid-template-columns: 1fr 1fr; }
 }
 
 @media (min-width: 720px) {
@@ -663,7 +848,8 @@
 
 @media (prefers-reduced-motion: reduce) {
     .hc-sky { display: none; }
-    .hc-hero-inner > *, .hc-hero-inner > .hc-title, .hc-timer .hc-timer-box, .hc-d.is-new, .hc-faq details[open] p { animation: none; }
+    .hc-hero-bg, .hc-hero-inner > *, .hc-hero-inner > .hc-title, .hc-hero-inner > .hc-hero-mark, .hc-timer .hc-timer-box, .hc-d.is-new, .hc-faq details[open] p { animation: none; }
     .hc-reveal { opacity: 1; transform: none; transition: none; }
+    .hc-share-dialog, .hc-share-dialog * { animation: none !important; }
     .hc-page *, .hc-page *::before, .hc-page *::after { transition: none !important; }
 }

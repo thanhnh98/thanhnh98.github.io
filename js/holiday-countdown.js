@@ -28,12 +28,20 @@
         local: 'That is {datetime} where you are.',
         expected: ' (expected)',
         liveTitle: '{name} is here!',
-        liveText: 'Enjoy the celebration. {emoji}',
+        liveText: 'Enjoy the celebration.',
         unknownTitle: 'Next date',
         unknownText: 'to be announced',
         today: 'Today!',
-        shareText: '{name} countdown {emoji}',
-        shareCopied: 'Link copied. Share it with friends!'
+        shareText: '{name} countdown',
+        shareCopied: 'Link copied. Share it with friends!',
+        shareCaptured: 'Captured {datetime}',
+        shareEyebrow: 'THE MOMENT IS GETTING CLOSER',
+        shareReady: 'Your countdown image is ready.',
+        shareFailed: 'We could not create the image. Please try again.',
+        shareDownloaded: 'Countdown image downloaded.',
+        shareUnavailable: 'Direct image sharing is not available, so the image was downloaded instead.',
+        shareFooter: '{name} countdown',
+        shareUnits: { days: 'DAYS', hours: 'HOURS', minutes: 'MINUTES', seconds: 'SECONDS' }
     };
 
     function strings(config) {
@@ -91,6 +99,65 @@
             minutes: Math.floor((total % 3600) / 60),
             seconds: total % 60
         };
+    }
+
+    function loadImage(src) {
+        return new Promise(function (resolve, reject) {
+            var image = new Image();
+            image.decoding = 'async';
+            image.onload = function () { resolve(image); };
+            image.onerror = reject;
+            image.src = src;
+        });
+    }
+
+    function roundedRect(ctx, x, y, width, height, radius) {
+        var r = Math.min(radius, width / 2, height / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + width, y, x + width, y + height, r);
+        ctx.arcTo(x + width, y + height, x, y + height, r);
+        ctx.arcTo(x, y + height, x, y, r);
+        ctx.arcTo(x, y, x + width, y, r);
+        ctx.closePath();
+    }
+
+    function drawCover(ctx, image, width, height, overscan) {
+        var scale = Math.max((width + overscan * 2) / image.naturalWidth, (height + overscan * 2) / image.naturalHeight);
+        var drawWidth = image.naturalWidth * scale;
+        var drawHeight = image.naturalHeight * scale;
+        ctx.drawImage(image, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+        var words = String(text).split(/\s+/);
+        var lines = [];
+        var line = '';
+        words.forEach(function (word) {
+            var next = line ? line + ' ' + word : word;
+            if (line && ctx.measureText(next).width > maxWidth) {
+                lines.push(line);
+                line = word;
+            } else {
+                line = next;
+            }
+        });
+        if (line) lines.push(line);
+        if (maxLines && lines.length > maxLines) {
+            lines = lines.slice(0, maxLines);
+            while (ctx.measureText(lines[lines.length - 1] + '…').width > maxWidth) {
+                lines[lines.length - 1] = lines[lines.length - 1].slice(0, -1);
+            }
+            lines[lines.length - 1] += '…';
+        }
+        lines.forEach(function (entry, index) { ctx.fillText(entry, x, y + index * lineHeight); });
+        return y + lines.length * lineHeight;
+    }
+
+    function canvasBlob(canvas) {
+        return new Promise(function (resolve, reject) {
+            canvas.toBlob(function (blob) { blob ? resolve(blob) : reject(new Error('Canvas export failed')); }, 'image/png');
+        });
     }
 
     function setText(root, selector, value) {
@@ -154,7 +221,7 @@
             }
             var year = occ.dateKey.slice(0, 4);
             var parts = breakdown(occ.start - now);
-            var vars = { name: config.name, emoji: config.emoji || '', year: year };
+            var vars = { name: config.name, year: year };
             root.classList.toggle('is-live', occ.live);
             setDigits(root, '[data-hc-unit="days"]', String(parts.days));
             setDigits(root, '[data-hc-unit="hours"]', pad(parts.hours));
@@ -198,10 +265,20 @@
     function initShare(root, config, T) {
         var button = root.querySelector('[data-hc-share]');
         var status = root.querySelector('[data-hc-share-status]');
-        if (!button) return;
+        var dialog = document.querySelector('[data-hc-share-dialog]');
+        var canvas = dialog && dialog.querySelector('[data-hc-share-canvas]');
+        var preview = dialog && dialog.querySelector('[data-hc-share-preview]');
+        var loading = dialog && dialog.querySelector('[data-hc-share-loading]');
+        var dialogStatus = dialog && dialog.querySelector('[data-hc-share-dialog-status]');
+        var shareImage = dialog && dialog.querySelector('[data-hc-share-image]');
+        var downloadImage = dialog && dialog.querySelector('[data-hc-share-download]');
+        var close = dialog && dialog.querySelector('[data-hc-share-close]');
+        if (!button || !dialog || !canvas) return;
         var canonical = document.querySelector('link[rel="canonical"]');
         var url = canonical ? canonical.href : window.location.href;
         var title = document.title;
+        var latestBlob = null;
+        var latestFileName = '';
 
         function say(message) {
             if (!status) return;
@@ -209,20 +286,187 @@
             window.setTimeout(function () { status.textContent = ''; }, 3000);
         }
 
-        button.addEventListener('click', function () {
-            if (navigator.share) {
-                navigator.share({ title: title, text: fill(T.shareText, { name: config.name, emoji: config.emoji || '' }), url: url })
-                    .catch(function () { /* người dùng huỷ */ });
-                return;
+        function setDialogStatus(message) {
+            if (dialogStatus) dialogStatus.textContent = message;
+        }
+
+        function openDialog() {
+            if (typeof dialog.showModal === 'function') dialog.showModal();
+            else dialog.setAttribute('open', '');
+        }
+
+        function closeDialog() {
+            if (typeof dialog.close === 'function') dialog.close();
+            else dialog.removeAttribute('open');
+        }
+
+        function downloadBlob(blob, fileName) {
+            var objectUrl = URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = objectUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
+        }
+
+        async function renderShareImage() {
+            var select = root.querySelector('[data-hc-zone]');
+            var selected = select ? select.value : 'local';
+            var zone = zoneFor(config, selected);
+            var capturedAt = Date.now();
+            var occ = ZT.nextOccurrence(config, capturedAt, zone);
+            if (!occ) throw new Error('No upcoming occurrence');
+            var remaining = breakdown(occ.start - capturedAt);
+            var year = occ.dateKey.slice(0, 4);
+            var palette = config.palette || { paper: '#f5efe5', ink: '#20202a', accent: '#b24836' };
+            var backgroundPath = config.visual && config.visual.background;
+            var iconPath = config.visual && config.visual.icon;
+            var images = await Promise.all([loadImage(backgroundPath), loadImage(iconPath)]);
+            if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+            var ctx = canvas.getContext('2d');
+            var width = canvas.width;
+            var height = canvas.height;
+            var rtl = document.documentElement.dir === 'rtl';
+            var textX = rtl ? width - 100 : 100;
+            ctx.clearRect(0, 0, width, height);
+            ctx.save();
+            ctx.filter = 'blur(24px) saturate(1.12)';
+            drawCover(ctx, images[0], width, height, 50);
+            ctx.restore();
+            ctx.fillStyle = palette.paper;
+            ctx.globalAlpha = 0.76;
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalAlpha = 1;
+
+            // Hình học trang trí nhẹ để ảnh có nhịp điệu mà không cạnh tranh với số đếm.
+            ctx.strokeStyle = palette.accent;
+            ctx.globalAlpha = 0.24;
+            ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.arc(1080, 125, 155, 0, Math.PI * 2); ctx.stroke();
+            ctx.beginPath(); ctx.arc(75, 1370, 210, 0, Math.PI * 2); ctx.stroke();
+            ctx.globalAlpha = 1;
+
+            roundedRect(ctx, 72, 62, width - 144, height - 124, 48);
+            ctx.fillStyle = palette.paper;
+            ctx.globalAlpha = 0.78;
+            ctx.fill();
+            ctx.globalAlpha = 1;
+
+            ctx.drawImage(images[1], rtl ? width - 240 : 100, 105, 140, 140);
+            ctx.direction = rtl ? 'rtl' : 'ltr';
+            ctx.textAlign = rtl ? 'right' : 'left';
+            ctx.fillStyle = palette.accent;
+            ctx.font = '800 25px system-ui, sans-serif';
+            ctx.fillText(T.shareEyebrow, textX, 310);
+
+            ctx.fillStyle = palette.ink;
+            ctx.font = rtl ? '800 72px "Noto Kufi Arabic", sans-serif' : '800 84px "Fraunces", Georgia, serif';
+            var titleEnd = wrapText(ctx, config.name + ' ' + year, textX, 410, 1000, rtl ? 105 : 92, 2);
+            ctx.fillStyle = palette.accent;
+            ctx.font = rtl ? '700 36px "Noto Sans Arabic", sans-serif' : '700 39px system-ui, sans-serif';
+            wrapText(ctx, config.shareMessage, textX, titleEnd + 42, 990, 52, 2);
+
+            var values = [String(remaining.days), pad(remaining.hours), pad(remaining.minutes), pad(remaining.seconds)];
+            var units = [T.shareUnits.days, T.shareUnits.hours, T.shareUnits.minutes, T.shareUnits.seconds];
+            var cardY = 730;
+            var cardWidth = 232;
+            var cardGap = 22;
+            var startX = 103;
+            for (var i = 0; i < 4; i++) {
+                var cardX = startX + i * (cardWidth + cardGap);
+                roundedRect(ctx, cardX, cardY, cardWidth, 255, 28);
+                ctx.fillStyle = palette.ink;
+                ctx.fill();
+                ctx.textAlign = 'center';
+                ctx.direction = 'ltr';
+                ctx.fillStyle = palette.paper;
+                ctx.font = '800 82px "Fraunces", Georgia, serif';
+                ctx.fillText(values[i], cardX + cardWidth / 2, cardY + 115);
+                ctx.fillStyle = palette.paper;
+                ctx.globalAlpha = 0.72;
+                ctx.font = '800 21px system-ui, sans-serif';
+                ctx.fillText(units[i], cardX + cardWidth / 2, cardY + 183);
+                ctx.globalAlpha = 1;
             }
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url)
-                    .then(function () { say(T.shareCopied); })
-                    .catch(function () { say(url); });
-                return;
+
+            ctx.direction = rtl ? 'rtl' : 'ltr';
+            ctx.textAlign = rtl ? 'right' : 'left';
+            ctx.fillStyle = palette.ink;
+            ctx.font = rtl ? '700 30px "Noto Sans Arabic", sans-serif' : '700 31px system-ui, sans-serif';
+            wrapText(ctx, formatDateTime(T, occ.start, zone, false) + (config.expected ? T.expected : ''), textX, 1085, 1000, 45, 2);
+            ctx.fillStyle = palette.ink;
+            ctx.globalAlpha = 0.66;
+            ctx.font = rtl ? '500 23px "Noto Sans Arabic", sans-serif' : '600 23px system-ui, sans-serif';
+            ctx.fillText(fill(T.shareCaptured, { datetime: formatDateTime(T, capturedAt, localZone, true) }), textX, 1215);
+            ctx.globalAlpha = 1;
+
+            ctx.strokeStyle = palette.accent;
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(100, 1270); ctx.lineTo(width - 100, 1270); ctx.stroke();
+            ctx.fillStyle = palette.ink;
+            ctx.font = '800 27px system-ui, sans-serif';
+            ctx.textAlign = rtl ? 'right' : 'left';
+            ctx.fillText('saptet.vn', textX, 1335);
+            ctx.fillStyle = palette.accent;
+            ctx.font = rtl ? '700 24px "Noto Sans Arabic", sans-serif' : '700 24px system-ui, sans-serif';
+            ctx.textAlign = rtl ? 'left' : 'right';
+            ctx.fillText(fill(T.shareFooter, { name: config.name }), rtl ? 100 : width - 100, 1335);
+
+            canvas.setAttribute('aria-label', fill(T.shareText, { name: config.name }) + ': ' + values.join(', '));
+            latestFileName = config.slug + '-countdown-' + year + '.png';
+            return canvasBlob(canvas);
+        }
+
+        button.addEventListener('click', async function () {
+            latestBlob = null;
+            preview.setAttribute('aria-busy', 'true');
+            if (loading) loading.hidden = false;
+            shareImage.disabled = true;
+            downloadImage.disabled = true;
+            setDialogStatus('');
+            openDialog();
+            try {
+                latestBlob = await renderShareImage();
+                preview.setAttribute('aria-busy', 'false');
+                if (loading) loading.hidden = true;
+                shareImage.disabled = false;
+                downloadImage.disabled = false;
+                setDialogStatus(T.shareReady);
+            } catch (error) {
+                preview.setAttribute('aria-busy', 'false');
+                if (loading) loading.hidden = true;
+                setDialogStatus(T.shareFailed);
             }
-            say(url);
         });
+
+        downloadImage.addEventListener('click', function () {
+            if (!latestBlob) return;
+            downloadBlob(latestBlob, latestFileName);
+            setDialogStatus(T.shareDownloaded);
+        });
+
+        shareImage.addEventListener('click', async function () {
+            if (!latestBlob) return;
+            if (typeof File !== 'function') {
+                downloadBlob(latestBlob, latestFileName);
+                setDialogStatus(T.shareUnavailable);
+                return;
+            }
+            var file = new File([latestBlob], latestFileName, { type: 'image/png' });
+            var payload = { files: [file], title: title, text: fill(T.shareText, { name: config.name }), url: url };
+            if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+                try { await navigator.share(payload); } catch (error) { if (error.name !== 'AbortError') setDialogStatus(T.shareFailed); }
+                return;
+            }
+            downloadBlob(latestBlob, latestFileName);
+            setDialogStatus(T.shareUnavailable);
+        });
+
+        close.addEventListener('click', closeDialog);
+        dialog.addEventListener('click', function (event) { if (event.target === dialog) closeDialog(); });
     }
 
     // Thẻ nhỏ ở hub và khối "More countdowns": chỉ cập nhật số ngày.
@@ -281,6 +525,12 @@
                 hero.classList.toggle('is-offscreen', !entries[0].isIntersecting);
             }).observe(hero);
         }
+
+        function syncVisibility() {
+            if (hero) hero.classList.toggle('is-page-hidden', document.hidden);
+        }
+        document.addEventListener('visibilitychange', syncVisibility);
+        syncVisibility();
     }
 
     var config = null;

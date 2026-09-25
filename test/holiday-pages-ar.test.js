@@ -21,10 +21,12 @@ test('Arabic data only covers existing holidays and is complete', () => {
   const slugs = new Set(HOLIDAYS_EN.map((holiday) => holiday.slug));
   for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
     assert.ok(slugs.has(slug), `unknown slug ${slug}`);
-    for (const key of ['name', 'title', 'h1', 'description', 'answer', 'dateNote', 'tagline', 'liveTitle', 'liveText']) {
+    for (const key of ['name', 'title', 'h1', 'description', 'answer', 'dateNote', 'tagline', 'liveTitle', 'liveText', 'shareMessage']) {
       assert.match(ar[key], ARABIC, `${slug}.${key} should be Arabic`);
     }
     assert.ok(ar.about.length >= 2 && ar.traditions.length >= 3 && ar.faq.length >= 2 && ar.regions.length >= 3, slug);
+    assert.match(ar.origin.roots, ARABIC, `${slug}.origin.roots should be Arabic`);
+    assert.match(ar.origin.communities, ARABIC, `${slug}.origin.communities should be Arabic`);
     assert.match(ar.wikipedia, /^https:\/\/ar\.wikipedia\.org\/wiki\//);
   }
   // Tiếng Ả Rập có 6 dạng số nhiều; thiếu dạng nào sẽ hiển thị sai ngữ pháp.
@@ -36,6 +38,7 @@ for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
 
   test(`${file} is an indexable right-to-left Arabic page`, () => {
     const html = read(file);
+    const holiday = HOLIDAYS_EN.find((item) => item.slug === slug);
     const canonical = `https://saptet.vn/ar/${slug}`;
     assert.match(html, /<html lang="ar" dir="rtl">/);
     assert.match(html, /<body class="hc-page hc-page--rtl">/);
@@ -43,6 +46,18 @@ for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
     assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large">/);
     assert.match(html, /<meta property="og:locale" content="ar_AR">/);
     assert.match(html, /family=Noto\+Sans\+Arabic/);
+    assert.match(html, new RegExp(`class="hc-hero-bg" src="${holiday.visual.background}"`));
+    assert.match(html, new RegExp(`class="hc-hero-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true"`));
+    assert.doesNotMatch(html, /class="hc-kicker"|عالمي · بتوقيتك المحلي|السعودية · بتوقيت مكة المكرمة/);
+    assert.match(html, /النشأة والمجتمعات التي تحيي المناسبة/);
+    assert.match(html, /الأردن وبلاد الشام/);
+    assert.match(html, /تعرض هذه الأمثلة أبرز التقاليد الإقليمية وتقاليد الجاليات/);
+    assert.match(html, /<dialog class="hc-share-dialog" data-hc-share-dialog/);
+    assert.match(html, /<canvas data-hc-share-canvas width="1200" height="1500" role="img"/);
+    assert.ok(html.includes(UI_AR.shareImage));
+    assert.ok(html.includes(UI_AR.shareDownload));
+    assert.ok(decode(html).includes(ar.origin.roots));
+    assert.ok(decode(html).includes(ar.origin.communities));
     assert.doesNotMatch(html, /\{\{[A-Z_]+\}\}/);
 
     const title = decode(html.match(/<title>([^<]+)<\/title>/)[1]);
@@ -66,6 +81,9 @@ for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
     const config = JSON.parse(html.match(/<script id="holiday-config" type="application\/json">([\s\S]*?)<\/script>/)[1]);
     assert.equal(config.i18n.locale, 'ar-u-nu-latn');
     assert.equal(config.name, ar.name);
+    assert.equal(config.shareMessage, ar.shareMessage);
+    assert.deepEqual(config.i18n.shareUnits, UI_AR.units);
+    assert.equal(config.i18n.shareFooter, UI_AR.shareFooter);
   });
 
   test(`${file} and its English page reference each other with hreflang`, () => {
