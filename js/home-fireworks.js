@@ -347,6 +347,13 @@
     var rewardModalLastFocus = null;
     var launcherDiscoveryTimer = 0;
     var launchFeedbackTimer = 0;
+    var canvasRatio = 0;
+    var glowSprites = new Map();
+    // Máy cảm ứng (điện thoại): ít hạt hơn và canvas độ phân giải thấp hơn để khung hình không nghẽn lúc bấm liên tục.
+    var isCoarsePointer = Boolean(win.matchMedia && win.matchMedia('(pointer: coarse)').matches);
+    var maxParticles = isCoarsePointer ? 700 : 1800;
+    var particleScale = isCoarsePointer ? 0.65 : 1;
+    var maxCanvasRatio = isCoarsePointer ? 1.5 : 2;
 
     try {
       storage = win.localStorage;
@@ -570,9 +577,12 @@
 
     function resizeCanvas() {
       if (!canvas) return;
+      var ratio = Math.min(win.devicePixelRatio || 1, maxCanvasRatio);
+      // Gán canvas.width cấp phát lại cả bitmap: chỉ làm khi kích thước thật sự đổi, không phải mỗi lần bấm.
+      if (width === win.innerWidth && height === win.innerHeight && canvasRatio === ratio) return;
       width = win.innerWidth;
       height = win.innerHeight;
-      var ratio = Math.min(win.devicePixelRatio || 1, 2);
+      canvasRatio = ratio;
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       canvas.style.width = width + 'px';
@@ -588,6 +598,7 @@
         return;
       }
       canvas = doc.createElement('canvas');
+      canvasRatio = 0;
       canvas.className = 'home-fireworks-canvas';
       canvas.setAttribute('aria-hidden', 'true');
       doc.body.appendChild(canvas);
@@ -605,8 +616,31 @@
       }, 350);
     }
 
+    // Quầng sáng vẽ sẵn một lần cho mỗi màu, thay cho context.shadowBlur (rất chậm trên canvas điện thoại).
+    function getGlowSprite(color) {
+      var sprite = glowSprites.get(color);
+      if (sprite) return sprite;
+      sprite = doc.createElement('canvas');
+      sprite.width = 32;
+      sprite.height = 32;
+      var spriteContext = sprite.getContext('2d');
+      var gradient = spriteContext.createRadialGradient(16, 16, 0, 16, 16, 16);
+      gradient.addColorStop(0, color);
+      gradient.addColorStop(0.35, color);
+      gradient.addColorStop(1, 'rgba(0,0,0,0)');
+      spriteContext.globalAlpha = 0.55;
+      spriteContext.fillStyle = gradient;
+      spriteContext.fillRect(0, 0, 32, 32);
+      glowSprites.set(color, sprite);
+      return sprite;
+    }
+
+    function drawGlow(color, x, y, radius) {
+      context.drawImage(getGlowSprite(color), x - radius, y - radius, radius * 2, radius * 2);
+    }
+
     function explode(rocket, now) {
-      var particleCount = (rocket.signature ? 92 : 68) + Math.floor(Math.random() * 24);
+      var particleCount = Math.round(((rocket.signature ? 92 : 68) + Math.floor(Math.random() * 24)) * particleScale);
       flashes.push({ x: rocket.targetX, y: rocket.targetY, born: now, life: 430, color: rocket.accent });
       if (rocket.signature) {
         wordBursts.push({ x: rocket.targetX, y: rocket.targetY, born: now, life: 2300, text: rocket.message || 'Sắp Tết' });
@@ -625,7 +659,7 @@
           color: index % 5 === 0 ? rocket.accent : rocket.color
         });
       }
-      if (particles.length > 1800) particles.splice(0, particles.length - 1800);
+      if (particles.length > maxParticles) particles.splice(0, particles.length - maxParticles);
     }
 
     function drawRocket(rocket, now) {
@@ -648,13 +682,11 @@
       context.lineWidth = 2.2;
       context.strokeStyle = gradient;
       context.stroke();
+      drawGlow(rocket.color, x, y, 11);
       context.beginPath();
       context.arc(x, y, 3.2, 0, Math.PI * 2);
       context.fillStyle = rocket.accent;
-      context.shadowColor = rocket.color;
-      context.shadowBlur = 13;
       context.fill();
-      context.shadowBlur = 0;
       return progress >= 1;
     }
 
@@ -675,13 +707,12 @@
       context.lineWidth = Math.max(.55, particle.radius * .58);
       context.lineCap = 'round';
       context.stroke();
+      var coreRadius = Math.max(.45, particle.radius * (1 - progress * .55));
+      drawGlow(particle.color, x, y, coreRadius + 5);
       context.beginPath();
-      context.arc(x, y, Math.max(.45, particle.radius * (1 - progress * .55)), 0, Math.PI * 2);
+      context.arc(x, y, coreRadius, 0, Math.PI * 2);
       context.fillStyle = particle.color;
-      context.shadowColor = particle.color;
-      context.shadowBlur = 7;
       context.fill();
-      context.shadowBlur = 0;
       context.globalAlpha = 1;
       return true;
     }
@@ -699,7 +730,11 @@
       context.textBaseline = 'middle';
       context.lineJoin = 'round';
       context.font = '700 ' + fontSize + 'px "Dancing Script", "Be Vietnam Pro", sans-serif';
-      var measuredWidth = context.measureText(wordBurst.text).width;
+      if (wordBurst.measuredFontSize !== fontSize) {
+        wordBurst.measuredWidth = context.measureText(wordBurst.text).width;
+        wordBurst.measuredFontSize = fontSize;
+      }
+      var measuredWidth = wordBurst.measuredWidth;
       var fitScale = Math.min(1, (width * .84) / Math.max(1, measuredWidth));
       var renderedHalfWidth = measuredWidth * fitScale * scale / 2;
       var safeX = clamp(wordBurst.x, renderedHalfWidth + 18, width - renderedHalfWidth - 18);
@@ -707,10 +742,11 @@
       context.translate(safeX, safeY);
       context.scale(scale * fitScale, scale * fitScale);
       context.globalAlpha = fade;
+      context.lineWidth = Math.max(10, fontSize * .22);
+      context.strokeStyle = 'rgba(127, 14, 32, .32)';
+      context.strokeText(wordBurst.text, 0, 0);
       context.lineWidth = Math.max(4, fontSize * .075);
       context.strokeStyle = '#8a1025';
-      context.shadowColor = 'rgba(127, 14, 32, .72)';
-      context.shadowBlur = 18;
       context.strokeText(wordBurst.text, 0, 0);
       context.fillStyle = '#ffd60a';
       context.fillText(wordBurst.text, 0, 0);
@@ -722,13 +758,11 @@
       var progress = (now - flash.born) / flash.life;
       if (progress >= 1) return false;
       context.globalAlpha = 1 - progress;
+      drawGlow(flash.color, flash.x, flash.y, 34 * (1 - progress) + 6);
       context.beginPath();
       context.arc(flash.x, flash.y, Math.max(0, 12 * (1 - progress)), 0, Math.PI * 2);
       context.fillStyle = flash.color;
-      context.shadowColor = flash.color;
-      context.shadowBlur = 22;
       context.fill();
-      context.shadowBlur = 0;
       context.beginPath();
       context.arc(flash.x, flash.y, 8 + progress * 42, 0, Math.PI * 2);
       context.strokeStyle = flash.color;
@@ -775,11 +809,28 @@
       return true;
     }
 
+    // Ghi localStorage (đồng bộ, chặn luồng chính) sau khi khung hình phản hồi tap đã vẽ; gộp nhiều tap liên tiếp.
+    var saveScheduled = false;
+    function flushSave() {
+      if (!saveScheduled) return;
+      saveScheduled = false;
+      try { saveDailyRewardState(storage, dailyRewardState); } catch (error) {}
+      try { saveCollectionState(storage, collectionState); } catch (error) {}
+    }
+    function scheduleSave() {
+      if (saveScheduled) return;
+      saveScheduled = true;
+      if (win.requestIdleCallback) win.requestIdleCallback(flushSave, { timeout: 1000 });
+      else win.setTimeout(flushSave, 200);
+    }
+    win.addEventListener('pagehide', flushSave);
+
     function launch() {
       var reward = getReward();
       var nowDate = new Date();
       try {
-        dailyRewardState = testMode ? normalizeDailyRewardState(dailyRewardState, nowDate, Math.random) : readDailyRewardState(storage, nowDate, Math.random);
+        // Khi còn lần ghi đang chờ, localStorage chưa có tiến độ mới nhất: dùng trạng thái trong bộ nhớ.
+        dailyRewardState = testMode || saveScheduled ? normalizeDailyRewardState(dailyRewardState, nowDate, Math.random) : readDailyRewardState(storage, nowDate, Math.random);
       } catch (error) {
         dailyRewardState = normalizeDailyRewardState(dailyRewardState, nowDate, Math.random);
       }
@@ -788,10 +839,12 @@
       var replayResult = advanceWishReplayCounter(collectionState.clicksSinceWish);
       collectionState.clicksSinceWish = replayResult.clicksSinceWish;
       renderReward(reward);
+      // Khởi động lại animation mà không ép reflow đồng bộ (void offsetWidth) ngay trong lúc xử lý tap.
       trigger.classList.remove('is-launching');
-      void trigger.offsetWidth;
-      trigger.classList.add('is-launching');
-      win.setTimeout(function () { trigger.classList.remove('is-launching'); }, 700);
+      win.requestAnimationFrame(function () {
+        trigger.classList.add('is-launching');
+        win.setTimeout(function () { trigger.classList.remove('is-launching'); }, 700);
+      });
 
       var signatureMessage = replayResult.wishReached ? createFireworkDisplaySelection(Math.random, nowDate, collectionState.unlockedIds) : null;
       var newlyUnlocked = false;
@@ -804,10 +857,7 @@
           showRewardCelebration(dailyMessage, true);
         }
       }
-      if (!testMode) {
-        try { saveDailyRewardState(storage, dailyRewardState); } catch (error) {}
-        try { saveCollectionState(storage, collectionState); } catch (error) {}
-      }
+      if (!testMode) scheduleSave();
       renderDailyMission();
       if (replayResult.wishReached) showLaunchSuccess();
       var result = {

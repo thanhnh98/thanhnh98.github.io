@@ -5,6 +5,7 @@
   "main": "crawl-tet-articles.js",
   "scripts": {
     "build:tet-runner": "esbuild js/tet-runner-three.js --bundle --format=esm --minify --outfile=js/tet-runner-three.bundle.js",
+    "build:icons": "node scripts/build-lucide-subset.js",
     "crawl": "node crawl-tet-articles.js",
     "crawl:dev": "node --inspect crawl-tet-articles.js",
     "install-deps": "npm install",

@@ -111,7 +111,7 @@ class Router {
             normalizedPath === '/qrcode.html' ||
             normalizedPath.endsWith('/qr-code/index.html')
         ) {
-            window.location.replace('/qr-code' + window.location.search + window.location.hash);
+            window.location.replace('/qr-code/' + window.location.search + window.location.hash);
             return;
         }
 

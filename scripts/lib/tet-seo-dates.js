@@ -27,6 +27,23 @@ function daysUntil(targetDate, fromDate = getVietnamNow()) {
   return Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
 }
 
+function vnDateKey(date) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Ho_Chi_Minh',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+  const get = (type) => parts.find((p) => p.type === type).value;
+  return `${get('year')}-${get('month')}-${get('day')}`;
+}
+
+// Số ngày lịch (theo giờ Việt Nam) từ hôm nay đến ngày đích — khớp "Hôm nay còn N ngày" do JS hiển thị.
+function calendarDaysUntil(targetKey, now = new Date()) {
+  const toUtc = (key) => Date.UTC(...key.split('-').map((n, i) => Number(n) - (i === 1 ? 1 : 0)));
+  return Math.max(0, Math.round((toUtc(targetKey) - toUtc(vnDateKey(now))) / 86400000));
+}
+
 function formatDateVN(date) {
   const parts = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Asia/Ho_Chi_Minh',
@@ -47,9 +64,9 @@ function weekdayVN(date) {
   return VN_WEEKDAYS[dayIndex];
 }
 
-function buildTetSeoPayload(now = getVietnamNow()) {
-  const daysUntilTet = daysUntil(TET_2027, now);
-  const daysUntilGiaoThua = daysUntil(GIAO_THUA_2027, now);
+function buildTetSeoPayload(now = new Date()) {
+  const daysUntilTet = calendarDaysUntil('2027-02-06', now);
+  const daysUntilGiaoThua = calendarDaysUntil('2027-02-05', now);
   const todayWeekday = weekdayVN(now);
   const todayDate = formatDateVN(now);
   const tetWeekday = weekdayVN(TET_2027);
@@ -63,6 +80,7 @@ function buildTetSeoPayload(now = getVietnamNow()) {
   const answerLead = `Hôm nay còn ${daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027.`;
 
   return {
+    now,
     daysUntilTet,
     daysUntilGiaoThua,
     todayWeekday,
@@ -84,8 +102,8 @@ function buildTetSeoPayload(now = getVietnamNow()) {
     },
     metaDescriptionLanding:
       'Xem còn bao nhiêu ngày nữa đến Tết Nguyên Đán 2027 với đồng hồ đếm ngược realtime theo giờ Việt Nam, kèm ngày Tết, giao thừa và FAQ nhanh.',
-    metaDescriptionHome:
-      'Đếm ngược Tết Nguyên Đán 2027 theo giờ Việt Nam. Xem còn bao nhiêu ngày nữa đến Tết, lịch Tết, lời chúc, ảnh Tết và tiện ích Tết.',
+    metaDescriptionHome: `Hôm nay còn ${daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027 (${tetWeekday}, ${tetDate}). Đếm ngược từng giây theo giờ Việt Nam, kèm lịch âm hôm nay và tiện ích Tết.`,
+    metaDescriptionGiaoThua: `Hôm nay còn ${daysUntilGiaoThua} ngày nữa đến đêm giao thừa 2027 (30 Tết, ${giaoThuaDate}). Đếm ngược từng giây đến 00:00 mùng 1 Tết Đinh Mùi theo giờ Việt Nam.`,
     titleLanding: 'Còn Bao Nhiêu Ngày Nữa Đến Tết 2027? | Sắp Tết',
     titleHome: 'Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán',
   };
@@ -95,6 +113,7 @@ module.exports = {
   TET_2027,
   GIAO_THUA_2027,
   buildTetSeoPayload,
+  calendarDaysUntil,
   daysUntil,
   getVietnamNow,
 };

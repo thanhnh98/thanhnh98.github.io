@@ -118,11 +118,22 @@ class HeaderLoader {
             return;
         }
 
-        const script = document.createElement('script');
-        script.async = true;
-        script.crossOrigin = 'anonymous';
-        script.src = scriptSrc;
-        document.head.appendChild(script);
+        // Tải sau khi trang load xong và trình duyệt rảnh: ~200KB JS quảng cáo không tranh băng thông/CPU với
+        // nội dung chính (LCP) và phản hồi tap đầu tiên (INP). Các lệnh adsbygoogle.push() trước đó vẫn được xếp hàng.
+        const inject = () => {
+            if (document.querySelector(`script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]`)) return;
+            const script = document.createElement('script');
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.src = scriptSrc;
+            document.head.appendChild(script);
+        };
+        const whenIdle = () => {
+            if ('requestIdleCallback' in window) window.requestIdleCallback(inject, { timeout: 3000 });
+            else window.setTimeout(inject, 1500);
+        };
+        if (document.readyState === 'complete') whenIdle();
+        else window.addEventListener('load', whenIdle, { once: true });
     }
 
     setActiveNavItem() {
@@ -266,7 +277,7 @@ class HeaderLoader {
                 }
 
                 const script = document.createElement('script');
-                script.src = 'https://unpkg.com/lucide@latest';
+                script.src = 'https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js';
                 script.async = true;
                 script.setAttribute('data-lucide-loader', 'true');
                 script.addEventListener('load', () => resolve(), { once: true });

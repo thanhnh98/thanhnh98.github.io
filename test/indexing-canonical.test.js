@@ -34,6 +34,17 @@ function fileForSitemapUrl(url) {
   });
 }
 
+// GitHub Pages 301-redirects /slug to /slug/ when only slug/index.html exists.
+function isDirectoryRedirect(pathname) {
+  if (pathname === '/' || pathname.endsWith('/')) return false;
+  const rel = decodeURIComponent(pathname).replace(/^\//, '');
+  const isFile = (candidate) => {
+    const filePath = path.join(root, candidate);
+    return fs.existsSync(filePath) && fs.statSync(filePath).isFile();
+  };
+  return !isFile(rel) && !isFile(`${rel}.html`) && isFile(`${rel}/index.html`);
+}
+
 function canonicalFor(html) {
   return html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)/i)?.[1] || '';
 }
@@ -121,7 +132,7 @@ test('sitemap URLs match page canonical URLs for primary landing pages', () => {
   const intentHtml = read('con-bao-nhieu-ngay-nua-den-tet/index.html');
   const legacyHtml = read('con-bao-lau-nua-den-tet.html');
   const sitemap = read('sitemap.xml');
-  const intentCanonical = 'https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet';
+  const intentCanonical = 'https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet/';
   const legacyCanonical = 'https://saptet.vn/con-bao-lau-nua-den-tet.html';
 
   assert.match(sitemap, new RegExp(`<loc>${intentCanonical}</loc>`));
@@ -135,6 +146,7 @@ test('all sitemap URLs resolve to indexable self-canonical pages', () => {
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 
   for (const url of urls) {
+    assert.ok(!isDirectoryRedirect(new URL(url).pathname), `${url} redirects to ${url}/ on GitHub Pages`);
     const file = fileForSitemapUrl(url);
     assert.ok(file, `Missing local file for ${url}`);
 
@@ -168,6 +180,7 @@ test('indexable pages do not link to noindex or permanent redirect URLs', () => 
       if (!pathname) continue;
 
       assert.ok(!redirectPathnames.has(pathname), `${sourceFile} links to redirect URL ${link}`);
+      assert.ok(!isDirectoryRedirect(pathname), `${sourceFile} links to ${link}, which redirects to ${pathname}/`);
 
       const targetFile = fileForPathname(pathname);
       if (!targetFile) continue;

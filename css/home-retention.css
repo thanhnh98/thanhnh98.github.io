@@ -47,12 +47,14 @@
   font-size: clamp(2.35rem, 5vw, 3.5rem);
 }
 
+/* Bề rộng cố định: nếu co theo nội dung, thẻ đổi rộng khi web font tải xong và gây layout shift. */
 .countdown-info-card {
+  width: min(100%, 25rem);
   max-width: 520px;
   margin: 0 auto;
   padding: 0.5rem 0.9rem;
 }
-.countdown-info-card .countdown-info-title { margin: 0 0 .25rem; font-size: 1.5rem; }
+.countdown-info-card .countdown-info-title { margin: 0 0 .25rem; font-size: 1.5rem; white-space: nowrap; overflow: hidden; text-overflow: clip; }
 .countdown-info-card .countdown-info-tet-date { margin: 0 0 .2rem; padding-bottom: .25rem; font-size: .88rem; }
 .countdown-info-card .countdown-info-today-link { padding-top: .2rem; font-size: .84rem; }
 .countdown-info-card .countdown-info-nearest-event { margin-top: .15rem; padding-top: .25rem; font-size: .82rem; }
@@ -734,7 +736,7 @@
   .countdown-section .container { padding-inline: 0.8rem; }
   .countdown-content-wrapper { padding: 0.65rem 0.25rem; }
   .countdown-section .countdown-hero-title { margin: 0; font-size: clamp(1.7rem, 8vw, 2.2rem); line-height: 1.08; }
-  .countdown-info-card { margin: 0 auto; padding: 0.4rem 0.65rem; border-radius: 14px; }
+  .countdown-info-card { width: 100%; margin: 0 auto; padding: 0.4rem 0.65rem; border-radius: 14px; }
   .countdown-info-card .countdown-info-title { margin: 0; font-size: 1.2rem; }
   .countdown-info-card .countdown-info-tet-date, .countdown-info-card .countdown-info-today-link, .countdown-info-card .countdown-hero-subline { font-size: 0.74rem; }
   #countdown-timer { flex-wrap: nowrap; gap: 0.45rem; margin: 0 auto; }

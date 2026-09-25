@@ -661,23 +661,23 @@ test('clean: bỏ thông tin riêng tư, giữ bản quyền + nhãn AI + C2PA +
 
 // ---------- page ----------
 
-test('trang /images-metadata được index: robots, canonical, sitemap, OG, JSON-LD', () => {
+test('trang /images-metadata/ được index: robots, canonical, sitemap, OG, JSON-LD', () => {
     const html = read('images-metadata/index.html');
     assert.match(html, /<title>[^<]*metadata ảnh[^<]*<\/title>/);
     assert.match(html, /<h1>Chỉnh sửa thông số ảnh<\/h1>/);
     assert.match(html, /<meta name="robots" content="index, follow">/);
     assert.doesNotMatch(html, /noindex/);
-    assert.match(html, /<link rel="canonical" href="https:\/\/saptet\.vn\/images-metadata">/);
-    assert.match(html, /<meta property="og:url" content="https:\/\/saptet\.vn\/images-metadata">/);
+    assert.match(html, /<link rel="canonical" href="https:\/\/saptet\.vn\/images-metadata\/">/);
+    assert.match(html, /<meta property="og:url" content="https:\/\/saptet\.vn\/images-metadata\/">/);
     assert.match(html, /<meta name="description" content="[^"]{80,170}">/);
 
     const ld = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     const types = ld['@graph'].map((n) => n['@type']);
     assert.deepEqual(types, ['WebPage', 'WebApplication']);
-    assert.ok(ld['@graph'].every((n) => n.url === 'https://saptet.vn/images-metadata'));
+    assert.ok(ld['@graph'].every((n) => n.url === 'https://saptet.vn/images-metadata/'));
 
     const sitemap = read('sitemap.xml');
-    assert.match(sitemap, /<loc>https:\/\/saptet\.vn\/images-metadata<\/loc>/);
+    assert.match(sitemap, /<loc>https:\/\/saptet\.vn\/images-metadata\/<\/loc>/);
     assert.doesNotMatch(sitemap, /remove-metadata/);
     assert.match(read('robots.txt'), /Allow: \/images-metadata/);
 
@@ -695,9 +695,9 @@ test('có lối vào công cụ: footer Tiện ích (cả 3 bản) và trang T�
     for (const file of ['footer.html', 'js/footer.js', 'index.html']) {
         const html = read(file);
         const utilities = html.match(/aria-label="Tiện ích Sắp Tết">([\s\S]*?)<\/nav>/)[1];
-        assert.match(utilities, /<a href="\/images-metadata">Thông số ảnh<\/a>/, file);
+        assert.match(utilities, /<a href="\/images-metadata\/">Thông số ảnh<\/a>/, file);
     }
-    assert.match(read('qr-code/index.html'), /class="qrcode-more-tools"[\s\S]*?href="\/images-metadata"/);
+    assert.match(read('qr-code/index.html'), /class="qrcode-more-tools"[\s\S]*?href="\/images-metadata\/"/);
 });
 
 test('trang có 3 tab: xoá metadata, tất cả metadata, chỉnh sửa', () => {

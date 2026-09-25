@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán</title>
-    <meta name="description" content="Đếm ngược Tết Nguyên Đán 2027 theo giờ Việt Nam. Xem lịch âm hôm nay, sự kiện gần nhất và tiện ích chuẩn bị Tết mỗi ngày cùng Sắp Tết.">
+    <meta name="description" content="Hôm nay còn 134 ngày nữa đến Tết Nguyên Đán 2027 (Thứ Bảy, 06/02/2027). Đếm ngược từng giây theo giờ Việt Nam, kèm lịch âm hôm nay và tiện ích Tết.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Sắp Tết">
     <meta name="theme-color" content="#d32f2f">
@@ -13,11 +13,16 @@
     <link rel="canonical" href="https://saptet.vn/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Font không chặn render: chữ hiện ngay bằng font hệ thống rồi đổi sang web font (display=swap). -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap"></noscript>
+    <!-- Nền hero (phần tử LCP) nằm trong CSS nên được phát hiện muộn: preload sớm. -->
+    <link rel="preload" as="image" href="images/tet-background-pattern.svg" fetchpriority="high">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css?v=20260830">
     <link rel="stylesheet" href="css/pwa.css">
-  <link rel="stylesheet" href="css/home-retention.css?v=20260914b">
+  <link rel="stylesheet" href="css/home-retention.css?v=20260925">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -59,8 +64,8 @@
     <div id="header-container">
       <header class="home-header-fallback">
         <div class="container">
-          <div class="header-brand"><a class="header-brand-link" href="/" aria-label="Sắp Tết – Trang chủ"><img class="app-icon" src="assets/images/ic_app.png" alt="" width="46" height="46"><span class="brand-title">Sắp Tết</span></a></div>
-          <nav aria-label="Điều hướng chính"><ul><li><a href="/con-bao-nhieu-ngay-nua-den-tet">Đếm ngược</a></li><li><a href="/lich-am-hom-nay.html">Lịch âm</a></li></ul></nav>
+          <div class="header-brand"><a class="header-brand-link" href="/" aria-label="Sắp Tết – Trang chủ"><img class="app-icon" src="assets/images/ic_app-208.webp" alt="" width="46" height="46"><span class="brand-title">Sắp Tết</span></a></div>
+          <nav aria-label="Điều hướng chính"><ul><li><a href="/con-bao-nhieu-ngay-nua-den-tet/">Đếm ngược</a></li><li><a href="/lich-am-hom-nay.html">Lịch âm</a></li></ul></nav>
         </div>
       </header>
     </div>
@@ -81,9 +86,9 @@
             <div class="countdown-info-card" aria-live="polite">
               <div class="countdown-info-title"><i data-lucide="sparkles" class="countdown-info-icon" aria-hidden="true"></i> Đón Tết Nguyên Đán Đinh Mùi <i data-lucide="sparkles" class="countdown-info-icon" aria-hidden="true"></i></div>
               <p class="countdown-info-tet-date"><i data-lucide="calendar-heart" class="countdown-info-icon" aria-hidden="true"></i> Tết Nguyên Đán: <span id="tet-date-solar">06/02/2027</span></p>
-              <a href="/lich-am-hom-nay.html" class="countdown-info-today-link" aria-label="Xem lịch âm hôm nay chi tiết"><span id="today-label">Hôm nay:</span> <span id="today-date">đang cập nhật</span> <span id="today-lunar" class="today-lunar"></span></a>
-              <a href="/su-kien-quan-trong.html" id="nearest-event-link" class="countdown-info-nearest-event" aria-label="Xem sự kiện gần nhất" hidden><span id="nearest-event-text"></span></a>
-              <p class="countdown-hero-subline">Hôm nay còn <strong><span data-seo="days-until-tet">0</span> ngày</strong> nữa đến Tết Nguyên Đán 2027</p>
+              <a href="/lich-am-hom-nay.html" class="countdown-info-today-link" aria-label="Xem lịch âm hôm nay chi tiết"><span id="today-label">Hôm nay:</span> <span id="today-date">Thứ Sáu, 25/09/2026</span> <span id="today-lunar" class="today-lunar">(Âm lịch: 15/8/2026)</span></a>
+              <a href="/su-kien-quan-trong.html" id="nearest-event-link" class="countdown-info-nearest-event" aria-label="Xem sự kiện gần nhất"><span id="nearest-event-text">Sắp tới: Tết Trung Thu · Diễn ra hôm nay</span></a>
+              <p class="countdown-hero-subline">Hôm nay còn <strong><span data-seo="days-until-tet">134</span> ngày</strong> nữa đến Tết Nguyên Đán 2027</p>
             </div>
             <div id="countdown-timer" aria-label="Thời gian còn lại đến Tết 2027">
               <div class="timer-box"><span id="days" class="time-value">000</span><span class="time-label">Ngày</span></div>
@@ -131,8 +136,8 @@
             </div>
           </div>
           <div class="home-today-grid">
-            <a class="home-tet-card home-date-card" href="/lich-am-hom-nay.html" aria-label="Xem lịch âm hôm nay"><span class="home-card-label"><i data-lucide="calendar-days" aria-hidden="true"></i> Hôm nay</span><strong id="today-solar-date">Đang xem ngày…</strong><span id="today-lunar-date">Đang tính lịch âm…</span><span class="home-card-link">Xem lịch âm <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
-            <a id="today-nearest-event-link" class="home-tet-card home-event-card" href="/su-kien-quan-trong.html"><span class="home-card-label"><i data-lucide="bell-ring" aria-hidden="true"></i> Sự kiện gần nhất</span><strong id="nearest-event-name">Đang tìm sự kiện…</strong><span id="nearest-event-countdown">Xem các ngày đáng nhớ trong năm</span><span class="home-card-link">Xem sự kiện <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+            <a class="home-tet-card home-date-card" href="/lich-am-hom-nay.html" aria-label="Xem lịch âm hôm nay"><span class="home-card-label"><i data-lucide="calendar-days" aria-hidden="true"></i> Hôm nay</span><strong id="today-solar-date">Thứ Sáu, 25/09/2026</strong><span id="today-lunar-date">Âm lịch: 15/8/2026</span><span class="home-card-link">Xem lịch âm <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+            <a id="today-nearest-event-link" class="home-tet-card home-event-card" href="/su-kien-quan-trong.html"><span class="home-card-label"><i data-lucide="bell-ring" aria-hidden="true"></i> Sự kiện gần nhất</span><strong id="nearest-event-name">Tết Trung Thu</strong><span id="nearest-event-countdown">Diễn ra hôm nay</span><span class="home-card-link">Xem sự kiện <i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
             <article id="home-daily-card" class="home-tet-card home-daily-card" role="link" tabindex="0" data-home-card-action="#daily-action"><span id="daily-phase-label" class="home-card-label"><i data-lucide="sparkles" aria-hidden="true"></i> Gợi ý hôm nay</span><strong id="daily-title">Một tiện ích dành cho bạn</strong><p id="daily-description">Đang chuẩn bị nội dung hôm nay…</p><a id="daily-action" class="home-daily-action" href="/lich-am-hom-nay.html">Khám phá ngay →</a></article>
           </div>
           <aside id="home-fireworks-collection" class="home-fireworks-collection" aria-labelledby="home-fireworks-collection-title">
@@ -218,14 +223,14 @@
           <div class="home-app-showcase-copy">
             <div class="home-app-brand-row">
               <div class="home-app-icon-wrap">
-                <img src="assets/images/ic_app.png" alt="Biểu tượng ứng dụng Sắp Tết" width="104" height="104">
+                <img src="assets/images/ic_app-208.webp" alt="Biểu tượng ứng dụng Sắp Tết" width="104" height="104">
                 <span>Happy 2027</span>
               </div>
               <div><p class="home-app-eyebrow">Ứng dụng Sắp Tết</p><h2 id="app-showcase-heading">Mang không khí Tết lên điện thoại</h2></div>
             </div>
             <p class="home-app-lead">Đếm ngược ngay trên màn hình, xem lịch âm, nhận thông báo và mở các tiện ích Tết mà không cần tìm lại website mỗi ngày.</p>
             <ul class="home-app-feature-list">
-              <li><i data-lucide="layout-widget" aria-hidden="true"></i> Widget đếm ngược</li>
+              <li><i data-lucide="layout-dashboard" aria-hidden="true"></i> Widget đếm ngược</li>
               <li><i data-lucide="calendar-heart" aria-hidden="true"></i> Lịch âm dương</li>
               <li><i data-lucide="bell-ring" aria-hidden="true"></i> Nhắc ngày quan trọng</li>
               <li><i data-lucide="gamepad-2" aria-hidden="true"></i> Trò chơi ngày Tết</li>
@@ -252,7 +257,7 @@
       <section id="thong-tin-tet" class="home-seo-section" data-home-section="seo" aria-labelledby="seo-heading">
         <div class="container home-compact-container">
           <div class="home-seo-grid">
-            <div class="home-seo-intro"><p class="home-section-kicker">Sắp Tết 2027</p><h2 id="seo-heading">Đếm ngược Tết và chuẩn bị mỗi ngày</h2><p>Tết Nguyên Đán Đinh Mùi 2027 rơi vào ngày <strong>06/02/2027</strong> dương lịch. Sắp Tết cập nhật bộ đếm theo giờ Việt Nam, đồng thời giúp bạn xem <a href="/lich-am-hom-nay.html">lịch âm hôm nay</a> và những sự kiện đáng nhớ trước Tết.</p><p>Xem thêm tại <a href="/con-bao-nhieu-ngay-nua-den-tet">trang đếm ngược chi tiết</a>, <a href="/lich-tet-2027.html">lịch Tết 2027</a> hoặc <a href="/huong-dan-tet.html">hướng dẫn chuẩn bị Tết</a>.</p></div>
+            <div class="home-seo-intro"><p class="home-section-kicker">Sắp Tết 2027</p><h2 id="seo-heading">Đếm ngược Tết và chuẩn bị mỗi ngày</h2><p>Tết Nguyên Đán Đinh Mùi 2027 rơi vào ngày <strong>06/02/2027</strong> dương lịch. Sắp Tết cập nhật bộ đếm theo giờ Việt Nam, đồng thời giúp bạn xem <a href="/lich-am-hom-nay.html">lịch âm hôm nay</a> và những sự kiện đáng nhớ trước Tết.</p><p>Xem thêm tại <a href="/con-bao-nhieu-ngay-nua-den-tet/">trang đếm ngược chi tiết</a>, <a href="/lich-tet-2027.html">lịch Tết 2027</a> hoặc <a href="/huong-dan-tet.html">hướng dẫn chuẩn bị Tết</a>.</p></div>
             <div class="home-faq-list" aria-label="Câu hỏi thường gặp">
               <details class="home-faq-item"><summary>Tết Nguyên Đán 2027 là ngày nào?</summary><p>Mùng 1 Tết Đinh Mùi 2027 là thứ Bảy, ngày 06/02/2027 dương lịch. Giao thừa diễn ra vào tối 05/02/2027.</p></details>
               <details class="home-faq-item"><summary>Bộ đếm Tết được tính theo múi giờ nào?</summary><p>Bộ đếm sử dụng múi giờ Việt Nam, Asia/Ho_Chi_Minh (UTC+7), và cập nhật ngày, giờ, phút, giây theo thời gian thực.</p></details>
@@ -269,11 +274,11 @@
       <div class="container home-compact-container">
         <div class="home-footer-grid">
           <div class="home-footer-brand">
-            <a href="/" class="home-footer-logo"><img src="assets/images/ic_app.png" alt="" width="58" height="58"><span><strong>Sắp Tết</strong><small>Đếm ngược Tết 2027</small></span></a>
+            <a href="/" class="home-footer-logo"><img src="assets/images/ic_app-208.webp" alt="" width="58" height="58"><span><strong>Sắp Tết</strong><small>Đếm ngược Tết 2027</small></span></a>
             <p>Giữ nhịp háo hức đến Tết bằng lịch âm, tiện ích hằng ngày và ứng dụng Sắp Tết trên điện thoại.</p>
             <a class="home-footer-app-cta" href="#app-intro" data-home-smart-app data-home-smart-app-source="footer"><i data-lucide="smartphone" aria-hidden="true"></i> Tải ứng dụng Sắp Tết</a>
           </div>
-          <nav class="home-footer-links" aria-label="Tiện ích Sắp Tết"><h2>Tiện ích</h2><a href="/lich-am-hom-nay.html">Lịch âm hôm nay</a><a href="/loi-chuc-tet.html">Lời chúc Tết</a><a href="/may-tinh-li-xi.html">Máy tính lì xì</a><a href="/tro-choi-tet.html">Trò chơi Tết</a><a href="/images-metadata">Thông số ảnh</a></nav>
+          <nav class="home-footer-links" aria-label="Tiện ích Sắp Tết"><h2>Tiện ích</h2><a href="/lich-am-hom-nay.html">Lịch âm hôm nay</a><a href="/loi-chuc-tet.html">Lời chúc Tết</a><a href="/may-tinh-li-xi.html">Máy tính lì xì</a><a href="/tro-choi-tet.html">Trò chơi Tết</a><a href="/images-metadata/">Thông số ảnh</a></nav>
           <nav class="home-footer-links" aria-label="Khám phá Sắp Tết"><h2>Khám phá</h2><a href="/tin-tuc/">Blog Sắp Tết</a><a href="/cua-hang.html">Cửa hàng Tết</a><a href="/su-kien-quan-trong.html">Sự kiện quan trọng</a><a href="/ung-dung.html">Giới thiệu ứng dụng</a></nav>
           <div class="home-footer-community"><h2>Kết nối</h2><p>Theo dõi Sắp Tết để nhận nội dung và cập nhật mới.</p><div class="home-footer-socials"><a href="https://www.facebook.com/saptet2027/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Sắp Tết"><img src="assets/images/facebook.png" alt="" width="24" height="24"></a><a href="https://www.tiktok.com/@sap.tet" target="_blank" rel="noopener noreferrer" aria-label="TikTok Sắp Tết"><img src="assets/images/tiktok.png" alt="" width="24" height="24"></a><a href="mailto:tlife1001@gmail.com" aria-label="Email Sắp Tết"><i data-lucide="mail" aria-hidden="true"></i></a></div></div>
         </div>
@@ -295,7 +300,7 @@
       <span id="home-fireworks-trigger-label" class="home-fireworks-trigger-label" aria-hidden="true">Bấm để bắn pháo hoa</span>
     </button>
     <a class="home-floating-app-cta" href="#app-intro" data-home-floating-app data-home-smart-app data-home-smart-app-source="floating" aria-label="Tải ứng dụng Sắp Tết">
-      <img src="assets/images/ic_app.png" alt="" width="64" height="64">
+      <img src="assets/images/ic_app-208.webp" alt="" width="64" height="64">
       <span class="home-floating-app-badge" aria-hidden="true"><i data-lucide="download"></i></span>
       <span class="home-floating-app-tooltip" aria-hidden="true">Tải ứng dụng</span>
     </a>
@@ -311,20 +316,25 @@
       </div>
     </div>
     <div id="home-toast" class="home-toast" role="status" aria-live="polite" hidden></div>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="js/header-loader.js"></script>
-    <script src="js/analytics.js"></script>
-    <script src="js/lunar-calendar.js"></script>
-    <script src="data/events-data.js"></script>
-    <script src="js/home-retention.js?v=20260828"></script>
-    <script src="js/home-shop-preview.js?v=20260828"></script>
-    <script src="js/home-fireworks.js?v=20260904f"></script>
-    <script>if (window.lucide) window.lucide.createIcons();</script>
+    <script src="js/vendor/lucide-subset.js?v=20260925" defer></script>
+    <script src="js/header-loader.js" defer></script>
+    <script src="js/analytics.js" defer></script>
+    <script src="js/lunar-calendar.js" defer></script>
+    <script src="data/events-data.js" defer></script>
+    <script src="js/home-retention.js?v=20260828" defer></script>
+    <script src="js/home-shop-preview.js?v=20260828" defer></script>
+    <script src="js/home-fireworks.js?v=20260925" defer></script>
+    <script>document.addEventListener('DOMContentLoaded', function () { if (window.lucide) window.lucide.createIcons(); });</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {
-        const [{ initializeApp }, { getAnalytics, logEvent }] = await Promise.all([import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js'), import('https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js')]);
-        const app = initializeApp({apiKey:'AIzaSyA0H3MrjWzDOfLlvv6vLsRvafTgOvjkBNE',authDomain:'sap-tet-countdown.firebaseapp.com',databaseURL:'https://sap-tet-countdown-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'sap-tet-countdown',storageBucket:'sap-tet-countdown.appspot.com',messagingSenderId:'694828841632',appId:'1:694828841632:web:c628cc496d648b229767c5',measurementId:'G-N1W98H5503'});
-        const analytics = getAnalytics(app); window.webAnalytics?.setAnalyticsInstance?.(analytics); window.webAnalytics?.setLogEventFunction?.(logEvent);
+        // Khởi tạo Analytics sau khi trang load xong và rảnh (sự kiện trước đó đã được js/analytics.js xếp hàng).
+        const initAnalytics = async () => {
+          const [{ initializeApp }, { getAnalytics, logEvent }] = await Promise.all([import('https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js'), import('https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js')]);
+          const app = initializeApp({apiKey:'AIzaSyA0H3MrjWzDOfLlvv6vLsRvafTgOvjkBNE',authDomain:'sap-tet-countdown.firebaseapp.com',databaseURL:'https://sap-tet-countdown-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'sap-tet-countdown',storageBucket:'sap-tet-countdown.appspot.com',messagingSenderId:'694828841632',appId:'1:694828841632:web:c628cc496d648b229767c5',measurementId:'G-N1W98H5503'});
+          const analytics = getAnalytics(app); window.webAnalytics?.setAnalyticsInstance?.(analytics); window.webAnalytics?.setLogEventFunction?.(logEvent);
+        };
+        const whenIdle = () => ('requestIdleCallback' in window ? requestIdleCallback(initAnalytics, { timeout: 4000 }) : setTimeout(initAnalytics, 2000));
+        if (document.readyState === 'complete') whenIdle(); else addEventListener('load', whenIdle, { once: true });
       }
     </script>
   </body>

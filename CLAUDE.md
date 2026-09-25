@@ -18,7 +18,8 @@ Content language is Vietnamese; all date math is Vietnam time (UTC+7). The sibli
 | `npm test` | Node's built-in runner over `test/*.test.js`. `pretest` runs `build:tet-runner` first, so the bundle is always fresh. |
 | `node --test test/events-data.test.js` | Single file. Add `--test-name-pattern="..."` for a single case. |
 | `npm run build:tet-runner` | esbuild `js/tet-runner-three.js` → `js/tet-runner-three.bundle.js` (the only bundled JS on the site). |
-| `npm run generate-tin-tuc-clean-urls` | **Required after creating/renaming any `tin-tuc/<slug>.html`.** |
+| `npm run build:icons` | Regenerates `js/vendor/lucide-subset.js` (the homepage + header Lucide icons, pinned lucide@1.48.0). **Run after adding a `data-lucide` icon to `index.html` or `components/header.html`** — `test/home-performance.test.js` fails on a missing icon. Other pages load the pinned full UMD from unpkg. |
+| `npm run generate-tin-tuc-clean-urls` | **Required after creating/renaming/deleting any `tin-tuc/<slug>.html`.** When deleting a post, add its slug → redirect target to `data/removed-news.json` so the old URL doesn't 404. |
 | `npm run generate-events` | Regenerates the 37 event pages + hub + sitemap event block. |
 | `npm run generate-holidays` | Regenerates the English holiday countdown pages (`/christmas`, `/ramadan`, …), the `/countdowns` hub and the sitemap holiday block. |
 | `npm run inject-tet-seo` | Pre-renders day-count SEO text/JSON-LD into the countdown landing pages. |
@@ -31,10 +32,13 @@ No lint step. `.github/workflows/deploy.yml` would re-run build → clean-urls �
 ## Generated files — never hand-edit
 
 - `js/tet-runner-three.bundle.js` (from `js/tet-runner-three.js`)
+- `js/vendor/lucide-subset.js` (from `scripts/build-lucide-subset.js`)
 - The English holiday countdown pages (`christmas.html`, `ramadan.html`, … one per slug in `data/holidays-en.js`) and `countdowns.html`, plus the `<!-- Holiday countdown pages (EN) -->` sitemap block — rendered from `data/holidays-en.js` through `templates/holiday-countdown.html` / `templates/holidays-index.html`. Edit data/templates, then `npm run generate-holidays`. Their share images `assets/images/og/<slug>.jpg` (+ `countdowns.jpg`) come from `npm run render-holiday-og` (needs local Chrome + macOS `sips`, emoji via Noto Color Emoji); they contain no year, so re-render only when adding a holiday or changing its name/colors. `table`-rule holidays (Diwali, Hanukkah, CNY, Ramadan, Eid) need their date lists extended before they run out; `test/holiday-pages.test.js` fails when fewer than two future dates remain.
 - `su-kien-quan-trong.html`, `su-kien-quan-trong/index.html`, every `su-kien/<slug>/index.html` — all rendered from `data/events-data.js` + `data/events-content.js` through `templates/events-index.html` and `templates/event-detail.html`. Edit the data/templates, then `npm run generate-events`.
 - The `<!-- Event detail pages -->` block in `sitemap.xml` (rewritten by the same script). The rest of `sitemap.xml` is hand-written.
-- `tin-tuc/<slug>/index.html` redirect stubs (GitHub Pages ignores `_redirects`; the file is kept but inert).
+- `tin-tuc/<slug>/index.html` redirect stubs (GitHub Pages ignores `_redirects`; the file is kept but inert), and for deleted posts listed in `data/removed-news.json` also `tin-tuc/<slug>.html`.
+- Directory pages (`slug/index.html`) must use the trailing-slash URL `/slug/` in canonical, sitemap and links — GitHub Pages 301s `/slug` → `/slug/`. `test/indexing-canonical.test.js` enforces this.
+- The day count in `index.html` / the Tết landings (`data-seo="days-until-tet"`, `data-seo="giao-thua-days"`, `data-seo="live-days-answer"`, and the homepage/giao-thừa meta description) is rewritten daily by `inject-tet-seo`; the script throws if a target element is missing.
 - `.version`, `.last_build_id`, the `CACHE_NAME` line in `sw.js`.
 - The injected SEO snippet blocks in `index.html`, `con-bao-nhieu-ngay-nua-den-tet/index.html`, `con-bao-nhieu-ngay-nua-den-giao-thua/index.html`.
 - The `<!-- LUNAR_TODAY -->` block, the `#bloc-*`/`#detail-*`/`#faq-*` texts, `<title>`, meta description and `#faq-schema` in `lich-am-hom-nay.html` (rewritten by `inject-lunar-today`).
@@ -54,6 +58,8 @@ Hand-written: page HTML, `css/*`, `js/*` (except the bundle), `data/*.js`, `data
 **Games.** `js/word-chain-*.js` (engine / storage / DOM split, each with its own test) and the Three.js `tet-runner` (`js/tet-runner-engine.js` + `tet-runner-three.js` bundled, loaded lazily by `js/tet-runner-loader.js`).
 
 **PWA.** `sw.js` precaches an explicit `urlsToCache` list and busts via `CACHE_NAME`; add genuinely critical new assets there. Static asset URLs carry manual `?v=YYYYMMDD` query strings in the HTML — bump them when changing a cached CSS/JS file.
+
+**Homepage performance (mobile CWV).** `test/home-performance.test.js` guards what fixed INP/CLS/LCP: body scripts are `defer`, Google Fonts load non-blocking (`media="print"` swap), AdSense (`header-loader.js`), Firebase Analytics and the service worker start only after `load` + idle, infinite CSS animations in the hero animate only `transform`/`opacity` (animating `filter`, `box-shadow`, `text-shadow` or `left` kept the main thread ~50% busy while idle), and the fireworks canvas uses pre-rendered glow sprites instead of `shadowBlur`. The hero "today" card is pre-rendered by `inject-tet-seo` from `getHeroToday()` in `js/home-retention.js` so JS fills identical text (no shift).
 
 **Tests** are regression guards, not unit tests: they `readFileSync` the real HTML/JS/JSON and assert on structure (counts, canonical/meta tags, required script tags, footer consistency). Changing markup will legitimately break them — update the assertion when the change is intended, and add a test file when adding a page family.
 

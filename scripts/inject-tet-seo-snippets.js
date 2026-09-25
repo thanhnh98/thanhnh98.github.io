@@ -1,151 +1,95 @@
 /**
  * Pre-render Tết SEO snippets into static HTML (Asia/Ho_Chi_Minh).
+ * Idempotent: rewrites the same elements on every run, so the daily workflow keeps the
+ * day count in the HTML (for crawlers that don't run JS) and in the meta description fresh.
  * Usage: node scripts/inject-tet-seo-snippets.js
  */
 
 const fs = require('fs');
 const path = require('path');
 const { buildTetSeoPayload } = require('./lib/tet-seo-dates');
+const { getHeroToday } = require('../js/home-retention.js');
+const { EVENTS_DATA } = require('../data/events-data.js');
+const { calculateLunarDate } = require('../js/lunar-calendar.js');
 
 const ROOT = path.join(__dirname, '..');
 
-const INTENT_LANDING = path.join(ROOT, 'con-bao-nhieu-ngay-nua-den-tet', 'index.html');
-
-const TARGETS = [
-  path.join(ROOT, 'index.html'),
-  INTENT_LANDING,
-  path.join(ROOT, 'con-bao-nhieu-ngay-nua-den-giao-thua', 'index.html'),
-];
-
-const INTENT_PAGE_URL = 'https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet';
-
-function buildWebPageSchema(payload) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${INTENT_PAGE_URL}#webpage`,
-    url: INTENT_PAGE_URL,
-    name: payload.titleLanding,
-    description: payload.metaDescriptionLanding,
-    inLanguage: 'vi-VN',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': 'https://saptet.vn/#website',
-      name: 'Sắp Tết',
-      url: 'https://saptet.vn/',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: 'https://saptet.vn/assets/images/img_sharing.png',
-    },
-  };
+function escapeHtml(value) {
+  return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-function buildFaqSchema(payload) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Còn bao nhiêu ngày nữa đến Tết 2027?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: payload.faq.daysUntilTetAnswer,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Tết Nguyên Đán 2027 là ngày nào?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: payload.faq.tetDateAnswer,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Còn bao nhiêu ngày nữa đến giao thừa 2027?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: payload.faq.giaoThuaAnswer,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Tết 2027 là năm con gì?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: payload.faq.zodiacAnswer,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Vì sao số ngày còn lại thay đổi mỗi ngày?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: payload.faq.whyChangesAnswer,
-        },
-      },
-    ],
-  };
+function replaceOrThrow(html, re, replacement, label) {
+  if (!re.test(html)) throw new Error(`inject-tet-seo: ${label} not found`);
+  return html.replace(re, replacement);
 }
 
-function injectFile(filePath, payload) {
-  if (!fs.existsSync(filePath)) {
-    console.warn(`inject-tet-seo: skip missing ${filePath}`);
-    return false;
-  }
+function setTextById(html, id, text) {
+  const re = new RegExp(`(<([a-z]+)\\b[^>]*\\bid="${id}"[^>]*>)[^<]*(</\\2>)`);
+  return replaceOrThrow(html, re, `$1${escapeHtml(text)}$3`, `#${id}`);
+}
 
-  let html = fs.readFileSync(filePath, 'utf8');
-  const isIntentLanding = filePath === INTENT_LANDING;
+// Thẻ "Hôm nay" của hero + thẻ ngày/sự kiện trên trang chủ: cùng chuỗi mà js/home-retention.js sẽ điền,
+// để nội dung không đổi kích thước khi JS chạy (CLS) và bot không chạy JS vẫn thấy ngày thật.
+function injectHeroToday(html, now) {
+  const today = getHeroToday(now, EVENTS_DATA, calculateLunarDate);
+  html = setTextById(html, 'today-date', today.solarText);
+  html = setTextById(html, 'today-solar-date', today.solarText);
+  html = setTextById(html, 'today-lunar', today.lunarText ? `(${today.lunarText})` : 'Xem lịch âm');
+  html = setTextById(html, 'today-lunar-date', today.lunarText || 'Xem lịch âm hôm nay');
+  if (!today.nearestEvent) return html;
+  html = setTextById(html, 'nearest-event-text', today.nearestEvent.text);
+  html = setTextById(html, 'nearest-event-name', today.nearestEvent.name);
+  html = setTextById(html, 'nearest-event-countdown', today.nearestEvent.countdownText);
+  return html.replace(/(<a\b[^>]*\bid="nearest-event-link"[^>]*?) hidden>/, '$1>');
+}
 
-  const replacements = [
-    ['{{SEO_DAYS_UNTIL_TET}}', String(payload.daysUntilTet)],
-    ['{{SEO_DAYS_UNTIL_GIAO_THUA}}', String(payload.daysUntilGiaoThua)],
-    ['{{SEO_TODAY_WEEKDAY}}', payload.todayWeekday],
-    ['{{SEO_TODAY_DATE}}', payload.todayDate],
-    ['{{SEO_TET_WEEKDAY}}', payload.tetWeekday],
-    ['{{SEO_SNIPPET_PARAGRAPH}}', payload.snippetParagraph],
-    ['{{SEO_LANDING_DETAIL}}', payload.landingDetailLine],
-    ['{{SEO_ANSWER_LEAD}}', payload.answerLead],
-    ['{{SEO_TITLE}}', isIntentLanding ? payload.titleLanding : payload.titleHome],
-    [
-      '{{SEO_META_DESCRIPTION}}',
-      isIntentLanding ? payload.metaDescriptionLanding : payload.metaDescriptionHome,
-    ],
-    ['{{SEO_FAQ_DAYS}}', payload.faq.daysUntilTetAnswer],
-    ['{{SEO_FAQ_TET_DATE}}', payload.faq.tetDateAnswer],
-    ['{{SEO_FAQ_GIAO_THUA}}', payload.faq.giaoThuaAnswer],
-    ['{{SEO_FAQ_ZODIAC}}', payload.faq.zodiacAnswer],
-    ['{{SEO_FAQ_WHY_CHANGE}}', payload.faq.whyChangesAnswer],
-  ];
+function setMetaDescription(html, text, label) {
+  return replaceOrThrow(html, /(<meta name="description" content=")[^"]*(")/, `$1${escapeHtml(text)}$2`, `${label} meta description`);
+}
 
-  for (const [token, value] of replacements) {
-    html = html.split(token).join(value);
-  }
+const TARGETS = {
+  'index.html': (html, payload) => {
+    html = setMetaDescription(html, payload.metaDescriptionHome, 'index.html');
+    html = injectHeroToday(html, payload.now);
+    return replaceOrThrow(
+      html,
+      /(<span data-seo="days-until-tet">)[^<]*(<\/span>)/,
+      `$1${payload.daysUntilTet}$2`,
+      'index.html days-until-tet',
+    );
+  },
+  'con-bao-nhieu-ngay-nua-den-tet/index.html': (html, payload) => replaceOrThrow(
+    html,
+    /(data-seo="live-days-answer">)[\s\S]*?(<\/p>)/,
+    `$1\n                            <strong>${escapeHtml(payload.answerLead)}</strong>\n                        $2`,
+    'landing live-days-answer',
+  ),
+  'con-bao-nhieu-ngay-nua-den-giao-thua/index.html': (html, payload) => {
+    html = setMetaDescription(html, payload.metaDescriptionGiaoThua, 'giao-thua');
+    return replaceOrThrow(
+      html,
+      /(<p data-seo="giao-thua-days">)[^<]*(<\/p>)/,
+      `$1Hôm nay còn ${payload.daysUntilGiaoThua} ngày nữa đến đêm giao thừa (30 Tết, ${payload.giaoThuaDate}).$2`,
+      'giao-thua days line',
+    );
+  },
+};
 
-  if (isIntentLanding) {
-    html = html
-      .split('{{SEO_WEBPAGE_SCHEMA_JSON}}')
-      .join(JSON.stringify(buildWebPageSchema(payload), null, 2));
-    html = html
-      .split('{{SEO_FAQ_SCHEMA_JSON}}')
-      .join(JSON.stringify(buildFaqSchema(payload), null, 2));
-  }
-
-  fs.writeFileSync(filePath, html, 'utf8');
-  return true;
+function injectTetSeo(file, html, payload) {
+  return TARGETS[file](html, payload);
 }
 
 function main() {
   const payload = buildTetSeoPayload();
-  let count = 0;
-  for (const file of TARGETS) {
-    if (injectFile(file, payload)) count += 1;
+  for (const file of Object.keys(TARGETS)) {
+    const filePath = path.join(ROOT, file);
+    fs.writeFileSync(filePath, injectTetSeo(file, fs.readFileSync(filePath, 'utf8'), payload), 'utf8');
   }
   console.log(
-    `inject-tet-seo: updated ${count} file(s); daysUntilTet=${payload.daysUntilTet} (VN ${payload.todayDate})`
+    `inject-tet-seo: updated ${Object.keys(TARGETS).length} file(s); daysUntilTet=${payload.daysUntilTet} (VN ${payload.todayDate})`
   );
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { TARGETS, injectTetSeo };

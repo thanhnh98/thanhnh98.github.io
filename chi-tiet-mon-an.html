@@ -10,7 +10,7 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" id="og-title" content="Chi Tiết Món Ăn">
     <meta property="og:description" id="og-description" content="Hướng dẫn làm món ăn truyền thống chi tiết từ A-Z.">
-    <meta property="og:image" id="og-image" content="https://saptet.vn/assets/images/foods/default.jpg">
+    <meta property="og:image" id="og-image" content="https://saptet.vn/assets/images/img_sharing.png">
     <meta property="og:url" id="og-url" content="https://saptet.vn/chi-tiet-mon-an.html">
     <meta property="og:type" content="article">
     
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" id="twitter-title" content="Chi Tiết Món Ăn">
     <meta name="twitter:description" id="twitter-description" content="Hướng dẫn làm món ăn truyền thống chi tiết từ A-Z.">
-    <meta name="twitter:image" id="twitter-image" content="https://saptet.vn/assets/images/foods/default.jpg">
+    <meta name="twitter:image" id="twitter-image" content="https://saptet.vn/assets/images/img_sharing.png">
     
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -36,23 +36,7 @@
     <!-- Google Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4028912651504900" crossorigin="anonymous"></script>
     
-    <!-- Schema Markup -->
-    <script type="application/ld+json" id="schema-markup">
-    {
-        "@context": "https://schema.org",
-        "@type": "Recipe",
-        "name": "Món Ăn Truyền Thống",
-        "description": "Hướng dẫn làm món ăn truyền thống chi tiết.",
-        "image": "https://saptet.vn/assets/images/foods/default.jpg",
-        "author": {
-            "@type": "Person",
-            "name": "Đếm Ngược Tết"
-        },
-        "datePublished": "2024-01-15",
-        "recipeCategory": "Món chính",
-        "recipeCuisine": "Việt Nam"
-    }
-    </script>
+    <!-- Schema Markup: Recipe JSON-LD được chèn bởi js/recipe-schema.js sau khi tải dữ liệu món -->
     
     <style>
         /* Hero Section */
@@ -731,6 +715,7 @@
     <div id="footer-container"></div>
     
     <!-- Scripts -->
+    <script src="js/recipe-schema.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/header-loader.js"></script>
     <script src="js/food-modal.js"></script>
@@ -752,7 +737,7 @@
             // Open Graph
             document.getElementById('og-title').setAttribute('content', `${dish.name} - Hướng Dẫn Làm Chi Tiết`);
             document.getElementById('og-description').setAttribute('content', `Hướng dẫn làm ${dish.name} truyền thống chi tiết từ A-Z.`);
-            document.getElementById('og-image').setAttribute('content', `https://saptet.vn/assets/images/foods/${dish.id}.jpg`);
+            document.getElementById('og-image').setAttribute('content', dish.image || RecipeSchema.DEFAULT_IMAGE);
             document.getElementById('og-url').setAttribute('content', `https://saptet.vn/chi-tiet-mon-an.html?id=${dish.id}`);
             
             // Canonical URL
@@ -761,24 +746,17 @@
             // Twitter
             document.getElementById('twitter-title').setAttribute('content', `${dish.name} - Hướng Dẫn Làm Chi Tiết`);
             document.getElementById('twitter-description').setAttribute('content', `Hướng dẫn làm ${dish.name} truyền thống chi tiết từ A-Z.`);
-            document.getElementById('twitter-image').setAttribute('content', `https://saptet.vn/assets/images/foods/${dish.id}.jpg`);
+            document.getElementById('twitter-image').setAttribute('content', dish.image || RecipeSchema.DEFAULT_IMAGE);
             
             // Schema markup
-            const schema = {
-                "@context": "https://schema.org",
-                "@type": "Recipe",
-                "name": dish.name,
-                "description": `Hướng dẫn làm ${dish.name} truyền thống chi tiết.`,
-                "image": `https://saptet.vn/assets/images/foods/${dish.id}.jpg`,
-                "author": {
-                    "@type": "Person",
-                    "name": "Đếm Ngược Tết"
-                },
-                "datePublished": "2024-01-15",
-                "recipeCategory": "Món chính",
-                "recipeCuisine": "Việt Nam"
-            };
-            document.getElementById('schema-markup').textContent = JSON.stringify(schema);
+            const schema = dish.raw ? RecipeSchema.buildRecipeSchema(dish.raw, dish.id) : null;
+            if (schema) {
+                const schemaScript = document.createElement('script');
+                schemaScript.type = 'application/ld+json';
+                schemaScript.id = 'schema-markup';
+                schemaScript.textContent = JSON.stringify(schema);
+                document.head.appendChild(schemaScript);
+            }
         }
         
         // Update page colors based on dish
@@ -945,6 +923,7 @@
                         region: jsonData.primary_region || getDishRegionFromId(dishId),
                         colors: getDishColorsFromId(dishId),
                         image: jsonData.image,
+                        raw: jsonData,
                         ingredients: ingredientsHtml || '<p>Thông tin nguyên liệu sẽ được cập nhật sớm...</p>',
                         instructions: instructionsHtml || '<p>Hướng dẫn chi tiết sẽ được cập nhật sớm...</p>',
                         tips: tipsHtml || '<p>Các mẹo hay sẽ được cập nhật sớm...</p>',

@@ -25,7 +25,7 @@ test('homepage hero is compact, branded and links to the countdown intent page',
   assert.match(html, /class="timer-box"/);
   assert.match(html, /id="countdown-timer"/);
   assert.match(html, /id="share-countdown-btn"/);
-  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet"/);
+  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet\/"/);
   assert.doesNotMatch(html, /class="countdown-detail-cta"/);
 });
 
@@ -99,7 +99,7 @@ test('intent landing page has self-canonical, FAQ visible and FAQPage schema', (
   const html = read('con-bao-nhieu-ngay-nua-den-tet/index.html');
   assert.match(
     html,
-    /<link rel="canonical" href="https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet">/
+    /<link rel="canonical" href="https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet\/">/
   );
   assert.match(
     html,
@@ -163,7 +163,8 @@ test('homepage title and meta use brand-first copy from inject payload', () => {
   const payload = buildTetSeoPayload(new Date('2026-05-19T12:00:00+07:00'));
 
   assert.equal(payload.titleHome, 'Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán');
-  assert.match(payload.metaDescriptionHome, /Đếm ngược Tết Nguyên Đán 2027 theo giờ Việt Nam/);
+  assert.match(payload.metaDescriptionHome, new RegExp(`^Hôm nay còn ${payload.daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027`));
+  assert.ok(payload.metaDescriptionHome.length <= 160);
   assert.match(payload.landingDetailLine, /Tết Nguyên Đán 2027 rơi vào/);
   assert.doesNotMatch(payload.landingDetailLine, /Còn \d+ ngày/);
 });
