@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="/loi-chuc-tet.html">Lời chúc Tết</a>
                         <a href="/may-tinh-li-xi.html">Máy tính lì xì</a>
                         <a href="/tro-choi-tet.html">Trò chơi Tết</a>
+                        <a href="/images-metadata">Thông số ảnh</a>
                     </nav>
                     <nav class="home-footer-links" aria-label="Khám phá Sắp Tết">
                         <h2>Khám phá</h2>

@@ -1120,3 +1120,33 @@
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* Dòng gợi ý công cụ khác dưới cùng trang */
+.qrcode-more-tools {
+    margin: 2rem auto 0;
+    padding: 0 16px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+}
+
+.qrcode-more-tools a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: 0.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.qrcode-more-tools a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.qrcode-more-tools svg,
+.qrcode-more-tools i {
+    width: 16px;
+    height: 16px;
+}
