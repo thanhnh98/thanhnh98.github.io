@@ -37,6 +37,18 @@ test('Vietnamese data covers every holiday with the same structure as the Englis
     assert.ok(vi.keywords.length >= 3, `${holiday.slug}.keywords`);
   }
   assert.equal(Object.keys(HOLIDAYS_VI).length, HOLIDAYS_EN.length, 'no Vietnamese entry without an English page');
+  // "Sắp X": mỗi sự kiện có H1 thương hiệu + slug ASCII /sap-<tên-việt>/ duy nhất, không đụng file có sẵn ở gốc.
+  const sapSlugs = new Set();
+  for (const holiday of HOLIDAYS_EN) {
+    const vi = HOLIDAYS_VI[holiday.slug];
+    assert.equal(vi.h1, `Sắp ${vi.name}`, `${holiday.slug}.h1 should be "Sắp <name>"`);
+    assert.match(vi.sapSlug, /^sap-[a-z0-9]+(-[a-z0-9]+)*$/, `${holiday.slug}.sapSlug`);
+    assert.ok(!sapSlugs.has(vi.sapSlug), `${holiday.slug}.sapSlug duplicated`);
+    sapSlugs.add(vi.sapSlug);
+    assert.ok(!fs.existsSync(path.join(root, `${vi.sapSlug}.html`)), `${vi.sapSlug}.html would shadow the alias`);
+    assert.ok(vi.keywords.some((keyword) => keyword.startsWith('sắp ')), `${holiday.slug}.keywords needs a "sắp …" phrase`);
+  }
+
   for (const category of HOLIDAY_CATEGORIES) assert.ok(HOLIDAY_CATEGORIES_VI[category.id], category.id);
 });
 
@@ -60,6 +72,15 @@ for (const holiday of HOLIDAYS_EN) {
     const description = decode(html.match(/<meta name="description" content="([^"]+)"/)[1]);
     assert.ok(title.length <= 60, `title length ${title.length}: ${title}`);
     assert.ok(title.includes(vi.name));
+    assert.ok(title.startsWith(`Sắp ${vi.name} `), `title should start with "Sắp ${vi.name}": ${title}`);
+    assert.match(title, /Còn bao nhiêu ngày nữa\?$/, `title keeps the question: ${title}`);
+    assert.match(description, /^Sắp /, `description opens with "Sắp": ${description}`);
+    assert.match(html, new RegExp(`<h1 id="hc-title" class="hc-title">Sắp ${vi.name} <span data-hc-year>\\d{4}</span></h1>`));
+    assert.match(html, new RegExp(`<meta property="og:title" content="Sắp ${vi.name} \\d{4}">`));
+    const keywords = html.match(/<meta name="keywords" content="([^"]+)">/)[1];
+    assert.match(keywords, new RegExp(`sắp ${vi.name.toLowerCase()} \\d{4}`), 'keywords carry "sắp <name> <year>"');
+    const summaries = [...html.matchAll(/<summary>([^<]+)<\/summary>/g)].map((match) => decode(match[1]));
+    assert.equal(summaries[0], `Sắp ${vi.name} chưa? Còn bao nhiêu ngày nữa?`, 'first FAQ is the "Sắp X chưa" question');
     assert.ok(description.length >= 100 && description.length <= 160, `description length ${description.length}`);
 
     // Không sót nhãn tiếng Anh trong giao diện.
@@ -83,6 +104,18 @@ for (const holiday of HOLIDAYS_EN) {
     assert.equal(config.i18n.locale, 'vi-VN');
     assert.deepEqual(config.i18n.shareUnits, UI_VI.units);
     assert.deepEqual(config.dates.length > 1, true);
+  });
+
+  test(`/${vi.sapSlug}/ is a noindex alias that redirects to /vi/${slug}`, () => {
+    const stub = read(`${vi.sapSlug}/index.html`);
+    assert.match(stub, /<html lang="vi">/);
+    assert.match(stub, new RegExp(`<link rel="canonical" href="https://saptet.vn/vi/${slug}" />`));
+    assert.match(stub, new RegExp(`<meta http-equiv="refresh" content="0;url=/vi/${slug}" />`));
+    assert.match(stub, /<meta name="robots" content="noindex, follow" \/>/);
+    assert.match(stub, new RegExp(`location\\.replace\\("/vi/${slug}"\\)`));
+    assert.ok(stub.includes(`Sắp ${vi.name}`), 'stub names the holiday');
+    assert.ok(stub.length < 1500, 'stays a small redirect stub');
+    assert.doesNotMatch(read('sitemap.xml'), new RegExp(`<loc>https://saptet.vn/${vi.sapSlug}/?</loc>`), 'alias stays out of the sitemap');
   });
 
   test(`${file} pairs with its English page through hreflang and structured data`, () => {

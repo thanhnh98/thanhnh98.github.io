@@ -5,16 +5,20 @@
  *
  * zoneLabel chỉ có ở sự kiện scope 'national'. dateNote với sự kiện moonDisclaimer phải nhắc "trăng lưỡi liềm".
  * seeAlso (tuỳ chọn): liên kết sang trang tiếng Việt sẵn có trên saptet.vn cho cùng dịp lễ.
+ * h1 = 'Sắp <name>' (cụm thương hiệu, cũng là og:title). sapSlug = URL alias ASCII /sap-<tên-việt>/ → redirect noindex về /vi/<slug>.
  */
 const HOLIDAYS_VI = {
   'halloween': {
     name: 'Halloween',
-    h1: 'Đếm ngược Halloween',
+    h1: 'Sắp Halloween',
+    sapSlug: 'sap-halloween',
     zoneLabel: 'New York',
     tagline: 'Hóa trang, bí ngô và đi xin kẹo vào ngày 31 tháng 10.',
     shareMessage: 'Cuộc đếm ngược rùng rợn đã bắt đầu.',
     aliases: ['Halloween', 'Lễ hội Halloween', 'Lễ hội hóa trang', "All Hallows' Eve"],
     keywords: [
+      'sắp halloween',
+      'sắp đến halloween',
       'đếm ngược halloween',
       'còn bao nhiêu ngày nữa đến halloween',
       'halloween 2026 vào ngày nào',
@@ -75,12 +79,15 @@ const HOLIDAYS_VI = {
   },
   'diwali': {
     name: 'Diwali',
-    h1: 'Đếm ngược Diwali',
+    h1: 'Sắp Diwali',
+    sapSlug: 'sap-diwali',
     zoneLabel: 'New Delhi',
     tagline: 'Lễ hội Ánh sáng được hơn một tỷ người đón mừng.',
     shareMessage: 'Những ngọn đèn đang đến gần.',
     aliases: ['Diwali', 'Deepavali', 'Lễ hội Ánh sáng', 'Lễ hội Ánh sáng Ấn Độ'],
     keywords: [
+      'sắp diwali',
+      'sắp đến lễ hội ánh sáng diwali',
       'đếm ngược diwali',
       'còn bao nhiêu ngày nữa đến diwali',
       'diwali 2026 vào ngày nào',
@@ -146,12 +153,15 @@ const HOLIDAYS_VI = {
   },
   'thanksgiving': {
     name: 'Lễ Tạ ơn',
-    h1: 'Đếm ngược Lễ Tạ ơn',
+    h1: 'Sắp Lễ Tạ ơn',
+    sapSlug: 'sap-le-ta-on',
     zoneLabel: 'New York',
     tagline: 'Thứ Năm thứ tư của tháng 11 tại Mỹ.',
     shareMessage: 'Bàn tiệc sắp sẵn sàng rồi.',
     aliases: ['Lễ Tạ ơn', 'Ngày Lễ Tạ ơn', 'Lễ Tạ ơn Mỹ', 'Thanksgiving'],
     keywords: [
+      'sắp lễ tạ ơn',
+      'sắp đến thanksgiving',
       'đếm ngược lễ tạ ơn',
       'còn bao nhiêu ngày nữa đến lễ tạ ơn',
       'lễ tạ ơn 2026 vào ngày nào',
@@ -212,12 +222,15 @@ const HOLIDAYS_VI = {
   },
   'hanukkah': {
     name: 'Hanukkah',
-    h1: 'Đếm ngược Hanukkah',
+    h1: 'Sắp Hanukkah',
+    sapSlug: 'sap-hanukkah',
     zoneLabel: 'Jerusalem',
     tagline: 'Tám đêm thắp nến, bắt đầu từ lúc hoàng hôn.',
     shareMessage: 'Tám đêm rực sáng sắp đến rồi.',
     aliases: ['Hanukkah', 'Chanukah', 'Lễ hội Ánh sáng Do Thái'],
     keywords: [
+      'sắp hanukkah',
+      'sắp đến hanukkah',
       'đếm ngược hanukkah',
       'còn bao nhiêu ngày nữa đến hanukkah',
       'hanukkah 2026 vào ngày nào',
@@ -275,11 +288,15 @@ const HOLIDAYS_VI = {
   },
   'christmas': {
     name: 'Giáng sinh',
-    h1: 'Đếm ngược Giáng sinh',
+    h1: 'Sắp Giáng sinh',
+    sapSlug: 'sap-giang-sinh',
     tagline: 'Ngày 25 tháng 12, dù bạn ở bất cứ nơi đâu trên thế giới.',
     shareMessage: 'Điều kỳ diệu đang đến gần.',
     aliases: ['Noel', 'Lễ Thiên Chúa Giáng sinh', 'Christmas', 'Xmas'],
     keywords: [
+      'sắp giáng sinh',
+      'sắp noel',
+      'sắp đến giáng sinh',
       'đếm ngược giáng sinh',
       'còn bao nhiêu ngày nữa đến giáng sinh',
       'còn bao nhiêu ngày nữa đến noel',
@@ -322,11 +339,15 @@ const HOLIDAYS_VI = {
   },
   'new-year': {
     name: 'Năm mới',
-    h1: 'Đếm ngược Năm mới',
+    h1: 'Sắp Năm mới',
+    sapSlug: 'sap-nam-moi',
     tagline: 'Đếm ngược đến nửa đêm ngày 1 tháng 1.',
     shareMessage: 'Một khởi đầu mới đang đến rất gần.',
     aliases: ['Tết Dương lịch', 'Giao thừa Dương lịch', 'New Year', 'Hogmanay'],
     keywords: [
+      'sắp năm mới',
+      'sắp tết dương lịch',
+      'sắp đến năm mới',
       'đếm ngược năm mới',
       'còn bao nhiêu ngày nữa đến tết dương lịch',
       'còn bao nhiêu ngày nữa đến năm mới',
@@ -367,12 +388,15 @@ const HOLIDAYS_VI = {
   },
   'chinese-new-year': {
     name: 'Tết Trung Quốc',
-    h1: 'Đếm ngược Tết Trung Quốc',
+    h1: 'Sắp Tết Trung Quốc',
+    sapSlug: 'sap-tet-trung-quoc',
     zoneLabel: 'Bắc Kinh',
     tagline: 'Năm mới âm lịch của Trung Quốc, tính theo giờ Bắc Kinh.',
     shareMessage: 'Một năm mới may mắn đang đến gần.',
     aliases: ['Tết Âm lịch Trung Quốc', 'Xuân Tiết', 'Chinese New Year', 'Spring Festival'],
     keywords: [
+      'sắp tết trung quốc',
+      'sắp đến tết trung quốc',
       'đếm ngược tết trung quốc',
       'còn bao nhiêu ngày nữa đến tết trung quốc',
       'tết trung quốc 2027 vào ngày nào',
@@ -411,11 +435,14 @@ const HOLIDAYS_VI = {
   },
   'ramadan': {
     name: 'Ramadan',
-    h1: 'Đếm ngược Ramadan',
+    h1: 'Sắp Ramadan',
+    sapSlug: 'sap-ramadan',
     tagline: 'Tháng chay thiêng liêng, bắt đầu từ vầng trăng lưỡi liềm.',
     shareMessage: 'Một tháng thiêng liêng đang đến gần.',
     aliases: ['Tháng chay Ramadan', 'Ramzan', 'Ramadhan', 'Ramadan Kareem'],
     keywords: [
+      'sắp ramadan',
+      'sắp đến tháng ramadan',
       'đếm ngược ramadan',
       'còn bao nhiêu ngày nữa đến ramadan',
       'ramadan 2027 vào ngày nào',
@@ -456,11 +483,15 @@ const HOLIDAYS_VI = {
   },
   'valentines-day': {
     name: 'Valentine',
-    h1: 'Đếm ngược Valentine',
+    h1: 'Sắp Valentine',
+    sapSlug: 'sap-valentine',
     tagline: 'Ngày 14 tháng 2, ngày dành cho tình yêu và tình bạn.',
     shareMessage: 'Tình yêu đang đếm ngược từng ngày.',
     aliases: ['Ngày lễ Tình nhân', "Valentine's Day", 'Lễ Thánh Valentine', 'Ngày Valentine'],
     keywords: [
+      'sắp valentine',
+      'sắp đến valentine',
+      'sắp lễ tình nhân',
       'đếm ngược valentine',
       'còn bao nhiêu ngày nữa đến valentine',
       'valentine 2027 vào ngày nào',
@@ -499,11 +530,14 @@ const HOLIDAYS_VI = {
   },
   'eid-al-fitr': {
     name: 'Eid al-Fitr',
-    h1: 'Đếm ngược Eid al-Fitr',
+    h1: 'Sắp Eid al-Fitr',
+    sapSlug: 'sap-eid-al-fitr',
     tagline: 'Lễ xả chay mừng kết thúc tháng Ramadan.',
     shareMessage: 'Niềm vui Eid đã gần kề.',
     aliases: ['Lễ Eid al-Fitr', 'Lễ xả chay', 'Eid ul-Fitr', 'Hari Raya Aidilfitri', 'Lebaran'],
     keywords: [
+      'sắp eid al-fitr',
+      'sắp đến lễ xả chay',
       'đếm ngược eid al-fitr',
       'còn bao nhiêu ngày nữa đến eid',
       'eid al-fitr 2027 vào ngày nào',
@@ -544,11 +578,14 @@ const HOLIDAYS_VI = {
   },
   'easter': {
     name: 'Lễ Phục sinh',
-    h1: 'Đếm ngược Lễ Phục sinh',
+    h1: 'Sắp Lễ Phục sinh',
+    sapSlug: 'sap-le-phuc-sinh',
     tagline: 'Chúa nhật Phục sinh, ngày lễ quan trọng nhất của Kitô giáo.',
     shareMessage: 'Một mùa Phục sinh an vui đang đến gần.',
     aliases: ['Chúa nhật Phục sinh', 'Easter', 'Easter Sunday'],
     keywords: [
+      'sắp lễ phục sinh',
+      'sắp đến phục sinh',
       'đếm ngược lễ phục sinh',
       'còn bao nhiêu ngày nữa đến lễ phục sinh',
       'lễ phục sinh 2027 vào ngày nào',
@@ -588,12 +625,15 @@ const HOLIDAYS_VI = {
   },
   'songkran': {
     name: 'Songkran',
-    h1: 'Đếm ngược Songkran',
+    h1: 'Sắp Songkran',
+    sapSlug: 'sap-songkran',
     zoneLabel: 'Bangkok',
     tagline: 'Tết cổ truyền Thái Lan và lễ hội té nước lớn nhất thế giới.',
     shareMessage: 'Sẵn sàng đón năm mới thật mát lành nhé.',
     aliases: ['Tết té nước Thái Lan', 'Tết Thái Lan', 'Lễ hội Songkran', 'Thai New Year'],
     keywords: [
+      'sắp songkran',
+      'sắp đến tết té nước thái lan',
       'đếm ngược songkran',
       'còn bao nhiêu ngày nữa đến songkran',
       'songkran 2027 vào ngày nào',

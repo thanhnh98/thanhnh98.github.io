@@ -1084,11 +1084,11 @@ function vietnameseI18n() {
   };
 }
 
+// Title/description/FAQ tiếng Việt bám cụm thương hiệu "Sắp X" (như "Sắp Tết") + câu hỏi "còn bao nhiêu ngày nữa".
 function vietnameseTitle(vi, year, slug) {
   return fit([
-    `Đếm ngược ${vi.name} ${year}: Còn bao nhiêu ngày nữa?`,
-    `Còn bao nhiêu ngày nữa đến ${vi.name} ${year}?`,
-    `Đếm ngược ${vi.name} ${year}`,
+    `Sắp ${vi.name} ${year}: Còn bao nhiêu ngày nữa?`,
+    `Sắp ${vi.name}: Còn bao nhiêu ngày nữa?`,
   ], TITLE_MAX, `vi/${slug} title`);
 }
 
@@ -1097,16 +1097,16 @@ function vietnameseDescription(item, vi) {
   const year = occurrence.dateKey.slice(0, 4);
   if (occurrence.live) {
     return fit([
-      `${vi.name} ${year} đang diễn ra. Đồng hồ đếm ngược trực tiếp đến ${vi.name} lần tới theo ngày, giờ, phút và giây.`,
-      `${vi.name} ${year} đang diễn ra. Đếm ngược trực tiếp đến ${vi.name} lần tới.`,
+      `Sắp ${vi.name}? ${vi.name} ${year} đang diễn ra. Đồng hồ đếm ngược trực tiếp đến ${vi.name} lần tới theo ngày, giờ, phút và giây.`,
+      `Sắp ${vi.name}? ${vi.name} ${year} đang diễn ra. Đếm ngược trực tiếp đến ${vi.name} lần tới.`,
     ], DESCRIPTION_MAX, `vi/${holiday.slug} description`);
   }
   const when = `${expectedVi(holiday)}vào ${formatLongVi(occurrence.dateKey)}`;
   const count = dayLabelVi(daysLeft);
   return fit([
-    `Còn bao nhiêu ngày nữa đến ${vi.name}? Còn ${count} đến ${vi.name} ${year}, ${when}. Đồng hồ đếm ngược trực tiếp theo ngày, giờ, phút, giây.`,
-    `Còn bao nhiêu ngày nữa đến ${vi.name}? Còn ${count} đến ${vi.name} ${year}, ${when}. Đếm ngược trực tiếp từng giây.`,
-    `Còn ${count} đến ${vi.name} ${year}, ${when}. Đồng hồ đếm ngược trực tiếp từng giây.`,
+    `Sắp ${vi.name} chưa? Còn ${count} nữa đến ${vi.name} ${year}, ${when}. Đồng hồ đếm ngược trực tiếp theo ngày, giờ, phút, giây.`,
+    `Sắp ${vi.name} chưa? Còn ${count} nữa đến ${vi.name} ${year}, ${when}. Đếm ngược trực tiếp từng giây.`,
+    `Sắp ${vi.name}: còn ${count} đến ${vi.name} ${year}, ${when}. Đếm ngược từng giây.`,
   ], DESCRIPTION_MAX, `vi/${holiday.slug} description`);
 }
 
@@ -1139,10 +1139,10 @@ function vietnameseFaq(item, vi) {
   const { holiday, occurrence, daysLeft, upcoming } = item;
   const year = occurrence.dateKey.slice(0, 4);
   const faq = [{
-    q: `Còn bao nhiêu ngày nữa đến ${vi.name}?`,
+    q: `Sắp ${vi.name} chưa? Còn bao nhiêu ngày nữa?`,
     a: occurrence.live
       ? `${vi.name} ${year} đang diễn ra. Đồng hồ trên trang sẽ tự chuyển sang ${vi.name} lần tới.`
-      : `Còn ${dayLabelVi(daysLeft)} nữa đến ${vi.name} ${year}, ${expectedVi(holiday)}vào ${formatLongVi(occurrence.dateKey)}. Đồng hồ đếm ngược trên trang cập nhật từng giây.`,
+      : `Còn ${dayLabelVi(daysLeft)} nữa là đến ${vi.name} ${year}, ${expectedVi(holiday)}vào ${formatLongVi(occurrence.dateKey)}. Đồng hồ đếm ngược trên trang cập nhật từng giây.`,
   }];
   const next = upcoming.find((key) => key.slice(0, 4) !== year);
   if (next) {
@@ -1281,7 +1281,7 @@ function generateVietnameseDetail(item, items, shared) {
     OG_IMAGE: vietnameseOgImage(holiday.slug),
     OG_IMAGE_ALT: escapeHtml(`${vi.h1}: còn bao nhiêu ngày nữa đến ${vi.name}`),
     META_DESCRIPTION: escapeHtml(description),
-    KEYWORDS: escapeHtml(vi.keywords.join(', ')),
+    KEYWORDS: escapeHtml(vi.keywords.concat(`sắp ${vi.name.toLowerCase()} ${year}`).join(', ')),
     CANONICAL: canonical,
     HREFLANG: vietnameseHreflang(holiday.slug),
     PALETTE: paletteStyle(holiday),
@@ -1344,13 +1344,40 @@ function generateVietnameseDetail(item, items, shared) {
   return { url: canonical, lastmod: modified };
 }
 
+// Alias URL dễ nhớ /sap-<tên-việt>/ (ví dụ /sap-giang-sinh/) → chuyển hướng về trang canonical /vi/<slug>.
+// Stub noindex như tin-tuc/<slug>/index.html, không vào sitemap.
+function writeVietnameseAlias(item, vi) {
+  const { slug } = item.holiday;
+  if (!/^sap-[a-z0-9]+(-[a-z0-9]+)*$/.test(vi.sapSlug || '')) throw new Error(`data/holidays-vi.js: ${slug}.sapSlug must look like sap-ten-viet`);
+  if (fs.existsSync(path.join(ROOT, `${vi.sapSlug}.html`))) throw new Error(`${vi.sapSlug}.html already exists at the site root`);
+  const target = `/vi/${slug}`;
+  const label = escapeHtml(`${vi.h1} ${item.occurrence.dateKey.slice(0, 4)}`);
+  fs.mkdirSync(path.join(ROOT, vi.sapSlug), { recursive: true });
+  write(`${vi.sapSlug}/index.html`, `<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${label} – Đang chuyển hướng…</title>
+  <link rel="canonical" href="${SITE_ORIGIN}${target}" />
+  <meta http-equiv="refresh" content="0;url=${target}" />
+  <meta name="robots" content="noindex, follow" />
+  <script>location.replace("${target}");</script>
+</head>
+<body>
+  <p>Đang chuyển đến <a href="${target}">${label}</a>…</p>
+</body>
+</html>
+`);
+}
+
 function generateVietnameseHub(items, shared) {
   const canonical = vietnameseUrl(HUB_SLUG);
   const file = `vi/${HUB_SLUG}.html`;
   const sorted = sortedByDate(items);
   const names = sorted.slice(0, 4).map((item) => HOLIDAYS_VI[item.holiday.slug].name);
   const description = `Đếm ngược trực tiếp đến ${names.join(', ')} và nhiều ngày lễ lớn khác trên thế giới, theo múi giờ của từng quốc gia.`;
-  const title = fit(['Đếm ngược ngày lễ: Giáng sinh, Halloween, Ramadan…', 'Đếm ngược ngày lễ thế giới'], TITLE_MAX, 'vi hub title');
+  const title = fit(['Sắp Giáng sinh, Halloween, Ramadan… Đếm ngược ngày lễ', 'Đếm ngược ngày lễ: Giáng sinh, Halloween, Ramadan…', 'Đếm ngược ngày lễ thế giới'], TITLE_MAX, 'vi hub title');
   const template = read('templates/holidays-index-vi.html');
   const values = {
     TITLE: escapeHtml(title),
@@ -1459,6 +1486,7 @@ function main() {
   fs.mkdirSync(path.join(ROOT, 'vi'), { recursive: true });
   const vietnameseHub = generateVietnameseHub(items, shared);
   const vietnamese = items.map((item) => generateVietnameseDetail(item, items, shared));
+  for (const item of items) writeVietnameseAlias(item, HOLIDAYS_VI[item.holiday.slug]);
   updateSitemap([
     { ...hub, priority: '0.7' },
     ...details.map((page) => ({ ...page, priority: '0.8' })),
@@ -1466,7 +1494,7 @@ function main() {
     ...vietnamese.map((page) => ({ ...page, priority: '0.8' })),
     ...arabic.map((page) => ({ ...page, priority: '0.8' })),
   ]);
-  console.log(`generate-holiday-pages: wrote /${HUB_SLUG}, /vi/${HUB_SLUG}, ${details.length} English, ${vietnamese.length} Vietnamese and ${arabic.length} Arabic pages`);
+  console.log(`generate-holiday-pages: wrote /${HUB_SLUG}, /vi/${HUB_SLUG}, ${details.length} English, ${vietnamese.length} Vietnamese (+${vietnamese.length} /sap-* aliases) and ${arabic.length} Arabic pages`);
 }
 
 if (require.main === module) main();
