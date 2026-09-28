@@ -23,6 +23,8 @@ function sitemapFiles() {
 test('every public sitemap page keeps one primary heading and responsive metadata', () => {
     for (const file of sitemapFiles()) {
         const $ = cheerio.load(read(file));
+        // <template> (bản ?lang= của trang đếm ngược) là nội dung inert, không tính vào trang đang hiển thị.
+        $('template').remove();
         assert.equal($('meta[name="viewport"]').length, 1, `${file} needs a viewport meta tag`);
         assert.equal($('h1').length, 1, `${file} should have exactly one h1`);
     }

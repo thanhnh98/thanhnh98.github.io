@@ -23,7 +23,8 @@ function walkHtmlFiles(dir = root, files = []) {
 }
 
 function fileForSitemapUrl(url) {
-  const rel = url === siteOrigin ? 'index.html' : url.replace(siteOrigin, '');
+  // Bản ?lang=vi|ar của trang đếm ngược nằm chung file với bản tiếng Anh.
+  const rel = url === siteOrigin ? 'index.html' : url.replace(siteOrigin, '').replace(/\?.*$/, '');
   const candidates = rel.endsWith('/')
     ? [`${rel}index.html`]
     : [rel, `${rel}.html`, `${rel}/index.html`];

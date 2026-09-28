@@ -1,5 +1,5 @@
 /**
- * Đồng hồ đếm ngược cho các trang /christmas, /vi/christmas, /ar/ramadan, … và hub /countdowns, /vi/countdowns.
+ * Đồng hồ đếm ngược cho các trang /christmas, /christmas?lang=vi, /ramadan?lang=ar, … và hub /countdowns(?lang=vi).
  * Cần js/zoned-time.js nạp trước. Cấu hình trang nằm trong <script id="holiday-config" type="application/json">;
  * chuỗi hiển thị lấy từ config.i18n (mặc định tiếng Anh), nên cùng một file phục vụ cả trang LTR và RTL.
  */

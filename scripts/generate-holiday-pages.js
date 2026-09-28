@@ -1,6 +1,7 @@
 /**
- * Sinh các trang đếm ngược tiếng Anh (/christmas, /ramadan, …) và hub /countdowns,
- * bản tiếng Việt (/vi/christmas, …, hub /vi/countdowns) và bản tiếng Ả Rập (/ar/ramadan, …).
+ * Sinh các trang đếm ngược (/christmas, /ramadan, …) và hub /countdowns. Mỗi file chứa bản tiếng Anh
+ * render sẵn + bản tiếng Việt (mọi trang) và tiếng Ả Rập (nếu có) trong <template>; ngôn ngữ chọn bằng
+ * ?lang=vi|ar (xem composePage). /vi/<slug>, /ar/<slug> và /sap-* chỉ còn là stub chuyển hướng.
  * Dữ liệu: data/holidays-en.js, data/holidays-vi.js, data/holidays-ar.js.
  * Template: templates/holiday-countdown{,-vi,-ar}.html, templates/holidays-index{,-vi}.html.
  * Chạy: node scripts/generate-holiday-pages.js (cũng chạy hằng ngày trong seo-daily-update.yml
@@ -311,8 +312,8 @@ function headerHtml({ brandHref, brandLabel, navLabel, quick, languages = [], me
 
 function englishHeaderHtml(items, slug = null) {
   const bySlug = (key) => items.find((item) => item.holiday.slug === key).holiday;
-  const languages = [{ href: slug ? `/vi/${slug}` : `/vi/${HUB_SLUG}`, lang: 'vi', label: 'Tiếng Việt' }];
-  if (slug && HOLIDAYS_AR[slug]) languages.push({ href: `/ar/${slug}`, lang: 'ar', label: 'العربية' });
+  const languages = [{ href: langPath(slug || HUB_SLUG, 'vi'), lang: 'vi', label: 'Tiếng Việt' }];
+  if (slug && HOLIDAYS_AR[slug]) languages.push({ href: langPath(slug, 'ar'), lang: 'ar', label: 'العربية' });
   return headerHtml({
     brandHref: `/${HUB_SLUG}`,
     brandLabel: 'Countdowns',
@@ -337,12 +338,17 @@ function sortedByDate(items) {
   return items.slice().sort((a, b) => a.occurrence.start - b.occurrence.start);
 }
 
+// Ngôn ngữ điều khiển bằng query ?lang= trên cùng một URL (tiếng Anh không có param).
+function langPath(slug, lang) {
+  return lang === 'en' ? `/${slug}` : `/${slug}?lang=${lang}`;
+}
+
 function vietnameseUrl(slug) {
-  return `${SITE_ORIGIN}/vi/${slug}`;
+  return `${SITE_ORIGIN}${langPath(slug, 'vi')}`;
 }
 
 function arabicUrl(slug) {
-  return `${SITE_ORIGIN}/ar/${slug}`;
+  return `${SITE_ORIGIN}${langPath(slug, 'ar')}`;
 }
 
 function footerHtml() {
@@ -373,13 +379,17 @@ function zonePickerHtml(holiday) {
           </label>`;
 }
 
-function hreflangHtml(holiday, canonical) {
+// Các phiên bản ngôn ngữ của một slug: en luôn có, vi cho mọi trang, ar khi data/holidays-ar.js có slug.
+function languagesOf(slug) {
+  return ['en', 'vi'].concat(HOLIDAYS_AR[slug] ? ['ar'] : []);
+}
+
+function hreflangHtml(slug) {
   // Một URL tiếng Anh cho mọi quốc gia (en-US, en-GB, en-IN, …): khai báo 'en' + x-default.
-  const links = [`  <link rel="alternate" hreflang="en" href="${canonical}">`];
-  links.push(`  <link rel="alternate" hreflang="vi" href="${vietnameseUrl(holiday ? holiday.slug : HUB_SLUG)}">`);
-  if (holiday && HOLIDAYS_AR[holiday.slug]) links.push(`  <link rel="alternate" hreflang="ar" href="${arabicUrl(holiday.slug)}">`);
-  links.push(`  <link rel="alternate" hreflang="x-default" href="${canonical}">`);
-  return links.join('\n');
+  return languagesOf(slug)
+    .map((lang) => `  <link rel="alternate" hreflang="${lang}" href="${SITE_ORIGIN}${langPath(slug, lang)}">`)
+    .concat(`  <link rel="alternate" hreflang="x-default" href="${pageUrl(slug)}">`)
+    .join('\n');
 }
 
 function paletteStyle(holiday) {
@@ -531,12 +541,23 @@ function detailSchema(item, faq, canonical, description, modified) {
   };
 }
 
-function currentModified(file, nextSignature, today) {
+// Giữ dateModified cũ khi nội dung (signature) của ngôn ngữ đó không đổi. Bản en nằm ở <head> của file,
+// bản vi/ar nằm trong JSON #hc-lang-data (sig + modified).
+function currentModified(file, nextSignature, today, lang = 'en') {
   const target = path.join(ROOT, file);
   if (!fs.existsSync(target)) return today;
   const html = fs.readFileSync(target, 'utf8');
-  const existingSignature = html.match(/name="saptet:generated-signature" content="([^"]+)"/)?.[1];
-  const existingModified = html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  let existingSignature;
+  let existingModified;
+  if (lang === 'en') {
+    existingSignature = html.match(/name="saptet:generated-signature" content="([^"]+)"/)?.[1];
+    existingModified = html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  } else {
+    const data = html.match(/<script id="hc-lang-data" type="application\/json">([\s\S]*?)<\/script>/)?.[1];
+    const entry = data ? JSON.parse(data)[lang] : null;
+    existingSignature = entry?.sig;
+    existingModified = entry?.modified;
+  }
   return existingSignature === nextSignature && existingModified ? existingModified : today;
 }
 
@@ -579,7 +600,7 @@ function generateDetail(item, items, shared) {
     META_DESCRIPTION: escapeHtml(description),
     KEYWORDS: escapeHtml(holiday.keywords.concat(holiday.aliases.map((alias) => `${alias.toLowerCase()} countdown`)).join(', ')),
     CANONICAL: canonical,
-    HREFLANG: hreflangHtml(holiday, canonical),
+    HREFLANG: hreflangHtml(holiday.slug),
     PALETTE: paletteStyle(holiday),
     HERO_BACKGROUND: holiday.visual.background,
     HERO_ICON: holiday.visual.icon,
@@ -618,8 +639,7 @@ function generateDetail(item, items, shared) {
     SIGNATURE: nextSignature,
     SCHEMA: jsonLd(detailSchema(item, faq, canonical, description, modified)),
   });
-  write(file, html);
-  return { url: canonical, lastmod: modified };
+  return { html, url: canonical, lastmod: modified, sig: nextSignature };
 }
 
 function generateHub(items, shared) {
@@ -630,7 +650,7 @@ function generateHub(items, shared) {
   const template = read('templates/holidays-index.html');
   const values = {
     TITLE: escapeHtml(fit(['Holiday Countdowns: Days Until Christmas, Ramadan & More'], TITLE_MAX, 'hub title')),
-    HREFLANG: hreflangHtml(null, canonical),
+    HREFLANG: hreflangHtml(HUB_SLUG),
     OG_IMAGE: ogImage(HUB_SLUG),
     META_DESCRIPTION: escapeHtml(description),
     CANONICAL: canonical,
@@ -684,8 +704,8 @@ function generateHub(items, shared) {
       },
     ],
   };
-  write(file, replaceTokens(template, { ...values, SIGNATURE: nextSignature, SCHEMA: jsonLd(schema) }));
-  return { url: canonical, lastmod: modified };
+  const html = replaceTokens(template, { ...values, SIGNATURE: nextSignature, SCHEMA: jsonLd(schema) });
+  return { html, url: canonical, lastmod: modified, sig: nextSignature };
 }
 
 // ---------- Trang tiếng Ả Rập (RTL) ----------
@@ -718,11 +738,11 @@ function dayLabelAr(n) {
 
 function arabicHeaderHtml(slug) {
   const nav = Object.keys(HOLIDAYS_AR)
-    .map((key) => `<a href="/ar/${key}"${key === slug ? ' aria-current="page"' : ''}>${escapeHtml(HOLIDAYS_AR[key].name)}</a>`)
+    .map((key) => `<a href="${langPath(key, 'ar')}"${key === slug ? ' aria-current="page"' : ''}>${escapeHtml(HOLIDAYS_AR[key].name)}</a>`)
     .join('');
   return `  <header class="hc-header">
     <div class="hc-container hc-header-inner">
-      <a class="hc-brand" href="/ar/${slug}"><img src="/assets/images/ic_app.png" alt="" width="32" height="32"><span>العد التنازلي</span></a>
+      <a class="hc-brand" href="${langPath(slug, 'ar')}"><img src="/assets/images/ic_app.png" alt="" width="32" height="32"><span>العد التنازلي</span></a>
       <nav class="hc-nav" aria-label="العدادات">${nav}<a href="/${slug}" hreflang="en" lang="en">English</a></nav>
     </div>
   </header>`;
@@ -752,7 +772,7 @@ function arabicCardHtml(item) {
   const zoneAttr = holiday.scope === 'national' ? ` data-zone="${holiday.zone}"` : '';
   const days = occurrence.live ? UI_AR.today : dayLabelAr(daysLeft);
   return `
-          <a class="hc-mini" href="/ar/${holiday.slug}" data-hc-card data-dates="${dates.join(',')}" data-start-time="${holiday.startTime}" data-duration="${holiday.durationDays}"${zoneAttr}>
+          <a class="hc-mini" href="${langPath(holiday.slug, 'ar')}" data-hc-card data-dates="${dates.join(',')}" data-start-time="${holiday.startTime}" data-duration="${holiday.durationDays}"${zoneAttr}>
             <img class="hc-mini-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="46" height="46" loading="lazy" decoding="async">
             <span class="hc-mini-body">
               <strong>${escapeHtml(ar.name)}</strong>
@@ -814,7 +834,7 @@ function generateArabicDetail(item, items, shared) {
   const ar = HOLIDAYS_AR[holiday.slug];
   const year = occurrence.dateKey.slice(0, 4);
   const canonical = arabicUrl(holiday.slug);
-  const file = `ar/${holiday.slug}.html`;
+  const file = `${holiday.slug}.html`;
   const vars = {
     name: ar.name,
     year,
@@ -885,12 +905,7 @@ function generateArabicDetail(item, items, shared) {
     META_DESCRIPTION: escapeHtml(description),
     KEYWORDS: escapeHtml(ar.keywords.flatMap((keyword) => [keyword, `${keyword} ${year}`]).join('، ')),
     CANONICAL: canonical,
-    HREFLANG: [
-      `  <link rel="alternate" hreflang="en" href="${pageUrl(holiday.slug)}">`,
-      `  <link rel="alternate" hreflang="ar" href="${canonical}">`,
-      `  <link rel="alternate" hreflang="vi" href="${vietnameseUrl(holiday.slug)}">`,
-      `  <link rel="alternate" hreflang="x-default" href="${pageUrl(holiday.slug)}">`,
-    ].join('\n'),
+    HREFLANG: hreflangHtml(holiday.slug),
     OG_IMAGE: `${SITE_ORIGIN}/assets/images/og/ar-${holiday.slug}.jpg`,
     OG_IMAGE_ALT: escapeHtml(`${ar.ogTitle}: ${ar.ogSubtitle}`),
     PALETTE: paletteStyle(holiday),
@@ -964,15 +979,13 @@ function generateArabicDetail(item, items, shared) {
     CONFIG: JSON.stringify(config).replace(/</g, '\\u003c'),
   };
   const nextSignature = signature({ values, template });
-  const modified = currentModified(file, nextSignature, shared.today);
+  const modified = currentModified(file, nextSignature, shared.today, 'ar');
   const html = replaceTokens(template, {
     ...values,
     SIGNATURE: nextSignature,
     SCHEMA: jsonLd(arabicSchema(item, ar, faq, canonical, description, title, modified)),
   });
-  fs.mkdirSync(path.join(ROOT, 'ar'), { recursive: true });
-  write(file, html);
-  return { url: canonical, lastmod: modified };
+  return { html, url: canonical, lastmod: modified, sig: nextSignature };
 }
 
 // ---------- Trang tiếng Việt ----------
@@ -1003,20 +1016,20 @@ function expectedVi(holiday) {
 function vietnameseHeaderHtml(items, slug = null) {
   const bySlug = (key) => HOLIDAYS_VI[key];
   return headerHtml({
-    brandHref: `/vi/${HUB_SLUG}`,
+    brandHref: langPath(HUB_SLUG, 'vi'),
     brandLabel: UI_VI.brand,
     navLabel: UI_VI.navLabel,
-    quick: HEADER_QUICK_SLUGS.map((key) => ({ href: `/vi/${key}`, label: bySlug(key).name })),
+    quick: HEADER_QUICK_SLUGS.map((key) => ({ href: langPath(key, 'vi'), label: bySlug(key).name })),
     languages: [{ href: slug ? `/${slug}` : `/${HUB_SLUG}`, lang: 'en', label: 'English' }],
     menu: {
       label: UI_VI.more,
-      allHref: `/vi/${HUB_SLUG}`,
+      allHref: langPath(HUB_SLUG, 'vi'),
       allLabel: UI_VI.allCountdowns,
-      currentHref: slug ? `/vi/${slug}` : `/vi/${HUB_SLUG}`,
+      currentHref: langPath(slug || HUB_SLUG, 'vi'),
       groups: HOLIDAY_CATEGORIES.map((category) => ({
         title: HOLIDAY_CATEGORIES_VI[category.id].title,
         links: sortedByDate(items).filter((item) => item.holiday.category === category.id)
-          .map((item) => ({ href: `/vi/${item.holiday.slug}`, label: HOLIDAYS_VI[item.holiday.slug].name })),
+          .map((item) => ({ href: langPath(item.holiday.slug, 'vi'), label: HOLIDAYS_VI[item.holiday.slug].name })),
       })),
     },
   });
@@ -1030,7 +1043,7 @@ function vietnameseFooterHtml(slug = null) {
         <p>Sắp Tết là ứng dụng đếm ngược Tết Nguyên Đán được hơn 100.000 người Việt theo dõi.</p>
       </div>
       <nav aria-label="Liên kết">
-        <a href="/vi/${HUB_SLUG}">${UI_VI.allCountdowns}</a>
+        <a href="${langPath(HUB_SLUG, 'vi')}">${UI_VI.allCountdowns}</a>
         <a href="/privacy-policy/vi/">Chính sách bảo mật</a>
         <a href="/terms-of-use/vi/">Điều khoản sử dụng</a>
         <a href="/support">Hỗ trợ</a>
@@ -1046,7 +1059,7 @@ function vietnameseCardHtml(item) {
   const zoneAttr = holiday.scope === 'national' ? ` data-zone="${holiday.zone}"` : '';
   const days = occurrence.live ? UI_VI.today : dayLabelVi(daysLeft);
   return `
-          <a class="hc-mini" href="/vi/${holiday.slug}" data-hc-card data-dates="${dates.join(',')}" data-start-time="${holiday.startTime}" data-duration="${holiday.durationDays}"${zoneAttr}>
+          <a class="hc-mini" href="${langPath(holiday.slug, 'vi')}" data-hc-card data-dates="${dates.join(',')}" data-start-time="${holiday.startTime}" data-duration="${holiday.durationDays}"${zoneAttr}>
             <img class="hc-mini-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="46" height="46" loading="lazy" decoding="async">
             <span class="hc-mini-body">
               <strong>${escapeHtml(vi.name)}</strong>
@@ -1084,12 +1097,13 @@ function vietnameseI18n() {
   };
 }
 
-// Title/description/FAQ tiếng Việt bám cụm thương hiệu "Sắp X" (như "Sắp Tết") + câu hỏi "còn bao nhiêu ngày nữa".
+// Title/description/FAQ tiếng Việt mở đầu bằng tên sự kiện + năm, bám truy vấn "còn bao nhiêu ngày nữa".
 function vietnameseTitle(vi, year, slug) {
   return fit([
-    `Sắp ${vi.name} ${year}: Còn bao nhiêu ngày nữa?`,
-    `Sắp ${vi.name}: Còn bao nhiêu ngày nữa?`,
-  ], TITLE_MAX, `vi/${slug} title`);
+    `${vi.name} ${year} còn bao nhiêu ngày nữa? Đếm ngược từng giây`,
+    `${vi.name} ${year} còn bao nhiêu ngày nữa? Đếm ngược`,
+    `${vi.name} ${year}: Còn bao nhiêu ngày nữa?`,
+  ], TITLE_MAX, `${slug}?lang=vi title`);
 }
 
 function vietnameseDescription(item, vi) {
@@ -1097,17 +1111,17 @@ function vietnameseDescription(item, vi) {
   const year = occurrence.dateKey.slice(0, 4);
   if (occurrence.live) {
     return fit([
-      `Sắp ${vi.name}? ${vi.name} ${year} đang diễn ra. Đồng hồ đếm ngược trực tiếp đến ${vi.name} lần tới theo ngày, giờ, phút và giây.`,
-      `Sắp ${vi.name}? ${vi.name} ${year} đang diễn ra. Đếm ngược trực tiếp đến ${vi.name} lần tới.`,
-    ], DESCRIPTION_MAX, `vi/${holiday.slug} description`);
+      `${vi.name} ${year} đang diễn ra! Xem lịch ${vi.name} các năm tới và đồng hồ đếm ngược trực tiếp đến ${vi.name} lần tới theo ngày, giờ, phút, giây.`,
+      `${vi.name} ${year} đang diễn ra! Xem lịch các năm tới và đồng hồ đếm ngược trực tiếp đến ${vi.name} lần tới theo ngày, giờ, phút, giây.`,
+    ], DESCRIPTION_MAX, `${holiday.slug}?lang=vi description`);
   }
   const when = `${expectedVi(holiday)}vào ${formatLongVi(occurrence.dateKey)}`;
   const count = dayLabelVi(daysLeft);
   return fit([
-    `Sắp ${vi.name} chưa? Còn ${count} nữa đến ${vi.name} ${year}, ${when}. Đồng hồ đếm ngược trực tiếp theo ngày, giờ, phút, giây.`,
-    `Sắp ${vi.name} chưa? Còn ${count} nữa đến ${vi.name} ${year}, ${when}. Đếm ngược trực tiếp từng giây.`,
-    `Sắp ${vi.name}: còn ${count} đến ${vi.name} ${year}, ${when}. Đếm ngược từng giây.`,
-  ], DESCRIPTION_MAX, `vi/${holiday.slug} description`);
+    `Còn bao nhiêu ngày nữa đến ${vi.name}? Còn ${count} đến ${vi.name} ${year}, ${when}. Đồng hồ đếm ngược trực tiếp từng giây.`,
+    `Còn ${count} nữa đến ${vi.name} ${year}, ${when}. Đồng hồ đếm ngược trực tiếp theo ngày, giờ, phút và giây.`,
+    `Còn ${count} đến ${vi.name} ${year}, ${when}. Đếm ngược trực tiếp từng giây.`,
+  ], DESCRIPTION_MAX, `${holiday.slug}?lang=vi description`);
 }
 
 function vietnameseZoneLabel(holiday, vi) {
@@ -1139,7 +1153,7 @@ function vietnameseFaq(item, vi) {
   const { holiday, occurrence, daysLeft, upcoming } = item;
   const year = occurrence.dateKey.slice(0, 4);
   const faq = [{
-    q: `Sắp ${vi.name} chưa? Còn bao nhiêu ngày nữa?`,
+    q: `Còn bao nhiêu ngày nữa đến ${vi.name}?`,
     a: occurrence.live
       ? `${vi.name} ${year} đang diễn ra. Đồng hồ trên trang sẽ tự chuyển sang ${vi.name} lần tới.`
       : `Còn ${dayLabelVi(daysLeft)} nữa là đến ${vi.name} ${year}, ${expectedVi(holiday)}vào ${formatLongVi(occurrence.dateKey)}. Đồng hồ đếm ngược trên trang cập nhật từng giây.`,
@@ -1191,16 +1205,6 @@ function vietnameseZonePickerHtml(holiday) {
           </label>`;
 }
 
-function vietnameseHreflang(slug) {
-  const links = [
-    `  <link rel="alternate" hreflang="en" href="${pageUrl(slug)}">`,
-    `  <link rel="alternate" hreflang="vi" href="${vietnameseUrl(slug)}">`,
-  ];
-  if (HOLIDAYS_AR[slug]) links.push(`  <link rel="alternate" hreflang="ar" href="${arabicUrl(slug)}">`);
-  links.push(`  <link rel="alternate" hreflang="x-default" href="${pageUrl(slug)}">`);
-  return links.join('\n');
-}
-
 function vietnameseSchema({ canonical, title, description, modified, image, about, breadcrumbName, faq }) {
   return {
     '@context': 'https://schema.org',
@@ -1250,7 +1254,7 @@ function generateVietnameseDetail(item, items, shared) {
   const vi = HOLIDAYS_VI[holiday.slug];
   const year = occurrence.dateKey.slice(0, 4);
   const canonical = vietnameseUrl(holiday.slug);
-  const file = `vi/${holiday.slug}.html`;
+  const file = `${holiday.slug}.html`;
   const title = vietnameseTitle(vi, year, holiday.slug);
   const description = vietnameseDescription(item, vi);
   const faq = vietnameseFaq(item, vi);
@@ -1277,13 +1281,13 @@ function generateVietnameseDetail(item, items, shared) {
   const template = read('templates/holiday-countdown-vi.html');
   const values = {
     TITLE: escapeHtml(title),
-    OG_TITLE: escapeHtml(`${vi.h1} ${year}`),
+    OG_TITLE: escapeHtml(`Đếm ngược ${vi.name} ${year}`),
     OG_IMAGE: vietnameseOgImage(holiday.slug),
-    OG_IMAGE_ALT: escapeHtml(`${vi.h1}: còn bao nhiêu ngày nữa đến ${vi.name}`),
+    OG_IMAGE_ALT: escapeHtml(`Đếm ngược ${vi.name}: còn bao nhiêu ngày nữa đến ${vi.name}`),
     META_DESCRIPTION: escapeHtml(description),
-    KEYWORDS: escapeHtml(vi.keywords.concat(`sắp ${vi.name.toLowerCase()} ${year}`).join(', ')),
+    KEYWORDS: escapeHtml(vi.keywords.concat(`${vi.name.toLowerCase()} ${year}`, `${vi.name.toLowerCase()} ${year} vào ngày nào`).join(', ')),
     CANONICAL: canonical,
-    HREFLANG: vietnameseHreflang(holiday.slug),
+    HREFLANG: hreflangHtml(holiday.slug),
     PALETTE: paletteStyle(holiday),
     HERO_BACKGROUND: holiday.visual.background,
     HERO_ICON: holiday.visual.icon,
@@ -1292,7 +1296,7 @@ function generateVietnameseDetail(item, items, shared) {
     ASSET_VERSION,
     HEADER: vietnameseHeaderHtml(items, holiday.slug),
     FOOTER: vietnameseFooterHtml(holiday.slug),
-    H1: escapeHtml(vi.h1),
+    H1: escapeHtml(vi.name),
     NAME: escapeHtml(vi.name),
     YEAR: year,
     DATE_LONG: escapeHtml(formatHeroVi(occurrence.start, heroZone) + (holiday.moonDisclaimer ? UI_VI.expected : '')),
@@ -1326,7 +1330,7 @@ function generateVietnameseDetail(item, items, shared) {
     CONFIG: JSON.stringify(config).replace(/</g, '\\u003c'),
   };
   const nextSignature = signature({ values, template });
-  const modified = currentModified(file, nextSignature, shared.today);
+  const modified = currentModified(file, nextSignature, shared.today, 'vi');
   const about = {
     '@type': 'Thing',
     name: vi.name,
@@ -1340,48 +1344,183 @@ function generateVietnameseDetail(item, items, shared) {
       canonical, title, description, modified, image: vietnameseOgImage(holiday.slug), about, breadcrumbName: vi.name, faq,
     })),
   });
-  write(file, html);
-  return { url: canonical, lastmod: modified };
+  return { html, url: canonical, lastmod: modified, sig: nextSignature };
 }
 
-// Alias URL dễ nhớ /sap-<tên-việt>/ (ví dụ /sap-giang-sinh/) → chuyển hướng về trang canonical /vi/<slug>.
-// Stub noindex như tin-tuc/<slug>/index.html, không vào sitemap.
+// Stub chuyển hướng noindex (như tin-tuc/<slug>/index.html), không vào sitemap. Dùng cho alias dễ nhớ
+// /sap-<tên-việt>/ và các URL cũ /vi/<slug>, /ar/<slug> trước khi chuyển sang ?lang=.
+function redirectStub({ lang, dir, target, label }) {
+  const dirAttr = dir ? ` dir="${dir}"` : '';
+  return `<!DOCTYPE html>
+<html lang="${lang}"${dirAttr}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${label}</title>
+  <link rel="canonical" href="${SITE_ORIGIN}${target}" />
+  <meta http-equiv="refresh" content="0;url=${target}" />
+  <meta name="robots" content="noindex, follow" />
+  <script>location.replace("${target}" + location.hash);</script>
+</head>
+<body>
+  <p><a href="${target}">${label}</a></p>
+</body>
+</html>
+`;
+}
+
 function writeVietnameseAlias(item, vi) {
   const { slug } = item.holiday;
   if (!/^sap-[a-z0-9]+(-[a-z0-9]+)*$/.test(vi.sapSlug || '')) throw new Error(`data/holidays-vi.js: ${slug}.sapSlug must look like sap-ten-viet`);
   if (fs.existsSync(path.join(ROOT, `${vi.sapSlug}.html`))) throw new Error(`${vi.sapSlug}.html already exists at the site root`);
-  const target = `/vi/${slug}`;
-  const label = escapeHtml(`${vi.h1} ${item.occurrence.dateKey.slice(0, 4)}`);
   fs.mkdirSync(path.join(ROOT, vi.sapSlug), { recursive: true });
-  write(`${vi.sapSlug}/index.html`, `<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${label} – Đang chuyển hướng…</title>
-  <link rel="canonical" href="${SITE_ORIGIN}${target}" />
-  <meta http-equiv="refresh" content="0;url=${target}" />
-  <meta name="robots" content="noindex, follow" />
-  <script>location.replace("${target}");</script>
-</head>
-<body>
-  <p>Đang chuyển đến <a href="${target}">${label}</a>…</p>
-</body>
-</html>
-`);
+  write(`${vi.sapSlug}/index.html`, redirectStub({ lang: 'vi', target: langPath(slug, 'vi'), label: escapeHtml(`Đếm ngược ${vi.name}`) }));
+}
+
+function writeLegacyRedirects(slugs) {
+  for (const dir of ['vi', 'ar']) fs.mkdirSync(path.join(ROOT, dir), { recursive: true });
+  for (const slug of slugs) {
+    const vi = HOLIDAYS_VI[slug];
+    write(`vi/${slug}.html`, redirectStub({ lang: 'vi', target: langPath(slug, 'vi'), label: escapeHtml(vi ? `Đếm ngược ${vi.name}` : UI_VI.hubName) }));
+    if (HOLIDAYS_AR[slug]) {
+      write(`ar/${slug}.html`, redirectStub({ lang: 'ar', dir: 'rtl', target: langPath(slug, 'ar'), label: escapeHtml(HOLIDAYS_AR[slug].h1) }));
+    }
+  }
+}
+
+// ---------- Ghép nhiều ngôn ngữ vào một URL (?lang=) ----------
+// GitHub Pages không đọc query nên mọi ngôn ngữ nằm chung một file: bản en render sẵn trong HTML (crawler
+// không chạy JS vẫn thấy), bản vi/ar nằm trong <template>. Script cuối <head> đọc ?lang=, chèn canonical tự
+// trỏ (không có canonical tĩnh để khỏi xung đột với bản JS), đổi lang/dir, title, meta, OG, JSON-LD; script
+// trước các file JS của trang thay body bằng template tương ứng, trước khi holiday-countdown.js khởi chạy.
+
+const LANG_HEAD_SCRIPT = `  <script>
+(function (d) {
+  var root = d.documentElement, data = {}, lang = '';
+  try { data = JSON.parse(d.getElementById('hc-lang-data').textContent); } catch (e) { return; }
+  try { lang = new URLSearchParams(location.search).get('lang') || ''; } catch (e) {}
+  var v = lang !== 'en' && Object.prototype.hasOwnProperty.call(data, lang) ? data[lang] : null;
+  var canonical = d.createElement('link');
+  canonical.rel = 'canonical';
+  canonical.href = v ? v.url : data.en.url;
+  d.head.appendChild(canonical);
+  if (!v) return;
+  window.hcLang = lang;
+  root.lang = lang;
+  if (v.dir) root.dir = v.dir;
+  root.classList.add('hc-lang-pending');
+  d.title = v.title;
+  var cleared = {};
+  v.metas.forEach(function (m) {
+    var selector = 'meta[' + m[0] + '="' + m[1] + '"]';
+    if (!cleared[selector]) {
+      cleared[selector] = true;
+      [].forEach.call(d.querySelectorAll(selector), function (el) { el.parentNode.removeChild(el); });
+    }
+    var meta = d.createElement('meta');
+    meta.setAttribute(m[0], m[1]);
+    meta.setAttribute('content', m[2]);
+    d.head.appendChild(meta);
+  });
+  var ld = d.querySelector('script[type="application/ld+json"]');
+  if (ld) ld.textContent = JSON.stringify(v.schema);
+  d.head.insertAdjacentHTML('beforeend', v.links.join(''));
+})(document);
+  </script>`;
+
+const LANG_BODY_SCRIPT = `  <script>
+(function (d) {
+  var lang = window.hcLang, body = d.body;
+  if (!lang) return;
+  try {
+    var tpl = d.getElementById('hc-lang-' + lang);
+    var first = body.querySelector('template[data-hc-lang]');
+    if (tpl && first) {
+      while (body.firstChild !== first) body.removeChild(body.firstChild);
+      body.insertBefore(d.importNode(tpl.content, true), first);
+      body.className = tpl.getAttribute('data-body-class');
+    }
+    [].forEach.call(body.querySelectorAll('template[data-hc-lang]'), function (el) { el.parentNode.removeChild(el); });
+  } finally {
+    d.documentElement.classList.remove('hc-lang-pending');
+  }
+})(document);
+  </script>`;
+
+const SCRIPTS_MARKER = '  <script src="/js/zoned-time.js';
+const SKIPPED_META = new Set(['viewport', 'robots', 'theme-color', 'saptet:generated-signature']);
+
+function decodeHtml(value) {
+  return value.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+}
+
+function safeJson(value) {
+  return JSON.stringify(value).replace(/</g, '\\u003c');
+}
+
+// Tách phần cần đổi theo ngôn ngữ từ một trang đã render (cùng template gốc với bản en).
+function extractVariant(html, enHead, page) {
+  const head = html.slice(0, html.indexOf('</head>'));
+  const dir = html.match(/<html [^>]*dir="(\w+)"/)?.[1] || null;
+  const metas = [...head.matchAll(/<meta (name|property)="([^"]+)" content="([^"]*)">/g)]
+    .filter((match) => !SKIPPED_META.has(match[2]))
+    .map((match) => [match[1], match[2], decodeHtml(match[3])]);
+  const links = [...head.matchAll(/<link [^>]+>/g)].map((match) => match[0])
+    .filter((tag) => !/rel="(canonical|alternate)"/.test(tag) && !enHead.includes(tag));
+  const schema = JSON.parse(head.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  const bodyOpen = html.match(/<body class="([^"]+)">\n/);
+  const scriptsAt = html.indexOf(SCRIPTS_MARKER);
+  if (!bodyOpen || scriptsAt < 0) throw new Error(`${page.url}: unexpected page shape`);
+  return {
+    head: {
+      url: page.url,
+      title: decodeHtml(head.match(/<title>([^<]*)<\/title>/)[1]),
+      dir,
+      metas,
+      links,
+      schema,
+      sig: page.sig,
+      modified: page.lastmod,
+    },
+    bodyClass: bodyOpen[1],
+    body: html.slice(bodyOpen.index + bodyOpen[0].length, scriptsAt),
+  };
+}
+
+function composePage(slug, en, variants) {
+  const enHead = en.html.slice(0, en.html.indexOf('</head>'));
+  const data = { en: { url: en.url } };
+  const templates = [];
+  for (const [lang, page] of Object.entries(variants)) {
+    const variant = extractVariant(page.html, enHead, page);
+    data[lang] = variant.head;
+    templates.push(`  <template id="hc-lang-${lang}" data-hc-lang="${lang}" data-body-class="${variant.bodyClass}">\n${variant.body}  </template>\n`);
+  }
+  const head = `  <script id="hc-lang-data" type="application/json">${safeJson(data)}</script>\n${LANG_HEAD_SCRIPT}\n</head>`;
+  const html = en.html
+    .replace(/  <link rel="canonical" href="[^"]*">\n/, '')
+    .replace('</head>', head)
+    .replace(SCRIPTS_MARKER, `${templates.join('')}${LANG_BODY_SCRIPT}\n${SCRIPTS_MARKER}`);
+  if (/<link rel="canonical"/.test(html.slice(0, html.indexOf('</head>')))) throw new Error(`${slug}: static canonical left behind`);
+  write(`${slug}.html`, html);
+  return languagesOf(slug).map((lang) => ({
+    url: lang === 'en' ? en.url : variants[lang].url,
+    lastmod: lang === 'en' ? en.lastmod : variants[lang].lastmod,
+    slug,
+  }));
 }
 
 function generateVietnameseHub(items, shared) {
   const canonical = vietnameseUrl(HUB_SLUG);
-  const file = `vi/${HUB_SLUG}.html`;
+  const file = `${HUB_SLUG}.html`;
   const sorted = sortedByDate(items);
   const names = sorted.slice(0, 4).map((item) => HOLIDAYS_VI[item.holiday.slug].name);
   const description = `Đếm ngược trực tiếp đến ${names.join(', ')} và nhiều ngày lễ lớn khác trên thế giới, theo múi giờ của từng quốc gia.`;
-  const title = fit(['Sắp Giáng sinh, Halloween, Ramadan… Đếm ngược ngày lễ', 'Đếm ngược ngày lễ: Giáng sinh, Halloween, Ramadan…', 'Đếm ngược ngày lễ thế giới'], TITLE_MAX, 'vi hub title');
+  const title = fit(['Đếm ngược ngày lễ thế giới: Giáng sinh, Halloween, Ramadan…', 'Đếm ngược ngày lễ: Giáng sinh, Halloween, Ramadan…'], TITLE_MAX, 'vi hub title');
   const template = read('templates/holidays-index-vi.html');
   const values = {
     TITLE: escapeHtml(title),
-    HREFLANG: vietnameseHreflang(HUB_SLUG),
+    HREFLANG: hreflangHtml(HUB_SLUG),
     OG_IMAGE: vietnameseOgImage(HUB_SLUG),
     META_DESCRIPTION: escapeHtml(description),
     CANONICAL: canonical,
@@ -1407,7 +1546,7 @@ function generateVietnameseHub(items, shared) {
     CONFIG: JSON.stringify({ i18n: vietnameseI18n() }).replace(/</g, '\\u003c'),
   };
   const nextSignature = signature({ values, template });
-  const modified = currentModified(file, nextSignature, shared.today);
+  const modified = currentModified(file, nextSignature, shared.today, 'vi');
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -1431,32 +1570,41 @@ function generateVietnameseHub(items, shared) {
         itemListElement: sorted.map((item, index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          name: HOLIDAYS_VI[item.holiday.slug].h1,
+          name: `Đếm ngược ${HOLIDAYS_VI[item.holiday.slug].name}`,
           url: vietnameseUrl(item.holiday.slug),
         })),
       },
     ],
   };
-  write(file, replaceTokens(template, { ...values, SIGNATURE: nextSignature, SCHEMA: jsonLd(schema) }));
-  return { url: canonical, lastmod: modified };
+  const html = replaceTokens(template, { ...values, SIGNATURE: nextSignature, SCHEMA: jsonLd(schema) });
+  return { html, url: canonical, lastmod: modified, sig: nextSignature };
 }
 
+// Khối holiday luôn nằm cuối sitemap (từ SITEMAP_MARKER tới </urlset>): viết lại toàn bộ, kèm xhtml:link
+// hreflang cho từng cụm ngôn ngữ của cùng một slug.
 function updateSitemap(pages) {
   const sitemapPath = path.join(ROOT, 'sitemap.xml');
   let sitemap = fs.readFileSync(sitemapPath, 'utf8');
-  const escapedMarker = SITEMAP_MARKER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  sitemap = sitemap.replace(new RegExp(`\\s*${escapedMarker}`, 'g'), '');
-  for (const { url } of pages) {
-    const loc = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    sitemap = sitemap.replace(new RegExp(`\\s*<url>\\s*<loc>${loc}</loc>[\\s\\S]*?</url>`, 'g'), '');
+  const markerAt = sitemap.indexOf(SITEMAP_MARKER);
+  if (markerAt >= 0) sitemap = `${sitemap.slice(0, markerAt).trimEnd()}\n</urlset>\n`;
+  if (!sitemap.includes('xmlns:xhtml=')) {
+    sitemap = sitemap.replace('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">');
   }
-  const entries = pages.map(({ url, lastmod, priority }) => `
+  const entries = pages.map(({ url, lastmod, priority, slug }) => {
+    const alternates = languagesOf(slug)
+      .map((lang) => ({ lang, href: `${SITE_ORIGIN}${langPath(slug, lang)}` }))
+      .concat({ lang: 'x-default', href: pageUrl(slug) })
+      .map(({ lang, href }) => `\n        <xhtml:link rel="alternate" hreflang="${lang}" href="${href}"/>`)
+      .join('');
+    return `
     <url>
         <loc>${url}</loc>
         <lastmod>${lastmod}</lastmod>
         <changefreq>daily</changefreq>
-        <priority>${priority}</priority>
-    </url>`).join('');
+        <priority>${priority}</priority>${alternates}
+    </url>`;
+  }).join('');
   sitemap = sitemap.replace('\n</urlset>', `\n    ${SITEMAP_MARKER}${entries}\n</urlset>`);
   fs.writeFileSync(sitemapPath, sitemap, 'utf8');
 }
@@ -1465,36 +1613,31 @@ function main() {
   const categoryIds = new Set(HOLIDAY_CATEGORIES.map((category) => category.id));
   for (const holiday of HOLIDAYS_EN) {
     if (!categoryIds.has(holiday.category)) throw new Error(`${holiday.slug}: unknown category ${holiday.category}`);
+    if (!HOLIDAYS_VI[holiday.slug]) throw new Error(`data/holidays-vi.js: missing ${holiday.slug}`);
   }
   const now = Date.now();
   const items = HOLIDAYS_EN.map((holiday) => buildItem(holiday, now));
+  for (const slug of Object.keys(HOLIDAYS_AR)) {
+    if (!items.some((item) => item.holiday.slug === slug)) throw new Error(`data/holidays-ar.js: unknown slug ${slug}`);
+  }
   const shared = {
     today: ZonedTime.todayKey(now, 'Asia/Ho_Chi_Minh'),
     footer: footerHtml(),
   };
-  const hub = generateHub(items, shared);
-  const details = items.map((item) => generateDetail(item, items, shared));
-  for (const slug of Object.keys(HOLIDAYS_AR)) {
-    if (!items.some((item) => item.holiday.slug === slug)) throw new Error(`data/holidays-ar.js: unknown slug ${slug}`);
-  }
-  const arabic = items
-    .filter((item) => HOLIDAYS_AR[item.holiday.slug])
-    .map((item) => generateArabicDetail(item, items, shared));
-  for (const holiday of HOLIDAYS_EN) {
-    if (!HOLIDAYS_VI[holiday.slug]) throw new Error(`data/holidays-vi.js: missing ${holiday.slug}`);
-  }
-  fs.mkdirSync(path.join(ROOT, 'vi'), { recursive: true });
-  const vietnameseHub = generateVietnameseHub(items, shared);
-  const vietnamese = items.map((item) => generateVietnameseDetail(item, items, shared));
+  const hub = composePage(HUB_SLUG, generateHub(items, shared), { vi: generateVietnameseHub(items, shared) });
+  const details = items.map((item) => {
+    const variants = { vi: generateVietnameseDetail(item, items, shared) };
+    if (HOLIDAYS_AR[item.holiday.slug]) variants.ar = generateArabicDetail(item, items, shared);
+    return composePage(item.holiday.slug, generateDetail(item, items, shared), variants);
+  });
   for (const item of items) writeVietnameseAlias(item, HOLIDAYS_VI[item.holiday.slug]);
+  writeLegacyRedirects([HUB_SLUG, ...items.map((item) => item.holiday.slug)]);
   updateSitemap([
-    { ...hub, priority: '0.7' },
-    ...details.map((page) => ({ ...page, priority: '0.8' })),
-    { ...vietnameseHub, priority: '0.7' },
-    ...vietnamese.map((page) => ({ ...page, priority: '0.8' })),
-    ...arabic.map((page) => ({ ...page, priority: '0.8' })),
+    ...hub.map((page) => ({ ...page, priority: '0.7' })),
+    ...details.flat().map((page) => ({ ...page, priority: '0.8' })),
   ]);
-  console.log(`generate-holiday-pages: wrote /${HUB_SLUG}, /vi/${HUB_SLUG}, ${details.length} English, ${vietnamese.length} Vietnamese (+${vietnamese.length} /sap-* aliases) and ${arabic.length} Arabic pages`);
+  const arabic = Object.keys(HOLIDAYS_AR).length;
+  console.log(`generate-holiday-pages: wrote /${HUB_SLUG} + ${details.length} countdown pages (en + vi${arabic ? `, ar for ${arabic}` : ''} via ?lang=), /sap-* aliases and /vi, /ar redirect stubs`);
 }
 
 if (require.main === module) main();

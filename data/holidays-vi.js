@@ -1,16 +1,15 @@
 /**
  * Phiên bản tiếng Việt cho các trang đếm ngược ngày lễ thế giới.
  * Khóa = slug trong data/holidays-en.js (ngày, múi giờ, màu, hình dùng chung từ bản tiếng Anh).
- * Trang sinh ra: vi/<slug>.html → https://saptet.vn/vi/<slug>, hub vi/countdowns.html. Chạy `npm run generate-holidays`.
+ * Hiển thị tại https://saptet.vn/<slug>?lang=vi (cùng file <slug>.html với bản tiếng Anh), hub /countdowns?lang=vi. Chạy `npm run generate-holidays`.
  *
  * zoneLabel chỉ có ở sự kiện scope 'national'. dateNote với sự kiện moonDisclaimer phải nhắc "trăng lưỡi liềm".
  * seeAlso (tuỳ chọn): liên kết sang trang tiếng Việt sẵn có trên saptet.vn cho cùng dịp lễ.
- * h1 = 'Sắp <name>' (cụm thương hiệu, cũng là og:title). sapSlug = URL alias ASCII /sap-<tên-việt>/ → redirect noindex về /vi/<slug>.
+ * H1 = name (không thêm "Sắp"). sapSlug = URL alias ASCII /sap-<tên-việt>/ → redirect noindex về /<slug>?lang=vi.
  */
 const HOLIDAYS_VI = {
   'halloween': {
     name: 'Halloween',
-    h1: 'Sắp Halloween',
     sapSlug: 'sap-halloween',
     zoneLabel: 'New York',
     tagline: 'Hóa trang, bí ngô và đi xin kẹo vào ngày 31 tháng 10.',
@@ -79,7 +78,6 @@ const HOLIDAYS_VI = {
   },
   'diwali': {
     name: 'Diwali',
-    h1: 'Sắp Diwali',
     sapSlug: 'sap-diwali',
     zoneLabel: 'New Delhi',
     tagline: 'Lễ hội Ánh sáng được hơn một tỷ người đón mừng.',
@@ -153,7 +151,6 @@ const HOLIDAYS_VI = {
   },
   'thanksgiving': {
     name: 'Lễ Tạ ơn',
-    h1: 'Sắp Lễ Tạ ơn',
     sapSlug: 'sap-le-ta-on',
     zoneLabel: 'New York',
     tagline: 'Thứ Năm thứ tư của tháng 11 tại Mỹ.',
@@ -222,7 +219,6 @@ const HOLIDAYS_VI = {
   },
   'hanukkah': {
     name: 'Hanukkah',
-    h1: 'Sắp Hanukkah',
     sapSlug: 'sap-hanukkah',
     zoneLabel: 'Jerusalem',
     tagline: 'Tám đêm thắp nến, bắt đầu từ lúc hoàng hôn.',
@@ -288,7 +284,6 @@ const HOLIDAYS_VI = {
   },
   'christmas': {
     name: 'Giáng sinh',
-    h1: 'Sắp Giáng sinh',
     sapSlug: 'sap-giang-sinh',
     tagline: 'Ngày 25 tháng 12, dù bạn ở bất cứ nơi đâu trên thế giới.',
     shareMessage: 'Điều kỳ diệu đang đến gần.',
@@ -339,7 +334,6 @@ const HOLIDAYS_VI = {
   },
   'new-year': {
     name: 'Năm mới',
-    h1: 'Sắp Năm mới',
     sapSlug: 'sap-nam-moi',
     tagline: 'Đếm ngược đến nửa đêm ngày 1 tháng 1.',
     shareMessage: 'Một khởi đầu mới đang đến rất gần.',
@@ -388,7 +382,6 @@ const HOLIDAYS_VI = {
   },
   'chinese-new-year': {
     name: 'Tết Trung Quốc',
-    h1: 'Sắp Tết Trung Quốc',
     sapSlug: 'sap-tet-trung-quoc',
     zoneLabel: 'Bắc Kinh',
     tagline: 'Năm mới âm lịch của Trung Quốc, tính theo giờ Bắc Kinh.',
@@ -435,7 +428,6 @@ const HOLIDAYS_VI = {
   },
   'ramadan': {
     name: 'Ramadan',
-    h1: 'Sắp Ramadan',
     sapSlug: 'sap-ramadan',
     tagline: 'Tháng chay thiêng liêng, bắt đầu từ vầng trăng lưỡi liềm.',
     shareMessage: 'Một tháng thiêng liêng đang đến gần.',
@@ -483,7 +475,6 @@ const HOLIDAYS_VI = {
   },
   'valentines-day': {
     name: 'Valentine',
-    h1: 'Sắp Valentine',
     sapSlug: 'sap-valentine',
     tagline: 'Ngày 14 tháng 2, ngày dành cho tình yêu và tình bạn.',
     shareMessage: 'Tình yêu đang đếm ngược từng ngày.',
@@ -530,7 +521,6 @@ const HOLIDAYS_VI = {
   },
   'eid-al-fitr': {
     name: 'Eid al-Fitr',
-    h1: 'Sắp Eid al-Fitr',
     sapSlug: 'sap-eid-al-fitr',
     tagline: 'Lễ xả chay mừng kết thúc tháng Ramadan.',
     shareMessage: 'Niềm vui Eid đã gần kề.',
@@ -578,7 +568,6 @@ const HOLIDAYS_VI = {
   },
   'easter': {
     name: 'Lễ Phục sinh',
-    h1: 'Sắp Lễ Phục sinh',
     sapSlug: 'sap-le-phuc-sinh',
     tagline: 'Chúa nhật Phục sinh, ngày lễ quan trọng nhất của Kitô giáo.',
     shareMessage: 'Một mùa Phục sinh an vui đang đến gần.',
@@ -625,7 +614,6 @@ const HOLIDAYS_VI = {
   },
   'songkran': {
     name: 'Songkran',
-    h1: 'Sắp Songkran',
     sapSlug: 'sap-songkran',
     zoneLabel: 'Bangkok',
     tagline: 'Tết cổ truyền Thái Lan và lễ hội té nước lớn nhất thế giới.',

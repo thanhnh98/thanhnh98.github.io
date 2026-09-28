@@ -8,10 +8,12 @@ const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const { HOLIDAYS_EN, HOLIDAY_CATEGORIES } = require('../data/holidays-en.js');
 const { HOLIDAYS_VI, UI_VI, HOLIDAY_CATEGORIES_VI } = require('../data/holidays-vi.js');
 const { HOLIDAYS_AR } = require('../data/holidays-ar.js');
+const { langData, langVariant } = require('./helpers/holiday-lang.js');
 
 const decode = (text) => text.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 // Ký tự có dấu riêng của tiếng Việt (ă, â, đ, ơ, ư, ạ…ỹ).
 const VIETNAMESE = /[ăâđêôơưĂÂĐÊÔƠƯẠ-ỹ]/;
+const re = (text) => new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
 function graphOf(html) {
   return [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
@@ -23,7 +25,8 @@ test('Vietnamese data covers every holiday with the same structure as the Englis
   for (const holiday of HOLIDAYS_EN) {
     const vi = HOLIDAYS_VI[holiday.slug];
     assert.ok(vi, `missing ${holiday.slug}`);
-    for (const key of ['h1', 'tagline', 'shareMessage']) assert.match(vi[key], VIETNAMESE, `${holiday.slug}.${key} should be Vietnamese`);
+    assert.equal(vi.h1, undefined, `${holiday.slug}: H1 is the plain name, no separate "Sắp …" h1`);
+    for (const key of ['tagline', 'shareMessage']) assert.match(vi[key], VIETNAMESE, `${holiday.slug}.${key} should be Vietnamese`);
     assert.ok(vi.name && vi.name.length <= 24, `${holiday.slug}.name`);
     assert.equal(vi.about.length, holiday.about.length, `${holiday.slug}.about`);
     assert.equal(vi.traditions.length, holiday.traditions.length, `${holiday.slug}.traditions`);
@@ -37,16 +40,14 @@ test('Vietnamese data covers every holiday with the same structure as the Englis
     assert.ok(vi.keywords.length >= 3, `${holiday.slug}.keywords`);
   }
   assert.equal(Object.keys(HOLIDAYS_VI).length, HOLIDAYS_EN.length, 'no Vietnamese entry without an English page');
-  // "Sắp X": mỗi sự kiện có H1 thương hiệu + slug ASCII /sap-<tên-việt>/ duy nhất, không đụng file có sẵn ở gốc.
+  // Alias ASCII /sap-<tên-việt>/ duy nhất, không đụng file có sẵn ở gốc.
   const sapSlugs = new Set();
   for (const holiday of HOLIDAYS_EN) {
     const vi = HOLIDAYS_VI[holiday.slug];
-    assert.equal(vi.h1, `Sắp ${vi.name}`, `${holiday.slug}.h1 should be "Sắp <name>"`);
     assert.match(vi.sapSlug, /^sap-[a-z0-9]+(-[a-z0-9]+)*$/, `${holiday.slug}.sapSlug`);
     assert.ok(!sapSlugs.has(vi.sapSlug), `${holiday.slug}.sapSlug duplicated`);
     sapSlugs.add(vi.sapSlug);
     assert.ok(!fs.existsSync(path.join(root, `${vi.sapSlug}.html`)), `${vi.sapSlug}.html would shadow the alias`);
-    assert.ok(vi.keywords.some((keyword) => keyword.startsWith('sắp ')), `${holiday.slug}.keywords needs a "sắp …" phrase`);
   }
 
   for (const category of HOLIDAY_CATEGORIES) assert.ok(HOLIDAY_CATEGORIES_VI[category.id], category.id);
@@ -55,15 +56,16 @@ test('Vietnamese data covers every holiday with the same structure as the Englis
 for (const holiday of HOLIDAYS_EN) {
   const { slug } = holiday;
   const vi = HOLIDAYS_VI[slug];
-  const file = `vi/${slug}.html`;
+  const file = `${slug}.html?lang=vi`;
+  const canonical = `https://saptet.vn/${slug}?lang=vi`;
 
   test(`${file} is an indexable Vietnamese countdown page`, () => {
-    const html = read(file);
-    const canonical = `https://saptet.vn/vi/${slug}`;
-    assert.match(html, /<html lang="vi">/);
-    assert.match(html, new RegExp(`<link rel="canonical" href="${canonical}">`));
-    assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large">/);
+    const { html, head, source } = langVariant(`${slug}.html`, 'vi');
+    assert.equal(head.url, canonical);
+    assert.equal(head.dir, null);
+    assert.match(source, /<meta name="robots" content="index, follow, max-image-preview:large">/);
     assert.match(html, /<meta property="og:locale" content="vi_VN">/);
+    assert.match(html, re(`<meta property="og:url" content="${canonical}">`));
     assert.match(html, /\/assets\/fonts\/fraunces-vietnamese\.woff2/);
     assert.doesNotMatch(html, /\{\{[A-Z_]+\}\}/);
     assert.match(html, new RegExp(`class="hc-hero-bg" src="${holiday.visual.background}"`));
@@ -71,17 +73,15 @@ for (const holiday of HOLIDAYS_EN) {
     const title = decode(html.match(/<title>([^<]+)<\/title>/)[1]);
     const description = decode(html.match(/<meta name="description" content="([^"]+)"/)[1]);
     assert.ok(title.length <= 60, `title length ${title.length}: ${title}`);
-    assert.ok(title.includes(vi.name));
-    assert.ok(title.startsWith(`Sắp ${vi.name} `), `title should start with "Sắp ${vi.name}": ${title}`);
-    assert.match(title, /Còn bao nhiêu ngày nữa\?$/, `title keeps the question: ${title}`);
-    assert.match(description, /^Sắp /, `description opens with "Sắp": ${description}`);
-    assert.match(html, new RegExp(`<h1 id="hc-title" class="hc-title">Sắp ${vi.name} <span data-hc-year>\\d{4}</span></h1>`));
-    assert.match(html, new RegExp(`<meta property="og:title" content="Sắp ${vi.name} \\d{4}">`));
-    const keywords = html.match(/<meta name="keywords" content="([^"]+)">/)[1];
-    assert.match(keywords, new RegExp(`sắp ${vi.name.toLowerCase()} \\d{4}`), 'keywords carry "sắp <name> <year>"');
-    const summaries = [...html.matchAll(/<summary>([^<]+)<\/summary>/g)].map((match) => decode(match[1]));
-    assert.equal(summaries[0], `Sắp ${vi.name} chưa? Còn bao nhiêu ngày nữa?`, 'first FAQ is the "Sắp X chưa" question');
+    assert.ok(title.startsWith(`${vi.name} 20`), `title leads with the name + year: ${title}`);
+    assert.match(title, /còn bao nhiêu ngày nữa\?/i, `title keeps the question: ${title}`);
     assert.ok(description.length >= 100 && description.length <= 160, `description length ${description.length}`);
+    // Landing chỉ hiển thị tên sự kiện, không còn "Sắp <tên>".
+    assert.match(html, new RegExp(`<h1 id="hc-title" class="hc-title">${vi.name} <span data-hc-year>\\d{4}</span></h1>`));
+    for (const text of [title, description, decode(html)]) assert.ok(!text.includes(`Sắp ${vi.name}`), `leftover "Sắp ${vi.name}"`);
+    assert.match(html, new RegExp(`<meta property="og:title" content="Đếm ngược ${vi.name} \\d{4}">`));
+    const summaries = [...html.matchAll(/<summary>([^<]+)<\/summary>/g)].map((match) => decode(match[1]));
+    assert.equal(summaries[0], `Còn bao nhiêu ngày nữa đến ${vi.name}?`);
 
     // Không sót nhãn tiếng Anh trong giao diện.
     for (const english of ['>Days<', '>Hours<', '>Minutes<', '>Seconds<', 'Share Countdown', 'Frequently Asked Questions', 'More Countdowns', 'Also known as', 'Traditions<']) {
@@ -106,29 +106,30 @@ for (const holiday of HOLIDAYS_EN) {
     assert.deepEqual(config.dates.length > 1, true);
   });
 
-  test(`/${vi.sapSlug}/ is a noindex alias that redirects to /vi/${slug}`, () => {
-    const stub = read(`${vi.sapSlug}/index.html`);
-    assert.match(stub, /<html lang="vi">/);
-    assert.match(stub, new RegExp(`<link rel="canonical" href="https://saptet.vn/vi/${slug}" />`));
-    assert.match(stub, new RegExp(`<meta http-equiv="refresh" content="0;url=/vi/${slug}" />`));
-    assert.match(stub, /<meta name="robots" content="noindex, follow" \/>/);
-    assert.match(stub, new RegExp(`location\\.replace\\("/vi/${slug}"\\)`));
-    assert.ok(stub.includes(`Sắp ${vi.name}`), 'stub names the holiday');
-    assert.ok(stub.length < 1500, 'stays a small redirect stub');
-    assert.doesNotMatch(read('sitemap.xml'), new RegExp(`<loc>https://saptet.vn/${vi.sapSlug}/?</loc>`), 'alias stays out of the sitemap');
-  });
+  for (const stubFile of [`${vi.sapSlug}/index.html`, `vi/${slug}.html`]) {
+    test(`${stubFile} is a noindex redirect to /${slug}?lang=vi`, () => {
+      const stub = read(stubFile);
+      assert.match(stub, /<html lang="vi">/);
+      assert.match(stub, re(`<link rel="canonical" href="${canonical}" />`));
+      assert.match(stub, re(`<meta http-equiv="refresh" content="0;url=/${slug}?lang=vi" />`));
+      assert.match(stub, /<meta name="robots" content="noindex, follow" \/>/);
+      assert.match(stub, re(`location.replace("/${slug}?lang=vi" + location.hash)`));
+      assert.ok(stub.includes(vi.name), 'stub names the holiday');
+      assert.ok(!stub.includes('Sắp '), 'no "Sắp" in the stub');
+      assert.ok(stub.length < 1500, 'stays a small redirect stub');
+      assert.doesNotMatch(read('sitemap.xml'), re(`<loc>https://saptet.vn/${stubFile.replace(/(\/index)?\.html$/, '')}`), 'stub stays out of the sitemap');
+    });
+  }
 
   test(`${file} pairs with its English page through hreflang and structured data`, () => {
-    const html = read(file);
-    const english = read(`${slug}.html`);
-    for (const page of [html, english]) {
-      assert.match(page, new RegExp(`hreflang="en" href="https://saptet.vn/${slug}"`));
-      assert.match(page, new RegExp(`hreflang="vi" href="https://saptet.vn/vi/${slug}"`));
-      assert.match(page, new RegExp(`hreflang="x-default" href="https://saptet.vn/${slug}"`));
-    }
-    if (HOLIDAYS_AR[slug]) assert.match(html, new RegExp(`hreflang="ar" href="https://saptet.vn/ar/${slug}"`));
-    assert.match(english, new RegExp(`<a href="/vi/${slug}" hreflang="vi" lang="vi">Tiếng Việt</a>`));
-    assert.match(html, new RegExp(`<a href="/${slug}" hreflang="en" lang="en">English</a>`));
+    const { html, source: english } = langVariant(`${slug}.html`, 'vi');
+    assert.match(english, re(`hreflang="en" href="https://saptet.vn/${slug}">`));
+    assert.match(english, re(`hreflang="vi" href="${canonical}">`));
+    assert.match(english, re(`hreflang="x-default" href="https://saptet.vn/${slug}">`));
+    if (HOLIDAYS_AR[slug]) assert.match(english, re(`hreflang="ar" href="https://saptet.vn/${slug}?lang=ar">`));
+    assert.match(english, re(`<a href="/${slug}?lang=vi" hreflang="vi" lang="vi">Tiếng Việt</a>`));
+    assert.match(html, re(`<a href="/${slug}" hreflang="en" lang="en">English</a>`));
+    assert.doesNotMatch(html, /href="\/vi\//, 'no links to the legacy /vi/ paths');
 
     const graph = graphOf(html);
     const page = graph.find((node) => node['@type'] === 'WebPage');
@@ -143,51 +144,56 @@ for (const holiday of HOLIDAYS_EN) {
     const ogImage = html.match(/<meta property="og:image" content="([^"]+)"/)[1];
     assert.equal(ogImage, `https://saptet.vn/assets/images/og/vi-${slug}.jpg`);
     assert.ok(fs.existsSync(path.join(root, `assets/images/og/vi-${slug}.jpg`)));
-    assert.match(read('sitemap.xml'), new RegExp(`<loc>https://saptet.vn/vi/${slug}</loc>`));
+    const graphPage = graph.find((node) => node['@type'] === 'WebPage');
+    assert.equal(graphPage.url, canonical);
+    assert.equal(langData(english).vi.modified, graphPage.dateModified);
+    assert.match(read('sitemap.xml'), re(`<loc>${canonical}</loc>`));
   });
 }
 
 test('Vietnamese hub lists every holiday by category and localizes card labels', () => {
-  const hub = read('vi/countdowns.html');
-  assert.match(hub, /<html lang="vi">/);
-  assert.match(hub, /<link rel="canonical" href="https:\/\/saptet\.vn\/vi\/countdowns">/);
-  assert.match(hub, /hreflang="en" href="https:\/\/saptet\.vn\/countdowns"/);
-  assert.match(read('countdowns.html'), /hreflang="vi" href="https:\/\/saptet\.vn\/vi\/countdowns"/);
+  const { html: hub, head, source } = langVariant('countdowns.html', 'vi');
+  assert.equal(head.url, 'https://saptet.vn/countdowns?lang=vi');
+  assert.ok(!decode(head.title).startsWith('Sắp'), head.title);
+  assert.match(source, /hreflang="vi" href="https:\/\/saptet\.vn\/countdowns\?lang=vi"/);
   for (const category of HOLIDAY_CATEGORIES) {
     const section = hub.split(`<section class="hc-section hc-category" id="${category.id}"`)[1].split('</section>')[0];
     assert.ok(decode(section).includes(HOLIDAY_CATEGORIES_VI[category.id].title));
     for (const holiday of HOLIDAYS_EN.filter((item) => item.category === category.id)) {
-      assert.match(section, new RegExp(`href="/vi/${holiday.slug}"`));
+      assert.match(section, re(`href="/${holiday.slug}?lang=vi"`));
     }
   }
   const config = JSON.parse(hub.match(/<script id="holiday-config" type="application\/json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(config.i18n.locale, 'vi-VN', 'cards refresh with Vietnamese day labels');
   assert.doesNotMatch(hub, /data-hc-card-days>\d+ days?</);
-  assert.match(read('sitemap.xml'), /<loc>https:\/\/saptet\.vn\/vi\/countdowns<\/loc>/);
+  assert.match(read('sitemap.xml'), /<loc>https:\/\/saptet\.vn\/countdowns\?lang=vi<\/loc>/);
+  assert.match(read('vi/countdowns.html'), /content="0;url=\/countdowns\?lang=vi"/, 'legacy hub URL redirects');
 });
 
 // Menu "More / Xem thêm": mọi trang đều có lối tắt tới toàn bộ danh mục, mục đầu tiên quay về trang tất cả.
+const enHref = (slug) => `/${slug}`;
+const viHref = (slug) => `/${slug}?lang=vi`;
 const MENU_PAGES = [
-  ...HOLIDAYS_EN.map((holiday) => ({ file: `${holiday.slug}.html`, prefix: '', label: 'More', all: 'All countdowns', current: `/${holiday.slug}` })),
-  { file: 'countdowns.html', prefix: '', label: 'More', all: 'All countdowns', current: '/countdowns' },
-  ...HOLIDAYS_EN.map((holiday) => ({ file: `vi/${holiday.slug}.html`, prefix: '/vi', label: UI_VI.more, all: UI_VI.allCountdowns, current: `/vi/${holiday.slug}` })),
-  { file: 'vi/countdowns.html', prefix: '/vi', label: UI_VI.more, all: UI_VI.allCountdowns, current: '/vi/countdowns' },
+  ...HOLIDAYS_EN.map((holiday) => ({ file: `${holiday.slug}.html`, lang: 'en', href: enHref, label: 'More', all: 'All countdowns', current: enHref(holiday.slug) })),
+  { file: 'countdowns.html', lang: 'en', href: enHref, label: 'More', all: 'All countdowns', current: '/countdowns' },
+  ...HOLIDAYS_EN.map((holiday) => ({ file: `${holiday.slug}.html`, lang: 'vi', href: viHref, label: UI_VI.more, all: UI_VI.allCountdowns, current: viHref(holiday.slug) })),
+  { file: 'countdowns.html', lang: 'vi', href: viHref, label: UI_VI.more, all: UI_VI.allCountdowns, current: viHref('countdowns') },
 ];
 
-for (const { file, prefix, label, all, current } of MENU_PAGES) {
-  test(`${file} header has a "${label}" menu with every category and an "all" link`, () => {
-    const html = read(file);
+for (const { file, lang, href, label, all, current } of MENU_PAGES) {
+  test(`${file}${lang === 'en' ? '' : `?lang=${lang}`} header has a "${label}" menu with every category and an "all" link`, () => {
+    const html = lang === 'en' ? read(file) : langVariant(file, lang).body;
     const header = html.slice(html.indexOf('<header class="hc-header">'), html.indexOf('</header>'));
     const menu = header.slice(header.indexOf('<details class="hc-menu" data-hc-menu>'));
     assert.ok(menu.startsWith('<details'), 'menu present');
     assert.ok(header.indexOf('</nav>') < header.indexOf('<details'), 'menu sits outside the scrolling nav');
     assert.match(menu, new RegExp(`<summary class="hc-menu-toggle">${label} <svg`));
     const firstLink = menu.match(/<a [^>]*href="([^"]+)"[^>]*>([^<]+)</);
-    assert.equal(firstLink[1], `${prefix}/countdowns`, 'first item returns to the all-countdowns page');
+    assert.equal(firstLink[1], href('countdowns'), 'first item returns to the all-countdowns page');
     assert.equal(firstLink[2].trim(), all);
-    for (const holiday of HOLIDAYS_EN) assert.ok(menu.includes(`href="${prefix}/${holiday.slug}"`), `${holiday.slug} in menu`);
+    for (const holiday of HOLIDAYS_EN) assert.ok(menu.includes(`href="${href(holiday.slug)}"`), `${holiday.slug} in menu`);
     assert.equal((menu.match(/class="hc-menu-title"/g) || []).length, HOLIDAY_CATEGORIES.length);
-    assert.match(menu, new RegExp(`href="${current}" aria-current="page"`));
+    assert.match(menu, re(`href="${current}" aria-current="page"`));
     assert.doesNotMatch(header, /<a href="\/countdowns">All<\/a>/, 'the old standalone "All" link moved into the menu');
   });
 }

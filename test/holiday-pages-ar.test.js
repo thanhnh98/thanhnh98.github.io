@@ -7,6 +7,8 @@ const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const { HOLIDAYS_AR, UI_AR } = require('../data/holidays-ar.js');
 const { HOLIDAYS_EN } = require('../data/holidays-en.js');
+const { langData, langVariant } = require('./helpers/holiday-lang.js');
+const re = (text) => new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
 const decode = (text) => text.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 const ARABIC = /[؀-ۿ]/;
@@ -34,16 +36,17 @@ test('Arabic data only covers existing holidays and is complete', () => {
 });
 
 for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
-  const file = `ar/${slug}.html`;
+  const file = `${slug}.html?lang=ar`;
+  const canonical = `https://saptet.vn/${slug}?lang=ar`;
 
   test(`${file} is an indexable right-to-left Arabic page`, () => {
-    const html = read(file);
+    const { html, head, source } = langVariant(`${slug}.html`, 'ar');
     const holiday = HOLIDAYS_EN.find((item) => item.slug === slug);
-    const canonical = `https://saptet.vn/ar/${slug}`;
-    assert.match(html, /<html lang="ar" dir="rtl">/);
+    assert.equal(head.url, canonical);
+    assert.equal(head.dir, 'rtl');
     assert.match(html, /<body class="hc-page hc-page--rtl">/);
-    assert.match(html, new RegExp(`<link rel="canonical" href="${canonical}">`));
-    assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large">/);
+    assert.match(html, re(`<meta property="og:url" content="${canonical}">`));
+    assert.match(source, /<meta name="robots" content="index, follow, max-image-preview:large">/);
     assert.match(html, /<meta property="og:locale" content="ar_AR">/);
     assert.match(html, /family=Noto\+Sans\+Arabic/);
     assert.match(html, new RegExp(`class="hc-hero-bg" src="${holiday.visual.background}"`));
@@ -87,19 +90,25 @@ for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
   });
 
   test(`${file} and its English page reference each other with hreflang`, () => {
-    const arabic = read(file);
-    const english = read(`${slug}.html`);
-    for (const html of [arabic, english]) {
-      assert.match(html, new RegExp(`hreflang="en" href="https://saptet.vn/${slug}"`));
-      assert.match(html, new RegExp(`hreflang="ar" href="https://saptet.vn/ar/${slug}"`));
-      assert.match(html, new RegExp(`hreflang="x-default" href="https://saptet.vn/${slug}"`));
-    }
-    assert.match(english, new RegExp(`<a href="/ar/${slug}" hreflang="ar" lang="ar">العربية</a>`));
-    assert.match(arabic, new RegExp(`<a href="/${slug}" hreflang="en" lang="en">English</a>`));
+    const { html: arabic, source: english } = langVariant(`${slug}.html`, 'ar');
+    assert.match(english, re(`hreflang="en" href="https://saptet.vn/${slug}">`));
+    assert.match(english, re(`hreflang="ar" href="${canonical}">`));
+    assert.match(english, re(`hreflang="x-default" href="https://saptet.vn/${slug}">`));
+    assert.match(english, re(`<a href="/${slug}?lang=ar" hreflang="ar" lang="ar">العربية</a>`));
+    assert.match(arabic, re(`<a href="/${slug}" hreflang="en" lang="en">English</a>`));
+    assert.doesNotMatch(arabic, /href="\/ar\//, 'no links to the legacy /ar/ paths');
+  });
+
+  test(`ar/${slug}.html is a noindex redirect to /${slug}?lang=ar`, () => {
+    const stub = read(`ar/${slug}.html`);
+    assert.match(stub, /<html lang="ar" dir="rtl">/);
+    assert.match(stub, re(`<link rel="canonical" href="${canonical}" />`));
+    assert.match(stub, re(`<meta http-equiv="refresh" content="0;url=/${slug}?lang=ar" />`));
+    assert.match(stub, /<meta name="robots" content="noindex, follow" \/>/);
   });
 
   test(`${file} has Arabic structured data, share image and sitemap entry`, () => {
-    const html = read(file);
+    const { html, source } = langVariant(`${slug}.html`, 'ar');
     const graph = graphOf(html);
     const page = graph.find((node) => node['@type'] === 'WebPage');
     assert.equal(page.inLanguage, 'ar');
@@ -114,7 +123,9 @@ for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
     const ogImage = html.match(/<meta property="og:image" content="([^"]+)"/)[1];
     assert.equal(ogImage, `https://saptet.vn/assets/images/og/ar-${slug}.jpg`);
     assert.ok(fs.existsSync(path.join(root, `assets/images/og/ar-${slug}.jpg`)));
-    assert.match(read('sitemap.xml'), new RegExp(`<loc>https://saptet.vn/ar/${slug}</loc>`));
+    assert.equal(page.url, canonical);
+    assert.equal(langData(source).ar.modified, page.dateModified);
+    assert.match(read('sitemap.xml'), re(`<loc>${canonical}</loc>`));
   });
 }
 

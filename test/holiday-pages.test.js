@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const { HOLIDAYS_EN } = require('../data/holidays-en.js');
 const { resolveDates, easterSunday, nthWeekday } = require('../scripts/generate-holiday-pages.js');
+const { langData, langVariant } = require('./helpers/holiday-lang.js');
 
 function jsonLd(html) {
   return [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
@@ -67,7 +68,9 @@ for (const holiday of HOLIDAYS_EN) {
     const html = read(`${holiday.slug}.html`);
     const canonical = `https://saptet.vn/${holiday.slug}`;
     assert.match(html, /<html lang="en">/);
-    assert.match(html, new RegExp(`<link rel="canonical" href="${canonical}">`));
+    // Canonical do script cuối <head> chèn (tự trỏ theo ?lang=); không để canonical tĩnh xung đột với bản JS.
+    assert.doesNotMatch(html, /<link rel="canonical"/);
+    assert.equal(langData(html).en.url, canonical);
     assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large">/);
     assert.match(html, /<meta property="og:locale" content="en_US">/);
     assert.match(html, new RegExp(`<title>${holiday.name.replace(/'/g, '&#39;')} Countdown \\d{4}: How Many Days`));
@@ -78,7 +81,8 @@ for (const holiday of HOLIDAYS_EN) {
     assert.match(hero, new RegExp(`<img class="hc-hero-bg" src="${holiday.visual.background}" alt="" aria-hidden="true" width="1600" height="1000" fetchpriority="high" decoding="async">`));
     assert.match(hero, new RegExp(`<img class="hc-hero-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="68" height="68" decoding="async">`));
     assert.doesNotMatch(hero, /class="hc-kicker"/, 'hero should not label a geographic scope');
-    assert.equal((html.match(/<img class="hc-hero-bg" src="\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp"/g) || []).length, 1, 'detail page loads only its own hero background');
+    const englishBody = html.slice(0, html.indexOf('<template'));
+    assert.equal((englishBody.match(/<img class="hc-hero-bg" src="\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp"/g) || []).length, 1, 'detail page loads only its own hero background');
     assert.match(hero, /data-hc-share/);
     assert.match(html, /<dialog class="hc-share-dialog" data-hc-share-dialog/);
     assert.match(html, /<canvas data-hc-share-canvas width="1200" height="1500" role="img"/);
@@ -108,7 +112,7 @@ for (const holiday of HOLIDAYS_EN) {
     assert.ok(types.includes('WebPage') && types.includes('FAQPage') && types.includes('BreadcrumbList'));
     assert.ok(!types.includes('Event'), 'countdown pages must not use Event schema');
     const faq = graph.find((node) => node['@type'] === 'FAQPage');
-    const visibleQuestions = [...html.matchAll(/<summary>([^<]+)<\/summary>/g)].map((match) => match[1].replace(/&#39;/g, '\''));
+    const visibleQuestions = [...englishBody.matchAll(/<summary>([^<]+)<\/summary>/g)].map((match) => match[1].replace(/&#39;/g, '\''));
     assert.deepEqual(faq.mainEntity.map((entry) => entry.name), visibleQuestions, 'FAQ schema matches visible FAQ');
 
     if (holiday.scope === 'global') assert.match(html, /<select data-hc-zone /);
@@ -124,9 +128,9 @@ for (const holiday of HOLIDAYS_EN) {
 test('hub lists every holiday and every page is in the sitemap', () => {
   const hub = read('countdowns.html');
   const sitemap = read('sitemap.xml');
-  assert.match(hub, /<link rel="canonical" href="https:\/\/saptet\.vn\/countdowns">/);
+  assert.equal(langData(hub).en.url, 'https://saptet.vn/countdowns');
   assert.match(hub, /<img class="hc-hero-bg" src="\/assets\/images\/holiday-countdowns\/countdowns-hero\.webp" alt="" aria-hidden="true" width="1600" height="1000" fetchpriority="high"/);
-  assert.equal((hub.match(/\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp/g) || []).length, 1, 'hub loads only its own hero background');
+  assert.equal((hub.slice(0, hub.indexOf('<template')).match(/\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp/g) || []).length, 1, 'hub loads only its own hero background');
   assert.match(sitemap, /<loc>https:\/\/saptet\.vn\/countdowns<\/loc>/);
   for (const holiday of HOLIDAYS_EN) {
     assert.match(hub, new RegExp(`href="/${holiday.slug}"`));
@@ -149,11 +153,38 @@ test('share-image renderer captures the click-time countdown and offers share pl
   assert.match(source, /downloadBlob\(latestBlob, latestFileName\)/);
 });
 
-test('Christmas pairs with /vi/christmas; noel.html no longer claims to be its alternate', () => {
+test('Christmas pairs with /christmas?lang=vi; noel.html no longer claims to be its alternate', () => {
   const christmas = read('christmas.html');
-  assert.match(christmas, /hreflang="vi" href="https:\/\/saptet\.vn\/vi\/christmas"/);
+  assert.match(christmas, /hreflang="vi" href="https:\/\/saptet\.vn\/christmas\?lang=vi"/);
   assert.doesNotMatch(read('noel.html'), /hreflang="(en|x-default)" href="https:\/\/saptet\.vn\/christmas"/);
-  assert.match(read('vi/christmas.html'), /<a href="\/noel\.html">/, 'Vietnamese Christmas page links to the existing Noel page');
+  assert.match(langVariant('christmas.html', 'vi').body, /<a href="\/noel\.html">/, 'Vietnamese Christmas page links to the existing Noel page');
+});
+
+test('?lang= switch: head script picks the variant, sets canonical, body script swaps before the page JS', () => {
+  const html = read('ramadan.html');
+  const head = html.slice(0, html.indexOf('</head>'));
+  const dataAt = head.indexOf('<script id="hc-lang-data"');
+  assert.ok(dataAt > head.indexOf('application/ld+json'), 'variant data comes after the JSON-LD it replaces');
+  assert.match(head, /new URLSearchParams\(location\.search\)\.get\('lang'\)/);
+  assert.match(head, /canonical\.href = v \? v\.url : data\.en\.url;/);
+  assert.match(head, /root\.classList\.add\('hc-lang-pending'\)/);
+  assert.deepEqual(Object.keys(langData(html)), ['en', 'vi', 'ar']);
+  const body = html.slice(html.indexOf('<body'));
+  const swapAt = body.indexOf("var tpl = d.getElementById('hc-lang-' + lang);");
+  assert.ok(body.indexOf('<template id="hc-lang-vi"') < swapAt, 'templates precede the swap script');
+  assert.ok(swapAt < body.indexOf('<script src="/js/holiday-countdown.js'), 'swap runs before the countdown script');
+  assert.ok(body.indexOf('<script id="holiday-config"') < body.indexOf('<template id="hc-lang-vi"'), 'English config is removed with the English body');
+  assert.match(read('css/holiday-countdown.css'), /html\.hc-lang-pending body \{ visibility: hidden; \}/);
+});
+
+test('sitemap lists every language URL with xhtml:link hreflang alternates', () => {
+  const sitemap = read('sitemap.xml');
+  assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9" xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml">/);
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/saptet\.vn\/(vi|ar)\/(countdowns|[a-z-]+)<\/loc>/, 'legacy /vi/ and /ar/ URLs are gone');
+  const entry = sitemap.split('<loc>https://saptet.vn/ramadan?lang=ar</loc>')[1].split('</url>')[0];
+  for (const [lang, href] of [['en', '/ramadan'], ['vi', '/ramadan?lang=vi'], ['ar', '/ramadan?lang=ar'], ['x-default', '/ramadan']]) {
+    assert.ok(entry.includes(`<xhtml:link rel="alternate" hreflang="${lang}" href="https://saptet.vn${href}"/>`), lang);
+  }
 });
 
 test('Ramadan and Eid use local timing without a geographic scope label', () => {

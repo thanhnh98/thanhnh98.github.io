@@ -1,4 +1,4 @@
-/* Trang đếm ngược /christmas, /ramadan, /ar/ramadan, … và hub /countdowns.
+/* Trang đếm ngược /christmas, /ramadan, /ramadan?lang=ar, … và hub /countdowns.
    Ngôn ngữ thiết kế: màu phẳng theo từng sự kiện (paper / ink / accent), không gradient pha màu,
    không thẻ bo tròn — phân tách bằng đường kẻ mảnh như trang báo. Hero chỉ dành cho đồng hồ.
    Bố cục dùng thuộc tính logic (inline-start/end) để tự lật cho trang RTL. */
@@ -12,7 +12,10 @@
     src: url("/assets/fonts/fraunces-latin.woff2") format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* Phần dấu tiếng Việt (ơ, ư, đ, ạ…) cho các trang /vi/; chỉ tải khi trang có ký tự trong dải này. */
+/* ?lang=vi|ar: ẩn bản tiếng Anh render sẵn cho tới khi script đổi body sang ngôn ngữ đã chọn. */
+html.hc-lang-pending body { visibility: hidden; }
+
+/* Phần dấu tiếng Việt (ơ, ư, đ, ạ…) cho bản ?lang=vi; chỉ tải khi trang có ký tự trong dải này. */
 @font-face {
     font-family: "Fraunces";
     font-style: normal;

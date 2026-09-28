@@ -1,7 +1,7 @@
 /**
  * Phiên bản tiếng Ả Rập (RTL) cho các ngày lễ lớn của thế giới Ả Rập / Trung Đông.
  * Khóa = slug trong data/holidays-en.js (ngày, múi giờ, màu dùng chung từ bản tiếng Anh).
- * Trang sinh ra: ar/<slug>.html → https://saptet.vn/ar/<slug>. Chạy `npm run generate-holidays`.
+ * Hiển thị tại https://saptet.vn/<slug>?lang=ar (cùng file <slug>.html với bản tiếng Anh). Chạy `npm run generate-holidays`.
  *
  * Quy ước: tiếng Ả Rập chuẩn (MSA), chữ số Latinh (0-9) như đa số sản phẩm số ở vùng Vịnh,
  * lịch Gregorian kèm ngày Hijri (Umm al-Qura).
