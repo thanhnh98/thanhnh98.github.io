@@ -39,10 +39,22 @@
 .payday-digit-char.is-changing .payday-digit-new { animation: payday-digit-in .44s cubic-bezier(.2,.8,.2,1) both; }
 .payday-countdown > div > span { display: block; margin-top: .45rem; color: rgba(255,255,255,.7); font-size: .69rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .payday-countdown[hidden], .payday-today-message[hidden] { display: none; }
+.payday-claim-button[hidden] { display: none; }
+.payday-claim-button { position: relative; display: inline-flex; align-items: center; gap: .8rem; min-height: 82px; margin-top: 2rem; padding: .75rem 1.3rem; border: 1px solid #b9ef91; border-radius: 22px; color: #20572d; background: linear-gradient(135deg, #f1ffdc, #9be267); box-shadow: 0 16px 38px rgba(18,64,30,.25), 0 0 0 0 rgba(154,226,103,.42), inset 0 1px 0 #fff; font: inherit; cursor: pointer; animation: payday-claim-blink 1.8s ease-in-out infinite; }
+.payday-claim-button::after { position: absolute; inset: -7px; border: 1px solid rgba(185,239,145,.65); border-radius: 28px; content: ''; animation: payday-claim-ring 1.8s ease-out infinite; pointer-events: none; }
+.payday-claim-button > svg { flex: 0 0 auto; width: 30px; height: 30px; }
+.payday-claim-button > span { display: grid; gap: .05rem; text-align: left; }
+.payday-claim-button strong { font-size: clamp(1.2rem, 3vw, 1.55rem); line-height: 1.1; }
+.payday-claim-button small { color: #477a4e; font-size: .7rem; font-weight: 800; }
+.payday-claim-button:hover { transform: translateY(-3px) scale(1.02); }
 .payday-today-message { position: relative; display: flex; align-items: center; gap: .85rem; width: min(100%, 650px); min-height: 96px; margin: 2rem 0 0; padding: 1rem 1.2rem; border-block: 1px solid rgba(255,226,132,.7); color: #fff8d4; background: linear-gradient(90deg, transparent, rgba(255,255,255,.1) 16%, rgba(255,216,100,.12) 50%, rgba(255,255,255,.1) 84%, transparent); text-shadow: 0 3px 18px rgba(38,0,9,.38); font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 900; letter-spacing: -.02em; animation: payday-today-pulse 2.8s ease-in-out infinite; }
 .payday-today-message::before, .payday-today-message::after { color: #ffdf78; content: '✦'; font-size: .8rem; opacity: .8; }
 .payday-today-message::after { margin-left: auto; }
-.payday-today-message svg { flex: 0 0 auto; width: 42px; height: 42px; padding: 9px; border: 1px solid rgba(255,226,132,.6); border-radius: 50%; color: #781028; background: linear-gradient(145deg, #fff6c9, #ffd35e); box-shadow: 0 0 24px rgba(255,216,100,.3); }
+.payday-replay-fireworks { display: grid; flex: 0 0 auto; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,226,132,.75); border-radius: 50%; color: #781028; background: linear-gradient(145deg, #fff6c9, #ffd35e); box-shadow: 0 0 24px rgba(255,216,100,.3); cursor: pointer; animation: payday-replay-idle 2.4s ease-in-out infinite; transition: box-shadow .25s ease, transform .25s cubic-bezier(.2,.8,.2,1); }
+.payday-replay-fireworks svg { width: 24px; height: 24px; }
+.payday-replay-fireworks:hover { box-shadow: 0 0 34px rgba(255,221,112,.65); animation: none; transform: scale(1.14) rotate(-8deg); }
+.payday-replay-fireworks:active { transform: scale(.96) rotate(3deg); }
+.payday-replay-fireworks:focus-visible { outline: 3px solid #ffd858; outline-offset: 4px; }
 .payday-hero-actions { display: flex; align-items: center; gap: 1rem; margin-top: 1.3rem; }
 .payday-hero-actions button { display: inline-flex; align-items: center; gap: .45rem; min-height: 46px; padding: .68rem 1rem; border: 1px solid #ffe79a; border-radius: 14px; color: #701126; background: linear-gradient(135deg, #fff8d8, #ffd96f); box-shadow: 0 10px 24px rgba(50,0,12,.18), inset 0 1px 0 #fff; font: inherit; font-weight: 900; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
 .payday-hero-actions button:hover { box-shadow: 0 14px 30px rgba(50,0,12,.24), inset 0 1px 0 #fff; transform: translateY(-2px); }
@@ -50,10 +62,15 @@
 .payday-hero-actions svg { width: 17px; height: 17px; }
 .payday-hero-actions span { max-width: 360px; color: rgba(255,255,255,.68); font-size: .76rem; }
 
-.payday-visual { --hero-shift-x: 0px; --hero-shift-y: 0px; position: relative; width: min(510px, 100%); aspect-ratio: 1; margin-inline: auto; }
+.payday-visual { --hero-shift-x: 0px; --hero-shift-y: 0px; position: relative; width: min(510px, 100%); aspect-ratio: 1; margin-inline: auto; transition: transform .48s cubic-bezier(.2,.8,.2,1); }
+.payday-visual::after { position: absolute; inset: 18%; z-index: 1; border: 1px solid rgba(255,232,165,.7); border-radius: 50%; content: ''; opacity: 0; pointer-events: none; transform: scale(.72); }
 .payday-visual-glow { position: absolute; inset: 20%; border-radius: 50%; background: rgba(255,215,105,.45); filter: blur(55px); animation: payday-glow 4s ease-in-out infinite; }
 .payday-visual img { position: relative; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 28px 25px rgba(39,0,11,.3)); animation: payday-hero-float 5.8s ease-in-out infinite; }
-.payday-is-here .payday-visual img { animation-name: payday-hero-celebrate; animation-duration: 3.8s; }
+.payday-is-received .payday-visual img { animation-name: payday-hero-celebrate; animation-duration: 3.8s; }
+.payday-visual.is-switching img { opacity: 0; animation: none; transform: scale(.72) rotate(-7deg); transition: opacity .24s ease, transform .3s ease; }
+.payday-visual.is-switching .payday-visual-glow { opacity: .35; transform: scale(.72); transition: opacity .3s ease, transform .3s ease; }
+.payday-visual.is-revealing img { animation: payday-visual-swap-in .9s cubic-bezier(.16,.85,.24,1.15) both; }
+.payday-visual.is-revealing .payday-visual-glow { animation: payday-visual-glow-pop .9s ease-out both; }
 .payday-visual-orbit { position: absolute; z-index: 1; border: 1px solid rgba(255,232,165,.32); border-radius: 50%; pointer-events: none; }
 .payday-visual-orbit::after { position: absolute; left: 50%; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: #ffe078; box-shadow: 0 0 18px #ffe078; content: ''; }
 .payday-visual-orbit--outer { inset: 8%; animation: payday-orbit 18s linear infinite; }
@@ -62,6 +79,14 @@
 .payday-visual-star--one { left: 3%; top: 23%; font-size: 2rem; }
 .payday-visual-star--two { right: 4%; top: 17%; font-size: 1.55rem; animation-delay: -.9s; }
 .payday-visual-star--three { right: 11%; bottom: 18%; font-size: 2.5rem; animation-delay: -1.7s; }
+
+@media (hover: hover) and (pointer: fine) {
+  .payday-visual:hover { transform: translateY(-10px) rotate(.8deg) scale(1.025); }
+  .payday-visual:hover::after { animation: payday-visual-hover-ring .9s ease-out; }
+  .payday-visual:hover .payday-visual-orbit--outer { animation-duration: 8s; }
+  .payday-visual:hover .payday-visual-orbit--inner { animation-duration: 6s; }
+  .payday-visual:hover .payday-visual-star { animation-duration: 1.05s; }
+}
 
 @keyframes payday-aura { 50% { opacity: .68; transform: scale(1.06); } }
 @keyframes payday-title-shine { to { background-position: 200% center; } }
@@ -72,11 +97,26 @@
 @keyframes payday-glow { 50% { opacity: .62; transform: scale(1.12); } }
 @keyframes payday-orbit { to { transform: rotate(360deg); } }
 @keyframes payday-star { 50% { opacity: .45; transform: scale(.72) rotate(20deg); } }
+@keyframes payday-visual-hover-ring { 0% { opacity: .8; transform: scale(.72); } 100% { opacity: 0; transform: scale(1.55); } }
 @keyframes payday-today-pulse { 50% { border-color: rgba(255,239,183,.95); background-color: rgba(255,221,112,.08); transform: translateY(-2px); } }
+@keyframes payday-replay-idle { 50% { box-shadow: 0 0 30px rgba(255,221,112,.48); transform: scale(1.04); } }
+@keyframes payday-claim-blink { 50% { box-shadow: 0 20px 46px rgba(17,72,31,.3), 0 0 34px rgba(158,235,103,.58), inset 0 1px 0 #fff; filter: brightness(1.07); } }
+@keyframes payday-claim-ring { 0% { opacity: .8; transform: scale(.96); } 75%, 100% { opacity: 0; transform: scale(1.12); } }
 @keyframes payday-hero-celebrate { 0%, 100% { transform: translateY(0) rotate(-1deg); } 45% { transform: translateY(-13px) rotate(1.5deg) scale(1.025); } }
+@keyframes payday-visual-swap-in { 0% { opacity: 0; transform: scale(.68) rotate(7deg); } 58% { opacity: 1; transform: scale(1.06) rotate(-2deg); } 100% { opacity: 1; transform: none; } }
+@keyframes payday-visual-glow-pop { 0% { opacity: .2; transform: scale(.55); } 55% { opacity: .9; transform: scale(1.28); } 100% { opacity: 1; transform: none; } }
+
+.payday-fireworks { position: fixed; inset: 0; z-index: 10080; overflow: hidden; pointer-events: none; }
+.payday-firework-burst { position: absolute; left: 50%; top: 48%; width: 10px; height: 10px; animation: payday-firework-center 2.2s ease-out both; }
+.payday-firework-burst::before, .payday-firework-burst::after { position: absolute; left: 50%; top: 50%; width: 20px; height: 20px; border: 3px solid rgba(255,226,112,.9); border-radius: 50%; box-shadow: 0 0 45px rgba(255,213,87,.9); content: ''; transform: translate(-50%, -50%); animation: payday-firework-ring 1.25s ease-out both; }
+.payday-firework-burst::after { border-color: rgba(255,255,255,.75); animation-delay: .14s; }
+.payday-firework-burst i { position: absolute; inset: 0; width: 8px; height: 20px; border-radius: 999px; background: var(--particle-color); box-shadow: 0 0 12px var(--particle-color); opacity: 0; transform: rotate(var(--particle-angle)) translateY(0); animation: payday-firework-particle 1.8s cubic-bezier(.12,.72,.18,1) var(--particle-delay) both; }
+@keyframes payday-firework-center { 0%, 5% { opacity: 0; transform: scale(.15); } 12% { opacity: 1; transform: scale(1.3); } 100% { opacity: 1; } }
+@keyframes payday-firework-ring { from { opacity: 1; transform: translate(-50%, -50%) scale(.2); } to { opacity: 0; transform: translate(-50%, -50%) scale(18); } }
+@keyframes payday-firework-particle { 0%, 8% { opacity: 0; transform: rotate(var(--particle-angle)) translateY(0) scale(.2); } 15%, 70% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--particle-angle)) translateY(calc(var(--particle-distance) * -1)) scale(.65); } }
 
 .payday-confetti i { position: absolute; z-index: 2; width: 10px; height: 22px; border-radius: 3px; background: #ffd75e; opacity: 0; }
-.payday-is-here .payday-confetti i { animation: payday-fall 3s linear infinite; opacity: 1; }
+.payday-is-celebrating .payday-confetti i, .payday-is-received .payday-confetti i { animation: payday-fall 3s linear infinite; opacity: 1; }
 .payday-confetti i:nth-child(1) { left: 5%; animation-delay: -.2s; }.payday-confetti i:nth-child(2) { left: 15%; animation-delay: -1.7s; background: #ff7868; }.payday-confetti i:nth-child(3) { left: 26%; animation-delay: -.9s; }.payday-confetti i:nth-child(4) { left: 39%; animation-delay: -2.2s; background: #fff; }.payday-confetti i:nth-child(5) { left: 51%; animation-delay: -1.1s; }.payday-confetti i:nth-child(6) { left: 63%; animation-delay: -2.7s; background: #ff7868; }.payday-confetti i:nth-child(7) { left: 72%; animation-delay: -.5s; }.payday-confetti i:nth-child(8) { left: 81%; animation-delay: -1.9s; background: #fff; }.payday-confetti i:nth-child(9) { left: 91%; animation-delay: -1.3s; }.payday-confetti i:nth-child(10) { left: 97%; animation-delay: -2.4s; background: #ff7868; }
 @keyframes payday-fall { from { transform: translateY(-40px) rotate(0); } to { transform: translateY(720px) rotate(480deg); } }
 

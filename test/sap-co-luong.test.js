@@ -56,6 +56,11 @@ test('config storage validates values, defaults the role and survives blocked st
   const blocked = payday.createConfigStore({ getItem() { throw new Error('blocked'); }, setItem() { throw new Error('blocked'); } });
   blocked.save(10, 'dating');
   assert.equal(blocked.get().role, 'dating');
+  assert.equal(store.save(25, 'single', '2027-01-25').celebratedPayday, '2027-01-25');
+});
+
+test('payday acknowledgement keys use the Vietnam calendar date', () => {
+  assert.equal(payday.paydayKey(atVietnam('2027-01-31T12:00:00')), '2027-01-31');
 });
 
 test('all four roles have distinct advice and product preferences', () => {
@@ -106,7 +111,8 @@ test('payday page ships onboarding, accessibility, SEO and affiliate disclosure'
   assert.equal($('[data-salary-day-grid][role="group"]').length, 1);
   assert.equal($('[data-payday-onboarding][role="dialog"]').length, 1);
   assert.equal($('[data-payday-today-message]').text().trim(), 'Hôm nay có lương');
-  assert.equal($('[data-payday-today-message] [data-lucide="party-popper"]').length, 1);
+  assert.match($('[data-payday-claim]').text(), /Đã nhận lương/);
+  assert.equal($('[data-payday-replay-fireworks][aria-label="Bắn pháo hoa chúc mừng lần nữa"] [data-lucide="party-popper"]').length, 1);
   assert.match($('[data-payday-effective]').text(), /Cố gắng vượt qua những ngày này bạn nhé/);
   assert.equal($('#payday-role option').length, 4);
   assert.equal($('label[for="payday-role-trigger"]').text().trim(), 'Bạn đang');
@@ -128,10 +134,23 @@ test('payday page ships onboarding, accessibility, SEO and affiliate disclosure'
   assert.match(css, /@keyframes payday-role-option-in/);
   assert.match(css, /@keyframes payday-digit-out/);
   assert.match(css, /@keyframes payday-digit-in/);
+  assert.match(css, /@keyframes payday-firework-particle/);
+  assert.match(css, /@keyframes payday-firework-ring/);
+  assert.match(css, /payday-is-received \.payday-confetti i/);
+  assert.match(css, /@keyframes payday-visual-swap-in/);
+  assert.match(css, /@media \(hover: hover\) and \(pointer: fine\)/);
+  assert.match(css, /@keyframes payday-visual-hover-ring/);
+  assert.match(css, /@keyframes payday-replay-idle/);
   assert.match(css, /\.payday-countdown\s*>\s*div\s*>\s*span/);
   assert.doesNotMatch(css, /\.payday-countdown span\s*\{/);
   assert.match(js, /renderRole\(true\)/);
   assert.match(js, /previousCharacter !== character/);
+  assert.match(js, /Công sức của bạn tháng này được chi trả, chúc mừng bạn nhé!/);
+  assert.match(js, /payday_received_confirmed/);
+  assert.match(js, /index < 48/);
+  assert.match(js, /isPayday && isAcknowledged[\s\S]*payday-hero\.webp/);
+  assert.match(js, /swapPaydayVisual/);
+  assert.match(js, /payday_fireworks_replayed/);
   assert.match(js, /ArrowLeft[\s\S]*ArrowRight[\s\S]*ArrowUp[\s\S]*ArrowDown/);
   assert.match(html, /assets\/images\/sap-co-luong\/payday-waiting\.webp/);
   assert.match(js, /payday-hero\.webp[\s\S]*payday-waiting\.webp/);

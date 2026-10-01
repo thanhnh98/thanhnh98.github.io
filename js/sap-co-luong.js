@@ -181,15 +181,22 @@
     return FUN_MESSAGES[seed % FUN_MESSAGES.length];
   }
 
+  function paydayKey(date) {
+    const parts = getVietnamParts(date);
+    return `${parts.year}-${String(parts.month).padStart(2, '0')}-${String(parts.day).padStart(2, '0')}`;
+  }
+
   function normalizeConfig(value) {
     if (!value || value.version !== STORAGE_VERSION) return null;
     const salaryDay = clampSalaryDay(value.salaryDay);
     if (!salaryDay) return null;
-    return {
+    const config = {
       version: STORAGE_VERSION,
       salaryDay: salaryDay,
       role: VALID_ROLES.indexOf(value.role) !== -1 ? value.role : DEFAULT_ROLE
     };
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value.celebratedPayday || '')) config.celebratedPayday = value.celebratedPayday;
+    return config;
   }
 
   function createConfigStore(storage) {
@@ -210,8 +217,8 @@
         try { return normalizeConfig(JSON.parse(raw)); }
         catch (_error) { return null; }
       },
-      save: function (salaryDay, role) {
-        const config = normalizeConfig({ version: STORAGE_VERSION, salaryDay: salaryDay, role: role || DEFAULT_ROLE });
+      save: function (salaryDay, role, celebratedPayday) {
+        const config = normalizeConfig({ version: STORAGE_VERSION, salaryDay: salaryDay, role: role || DEFAULT_ROLE, celebratedPayday: celebratedPayday });
         if (!config) throw new RangeError('Cấu hình ngày lương không hợp lệ');
         writeRaw(JSON.stringify(config));
         return config;
@@ -283,6 +290,8 @@
     const modalTitle = document.getElementById('payday-modal-title');
     const modalCopy = document.getElementById('payday-modal-copy');
     const cancelButton = document.querySelector('[data-payday-cancel]');
+    const claimButton = document.querySelector('[data-payday-claim]');
+    const replayFireworksButton = document.querySelector('[data-payday-replay-fireworks]');
     const digits = {};
     ['days', 'hours', 'minutes', 'seconds'].forEach(function (unit) {
       digits[unit] = document.querySelector(`[data-payday-unit="${unit}"]`);
@@ -481,6 +490,51 @@
       });
     }
 
+    function launchPaydayFireworks() {
+      const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.body.classList.add('payday-is-celebrating');
+      window.setTimeout(function () { document.body.classList.remove('payday-is-celebrating'); }, reducedMotion ? 100 : 3600);
+      if (reducedMotion) return;
+
+      const layer = document.createElement('div');
+      layer.className = 'payday-fireworks';
+      layer.setAttribute('aria-hidden', 'true');
+      const colors = ['#ffd75e', '#fff6cf', '#ff7667', '#f4a6bb', '#ffb43d', '#ffffff'];
+      const center = document.createElement('span');
+      center.className = 'payday-firework-burst';
+      for (let index = 0; index < 48; index += 1) {
+        const particle = document.createElement('i');
+        particle.style.setProperty('--particle-angle', `${(360 / 48) * index}deg`);
+        particle.style.setProperty('--particle-distance', `${40 + (index % 4) * 5}vmax`);
+        particle.style.setProperty('--particle-color', colors[index % colors.length]);
+        particle.style.setProperty('--particle-delay', `${(index % 3) * 25}ms`);
+        center.appendChild(particle);
+      }
+      layer.appendChild(center);
+      document.body.appendChild(layer);
+      window.setTimeout(function () { layer.remove(); }, 3000);
+    }
+
+    function swapPaydayVisual(image, source) {
+      const visual = image.closest('.payday-visual');
+      if (image.getAttribute('src') === source || visual.dataset.pendingSource === source) return;
+      visual.dataset.pendingSource = source;
+      visual.classList.remove('is-revealing');
+      visual.classList.add('is-switching');
+
+      window.requestAnimationFrame(function () {
+        function reveal() {
+          visual.classList.remove('is-switching');
+          visual.classList.add('is-revealing');
+          delete visual.dataset.pendingSource;
+          window.setTimeout(function () { visual.classList.remove('is-revealing'); }, 950);
+        }
+        image.addEventListener('load', reveal, { once: true });
+        image.addEventListener('error', reveal, { once: true });
+        image.setAttribute('src', source);
+      });
+    }
+
     function renderRole(animate) {
       const content = ROLE_CONTENT[config.role] || ROLE_CONTENT.single;
       roleSelect.value = config.role;
@@ -519,19 +573,27 @@
       const now = new Date();
       const state = getPaydayState(now, config.salaryDay);
       const isPayday = state.mode === 'payday';
+      const currentPaydayKey = isPayday ? paydayKey(state.payday) : null;
+      const isAcknowledged = isPayday && config.celebratedPayday === currentPaydayKey;
       const countdown = document.querySelector('.payday-countdown');
       const todayMessage = document.querySelector('[data-payday-today-message]');
       const visualImage = document.querySelector('[data-payday-visual-image]');
-      const visualSource = isPayday
+      const visualSource = isPayday && isAcknowledged
         ? '/assets/images/sap-co-luong/payday-hero.webp'
         : '/assets/images/sap-co-luong/payday-waiting.webp';
       document.body.classList.toggle('payday-is-here', isPayday);
+      document.body.classList.toggle('payday-is-received', isAcknowledged);
       countdown.hidden = isPayday;
-      todayMessage.hidden = !isPayday;
-      if (visualImage.getAttribute('src') !== visualSource) visualImage.setAttribute('src', visualSource);
-      document.querySelector('[data-payday-status]').textContent = isPayday ? 'Lương về rồi!' : 'Sắp có lương rồi!';
+      claimButton.hidden = !isPayday || isAcknowledged;
+      todayMessage.hidden = !isPayday || !isAcknowledged;
+      swapPaydayVisual(visualImage, visualSource);
+      document.querySelector('[data-payday-status]').textContent = isPayday
+        ? (isAcknowledged ? 'Lương về rồi!' : 'Tới ngày lương rồi!')
+        : 'Sắp có lương rồi!';
       document.querySelector('[data-payday-note]').textContent = isPayday
-        ? 'Hôm nay cứ vui một chút — rồi nhớ giao việc cho từng đồng nhé.'
+        ? (isAcknowledged
+          ? 'Hôm nay cứ vui một chút — rồi nhớ giao việc cho từng đồng nhé.'
+          : 'Lương đã về tài khoản? Bấm xác nhận để cùng ăn mừng nhé.')
         : 'Bình tĩnh giữ ví, ngày huy hoàng đang đến gần.';
       document.querySelector('[data-payday-target]').textContent = isPayday
         ? `Ngày nhận lương tháng này · ${formatDate(state.payday)}`
@@ -547,9 +609,13 @@
       document.querySelector('[data-payday-weekday]').textContent = new Intl.DateTimeFormat('vi-VN', {
         timeZone: VIETNAM_TIME_ZONE, weekday: 'long'
       }).format(isPayday ? state.payday : state.target);
-      document.querySelector('[data-payday-effective]').textContent = state.effectiveDay !== state.selectedDay
-        ? `Tháng này không có ngày ${state.selectedDay}, nên lương được tính vào ngày cuối tháng (${state.effectiveDay}).`
-        : 'Cố gắng vượt qua những ngày này bạn nhé.';
+      document.querySelector('[data-payday-effective]').textContent = isPayday
+        ? (isAcknowledged
+          ? 'Công sức của bạn tháng này được chi trả, chúc mừng bạn nhé!'
+          : 'Khi lương về, nhấn nút phía trên để xác nhận nhé.')
+        : state.effectiveDay !== state.selectedDay
+          ? `Tháng này không có ngày ${state.selectedDay}, nên lương được tính vào ngày cuối tháng (${state.effectiveDay}).`
+          : 'Cố gắng vượt qua những ngày này bạn nhé.';
     }
 
     function track(name, params) {
@@ -631,12 +697,25 @@
       track('payday_day_saved', { salary_day: salaryDay });
     });
     cancelButton.addEventListener('click', closeDayPicker);
+    claimButton.addEventListener('click', function () {
+      const state = getPaydayState(new Date(), config.salaryDay);
+      if (state.mode !== 'payday') return;
+      config = store.save(config.salaryDay, config.role, paydayKey(state.payday));
+      renderCountdown();
+      launchPaydayFireworks();
+      track('payday_received_confirmed', { salary_day: config.salaryDay });
+    });
+    replayFireworksButton.addEventListener('click', function () {
+      if (replayFireworksButton.closest('[data-payday-today-message]').hidden) return;
+      launchPaydayFireworks();
+      track('payday_fireworks_replayed', { salary_day: config.salaryDay });
+    });
     modal.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && config) closeDayPicker();
     });
     document.querySelector('[data-payday-edit]').addEventListener('click', function () { openDayPicker(true); });
     roleSelect.addEventListener('change', function () {
-      config = store.save(config.salaryDay, roleSelect.value);
+      config = store.save(config.salaryDay, roleSelect.value, config.celebratedPayday);
       renderRole(true);
       loadProducts();
       track('payday_role_changed', { role: config.role });
@@ -667,6 +746,7 @@
     getRemaining: getRemaining,
     countBusinessDays: countBusinessDays,
     getFunMessage: getFunMessage,
+    paydayKey: paydayKey,
     normalizeConfig: normalizeConfig,
     createConfigStore: createConfigStore,
     chooseProducts: chooseProducts

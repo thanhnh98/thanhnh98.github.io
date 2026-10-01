@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="/assets/images/sap-co-luong/payday-waiting.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/colors.css">
-  <link rel="stylesheet" href="/css/sap-co-luong.css?v=20261001h">
+  <link rel="stylesheet" href="/css/sap-co-luong.css?v=20261001p">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="vi_VN">
@@ -120,7 +120,8 @@
             <div><strong data-payday-unit="minutes">00</strong><span>Phút</span></div>
             <div><strong data-payday-unit="seconds">00</strong><span>Giây</span></div>
           </div>
-          <p class="payday-today-message" data-payday-today-message hidden><i data-lucide="party-popper" aria-hidden="true"></i> Hôm nay có lương</p>
+          <button class="payday-claim-button" type="button" data-payday-claim hidden><i data-lucide="party-popper" aria-hidden="true"></i><span><strong>Đã nhận lương</strong><small>Chạm để mở màn ăn mừng</small></span></button>
+          <p class="payday-today-message" data-payday-today-message hidden><button class="payday-replay-fireworks" type="button" aria-label="Bắn pháo hoa chúc mừng lần nữa" data-payday-replay-fireworks><i data-lucide="party-popper" aria-hidden="true"></i></button> Hôm nay có lương</p>
           <div class="payday-hero-actions">
             <button type="button" data-payday-edit><i data-lucide="calendar-days" aria-hidden="true"></i> Đổi ngày lương</button>
             <span data-payday-effective>Cố gắng vượt qua những ngày này bạn nhé.</span>
@@ -241,6 +242,6 @@
   <script defer src="/js/analytics.js"></script>
   <script defer src="/js/header-loader.js"></script>
   <script defer src="/js/footer.js"></script>
-  <script defer src="/js/sap-co-luong.js?v=20261001h"></script>
+  <script defer src="/js/sap-co-luong.js?v=20261001p"></script>
 </body>
 </html>
