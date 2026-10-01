@@ -17,9 +17,9 @@ const OUT_FILE = path.join(__dirname, '..', 'js', 'vendor', 'lucide-subset.js');
 
 const ICONS = [
   // index.html
-  'arrow-right', 'bell-ring', 'calendar-days', 'calendar-heart', 'chevron-left', 'chevron-right',
+  'arrow-right', 'bell-ring', 'briefcase', 'calendar-days', 'calendar-heart', 'chevron-left', 'chevron-right',
   'download', 'gamepad-2', 'gift', 'grid-2x2', 'layout-dashboard', 'layout-grid', 'mail', 'mail-open',
-  'message-circle', 'share-2', 'shopping-bag', 'smartphone', 'sparkles', 'store', 'sun', 'wallet',
+  'info', 'message-circle', 'moon', 'party-popper', 'repeat-2', 'share-2', 'shopping-bag', 'smartphone', 'sparkles', 'store', 'sun', 'wallet',
   // components/header.html
   'book-open', 'calendar', 'chevron-down', 'globe', 'newspaper', 'qr-code', 'timer', 'users', 'utensils-crossed',
 ];

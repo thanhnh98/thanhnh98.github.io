@@ -37,7 +37,7 @@ test('shopping carousel autoplays every five seconds and remains manually scroll
 
 test('Tet quick links use vector icons instead of emoji', () => {
   const quickSection = indexPage.slice(indexPage.indexOf('id="tien-ich"'), indexPage.indexOf('id="app-intro"'));
-  assert.equal((quickSection.match(/class="home-quick-icon"><i data-lucide=/g) || []).length, 4);
+  assert.equal((quickSection.match(/class="home-quick-icon"><i data-lucide=/g) || []).length, 5);
   assert.doesNotMatch(quickSection, /📅|💌|🧧|🎮/);
 });
 
