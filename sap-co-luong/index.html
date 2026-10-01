@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="/assets/images/sap-co-luong/payday-waiting.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/colors.css">
-  <link rel="stylesheet" href="/css/sap-co-luong.css?v=20261001e">
+  <link rel="stylesheet" href="/css/sap-co-luong.css?v=20261001h">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="vi_VN">
@@ -161,15 +161,24 @@
             <h2 id="payday-advice-heading" data-payday-advice-title>Lương về, mình vẫn là ưu tiên số một</h2>
             <p>Chọn vai trò gần với bạn nhất. Đây là tuỳ chọn và có thể đổi bất cứ lúc nào.</p>
           </div>
-          <label class="payday-role-label" for="payday-role">Vai trò của bạn</label>
-          <div class="payday-role-select">
-            <select id="payday-role">
+          <label class="payday-role-label" id="payday-role-label" for="payday-role-trigger">Bạn đang</label>
+          <div class="payday-role-select" data-role-picker>
+            <select id="payday-role" class="payday-role-native" tabindex="-1" aria-hidden="true">
               <option value="single">Độc thân</option>
               <option value="dating">Đang yêu</option>
               <option value="has-husband">Có chồng</option>
               <option value="has-wife">Có vợ</option>
             </select>
-            <i data-lucide="chevron-down" aria-hidden="true"></i>
+            <button id="payday-role-trigger" class="payday-role-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="payday-role-label payday-role-value" data-role-trigger>
+              <span id="payday-role-value" data-role-value>Độc thân</span>
+              <span class="payday-role-arrow" aria-hidden="true"><i data-lucide="chevron-down"></i></span>
+            </button>
+            <div class="payday-role-menu" role="listbox" aria-labelledby="payday-role-label" data-role-menu hidden>
+              <button type="button" role="option" data-role-option="single"><span class="payday-role-check"><i data-lucide="check" aria-hidden="true"></i></span><span>Độc thân</span></button>
+              <button type="button" role="option" data-role-option="dating"><span class="payday-role-check"><i data-lucide="check" aria-hidden="true"></i></span><span>Đang yêu</span></button>
+              <button type="button" role="option" data-role-option="has-husband"><span class="payday-role-check"><i data-lucide="check" aria-hidden="true"></i></span><span>Có chồng</span></button>
+              <button type="button" role="option" data-role-option="has-wife"><span class="payday-role-check"><i data-lucide="check" aria-hidden="true"></i></span><span>Có vợ</span></button>
+            </div>
           </div>
         </div>
         <ol class="payday-advice-list" data-payday-advice-list></ol>
@@ -232,6 +241,6 @@
   <script defer src="/js/analytics.js"></script>
   <script defer src="/js/header-loader.js"></script>
   <script defer src="/js/footer.js"></script>
-  <script defer src="/js/sap-co-luong.js?v=20261001e"></script>
+  <script defer src="/js/sap-co-luong.js?v=20261001h"></script>
 </body>
 </html>

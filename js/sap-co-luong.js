@@ -275,6 +275,11 @@
     const selectedDayLabel = document.querySelector('[data-selected-day]');
     const submitButton = document.querySelector('[data-payday-submit]');
     const roleSelect = document.getElementById('payday-role');
+    const rolePicker = document.querySelector('[data-role-picker]');
+    const roleTrigger = document.querySelector('[data-role-trigger]');
+    const roleMenu = document.querySelector('[data-role-menu]');
+    const roleValue = document.querySelector('[data-role-value]');
+    const roleOptions = Array.from(document.querySelectorAll('[data-role-option]'));
     const modalTitle = document.getElementById('payday-modal-title');
     const modalCopy = document.getElementById('payday-modal-copy');
     const cancelButton = document.querySelector('[data-payday-cancel]');
@@ -347,6 +352,69 @@
       if (target) target.focus();
     });
 
+    function syncRolePicker() {
+      const content = ROLE_CONTENT[roleSelect.value] || ROLE_CONTENT.single;
+      roleValue.textContent = content.label;
+      roleOptions.forEach(function (option) {
+        const selected = option.dataset.roleOption === roleSelect.value;
+        option.classList.toggle('is-selected', selected);
+        option.setAttribute('aria-selected', String(selected));
+      });
+    }
+
+    function openRolePicker(focusSelected) {
+      roleMenu.hidden = false;
+      rolePicker.classList.add('is-open');
+      roleTrigger.setAttribute('aria-expanded', 'true');
+      if (focusSelected) {
+        const selected = roleMenu.querySelector('.is-selected') || roleOptions[0];
+        if (selected) selected.focus();
+      }
+    }
+
+    function closeRolePicker(restoreFocus) {
+      roleMenu.hidden = true;
+      rolePicker.classList.remove('is-open');
+      roleTrigger.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) roleTrigger.focus();
+    }
+
+    roleTrigger.addEventListener('click', function () {
+      if (roleMenu.hidden) openRolePicker(false);
+      else closeRolePicker(false);
+    });
+    roleTrigger.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      event.preventDefault();
+      openRolePicker(true);
+    });
+    roleOptions.forEach(function (option) {
+      option.addEventListener('click', function () {
+        roleSelect.value = option.dataset.roleOption;
+        roleSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        closeRolePicker(true);
+      });
+    });
+    roleMenu.addEventListener('keydown', function (event) {
+      const currentIndex = roleOptions.indexOf(document.activeElement);
+      let nextIndex = null;
+      if (event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % roleOptions.length;
+      if (event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + roleOptions.length) % roleOptions.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = roleOptions.length - 1;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeRolePicker(true);
+        return;
+      }
+      if (nextIndex === null) return;
+      event.preventDefault();
+      roleOptions[nextIndex].focus();
+    });
+    document.addEventListener('click', function (event) {
+      if (!roleMenu.hidden && !rolePicker.contains(event.target)) closeRolePicker(false);
+    });
+
     function openDayPicker(editing) {
       modal.hidden = false;
       document.body.classList.add('payday-modal-open');
@@ -378,9 +446,45 @@
       }).format(date);
     }
 
+    function renderDigitValue(element, value) {
+      const nextValue = String(value);
+      const previousValue = element.dataset.value;
+      element.dataset.value = nextValue;
+      element.setAttribute('aria-label', nextValue);
+      element.innerHTML = '';
+
+      Array.from(nextValue).forEach(function (character, index) {
+        const slot = document.createElement('span');
+        slot.className = 'payday-digit-char';
+        const previousCharacter = previousValue && previousValue.length === nextValue.length
+          ? previousValue.charAt(index)
+          : character;
+
+        if (previousCharacter !== character) {
+          slot.classList.add('is-changing');
+          const outgoing = document.createElement('span');
+          outgoing.className = 'payday-digit-old';
+          outgoing.textContent = previousCharacter;
+          const incoming = document.createElement('span');
+          incoming.className = 'payday-digit-new';
+          incoming.textContent = character;
+          slot.append(outgoing, incoming);
+          window.setTimeout(function () {
+            if (!slot.isConnected || element.dataset.value !== nextValue) return;
+            slot.classList.remove('is-changing');
+            slot.textContent = character;
+          }, 480);
+        } else {
+          slot.textContent = character;
+        }
+        element.appendChild(slot);
+      });
+    }
+
     function renderRole(animate) {
       const content = ROLE_CONTENT[config.role] || ROLE_CONTENT.single;
       roleSelect.value = config.role;
+      syncRolePicker();
       const title = document.querySelector('[data-payday-advice-title]');
       const selectShell = roleSelect.closest('.payday-role-select');
       title.textContent = content.title;
@@ -434,13 +538,10 @@
         : `Kỳ lương tiếp theo · ${formatDate(state.target)}`;
 
       const remaining = isPayday ? { days: 0, hours: 0, minutes: 0, seconds: 0 } : getRemaining(state.target, now);
-      digits.days.textContent = String(remaining.days);
-      digits.hours.textContent = String(remaining.hours).padStart(2, '0');
-      digits.minutes.textContent = String(remaining.minutes).padStart(2, '0');
-      digits.seconds.textContent = String(remaining.seconds).padStart(2, '0');
-      digits.seconds.classList.remove('is-ticking');
-      void digits.seconds.offsetWidth;
-      digits.seconds.classList.add('is-ticking');
+      renderDigitValue(digits.days, String(remaining.days));
+      renderDigitValue(digits.hours, String(remaining.hours).padStart(2, '0'));
+      renderDigitValue(digits.minutes, String(remaining.minutes).padStart(2, '0'));
+      renderDigitValue(digits.seconds, String(remaining.seconds).padStart(2, '0'));
       document.querySelector('[data-payday-sleeps]').textContent = isPayday ? '0' : String(Math.max(0, Math.ceil((state.target - now) / 86400000)));
       document.querySelector('[data-payday-workdays]').textContent = isPayday ? '0' : String(countBusinessDays(now, state.target));
       document.querySelector('[data-payday-weekday]').textContent = new Intl.DateTimeFormat('vi-VN', {

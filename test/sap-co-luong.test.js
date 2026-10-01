@@ -109,9 +109,12 @@ test('payday page ships onboarding, accessibility, SEO and affiliate disclosure'
   assert.equal($('[data-payday-today-message] [data-lucide="party-popper"]').length, 1);
   assert.match($('[data-payday-effective]').text(), /Cố gắng vượt qua những ngày này bạn nhé/);
   assert.equal($('#payday-role option').length, 4);
+  assert.equal($('label[for="payday-role-trigger"]').text().trim(), 'Bạn đang');
   assert.deepEqual($('#payday-role option').map((_, option) => $(option).text()).get(), ['Độc thân', 'Đang yêu', 'Có chồng', 'Có vợ']);
   assert.equal($('.payday-role-select > #payday-role').length, 1);
   assert.equal($('.payday-role-select [data-lucide="chevron-down"]').length, 1);
+  assert.equal($('[data-role-trigger][aria-haspopup="listbox"]').length, 1);
+  assert.equal($('[data-role-menu][role="listbox"] [role="option"]').length, 4);
   assert.deepEqual($('.payday-stats [data-lucide]').map((_, icon) => $(icon).attr('data-lucide')).get(), ['moon', 'briefcase', 'calendar-days']);
   assert.doesNotMatch($('.payday-stats').text(), /[🌙💼📅]/u);
   assert.match(html, /Liên kết affiliate/);
@@ -121,7 +124,14 @@ test('payday page ships onboarding, accessibility, SEO and affiliate disclosure'
   assert.match(css, /@keyframes payday-hero-float/);
   assert.match(css, /appearance:\s*none/);
   assert.match(css, /@keyframes payday-role-card-in/);
+  assert.match(css, /@keyframes payday-role-menu-in/);
+  assert.match(css, /@keyframes payday-role-option-in/);
+  assert.match(css, /@keyframes payday-digit-out/);
+  assert.match(css, /@keyframes payday-digit-in/);
+  assert.match(css, /\.payday-countdown\s*>\s*div\s*>\s*span/);
+  assert.doesNotMatch(css, /\.payday-countdown span\s*\{/);
   assert.match(js, /renderRole\(true\)/);
+  assert.match(js, /previousCharacter !== character/);
   assert.match(js, /ArrowLeft[\s\S]*ArrowRight[\s\S]*ArrowUp[\s\S]*ArrowDown/);
   assert.match(html, /assets\/images\/sap-co-luong\/payday-waiting\.webp/);
   assert.match(js, /payday-hero\.webp[\s\S]*payday-waiting\.webp/);

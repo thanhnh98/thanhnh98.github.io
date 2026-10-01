@@ -32,9 +32,12 @@
 .payday-countdown > div { position: relative; overflow: hidden; padding: 1.1rem .55rem .9rem; border: 1px solid rgba(255,255,255,.29); border-radius: 18px; background: linear-gradient(145deg, rgba(255,255,255,.17), rgba(255,255,255,.055)); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 14px 32px rgba(46,0,12,.12); text-align: center; backdrop-filter: blur(12px); transition: transform .3s ease, border-color .3s ease, background .3s ease; }
 .payday-countdown > div::after { position: absolute; inset: -100% -60%; background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,.18) 50%, transparent 62%); content: ''; transform: translateX(-45%); animation: payday-card-shimmer 7s ease-in-out infinite; }
 .payday-countdown > div:hover { border-color: rgba(255,231,148,.72); background: rgba(255,255,255,.15); transform: translateY(-4px); }
-.payday-countdown strong { display: block; font-size: clamp(1.75rem, 4vw, 3rem); font-variant-numeric: tabular-nums; line-height: 1; }
-.payday-countdown strong.is-ticking { animation: payday-digit-tick .34s ease-out; }
-.payday-countdown span { display: block; margin-top: .45rem; color: rgba(255,255,255,.7); font-size: .69rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.payday-countdown strong { display: flex; justify-content: center; font-size: clamp(1.75rem, 4vw, 3rem); font-variant-numeric: tabular-nums; line-height: 1; }
+.payday-digit-char { position: relative; display: inline-grid; place-items: center; width: .62em; height: 1em; overflow: hidden; perspective: 180px; }
+.payday-digit-old, .payday-digit-new { grid-area: 1 / 1; backface-visibility: hidden; }
+.payday-digit-char.is-changing .payday-digit-old { animation: payday-digit-out .44s cubic-bezier(.45,0,.2,1) both; }
+.payday-digit-char.is-changing .payday-digit-new { animation: payday-digit-in .44s cubic-bezier(.2,.8,.2,1) both; }
+.payday-countdown > div > span { display: block; margin-top: .45rem; color: rgba(255,255,255,.7); font-size: .69rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .payday-countdown[hidden], .payday-today-message[hidden] { display: none; }
 .payday-today-message { position: relative; display: flex; align-items: center; gap: .85rem; width: min(100%, 650px); min-height: 96px; margin: 2rem 0 0; padding: 1rem 1.2rem; border-block: 1px solid rgba(255,226,132,.7); color: #fff8d4; background: linear-gradient(90deg, transparent, rgba(255,255,255,.1) 16%, rgba(255,216,100,.12) 50%, rgba(255,255,255,.1) 84%, transparent); text-shadow: 0 3px 18px rgba(38,0,9,.38); font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 900; letter-spacing: -.02em; animation: payday-today-pulse 2.8s ease-in-out infinite; }
 .payday-today-message::before, .payday-today-message::after { color: #ffdf78; content: '✦'; font-size: .8rem; opacity: .8; }
@@ -43,7 +46,7 @@
 .payday-hero-actions { display: flex; align-items: center; gap: 1rem; margin-top: 1.3rem; }
 .payday-hero-actions button { display: inline-flex; align-items: center; gap: .45rem; min-height: 46px; padding: .68rem 1rem; border: 1px solid #ffe79a; border-radius: 14px; color: #701126; background: linear-gradient(135deg, #fff8d8, #ffd96f); box-shadow: 0 10px 24px rgba(50,0,12,.18), inset 0 1px 0 #fff; font: inherit; font-weight: 900; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
 .payday-hero-actions button:hover { box-shadow: 0 14px 30px rgba(50,0,12,.24), inset 0 1px 0 #fff; transform: translateY(-2px); }
-.payday-hero-actions button:focus-visible, .payday-role-select:focus-within { outline: 3px solid #ffd858; outline-offset: 3px; }
+.payday-hero-actions button:focus-visible, .payday-role-trigger:focus-visible { outline: 3px solid #ffd858; outline-offset: 3px; }
 .payday-hero-actions svg { width: 17px; height: 17px; }
 .payday-hero-actions span { max-width: 360px; color: rgba(255,255,255,.68); font-size: .76rem; }
 
@@ -63,7 +66,8 @@
 @keyframes payday-aura { 50% { opacity: .68; transform: scale(1.06); } }
 @keyframes payday-title-shine { to { background-position: 200% center; } }
 @keyframes payday-card-shimmer { 0%, 62% { transform: translateX(-48%); } 82%, 100% { transform: translateX(48%); } }
-@keyframes payday-digit-tick { 0% { opacity: .35; transform: translateY(-8px) scale(.94); } 100% { opacity: 1; transform: none; } }
+@keyframes payday-digit-out { to { opacity: 0; transform: translateY(72%) rotateX(-88deg) scale(.9); } }
+@keyframes payday-digit-in { from { opacity: 0; transform: translateY(-72%) rotateX(88deg) scale(.9); } to { opacity: 1; transform: none; } }
 @keyframes payday-hero-float { 0%, 100% { transform: translate3d(var(--hero-shift-x), var(--hero-shift-y), 0) rotate(-1.2deg); } 50% { transform: translate3d(var(--hero-shift-x), calc(var(--hero-shift-y) - 14px), 0) rotate(1.2deg); } }
 @keyframes payday-glow { 50% { opacity: .62; transform: scale(1.12); } }
 @keyframes payday-orbit { to { transform: rotate(360deg); } }
@@ -98,14 +102,27 @@
 
 .payday-advice-layout { display: grid; grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr); gap: clamp(2rem, 7vw, 6rem); align-items: center; }
 .payday-role-label { display: block; margin-bottom: .45rem; font-size: .8rem; font-weight: 900; }
-.payday-role-select { position: relative; width: min(100%, 360px); border-radius: 15px; }
-.payday-role-select > svg { position: absolute; right: .55rem; top: 50%; width: 34px; height: 34px; padding: 8px; border-radius: 10px; color: var(--payday-red); background: #fff0df; pointer-events: none; transform: translateY(-50%); transition: color .22s ease, background .22s ease, transform .22s ease; }
-.payday-role-select:hover > svg, .payday-role-select:focus-within > svg { color: #fff; background: var(--payday-red); transform: translateY(-50%) rotate(2deg); }
-#payday-role { width: 100%; min-height: 52px; padding: 0 3.35rem 0 1rem; border: 1px solid #d6bda3; border-radius: 15px; color: var(--payday-ink); background: linear-gradient(135deg, #fff, #fff9f1); box-shadow: 0 8px 22px rgba(82,39,22,.06); appearance: none; -webkit-appearance: none; font: inherit; font-weight: 800; cursor: pointer; transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease; }
-#payday-role:focus { outline: none; }
-#payday-role:hover { border-color: #d59a77; box-shadow: 0 11px 28px rgba(82,39,22,.1); }
-.payday-role-select.is-changing { animation: payday-role-control .5s cubic-bezier(.2,.8,.2,1); }
-.payday-role-select.is-changing > svg { animation: payday-role-arrow .5s ease; }
+.payday-role-select { position: relative; z-index: 8; width: min(100%, 360px); border-radius: 16px; }
+.payday-role-native { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; opacity: 0; appearance: none; pointer-events: none; clip-path: inset(50%); }
+.payday-role-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 54px; padding: .4rem .5rem .4rem 1rem; border: 1px solid #d9b99b; border-radius: 16px; color: var(--payday-ink); background: linear-gradient(135deg, #fff, #fff8ed); box-shadow: 0 10px 26px rgba(82,39,22,.09), inset 0 1px 0 #fff; font: inherit; font-weight: 900; cursor: pointer; transition: border-color .24s ease, box-shadow .24s ease, transform .24s ease; }
+.payday-role-trigger:hover { border-color: #dc9c72; box-shadow: 0 14px 32px rgba(82,39,22,.13), inset 0 1px 0 #fff; transform: translateY(-2px); }
+.payday-role-arrow { display: grid; flex: 0 0 auto; place-items: center; width: 38px; height: 38px; border: 1px solid #f0c8aa; border-radius: 12px; color: #fff; background: linear-gradient(145deg, #c82243, #861029); box-shadow: 0 7px 16px rgba(128,14,40,.2); transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease; }
+.payday-role-arrow svg { width: 19px; height: 19px; }
+.payday-role-select.is-open .payday-role-trigger { border-color: #e6b842; box-shadow: 0 0 0 4px rgba(243,189,61,.18), 0 15px 35px rgba(82,39,22,.14); }
+.payday-role-select.is-open .payday-role-arrow { box-shadow: 0 0 20px rgba(200,34,67,.28); transform: rotate(180deg); }
+.payday-role-menu[hidden] { display: none; }
+.payday-role-menu { position: absolute; left: 0; top: calc(100% + .6rem); z-index: 20; display: grid; width: 100%; gap: .35rem; padding: .55rem; border: 1px solid #e5c9aa; border-radius: 20px; background: radial-gradient(circle at 100% 0, rgba(255,217,103,.2), transparent 9rem), rgba(255,252,245,.98); box-shadow: 0 24px 55px rgba(74,26,17,.2), inset 0 1px 0 #fff; backdrop-filter: blur(16px); transform-origin: center top; animation: payday-role-menu-in .32s cubic-bezier(.2,.8,.2,1) both; }
+.payday-role-menu [role="option"] { display: grid; grid-template-columns: 32px 1fr; gap: .7rem; align-items: center; width: 100%; min-height: 48px; padding: .48rem .7rem; border: 1px solid transparent; border-radius: 13px; color: #563d35; background: transparent; font: inherit; font-weight: 800; text-align: left; cursor: pointer; opacity: 0; animation: payday-role-option-in .34s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc((var(--role-option-index, 0) * 45ms) + 45ms); transition: color .2s ease, background .2s ease, transform .2s ease; }
+.payday-role-menu [role="option"]:nth-child(1) { --role-option-index: 0; }
+.payday-role-menu [role="option"]:nth-child(2) { --role-option-index: 1; }
+.payday-role-menu [role="option"]:nth-child(3) { --role-option-index: 2; }
+.payday-role-menu [role="option"]:nth-child(4) { --role-option-index: 3; }
+.payday-role-menu [role="option"]:hover, .payday-role-menu [role="option"]:focus-visible { outline: 0; color: var(--payday-red-dark); background: #fff0df; transform: translateX(3px); }
+.payday-role-menu [role="option"].is-selected { color: #fff; background: radial-gradient(circle at 100% 0, rgba(255,221,112,.25), transparent 55%), linear-gradient(135deg, #b9183a, #791027); box-shadow: 0 9px 20px rgba(115,13,36,.2); }
+.payday-role-check { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #e9c9ae; border-radius: 9px; color: transparent; background: rgba(255,255,255,.72); transition: color .2s ease, background .2s ease, transform .25s ease; }
+.payday-role-check svg { width: 17px; height: 17px; stroke-width: 3; }
+.payday-role-menu .is-selected .payday-role-check { color: #781028; background: linear-gradient(145deg, #fff8cf, #ffd75f); transform: rotate(-5deg) scale(1.05); animation: payday-role-check-in .4s cubic-bezier(.2,.8,.2,1); }
+.payday-role-select.is-changing .payday-role-trigger { animation: payday-role-control .5s cubic-bezier(.2,.8,.2,1); }
 .payday-advice-list { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
 .payday-advice-list li { display: grid; grid-template-columns: 38px 1fr; gap: .9rem; align-items: center; min-height: 72px; padding: .75rem 1rem; border: 1px solid #f0d7c7; border-radius: 16px; background: linear-gradient(135deg, #fffaf6, #fff3eb); box-shadow: 0 8px 24px rgba(102,42,21,.04); transition: border-color .25s ease, transform .25s ease; }
 .payday-advice-list li:hover { border-color: #e9b897; transform: translateX(5px); }
@@ -118,7 +135,9 @@
 .payday-heading [data-payday-advice-title].is-updating { animation: payday-role-title-in .48s cubic-bezier(.2,.8,.2,1); }
 .payday-advice-list.is-updating li { animation: payday-role-card-in .56s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--role-index) * 75ms); }
 @keyframes payday-role-control { 35% { transform: scale(.975); } 70% { transform: scale(1.015); } }
-@keyframes payday-role-arrow { 45% { transform: translateY(-50%) rotate(180deg); } }
+@keyframes payday-role-menu-in { from { opacity: 0; transform: translateY(-10px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes payday-role-option-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@keyframes payday-role-check-in { 50% { transform: rotate(5deg) scale(1.22); } }
 @keyframes payday-role-title-in { from { opacity: 0; transform: translateY(10px); } }
 @keyframes payday-role-card-in { from { opacity: 0; transform: translateY(18px) scale(.97); } }
 
