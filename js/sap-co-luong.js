@@ -232,9 +232,10 @@
     return groups.filter(Boolean);
   }
 
-  function chooseProducts(products, role, limit) {
+  function chooseProducts(products, role, limit, random) {
     const wanted = (ROLE_CONTENT[role] || ROLE_CONTENT.single).groups;
     const productLimit = limit || 6;
+    const randomValue = typeof random === 'function' ? random : Math.random;
     const seen = {};
     const valid = (products || []).filter(function (product) {
       const key = String(product && (product.id || product.url) || '');
@@ -242,6 +243,12 @@
       seen[key] = true;
       return true;
     });
+    for (let index = valid.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(randomValue() * (index + 1));
+      const current = valid[index];
+      valid[index] = valid[swapIndex];
+      valid[swapIndex] = current;
+    }
     const ranked = valid.map(function (product, index) {
       const groups = productGroups(product);
       let score = 0;

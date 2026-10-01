@@ -85,7 +85,7 @@ test('product selection ranks matching groups and removes duplicates', () => {
     product('home', 'home-living'),
     product('home', 'home-living'),
     product('gift', 'gifts-decor')
-  ], 'has-wife', 3);
+  ], 'has-wife', 3, () => 0.999999);
   assert.equal(selected[0].id, 'home');
   assert.deepEqual(selected.map((item) => item.id).sort(), ['gift', 'home', 'tech']);
 });
@@ -96,8 +96,16 @@ test('product selection keeps role recommendations varied across preferred group
     product('tech-1', 'tech-accessories'), product('tech-2', 'tech-accessories'),
     product('fashion-1', 'fashion-personal'), product('fashion-2', 'fashion-personal'),
     product('food-1', 'food-drink'), product('food-2', 'food-drink')
-  ], 'single', 6);
+  ], 'single', 6, () => 0.999999);
   assert.deepEqual(selected.map((item) => item.id), ['tech-1', 'fashion-1', 'food-1', 'tech-2', 'fashion-2', 'food-2']);
+});
+
+test('product recommendations can change on each page load', () => {
+  const product = (id) => ({ id, group: 'tech-accessories', name: id, thumbnail: `https://img/${id}.jpg`, url: `https://shop/${id}` });
+  const products = Array.from({ length: 8 }, (_, index) => product(`tech-${index + 1}`));
+  const first = payday.chooseProducts(products, 'single', 4, () => 0);
+  const second = payday.chooseProducts(products, 'single', 4, () => 0.999999);
+  assert.notDeepEqual(first.map((item) => item.id), second.map((item) => item.id));
 });
 
 test('payday page ships onboarding, accessibility, SEO and affiliate disclosure', () => {
