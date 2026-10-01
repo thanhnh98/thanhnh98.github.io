@@ -35,6 +35,8 @@ class HeaderLoader {
             path.indexOf('/su-kien/') !== -1
         ) {
             return 'events';
+        } else if (normalizedPath === '/nghi-he') {
+            return 'summer';
         } else if (
             filename === 'tin-tuc.html' ||
             normalizedPath === '/tin-tuc' ||

@@ -21,7 +21,7 @@ const ICONS = [
   'download', 'gamepad-2', 'gift', 'grid-2x2', 'layout-dashboard', 'layout-grid', 'mail', 'mail-open',
   'message-circle', 'share-2', 'shopping-bag', 'smartphone', 'sparkles', 'store', 'sun', 'wallet',
   // components/header.html
-  'book-open', 'calendar', 'chevron-down', 'globe', 'newspaper', 'qr-code', 'timer', 'utensils-crossed',
+  'book-open', 'calendar', 'chevron-down', 'globe', 'newspaper', 'qr-code', 'timer', 'users', 'utensils-crossed',
 ];
 
 function download(url) {

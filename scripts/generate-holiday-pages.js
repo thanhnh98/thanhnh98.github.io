@@ -1580,13 +1580,22 @@ function generateVietnameseHub(items, shared) {
   return { html, url: canonical, lastmod: modified, sig: nextSignature };
 }
 
-// Khối holiday luôn nằm cuối sitemap (từ SITEMAP_MARKER tới </urlset>): viết lại toàn bộ, kèm xhtml:link
-// hreflang cho từng cụm ngôn ngữ của cùng một slug.
+// Viết lại khối holiday nhưng giữ nguyên khối sự kiện nếu workflow đã sinh nó sau marker.
+// Daily workflow chạy generate-events trước generate-holidays; cắt thẳng từ marker tới </urlset>
+// sẽ vô tình xoá toàn bộ URL /su-kien/. Hreflang vẫn được viết theo từng cụm ngôn ngữ.
 function updateSitemap(pages) {
   const sitemapPath = path.join(ROOT, 'sitemap.xml');
   let sitemap = fs.readFileSync(sitemapPath, 'utf8');
   const markerAt = sitemap.indexOf(SITEMAP_MARKER);
-  if (markerAt >= 0) sitemap = `${sitemap.slice(0, markerAt).trimEnd()}\n</urlset>\n`;
+  if (markerAt >= 0) {
+    const eventMarker = '<!-- Event detail pages -->';
+    const eventAt = sitemap.indexOf(eventMarker, markerAt);
+    const closingAt = sitemap.lastIndexOf('</urlset>');
+    const eventBlock = eventAt >= 0 && closingAt > eventAt
+      ? sitemap.slice(eventAt, closingAt).trim()
+      : '';
+    sitemap = `${sitemap.slice(0, markerAt).trimEnd()}\n${eventBlock ? `    ${eventBlock}\n` : ''}</urlset>\n`;
+  }
   if (!sitemap.includes('xmlns:xhtml=')) {
     sitemap = sitemap.replace('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">');
