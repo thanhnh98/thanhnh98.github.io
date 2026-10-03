@@ -4,6 +4,7 @@ const path = require('node:path');
 const test = require('node:test');
 const cheerio = require('cheerio');
 const payday = require('../js/sap-co-luong.js');
+const holidays = require('../js/vietnam-holidays.js');
 
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
@@ -45,18 +46,91 @@ test('salary countdown crosses the year boundary and supports day one', () => {
   assert.equal(january.mode, 'payday');
 });
 
+test('before-month-end rule subtracts calendar days from each real month end', () => {
+  const rule = { mode: 'before-month-end', value: 1, moveToNextWorkday: false };
+  assert.equal(payday.salaryDateForMonth(2027, 2, rule).date.toISOString(), '2027-02-26T17:00:00.000Z');
+  assert.equal(payday.salaryDateForMonth(2028, 2, rule).date.toISOString(), '2028-02-27T17:00:00.000Z');
+  assert.equal(payday.salaryDateForMonth(2027, 4, { ...rule, value: 2 }).date.toISOString(), '2027-04-27T17:00:00.000Z');
+});
+
+test('after-month-end rule adds calendar days and can move into the next month', () => {
+  const rule = { mode: 'after-month-end', value: 1, moveToNextWorkday: false };
+  assert.equal(payday.salaryDateForMonth(2027, 2, rule).date.toISOString(), '2027-02-28T17:00:00.000Z');
+  assert.equal(payday.salaryDateForMonth(2027, 4, { ...rule, moveToNextWorkday: true }).date.toISOString(), '2027-05-03T17:00:00.000Z');
+});
+
+test('workday adjustment moves forward through weekends and official holiday periods', () => {
+  const weekend = payday.salaryDateForMonth(2027, 1, { mode: 'fixed-day', value: 31, moveToNextWorkday: true });
+  assert.equal(weekend.baseDate.toISOString(), '2027-01-30T17:00:00.000Z');
+  assert.equal(weekend.date.toISOString(), '2027-01-31T17:00:00.000Z');
+  assert.equal(weekend.adjusted, true);
+
+  const tet = payday.salaryDateForMonth(2027, 2, { mode: 'fixed-day', value: 5, moveToNextWorkday: true });
+  assert.equal(tet.date.toISOString(), '2027-02-14T17:00:00.000Z');
+  assert.match(tet.adjustmentReason, /Tết Nguyên Đán/);
+  assert.equal(tet.estimated, false);
+});
+
+test('non-working-day toggles can treat holidays, Saturday and Sunday independently', () => {
+  const defaults = { holidays: true, saturday: false, sunday: true };
+  const saturday = payday.salaryDateForMonth(2027, 1, { mode: 'fixed-day', value: 30, nonWorkingDays: defaults });
+  assert.equal(saturday.adjusted, false);
+  const sunday = payday.salaryDateForMonth(2027, 1, { mode: 'fixed-day', value: 31, nonWorkingDays: defaults });
+  assert.equal(sunday.date.toISOString(), '2027-01-31T17:00:00.000Z');
+  assert.match(sunday.adjustmentReason, /Chủ nhật/);
+});
+
+test('workday adjustment marks years without an official calendar as estimated', () => {
+  const candidate = payday.salaryDateForMonth(2030, 1, { mode: 'fixed-day', value: 1, moveToNextWorkday: true });
+  assert.equal(candidate.adjusted, true);
+  assert.equal(candidate.estimated, true);
+  assert.equal(payday.getCalendarStatus(2030).status, 'estimated');
+});
+
+test('official holiday data distinguishes published and estimated years', () => {
+  assert.equal(holidays.getCalendarStatus(2027).status, 'official');
+  assert.equal(holidays.getHoliday(2027, 2, 10).name, 'Tết Nguyên Đán');
+  assert.equal(holidays.getCalendarStatus(2028).status, 'estimated');
+  assert.equal(holidays.getHoliday(2028, 9, 2).status, 'estimated');
+});
+
 test('config storage validates values, defaults the role and survives blocked storage', () => {
   const values = new Map();
   const storage = { getItem: (key) => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
   const store = payday.createConfigStore(storage);
   assert.equal(store.get(), null);
-  assert.deepEqual(store.save(25, 'unknown'), { version: 1, salaryDay: 25, role: 'single' });
-  assert.equal(store.get().salaryDay, 25);
+  assert.deepEqual(store.save(25, 'unknown'), {
+    version: 3,
+    salaryRule: { mode: 'fixed-day', value: 25, nonWorkingDays: { holidays: false, saturday: false, sunday: false } },
+    role: 'single'
+  });
+  assert.equal(store.get().salaryRule.value, 25);
 
   const blocked = payday.createConfigStore({ getItem() { throw new Error('blocked'); }, setItem() { throw new Error('blocked'); } });
   blocked.save(10, 'dating');
   assert.equal(blocked.get().role, 'dating');
   assert.equal(store.save(25, 'single', '2027-01-25').celebratedPayday, '2027-01-25');
+});
+
+test('version one storage migrates without losing role or payday acknowledgement', () => {
+  const oldValue = JSON.stringify({ version: 1, salaryDay: 28, role: 'dating', celebratedPayday: '2027-01-28' });
+  const store = payday.createConfigStore({ getItem: () => oldValue, setItem: () => {} });
+  assert.deepEqual(store.get(), {
+    version: 3,
+    salaryRule: { mode: 'fixed-day', value: 28, nonWorkingDays: { holidays: false, saturday: false, sunday: false } },
+    role: 'dating',
+    celebratedPayday: '2027-01-28'
+  });
+});
+
+test('version two combined workday preference migrates to all three toggles', () => {
+  const oldValue = JSON.stringify({
+    version: 2,
+    salaryRule: { mode: 'before-month-end', value: 3, moveToNextWorkday: true },
+    role: 'single'
+  });
+  const store = payday.createConfigStore({ getItem: () => oldValue, setItem: () => {} });
+  assert.deepEqual(store.get().salaryRule.nonWorkingDays, { holidays: true, saturday: true, sunday: true });
 });
 
 test('payday acknowledgement keys use the Vietnam calendar date', () => {
@@ -117,6 +191,18 @@ test('payday page ships onboarding, accessibility, SEO and affiliate disclosure'
   assert.equal($('#salary-day').is('input[type="hidden"]'), true);
   assert.equal($('select#salary-day').length, 0);
   assert.equal($('[data-salary-day-grid][role="group"]').length, 1);
+  assert.equal($('[data-payday-rule-mode][role="radio"]').length, 3);
+  assert.equal($('#salary-offset[min="1"][max="31"]').length, 1);
+  assert.equal($('.payday-workday-options input[type="checkbox"]').length, 3);
+  assert.equal($('#salary-skip-holidays[checked]').length, 1);
+  assert.equal($('#salary-skip-saturday[checked]').length, 0);
+  assert.equal($('#salary-skip-sunday[checked]').length, 1);
+  assert.equal($('[data-payday-rule-preview][aria-live="polite"]').length, 1);
+  assert.equal($('[data-payday-rule-preview][hidden]').length, 0);
+  assert.match($('[data-payday-preview-date]').text(), /Đang tính ngày lương/);
+  assert.doesNotMatch(html, /Chọn quy tắc để xem ngày lương/);
+  assert.doesNotMatch(html, /Thiết lập đồng hồ/);
+  assert.match($('[data-payday-submit]').text(), /Bắt đầu chờ lương/);
   assert.equal($('[data-payday-onboarding][role="dialog"]').length, 1);
   assert.equal($('[data-payday-today-message]').text().trim(), 'Hôm nay có lương');
   assert.match($('[data-payday-claim]').text(), /Đã nhận lương/);
@@ -132,6 +218,7 @@ test('payday page ships onboarding, accessibility, SEO and affiliate disclosure'
   assert.deepEqual($('.payday-stats [data-lucide]').map((_, icon) => $(icon).attr('data-lucide')).get(), ['moon', 'briefcase', 'calendar-days']);
   assert.doesNotMatch($('.payday-stats').text(), /[🌙💼📅]/u);
   assert.match(html, /Liên kết affiliate/);
+  assert.match(html, /vietnam-holidays\.js/);
   const css = read('css/sap-co-luong.css');
   const js = read('js/sap-co-luong.js');
   assert.match(css, /prefers-reduced-motion/);

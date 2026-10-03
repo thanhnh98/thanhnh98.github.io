@@ -1,13 +1,19 @@
 (function (root, factory) {
-  const api = factory();
+  const holidays = typeof module !== 'undefined' && module.exports
+    ? require('./vietnam-holidays.js')
+    : root.VietnamHolidays;
+  const api = factory(holidays);
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (root) root.PaydayCountdown = api;
-})(typeof window !== 'undefined' ? window : globalThis, function () {
+})(typeof window !== 'undefined' ? window : globalThis, function (VietnamHolidays) {
   'use strict';
 
   const VIETNAM_TIME_ZONE = 'Asia/Ho_Chi_Minh';
   const STORAGE_KEY = 'sap_tet_salary_countdown_v1';
-  const STORAGE_VERSION = 1;
+  const STORAGE_VERSION = 3;
+  const FIXED_DAY_MODE = 'fixed-day';
+  const BEFORE_MONTH_END_MODE = 'before-month-end';
+  const AFTER_MONTH_END_MODE = 'after-month-end';
   const DEFAULT_ROLE = 'single';
   const VALID_ROLES = ['single', 'dating', 'has-wife', 'has-husband'];
 
@@ -71,6 +77,31 @@
     return Number.isInteger(day) && day >= 1 && day <= 31 ? day : null;
   }
 
+  function normalizeSalaryRule(value) {
+    if (Number.isInteger(Number(value))) {
+      value = { mode: FIXED_DAY_MODE, value: Number(value), moveToNextWorkday: false };
+    }
+    if (!value || [FIXED_DAY_MODE, BEFORE_MONTH_END_MODE, AFTER_MONTH_END_MODE].indexOf(value.mode) === -1) return null;
+    const ruleValue = clampSalaryDay(value.value);
+    if (!ruleValue) return null;
+    let nonWorkingDays;
+    if (value.nonWorkingDays) {
+      nonWorkingDays = {
+        holidays: value.nonWorkingDays.holidays === true,
+        saturday: value.nonWorkingDays.saturday === true,
+        sunday: value.nonWorkingDays.sunday === true
+      };
+    } else {
+      const legacyEnabled = value.moveToNextWorkday === true;
+      nonWorkingDays = { holidays: legacyEnabled, saturday: legacyEnabled, sunday: legacyEnabled };
+    }
+    return {
+      mode: value.mode,
+      value: ruleValue,
+      nonWorkingDays: nonWorkingDays
+    };
+  }
+
   function salaryDayOptions() {
     return Array.from({ length: 31 }, function (_value, index) { return index + 1; });
   }
@@ -92,6 +123,10 @@
     return new Date(`${year}-${mm}-${dd}T${hh}:00:00+07:00`);
   }
 
+  function shiftVietnamDate(date, days) {
+    return new Date(date.getTime() + days * 86400000);
+  }
+
   function getVietnamParts(input) {
     const date = input instanceof Date ? input : new Date(input);
     if (Number.isNaN(date.getTime())) throw new TypeError('Thời điểm không hợp lệ');
@@ -104,48 +139,114 @@
     return { year: values.year, month: values.month, day: values.day };
   }
 
-  function nextMonth(year, month) {
-    return month === 12 ? { year: year + 1, month: 1 } : { year: year, month: month + 1 };
+  function calendarMonth(year, month, offset) {
+    const date = new Date(Date.UTC(year, month - 1 + offset, 1));
+    return { year: date.getUTCFullYear(), month: date.getUTCMonth() + 1 };
   }
 
-  function previousMonth(year, month) {
-    return month === 1 ? { year: year - 1, month: 12 } : { year: year, month: month - 1 };
+  function holidayInfo(date) {
+    const parts = getVietnamParts(date);
+    return VietnamHolidays && VietnamHolidays.getHoliday
+      ? VietnamHolidays.getHoliday(parts.year, parts.month, parts.day)
+      : null;
   }
 
-  function salaryDate(year, month, salaryDay) {
-    return vietnamDate(year, month, effectiveSalaryDay(year, month, salaryDay));
+  function isWorkday(date, nonWorkingDays) {
+    const settings = nonWorkingDays || { holidays: true, saturday: true, sunday: true };
+    const parts = getVietnamParts(date);
+    const weekday = new Date(Date.UTC(parts.year, parts.month - 1, parts.day)).getUTCDay();
+    if (weekday === 6 && settings.saturday) return false;
+    if (weekday === 0 && settings.sunday) return false;
+    return !(settings.holidays && holidayInfo(date));
   }
 
-  function getPaydayState(input, salaryDay) {
-    const now = input instanceof Date ? new Date(input.getTime()) : new Date(input);
-    if (Number.isNaN(now.getTime())) throw new TypeError('Thời điểm không hợp lệ');
-    const selectedDay = clampSalaryDay(salaryDay);
-    if (!selectedDay) throw new RangeError('Ngày nhận lương phải từ 1 đến 31');
+  function getCalendarStatus(year) {
+    return VietnamHolidays && VietnamHolidays.getCalendarStatus
+      ? VietnamHolidays.getCalendarStatus(year)
+      : { status: 'estimated', source: null };
+  }
 
-    const current = getVietnamParts(now);
-    const effectiveToday = effectiveSalaryDay(current.year, current.month, selectedDay);
-    if (current.day === effectiveToday) {
-      const following = nextMonth(current.year, current.month);
-      return {
-        mode: 'payday',
-        payday: salaryDate(current.year, current.month, selectedDay),
-        target: salaryDate(following.year, following.month, selectedDay),
-        effectiveDay: effectiveToday,
-        selectedDay: selectedDay
-      };
+  function salaryDateForMonth(year, month, salaryRule) {
+    const rule = normalizeSalaryRule(salaryRule);
+    if (!rule) throw new RangeError('Quy tắc ngày nhận lương không hợp lệ');
+    let baseDate;
+    let effectiveDay;
+    if (rule.mode === BEFORE_MONTH_END_MODE || rule.mode === AFTER_MONTH_END_MODE) {
+      const direction = rule.mode === BEFORE_MONTH_END_MODE ? -1 : 1;
+      baseDate = shiftVietnamDate(vietnamDate(year, month, daysInMonth(year, month)), direction * rule.value);
+      effectiveDay = getVietnamParts(baseDate).day;
+    } else {
+      effectiveDay = effectiveSalaryDay(year, month, rule.value);
+      baseDate = vietnamDate(year, month, effectiveDay);
     }
 
-    let targetMonth = { year: current.year, month: current.month };
-    if (current.day > effectiveToday) targetMonth = nextMonth(current.year, current.month);
-    const previous = previousMonth(targetMonth.year, targetMonth.month);
+    let date = baseDate;
+    const skipped = [];
+    const calendarYears = {};
+    calendarYears[getVietnamParts(date).year] = true;
+    const adjustsNonWorkingDays = Object.keys(rule.nonWorkingDays).some(function (key) { return rule.nonWorkingDays[key]; });
+    if (adjustsNonWorkingDays) {
+      while (!isWorkday(date, rule.nonWorkingDays)) {
+        const holiday = holidayInfo(date);
+        const parts = getVietnamParts(date);
+        const weekday = new Date(Date.UTC(parts.year, parts.month - 1, parts.day)).getUTCDay();
+        if (holiday && rule.nonWorkingDays.holidays && skipped.indexOf(holiday.name) === -1) skipped.push(holiday.name);
+        if (weekday === 6 && rule.nonWorkingDays.saturday && skipped.indexOf('Thứ 7') === -1) skipped.push('Thứ 7');
+        if (weekday === 0 && rule.nonWorkingDays.sunday && skipped.indexOf('Chủ nhật') === -1) skipped.push('Chủ nhật');
+        date = shiftVietnamDate(date, 1);
+        calendarYears[getVietnamParts(date).year] = true;
+      }
+    }
+    const estimated = Object.keys(calendarYears).some(function (candidateYear) {
+      return getCalendarStatus(Number(candidateYear)).status !== 'official';
+    });
     return {
-      mode: 'countdown',
-      payday: null,
-      target: salaryDate(targetMonth.year, targetMonth.month, selectedDay),
-      previous: salaryDate(previous.year, previous.month, selectedDay),
-      effectiveDay: effectiveSalaryDay(targetMonth.year, targetMonth.month, selectedDay),
-      selectedDay: selectedDay
+      date: date,
+      baseDate: baseDate,
+      adjusted: date.getTime() !== baseDate.getTime(),
+      adjustmentReason: skipped.join(', '),
+      estimated: rule.nonWorkingDays.holidays && estimated,
+      effectiveDay: effectiveDay,
+      selectedDay: rule.value,
+      rule: rule,
+      payrollYear: year,
+      payrollMonth: month
     };
+  }
+
+  function getPaydayState(input, salaryRule) {
+    const now = input instanceof Date ? new Date(input.getTime()) : new Date(input);
+    if (Number.isNaN(now.getTime())) throw new TypeError('Thời điểm không hợp lệ');
+    const rule = normalizeSalaryRule(salaryRule);
+    if (!rule) throw new RangeError('Quy tắc ngày nhận lương không hợp lệ');
+    const current = getVietnamParts(now);
+    const todayKey = `${current.year}-${String(current.month).padStart(2, '0')}-${String(current.day).padStart(2, '0')}`;
+    const unique = {};
+    for (let offset = -2; offset <= 3; offset += 1) {
+      const month = calendarMonth(current.year, current.month, offset);
+      const candidate = salaryDateForMonth(month.year, month.month, rule);
+      const key = paydayKey(candidate.date);
+      if (!unique[key]) unique[key] = candidate;
+    }
+    const candidates = Object.keys(unique).map(function (key) { return unique[key]; })
+      .sort(function (a, b) { return a.date - b.date; });
+    const todayIndex = candidates.findIndex(function (candidate) { return paydayKey(candidate.date) === todayKey; });
+    const futureIndex = candidates.findIndex(function (candidate) { return candidate.date > now; });
+    if (todayIndex !== -1) {
+      const currentPayday = candidates[todayIndex];
+      const nextPayday = candidates.slice(todayIndex + 1).find(function (candidate) { return candidate.date > currentPayday.date; });
+      return Object.assign({}, currentPayday, {
+        mode: 'payday', payday: currentPayday.date, target: nextPayday.date,
+        nextCandidate: nextPayday
+      });
+    }
+    const targetIndex = futureIndex === -1 ? candidates.length - 1 : futureIndex;
+    const target = candidates[targetIndex];
+    const previous = candidates[targetIndex - 1];
+    return Object.assign({}, target, {
+      mode: 'countdown', payday: null, target: target.date,
+      previous: previous ? previous.date : null
+    });
   }
 
   function getRemaining(target, input) {
@@ -168,8 +269,7 @@
     while (cursor < end) {
       cursor = new Date(cursor.getTime() + 86400000);
       if (cursor > end) break;
-      const weekday = cursor.getUTCDay();
-      if (weekday !== 0 && weekday !== 6) count += 1;
+      if (isWorkday(cursor)) count += 1;
     }
     return count;
   }
@@ -187,12 +287,14 @@
   }
 
   function normalizeConfig(value) {
-    if (!value || value.version !== STORAGE_VERSION) return null;
-    const salaryDay = clampSalaryDay(value.salaryDay);
-    if (!salaryDay) return null;
+    if (!value || [1, 2, STORAGE_VERSION].indexOf(value.version) === -1) return null;
+    const salaryRule = value.version === 1
+      ? normalizeSalaryRule(value.salaryDay)
+      : normalizeSalaryRule(value.salaryRule);
+    if (!salaryRule) return null;
     const config = {
       version: STORAGE_VERSION,
-      salaryDay: salaryDay,
+      salaryRule: salaryRule,
       role: VALID_ROLES.indexOf(value.role) !== -1 ? value.role : DEFAULT_ROLE
     };
     if (/^\d{4}-\d{2}-\d{2}$/.test(value.celebratedPayday || '')) config.celebratedPayday = value.celebratedPayday;
@@ -217,8 +319,8 @@
         try { return normalizeConfig(JSON.parse(raw)); }
         catch (_error) { return null; }
       },
-      save: function (salaryDay, role, celebratedPayday) {
-        const config = normalizeConfig({ version: STORAGE_VERSION, salaryDay: salaryDay, role: role || DEFAULT_ROLE, celebratedPayday: celebratedPayday });
+      save: function (salaryRule, role, celebratedPayday) {
+        const config = normalizeConfig({ version: STORAGE_VERSION, salaryRule: salaryRule, role: role || DEFAULT_ROLE, celebratedPayday: celebratedPayday });
         if (!config) throw new RangeError('Cấu hình ngày lương không hợp lệ');
         writeRaw(JSON.stringify(config));
         return config;
@@ -287,6 +389,22 @@
     const dayInput = document.getElementById('salary-day');
     const dayGrid = document.querySelector('[data-salary-day-grid]');
     const selectedDayLabel = document.querySelector('[data-selected-day]');
+    const ruleModeButtons = Array.from(document.querySelectorAll('[data-payday-rule-mode]'));
+    const fixedPanel = document.querySelector('[data-payday-fixed-panel]');
+    const fixedHelp = document.querySelector('[data-payday-fixed-help]');
+    const offsetPanel = document.querySelector('[data-payday-offset-panel]');
+    const offsetInput = document.getElementById('salary-offset');
+    const nonWorkingInputs = {
+      holidays: document.getElementById('salary-skip-holidays'),
+      saturday: document.getElementById('salary-skip-saturday'),
+      sunday: document.getElementById('salary-skip-sunday')
+    };
+    const offsetLabel = document.querySelector('[data-payday-offset-label]');
+    const offsetHelp = document.querySelector('[data-payday-offset-help]');
+    const previewContainer = document.querySelector('[data-payday-rule-preview]');
+    const previewDate = document.querySelector('[data-payday-preview-date]');
+    const previewNote = document.querySelector('[data-payday-preview-note]');
+    const previewWarning = document.querySelector('[data-payday-preview-warning]');
     const submitButton = document.querySelector('[data-payday-submit]');
     const roleSelect = document.getElementById('payday-role');
     const rolePicker = document.querySelector('[data-role-picker]');
@@ -299,6 +417,8 @@
     const cancelButton = document.querySelector('[data-payday-cancel]');
     const claimButton = document.querySelector('[data-payday-claim]');
     const replayFireworksButton = document.querySelector('[data-payday-replay-fireworks]');
+    let selectedRuleMode = FIXED_DAY_MODE;
+    let previewRequest = 0;
     const digits = {};
     ['days', 'hours', 'minutes', 'seconds'].forEach(function (unit) {
       digits[unit] = document.querySelector(`[data-payday-unit="${unit}"]`);
@@ -322,17 +442,85 @@
       sections.forEach(function (section) { observer.observe(section); });
     }
 
+    function draftSalaryRule() {
+      const value = selectedRuleMode === FIXED_DAY_MODE ? dayInput.value : offsetInput.value;
+      return normalizeSalaryRule({
+        mode: selectedRuleMode,
+        value: Number(value),
+        nonWorkingDays: {
+          holidays: nonWorkingInputs.holidays.checked,
+          saturday: nonWorkingInputs.saturday.checked,
+          sunday: nonWorkingInputs.sunday.checked
+        }
+      });
+    }
+
+    function formatShortDate(date) {
+      return new Intl.DateTimeFormat('vi-VN', {
+        timeZone: VIETNAM_TIME_ZONE, day: '2-digit', month: '2-digit', year: 'numeric'
+      }).format(date);
+    }
+
+    function updateRulePreview() {
+      const rule = draftSalaryRule();
+      previewRequest += 1;
+      const request = previewRequest;
+      submitButton.disabled = !rule;
+      previewContainer.setAttribute('aria-busy', 'true');
+      previewDate.textContent = 'Đang tính ngày lương…';
+      previewNote.textContent = '';
+      previewWarning.hidden = true;
+      if (!rule) return;
+      window.requestAnimationFrame(function () {
+        if (request !== previewRequest) return;
+        const state = getPaydayState(new Date(), rule);
+        const candidate = state.mode === 'payday' ? state.nextCandidate : state;
+        previewDate.textContent = `Kỳ lương tiếp theo: ${formatDate(candidate.date || state.target)}`;
+        previewNote.textContent = candidate.adjusted
+          ? `Ngày dự kiến ${formatShortDate(candidate.baseDate)} trùng ${candidate.adjustmentReason || 'ngày nghỉ'}, đã dời sang ${formatShortDate(candidate.date)}.`
+          : rule.mode === BEFORE_MONTH_END_MODE
+            ? `Được tính bằng cách lùi ${rule.value} ngày từ cuối tháng.`
+            : rule.mode === AFTER_MONTH_END_MODE
+              ? `Được tính bằng cách cộng ${rule.value} ngày sau cuối tháng.`
+              : 'Ngày nhận lương không cần điều chỉnh trong kỳ này.';
+        previewWarning.hidden = !candidate.estimated;
+        previewContainer.removeAttribute('aria-busy');
+      });
+    }
+
     function selectSalaryDay(value, focus) {
       const salaryDay = clampSalaryDay(value);
       dayInput.value = salaryDay ? String(salaryDay) : '';
       selectedDayLabel.textContent = salaryDay ? `Ngày ${salaryDay}` : 'Chưa chọn ngày';
-      submitButton.disabled = !salaryDay;
       Array.from(dayGrid.querySelectorAll('.payday-day-button')).forEach(function (button) {
         const selected = Number(button.dataset.value) === salaryDay;
         button.classList.toggle('is-selected', selected);
         button.setAttribute('aria-pressed', String(selected));
         if (selected && focus) button.focus();
       });
+      updateRulePreview();
+    }
+
+    function selectRuleMode(mode, focus) {
+      if ([FIXED_DAY_MODE, BEFORE_MONTH_END_MODE, AFTER_MONTH_END_MODE].indexOf(mode) === -1) return;
+      selectedRuleMode = mode;
+      ruleModeButtons.forEach(function (button) {
+        const selected = button.dataset.paydayRuleMode === mode;
+        button.setAttribute('aria-checked', String(selected));
+        if (selected && focus) button.focus();
+      });
+      const fixed = mode === FIXED_DAY_MODE;
+      fixedPanel.hidden = !fixed;
+      fixedHelp.hidden = !fixed;
+      offsetPanel.hidden = fixed;
+      if (!fixed) {
+        const after = mode === AFTER_MONTH_END_MODE;
+        offsetLabel.textContent = after ? 'Nhận lương sau ngày cuối tháng' : 'Nhận lương trước ngày cuối tháng';
+        offsetHelp.textContent = after
+          ? 'Cộng theo ngày lịch trước, sau đó mới kiểm tra ngày nghỉ.'
+          : 'Lùi theo ngày lịch trước, sau đó mới kiểm tra ngày nghỉ.';
+      }
+      updateRulePreview();
     }
 
     function renderDayPicker() {
@@ -352,6 +540,21 @@
 
     renderDayPicker();
     initRevealAnimations();
+
+    ruleModeButtons.forEach(function (button, index) {
+      button.addEventListener('click', function () { selectRuleMode(button.dataset.paydayRuleMode, false); });
+      button.addEventListener('keydown', function (event) {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight' && event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 1;
+        const target = ruleModeButtons[(index + direction + ruleModeButtons.length) % ruleModeButtons.length];
+        selectRuleMode(target.dataset.paydayRuleMode, true);
+      });
+    });
+    offsetInput.addEventListener('input', updateRulePreview);
+    Object.keys(nonWorkingInputs).forEach(function (key) {
+      nonWorkingInputs[key].addEventListener('change', updateRulePreview);
+    });
 
     dayGrid.addEventListener('keydown', function (event) {
       const current = event.target.closest('.payday-day-button');
@@ -440,9 +643,20 @@
       modalTitle.textContent = editing ? 'Đổi ngày nhận lương' : 'Bạn thường nhận lương ngày nào?';
       modalCopy.textContent = editing ? 'Chọn ngày mới, đồng hồ sẽ cập nhật ngay.' : 'Chỉ cần chọn một lần, Sắp Tết sẽ ghi nhớ trên thiết bị này.';
       cancelButton.hidden = !editing;
-      selectSalaryDay(editing && config ? config.salaryDay : null, false);
+      const initialRule = editing && config
+        ? config.salaryRule
+        : { mode: FIXED_DAY_MODE, value: null, nonWorkingDays: { holidays: true, saturday: false, sunday: true } };
+      selectedRuleMode = initialRule.mode;
+      offsetInput.value = String(initialRule.mode === FIXED_DAY_MODE ? 1 : initialRule.value);
+      Object.keys(nonWorkingInputs).forEach(function (key) {
+        nonWorkingInputs[key].checked = initialRule.nonWorkingDays[key] === true;
+      });
+      selectSalaryDay(initialRule.mode === FIXED_DAY_MODE ? initialRule.value : null, false);
+      selectRuleMode(initialRule.mode, false);
       window.setTimeout(function () {
-        const target = dayGrid.querySelector('.is-selected') || dayGrid.querySelector('.payday-day-button');
+        const target = initialRule.mode === FIXED_DAY_MODE
+          ? (dayGrid.querySelector('.is-selected') || dayGrid.querySelector('.payday-day-button'))
+          : offsetInput;
         if (target) target.focus();
       }, 0);
     }
@@ -578,7 +792,7 @@
 
     function renderCountdown() {
       const now = new Date();
-      const state = getPaydayState(now, config.salaryDay);
+      const state = getPaydayState(now, config.salaryRule);
       const isPayday = state.mode === 'payday';
       const currentPaydayKey = isPayday ? paydayKey(state.payday) : null;
       const isAcknowledged = isPayday && config.celebratedPayday === currentPaydayKey;
@@ -616,13 +830,20 @@
       document.querySelector('[data-payday-weekday]').textContent = new Intl.DateTimeFormat('vi-VN', {
         timeZone: VIETNAM_TIME_ZONE, weekday: 'long'
       }).format(isPayday ? state.payday : state.target);
+      const ruleDescription = config.salaryRule.mode === BEFORE_MONTH_END_MODE
+        ? `Kỳ này được tính trước cuối tháng ${config.salaryRule.value} ngày.`
+        : config.salaryRule.mode === AFTER_MONTH_END_MODE
+          ? `Kỳ này được tính sau cuối tháng ${config.salaryRule.value} ngày.`
+        : state.effectiveDay !== state.selectedDay
+          ? `Tháng này không có ngày ${state.selectedDay}, nên ngày dự kiến là cuối tháng (${state.effectiveDay}).`
+          : 'Cố gắng vượt qua những ngày này bạn nhé.';
       document.querySelector('[data-payday-effective]').textContent = isPayday
         ? (isAcknowledged
           ? 'Công sức của bạn tháng này được chi trả, chúc mừng bạn nhé!'
           : 'Khi lương về, nhấn nút phía trên để xác nhận nhé.')
-        : state.effectiveDay !== state.selectedDay
-          ? `Tháng này không có ngày ${state.selectedDay}, nên lương được tính vào ngày cuối tháng (${state.effectiveDay}).`
-          : 'Cố gắng vượt qua những ngày này bạn nhé.';
+        : state.adjusted
+          ? `Ngày dự kiến ${formatShortDate(state.baseDate)} trùng ${state.adjustmentReason || 'ngày nghỉ'}, đã dời sang ${formatShortDate(state.target)}${state.estimated ? ' (ước tính).' : '.'}`
+          : ruleDescription;
     }
 
     function track(name, params) {
@@ -696,33 +917,39 @@
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      const salaryDay = clampSalaryDay(dayInput.value);
-      if (!salaryDay) return;
-      config = store.save(salaryDay, config ? config.role : DEFAULT_ROLE);
+      const salaryRule = draftSalaryRule();
+      if (!salaryRule) return;
+      config = store.save(salaryRule, config ? config.role : DEFAULT_ROLE);
       closeDayPicker();
       start();
-      track('payday_day_saved', { salary_day: salaryDay });
+      track('payday_day_saved', {
+        salary_mode: salaryRule.mode,
+        salary_value: salaryRule.value,
+        skip_holidays: salaryRule.nonWorkingDays.holidays,
+        skip_saturday: salaryRule.nonWorkingDays.saturday,
+        skip_sunday: salaryRule.nonWorkingDays.sunday
+      });
     });
     cancelButton.addEventListener('click', closeDayPicker);
     claimButton.addEventListener('click', function () {
-      const state = getPaydayState(new Date(), config.salaryDay);
+      const state = getPaydayState(new Date(), config.salaryRule);
       if (state.mode !== 'payday') return;
-      config = store.save(config.salaryDay, config.role, paydayKey(state.payday));
+      config = store.save(config.salaryRule, config.role, paydayKey(state.payday));
       renderCountdown();
       launchPaydayFireworks();
-      track('payday_received_confirmed', { salary_day: config.salaryDay });
+      track('payday_received_confirmed', { salary_mode: config.salaryRule.mode, salary_value: config.salaryRule.value });
     });
     replayFireworksButton.addEventListener('click', function () {
       if (replayFireworksButton.closest('[data-payday-today-message]').hidden) return;
       launchPaydayFireworks();
-      track('payday_fireworks_replayed', { salary_day: config.salaryDay });
+      track('payday_fireworks_replayed', { salary_mode: config.salaryRule.mode, salary_value: config.salaryRule.value });
     });
     modal.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && config) closeDayPicker();
     });
     document.querySelector('[data-payday-edit]').addEventListener('click', function () { openDayPicker(true); });
     roleSelect.addEventListener('change', function () {
-      config = store.save(config.salaryDay, roleSelect.value, config.celebratedPayday);
+      config = store.save(config.salaryRule, roleSelect.value, config.celebratedPayday);
       renderRole(true);
       loadProducts();
       track('payday_role_changed', { role: config.role });
@@ -740,15 +967,23 @@
   return {
     VIETNAM_TIME_ZONE: VIETNAM_TIME_ZONE,
     STORAGE_KEY: STORAGE_KEY,
+    STORAGE_VERSION: STORAGE_VERSION,
+    FIXED_DAY_MODE: FIXED_DAY_MODE,
+    BEFORE_MONTH_END_MODE: BEFORE_MONTH_END_MODE,
+    AFTER_MONTH_END_MODE: AFTER_MONTH_END_MODE,
     DEFAULT_ROLE: DEFAULT_ROLE,
     VALID_ROLES: VALID_ROLES,
     ROLE_CONTENT: ROLE_CONTENT,
     clampSalaryDay: clampSalaryDay,
+    normalizeSalaryRule: normalizeSalaryRule,
     salaryDayOptions: salaryDayOptions,
     daysInMonth: daysInMonth,
     effectiveSalaryDay: effectiveSalaryDay,
     vietnamDate: vietnamDate,
     getVietnamParts: getVietnamParts,
+    salaryDateForMonth: salaryDateForMonth,
+    isWorkday: isWorkday,
+    getCalendarStatus: getCalendarStatus,
     getPaydayState: getPaydayState,
     getRemaining: getRemaining,
     countBusinessDays: countBusinessDays,

@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="/assets/images/sap-co-luong/payday-waiting.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/colors.css">
-  <link rel="stylesheet" href="/css/sap-co-luong.css?v=20261001p">
+  <link rel="stylesheet" href="/css/sap-co-luong.css?v=20261003a">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="vi_VN">
@@ -71,8 +71,13 @@
           },
           {
             "@type": "Question",
-            "name": "Nếu chọn ngày 31 nhưng tháng chỉ có 30 hoặc 28 ngày thì sao?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Đồng hồ tự dùng ngày cuối cùng của tháng đó. Sang tháng có ngày 31, trang tiếp tục dùng ngày 31 như lựa chọn ban đầu." }
+            "name": "Có thể tính ngày lương theo những cách nào?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bạn có thể chọn một ngày cố định trong tháng, nhận lương trước ngày cuối tháng hoặc sau ngày cuối tháng một số ngày. Nếu chọn ngày 29–31 trong tháng ngắn, đồng hồ dùng ngày cuối tháng." }
+          },
+          {
+            "@type": "Question",
+            "name": "Trang xử lý cuối tuần và ngày lễ thế nào?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bạn có thể chọn riêng ngày lễ, Thứ 7 và Chủ nhật. Nếu ngày lương trùng loại ngày nghỉ đang bật, ngày lương sẽ được dời sang ngày tiếp theo không thuộc các loại đã chọn. Mặc định trang bật ngày lễ và Chủ nhật." }
           },
           {
             "@type": "Question",
@@ -203,7 +208,8 @@
         <div class="payday-heading"><p class="payday-eyebrow">Câu hỏi thường gặp</p><h2 id="payday-faq-heading">Về đồng hồ ngày lương</h2></div>
         <div class="payday-faq-list">
           <details><summary>Trang lưu ngày nhận lương ở đâu?</summary><p>Ngày nhận lương và vai trò chỉ được lưu trên trình duyệt của thiết bị hiện tại. Trang không hỏi mức lương hay thông tin tài chính cá nhân.</p></details>
-          <details><summary>Nếu chọn ngày 31 nhưng tháng ngắn hơn thì sao?</summary><p>Đồng hồ tự dùng ngày cuối cùng của tháng đó. Sang tháng có ngày 31, trang tiếp tục dùng ngày 31 như lựa chọn ban đầu.</p></details>
+          <details><summary>Có thể tính ngày lương theo những cách nào?</summary><p>Bạn có thể chọn một ngày cố định trong tháng, nhận lương trước ngày cuối tháng hoặc sau ngày cuối tháng một số ngày. Nếu chọn ngày 29–31 trong tháng ngắn, đồng hồ dùng ngày cuối tháng.</p></details>
+          <details><summary>Trang xử lý cuối tuần và ngày lễ thế nào?</summary><p>Bạn có thể chọn riêng ngày lễ, Thứ 7 và Chủ nhật. Nếu ngày lương trùng loại ngày nghỉ đang bật, ngày lương sẽ được dời sang ngày tiếp theo không thuộc các loại đã chọn. Mặc định trang bật ngày lễ và Chủ nhật.</p></details>
           <details><summary>Các gợi ý có phải tư vấn tài chính không?</summary><p>Không. Nội dung mang tính giải trí và tham khảo chung, không thay thế tư vấn phù hợp với hoàn cảnh cá nhân.</p></details>
         </div>
       </div>
@@ -214,12 +220,20 @@
     <div class="payday-modal-card">
       <div class="payday-modal-heading">
         <div class="payday-modal-icon" aria-hidden="true"><i data-lucide="calendar-days"></i></div>
-        <div><p class="payday-eyebrow">Thiết lập đồng hồ</p><h2 id="payday-modal-title">Bạn thường nhận lương ngày nào?</h2></div>
+        <div><h2 id="payday-modal-title">Bạn thường nhận lương ngày nào?</h2></div>
       </div>
       <p id="payday-modal-copy" class="payday-modal-copy">Chỉ cần chọn một lần, Sắp Tết sẽ ghi nhớ trên thiết bị này.</p>
       <form data-payday-form>
         <input id="salary-day" name="salary-day" type="hidden" required>
-        <fieldset class="payday-day-picker">
+        <fieldset class="payday-rule-picker">
+          <legend>Cách xác định ngày nhận lương</legend>
+          <div class="payday-rule-tabs" role="radiogroup" aria-label="Cách xác định ngày nhận lương">
+            <button type="button" role="radio" aria-checked="true" data-payday-rule-mode="fixed-day"><i data-lucide="calendar-days" aria-hidden="true"></i><span><strong>Ngày cố định</strong><small>Ngày X hằng tháng</small></span></button>
+            <button type="button" role="radio" aria-checked="false" data-payday-rule-mode="before-month-end"><i data-lucide="timer" aria-hidden="true"></i><span><strong>Trước cuối tháng</strong><small>Lùi X ngày theo lịch</small></span></button>
+            <button type="button" role="radio" aria-checked="false" data-payday-rule-mode="after-month-end"><i data-lucide="arrow-right" aria-hidden="true"></i><span><strong>Sau cuối tháng</strong><small>Cộng X ngày theo lịch</small></span></button>
+          </div>
+        </fieldset>
+        <fieldset class="payday-day-picker" data-payday-fixed-panel>
           <legend>Chọn ngày nhận lương hằng tháng</legend>
           <div class="payday-calendar-top">
             <span><i data-lucide="repeat-2" aria-hidden="true"></i> Lặp lại mỗi tháng</span>
@@ -227,10 +241,27 @@
           </div>
           <div class="payday-day-grid" data-salary-day-grid role="group" aria-label="Ngày nhận lương từ ngày 1 đến ngày 31"></div>
         </fieldset>
-        <p class="payday-calendar-help"><i data-lucide="info" aria-hidden="true"></i> Ngày 29–31 sẽ tự chuyển về ngày cuối tháng nếu tháng đó ngắn hơn.</p>
+        <p class="payday-calendar-help" data-payday-fixed-help><i data-lucide="info" aria-hidden="true"></i> Ngày 29–31 sẽ tự chuyển về ngày cuối tháng nếu tháng đó ngắn hơn.</p>
+        <div class="payday-offset-panel" data-payday-offset-panel hidden>
+          <label for="salary-offset" data-payday-offset-label>Nhận lương trước ngày cuối tháng</label>
+          <div class="payday-offset-control"><input id="salary-offset" name="salary-offset" type="number" min="1" max="31" inputmode="numeric" value="1"><strong>ngày</strong></div>
+          <p data-payday-offset-help>Lùi theo ngày lịch trước, sau đó mới kiểm tra ngày nghỉ.</p>
+        </div>
+        <fieldset class="payday-workday-options">
+          <legend>Dời sang ngày làm việc tiếp theo nếu trùng</legend>
+          <div>
+            <label class="payday-workday-toggle" for="salary-skip-holidays"><input id="salary-skip-holidays" name="salary-skip-holidays" type="checkbox" checked><span class="payday-switch" aria-hidden="true"></span><strong>Ngày lễ</strong></label>
+            <label class="payday-workday-toggle" for="salary-skip-saturday"><input id="salary-skip-saturday" name="salary-skip-saturday" type="checkbox"><span class="payday-switch" aria-hidden="true"></span><strong>Thứ 7</strong></label>
+            <label class="payday-workday-toggle" for="salary-skip-sunday"><input id="salary-skip-sunday" name="salary-skip-sunday" type="checkbox" checked><span class="payday-switch" aria-hidden="true"></span><strong>Chủ nhật</strong></label>
+          </div>
+        </fieldset>
+        <div class="payday-rule-preview" data-payday-rule-preview aria-live="polite" aria-busy="true">
+          <i data-lucide="sparkles" aria-hidden="true"></i>
+          <div><strong data-payday-preview-date>Đang tính ngày lương…</strong><p data-payday-preview-note></p><small data-payday-preview-warning hidden>Ngày được tính gần đúng, chưa bao gồm lịch nghỉ bù của năm này.</small></div>
+        </div>
         <div class="payday-modal-actions">
           <button type="button" class="payday-modal-cancel" data-payday-cancel hidden>Huỷ</button>
-          <button type="submit" data-payday-submit disabled>Bắt đầu đếm ngược</button>
+          <button type="submit" data-payday-submit disabled>Bắt đầu chờ lương</button>
         </div>
       </form>
       <small>Không cần nhập mức lương hoặc bất kỳ dữ liệu tài chính nào.</small>
@@ -242,6 +273,7 @@
   <script defer src="/js/analytics.js"></script>
   <script defer src="/js/header-loader.js"></script>
   <script defer src="/js/footer.js"></script>
-  <script defer src="/js/sap-co-luong.js?v=20261001p"></script>
+  <script defer src="/js/vietnam-holidays.js?v=20261003a"></script>
+  <script defer src="/js/sap-co-luong.js?v=20261003a"></script>
 </body>
 </html>
