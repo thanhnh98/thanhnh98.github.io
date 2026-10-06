@@ -1,35 +1,51 @@
-# SEO / GSC checklist sau deploy (Phase 1)
+# Theo dõi thử nghiệm SEO 30 ngày
 
-## Ngay sau khi deploy lên production
+Ngày bắt đầu dự kiến: **05/10/2026**. Chỉ điền ngày triển khai thực tế sau khi bản thay đổi đã lên production.
 
-1. **Rich Results Test**  
-   URL: https://search.google.com/test/rich-results  
-   Kiểm tra: `https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet`  
-   Kiểm tra thêm: `https://saptet.vn/`  
-   Kỳ vọng: **WebPage** / **FAQPage** / **Thing** hợp lệ; **không** có `@type: Event` (site đếm ngược, không phải sự kiện — tránh lỗi thiếu `location`).
+## Mục tiêu và nguyên tắc đánh giá
 
-2. **Google Search Console – URL Inspection**  
-   - `https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet` → Request indexing (**một lần**)  
-   - `https://saptet.vn/` → Request indexing nếu title/meta vừa đổi  
+| Chỉ số | Baseline GSC 28 ngày | Mục tiêu ngày 28 |
+| --- | ---: | ---: |
+| CTR toàn site | 1,7% | ≥ 2,0% |
+| CTR nhóm “còn bao nhiêu ngày…” | 1,4–1,9% | ≥ 2,5% |
+| Click chuẩn hóa theo impression | 100% | ≥ 120% |
+| Vị trí trung bình | 4,1 | Không giảm quá 0,5 bậc |
 
-3. **Sitemap**  
-   GSC → Sitemaps → gửi lại `https://saptet.vn/sitemap.xml`
+Đánh giá CTR ở cùng khoảng vị trí và so sánh theo truy vấn/trang. Không dùng click thô làm kết luận vì nhu cầu Tết tăng theo mùa.
 
-## Theo dõi 14–28 ngày
+## Mốc ghi nhận
 
-Search Console → Hiệu suất → Truy vấn → lọc:
+| Mốc | Ngày dự kiến | Click | Impression | CTR | Vị trí TB | Ghi chú |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| Trước triển khai | 05/10/2026 | 8.913 | 524.854 | 1,7% | 4,1 | Cửa sổ 28 ngày |
+| Ngày 7 | 12/10/2026 |  |  |  |  | Chỉ phát hiện xu hướng/bất thường |
+| Ngày 14 | 19/10/2026 |  |  |  |  | Quyết định giữ hay thử title B |
+| Ngày 28 | 02/11/2026 |  |  |  |  | Kết luận thử nghiệm |
 
-`còn bao nhiêu ngày nữa đến tết`
+Nếu CTR nhóm truy vấn chính không tăng ít nhất 20% ở ngày 14, thử title B: `Đếm Ngược Tết 2027 – Còn Bao Nhiêu Ngày Nữa Đến Tết?`.
 
-| Chỉ số | Baseline (ước lượng) | Mục tiêu ngắn | Mục tiêu tốt |
-|--------|----------------------|---------------|--------------|
-| CTR | ~0.43% | 1–1.5% | 2–3% |
-| Clicks | 11 / ~2.5k imp | +50% | 2×+ |
-| Vị trí TB | (ghi nhận) | ≤8 nếu CTR thấp | ≤5 |
+## Kiểm tra ngay sau deploy
 
-So sánh thêm landing `/con-bao-nhieu-ngay-nua-den-tet` với homepage cho cùng query.
+1. Mở source HTML khi JavaScript bị tắt và xác nhận title, description, H1, câu trả lời hero và WebPage JSON-LD đều có số ngày hiện tại.
+2. Dùng Rich Results Test cho trang món ăn có Recipe; xác nhận `image`, `recipeIngredient` và `recipeInstructions` hợp lệ.
+3. Dùng URL Inspection cho đúng bốn URL ưu tiên, rồi Request Indexing một lần mỗi URL:
+   - `https://saptet.vn/`
+   - `https://saptet.vn/con-bao-nhieu-ngay-nua-den-tet/`
+   - `https://saptet.vn/tet-2027-la-ngay-nao/`
+   - `https://saptet.vn/con-bao-nhieu-ngay-nua-den-giao-thua/`
+4. Gửi lại `https://saptet.vn/sitemap.xml`. Không Request Indexing hàng loạt.
+5. Sau khi URL live đã trả Recipe schema mới, mới bấm **Validate Fix** trong GSC.
+6. Ghi ngày/giờ deploy thực tế vào tài liệu này và dùng cùng bộ lọc GSC ở các mốc 7, 14, 28 ngày.
 
-## Lưu ý
+## Chỉ số kỹ thuật phát hành
 
-- `con-bao-lau-nua-den-tet.html` **không** redirect 301; theo dõi GSC riêng trước khi gộp URL.
-- Số ngày trong HTML được cập nhật bởi workflow `seo-daily-update.yml` (00:00 giờ VN).
+- Lighthouse mobile: LCP ≤ 2,5 giây; CLS ≤ 0,1; không có long task đáng kể.
+- Kiểm tra chiều rộng 360px, 390px và 430px: hero không nhảy, bộ đếm không tràn, CTA không che nội dung.
+- CrUX và báo cáo Core Web Vitals trong GSC chỉ dùng để kết luận lại sau khoảng 28 ngày.
+
+## Giới hạn thử nghiệm
+
+- Không đổi URL hoặc canonical trang chủ trong 14 ngày đầu.
+- Không chỉnh title `/lich-van-nien.html` cho đến khi có dữ liệu truy vấn riêng; tránh cạnh tranh với `/lich-am-hom-nay.html`.
+- Chưa redirect các trang đếm ngược phụ. Sau ngày 28 mới cân nhắc hợp nhất nếu chúng vẫn không có impression riêng.
+- Workflow `seo-daily-update.yml` chịu trách nhiệm cập nhật số ngày trong HTML hằng ngày.

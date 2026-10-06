@@ -45,6 +45,21 @@ test('countdown intent page keeps SEO copy evergreen and single-purpose', () => 
   assert.match(html, /Chia sẻ countdown/);
 });
 
+test('countdown intent page avoids render-blocking third-party assets', () => {
+  const html = read('con-bao-nhieu-ngay-nua-den-tet/index.html');
+  const head = html.slice(0, html.indexOf('</head>')).replace(/<noscript>[\s\S]*?<\/noscript>/g, '');
+  const body = html.slice(html.indexOf('<body'));
+
+  assert.doesNotMatch(html, /unpkg\.com\/lucide/);
+  assert.match(html, /<script src="\/js\/vendor\/lucide-subset\.js[^\"]*" defer><\/script>/);
+  for (const tag of head.match(/<link\b[^>]*fonts\.googleapis\.com[^>]*>/g) || []) {
+    if (/rel="stylesheet"/.test(tag)) assert.match(tag, /media="print" onload="this\.media='all'"/);
+  }
+  for (const tag of body.match(/<script\b[^>]*\bsrc="[^"]+"[^>]*>/g) || []) {
+    assert.match(tag, /\bdefer\b|\basync\b|type="module"/);
+  }
+});
+
 test('header brand is not an extra page h1', () => {
   const header = read('components/header.html');
   const css = read('css/style.css');

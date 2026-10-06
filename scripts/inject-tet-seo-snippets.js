@@ -47,9 +47,37 @@ function setMetaDescription(html, text, label) {
   return replaceOrThrow(html, /(<meta name="description" content=")[^"]*(")/, `$1${escapeHtml(text)}$2`, `${label} meta description`);
 }
 
+function setTitle(html, text, label) {
+  return replaceOrThrow(html, /(<title>)[\s\S]*?(<\/title>)/, `$1${escapeHtml(text)}$2`, `${label} title`);
+}
+
+function setHomepageWebPageSchema(html, payload) {
+  let found = false;
+  const updated = html.replace(
+    /(<script type="application\/ld\+json">\s*)(\{[\s\S]*?\})(\s*<\/script>)/g,
+    (block, open, json, close) => {
+      let schema;
+      try {
+        schema = JSON.parse(json);
+      } catch (_) {
+        return block;
+      }
+      if (schema['@type'] !== 'WebPage' || schema.url !== 'https://saptet.vn/') return block;
+      found = true;
+      schema.name = payload.titleHome.replace(' | Sắp Tết', '');
+      schema.description = payload.metaDescriptionHome;
+      return `${open}${JSON.stringify(schema)}${close}`;
+    },
+  );
+  if (!found) throw new Error('inject-tet-seo: homepage WebPage schema not found');
+  return updated;
+}
+
 const TARGETS = {
   'index.html': (html, payload) => {
+    html = setTitle(html, payload.titleHome, 'index.html');
     html = setMetaDescription(html, payload.metaDescriptionHome, 'index.html');
+    html = setHomepageWebPageSchema(html, payload);
     html = injectHeroToday(html, payload.now);
     return replaceOrThrow(
       html,

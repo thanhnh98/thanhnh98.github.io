@@ -88,6 +88,14 @@ test('fireworks canvas avoids shadowBlur and per-tap bitmap reallocation', () =>
   assert.match(js, /if \(width === win\.innerWidth && height === win\.innerHeight && canvasRatio === ratio\) return;/);
 });
 
+test('fireworks initializes only when the browser is idle', () => {
+  const js = read('js/home-fireworks.js');
+
+  assert.match(js, /requestIdleCallback/);
+  assert.match(js, /setTimeout\([^,]+,\s*1200\)/);
+  assert.doesNotMatch(js, /var start = function \(\) \{ api\.init\(root, root\.document\); \};/);
+});
+
 test('hero info card has a fixed width so web font swaps do not shift it', () => {
   const css = read('css/home-retention.css');
   assert.match(css, /\.countdown-info-card \{\n  width: min\(100%, 25rem\);/);

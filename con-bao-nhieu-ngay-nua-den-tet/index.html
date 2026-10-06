@@ -24,13 +24,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/colors.css">
     <link rel="stylesheet" href="/css/countdown-intent.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+    <script src="/js/vendor/lucide-subset.js?v=20261005" defer></script>
 
     <script type="application/ld+json" id="webpage-schema">
 {
@@ -132,7 +134,7 @@
                         </p>
 
                         <p class="seo-answer-lead" id="seo-days-answer" data-seo="live-days-answer">
-                            <strong>Hôm nay còn 123 ngày nữa đến Tết Nguyên Đán 2027.</strong>
+                            <strong>Hôm nay còn 124 ngày nữa đến Tết Nguyên Đán 2027.</strong>
                         </p>
                         <p class="seo-answer-support">
                             Sắp Tết giúp bạn theo dõi ngày, giờ, phút và giây còn lại trong một màn hình gọn — không cần tự tính lại mỗi lần mở trang.
@@ -377,10 +379,10 @@
 
     <div id="footer-container"></div>
 
-    <script src="/js/analytics.js"></script>
-    <script src="/js/header-loader.js"></script>
-    <script src="/js/footer.js"></script>
-    <script src="/js/icons.js"></script>
+    <script src="/js/analytics.js" defer></script>
+    <script src="/js/header-loader.js" defer></script>
+    <script src="/js/footer.js" defer></script>
+    <script src="/js/icons.js" defer></script>
     <script>
         (function () {
             const TET_DATE = new Date('2027-02-06T00:00:00+07:00');

@@ -3,9 +3,13 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (root) {
     root.HomeFireworks = api;
-    var start = function () { api.init(root, root.document); };
-    if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', start, { once: true });
-    else start();
+    var initialize = function () { api.init(root, root.document); };
+    var schedule = function () {
+      if ('requestIdleCallback' in root) root.requestIdleCallback(initialize, { timeout: 2000 });
+      else root.setTimeout(initialize, 1200);
+    };
+    if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', schedule, { once: true });
+    else schedule();
   }
 })(typeof window !== 'undefined' ? window : null, function () {
   'use strict';

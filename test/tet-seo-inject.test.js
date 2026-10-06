@@ -45,10 +45,27 @@ test('calendar day count follows the Vietnam date, not the runner timezone', () 
 test('meta descriptions carry the day count and fit in 160 characters', () => {
   const payload = buildTetSeoPayload(new Date('2026-12-01T09:00:00+07:00'));
   assert.equal(payload.daysUntilTet, 67);
-  assert.match(payload.metaDescriptionHome, /^Hôm nay còn 67 ngày nữa đến Tết Nguyên Đán 2027/);
+  assert.equal(
+    payload.metaDescriptionHome,
+    'Còn 67 ngày nữa đến Tết Nguyên Đán 2027, vào Thứ Bảy 06/02/2027. Xem đồng hồ đếm ngược theo giờ Việt Nam và lịch Tết.'
+  );
   assert.match(payload.metaDescriptionGiaoThua, /^Hôm nay còn 66 ngày nữa đến đêm giao thừa 2027/);
   assert.ok(payload.metaDescriptionHome.length <= 160);
   assert.ok(payload.metaDescriptionGiaoThua.length <= 160);
+});
+
+test('homepage injection keeps title, snippet and WebPage schema aligned', () => {
+  const payload = buildTetSeoPayload(new Date('2026-12-01T09:00:00+07:00'));
+  const source = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const html = injectTetSeo('index.html', source, payload);
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+  const webpage = schemas.find((schema) => schema['@type'] === 'WebPage');
+
+  assert.match(html, new RegExp(`<title>${payload.titleHome.replace('?', '\\?')}<\\/title>`));
+  assert.match(html, new RegExp(`meta name="description" content="${payload.metaDescriptionHome}"`));
+  assert.equal(webpage.name, payload.titleHome.replace(' | Sắp Tết', ''));
+  assert.equal(webpage.description, payload.metaDescriptionHome);
 });
 
 test('inject is idempotent and pre-renders the real day count', () => {
