@@ -40,10 +40,18 @@ fi
 # Disable browser caching so every reload reflects the newest local files.
 exec python3 - "$PORT_NUMBER" <<'PY'
 import http.server
+import os
 import sys
 
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
+    def translate_path(self, path):
+        # Giống GitHub Pages: /support phục vụ support.html khi không có file/thư mục trùng tên.
+        resolved = super().translate_path(path)
+        if not os.path.exists(resolved) and os.path.isfile(resolved + ".html"):
+            return resolved + ".html"
+        return resolved
+
     def end_headers(self):
         self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
         self.send_header("Pragma", "no-cache")

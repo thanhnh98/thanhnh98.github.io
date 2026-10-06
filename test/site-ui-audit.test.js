@@ -15,13 +15,16 @@ function sitemapFiles() {
         const relative = pathname.replace(/^\//, '');
         if (relative.endsWith('/')) return `${relative}index.html`;
         if (relative.endsWith('.html')) return relative;
-        return `${relative}/index.html`;
+        // GitHub Pages phục vụ /slug từ slug.html hoặc slug/index.html
+        return fs.existsSync(path.join(root, `${relative}.html`)) ? `${relative}.html` : `${relative}/index.html`;
     });
 }
 
 test('every public sitemap page keeps one primary heading and responsive metadata', () => {
     for (const file of sitemapFiles()) {
         const $ = cheerio.load(read(file));
+        // <template> (bản ?lang= của trang đếm ngược) là nội dung inert, không tính vào trang đang hiển thị.
+        $('template').remove();
         assert.equal($('meta[name="viewport"]').length, 1, `${file} needs a viewport meta tag`);
         assert.equal($('h1').length, 1, `${file} should have exactly one h1`);
     }

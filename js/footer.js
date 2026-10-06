@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="/loi-chuc-tet.html">Lời chúc Tết</a>
                         <a href="/may-tinh-li-xi.html">Máy tính lì xì</a>
                         <a href="/tro-choi-tet.html">Trò chơi Tết</a>
+                        <a href="/images-metadata/">Thông số ảnh</a>
                     </nav>
                     <nav class="home-footer-links" aria-label="Khám phá Sắp Tết">
                         <h2>Khám phá</h2>
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="home-footer-bottom">
                     <span>© 2026 Sắp Tết · Phát triển bởi TLife</span>
-                    <nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a></nav>
+                    <nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
                 </div>
             </div>
         </footer>`;
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const script = document.createElement('script');
-        script.src = 'https://unpkg.com/lucide@latest';
+        script.src = 'https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js';
         script.async = true;
         script.setAttribute('data-lucide-loader', 'true');
         script.addEventListener('load', renderIcons, { once: true });

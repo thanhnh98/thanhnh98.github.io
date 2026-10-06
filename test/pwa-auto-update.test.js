@@ -53,4 +53,10 @@ test('all required precache files exist', () => {
   ]) {
     assert.ok(!urls.includes(gameOnlyAsset), `${gameOnlyAsset} must load only after opening the game page`);
   }
+
+  // Trang chủ không có âm thanh; ảnh demo app được lazy-load — không precache để không tranh băng thông lúc tải trang.
+  for (const url of urls) {
+    assert.doesNotMatch(url, /\.(mp3|wav|ogg)$/, `${url}: homepage precache must not include audio`);
+    assert.doesNotMatch(url, /app-demo-/, `${url}: lazy app demo images must not be precached`);
+  }
 });

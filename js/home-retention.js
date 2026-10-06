@@ -227,58 +227,68 @@
     return new Intl.DateTimeFormat('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' }).format(localDate);
   }
 
-  function renderDateCard(now) {
-    var parts = getVietnamParts(now);
-    var localDate = new Date(parts.year, parts.month - 1, parts.day, 12);
-    var solarText = formatToday(parts);
-    setText('today-solar-date', solarText);
-    setText('today-date', solarText);
-    if (typeof window.calculateLunarDate === 'function') {
-      try {
-        var lunar = window.calculateLunarDate(localDate);
-        var lunarText = 'Âm lịch: ' + lunar.day + '/' + lunar.month + '/' + lunar.year;
-        setText('today-lunar-date', lunarText);
-        setText('today-lunar', '(' + lunarText + ')');
-      } catch (error) {
-        setText('today-lunar-date', 'Xem lịch âm hôm nay');
-        setText('today-lunar', 'Xem lịch âm');
-      }
-    }
-  }
-
-  function getEventsForDate(date) {
+  function getEventsForDate(date, eventsData, calculateLunarDate) {
     var events = [];
-    var data = window.EVENTS_DATA;
-    if (!data) return events;
-    var solar = data.getSolarEventMap?.()[String(date.getMonth() + 1) + '-' + String(date.getDate())] || [];
+    if (!eventsData) return events;
+    var solar = eventsData.getSolarEventMap?.()[String(date.getMonth() + 1) + '-' + String(date.getDate())] || [];
     solar.forEach(function (item) {
       if (!events.some(function (event) { return event.name === item.name; })) events.push(item);
     });
-    if (typeof window.calculateLunarDate === 'function') {
+    if (typeof calculateLunarDate === 'function') {
       try {
-        var lunar = window.calculateLunarDate(date);
-        var lunarEvent = data.getLunarEventMap?.()[String(lunar.month) + '-' + String(lunar.day)];
+        var lunar = calculateLunarDate(date);
+        var lunarEvent = eventsData.getLunarEventMap?.()[String(lunar.month) + '-' + String(lunar.day)];
         if (lunarEvent && !events.some(function (event) { return event.name === lunarEvent.name; })) events.push(lunarEvent);
       } catch (error) {}
     }
     return events;
   }
 
-  function renderNearestEvent(now) {
+  // Nội dung thẻ "Hôm nay" của hero. Hàm thuần: scripts/inject-tet-seo-snippets.js dùng lại để pre-render
+  // đúng chuỗi này vào index.html, nên JS điền lại không làm đổi kích thước (CLS).
+  function getHeroToday(now, eventsData, calculateLunarDate) {
     var parts = getVietnamParts(now);
-    var cursor = new Date(parts.year, parts.month - 1, parts.day, 12);
+    var localDate = new Date(parts.year, parts.month - 1, parts.day, 12);
+    var result = { solarText: formatToday(parts), lunarText: null, nearestEvent: null };
+
+    if (typeof calculateLunarDate === 'function') {
+      try {
+        var lunar = calculateLunarDate(localDate);
+        result.lunarText = 'Âm lịch: ' + lunar.day + '/' + lunar.month + '/' + lunar.year;
+      } catch (error) {}
+    }
+
+    var cursor = new Date(localDate);
     for (var offset = 0; offset <= 370; offset += 1) {
-      var events = getEventsForDate(cursor);
+      var events = getEventsForDate(cursor, eventsData, calculateLunarDate);
       if (events.length) {
-        setText('nearest-event-name', events[0].name);
         var countdownText = offset === 0 ? 'Diễn ra hôm nay' : 'Còn ' + offset + ' ngày';
-        setText('nearest-event-countdown', countdownText);
-        setText('nearest-event-text', 'Sắp tới: ' + events[0].name + ' · ' + countdownText);
-        var heroEventLink = document.getElementById('nearest-event-link');
-        if (heroEventLink) heroEventLink.hidden = false;
-        return;
+        result.nearestEvent = {
+          name: events[0].name,
+          countdownText: countdownText,
+          text: 'Sắp tới: ' + events[0].name + ' · ' + countdownText
+        };
+        break;
       }
       cursor.setDate(cursor.getDate() + 1);
+    }
+    return result;
+  }
+
+  function renderHeroToday(now) {
+    var today = getHeroToday(now, window.EVENTS_DATA, window.calculateLunarDate);
+    setText('today-solar-date', today.solarText);
+    setText('today-date', today.solarText);
+    if (typeof window.calculateLunarDate === 'function') {
+      setText('today-lunar-date', today.lunarText || 'Xem lịch âm hôm nay');
+      setText('today-lunar', today.lunarText ? '(' + today.lunarText + ')' : 'Xem lịch âm');
+    }
+    if (today.nearestEvent) {
+      setText('nearest-event-name', today.nearestEvent.name);
+      setText('nearest-event-countdown', today.nearestEvent.countdownText);
+      setText('nearest-event-text', today.nearestEvent.text);
+      var heroEventLink = document.getElementById('nearest-event-link');
+      if (heroEventLink) heroEventLink.hidden = false;
     }
   }
 
@@ -464,9 +474,18 @@
     });
   }
 
+  // Đăng ký sau khi trang tải xong và trình duyệt rảnh: precache của SW không tranh băng thông với LCP.
   function registerServiceWorker() {
     if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
-    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(function () {});
+    var register = function () {
+      navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(function () {});
+    };
+    var whenIdle = function () {
+      if ('requestIdleCallback' in window) window.requestIdleCallback(register, { timeout: 5000 });
+      else window.setTimeout(register, 2000);
+    };
+    if (document.readyState === 'complete') whenIdle();
+    else window.addEventListener('load', whenIdle, { once: true });
   }
 
   function getBrowserStorage() {
@@ -491,8 +510,7 @@
 
     updateCountdown();
     window.setInterval(updateCountdown, 1000);
-    renderDateCard(now);
-    renderNearestEvent(now);
+    renderHeroToday(now);
     renderDailyCard(content, result, storage);
     bindFullCardActions();
     configureSmartAppButtons(navigator);
@@ -522,6 +540,7 @@
     updateVisitState: updateVisitState,
     getHomePhase: getHomePhase,
     getDailyContent: getDailyContent,
+    getHeroToday: getHeroToday,
     daysBetweenKeys: daysBetweenKeys,
     detectAppPlatform: detectAppPlatform
   };

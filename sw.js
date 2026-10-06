@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1789459068004-1ba82cc';
+const CACHE_NAME = 'sap-tet-v1.0.1791311186675-9b8e2e1';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
@@ -37,16 +37,12 @@ const urlsToCache = [
   '/js/home-retention.js',
   '/js/home-shop-preview.js',
   '/js/home-fireworks.js',
-  '/assets/sounds/noichu_background.mp3',
+  '/js/vendor/lucide-subset.js',
   '/data/events-data.js',
   '/images/floating-peach-blossom.svg',
   '/images/tet-background-pattern.svg',
   '/images/tet-corner-decoration.svg',
-  '/assets/images/ic_app.png',
-  '/assets/images/app-demo-countdown.webp',
-  '/assets/images/app-demo-cooking.webp',
-  '/assets/images/app-demo-home.webp',
-  '/assets/images/app-demo-widget.webp',
+  '/assets/images/ic_app-208.webp',
   '/assets/images/tet-runner/horse-mascot.webp',
   '/assets/images/google_play.png',
   '/assets/images/apple_store.png',

@@ -1947,16 +1947,6 @@ main {
     100% { transform: translateY(0px) rotate(360deg) scale(1); opacity: 0.4; }
 }
 
-@keyframes titleGlow {
-    0% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); }
-    100% { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.3); }
-}
-
-@keyframes timerGlow {
-    0% { box-shadow: 0 10px 30px var(--color-timer-shadow), 0 0 20px rgba(255, 215, 0, 0.3); }
-    100% { box-shadow: 0 10px 30px var(--color-timer-shadow), 0 0 30px rgba(255, 215, 0, 0.5); }
-}
-
 @keyframes sparkle {
     0%, 100% { opacity: 0.7; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.2); }
@@ -2235,10 +2225,10 @@ main {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    /* Glow tĩnh: animate text-shadow buộc vẽ lại H1 (phần tử LCP) mỗi khung hình trên luồng chính. */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2), 0 0 14px rgba(255, 215, 0, 0.2);
     position: relative;
     z-index: 2;
-    animation: titleGlow 3s ease-in-out infinite alternate;
     line-height: 1.2;
 }
 
@@ -2441,7 +2431,8 @@ main {
     padding: 3rem 2.5rem;
     border-radius: 25px;
     text-align: center;
-    box-shadow: 0 10px 30px var(--color-timer-shadow), 0 0 20px rgba(255, 215, 0, 0.3);
+    /* Glow tĩnh: animate box-shadow (timerGlow cũ) vẽ lại 4 ô mỗi khung hình, làm chậm phản hồi khi bấm. */
+    box-shadow: 0 10px 30px var(--color-timer-shadow), 0 0 25px rgba(255, 215, 0, 0.4);
     border: 4px solid var(--color-timer-border);
     transition: all 0.4s ease;
     min-width: 160px;
@@ -2452,7 +2443,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: timerGlow 2s ease-in-out infinite alternate;
     z-index: 15;
 }
 
@@ -7783,26 +7773,24 @@ footer::after {
     animation-duration: 2.4s;
 }
 
+/* Chỉ opacity + transform (GPU). Animate filter: drop-shadow buộc vẽ lại 10 ngôi sao mỗi khung hình trên luồng chính;
+   drop-shadow giữ cố định trên .star-bling. */
 @keyframes starTwinkle {
     0%, 100% {
         opacity: 0.3;
         transform: scale(0.8) rotate(0deg);
-        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4));
     }
     25% {
         opacity: 0.7;
         transform: scale(1.1) rotate(90deg);
-        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
     }
     50% {
         opacity: 1;
         transform: scale(1.3) rotate(180deg);
-        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
     }
     75% {
         opacity: 0.8;
         transform: scale(1.1) rotate(270deg);
-        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
     }
 }
 
@@ -7951,12 +7939,13 @@ footer::after {
     animation: timerShine 3s ease-in-out infinite;
 }
 
+/* transform chạy trên GPU; animate `left` như trước buộc tính lại layout mỗi khung hình. */
 @keyframes timerShine {
     0% {
-        left: -100%;
+        transform: translateX(0);
     }
     100% {
-        left: 100%;
+        transform: translateX(200%);
     }
 }
 

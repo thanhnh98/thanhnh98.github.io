@@ -5,6 +5,7 @@
   "main": "crawl-tet-articles.js",
   "scripts": {
     "build:tet-runner": "esbuild js/tet-runner-three.js --bundle --format=esm --minify --outfile=js/tet-runner-three.bundle.js",
+    "build:icons": "node scripts/build-lucide-subset.js",
     "crawl": "node crawl-tet-articles.js",
     "crawl:dev": "node --inspect crawl-tet-articles.js",
     "install-deps": "npm install",
@@ -13,7 +14,10 @@
     "update-version": "node scripts/update-version.js",
     "generate-tin-tuc-clean-urls": "node scripts/generate-tin-tuc-clean-urls.js",
     "generate-events": "node scripts/generate-event-pages.js",
+    "generate-holidays": "node scripts/generate-holiday-pages.js",
+    "render-holiday-og": "node scripts/render-holiday-og.js",
     "inject-tet-seo": "node scripts/inject-tet-seo-snippets.js",
+    "inject-lunar-today": "node scripts/inject-lunar-today.js",
     "predeploy": "npm run build:tet-runner && npm run update-version",
     "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
   },

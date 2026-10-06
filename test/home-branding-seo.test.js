@@ -11,21 +11,19 @@ function getJsonLdObjects(html) {
     .map((match) => JSON.parse(match[1].trim()));
 }
 
-test('homepage hero is compact, branded and links to the countdown intent page', () => {
+test('homepage hero leads with the highest-impression countdown question', () => {
   const html = read('index.html');
 
-  assert.match(
-    html,
-    /<title>(\{\{SEO_TITLE\}\}|Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán)<\/title>/
-  );
+  assert.match(html, /<title>Còn Bao Nhiêu Ngày Nữa Đến Tết 2027\? \| Sắp Tết<\/title>/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.match(html, /class="countdown-hero-title"/);
-  assert.match(html, /Đếm ngược đến Tết <span id="tet-year">/);
+  assert.match(html, /Còn bao nhiêu ngày nữa đến Tết <span id="tet-year">2027<\/span>\?/);
+  assert.match(html, /Đếm ngược Tết Nguyên Đán Đinh Mùi/);
   assert.match(html, /class="countdown-info-card"/);
   assert.match(html, /class="timer-box"/);
   assert.match(html, /id="countdown-timer"/);
   assert.match(html, /id="share-countdown-btn"/);
-  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet"/);
+  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet\/"/);
   assert.doesNotMatch(html, /class="countdown-detail-cta"/);
 });
 
@@ -73,6 +71,19 @@ test('homepage keeps three crawlable FAQs and useful internal links', () => {
   assert.match(html, /href="\/tro-choi-tet\.html"/);
   assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
   assert.match(html, /href="\/su-kien-quan-trong\.html"/);
+  assert.match(html, /href="\/tet-2027-la-ngay-nao\/"[^>]*>Tết 2027 là ngày nào\?/);
+  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-giao-thua\/"[^>]*>đếm ngược giao thừa 2027/);
+});
+
+test('giao thua landing links back to the homepage and two sibling intents', () => {
+  const html = read('con-bao-nhieu-ngay-nua-den-giao-thua/index.html');
+  const clusterLinks = [
+    '/con-bao-nhieu-ngay-nua-den-tet/',
+    '/tet-2027-la-ngay-nao/',
+  ];
+
+  assert.match(html, /href="\/"[^>]*>Trang chủ Sắp Tết<\/a>/);
+  for (const href of clusterLinks) assert.match(html, new RegExp(`href="${href}"`));
 });
 
 test('homepage WebSite schema names the brand without generic keyword aliases', () => {
@@ -99,7 +110,7 @@ test('intent landing page has self-canonical, FAQ visible and FAQPage schema', (
   const html = read('con-bao-nhieu-ngay-nua-den-tet/index.html');
   assert.match(
     html,
-    /<link rel="canonical" href="https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet">/
+    /<link rel="canonical" href="https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet\/">/
   );
   assert.match(
     html,
@@ -130,6 +141,24 @@ test('intent landing page has self-canonical, FAQ visible and FAQPage schema', (
   assert.ok(firstFaqAnswer && firstFaqAnswer.includes('ngày'));
 });
 
+test('Tet date landing answers the date intent with a timeline and matching FAQ schema', () => {
+  const html = read('tet-2027-la-ngay-nao/index.html');
+  const schemas = getJsonLdObjects(html);
+  const faq = schemas.find((item) => item['@type'] === 'FAQPage');
+
+  assert.match(html, /<title>Tết 2027 Là Ngày Nào\? Mùng 1, Giao Thừa &amp; Lịch Tết<\/title>/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/saptet\.vn\/tet-2027-la-ngay-nao\/">/);
+  for (const date of ['30/01/2027', '05/02/2027', '06/02/2027', '07/02/2027', '08/02/2027']) {
+    assert.match(html, new RegExp(date.replaceAll('/', '\\/')));
+  }
+  assert.equal((html.match(/<details\b[^>]*class="intent-faq-item"/g) || []).length, 3);
+  assert.ok(faq);
+  assert.equal(faq.mainEntity.length, 3);
+  assert.match(html, /href="\/"[^>]*>Trang chủ<\/a>/);
+  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-tet\/"/);
+  assert.match(html, /href="\/con-bao-nhieu-ngay-nua-den-giao-thua\/"/);
+});
+
 test('loi chuc tet page is indexable and supports the wishes CTA', () => {
   const html = read('loi-chuc-tet.html');
   const header = read('components/header.html');
@@ -158,12 +187,16 @@ test('tro choi tet page is a two-game hub', () => {
   assert.match(css, /grid-template-columns:\s*repeat\(2,/);
 });
 
-test('homepage title and meta use brand-first copy from inject payload', () => {
+test('homepage title and meta answer the highest-impression query', () => {
   const { buildTetSeoPayload } = require('../scripts/lib/tet-seo-dates');
   const payload = buildTetSeoPayload(new Date('2026-05-19T12:00:00+07:00'));
 
-  assert.equal(payload.titleHome, 'Sắp Tết 2027 – Đếm Ngược Tết Nguyên Đán');
-  assert.match(payload.metaDescriptionHome, /Đếm ngược Tết Nguyên Đán 2027 theo giờ Việt Nam/);
+  assert.equal(payload.titleHome, 'Còn Bao Nhiêu Ngày Nữa Đến Tết 2027? | Sắp Tết');
+  assert.equal(
+    payload.metaDescriptionHome,
+    `Còn ${payload.daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027, vào Thứ Bảy 06/02/2027. Xem đồng hồ đếm ngược theo giờ Việt Nam và lịch Tết.`
+  );
+  assert.ok(payload.metaDescriptionHome.length <= 160);
   assert.match(payload.landingDetailLine, /Tết Nguyên Đán 2027 rơi vào/);
   assert.doesNotMatch(payload.landingDetailLine, /Còn \d+ ngày/);
 });
