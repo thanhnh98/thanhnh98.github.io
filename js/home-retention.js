@@ -348,52 +348,48 @@
     showToast.timer = window.setTimeout(function () { toast.hidden = true; }, 2600);
   }
 
-  function loadHtml2Canvas() {
-    if (window.html2canvas) return Promise.resolve(window.html2canvas);
-    return new Promise(function (resolve, reject) {
-      var existing = document.querySelector('script[data-home-html2canvas]');
-      if (existing) {
-        existing.addEventListener('load', function () { resolve(window.html2canvas); }, { once: true });
-        existing.addEventListener('error', reject, { once: true });
-        return;
-      }
-      var script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-      script.async = true;
-      script.setAttribute('data-home-html2canvas', 'true');
-      script.addEventListener('load', function () { resolve(window.html2canvas); }, { once: true });
-      script.addEventListener('error', reject, { once: true });
-      document.head.appendChild(script);
-    });
-  }
-
   function canvasToBlob(canvas) {
     return new Promise(function (resolve) { canvas.toBlob(resolve, 'image/png', 0.94); });
   }
 
+  var countdownImageFile = null;
+  var countdownImageUrl = null;
+  var capturePending = false;
   async function shareCountdown() {
-    var shareData = { title: document.title, text: 'Cùng mình đếm ngược đến Tết Nguyên Đán 2027!', url: window.location.href };
+    var dialog = document.getElementById('countdown-share-dialog');
+    if (!dialog || capturePending) return;
+    var preview = document.getElementById('countdown-share-preview');
+    var status = document.getElementById('countdown-share-status');
+    var share = document.getElementById('countdown-share-image');
+    var download = document.getElementById('countdown-download-image');
+    dialog.showModal();
+    preview.hidden = true;
+    share.disabled = download.disabled = true;
+    status.textContent = 'Đang tạo ảnh đếm ngược…';
+    capturePending = true;
     window.webAnalytics?.trackShare('homepage', 'countdown');
-    if (navigator.share) {
-      try { await navigator.share(shareData); return; } catch (error) { if (error && error.name === 'AbortError') return; }
-    }
     try {
-      var capture = await loadHtml2Canvas();
-      var card = document.getElementById('countdown-share-card') || document.getElementById('countdown-content-wrapper');
-      var canvas = await capture(card, { backgroundColor: '#701a2f', scale: Math.min(window.devicePixelRatio || 1, 2) });
-      var blob = await canvasToBlob(canvas);
-      if (blob) {
-        var url = URL.createObjectURL(blob);
-        var download = document.createElement('a');
-        download.href = url;
-        download.download = 'sap-tet-2027.png';
-        download.click();
-        window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-        showToast('Đã tải ảnh countdown');
-        return;
+      if (document.fonts) {
+        await Promise.race([
+          Promise.all([document.fonts.load('900 270px Nunito'), document.fonts.load('700 28px Nunito')]).catch(function () {}),
+          new Promise(function (resolve) { window.setTimeout(resolve, 1800); })
+        ]);
       }
-    } catch (error) {}
-    try { await navigator.clipboard.writeText(window.location.href); showToast('Đã sao chép liên kết'); } catch (error) { showToast('Hãy sao chép liên kết trên thanh địa chỉ'); }
+      var imageData = window.HomeShareImage.getData(new Date());
+      var canvas = window.HomeShareImage.draw(document.createElement('canvas'), imageData);
+      var blob = await canvasToBlob(canvas);
+      if (!blob) throw new Error('Empty capture');
+      if (countdownImageUrl) URL.revokeObjectURL(countdownImageUrl);
+      countdownImageFile = new File([blob], 'sap-tet-' + imageData.year + '.png', { type: 'image/png' });
+      countdownImageUrl = URL.createObjectURL(blob);
+      preview.src = countdownImageUrl;
+      preview.hidden = false;
+      download.disabled = false;
+      share.disabled = !(navigator.share && navigator.canShare && navigator.canShare({ files: [countdownImageFile] }));
+      status.textContent = share.disabled ? 'Trình duyệt này chưa hỗ trợ chia sẻ ảnh. Bạn có thể tải ảnh xuống.' : 'Ảnh đã sẵn sàng để chia sẻ hoặc tải xuống.';
+    } catch (error) {
+      status.textContent = 'Chưa tạo được ảnh. Hãy đóng cửa sổ và thử lại.';
+    } finally { capturePending = false; }
   }
 
   function bindFullCardActions() {
@@ -419,6 +415,8 @@
     document.querySelectorAll('[data-home-smart-app]').forEach(function (link) {
       link.setAttribute('href', destination);
       link.setAttribute('data-home-app-platform', platform);
+      if (link.dataset.homeSmartAppReady === 'true') return;
+      link.dataset.homeSmartAppReady = 'true';
       if (platform === 'web') {
         link.removeAttribute('target');
         link.removeAttribute('rel');
@@ -435,6 +433,10 @@
         link.setAttribute('aria-label', 'Mở ' + storeName + ' của Sắp Tết');
         var tooltip = link.querySelector('.home-floating-app-tooltip');
         if (tooltip) tooltip.textContent = platform === 'web' ? 'Tải ứng dụng' : 'Mở ' + storeName;
+      }
+      if (link.classList.contains('home-header-app')) {
+        var headerStoreName = platform === 'android' ? 'Google Play' : platform === 'ios' ? 'App Store' : 'phần tải ứng dụng';
+        link.setAttribute('aria-label', 'Mở ' + headerStoreName + ' của Sắp Tết');
       }
     });
     return platform;
@@ -463,13 +465,13 @@
         window.webAnalytics?.trackDownloadClick(link.getAttribute('data-home-app-download'), 'home_app_showcase');
       });
     });
-    document.querySelectorAll('[data-home-smart-app]').forEach(function (link) {
-      link.addEventListener('click', function () {
-        var source = link.getAttribute('data-home-smart-app-source') || 'homepage';
-        window.webAnalytics?.trackImportantAction(source === 'floating' ? 'home_floating_app_open' : 'home_footer_app_open', {
-          destination: link.getAttribute('href') || '#app-intro',
-          platform: link.getAttribute('data-home-app-platform') || 'web'
-        });
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest('[data-home-smart-app]');
+      if (!link) return;
+      var source = link.getAttribute('data-home-smart-app-source') || 'homepage';
+      window.webAnalytics?.trackImportantAction(source === 'floating' || source === 'header' ? 'home_floating_app_open' : 'home_footer_app_open', {
+        destination: link.getAttribute('href') || '#app-intro',
+        platform: link.getAttribute('data-home-app-platform') || 'web'
       });
     });
   }
@@ -514,6 +516,7 @@
     renderDailyCard(content, result, storage);
     bindFullCardActions();
     configureSmartAppButtons(navigator);
+    document.addEventListener('home-header-ready', function () { configureSmartAppButtons(navigator); });
 
     if (result.storageAvailable) {
       var streak = document.getElementById('home-streak');
@@ -524,6 +527,22 @@
     trackDailyCardView({ item_id: content.id, phase: phase, streak: result.storageAvailable ? result.state.visitStreak : 0 });
 
     document.getElementById('share-countdown-btn')?.addEventListener('click', shareCountdown);
+    document.addEventListener('click', function (event) {
+      if (event.target.closest('.home-header-share')) shareCountdown();
+    });
+    document.getElementById('countdown-share-close')?.addEventListener('click', function () { document.getElementById('countdown-share-dialog').close(); });
+    document.getElementById('countdown-share-image')?.addEventListener('click', async function () {
+      if (!countdownImageFile) return;
+      try { await navigator.share({ files: [countdownImageFile], title: 'Sắp Tết', text: 'Cùng mình đếm ngược đến Tết! https://saptet.vn/' }); }
+      catch (error) { if (error.name !== 'AbortError') showToast('Không chia sẻ được ảnh. Hãy thử tải xuống.'); }
+    });
+    document.getElementById('countdown-download-image')?.addEventListener('click', function () {
+      if (!countdownImageFile || !countdownImageUrl) return;
+      var link = document.createElement('a');
+      link.href = countdownImageUrl;
+      link.download = countdownImageFile.name;
+      link.click();
+    });
     bindAnalytics();
     registerServiceWorker();
   }

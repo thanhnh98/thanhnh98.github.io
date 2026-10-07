@@ -27,7 +27,7 @@ test('homepage hero leads with the highest-impression countdown question', () =>
   assert.doesNotMatch(html, /class="countdown-detail-cta"/);
 });
 
-test('homepage keeps sharing below the full-screen hero greeting', () => {
+test('homepage restores a full viewport mobile countdown with reserved bottom space', () => {
   const html = read('index.html');
   const css = read('css/home-retention.css');
   const heroStart = html.indexOf('<section id="countdown"');
@@ -40,8 +40,10 @@ test('homepage keeps sharing below the full-screen hero greeting', () => {
   assert.ok(shareButton > heroEnd && shareButton < todaySection);
   assert.match(css, /#countdown-timer \.timer-box[\s\S]*?min-height:\s*clamp\(174px,\s*19vw,\s*222px\)/);
   assert.match(css, /\.countdown-content-wrapper[\s\S]*?justify-content:\s*space-between/);
+  assert.doesNotMatch(html, /class="home-hero-app-promo"/);
+  assert.match(read('js/header-loader.js'), /className = 'home-header-app'/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?#countdown-timer[\s\S]*?grid-template-columns:\s*repeat\(2,/);
-  assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-content-wrapper\s*\{\s*padding:\s*0\.65rem 0\.25rem/);
+  assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-section\s*\{[^}]*height:\s*calc\(100svh - 66px\)/);
 });
 
 test('homepage stays compact with seven focused content sections', () => {

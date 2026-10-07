@@ -86,6 +86,24 @@ class HeaderLoader {
             }
             
             // Set active state
+            if (document.getElementById('countdown-share-dialog')) {
+                const menu = document.querySelector('.mobile-menu-toggle');
+                const share = document.createElement('button');
+                share.type = 'button';
+                share.className = 'home-header-share';
+                share.setAttribute('aria-label', 'Chia sẻ ảnh đếm ngược Tết');
+                share.setAttribute('aria-haspopup', 'dialog');
+                share.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg>';
+                const app = document.createElement('a');
+                app.className = 'home-header-app';
+                app.href = '#app-intro';
+                app.setAttribute('data-home-smart-app', '');
+                app.setAttribute('data-home-smart-app-source', 'header');
+                app.setAttribute('aria-label', 'Mở hoặc tải ứng dụng Sắp Tết');
+                app.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>';
+                menu?.before(app, share);
+                document.dispatchEvent(new CustomEvent('home-header-ready'));
+            }
             this.setActiveNavItem();
             
             // Add navigation event listeners
@@ -122,8 +140,8 @@ class HeaderLoader {
             return;
         }
 
-        // Tải sau khi trang load xong và trình duyệt rảnh: ~200KB JS quảng cáo không tranh băng thông/CPU với
-        // nội dung chính (LCP) và phản hồi tap đầu tiên (INP). Các lệnh adsbygoogle.push() trước đó vẫn được xếp hàng.
+        // The async script serves both manual units and Auto ads. Other pages
+        // wait for idle; the short-visit homepage starts earlier below.
         const inject = () => {
             if (document.querySelector(`script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]`)) return;
             const script = document.createElement('script');
@@ -132,6 +150,12 @@ class HeaderLoader {
             script.src = scriptSrc;
             document.head.appendChild(script);
         };
+        // Homepage visitors often leave after reading the countdown. Start the async
+        // request after HTML parsing, without waiting for all images or idle time.
+        if (document.body?.hasAttribute('data-home-manual-ads')) {
+            if (['saptet.vn', 'www.saptet.vn'].includes(window.location.hostname)) inject();
+            return;
+        }
         const whenIdle = () => {
             if ('requestIdleCallback' in window) window.requestIdleCallback(inject, { timeout: 3000 });
             else window.setTimeout(inject, 1500);

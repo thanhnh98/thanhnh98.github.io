@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css?v=20260830">
     <link rel="stylesheet" href="css/pwa.css">
-  <link rel="stylesheet" href="css/home-retention.css?v=20260925">
+  <link rel="stylesheet" href="css/home-retention.css?v=20261007-header-actions">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -60,7 +60,7 @@
       })(window, document, 'clarity', 'script', 'rw42vujbmw');
     </script>
   </head>
-  <body>
+  <body data-home-manual-ads="off">
     <div id="header-container">
       <header class="home-header-fallback">
         <div class="container">
@@ -100,6 +100,13 @@
           </div>
         </div>
       </section>
+
+      <aside id="home-countdown-ad" class="home-countdown-ad" aria-label="Quảng cáo">
+        <span class="home-ad-label">Quảng cáo</span>
+        <div class="home-ad-space">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3395045728500314" data-ad-slot="5131370387" data-ad-format="rectangle" data-full-width-responsive="false"></ins>
+        </div>
+      </aside>
 
       <div class="home-share-strip" aria-label="Chia sẻ đếm ngược Tết">
         <div class="container">
@@ -283,10 +290,11 @@
           <nav class="home-footer-links" aria-label="Khám phá Sắp Tết"><h2>Khám phá</h2><a href="/tin-tuc/">Blog Sắp Tết</a><a href="/cua-hang.html">Cửa hàng Tết</a><a href="/su-kien-quan-trong.html">Sự kiện quan trọng</a><a href="/ung-dung.html">Giới thiệu ứng dụng</a></nav>
           <div class="home-footer-community"><h2>Kết nối</h2><p>Theo dõi Sắp Tết để nhận nội dung và cập nhật mới.</p><div class="home-footer-socials"><a href="https://www.facebook.com/saptet2027/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Sắp Tết"><img src="assets/images/facebook.png" alt="" width="24" height="24"></a><a href="https://www.tiktok.com/@sap.tet" target="_blank" rel="noopener noreferrer" aria-label="TikTok Sắp Tết"><img src="assets/images/tiktok.png" alt="" width="24" height="24"></a><a href="mailto:tlife1001@gmail.com" aria-label="Email Sắp Tết"><i data-lucide="mail" aria-hidden="true"></i></a></div></div>
         </div>
-        <div class="home-footer-bottom"><span>© 2026 Sắp Tết · Phát triển bởi TLife</span><nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a></nav></div>
+        <div class="home-footer-bottom"><span>© 2026 Sắp Tết · Phát triển bởi <a href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span><nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a></nav></div>
       </div>
     </footer>
 
+    <div id="home-inline-controls" class="home-inline-controls">
     <button id="home-fireworks-trigger" class="home-fireworks-trigger" type="button" aria-label="Bắn pháo hoa đón Tết">
       <span class="home-fireworks-icon" aria-hidden="true">
         <svg viewBox="0 0 64 64" focusable="false">
@@ -305,6 +313,7 @@
       <span class="home-floating-app-badge" aria-hidden="true"><i data-lucide="download"></i></span>
       <span class="home-floating-app-tooltip" aria-hidden="true">Tải ứng dụng</span>
     </a>
+    </div>
     <div id="home-fireworks-reward-modal" class="home-fireworks-reward-modal" role="dialog" aria-modal="true" aria-labelledby="home-fireworks-reward-title" hidden>
       <div class="home-fireworks-reward-card">
         <span class="home-fireworks-reward-rays" aria-hidden="true"></span>
@@ -317,12 +326,20 @@
       </div>
     </div>
     <div id="home-toast" class="home-toast" role="status" aria-live="polite" hidden></div>
+    <dialog id="countdown-share-dialog" class="countdown-share-dialog" aria-labelledby="countdown-share-title">
+      <div class="countdown-share-heading"><h2 id="countdown-share-title">Chia sẻ không khí Tết</h2><button type="button" id="countdown-share-close" aria-label="Đóng">×</button></div>
+      <p id="countdown-share-status" role="status">Đang tạo ảnh đếm ngược…</p>
+      <img id="countdown-share-preview" alt="Ảnh thông tin và bộ đếm ngày đến Tết" hidden>
+      <div class="countdown-share-actions"><button id="countdown-share-image" type="button" disabled>Chia sẻ ảnh</button><button id="countdown-download-image" type="button" disabled>Tải xuống</button></div>
+    </dialog>
     <script src="js/vendor/lucide-subset.js?v=20260925" defer></script>
-    <script src="js/header-loader.js" defer></script>
+    <script src="js/header-loader.js?v=20261007-download-button" defer></script>
     <script src="js/analytics.js" defer></script>
+    <script src="js/home-ads.js?v=20261007" defer></script>
     <script src="js/lunar-calendar.js" defer></script>
     <script src="data/events-data.js" defer></script>
-    <script src="js/home-retention.js?v=20260828" defer></script>
+    <script src="js/home-share-image.js?v=20261007-tet" defer></script>
+    <script src="js/home-retention.js?v=20261007-header-app" defer></script>
     <script src="js/home-shop-preview.js?v=20260828" defer></script>
     <script src="js/home-fireworks.js?v=20260925" defer></script>
     <script>document.addEventListener('DOMContentLoaded', function () { if (window.lucide) window.lucide.createIcons(); });</script>

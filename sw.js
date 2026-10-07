@@ -35,6 +35,8 @@ const urlsToCache = [
   '/js/analytics.js',
   '/js/lunar-calendar.js',
   '/js/home-retention.js',
+  '/js/home-ads.js',
+  '/js/home-share-image.js',
   '/js/home-shop-preview.js',
   '/js/home-fireworks.js',
   '/js/vendor/lucide-subset.js',
