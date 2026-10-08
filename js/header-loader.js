@@ -51,7 +51,9 @@ class HeaderLoader {
             filename === 'noi-chu.html' ||
             normalizedPath === '/noi-chu' ||
             filename === 'ngua-phi-don-tet.html' ||
-            normalizedPath === '/ngua-phi-don-tet'
+            normalizedPath === '/ngua-phi-don-tet' ||
+            filename === 'o-an-quan.html' ||
+            normalizedPath === '/o-an-quan'
         ) {
             return 'games';
         } else if (filename === 'index.html' || filename === '') {
@@ -84,7 +86,7 @@ class HeaderLoader {
                 // If no container, insert at the beginning of body
                 document.body.insertAdjacentHTML('afterbegin', headerHTML);
             }
-            
+
             // Set active state
             if (document.getElementById('countdown-share-dialog')) {
                 const menu = document.querySelector('.mobile-menu-toggle');

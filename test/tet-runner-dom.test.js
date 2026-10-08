@@ -6,16 +6,22 @@ const test = require('node:test');
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('homepage places a lightweight game entry between sharing and daily content', () => {
+test('homepage lists all Tet games between sharing and daily content in priority order', () => {
   const html = read('index.html');
   const share = html.indexOf('class="home-share-strip"');
-  const runner = html.indexOf('id="tet-runner-entry"');
+  const games = html.indexOf('id="tro-choi-tet"');
   const today = html.indexOf('id="hom-nay"');
+  const oAnQuan = html.indexOf('href="/o-an-quan.html"', games);
+  const runner = html.indexOf('href="/ngua-phi-don-tet.html"', games);
+  const wordChain = html.indexOf('href="/noi-chu.html"', games);
 
-  assert.ok(share >= 0 && runner > share && today > runner);
-  assert.match(html, /id="tet-runner-entry"[^>]*data-home-section="game"/);
-  assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
-  assert.match(html, /home-game-entry-mascot[\s\S]*horse-mascot\.webp/);
+  assert.ok(share >= 0 && games > share && today > games);
+  assert.ok(oAnQuan > games && runner > oAnQuan && wordChain > runner && today > wordChain);
+  assert.match(html, /id="tro-choi-tet"[^>]*data-home-section="game"/);
+  assert.equal((html.match(/data-home-game-entry/g) || []).length, 3);
+  assert.match(html, /home-game-card-art[\s\S]*horse-mascot\.webp/);
+  assert.match(html, /assets\/images\/o-an-quan\/cover\.webp/);
+  assert.match(html, /assets\/images\/img_word_game\.png/);
   assert.doesNotMatch(html, /🐎/);
   assert.doesNotMatch(html, /id="tet-mascot-runner"|tet-runner-engine\.js|tet-runner-loader\.js|css\/tet-runner\.css/);
 });
@@ -136,13 +142,14 @@ test('runner lazy loads Three.js and exposes lifecycle analytics without jump sp
   assert.match(controller, /function requestReplayAd\([^)]*onComplete/);
 });
 
-test('homepage game entry tracks the handoff without loading the runner', () => {
+test('homepage game entries track each handoff without loading a game runtime', () => {
   const html = read('index.html');
   const retention = read('js/home-retention.js');
 
-  assert.match(html, /data-home-game-entry/);
+  assert.equal((html.match(/data-home-game-entry/g) || []).length, 3);
   assert.match(retention, /trackEvent\('home_game_open'/);
-  assert.match(retention, /game_name:\s*'tet_mascot_runner'/);
+  assert.match(retention, /querySelectorAll\('\[data-home-game-entry\]'\)/);
+  assert.match(retention, /link\.dataset\.homeGame/);
 });
 
 test('game pages keep the games navigation tab active', () => {

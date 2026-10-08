@@ -443,10 +443,12 @@
   }
 
   function bindAnalytics() {
-    document.querySelector('[data-home-game-entry]')?.addEventListener('click', function () {
-      window.webAnalytics?.trackEvent('home_game_open', {
-        game_name: 'tet_mascot_runner',
-        destination: '/ngua-phi-don-tet.html'
+    document.querySelectorAll('[data-home-game-entry]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        window.webAnalytics?.trackEvent('home_game_open', {
+          game_name: link.dataset.homeGame || 'unknown',
+          destination: link.getAttribute('href') || ''
+        });
       });
     });
     document.querySelectorAll('[data-home-quick-link]').forEach(function (link) {

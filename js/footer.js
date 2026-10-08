@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 <div class="home-footer-bottom">
-                    <span>© 2026 Sắp Tết · Phát triển bởi <a href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span>
+                    <span>© 2026 Sắp Tết · Phát triển bởi <a class="home-footer-tlife" href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span>
                     <nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
                 </div>
             </div>

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css?v=20260830">
     <link rel="stylesheet" href="css/pwa.css">
-  <link rel="stylesheet" href="css/home-retention.css?v=20261007-header-actions">
+  <link rel="stylesheet" href="css/home-retention.css?v=20261008-games-list">
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -116,17 +116,29 @@
         </div>
       </div>
 
-      <section id="tet-runner-entry" class="home-game-entry-section" data-home-section="game" aria-labelledby="tet-runner-entry-heading">
+      <section id="tro-choi-tet" class="home-game-entry-section" data-home-section="game" aria-labelledby="home-games-heading">
         <div class="container home-compact-container">
-          <a class="home-game-entry" href="/ngua-phi-don-tet.html" data-home-game-entry>
-            <span class="home-game-entry-mascot" aria-hidden="true"><img src="assets/images/tet-runner/horse-mascot.webp" width="512" height="342" alt=""></span>
-            <span class="home-game-entry-copy">
-              <small>Minigame xuyên Việt</small>
-              <strong id="tet-runner-entry-heading">Ngựa Phi Đón Tết</strong>
-              <span>Nhảy chướng ngại, gom bánh Tết và mở khóa địa danh mới mỗi 5 km.</span>
-            </span>
-            <span class="home-game-entry-action">Chơi ngay <i data-lucide="arrow-right" aria-hidden="true"></i></span>
-          </a>
+          <div class="home-games-heading">
+            <div><p class="home-section-kicker">Vui Tết mỗi ngày</p><h2 id="home-games-heading">Trò chơi Tết</h2></div>
+            <a class="home-games-all" href="/tro-choi-tet.html">Xem tất cả <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="home-games-grid">
+            <a class="home-game-card home-game-card-oan-quan" href="/o-an-quan.html" data-home-game-entry data-home-game="o_an_quan">
+              <span class="home-game-card-art" aria-hidden="true"><img src="assets/images/o-an-quan/cover.webp" width="1586" height="992" alt="" loading="lazy" decoding="async"></span>
+              <span class="home-game-card-copy"><small>Dân gian · Đấu trí</small><strong>Ô Ăn Quan</strong><span>Rải quân, chập và ăn Quan; đấu máy hoặc chơi cùng bạn.</span></span>
+              <span class="home-game-card-action">Chơi ngay <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="home-game-card home-game-card-runner" href="/ngua-phi-don-tet.html" data-home-game-entry data-home-game="tet_mascot_runner">
+              <span class="home-game-card-art" aria-hidden="true"><img src="assets/images/tet-runner/horse-mascot.webp" width="512" height="342" alt="" loading="lazy" decoding="async"></span>
+              <span class="home-game-card-copy"><small>Endless runner · 3D</small><strong>Ngựa Phi Đón Tết</strong><span>Nhảy, cúi né chướng ngại và mở khóa địa danh Việt Nam.</span></span>
+              <span class="home-game-card-action">Chơi ngay <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="home-game-card home-game-card-word" href="/noi-chu.html" data-home-game-entry data-home-game="word_chain">
+              <span class="home-game-card-art" aria-hidden="true"><img src="assets/images/img_word_game.png" width="183" height="183" alt="" loading="lazy" decoding="async"></span>
+              <span class="home-game-card-copy"><small>Đấu trí · Tiếng Việt</small><strong>Nối Chữ</strong><span>Nối từ cuối thành từ đầu, đấu với máy trong 60 giây.</span></span>
+              <span class="home-game-card-action">Chơi ngay <i data-lucide="arrow-right" aria-hidden="true"></i></span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -290,7 +302,7 @@
           <nav class="home-footer-links" aria-label="Khám phá Sắp Tết"><h2>Khám phá</h2><a href="/tin-tuc/">Blog Sắp Tết</a><a href="/cua-hang.html">Cửa hàng Tết</a><a href="/su-kien-quan-trong.html">Sự kiện quan trọng</a><a href="/ung-dung.html">Giới thiệu ứng dụng</a></nav>
           <div class="home-footer-community"><h2>Kết nối</h2><p>Theo dõi Sắp Tết để nhận nội dung và cập nhật mới.</p><div class="home-footer-socials"><a href="https://www.facebook.com/saptet2027/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Sắp Tết"><img src="assets/images/facebook.png" alt="" width="24" height="24"></a><a href="https://www.tiktok.com/@sap.tet" target="_blank" rel="noopener noreferrer" aria-label="TikTok Sắp Tết"><img src="assets/images/tiktok.png" alt="" width="24" height="24"></a><a href="mailto:tlife1001@gmail.com" aria-label="Email Sắp Tết"><i data-lucide="mail" aria-hidden="true"></i></a></div></div>
         </div>
-        <div class="home-footer-bottom"><span>© 2026 Sắp Tết · Phát triển bởi <a href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span><nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a></nav></div>
+        <div class="home-footer-bottom"><span>© 2026 Sắp Tết · Phát triển bởi <a class="home-footer-tlife" href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span><nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a></nav></div>
       </div>
     </footer>
 
@@ -333,13 +345,13 @@
       <div class="countdown-share-actions"><button id="countdown-share-image" type="button" disabled>Chia sẻ ảnh</button><button id="countdown-download-image" type="button" disabled>Tải xuống</button></div>
     </dialog>
     <script src="js/vendor/lucide-subset.js?v=20260925" defer></script>
-    <script src="js/header-loader.js?v=20261007-download-button" defer></script>
+    <script src="js/header-loader.js?v=20261008-home-games" defer></script>
     <script src="js/analytics.js" defer></script>
     <script src="js/home-ads.js?v=20261007" defer></script>
     <script src="js/lunar-calendar.js" defer></script>
     <script src="data/events-data.js" defer></script>
     <script src="js/home-share-image.js?v=20261007-tet" defer></script>
-    <script src="js/home-retention.js?v=20261007-header-app" defer></script>
+    <script src="js/home-retention.js?v=20261008-games-list" defer></script>
     <script src="js/home-shop-preview.js?v=20260828" defer></script>
     <script src="js/home-fireworks.js?v=20260925" defer></script>
     <script>document.addEventListener('DOMContentLoaded', function () { if (window.lucide) window.lucide.createIcons(); });</script>

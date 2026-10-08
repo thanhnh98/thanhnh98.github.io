@@ -25,6 +25,17 @@ test('mobile navigation uses one open state across CSS and JavaScript', () => {
   assert.match(styles, /nav\.mobile-menu-open/);
 });
 
+test('tablet widths switch to the compact navigation before the header overflows', () => {
+  const styles = read('css/style.css');
+  const tabletStart = styles.indexOf('@media (min-width: 769px) and (max-width: 1023px)');
+  const tabletEnd = styles.indexOf('/* Tet Culture Section Styles */', tabletStart);
+  const tabletRules = styles.slice(tabletStart, tabletEnd);
+
+  assert.match(tabletRules, /\.mobile-menu-toggle\s*\{[\s\S]*?display:\s*inline-flex/);
+  assert.match(tabletRules, /header nav\s*\{[\s\S]*?position:\s*absolute/);
+  assert.match(tabletRules, /header nav\.mobile-menu-open\s*\{[\s\S]*?visibility:\s*visible/);
+});
+
 test('mobile secondary navigation can reveal all shared header items', () => {
   const styles = read('css/style.css');
   const expandedRule = styles.match(/\.nav-expandable\.expanded \.nav-secondary\s*\{[^}]+\}/g)?.at(-1) || '';
