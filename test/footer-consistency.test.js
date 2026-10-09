@@ -27,6 +27,10 @@ test('shared footer carries the homepage footer structure and navigation', () =>
     for (const label of ['Tiện ích', 'Khám phá', 'Kết nối', 'Chính sách bảo mật', 'Điều khoản sử dụng']) {
         assert.match(shared, new RegExp(label));
     }
+
+    assert.match(shared, /Phát triển bởi <a class="home-footer-tlife" href="https:\/\/tlife\.io\.vn"[^>]*>TLife<\/a>/);
+    assert.match(homepage, /Phát triển bởi <a class="home-footer-tlife" href="https:\/\/tlife\.io\.vn"[^>]*>TLife<\/a>/);
+    assert.match(sharedStyles, /\.home-footer-tlife[^}]*font-weight:\s*700/);
 });
 
 test('every page with a shared footer container loads the footer component', () => {

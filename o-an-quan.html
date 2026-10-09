@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ô Ăn Quan Online – Trò chơi dân gian | Sắp Tết</title>
+  <meta name="description" content="Chơi Ô Ăn Quan miễn phí trên trình duyệt: game tuổi thơ đúng luật dân gian, đấu máy 3 mức hoặc chơi cùng bạn, có lưu lịch sử đấu.">
+  <meta name="keywords" content="Ô ăn quan, trò chơi tuổi thơ, game tuổi thơ, ô ăn quan online, trò chơi dân gian, game Tết">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#651d26">
+  <link rel="canonical" href="https://saptet.vn/o-an-quan.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://saptet.vn/o-an-quan.html">
+  <meta property="og:site_name" content="Sắp Tết">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="Ô Ăn Quan Online | Sắp Tết">
+  <meta property="og:description" content="Rải quân, chập và ăn Quan trong trò chơi dân gian Việt Nam.">
+  <meta property="og:image" content="https://saptet.vn/assets/images/o-an-quan/cover.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260914a">
+  <link rel="stylesheet" href="css/colors.css?v=20260830">
+  <link rel="stylesheet" href="css/o-an-quan.css?v=20261009">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Ô Ăn Quan Online","url":"https://saptet.vn/o-an-quan.html","inLanguage":"vi-VN","isPartOf":{"@type":"WebSite","name":"Sắp Tết","url":"https://saptet.vn/"},"mainEntity":{"@type":"VideoGame","name":"Ô Ăn Quan","genre":["Board game","Traditional game"],"gamePlatform":"Web Browser","playMode":["SinglePlayer","MultiPlayer"],"inLanguage":"vi-VN"}}
+  </script>
+  <!-- Microsoft Clarity -->
+  <script>
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', 'rw42vujbmw');
+  </script>
+</head>
+<body class="oaq-page">
+  <div id="header-container"></div>
+  <main class="oaq-main">
+    <section class="oaq-shell" aria-labelledby="oaq-title" data-phase="idle" data-mode="bot">
+      <h1 id="oaq-title" class="sr-only">Ô Ăn Quan Online</h1>
+
+      <header class="oaq-hud">
+        <div class="oaq-hud-left">
+          <button class="oaq-icon-btn" id="oaq-exit" type="button" aria-label="Thoát về màn hình bắt đầu"><i data-lucide="arrow-left"></i></button>
+          <a class="oaq-site-brand" href="/" aria-label="Về trang chủ Sắp Tết"><img src="assets/images/ic_app-208.webp" alt=""><span>Sắp Tết</span></a>
+        </div>
+        <div class="oaq-hud-brand" aria-hidden="true"><strong>Ô Ăn Quan</strong><span>Trò chơi dân gian</span></div>
+        <div class="oaq-tools" role="toolbar" aria-label="Công cụ ván chơi">
+          <button class="oaq-icon-btn" id="oaq-undo" type="button" aria-label="Đi lại" disabled><i data-lucide="undo-2"></i><small id="undo-count">3</small></button>
+          <button class="oaq-icon-btn" id="oaq-hint" type="button" aria-label="Gợi ý" disabled><i data-lucide="lightbulb"></i><small id="hint-count">3</small></button>
+          <button class="oaq-icon-btn" id="oaq-help" type="button" aria-label="Cách chơi"><i data-lucide="circle-help"></i></button>
+          <button class="oaq-icon-btn" id="oaq-sound" type="button" aria-label="Tắt âm thanh" aria-pressed="true"><i data-lucide="volume-2"></i></button>
+          <button class="oaq-icon-btn" id="oaq-pause" type="button" aria-label="Tạm dừng"><i data-lucide="pause"></i></button>
+        </div>
+      </header>
+
+      <div class="oaq-scoreboard" role="group" aria-label="Tỷ số ván chơi">
+        <div class="oaq-score oaq-score-north" data-player="1"><span id="north-name">Máy</span><strong id="north-score">0</strong><small class="oaq-captured" aria-label="Quân Máy đã ăn"><span><img src="assets/images/o-an-quan/stone-jade.png" alt=""><b id="north-dan">0</b></span><span><img class="is-quan" src="assets/images/o-an-quan/mandarin.png" alt=""><b id="north-quan">0</b></span></small></div>
+        <div class="oaq-clock"><strong id="oaq-time">0:00</strong><span id="oaq-mode">Ô Ăn Quan · Dễ</span></div>
+        <div class="oaq-score oaq-score-south" data-player="0"><span id="south-name">Bạn</span><strong id="south-score">0</strong><small class="oaq-captured" aria-label="Quân Bạn đã ăn"><span><img src="assets/images/o-an-quan/stone-gold.png" alt=""><b id="south-dan">0</b></span><span><img class="is-quan" src="assets/images/o-an-quan/mandarin.png" alt=""><b id="south-quan">0</b></span></small></div>
+      </div>
+
+      <section class="oaq-stage" id="oaq-stage" aria-label="Bàn Ô Ăn Quan">
+        <img class="oaq-decoration" src="assets/images/o-an-quan/decor-overlay.png" alt="" aria-hidden="true">
+        <section id="start-screen" class="oaq-start-screen" aria-labelledby="start-title">
+          <div class="oaq-start-intro">
+            <img src="assets/images/o-an-quan/mandarin.png" class="oaq-start-token" alt="">
+            <div><p class="oaq-eyebrow">Trò chơi dân gian</p><h2 id="start-title">Ô Ăn Quan</h2><p class="oaq-start-tagline">Rải khéo, chập chuẩn, ăn trọn hai Quan.</p></div>
+            <div class="oaq-records"><span>Kỷ lục <strong id="best-score">0</strong></span><span>Điểm rank <strong id="best-rank">0</strong></span></div>
+          </div>
+          <div class="oaq-start-actions">
+            <fieldset class="oaq-levels"><legend>Chọn mức độ</legend>
+              <label><input type="radio" name="oaq-level" value="easy" checked><img src="assets/images/o-an-quan/level-easy.png" alt=""><span><b>Dễ</b><small>Thư giãn</small></span></label>
+              <label><input type="radio" name="oaq-level" value="medium"><img src="assets/images/o-an-quan/level-medium.png" alt=""><span><b>Vừa</b><small>Thử thách</small></span></label>
+              <label><input type="radio" name="oaq-level" value="hard"><img src="assets/images/o-an-quan/level-hard.png" alt=""><span><b>Khó</b><small>Cao thủ</small></span></label>
+            </fieldset>
+            <div class="oaq-start-buttons">
+              <button id="start-bot" class="oaq-primary" type="button"><i data-lucide="play"></i>Bắt đầu</button>
+              <button id="open-friend" class="oaq-secondary" type="button"><i data-lucide="users"></i>Chơi với bạn</button>
+            </div>
+            <div class="oaq-start-links">
+              <button id="start-history" class="oaq-text-btn" type="button"><i data-lucide="history"></i>Lịch sử đấu</button>
+              <button id="start-help" class="oaq-text-btn" type="button"><i data-lucide="circle-help"></i>Cách chơi</button>
+              <button id="start-share" class="oaq-text-btn" type="button"><i data-lucide="share-2"></i><span>Chia sẻ game</span></button>
+            </div>
+          </div>
+        </section>
+        <div class="oaq-turn-banner" id="turn-banner" role="status" aria-live="polite" hidden></div>
+        <div class="oaq-combo" id="combo-burst" aria-live="polite" hidden><strong>Ăn đôi!</strong><span>COMBO ×2</span></div>
+        <div class="oaq-board-wrap" id="board-wrap">
+          <div class="oaq-board" id="oaq-board">
+            <button class="oaq-pit oaq-quan-pit" data-pit="0" type="button" aria-label="Ô Quan trái"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+            <div class="oaq-rows">
+              <div class="oaq-row oaq-row-north">
+                <button class="oaq-pit" data-pit="11" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="10" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="9" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="8" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="7" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+              </div>
+              <div class="oaq-row oaq-row-south">
+                <button class="oaq-pit" data-pit="1" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="2" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="3" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="4" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+                <button class="oaq-pit" data-pit="5" type="button"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+              </div>
+            </div>
+            <button class="oaq-pit oaq-quan-pit" data-pit="6" type="button" aria-label="Ô Quan phải"><span class="oaq-stones"></span><b class="oaq-count">0</b><em></em></button>
+          </div>
+          <canvas id="oaq-flight-canvas" class="oaq-flight-canvas" aria-hidden="true"></canvas>
+          <div class="oaq-direction" id="direction-picker" hidden>
+            <button type="button" data-direction="-1" aria-label="Rải sang trái"><i data-lucide="arrow-left"></i><span>Rải trái</span></button>
+            <button type="button" data-direction="1" aria-label="Rải sang phải"><span>Rải phải</span><i data-lucide="arrow-right"></i></button>
+          </div>
+          <div class="oaq-hand-badge" id="hand-badge" aria-hidden="true" hidden><img src="assets/images/o-an-quan/stone-jade.png" alt=""><b>0</b></div>
+          <div class="oaq-rewind-sweep" aria-hidden="true"></div>
+          <p class="oaq-status" id="oaq-status" role="status" aria-live="polite">Chọn “Bắt đầu” để chơi.</p>
+        </div>
+      </section>
+    </section>
+
+    <details class="oaq-rules-crawlable">
+      <summary>Luật chơi Ô Ăn Quan</summary>
+      <p>Bàn có 10 ô dân, mỗi ô 5 dân, và 2 ô Quan ở hai đầu. Chọn một ô bên mình rồi rải từng quân theo một trong hai hướng.</p>
+      <p>Khi rải hết, nếu ô kế tiếp có dân thì bốc lên rải tiếp. Nếu ô kế tiếp trống và ô sau có quân thì ăn toàn bộ quân ở ô đó. Ván kết thúc khi hai ô Quan đều trống.</p>
+    </details>
+
+    <section class="oaq-seo-section" aria-labelledby="oaq-seo-title">
+      <p class="oaq-seo-eyebrow">Trò chơi tuổi thơ của người Việt</p>
+      <h2 id="oaq-seo-title">Ô Ăn Quan – game tuổi thơ nay có thể chơi online</h2>
+      <p class="oaq-seo-lead">Ô Ăn Quan là trò chơi dân gian quen thuộc, gắn với sân trường, hiên nhà và những buổi tụ họp bạn bè. Phiên bản trên Sắp Tết giữ cách rải dân, ăn quân và tính điểm truyền thống, đồng thời giúp bạn bắt đầu một ván mới ngay trên trình duyệt.</p>
+      <div class="oaq-seo-grid">
+        <article><h3>Vì sao Ô Ăn Quan là trò chơi tuổi thơ đáng nhớ?</h3><p>Chỉ cần vài viên sỏi và những ô vẽ trên nền đất, hai người đã có thể cùng chơi. Mỗi lượt đều cần quan sát, tính hướng rải và đoán nước đi tiếp theo nên luật dễ hiểu nhưng ván đấu luôn có chiều sâu.</p></article>
+        <article><h3>Game tuổi thơ phù hợp để chơi cùng bạn bè</h3><p>Bạn có thể đấu với máy ở ba mức độ hoặc chọn chế độ hai người trên cùng thiết bị. Kết quả và thời gian của 10 ván gần nhất được lưu ngay trên trình duyệt để bạn tiện xem lại.</p></article>
+        <article><h3>Chơi Ô Ăn Quan miễn phí, không cần cài đặt</h3><p>Game chạy trực tiếp trên điện thoại và máy tính, có hướng dẫn luật, gợi ý nước đi, hoàn tác và hiệu ứng rải quân. Thành tích chỉ được lưu trên thiết bị của bạn.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="friend-dialog" class="oaq-dialog" aria-labelledby="friend-title">
+    <form method="dialog" class="oaq-dialog-card">
+      <h2 id="friend-title">Chơi với bạn</h2>
+      <label>Người chơi 1 · hàng trên<input id="friend-one" maxlength="16" autocomplete="off"></label>
+      <label>Người chơi 2 · hàng dưới<input id="friend-two" maxlength="16" autocomplete="off"></label>
+      <fieldset><legend>Ai đi trước?</legend><label><input type="radio" name="friend-first" value="1" checked> Người chơi 1</label><label><input type="radio" name="friend-first" value="0"> Người chơi 2</label></fieldset>
+      <p class="oaq-note">Chế độ này không tính thành tích.</p>
+      <div class="oaq-dialog-actions"><button class="oaq-secondary" value="cancel">Huỷ</button><button id="start-friend" class="oaq-primary" type="button">Bắt đầu</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="help-dialog" class="oaq-dialog" aria-labelledby="help-title">
+    <form method="dialog" class="oaq-dialog-card oaq-help-card">
+      <h2 id="help-title">Cách chơi</h2>
+      <div class="oaq-help-grid oaq-dialog-scroll">
+        <section><b>Bàn cờ</b><p>10 ô dân, mỗi ô 5 dân; 2 ô Quan ở hai đầu. Một Quan bằng 10 dân.</p></section>
+        <section><b>Đi quân</b><p>Chạm ô bên mình rồi chọn hướng. Rải từng quân qua cả ô Quan.</p></section>
+        <section><b>Rải tiếp</b><p>Hết tay mà ô kế tiếp có dân thì bốc ô đó và tiếp tục rải.</p></section>
+        <section><b>Ăn quân</b><p>Gặp một ô trống rồi một ô có quân: ăn ô có quân. Có thể ăn liên hoàn.</p></section>
+        <section><b>Vay quân</b><p>Hàng mình trống thì rải lại 5 dân; thiếu sẽ vay đối thủ và trừ lúc tính điểm.</p></section>
+        <section><b>Kết thúc</b><p>Hai ô Quan đều trống. Tổng dân, Quan ×10 và phần nợ quyết định thắng thua.</p></section>
+      </div>
+      <div class="oaq-dialog-footer"><button class="oaq-primary" value="close">Đã hiểu</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="history-dialog" class="oaq-dialog" aria-labelledby="history-title">
+    <form method="dialog" class="oaq-dialog-card oaq-history-card">
+      <div class="oaq-history-heading"><div><p class="oaq-eyebrow">10 ván gần nhất</p><h2 id="history-title">Lịch sử đấu</h2></div><i data-lucide="history" aria-hidden="true"></i></div>
+      <p id="history-empty" class="oaq-history-empty">Bạn chưa hoàn thành ván đấu nào. Chơi một ván để bắt đầu ghi lại thành tích nhé!</p>
+      <div id="history-list" class="oaq-history-list" aria-live="polite"></div>
+      <div class="oaq-dialog-footer"><button class="oaq-primary" value="close">Đóng</button></div>
+    </form>
+  </dialog>
+
+      <dialog id="pause-dialog" class="oaq-dialog" aria-labelledby="pause-title">
+    <form method="dialog" class="oaq-dialog-card">
+      <h2 id="pause-title">Tạm dừng</h2><p>Đồng hồ và lượt máy đang được giữ lại.</p>
+      <button class="oaq-primary" value="close">Tiếp tục</button>
+      <button id="pause-help" class="oaq-secondary" type="button">Cách chơi</button>
+      <button id="pause-exit" class="oaq-text-btn" type="button">Thoát ván</button>
+    </form>
+      </dialog>
+
+      <dialog id="exit-dialog" class="oaq-dialog" aria-labelledby="exit-title">
+        <form method="dialog" class="oaq-dialog-card">
+          <h2 id="exit-title">Thoát ván?</h2>
+          <p>Tiến trình của ván đang chơi sẽ bị mất.</p>
+          <div class="oaq-dialog-actions"><button class="oaq-secondary" value="cancel">Ở lại chơi</button><button id="confirm-exit" class="oaq-primary" type="button">Thoát ván</button></div>
+        </form>
+      </dialog>
+
+  <dialog id="result-dialog" class="oaq-dialog" aria-labelledby="result-title">
+    <form method="dialog" class="oaq-dialog-card oaq-result-card">
+      <div class="oaq-result-art"><img id="result-art" alt="" src="assets/images/o-an-quan/result-win.png"><div><h2 id="result-title">Bạn thắng rồi!</h2><p id="result-subtitle"></p></div></div>
+      <div class="oaq-result-data"><div class="oaq-final-score"><span><small id="result-south-name">Bạn</small><strong id="result-south">0</strong></span><i>—</i><span><small id="result-north-name">Máy</small><strong id="result-north">0</strong></span></div><table><tbody id="result-breakdown"></tbody></table><p id="result-rank" class="oaq-rank"></p></div>
+      <div class="oaq-dialog-actions oaq-dialog-footer"><button id="result-exit" class="oaq-secondary" type="button">Thoát</button><button id="result-replay" class="oaq-primary" type="button">Chơi lại</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="rotate-dialog" class="oaq-dialog oaq-rotate-dialog" aria-labelledby="rotate-title">
+    <form method="dialog" class="oaq-dialog-card"><i data-lucide="smartphone"></i><h2 id="rotate-title">Xoay ngang điện thoại</h2><p>Xoay điện thoại nằm ngang để thấy trọn bàn cờ nhé!</p><button class="oaq-primary" value="close">Đã hiểu</button></form>
+  </dialog>
+
+  <div id="footer-container"></div>
+  <script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+  <script src="js/header-loader.js"></script><script src="js/navigation.js?v=20261009"></script><script src="js/icons.js"></script><script src="js/analytics.js"></script>
+  <script src="js/oan-quan-engine.js?v=20261007"></script>
+  <script src="js/oan-quan-bot.js?v=20261007"></script>
+  <script src="js/oan-quan-storage.js?v=20261009"></script>
+  <script src="js/oan-quan-animator.js?v=20261008e"></script>
+  <script src="js/oan-quan-match.js?v=20261009"></script>
+  <script src="js/oan-quan-game.js?v=20261009c"></script>
+  <script src="js/footer.js"></script>
+</body>
+</html>

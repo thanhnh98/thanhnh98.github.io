@@ -27,7 +27,7 @@ test('homepage hero leads with the highest-impression countdown question', () =>
   assert.doesNotMatch(html, /class="countdown-detail-cta"/);
 });
 
-test('homepage keeps sharing below the full-screen hero greeting', () => {
+test('homepage restores a full viewport mobile countdown with reserved bottom space', () => {
   const html = read('index.html');
   const css = read('css/home-retention.css');
   const heroStart = html.indexOf('<section id="countdown"');
@@ -40,8 +40,10 @@ test('homepage keeps sharing below the full-screen hero greeting', () => {
   assert.ok(shareButton > heroEnd && shareButton < todaySection);
   assert.match(css, /#countdown-timer \.timer-box[\s\S]*?min-height:\s*clamp\(174px,\s*19vw,\s*222px\)/);
   assert.match(css, /\.countdown-content-wrapper[\s\S]*?justify-content:\s*space-between/);
+  assert.doesNotMatch(html, /class="home-hero-app-promo"/);
+  assert.match(read('js/header-loader.js'), /className = 'home-header-app'/);
   assert.match(css, /@media \(max-width:\s*560px\)[\s\S]*?#countdown-timer[\s\S]*?grid-template-columns:\s*repeat\(2,/);
-  assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-content-wrapper\s*\{\s*padding:\s*0\.65rem 0\.25rem/);
+  assert.match(css, /@media \(max-width:\s*768px\)[\s\S]*?\.countdown-section\s*\{[^}]*height:\s*calc\(100svh - 66px\)/);
 });
 
 test('homepage stays compact with seven focused content sections', () => {
@@ -52,13 +54,28 @@ test('homepage stays compact with seven focused content sections', () => {
   assert.match(html, /data-home-section="hero"/);
   assert.match(html, /data-home-section="today"/);
   assert.match(html, /data-home-section="game"/);
+  assert.match(html, /href="\/o-an-quan\.html"/);
   assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
+  assert.match(html, /href="\/noi-chu\.html"/);
   assert.match(html, /data-home-section="quick-links"/);
   assert.match(html, /data-home-section="app"/);
   assert.match(html, /data-home-section="discovery"/);
   assert.match(html, /data-home-section="seo"/);
   assert.doesNotMatch(html, /id="calendar-grid"|id="events-carousel"|id="games-carousel"/);
   assert.doesNotMatch(html, /id="smart-app-download-fab"|id="app-download"/);
+});
+
+test('shared primary navigation promotes games instead of Blog on every page', () => {
+  const header = read('components/header.html');
+  const primary = header.match(/<ul class="nav-primary">([\s\S]*?)<\/ul>/)?.[1] || '';
+  const secondary = header.match(/<ul class="nav-secondary"[^>]*>([\s\S]*?)<\/ul>/)?.[1] || '';
+
+  assert.match(primary, /href="\/tro-choi-tet\.html" data-page="games"/);
+  assert.match(primary, /data-lucide="gamepad-2"/);
+  assert.match(primary, /<span>Trò Chơi<\/span>/);
+  assert.doesNotMatch(primary, /href="\/tin-tuc\/"|<span>Blog<\/span>/);
+  assert.doesNotMatch(secondary, /data-page="games"/);
+  assert.match(secondary, /href="\/tin-tuc\/" data-page="blog"/);
 });
 
 test('homepage keeps three crawlable FAQs and useful internal links', () => {
@@ -173,12 +190,13 @@ test('loi chuc tet page is indexable and supports the wishes CTA', () => {
   assert.match(sitemap, /https:\/\/saptet\.vn\/loi-chuc-tet\.html/);
 });
 
-test('tro choi tet page is a two-game hub', () => {
+test('tro choi tet page is a three-game hub', () => {
   const html = read('tro-choi-tet.html');
   const css = read('css/games-hub.css');
 
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  assert.equal((html.match(/data-game-card=/g) || []).length, 2);
+  assert.equal((html.match(/data-game-card=/g) || []).length, 3);
+  assert.match(html, /href="\/o-an-quan\.html"[^>]+data-game-card="o_an_quan"/);
   assert.match(html, /class="games-hub-grid"/);
   assert.match(html, /href="\/ngua-phi-don-tet\.html"/);
   assert.match(html, /href="\/noi-chu\.html"/);

@@ -17,6 +17,8 @@ class Router {
             '/tro-choi-tet.html': 'tro-choi-tet.html', // Keep for backward compatibility
             '/noi-chu': 'noi-chu.html',
             '/noi-chu.html': 'noi-chu.html',
+            '/o-an-quan': 'o-an-quan',
+            '/o-an-quan.html': 'o-an-quan.html',
             '/ngua-phi-don-tet': 'ngua-phi-don-tet.html',
             '/ngua-phi-don-tet.html': 'ngua-phi-don-tet.html',
             // Trang tải app cũ đã gộp vào trang giới thiệu ứng dụng

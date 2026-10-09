@@ -98,9 +98,30 @@ test('homepage analytics events are wired exactly once in the retention module',
   }
 });
 
-test('html2canvas is only referenced by the lazy share loader', () => {
+test('sharing draws its image locally without a screenshot library', () => {
   const script = fs.readFileSync(modulePath, 'utf8');
-  assert.match(script, /function loadHtml2Canvas/);
-  assert.match(script, /document\.createElement\('script'\)/);
-  assert.match(script, /html2canvas\.min\.js/);
+  assert.doesNotMatch(script, /html2canvas/);
+  assert.match(script, /HomeShareImage\.draw\(document\.createElement\('canvas'\)/);
+});
+
+test('image sharing captures only the hero and waits for a separate user action', () => {
+  const script = fs.readFileSync(modulePath, 'utf8');
+  const captureFlow = script.slice(script.indexOf('async function shareCountdown()'), script.indexOf('function bindFullCardActions'));
+  assert.match(captureFlow, /dialog\.showModal\(\)/);
+  assert.match(captureFlow, /HomeShareImage\.getData\(new Date\(\)\)/);
+  assert.match(captureFlow, /new File\(\[blob\]/);
+  assert.match(captureFlow, /navigator\.canShare\(\{ files: \[countdownImageFile\] \}\)/);
+  assert.doesNotMatch(captureFlow, /await navigator\.share\(/);
+  assert.match(script, /await navigator\.share\(\{ files: \[countdownImageFile\]/);
+});
+
+test('mobile header app button uses the same smart app routing and analytics as the current app CTA', () => {
+  const headerLoader = fs.readFileSync(path.join(root, 'js/header-loader.js'), 'utf8');
+  const script = fs.readFileSync(modulePath, 'utf8');
+  assert.match(headerLoader, /className = 'home-header-app'/);
+  assert.match(headerLoader, /data-home-smart-app-source', 'header'/);
+  assert.match(headerLoader, /M12 3v11/);
+  assert.doesNotMatch(headerLoader, /home-header-app[^\n]+ic_app-208/);
+  assert.match(headerLoader, /home-header-ready/);
+  assert.match(script, /source === 'floating' \|\| source === 'header'/);
 });
