@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=20260914a">
   <link rel="stylesheet" href="css/colors.css?v=20260830">
-  <link rel="stylesheet" href="css/o-an-quan.css?v=20261009">
+  <link rel="stylesheet" href="css/o-an-quan.css?v=20261009b">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Ô Ăn Quan Online","url":"https://saptet.vn/o-an-quan.html","inLanguage":"vi-VN","isPartOf":{"@type":"WebSite","name":"Sắp Tết","url":"https://saptet.vn/"},"mainEntity":{"@type":"VideoGame","name":"Ô Ăn Quan","genre":["Board game","Traditional game"],"gamePlatform":"Web Browser","playMode":["SinglePlayer","MultiPlayer"],"inLanguage":"vi-VN"}}
@@ -79,6 +79,7 @@
             <div class="oaq-start-buttons">
               <button id="start-bot" class="oaq-primary" type="button"><i data-lucide="play"></i>Bắt đầu</button>
               <button id="open-friend" class="oaq-secondary" type="button"><i data-lucide="users"></i>Chơi với bạn</button>
+              <button id="open-online" class="oaq-secondary" type="button"><i data-lucide="wifi"></i>Chơi online</button>
             </div>
             <div class="oaq-start-links">
               <button id="start-history" class="oaq-text-btn" type="button"><i data-lucide="history"></i>Lịch sử đấu</button>
@@ -151,6 +152,25 @@
     </form>
   </dialog>
 
+  <dialog id="online-dialog" class="oaq-dialog" aria-labelledby="online-title">
+    <form method="dialog" class="oaq-dialog-card oaq-online-card">
+      <i data-lucide="wifi" class="oaq-online-icon" aria-hidden="true"></i>
+      <h2 id="online-title">Chơi online</h2>
+      <p>Đấu online với người chơi khắp nơi trên ứng dụng <b>Sắp Tết</b>.</p>
+      <ul class="oaq-online-features">
+        <li><i data-lucide="swords" aria-hidden="true"></i>Tìm đối thủ ngẫu nhiên</li>
+        <li><i data-lucide="door-open" aria-hidden="true"></i>Tạo phòng, mời bạn bằng mã</li>
+        <li><i data-lucide="trophy" aria-hidden="true"></i>Leo bảng xếp hạng online</li>
+        <li><i data-lucide="coins" aria-hidden="true"></i>Thắng ván nhận vàng</li>
+      </ul>
+      <div class="oaq-store-links" id="online-store-links">
+        <a class="oaq-store-link" data-store="play" href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener"><img src="assets/images/google_play.png" alt="" width="28" height="28"><span><small>Tải trên</small>Google Play</span></a>
+        <a class="oaq-store-link" data-store="appstore" href="https://apps.apple.com/app/id6743064990" target="_blank" rel="noopener"><img src="assets/images/apple_store.png" alt="" width="28" height="28"><span><small>Tải trên</small>App Store</span></a>
+      </div>
+      <div class="oaq-dialog-footer"><button class="oaq-secondary" value="close">Để sau</button></div>
+    </form>
+  </dialog>
+
   <dialog id="help-dialog" class="oaq-dialog" aria-labelledby="help-title">
     <form method="dialog" class="oaq-dialog-card oaq-help-card">
       <h2 id="help-title">Cách chơi</h2>
@@ -212,7 +232,7 @@
   <script src="js/oan-quan-storage.js?v=20261009"></script>
   <script src="js/oan-quan-animator.js?v=20261008e"></script>
   <script src="js/oan-quan-match.js?v=20261009"></script>
-  <script src="js/oan-quan-game.js?v=20261009c"></script>
+  <script src="js/oan-quan-game.js?v=20261009d"></script>
   <script src="js/footer.js"></script>
 </body>
 </html>

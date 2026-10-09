@@ -607,6 +607,12 @@
   $('#start-bot').addEventListener('click', () => start({ mode: 'bot', level: $('input[name="oaq-level"]:checked').value }));
   $('#open-friend').addEventListener('click', () => { hideStartScreen(); const saved = storage.load().friend; $('#friend-one').value = saved.player1; $('#friend-two').value = saved.player2; const radio = $(`input[name="friend-first"][value="${saved.first}"]`); if (radio) radio.checked = true; showDialog($('#friend-dialog'), false); });
   $('#friend-dialog').addEventListener('close', () => { if (state?.phase === 'idle') showStartScreen(); });
+  // Online play lives in the Sắp Tết app: the button only invites the player to download it.
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIOS) { const links = $('#online-store-links'); links.prepend(links.querySelector('[data-store="appstore"]')); }
+  $('#open-online').addEventListener('click', () => { hideStartScreen(); showDialog($('#online-dialog'), false); track('online_app_prompt'); });
+  $('#online-dialog').addEventListener('close', () => { if (!state || state.phase === 'idle') showStartScreen(); });
+  $$('#online-store-links a').forEach((link) => link.addEventListener('click', () => track('online_app_store', { store: link.dataset.store })));
   $('#start-friend').addEventListener('click', () => start({ mode: 'friend', players: { player1: $('#friend-one').value, player2: $('#friend-two').value, first: Number($('input[name="friend-first"]:checked').value) } }));
   $('#result-replay').addEventListener('click', () => start(lastConfig));
   document.addEventListener('visibilitychange', () => { if (!state || ['idle', 'gameOver'].includes(state.phase)) return; match.setPaused(document.hidden); if (document.hidden) audio.pause(); else audio.resume(); });

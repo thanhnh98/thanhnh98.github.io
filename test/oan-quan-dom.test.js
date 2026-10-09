@@ -131,3 +131,21 @@ test('all mobile gameplay assets and generated web artwork exist', () => {
     assert.ok(fs.statSync(path.join(root, 'assets/sounds/o-an-quan', name)).size > 1000, name);
   }
 });
+
+test('"Chơi online" opens a popup that sends the player to the Sắp Tết app', () => {
+  const html = read('o-an-quan.html');
+  const buttons = html.slice(html.indexOf('<div class="oaq-start-buttons">'), html.indexOf('<div class="oaq-start-links">'));
+  assert.match(buttons, /<button id="open-online" class="oaq-secondary" type="button">/);
+  const dialog = html.slice(html.indexOf('<dialog id="online-dialog"'), html.indexOf('</dialog>', html.indexOf('<dialog id="online-dialog"')));
+  assert.ok(dialog.length > 0, 'online dialog exists');
+  const links = [...dialog.matchAll(/<a class="oaq-store-link" data-store="(\w+)" href="([^"]+)" target="_blank" rel="([^"]+)">/g)];
+  assert.deepEqual(links.map((m) => m[1]), ['play', 'appstore']);
+  assert.equal(links[0][2], 'https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down');
+  assert.match(links[1][2], /^https:\/\/apps\.apple\.com\/.*id6743064990/);
+  links.forEach((m) => assert.match(m[3], /\bnoopener\b/));
+  for (const icon of ['google_play.png', 'apple_store.png']) assert.ok(fs.existsSync(path.join(root, 'assets/images', icon)), icon);
+  const js = read('js/oan-quan-game.js');
+  assert.match(js, /\$\('#open-online'\)\.addEventListener\('click'/);
+  assert.match(js, /\$\('#online-dialog'\)\.addEventListener\('close'/);
+  assert.match(js, /track\('online_app_prompt'\)/);
+});
