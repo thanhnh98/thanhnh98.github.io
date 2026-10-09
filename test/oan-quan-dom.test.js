@@ -47,6 +47,18 @@ test('waiting screen exposes a working game share action', () => {
   assert.match(game, /https:\/\/saptet\.vn\/o-an-quan\.html/);
 });
 
+test('page exposes local match history and natural SEO content', () => {
+  const html = read('o-an-quan.html');
+  const game = read('js/oan-quan-game.js');
+  assert.match(html, /id="start-history"/);
+  assert.match(html, /<dialog id="history-dialog"/);
+  assert.match(html, /id="history-list"/);
+  assert.match(game, /storage\.recordHistory/);
+  assert.match(game, /storage\.loadHistory/);
+  assert.match(html, /class="oaq-seo-section"/);
+  for (const keyword of ['Trò chơi tuổi thơ', 'Game tuổi thơ', 'Ô Ăn Quan']) assert.match(html, new RegExp(keyword, 'i'));
+});
+
 test('active matches require confirmation before exiting or leaving the page', () => {
   const html = read('o-an-quan.html');
   const game = read('js/oan-quan-game.js');
@@ -55,6 +67,18 @@ test('active matches require confirmation before exiting or leaving the page', (
   assert.match(game, /function requestExit\(\)/);
   assert.match(game, /addEventListener\('beforeunload'/);
   assert.match(game, /\['idle', 'gameOver'\]\.includes\(state\.phase\)/);
+});
+
+test('browser back returns an active match to the waiting screen first', () => {
+  const game = read('js/oan-quan-game.js');
+  const navigation = read('js/navigation.js');
+  assert.match(game, /history\.pushState/);
+  assert.match(game, /addEventListener\('popstate'/);
+  assert.match(game, /function returnToWaiting\(\)/);
+  assert.match(game, /history\.back\(\)/);
+  assert.match(game, /showDialog\(\$\('#exit-dialog'\)\)/);
+  assert.match(game, /allowHistoryExit/);
+  assert.match(navigation, /'\/o-an-quan':\s*'o-an-quan'/);
 });
 
 test('responsive CSS reserves touch targets and a fixed board ratio', () => {

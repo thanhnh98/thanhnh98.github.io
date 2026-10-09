@@ -15,6 +15,7 @@
   const canvas = $('#oaq-flight-canvas');
   const ctx = canvas.getContext('2d');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const historyScreenKey = 'oaqScreen';
   const storage = window.OanQuanStorage.createStorage(window.localStorage);
   let settings = storage.load();
   let state = null;
@@ -24,6 +25,7 @@
   let lastConfig = { mode: 'bot', level: settings.level };
   let resultShown = false;
   let handState = null;
+  let allowHistoryExit = false;
 
   function track(action, params = {}) {
     window.webAnalytics?.trackGameAction('o_an_quan', action, params);
@@ -462,13 +464,54 @@
 
   function start(config) {
     audio.unlock(); resultShown = false; lastConfig = config;
+    if (window.history.state?.[historyScreenKey] !== 'playing') {
+      window.history.pushState({ ...(window.history.state || {}), [historyScreenKey]: 'playing' }, '', window.location.href);
+    }
     hideStartScreen(); closeDialog($('#friend-dialog'), false); closeDialog($('#result-dialog'), false);
     if (config.mode === 'friend') match.startFriend(config.players); else match.startBot(config.level);
     track('start', { mode: config.mode, level: config.level || '' });
   }
 
   function onComplete(result) {
+    storage.recordHistory({
+      mode: result.mode,
+      level: result.level,
+      outcome: result.outcome,
+      winner: result.winner,
+      southName: result.mode === 'friend' ? result.players.player2 : 'Bạn',
+      northName: result.mode === 'friend' ? result.players.player1 : 'Máy',
+      southScore: result.south.total,
+      northScore: result.north.total,
+      elapsedMs: result.elapsedMs,
+      rankScore: result.rankScore,
+    });
     audio.play(result.outcome); track('complete', { outcome: result.outcome, mode: result.mode, rank_score: result.rankScore });
+  }
+  function renderHistory() {
+    const list = $('#history-list');
+    const history = storage.loadHistory();
+    list.replaceChildren();
+    $('#history-empty').hidden = history.length > 0;
+    history.forEach((entry) => {
+      const item = document.createElement('article');
+      item.className = 'oaq-history-item';
+      const heading = document.createElement('div');
+      const result = document.createElement('strong');
+      result.className = `is-${entry.outcome}`;
+      if (entry.mode === 'friend') result.textContent = entry.winner === null ? 'Hòa' : `${entry.winner === E.Player.SOUTH ? entry.southName : entry.northName} thắng`;
+      else result.textContent = ({ win: 'Chiến thắng', draw: 'Hòa', loss: 'Thua cuộc' })[entry.outcome];
+      const time = document.createElement('time');
+      time.dateTime = entry.playedAt;
+      const date = new Date(entry.playedAt);
+      time.textContent = Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short', timeStyle: 'short' }).format(date);
+      heading.append(result, time);
+      const score = document.createElement('p');
+      score.textContent = `${entry.southName} ${entry.southScore} — ${entry.northScore} ${entry.northName}`;
+      const meta = document.createElement('small');
+      meta.textContent = `${entry.mode === 'friend' ? 'Chơi với bạn' : `Mức ${levelName(entry.level)}`} · ${formatTime(entry.durationSeconds)}${entry.mode === 'bot' ? ` · ${entry.rankScore} điểm rank` : ''}`;
+      item.append(heading, score, meta);
+      list.append(item);
+    });
   }
   function showResult(result) {
     if (resultShown) return; resultShown = true;
@@ -515,6 +558,7 @@
   });
   $('#oaq-help').addEventListener('click', () => showDialog($('#help-dialog')));
   $('#start-help').addEventListener('click', () => { hideStartScreen(); showDialog($('#help-dialog'), false); });
+  $('#start-history').addEventListener('click', () => { hideStartScreen(); renderHistory(); showDialog($('#history-dialog'), false); track('open_history'); });
   $('#start-share').addEventListener('click', async () => {
     const url = 'https://saptet.vn/o-an-quan.html';
     const data = { title: 'Ô Ăn Quan Online | Sắp Tết', text: 'Chơi Ô Ăn Quan dân gian trên Sắp Tết!', url };
@@ -539,9 +583,18 @@
   $('#help-dialog').addEventListener('close', () => {
     if (state?.phase === 'idle') showStartScreen(); else if (!$('#pause-dialog').open) { match.setPaused(false); audio.resume(); }
   });
+  $('#history-dialog').addEventListener('close', () => { if (state?.phase === 'idle') showStartScreen(); });
   function exitToStart() { match.reset(); resultShown = false; closeDialog($('#pause-dialog'), false); closeDialog($('#exit-dialog'), false); closeDialog($('#result-dialog'), false); settings = storage.load(); $('#best-score').textContent = settings.highestScore; $('#best-rank').textContent = settings.bestRankScore; showStartScreen(); }
+  function returnToWaiting() {
+    if (window.history.state?.[historyScreenKey] === 'playing') {
+      allowHistoryExit = true;
+      window.history.back();
+    }
+    else exitToStart();
+  }
   function requestExit() {
-    if (!state || ['idle', 'gameOver'].includes(state.phase)) { exitToStart(); return; }
+    if (!state || state.phase === 'idle') { exitToStart(); return; }
+    if (state.phase === 'gameOver') { returnToWaiting(); return; }
     if ($('#pause-dialog').open) {
       ignoreNextPauseClose = true;
       $('#pause-dialog').close();
@@ -549,8 +602,8 @@
     showDialog($('#exit-dialog'));
   }
   $('#exit-dialog').addEventListener('close', () => { if (state && !['idle', 'gameOver'].includes(state.phase)) { match.setPaused(false); audio.resume(); } });
-  $('#confirm-exit').addEventListener('click', exitToStart);
-  $('#oaq-exit').addEventListener('click', requestExit); $('#pause-exit').addEventListener('click', requestExit); $('#result-exit').addEventListener('click', exitToStart);
+  $('#confirm-exit').addEventListener('click', returnToWaiting);
+  $('#oaq-exit').addEventListener('click', requestExit); $('#pause-exit').addEventListener('click', requestExit); $('#result-exit').addEventListener('click', returnToWaiting);
   $('#start-bot').addEventListener('click', () => start({ mode: 'bot', level: $('input[name="oaq-level"]:checked').value }));
   $('#open-friend').addEventListener('click', () => { hideStartScreen(); const saved = storage.load().friend; $('#friend-one').value = saved.player1; $('#friend-two').value = saved.player2; const radio = $(`input[name="friend-first"][value="${saved.first}"]`); if (radio) radio.checked = true; showDialog($('#friend-dialog'), false); });
   $('#friend-dialog').addEventListener('close', () => { if (state?.phase === 'idle') showStartScreen(); });
@@ -561,6 +614,23 @@
     if (!state || ['idle', 'gameOver'].includes(state.phase)) return;
     event.preventDefault();
     event.returnValue = '';
+  });
+  window.addEventListener('popstate', (event) => {
+    if (allowHistoryExit) {
+      allowHistoryExit = false;
+      exitToStart();
+      return;
+    }
+    if (state && !['idle', 'gameOver'].includes(state.phase)) {
+      window.history.pushState({ ...(event.state || {}), [historyScreenKey]: 'playing' }, '', window.location.href);
+      showDialog($('#exit-dialog'));
+      return;
+    }
+    if (event.state?.[historyScreenKey] === 'playing') {
+      window.history.replaceState({ ...event.state, [historyScreenKey]: 'waiting' }, '', window.location.href);
+      return;
+    }
+    if (state?.phase === 'gameOver') exitToStart();
   });
   const portraitMedia = matchMedia('(orientation: portrait) and (max-width: 700px)');
   let rotateDismissed = false;
@@ -586,6 +656,7 @@
   window.addEventListener('resize', () => requestAnimationFrame(() => { flights.resize(); placeHandBadge(); positionDirectionPicker(); }));
 
   match.subscribe(renderState);
+  window.history.replaceState({ ...(window.history.state || {}), [historyScreenKey]: 'waiting' }, '', window.location.href);
   settings = storage.load();
   $(`input[name="oaq-level"][value="${settings.level}"]`).checked = true;
   $('#best-score').textContent = settings.highestScore; $('#best-rank').textContent = settings.bestRankScore;

@@ -6,6 +6,7 @@
   'use strict';
 
   const KEY = 'sapTet.oAnQuan.v1';
+  const HISTORY_LIMIT = 10;
   const fresh = () => ({
     sound: true,
     level: 'easy',
@@ -16,10 +17,11 @@
     },
     highestScore: 0,
     bestRankScore: 0,
+    history: [],
     friend: { player1: 'Người chơi 1', player2: 'Người chơi 2', first: 1 },
   });
 
-  function createStorage(storage) {
+  function createStorage(storage, now = () => new Date()) {
     function load() {
       try {
         const parsed = JSON.parse(storage && storage.getItem(KEY));
@@ -29,6 +31,7 @@
           ...base,
           ...parsed,
           stats: { ...base.stats, ...(parsed.stats || {}) },
+          history: Array.isArray(parsed.history) ? parsed.history.slice(0, HISTORY_LIMIT) : [],
           friend: { ...base.friend, ...(parsed.friend || {}) },
         };
       } catch (_error) { return fresh(); }
@@ -54,8 +57,29 @@
       save(data);
       return data;
     }
-    return { load, save, update, recordResult };
+    function recordHistory(result) {
+      const data = load();
+      const playedAt = now();
+      const entry = {
+        playedAt: playedAt instanceof Date ? playedAt.toISOString() : new Date(playedAt).toISOString(),
+        mode: result.mode === 'friend' ? 'friend' : 'bot',
+        level: ['easy', 'medium', 'hard'].includes(result.level) ? result.level : 'easy',
+        outcome: ['win', 'draw', 'loss'].includes(result.outcome) ? result.outcome : 'draw',
+        winner: result.winner === 0 || result.winner === 1 ? result.winner : null,
+        southName: String(result.southName || 'Bạn').slice(0, 16),
+        northName: String(result.northName || 'Máy').slice(0, 16),
+        southScore: Math.max(0, Number(result.southScore) || 0),
+        northScore: Math.max(0, Number(result.northScore) || 0),
+        durationSeconds: Math.max(0, Math.floor((Number(result.elapsedMs) || 0) / 1000)),
+        rankScore: Math.max(0, Number(result.rankScore) || 0),
+      };
+      data.history = [entry, ...data.history].slice(0, HISTORY_LIMIT);
+      save(data);
+      return entry;
+    }
+    function loadHistory() { return load().history; }
+    return { load, save, update, recordResult, recordHistory, loadHistory };
   }
 
-  return { KEY, createStorage };
+  return { KEY, HISTORY_LIMIT, createStorage };
 });

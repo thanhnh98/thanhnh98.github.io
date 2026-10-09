@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Ô Ăn Quan Online – Trò chơi dân gian | Sắp Tết</title>
-  <meta name="description" content="Chơi Ô Ăn Quan miễn phí trên trình duyệt: đúng luật dân gian, đấu máy 3 mức hoặc chơi cùng bạn, animation và âm thanh sống động.">
-  <meta name="keywords" content="ô ăn quan online, trò chơi dân gian, game Tết, chơi ô ăn quan">
+  <meta name="description" content="Chơi Ô Ăn Quan miễn phí trên trình duyệt: game tuổi thơ đúng luật dân gian, đấu máy 3 mức hoặc chơi cùng bạn, có lưu lịch sử đấu.">
+  <meta name="keywords" content="Ô ăn quan, trò chơi tuổi thơ, game tuổi thơ, ô ăn quan online, trò chơi dân gian, game Tết">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#651d26">
   <link rel="canonical" href="https://saptet.vn/o-an-quan.html">
@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=20260914a">
   <link rel="stylesheet" href="css/colors.css?v=20260830">
-  <link rel="stylesheet" href="css/o-an-quan.css?v=20261008l">
+  <link rel="stylesheet" href="css/o-an-quan.css?v=20261009">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Ô Ăn Quan Online","url":"https://saptet.vn/o-an-quan.html","inLanguage":"vi-VN","isPartOf":{"@type":"WebSite","name":"Sắp Tết","url":"https://saptet.vn/"},"mainEntity":{"@type":"VideoGame","name":"Ô Ăn Quan","genre":["Board game","Traditional game"],"gamePlatform":"Web Browser","playMode":["SinglePlayer","MultiPlayer"],"inLanguage":"vi-VN"}}
@@ -81,6 +81,7 @@
               <button id="open-friend" class="oaq-secondary" type="button"><i data-lucide="users"></i>Chơi với bạn</button>
             </div>
             <div class="oaq-start-links">
+              <button id="start-history" class="oaq-text-btn" type="button"><i data-lucide="history"></i>Lịch sử đấu</button>
               <button id="start-help" class="oaq-text-btn" type="button"><i data-lucide="circle-help"></i>Cách chơi</button>
               <button id="start-share" class="oaq-text-btn" type="button"><i data-lucide="share-2"></i><span>Chia sẻ game</span></button>
             </div>
@@ -126,6 +127,17 @@
       <p>Bàn có 10 ô dân, mỗi ô 5 dân, và 2 ô Quan ở hai đầu. Chọn một ô bên mình rồi rải từng quân theo một trong hai hướng.</p>
       <p>Khi rải hết, nếu ô kế tiếp có dân thì bốc lên rải tiếp. Nếu ô kế tiếp trống và ô sau có quân thì ăn toàn bộ quân ở ô đó. Ván kết thúc khi hai ô Quan đều trống.</p>
     </details>
+
+    <section class="oaq-seo-section" aria-labelledby="oaq-seo-title">
+      <p class="oaq-seo-eyebrow">Trò chơi tuổi thơ của người Việt</p>
+      <h2 id="oaq-seo-title">Ô Ăn Quan – game tuổi thơ nay có thể chơi online</h2>
+      <p class="oaq-seo-lead">Ô Ăn Quan là trò chơi dân gian quen thuộc, gắn với sân trường, hiên nhà và những buổi tụ họp bạn bè. Phiên bản trên Sắp Tết giữ cách rải dân, ăn quân và tính điểm truyền thống, đồng thời giúp bạn bắt đầu một ván mới ngay trên trình duyệt.</p>
+      <div class="oaq-seo-grid">
+        <article><h3>Vì sao Ô Ăn Quan là trò chơi tuổi thơ đáng nhớ?</h3><p>Chỉ cần vài viên sỏi và những ô vẽ trên nền đất, hai người đã có thể cùng chơi. Mỗi lượt đều cần quan sát, tính hướng rải và đoán nước đi tiếp theo nên luật dễ hiểu nhưng ván đấu luôn có chiều sâu.</p></article>
+        <article><h3>Game tuổi thơ phù hợp để chơi cùng bạn bè</h3><p>Bạn có thể đấu với máy ở ba mức độ hoặc chọn chế độ hai người trên cùng thiết bị. Kết quả và thời gian của 10 ván gần nhất được lưu ngay trên trình duyệt để bạn tiện xem lại.</p></article>
+        <article><h3>Chơi Ô Ăn Quan miễn phí, không cần cài đặt</h3><p>Game chạy trực tiếp trên điện thoại và máy tính, có hướng dẫn luật, gợi ý nước đi, hoàn tác và hiệu ứng rải quân. Thành tích chỉ được lưu trên thiết bị của bạn.</p></article>
+      </div>
+    </section>
   </main>
 
   <dialog id="friend-dialog" class="oaq-dialog" aria-labelledby="friend-title">
@@ -151,6 +163,15 @@
         <section><b>Kết thúc</b><p>Hai ô Quan đều trống. Tổng dân, Quan ×10 và phần nợ quyết định thắng thua.</p></section>
       </div>
       <div class="oaq-dialog-footer"><button class="oaq-primary" value="close">Đã hiểu</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="history-dialog" class="oaq-dialog" aria-labelledby="history-title">
+    <form method="dialog" class="oaq-dialog-card oaq-history-card">
+      <div class="oaq-history-heading"><div><p class="oaq-eyebrow">10 ván gần nhất</p><h2 id="history-title">Lịch sử đấu</h2></div><i data-lucide="history" aria-hidden="true"></i></div>
+      <p id="history-empty" class="oaq-history-empty">Bạn chưa hoàn thành ván đấu nào. Chơi một ván để bắt đầu ghi lại thành tích nhé!</p>
+      <div id="history-list" class="oaq-history-list" aria-live="polite"></div>
+      <div class="oaq-dialog-footer"><button class="oaq-primary" value="close">Đóng</button></div>
     </form>
   </dialog>
 
@@ -185,13 +206,13 @@
 
   <div id="footer-container"></div>
   <script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
-  <script src="js/header-loader.js"></script><script src="js/navigation.js"></script><script src="js/icons.js"></script><script src="js/analytics.js"></script>
+  <script src="js/header-loader.js"></script><script src="js/navigation.js?v=20261009"></script><script src="js/icons.js"></script><script src="js/analytics.js"></script>
   <script src="js/oan-quan-engine.js?v=20261007"></script>
   <script src="js/oan-quan-bot.js?v=20261007"></script>
-  <script src="js/oan-quan-storage.js?v=20261007"></script>
+  <script src="js/oan-quan-storage.js?v=20261009"></script>
   <script src="js/oan-quan-animator.js?v=20261008e"></script>
-  <script src="js/oan-quan-match.js?v=20261007"></script>
-  <script src="js/oan-quan-game.js?v=20261008l"></script>
+  <script src="js/oan-quan-match.js?v=20261009"></script>
+  <script src="js/oan-quan-game.js?v=20261009c"></script>
   <script src="js/footer.js"></script>
 </body>
 </html>

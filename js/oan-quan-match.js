@@ -186,7 +186,7 @@
       const outcome = winningPlayer === null ? 'draw' : winningPlayer === ui.human ? 'win' : 'loss';
       const elapsedMs = activeMs();
       const ranking = Engine.rankScore({ humanScore: south.total, comboPoints, level: ui.level, outcome, elapsedMs });
-      const result = { outcome, winner: winningPlayer, south, north, elapsedMs, comboPoints, rankScore: ranking, mode: ui.mode, players: ui.players };
+      const result = { outcome, winner: winningPlayer, south, north, elapsedMs, comboPoints, rankScore: ranking, mode: ui.mode, level: ui.level, players: ui.players };
       if (!friend) storage.recordResult({ level: ui.level, outcome, score: south.total, rankScore: ranking });
       setUi({ phase: 'gameOver', result, legalPits: [], selectedPit: null, canUndo: false, elapsedSeconds: Math.floor(elapsedMs / 1000) });
       if (options.onComplete) options.onComplete(result);
