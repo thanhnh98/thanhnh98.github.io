@@ -1,26 +1,15 @@
 {
-    "applinks": {
-        "details": [
-            {
-                "appIDs": ["TEAMID.com.thanh_nguyen.tet_count_down"],
-                "components": [
-                    {
-                        "/": "*",
-                        "comment": "Matches any URL"
-                    },
-                    {
-                        "/mon-an-tet": "*",
-                        "comment": "Matches food pages"
-                    },
-                    {
-                        "/tro-choi-tet": "*",
-                        "comment": "Matches game pages"
-                    }
-                ]
-            }
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["M55WJF6HXG.tlife.app.saptet"],
+        "components": [
+          {
+            "/": "/oanquan/join/*",
+            "comment": "Ô ăn quan online room invite"
+          }
         ]
-    },
-    "webcredentials": {
-        "apps": ["TEAMID.com.thanh_nguyen.tet_count_down"]
-    }
+      }
+    ]
+  }
 }

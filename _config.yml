@@ -1,0 +1,4 @@
+# GitHub Pages builds this plain-HTML site with Jekyll, which skips dot-folders.
+# .well-known must be published for iOS Universal Links / Android App Links.
+include:
+  - .well-known
