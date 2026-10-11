@@ -16,12 +16,16 @@ test('apple-app-site-association only claims the Ô ăn quan invite path', () =>
   assert.deepEqual(detail.components.map((c) => c['/']), ['/oanquan/join/*']);
 });
 
-test('assetlinks.json verifies the Android app', () => {
-  const [statement] = JSON.parse(read('.well-known/assetlinks.json'));
-  assert.deepEqual(statement.relation, ['delegate_permission/common.handle_all_urls']);
-  assert.equal(statement.target.package_name, 'com.thanh_nguyen.tet_count_down');
-  assert.ok(statement.target.sha256_cert_fingerprints.length > 0);
-  for (const fp of statement.target.sha256_cert_fingerprints) assert.match(fp, /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/);
+test('assetlinks.json verifies the release app and the debug build', () => {
+  const statements = JSON.parse(read('.well-known/assetlinks.json'));
+  const byPackage = Object.fromEntries(statements.map((s) => [s.target.package_name, s]));
+  assert.deepEqual(Object.keys(byPackage).sort(), ['com.thanh_nguyen.tet_count_down', 'com.thanh_nguyen.tet_count_down.debug']);
+  assert.deepEqual(byPackage['com.thanh_nguyen.tet_count_down'].target.sha256_cert_fingerprints,
+    ['24:70:11:01:73:BC:9C:38:37:77:89:F6:2C:6B:B6:D6:81:8B:AF:5F:70:20:67:BC:8E:1D:F2:9F:68:9D:2E:B7']);
+  for (const statement of statements) {
+    assert.deepEqual(statement.relation, ['delegate_permission/common.handle_all_urls']);
+    for (const fp of statement.target.sha256_cert_fingerprints) assert.match(fp, /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/);
+  }
 });
 
 test('404 page renders the room invite for /oanquan/join/<code>', () => {
