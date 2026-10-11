@@ -137,7 +137,113 @@
                 display: none;
             }
         }
+
+        .oaq-invite {
+            display: none;
+        }
+
+        html.is-oaq-invite .error-404 {
+            display: none;
+        }
+
+        html.is-oaq-invite .oaq-invite {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 96px 1rem 2rem;
+            text-align: center;
+        }
+
+        .oaq-invite-card {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .oaq-invite-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+        }
+
+        .oaq-invite-title {
+            font-size: 1.4rem;
+            color: var(--color-text-primary);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .oaq-invite-code {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            color: var(--color-primary);
+            margin: 0.5rem 0;
+        }
+
+        .oaq-invite-note {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            margin: 0.5rem 0 1.25rem;
+        }
+
+        .oaq-invite-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .oaq-invite-actions a,
+        .oaq-invite-actions button {
+            display: block;
+            padding: 0.9rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid var(--color-primary);
+            background: white;
+            color: var(--color-primary);
+            font-family: inherit;
+        }
+
+        .oaq-invite-actions .oaq-invite-open {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-color: transparent;
+            color: white;
+        }
+
+        .oaq-invite-actions [hidden] {
+            display: none;
+        }
+
+        .oaq-invite-web {
+            display: inline-block;
+            margin-top: 1.25rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
     </style>
+    <script>
+        // /oanquan/join/<6 digits> is the Ô ăn quan room invite shared by the apps.
+        // With the app installed the OS opens it directly (Universal Links / App Links);
+        // otherwise GitHub Pages serves this 404 page and we render the invite card.
+        (function () {
+            var match = window.location.pathname.match(/^\/oanquan\/join\/(\d{6})\/?$/);
+            if (match) {
+                window.OAQ_INVITE_CODE = match[1];
+                document.documentElement.classList.add('is-oaq-invite');
+                document.title = 'Mời chơi Ô ăn quan · Phòng ' + match[1] + ' | Sắp Tết';
+            } else if (/^\/oanquan(\/join)?\/?$/.test(window.location.pathname)) {
+                window.location.replace('/o-an-quan.html');
+            }
+        })();
+    </script>
 <!-- Microsoft Clarity -->
 <script>
   (function (c, l, a, r, i, t, y) {
@@ -151,6 +257,23 @@
     <!-- Header Container -->
     <div id="header-container"></div>
     
+    <div class="oaq-invite">
+        <div class="oaq-invite-card">
+            <img class="oaq-invite-icon" src="/assets/images/ic_app-208.webp" alt="Sắp Tết" width="72" height="72">
+            <h1 class="oaq-invite-title">Bạn được mời chơi Ô ăn quan</h1>
+            <div>Mã phòng</div>
+            <div class="oaq-invite-code" id="oaq-invite-code">------</div>
+            <p class="oaq-invite-note">Mở ứng dụng Sắp Tết để vào phòng. Phòng chỉ giữ khoảng 10 phút.</p>
+            <div class="oaq-invite-actions">
+                <a class="oaq-invite-open" id="oaq-invite-open" href="/o-an-quan.html">Mở trong ứng dụng</a>
+                <button type="button" id="oaq-invite-copy">Sao chép mã phòng</button>
+                <a id="oaq-invite-android" href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener">Tải trên Google Play</a>
+                <a id="oaq-invite-ios" href="https://apps.apple.com/app/id6743064990" target="_blank" rel="noopener">Tải trên App Store</a>
+            </div>
+            <a class="oaq-invite-web" href="/o-an-quan.html">Hoặc chơi Ô ăn quan trên web</a>
+        </div>
+    </div>
+
     <div class="error-404">
         <div class="tet-decoration">🧧</div>
         <div class="tet-decoration">🎋</div>
@@ -190,7 +313,7 @@
     
     <!-- Scripts -->
     <script src="/js/header-loader.js"></script>
-    <script src="/js/navigation.js"></script>
+    <script src="/js/navigation.js?v=20261011"></script>
     <script src="/js/footer.js"></script>
     <script>
         // Load header and initialize navigation
@@ -283,6 +406,34 @@
                 }, 1000);
             }
         }
+    </script>
+    <script>
+        (function () {
+            var code = window.OAQ_INVITE_CODE;
+            if (!code) return;
+            var ua = navigator.userAgent || '';
+            var isAndroid = /Android/i.test(ua);
+            var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            var playUrl = 'https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down';
+            // Custom scheme understood by every shipped app version (also the ones without App Links).
+            var appLink = 'saptet://saptet.vn/?page=o_an_quan&room=' + code;
+            if (isAndroid) {
+                appLink = 'intent://saptet.vn/?page=o_an_quan&room=' + code +
+                    '#Intent;scheme=saptet;package=com.thanh_nguyen.tet_count_down;S.browser_fallback_url=' +
+                    encodeURIComponent(playUrl) + ';end';
+            }
+            document.getElementById('oaq-invite-code').textContent = code;
+            document.getElementById('oaq-invite-open').href = appLink;
+            if (isAndroid) document.getElementById('oaq-invite-ios').hidden = true;
+            if (isIOS) document.getElementById('oaq-invite-android').hidden = true;
+            document.getElementById('oaq-invite-copy').addEventListener('click', function () {
+                var button = this;
+                var done = function () { button.textContent = 'Đã sao chép ' + code; };
+                var fail = function () { button.textContent = 'Mã phòng: ' + code; };
+                if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, fail);
+                else fail();
+            });
+        })();
     </script>
 </body>
 </html>
