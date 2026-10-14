@@ -39,14 +39,23 @@
     'phone-cases':         '📲',
     'electronics-gadgets': '💡',
     'apparel':             '👘',
+    'ao-dai-nu':           '👘',
+    'vay-dam-nu':          '👗',
+    'ao-dai-nam':          '👘',
+    'so-mi-nam':           '👔',
     'shoes-bags':          '👟',
     'personal-accessories':'🧢',
     'beauty-personal-care':'🧴',
     'home-appliances':     '⚡',
     'kitchen-dining':      '🍳',
     'home-essentials':     '📦',
+    'nuoc-giat':           '🧺',
+    'nuoc-rua-chen':       '🍽️',
+    'nuoc-lau-san':        '🧹',
     'home-comfort':        '🛏️',
     'snacks-sweets':       '🍬',
+    'mut-tet':             '🍬',
+    'hat-tet':             '🥜',
     'drinks':              '☕',
     'pantry-food':         '🥘',
     'gift-sets':           '🎁',
@@ -141,7 +150,8 @@
   /**
    * CTA text and CSS class per platform.
    */
-  function getCtaInfo(brand, fallbackText) {
+  function getCtaInfo(brand, fallbackText, linkType) {
+    if (brand === 'shopee' && linkType === 'search') return { text: 'Tìm trên Shopee', cls: 'cta-shopee' };
     if (brand === 'shopee') return { text: 'Mua trên Shopee', cls: 'cta-shopee' };
     if (brand === 'tiktok') return { text: 'Xem TikTok Shop', cls: 'cta-tiktok' };
     return { text: fallbackText || 'Xem sản phẩm', cls: '' };
@@ -405,7 +415,7 @@
       var name = cleanName((p.name && p.name.trim()) || 'S\u1ea3n ph\u1ea9m');
       var thumb = (p.thumbnail && p.thumbnail.trim()) ? p.thumbnail : '';
       var url = (p.url && p.url.trim()) || '#';
-      var ctaInfo = getCtaInfo(brand, p.buyText);
+      var ctaInfo = getCtaInfo(brand, p.buyText, p.linkType);
 
       // Card wrapper
       var card = document.createElement('article');
@@ -641,7 +651,7 @@
       const rawName = (p.name && p.name.trim()) || 'Sản phẩm';
       const name = cleanName(rawName);
       const { soldText, cleanDesc } = parseDescription(p.description);
-      const ctaInfo = getCtaInfo(brand, p.buyText);
+      const ctaInfo = getCtaInfo(brand, p.buyText, p.linkType);
       const url = (p.url && p.url.trim()) || '#';
 
       const card = document.createElement('article');

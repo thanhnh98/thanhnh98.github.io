@@ -35,6 +35,26 @@
         "group": "fashion-personal"
       },
       {
+        "category": "ao-dai-nu",
+        "displayName": "Áo dài nữ",
+        "group": "fashion-personal"
+      },
+      {
+        "category": "vay-dam-nu",
+        "displayName": "Váy, đầm nữ",
+        "group": "fashion-personal"
+      },
+      {
+        "category": "ao-dai-nam",
+        "displayName": "Áo dài nam",
+        "group": "fashion-personal"
+      },
+      {
+        "category": "so-mi-nam",
+        "displayName": "Áo sơ mi nam",
+        "group": "fashion-personal"
+      },
+      {
         "category": "shoes-bags",
         "displayName": "Giày dép & túi ví",
         "group": "fashion-personal"
@@ -65,6 +85,21 @@
         "group": "home-living"
       },
       {
+        "category": "nuoc-giat",
+        "displayName": "Nước giặt",
+        "group": "home-living"
+      },
+      {
+        "category": "nuoc-rua-chen",
+        "displayName": "Nước rửa chén",
+        "group": "home-living"
+      },
+      {
+        "category": "nuoc-lau-san",
+        "displayName": "Nước lau sàn",
+        "group": "home-living"
+      },
+      {
         "category": "home-comfort",
         "displayName": "Phòng ngủ & hương thơm",
         "group": "home-living"
@@ -72,6 +107,16 @@
       {
         "category": "snacks-sweets",
         "displayName": "Bánh kẹo & đồ ngọt",
+        "group": "food-drink"
+      },
+      {
+        "category": "mut-tet",
+        "displayName": "Mứt Tết",
+        "group": "food-drink"
+      },
+      {
+        "category": "hat-tet",
+        "displayName": "Hạt Tết",
         "group": "food-drink"
       },
       {
@@ -7219,6 +7264,1488 @@
         "coinBonus": 10,
         "buyText": "Xem sản phẩm",
         "url": "https://s.shopee.vn/40gxb8ZA1L"
+      },
+      {
+        "id": "27715863959",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Mứt Tết tổng hợp TIKOMI: gừng, dừa, mãng cầu, sen, bí",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=M%E1%BB%A9t%20T%E1%BA%BFt%20t%E1%BB%95ng%20h%E1%BB%A3p%20TIKOMI%3A%20g%E1%BB%ABng%2C%20d%E1%BB%ABa%2C%20m%C3%A3ng%20c%E1%BA%A7u%2C%20sen%2C%20b%C3%AD",
+        "linkType": "search",
+        "priceVnd": 98000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "29173250729",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Mứt dừa non, me, gừng viên, mãng cầu Lê Minh Food",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=M%E1%BB%A9t%20d%E1%BB%ABa%20non%2C%20me%2C%20g%E1%BB%ABng%20vi%C3%AAn%2C%20m%C3%A3ng%20c%E1%BA%A7u%20L%C3%AA%20Minh%20Food",
+        "linkType": "search",
+        "priceVnd": 195000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "15902263769",
+        "shopId": "549372824",
+        "thumbnail": "",
+        "images": [],
+        "name": "Combo 3 hũ mứt hạt sen ít đường Senfarm",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/COMBO-3-h%C5%A9-M%E1%BB%A9t-H%E1%BA%A1t-Sen-%C3%8Dt-%C4%90%C6%B0%E1%BB%9Dng-m%E1%BB%A9t-th%C6%B0%E1%BB%A3ng-h%E1%BA%A1ng-Senfarm-M%E1%BB%A9t-T%E1%BA%BFt-B%C3%A1nh-T%E1%BA%BFt-Qu%C3%A0-T%E1%BA%BFt-i.549372824.15902263769",
+        "linkType": "product",
+        "priceVnd": 414000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "14502278763",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Mứt hạt sen ít đường Senfarm",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=M%E1%BB%A9t%20h%E1%BA%A1t%20sen%20%C3%ADt%20%C4%91%C6%B0%E1%BB%9Dng%20Senfarm",
+        "linkType": "search",
+        "priceVnd": 174000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "26570382821",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Mứt hạt sen Huế ít đường HTC Food",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=M%E1%BB%A9t%20h%E1%BA%A1t%20sen%20Hu%E1%BA%BF%20%C3%ADt%20%C4%91%C6%B0%E1%BB%9Dng%20HTC%20Food",
+        "linkType": "search",
+        "priceVnd": 149100,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "27309487479",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Mứt mãng cầu mix me Me Loan",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=M%E1%BB%A9t%20m%C3%A3ng%20c%E1%BA%A7u%20mix%20me%20Me%20Loan",
+        "linkType": "search",
+        "priceVnd": 140000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "24508482747",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Khay mứt hoa mai mix 7 vị 700g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=Khay%20m%E1%BB%A9t%20hoa%20mai%20mix%207%20v%E1%BB%8B%20700g",
+        "linkType": "search",
+        "priceVnd": 229000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "12663451813",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Mứt hạt sen ít đường ba vị Senfarm",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "mut-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=M%E1%BB%A9t%20h%E1%BA%A1t%20sen%20%C3%ADt%20%C4%91%C6%B0%E1%BB%9Dng%20ba%20v%E1%BB%8B%20Senfarm",
+        "linkType": "search",
+        "priceVnd": 132000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "14418682238",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa đỏ không phẩm màu 250g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20%C4%91%E1%BB%8F%20kh%C3%B4ng%20ph%E1%BA%A9m%20m%C3%A0u%20250g",
+        "linkType": "search",
+        "priceVnd": 109000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "29816754977",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa rang củi nguyên vị 500g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20rang%20c%E1%BB%A7i%20nguy%C3%AAn%20v%E1%BB%8B%20500g",
+        "linkType": "search",
+        "priceVnd": 90000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "25588168716",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa rang củi vị bơ muối 500g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20rang%20c%E1%BB%A7i%20v%E1%BB%8B%20b%C6%A1%20mu%E1%BB%91i%20500g",
+        "linkType": "search",
+        "priceVnd": 155000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "23889150014",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dinh dưỡng Tết: dưa, bí, hướng dương, hạnh nhân, macca",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20dinh%20d%C6%B0%E1%BB%A1ng%20T%E1%BA%BFt%3A%20d%C6%B0a%2C%20b%C3%AD%2C%20h%C6%B0%E1%BB%9Bng%20d%C6%B0%C6%A1ng%2C%20h%E1%BA%A1nh%20nh%C3%A2n%2C%20macca",
+        "linkType": "search",
+        "priceVnd": 110000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "26417633325",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa không màu Tứ Hưng 500g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20kh%C3%B4ng%20m%C3%A0u%20T%E1%BB%A9%20H%C6%B0ng%20500g",
+        "linkType": "search",
+        "priceVnd": 160100,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "21055575381",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa mộc TIGER FOOD 400g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20m%E1%BB%99c%20TIGER%20FOOD%20400g",
+        "linkType": "search",
+        "priceVnd": 134800,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "22985099577",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa đỏ rang củi vị mộc không nhuộm màu",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20%C4%91%E1%BB%8F%20rang%20c%E1%BB%A7i%20v%E1%BB%8B%20m%E1%BB%99c%20kh%C3%B4ng%20nhu%E1%BB%99m%20m%C3%A0u",
+        "linkType": "search",
+        "priceVnd": 69000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "6228299617",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa và hạt bí sạch Lâm Thanh",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20v%C3%A0%20h%E1%BA%A1t%20b%C3%AD%20s%E1%BA%A1ch%20L%C3%A2m%20Thanh",
+        "linkType": "search",
+        "priceVnd": 55999,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "22308941412",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa đỏ rang củi vị mộc Tofood86",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20%C4%91%E1%BB%8F%20rang%20c%E1%BB%A7i%20v%E1%BB%8B%20m%E1%BB%99c%20Tofood86",
+        "linkType": "search",
+        "priceVnd": 85000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "43284998694",
+        "shopId": "",
+        "thumbnail": "",
+        "images": [],
+        "name": "Hạt dưa rang củi Bảo An 250g/500g",
+        "description": "",
+        "type": "shopee",
+        "group": "food-drink",
+        "category": [
+          "hat-tet"
+        ],
+        "buyText": "Tìm trên Shopee",
+        "url": "https://shopee.vn/search?keyword=H%E1%BA%A1t%20d%C6%B0a%20rang%20c%E1%BB%A7i%20B%E1%BA%A3o%20An%20250g%2F500g",
+        "linkType": "search",
+        "priceVnd": 119000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee Affiliate dashboard"
+      },
+      {
+        "id": "11575337511",
+        "shopId": "26947756",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mtqi943tacqr7a",
+        "images": [],
+        "name": "Combo 2 Nước giặt OMO Matic Hương Nước Hoa Comfort 4.1KG (túi)",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-N%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-OMO-Matic-H%C6%B0%C6%A1ng-N%C6%B0%E1%BB%9Bc-Hoa-Comfort-4.1KG-%28t%C3%BAi%29-i.26947756.11575337511",
+        "linkType": "product",
+        "priceVnd": 647000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "19831986095",
+        "shopId": "779607831",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-md1f4923fujg82",
+        "images": [],
+        "name": "Combo 2 túi nước giặt Lix Siêu Sạch dung tích 2.4kg/túi các hương, 2C-N2503 - Lixco Việt Nam",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-t%C3%BAi-n%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-Lix-Si%C3%AAu-S%E1%BA%A1ch-dung-t%C3%ADch-2.4kg-t%C3%BAi-c%C3%A1c-h%C6%B0%C6%A1ng-2C-N2503-Lixco-Vi%E1%BB%87t-Nam-i.779607831.19831986095",
+        "linkType": "product",
+        "priceVnd": 172900,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "2820087763",
+        "shopId": "26947756",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước giặt OMO Matic Hương Nước Hoa Comfort 4.1KG (túi)",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-OMO-Matic-H%C6%B0%C6%A1ng-N%C6%B0%E1%BB%9Bc-Hoa-Comfort-4.1KG-%28t%C3%BAi%29-i.26947756.2820087763",
+        "linkType": "product",
+        "priceVnd": 333000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "17419336828",
+        "shopId": "202833923",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdbx77ghxl7gb9",
+        "images": [],
+        "name": "Túi Nước Giặt Xả Maxkleen 3.6kg/ 3.8kg (MỚI)",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/T%C3%BAi-N%C6%B0%E1%BB%9Bc-Gi%E1%BA%B7t-X%E1%BA%A3-Maxkleen-3.6kg-3.8kg-%28M%E1%BB%9AI%29-i.202833923.17419336828",
+        "linkType": "product",
+        "priceVnd": 173775,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "29677134279",
+        "shopId": "1373460418",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước giặt xả TOPGIA 3in1 Đắm Say, hương lavender dịu nhẹ, tẩy sạch vết bẩn, an toàn cho da, lưu hương 72H",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-x%E1%BA%A3-TOPGIA-3in1-%C4%90%E1%BA%AFm-Say-h%C6%B0%C6%A1ng-lavender-d%E1%BB%8Bu-nh%E1%BA%B9-t%E1%BA%A9y-s%E1%BA%A1ch-v%E1%BA%BFt-b%E1%BA%A9n-an-to%C3%A0n-cho-da-l%C6%B0u-h%C6%B0%C6%A1ng-72H-i.1373460418.29677134279",
+        "linkType": "product",
+        "priceVnd": 58999,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "47160183581",
+        "shopId": "224609464",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước giặt Hygiene 3L THÁI LAN CHÍNH HÃNG",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-Hygiene-3L-TH%C3%81I-LAN-CH%C3%8DNH-H%C3%83NG-i.224609464.47160183581",
+        "linkType": "product",
+        "priceVnd": 169000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "16085744562",
+        "shopId": "779607831",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-md13r9mxcf59e7",
+        "images": [],
+        "name": "Combo 2 Túi nước giặt Lix đậm dặc hương nước hoa 3.2Kg bảo vệ da tay sạch thơm như mới - 2C-NGH47",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-T%C3%BAi-n%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-Lix-%C4%91%E1%BA%ADm-d%E1%BA%B7c-h%C6%B0%C6%A1ng-n%C6%B0%E1%BB%9Bc-hoa-3.2Kg-b%E1%BA%A3o-v%E1%BB%87-da-tay-s%E1%BA%A1ch-th%C6%A1m-nh%C6%B0-m%E1%BB%9Bi-2C-NGH47-i.779607831.16085744562",
+        "linkType": "product",
+        "priceVnd": 250000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "22061511007",
+        "shopId": "1016604648",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-muag3ou706is14",
+        "images": [],
+        "name": "Nước Giặt TopGia 3in1 Hương Huyền Diệu Dịu Nhẹ Làm Sạch Vết Bẩn, Lưu Hương 72h, Túi 2L",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-Gi%E1%BA%B7t-TopGia-3in1-H%C6%B0%C6%A1ng-Huy%E1%BB%81n-Di%E1%BB%87u-D%E1%BB%8Bu-Nh%E1%BA%B9-L%C3%A0m-S%E1%BA%A1ch-V%E1%BA%BFt-B%E1%BA%A9n-L%C6%B0u-H%C6%B0%C6%A1ng-72h-T%C3%BAi-2L-i.1016604648.22061511007",
+        "linkType": "product",
+        "priceVnd": 79680,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "24564178381",
+        "shopId": "779607831",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-md13sx1wecgs47",
+        "images": [],
+        "name": "Combo 2 túi nước giặt Lix Matic hương nước hoa 3.2kg giặt tẩy mọi vết bẩn cứng đầu dùng cho máy giặt cửa trước",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-t%C3%BAi-n%C6%B0%E1%BB%9Bc-gi%E1%BA%B7t-Lix-Matic-h%C6%B0%C6%A1ng-n%C6%B0%E1%BB%9Bc-hoa-3.2kg-gi%E1%BA%B7t-t%E1%BA%A9y-m%E1%BB%8Di-v%E1%BA%BFt-b%E1%BA%A9n-c%E1%BB%A9ng-%C4%91%E1%BA%A7u-d%C3%B9ng-cho-m%C3%A1y-gi%E1%BA%B7t-c%E1%BB%ADa-tr%C6%B0%E1%BB%9Bc-i.779607831.24564178381",
+        "linkType": "product",
+        "priceVnd": 250000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "28131347553",
+        "shopId": "1479423124",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mu9593fcya6a7c",
+        "images": [],
+        "name": "Combo 2 Nước Giặt Đậm Đặc Hygiene 3L (Dịu Êm/ Ánh Dương Hạnh Phúc/ Mẫu Đơn/ Ánh Dương Rực Rỡ)",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-giat"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-N%C6%B0%E1%BB%9Bc-Gi%E1%BA%B7t-%C4%90%E1%BA%ADm-%C4%90%E1%BA%B7c-Hygiene-3L-%28D%E1%BB%8Bu-%C3%8Am-%C3%81nh-D%C6%B0%C6%A1ng-H%E1%BA%A1nh-Ph%C3%BAc-M%E1%BA%ABu-%C4%90%C6%A1n-%C3%81nh-D%C6%B0%C6%A1ng-R%E1%BB%B1c-R%E1%BB%A1%29-i.1479423124.28131347553",
+        "linkType": "product",
+        "priceVnd": 394800,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "26134034986",
+        "shopId": "590860162",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpssqczwy1hoae",
+        "images": [],
+        "name": "Nước Rửa Chén Sunlight hương Chanh",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-Sunlight-h%C6%B0%C6%A1ng-Chanh-i.590860162.26134034986",
+        "linkType": "product",
+        "priceVnd": 106997,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "2824221784",
+        "shopId": "26947756",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mtw2rp7phj45c7",
+        "images": [],
+        "name": "Nước rửa chén Sunlight Bio-care với thành phần từ 100% tự nhiên Túi 3.3kg",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-r%E1%BB%ADa-ch%C3%A9n-Sunlight-Bio-care-v%E1%BB%9Bi-th%C3%A0nh-ph%E1%BA%A7n-t%E1%BB%AB-100-t%E1%BB%B1-nhi%C3%AAn-T%C3%BAi-3.3kg-i.26947756.2824221784",
+        "linkType": "product",
+        "priceVnd": 148000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "453908626",
+        "shopId": "26947756",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mtqiwmsuazgg1e",
+        "images": [],
+        "name": "Nước Rửa Chén Bát Sunlight Chanh 100 Sạch Nhanh Xả Bọt Nhanh Rửa Sạch Dầu Mỡ 3.6kg",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-B%C3%A1t-Sunlight-Chanh-100-S%E1%BA%A1ch-Nhanh-X%E1%BA%A3-B%E1%BB%8Dt-Nhanh-R%E1%BB%ADa-S%E1%BA%A1ch-D%E1%BA%A7u-M%E1%BB%A1-3.6kg-i.26947756.453908626",
+        "linkType": "product",
+        "priceVnd": 134000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "29684900464",
+        "shopId": "1510047077",
+        "thumbnail": "",
+        "images": [],
+        "name": "(MUA 1 TẶNG 2) Nước rửa chén bát Fuwa3e hữu cơ Enzyme dứa 3.8L an toàn cho bé, bảo vệ da tay",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%28MUA-1-T%E1%BA%B6NG-2%29-N%C6%B0%E1%BB%9Bc-r%E1%BB%ADa-ch%C3%A9n-b%C3%A1t-Fuwa3e-h%E1%BB%AFu-c%C6%A1-Enzyme-d%E1%BB%A9a-3.8L-an-to%C3%A0n-cho-b%C3%A9-b%E1%BA%A3o-v%E1%BB%87-da-tay-i.1510047077.29684900464",
+        "linkType": "product",
+        "priceVnd": 382000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "43303713068",
+        "shopId": "827060775",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mu8lj7w6yigx8d",
+        "images": [],
+        "name": "Combo 2 Nước Rửa Chén An Toàn Cho Da Và 5X Đậm Đặc Mỹ Hảo | Khử Sạch Mùi Tanh Thực Phẩm | Túi 3.3KGx2",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-An-To%C3%A0n-Cho-Da-V%C3%A0-5X-%C4%90%E1%BA%ADm-%C4%90%E1%BA%B7c-M%E1%BB%B9-H%E1%BA%A3o-Kh%E1%BB%AD-S%E1%BA%A1ch-M%C3%B9i-Tanh-Th%E1%BB%B1c-Ph%E1%BA%A9m-T%C3%BAi-3.3KGx2-i.827060775.43303713068",
+        "linkType": "product",
+        "priceVnd": 195000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "23403993814",
+        "shopId": "70914847",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước Rửa Chén Surf Chanh Xả 3.5kg - - SURRC",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-Surf-Chanh-X%E1%BA%A3-3.5kg-SURRC-i.70914847.23403993814",
+        "linkType": "product",
+        "priceVnd": 85560,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "43905799998",
+        "shopId": "397697610",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mruc8t4aacjp17",
+        "images": [],
+        "name": "Nước Rửa Chén LIX 3.5kg 🍋Hương Chanh thiên nhiên – Sạch Nhờn, Dịu Da | Freeship",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-LIX-3.5kg-%F0%9F%8D%8BH%C6%B0%C6%A1ng-Chanh-thi%C3%AAn-nhi%C3%AAn-%E2%80%93-S%E1%BA%A1ch-Nh%E1%BB%9Dn-D%E1%BB%8Bu-Da-Freeship-i.397697610.43905799998",
+        "linkType": "product",
+        "priceVnd": 51360,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "44262457591",
+        "shopId": "902644706",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdbufa9604h963",
+        "images": [],
+        "name": "Nước Rửa Chén Gift Natural túi 3.6kg nhiều mùi hương",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-Gift-Natural-t%C3%BAi-3.6kg-nhi%E1%BB%81u-m%C3%B9i-h%C6%B0%C6%A1ng-i.902644706.44262457591",
+        "linkType": "product",
+        "priceVnd": 81000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "5189649167",
+        "shopId": "354028991",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước Rửa Chén Bát Sinh Học Enzyco 870ml - Từ Bồ Hòn Và Dứa, Sạch Dầu Mỡ, Dịu Da Tay, An Toàn Chuẩn Quốc Tế Ecocert",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-B%C3%A1t-Sinh-H%E1%BB%8Dc-Enzyco-870ml-T%E1%BB%AB-B%E1%BB%93-H%C3%B2n-V%C3%A0-D%E1%BB%A9a-S%E1%BA%A1ch-D%E1%BA%A7u-M%E1%BB%A1-D%E1%BB%8Bu-Da-Tay-An-To%C3%A0n-Chu%E1%BA%A9n-Qu%E1%BB%91c-T%E1%BA%BF-Ecocert-i.354028991.5189649167",
+        "linkType": "product",
+        "priceVnd": 187000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "26635247773",
+        "shopId": "1945974",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước Rửa Chén Bát TopGia 1kg – Hương Chanh, Gừng, Bưởi Hồng – Sạch Dầu Mỡ, Dịu Nhẹ Da Tay",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-rua-chen"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-R%E1%BB%ADa-Ch%C3%A9n-B%C3%A1t-TopGia-1kg-%E2%80%93-H%C6%B0%C6%A1ng-Chanh-G%E1%BB%ABng-B%C6%B0%E1%BB%9Fi-H%E1%BB%93ng-%E2%80%93-S%E1%BA%A1ch-D%E1%BA%A7u-M%E1%BB%A1-D%E1%BB%8Bu-Nh%E1%BA%B9-Da-Tay-i.1945974.26635247773",
+        "linkType": "product",
+        "priceVnd": 49500,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "14374121597",
+        "shopId": "268814191",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước Lau Sàn Sunlight Hương Hoa Lily Bạch Trà Túi 3.6kg/Oải Hương Túi 3.4KG",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-Lau-S%C3%A0n-Sunlight-H%C6%B0%C6%A1ng-Hoa-Lily-B%E1%BA%A1ch-Tr%C3%A0-T%C3%BAi-3.6kg-O%E1%BA%A3i-H%C6%B0%C6%A1ng-T%C3%BAi-3.4KG-i.268814191.14374121597",
+        "linkType": "product",
+        "priceVnd": 92000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "28556654337",
+        "shopId": "957685930",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mnjt3i1isd8o22",
+        "images": [],
+        "name": "Nước Lau Sàn Funu Sạch Nhanh Sau Một Lần Lau, Khử Mùi Hôi Hiệu Quả, Hỗ Trợ Xua Đuổi Côn Trùng Nhanh",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-Lau-S%C3%A0n-Funu-S%E1%BA%A1ch-Nhanh-Sau-M%E1%BB%99t-L%E1%BA%A7n-Lau-Kh%E1%BB%AD-M%C3%B9i-H%C3%B4i-Hi%E1%BB%87u-Qu%E1%BA%A3-H%E1%BB%97-Tr%E1%BB%A3-Xua-%C4%90u%E1%BB%95i-C%C3%B4n-Tr%C3%B9ng-Nhanh-i.957685930.28556654337",
+        "linkType": "product",
+        "priceVnd": 21215,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "53660212119",
+        "shopId": "134350529",
+        "thumbnail": "",
+        "images": [],
+        "name": "Combo 2 Túi Nước Lau Sàn MaxKleen 3.6kg/túi",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-T%C3%BAi-N%C6%B0%E1%BB%9Bc-Lau-S%C3%A0n-MaxKleen-3.6kg-t%C3%BAi-i.134350529.53660212119",
+        "linkType": "product",
+        "priceVnd": 154000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "19890790515",
+        "shopId": "1032969483",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mf0m0gymd6h6d3",
+        "images": [],
+        "name": "Nước lau sàn chuyên dụng TINECO - dung tích 1 lít - hàng chính hãng - hương thơm nhẹ - bóng sàn - nhanh khô",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-lau-s%C3%A0n-chuy%C3%AAn-d%E1%BB%A5ng-TINECO-dung-t%C3%ADch-1-l%C3%ADt-h%C3%A0ng-ch%C3%ADnh-h%C3%A3ng-h%C6%B0%C6%A1ng-th%C6%A1m-nh%E1%BA%B9-b%C3%B3ng-s%C3%A0n-nhanh-kh%C3%B4-i.1032969483.19890790515",
+        "linkType": "product",
+        "priceVnd": 312000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "29963609579",
+        "shopId": "63362207",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m15p08udtnqz3f",
+        "images": [],
+        "name": "Túi Nước Lau Sàn MaxKleen Ban Mai Thanh Mát, Ngàn Hoa Ngọt Ngào 1Kg",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/T%C3%BAi-N%C6%B0%E1%BB%9Bc-Lau-S%C3%A0n-MaxKleen-Ban-Mai-Thanh-M%C3%A1t-Ng%C3%A0n-Hoa-Ng%E1%BB%8Dt-Ng%C3%A0o-1Kg-i.63362207.29963609579",
+        "linkType": "product",
+        "priceVnd": 35000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "12287778678",
+        "shopId": "134350529",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-msjc7d8wscue56",
+        "images": [],
+        "name": "Túi Nước Lau Sàn MaxKleen 3.6kg",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/T%C3%BAi-N%C6%B0%E1%BB%9Bc-Lau-S%C3%A0n-MaxKleen-3.6kg-i.134350529.12287778678",
+        "linkType": "product",
+        "priceVnd": 85000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "22007399067",
+        "shopId": "534835937",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước lau sàn Gift 3.8kg (đủ hương)",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-lau-s%C3%A0n-Gift-3.8kg-%28%C4%91%E1%BB%A7-h%C6%B0%C6%A1ng%29-i.534835937.22007399067",
+        "linkType": "product",
+        "priceVnd": 92000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "18249909471",
+        "shopId": "26947756",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mtw31q52t0xvb0",
+        "images": [],
+        "name": "Nước lau sàn cao cấp Sunlight Bioshield Túi 3.4kg | Ngăn côn trùng đến 24h / Khử 5 mùi hôi",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-lau-s%C3%A0n-cao-c%E1%BA%A5p-Sunlight-Bioshield-T%C3%BAi-3.4kg-Ng%C4%83n-c%C3%B4n-tr%C3%B9ng-%C4%91%E1%BA%BFn-24h-Kh%E1%BB%AD-5-m%C3%B9i-h%C3%B4i-i.26947756.18249909471",
+        "linkType": "product",
+        "priceVnd": 113000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "17871963561",
+        "shopId": "134350529",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-msjc6zd5w2yq14",
+        "images": [],
+        "name": "Combo 2 Túi Nước Lau Sàn MaxKleen hương Ban mai thanh mát 3.6kg",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/Combo-2-T%C3%BAi-N%C6%B0%E1%BB%9Bc-Lau-S%C3%A0n-MaxKleen-h%C6%B0%C6%A1ng-Ban-mai-thanh-m%C3%A1t-3.6kg-i.134350529.17871963561",
+        "linkType": "product",
+        "priceVnd": 172000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "29766815125",
+        "shopId": "1144823054",
+        "thumbnail": "",
+        "images": [],
+        "name": "Nước lau sàn Sả Chanh đuổi muỗi 1000ml JULYHOUSE - YOOSOO",
+        "description": "",
+        "type": "shopee",
+        "group": "home-living",
+        "category": [
+          "nuoc-lau-san"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/N%C6%B0%E1%BB%9Bc-lau-s%C3%A0n-S%E1%BA%A3-Chanh-%C4%91u%E1%BB%95i-mu%E1%BB%97i-1000ml-JULYHOUSE-YOOSOO-i.1144823054.29766815125",
+        "linkType": "product",
+        "priceVnd": 163182,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "56352631445",
+        "shopId": "884994318",
+        "thumbnail": "",
+        "images": [],
+        "name": "MÔ TẢ ÁO DÀI LỤA VOAN TƠ ÓNG – DÁNG SUÔNG CỔ TRÒN ĐÍNH KẾT-ct86",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/M%C3%94-T%E1%BA%A2-%C3%81O-D%C3%80I-L%E1%BB%A4A-VOAN-T%C6%A0-%C3%93NG-%E2%80%93-D%C3%81NG-SU%C3%94NG-C%E1%BB%94-TR%C3%92N-%C4%90%C3%8DNH-K%E1%BA%BET-ct86-i.884994318.56352631445",
+        "linkType": "product",
+        "priceVnd": 249900,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "43020324793",
+        "shopId": "1043318244",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo dài gấm Chiêu Giao cách tân dáng suông cổ tròn tay dài hoa văn đẹp đính ngọc – Áo dài MƠ",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-d%C3%A0i-g%E1%BA%A5m-Chi%C3%AAu-Giao-c%C3%A1ch-t%C3%A2n-d%C3%A1ng-su%C3%B4ng-c%E1%BB%95-tr%C3%B2n-tay-d%C3%A0i-hoa-v%C4%83n-%C4%91%E1%BA%B9p-%C4%91%C3%ADnh-ng%E1%BB%8Dc-%E2%80%93-%C3%81o-d%C3%A0i-M%C6%A0-i.1043318244.43020324793",
+        "linkType": "product",
+        "priceVnd": 396000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "23561140060",
+        "shopId": "1120685443",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo dài tết Thanh Trúc, áo dài cách tân dáng suông 2 tà, tay lỡ chất liệu tằm ánh kim đính hoa ngọc hot trent đẹp bắt mắt",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-d%C3%A0i-t%E1%BA%BFt-Thanh-Tr%C3%BAc-%C3%A1o-d%C3%A0i-c%C3%A1ch-t%C3%A2n-d%C3%A1ng-su%C3%B4ng-2-t%C3%A0-tay-l%E1%BB%A1-ch%E1%BA%A5t-li%E1%BB%87u-t%E1%BA%B1m-%C3%A1nh-kim-%C4%91%C3%ADnh-hoa-ng%E1%BB%8Dc-hot-trent-%C4%91%E1%BA%B9p-b%E1%BA%AFt-m%E1%BA%AFt-i.1120685443.23561140060",
+        "linkType": "product",
+        "priceVnd": 297734,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "26267746154",
+        "shopId": "496552804",
+        "thumbnail": "",
+        "images": [],
+        "name": "[SẴN HÀNG] Áo Dài TÚC MỸ - Dáng Suông 4 Tà - Chất Liệu Gấm Tơ In Hoạ Tiết, Cổ Đính Ngọc - Mặc Lễ Tết - Áo Dài Vân An",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/-S%E1%BA%B4N-H%C3%80NG-%C3%81o-D%C3%A0i-T%C3%9AC-M%E1%BB%B8-D%C3%A1ng-Su%C3%B4ng-4-T%C3%A0-Ch%E1%BA%A5t-Li%E1%BB%87u-G%E1%BA%A5m-T%C6%A1-In-Ho%E1%BA%A1-Ti%E1%BA%BFt-C%E1%BB%95-%C4%90%C3%ADnh-Ng%E1%BB%8Dc-M%E1%BA%B7c-L%E1%BB%85-T%E1%BA%BFt-%C3%81o-D%C3%A0i-V%C3%A2n-An-i.496552804.26267746154",
+        "linkType": "product",
+        "priceVnd": 358952,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "47850857143",
+        "shopId": "1282882716",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mgon4whkakum35",
+        "images": [],
+        "name": "Áo Dài Truyền Thống Thiên Điệp Form Ôm Tay Dài Đính Nơ Cách Điệu Trẻ Trung Phù Hợp Mặc Lễ Tết, Tiệc Sự Kiện",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-D%C3%A0i-Truy%E1%BB%81n-Th%E1%BB%91ng-Thi%C3%AAn-%C4%90i%E1%BB%87p-Form-%C3%94m-Tay-D%C3%A0i-%C4%90%C3%ADnh-N%C6%A1-C%C3%A1ch-%C4%90i%E1%BB%87u-Tr%E1%BA%BB-Trung-Ph%C3%B9-H%E1%BB%A3p-M%E1%BA%B7c-L%E1%BB%85-T%E1%BA%BFt-Ti%E1%BB%87c-S%E1%BB%B1-Ki%E1%BB%87n-i.1282882716.47850857143",
+        "linkType": "product",
+        "priceVnd": 189000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "43217760058",
+        "shopId": "529384519",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mtap2wuagufb9b",
+        "images": [],
+        "name": "[Hỏa tốc] Áo dài NGUYỆT TRÚC, dáng truyền thống chiết eo, tay loe thanh lịch, sang trọng, nữ, women dress - Áo Dài Mỹ An",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/-H%E1%BB%8Fa-t%E1%BB%91c-%C3%81o-d%C3%A0i-NGUY%E1%BB%86T-TR%C3%9AC-d%C3%A1ng-truy%E1%BB%81n-th%E1%BB%91ng-chi%E1%BA%BFt-eo-tay-loe-thanh-l%E1%BB%8Bch-sang-tr%E1%BB%8Dng-n%E1%BB%AF-women-dress-%C3%81o-D%C3%A0i-M%E1%BB%B9-An-i.529384519.43217760058",
+        "linkType": "product",
+        "priceVnd": 299000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "46100361898",
+        "shopId": "379613522",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo dài CỔ TRÒN đính kim xa lấp lánh, dáng xuông, cách Tân mặc đi chơi",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-d%C3%A0i-C%E1%BB%94-TR%C3%92N-%C4%91%C3%ADnh-kim-xa-l%E1%BA%A5p-l%C3%A1nh-d%C3%A1ng-xu%C3%B4ng-c%C3%A1ch-T%C3%A2n-m%E1%BA%B7c-%C4%91i-ch%C6%A1i-i.379613522.46100361898",
+        "linkType": "product",
+        "priceVnd": 290000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "43570282881",
+        "shopId": "496552804",
+        "thumbnail": "",
+        "images": [],
+        "name": "[VÂN AN x KOL] Áo Dài TÚ DIỆP - Cách Tân Dáng Suông Thiết Kế 4 Tà - Chất Liệu Tơ Cao Cấp Phù Hợp Mặc Lễ Tết, Ăn Hỏi",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/-S%E1%BA%B4N-H%C3%80NG-%C3%81o-D%C3%A0i-T%C3%9A-DI%E1%BB%86P-C%C3%A1ch-T%C3%A2n-D%C3%A1ng-Su%C3%B4ng-Thi%E1%BA%BFt-K%E1%BA%BF-4-T%C3%A0-Ch%E1%BA%A5t-Li%E1%BB%87u-T%C6%A1-Cao-C%E1%BA%A5p-M%E1%BA%B7c-T%E1%BA%BFt-%C4%82n-H%E1%BB%8Fi-%C3%81o-D%C3%A0i-V%C3%A2n-An-i.496552804.43570282881",
+        "linkType": "product",
+        "priceVnd": 322999,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "48052202442",
+        "shopId": "1034202145",
+        "thumbnail": "",
+        "images": [],
+        "name": "[BST SẮC ĐỎ] Váy đầm nữ thiết kế U&M có Bigsize mùa lễ hội giáng sinh, mặc tết",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/-BST-S%E1%BA%AEC-%C4%90%E1%BB%8E-V%C3%A1y-%C4%91%E1%BA%A7m-n%E1%BB%AF-thi%E1%BA%BFt-k%E1%BA%BF-U-M-c%C3%B3-Bigsize-m%C3%B9a-l%E1%BB%85-h%E1%BB%99i-gi%C3%A1ng-sinh-m%E1%BA%B7c-t%E1%BA%BFt-i.1034202145.48052202442",
+        "linkType": "product",
+        "priceVnd": 350000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "54652368786",
+        "shopId": "88465966",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mp9lyj7lx6gx25",
+        "images": [],
+        "name": "HYNA Thiết kế váy đỏ dự tiệc tiểu thư trễ vai dáng xoè, phù hợp đi cưới, đi chơi tết, đi chơi noel sang chảnh (KÈM TAG)",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/HYNA-Thi%E1%BA%BFt-k%E1%BA%BF-v%C3%A1y-%C4%91%E1%BB%8F-d%E1%BB%B1-ti%E1%BB%87c-ti%E1%BB%83u-th%C6%B0-tr%E1%BB%85-vai-d%C3%A1ng-xo%C3%A8-ph%C3%B9-h%E1%BB%A3p-%C4%91i-c%C6%B0%E1%BB%9Bi-%C4%91i-ch%C6%A1i-t%E1%BA%BFt-%C4%91i-ch%C6%A1i-noel-sang-ch%E1%BA%A3nh-%28K%C3%88M-TAG%29-i.88465966.54652368786",
+        "linkType": "product",
+        "priceVnd": 315000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "44603649934",
+        "shopId": "876250670",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mphftndiot8u5e",
+        "images": [],
+        "name": "Đầm Váy Bigsize Nữ Màu Đỏ Đen Mặc Tết Dáng Dài Xinh Cổ Phối Viền Gắn Nơ Thanh Lịch A692-A693",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C4%90%E1%BA%A7m-V%C3%A1y-Bigsize-N%E1%BB%AF-M%C3%A0u-%C4%90%E1%BB%8F-%C4%90en-M%E1%BA%B7c-T%E1%BA%BFt-D%C3%A1ng-D%C3%A0i-Xinh-C%E1%BB%95-Ph%E1%BB%91i-Vi%E1%BB%81n-G%E1%BA%AFn-N%C6%A1-Thanh-L%E1%BB%8Bch-A692-A693-i.876250670.44603649934",
+        "linkType": "product",
+        "priceVnd": 190000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "26766605334",
+        "shopId": "1034202145",
+        "thumbnail": "",
+        "images": [],
+        "name": "Váy thiết kế U&M nơ cổ lệch xếp li dáng dài thanh lịch đi tiệc, giáng sinh, tết có Bigsize (VP44)",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/V%C3%A1y-thi%E1%BA%BFt-k%E1%BA%BF-U-M-n%C6%A1-c%E1%BB%95-l%E1%BB%87ch-x%E1%BA%BFp-li-d%C3%A1ng-d%C3%A0i-thanh-l%E1%BB%8Bch-%C4%91i-ti%E1%BB%87c-gi%C3%A1ng-sinh-t%E1%BA%BFt-c%C3%B3-Bigsize-%28VP44%29-i.1034202145.26766605334",
+        "linkType": "product",
+        "priceVnd": 374400,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "29186071810",
+        "shopId": "88465966",
+        "thumbnail": "",
+        "images": [],
+        "name": "váy trắng dự tiệc tiểu thư dáng dài mặc đi chơi tết siêu xinh mặc đi chơi tết dáng xoè sang chảnh",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/v%C3%A1y-tr%E1%BA%AFng-d%E1%BB%B1-ti%E1%BB%87c-ti%E1%BB%83u-th%C6%B0-d%C3%A1ng-d%C3%A0i-m%E1%BA%B7c-%C4%91i-ch%C6%A1i-t%E1%BA%BFt-si%C3%AAu-xinh-m%E1%BA%B7c-%C4%91i-ch%C6%A1i-t%E1%BA%BFt-d%C3%A1ng-xo%C3%A8-sang-ch%E1%BA%A3nh-i.88465966.29186071810",
+        "linkType": "product",
+        "priceVnd": 299173,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "53652446676",
+        "shopId": "76162275",
+        "thumbnail": "",
+        "images": [],
+        "name": "Đầm Đỏ Dáng Xoè Nữ Tính,Váy Đỏ Xinh Đi Hẹn Hò,Váy Đỏ Dáng A Tôn Eo, Mặc Tết,Form Chuẩn,Tôn Dáng Z077",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C4%90%E1%BA%A7m-%C4%90%E1%BB%8F-D%C3%A1ng-Xo%C3%A8-N%E1%BB%AF-T%C3%ADnh-V%C3%A1y-%C4%90%E1%BB%8F-Xinh-%C4%90i-H%E1%BA%B9n-H%C3%B2-V%C3%A1y-%C4%90%E1%BB%8F-D%C3%A1ng-A-T%C3%B4n-Eo-M%E1%BA%B7c-T%E1%BA%BFt-Form-Chu%E1%BA%A9n-T%C3%B4n-D%C3%A1ng-Z077-i.76162275.53652446676",
+        "linkType": "product",
+        "priceVnd": 445000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "54301791709",
+        "shopId": "1610072646",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mha9t8gkzpje12",
+        "images": [],
+        "name": "Bộ đầm đôi mẹ và bé cổ yếm bèo tầng xoè bồng, màu đỏ nổi bật, sang trọng cho mẹ và bé diện lễ tết, Noel, chụp ảnh",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "vay-dam-nu"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/B%E1%BB%99-%C4%91%E1%BA%A7m-%C4%91%C3%B4i-m%E1%BA%B9-v%C3%A0-b%C3%A9-c%E1%BB%95-y%E1%BA%BFm-b%C3%A8o-t%E1%BA%A7ng-xo%C3%A8-b%E1%BB%93ng-m%C3%A0u-%C4%91%E1%BB%8F-n%E1%BB%95i-b%E1%BA%ADt-sang-tr%E1%BB%8Dng-cho-m%E1%BA%B9-v%C3%A0-b%C3%A9-di%E1%BB%87n-l%E1%BB%85-t%E1%BA%BFt-Noel-ch%E1%BB%A5p-%E1%BA%A3nh-i.1610072646.54301791709",
+        "linkType": "product",
+        "priceVnd": 320000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "24704795880",
+        "shopId": "27681309",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo Dài Nam Cách Tân , Áo Dài Tết gắn ngọc bội phối nút Hoa Mai Chất Vải Linen Dày Dặn Mr Smile 99 Shop AD01",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-D%C3%A0i-Nam-C%C3%A1ch-T%C3%A2n-%C3%81o-D%C3%A0i-T%E1%BA%BFt-g%E1%BA%AFn-ng%E1%BB%8Dc-b%E1%BB%99i-ph%E1%BB%91i-n%C3%BAt-Hoa-Mai-Ch%E1%BA%A5t-V%E1%BA%A3i-Linen-D%C3%A0y-D%E1%BA%B7n-Mr-Smile-99-Shop-AD01-i.27681309.24704795880",
+        "linkType": "product",
+        "priceVnd": 240480,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "27667128382",
+        "shopId": "1369319398",
+        "thumbnail": "",
+        "images": [],
+        "name": "[Áo dài cách tân nam] vải gấm tafta vân dập hoa nổi kéo khóa sau có bigsize",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/-%C3%81o-d%C3%A0i-c%C3%A1ch-t%C3%A2n-nam-v%E1%BA%A3i-g%E1%BA%A5m-tafta-v%C3%A2n-d%E1%BA%ADp-hoa-n%E1%BB%95i-k%C3%A9o-kh%C3%B3a-sau-c%C3%B3-bigsize-i.1369319398.27667128382",
+        "linkType": "product",
+        "priceVnd": 286135,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "28091272976",
+        "shopId": "1055431890",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mg4us77kiyo8d0",
+        "images": [],
+        "name": "Áo Dài Cách Tân Nam Dáng \" Ngũ Thân\" mang đậm phong cách truyền thống cổ xưa mặc đi chụp ảnh, lễ tết",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-D%C3%A0i-C%C3%A1ch-T%C3%A2n-Nam-D%C3%A1ng-Ng%C5%A9-Th%C3%A2n-mang-%C4%91%E1%BA%ADm-phong-c%C3%A1ch-truy%E1%BB%81n-th%E1%BB%91ng-c%E1%BB%95-x%C6%B0a-m%E1%BA%B7c-%C4%91i-ch%E1%BB%A5p-%E1%BA%A3nh-l%E1%BB%85-t%E1%BA%BFt-i.1055431890.28091272976",
+        "linkType": "product",
+        "priceVnd": 370000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "40463842449",
+        "shopId": "344209224",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdkkjh241yup25",
+        "images": [],
+        "name": "(Không Kèm Quần)Áo Dài Nam Cách Tân Độn Vai Kéo Khoá Sau Vải Cotton Thương Hiệu Mr Twins",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%28Kh%C3%B4ng-K%C3%A8m-Qu%E1%BA%A7n%29%C3%81o-D%C3%A0i-Nam-C%C3%A1ch-T%C3%A2n-%C4%90%E1%BB%99n-Vai-K%C3%A9o-Kho%C3%A1-Sau-V%E1%BA%A3i-Cotton-Th%C6%B0%C6%A1ng-Hi%E1%BB%87u-Mr-Twins-i.344209224.40463842449",
+        "linkType": "product",
+        "priceVnd": 350000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "51467657924",
+        "shopId": "1153017190",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo Dài Nam Cách Tân Sang Trọng Chất Vải Lụa Tafta Đủ Màu Tặng Ngọc Bội",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-D%C3%A0i-Nam-C%C3%A1ch-T%C3%A2n-Sang-Tr%E1%BB%8Dng-Ch%E1%BA%A5t-V%E1%BA%A3i-L%E1%BB%A5a-Tafta-%C4%90%E1%BB%A7-M%C3%A0u-T%E1%BA%B7ng-Ng%E1%BB%8Dc-B%E1%BB%99i-i.1153017190.51467657924",
+        "linkType": "product",
+        "priceVnd": 250000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "25622326967",
+        "shopId": "10626910",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo dài nam cách tân nam big size thiết kế thêu đẹp cao cấp (50- 105 kg)",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-d%C3%A0i-nam-c%C3%A1ch-t%C3%A2n-nam-big-size-thi%E1%BA%BFt-k%E1%BA%BF-th%C3%AAu-%C4%91%E1%BA%B9p-cao-c%E1%BA%A5p-%2850-105-kg%29-i.10626910.25622326967",
+        "linkType": "product",
+        "priceVnd": 371415,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "43813829933",
+        "shopId": "344209224",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-mdklny0bzged3d",
+        "images": [],
+        "name": "(Không Kèm Quần)Áo Dài Cách Tân Nam Phối 5 Nút Vải Linen Thương Hiệu Mr Twins",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%28Kh%C3%B4ng-K%C3%A8m-Qu%E1%BA%A7n%29%C3%81o-D%C3%A0i-C%C3%A1ch-T%C3%A2n-Nam-Ph%E1%BB%91i-5-N%C3%BAt-V%E1%BA%A3i-Linen-Th%C6%B0%C6%A1ng-Hi%E1%BB%87u-Mr-Twins-i.344209224.43813829933",
+        "linkType": "product",
+        "priceVnd": 420000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "27566040780",
+        "shopId": "1183283037",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo Dài Cách Tân Nam Kéo Khoá Sau Nhiều Màu Mặc Tết Chất Liệu Tây Thi Thoáng Mát DL114",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "ao-dai-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-D%C3%A0i-C%C3%A1ch-T%C3%A2n-Nam-K%C3%A9o-Kho%C3%A1-Sau-Nhi%E1%BB%81u-M%C3%A0u-M%E1%BA%B7c-T%E1%BA%BFt-Ch%E1%BA%A5t-Li%E1%BB%87u-T%C3%A2y-Thi-Tho%C3%A1ng-M%C3%A1t-DL114-i.1183283037.27566040780",
+        "linkType": "product",
+        "priceVnd": 268000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "47056767093",
+        "shopId": "1706403197",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mokwz34xjcp984",
+        "images": [],
+        "name": "Áo sơ mi nam tay dài, công sở dáng ôm, chât liệu vái lụa thái, chông nhăn chông xù, co dãn nhẹ",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-s%C6%A1-mi-nam-tay-d%C3%A0i-c%C3%B4ng-s%E1%BB%9F-d%C3%A1ng-%C3%B4m-ch%C3%A2t-li%E1%BB%87u-v%C3%A1i-l%E1%BB%A5a-th%C3%A1i-ch%C3%B4ng-nh%C4%83n-ch%C3%B4ng-x%C3%B9-co-d%C3%A3n-nh%E1%BA%B9-i.1706403197.47056767093",
+        "linkType": "product",
+        "priceVnd": 95000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "20869360101",
+        "shopId": "102041787",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo sơ mi trắng nam AKUBA tay dài đi làm form slimfit, vải lụa không nhăn, thoáng mát | 01AB2044",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-s%C6%A1-mi-tr%E1%BA%AFng-nam-AKUBA-tay-d%C3%A0i-%C4%91i-l%C3%A0m-form-slimfit-v%E1%BA%A3i-l%E1%BB%A5a-kh%C3%B4ng-nh%C4%83n-tho%C3%A1ng-m%C3%A1t-01AB2044-i.102041787.20869360101",
+        "linkType": "product",
+        "priceVnd": 239000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "19866612624",
+        "shopId": "637683645",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrwj4nqgb0nca2",
+        "images": [],
+        "name": "Áo Sơ Mi Nam Tay Dài GEN ALPHA Vải Kate Lụa Mịn Cao Cấp Kháng Nhăn Thấm Hút Mồ Hôi Công Sở",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-S%C6%A1-Mi-Nam-Tay-D%C3%A0i-GEN-ALPHA-V%E1%BA%A3i-Kate-L%E1%BB%A5a-M%E1%BB%8Bn-Cao-C%E1%BA%A5p-Kh%C3%A1ng-Nh%C4%83n-Th%E1%BA%A5m-H%C3%BAt-M%E1%BB%93-H%C3%B4i-C%C3%B4ng-S%E1%BB%9F-i.637683645.19866612624",
+        "linkType": "product",
+        "priceVnd": 99000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "24517935850",
+        "shopId": "24710134",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134211-820l4-miwh0saznoqp12",
+        "images": [],
+        "name": "Áo Sơ Mi nam Dài Tay Essentials Cotton mềm mại, thoáng mát, Áo đi làm đi chơi dạo phố Coolmate",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-S%C6%A1-Mi-nam-D%C3%A0i-Tay-Essentials-Cotton-m%E1%BB%81m-m%E1%BA%A1i-tho%C3%A1ng-m%C3%A1t-%C3%81o-%C4%91i-l%C3%A0m-%C4%91i-ch%C6%A1i-d%E1%BA%A1o-ph%E1%BB%91-Coolmate-i.24710134.24517935850",
+        "linkType": "product",
+        "priceVnd": 319000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "41010584361",
+        "shopId": "499992685",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo Sơ Mi Dài Tay Đũi Oxford 1 Túi ZUTEE Cổ Tàu Nam Nữ Hàn Quốc Cổ Trụ Form Rộng Màu Trắng",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-S%C6%A1-Mi-D%C3%A0i-Tay-%C4%90%C5%A9i-Oxford-1-T%C3%BAi-ZUTEE-C%E1%BB%95-T%C3%A0u-Nam-N%E1%BB%AF-H%C3%A0n-Qu%E1%BB%91c-C%E1%BB%95-Tr%E1%BB%A5-Form-R%E1%BB%99ng-M%C3%A0u-Tr%E1%BA%AFng-i.499992685.41010584361",
+        "linkType": "product",
+        "priceVnd": 112650,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "17990502502",
+        "shopId": "637683645",
+        "thumbnail": "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mrjsi36rpywy08",
+        "images": [],
+        "name": "Áo Sơ Mi Nam Tay Dài Trơn GEN ALPHA Vải Kate Lụa Mịn Mát, Áo Sơ Mi Công Sở Nam Form Chuẩn Ít Nhăn",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-S%C6%A1-Mi-Nam-Tay-D%C3%A0i-Tr%C6%A1n-GEN-ALPHA-V%E1%BA%A3i-Kate-L%E1%BB%A5a-M%E1%BB%8Bn-M%C3%A1t-%C3%81o-S%C6%A1-Mi-C%C3%B4ng-S%E1%BB%9F-Nam-Form-Chu%E1%BA%A9n-%C3%8Dt-Nh%C4%83n-i.637683645.17990502502",
+        "linkType": "product",
+        "priceVnd": 92720,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "17690865550",
+        "shopId": "34991492",
+        "thumbnail": "",
+        "images": [],
+        "name": "Áo Sơ Mi GIẤU KHUY Công Sở Chất Liệu Kate Thái Tinh Tế, Sang Trọng, Thanh Lịch - SHINGHAI",
+        "description": "",
+        "type": "shopee",
+        "group": "fashion-personal",
+        "category": [
+          "so-mi-nam"
+        ],
+        "buyText": "Xem sản phẩm",
+        "url": "https://shopee.vn/%C3%81o-S%C6%A1-Mi-GI%E1%BA%A4U-KHUY-C%C3%B4ng-S%E1%BB%9F-Ch%E1%BA%A5t-Li%E1%BB%87u-Kate-Th%C3%A1i-Tinh-T%E1%BA%BF-Sang-Tr%E1%BB%8Dng-Thanh-L%E1%BB%8Bch-SHINGHAI-i.34991492.17690865550",
+        "linkType": "product",
+        "priceVnd": 159000,
+        "priceCheckedAt": "2026-10-14",
+        "sourceType": "Shopee public listing"
       }
     ],
     "groups": [
