@@ -48,3 +48,16 @@ test('404 page renders the friend invite for /friends/<code>', () => {
   // The room invite keeps its own card.
   assert.match(html, /class="oaq-invite oaq-room"/);
 });
+
+test('a friend invite without the app falls back to /ung-dung', () => {
+  const html = read('404.html');
+  const start = html.indexOf('window.FRIEND_INVITE_CODE;');
+  const script = html.slice(start, html.indexOf('</script>', start));
+  assert.match(script, /fallbackUrl = window\.location\.origin \+ '\/ung-dung\.html'/);
+  // Android: Chrome's own intent fallback goes to /ung-dung, not the Play Store.
+  assert.match(script, /S\.browser_fallback_url=' \+\s*encodeURIComponent\(fallbackUrl\)/);
+  // iOS: the page is still visible after the app hand-off → redirect; leaving the page cancels it.
+  assert.match(script, /if \(!document\.hidden\) window\.location\.replace\(fallbackUrl\)/);
+  assert.match(script, /visibilitychange/);
+  assert.match(script, /window\.location\.href = appLink/);
+});

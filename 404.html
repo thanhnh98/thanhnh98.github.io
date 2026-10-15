@@ -467,12 +467,17 @@
             var ua = navigator.userAgent || '';
             var isAndroid = /Android/i.test(ua);
             var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            var playUrl = 'https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down';
+            // No app on this device: send the visitor to the app download page.
+            var fallbackUrl = window.location.origin + '/ung-dung.html';
+            if (!isAndroid && !isIOS) {
+                window.location.replace(fallbackUrl);
+                return;
+            }
             var appLink = 'saptet://saptet.vn/?page=friends&code=' + code;
             if (isAndroid) {
                 appLink = 'intent://saptet.vn/?page=friends&code=' + code +
                     '#Intent;scheme=saptet;package=com.thanh_nguyen.tet_count_down;S.browser_fallback_url=' +
-                    encodeURIComponent(playUrl) + ';end';
+                    encodeURIComponent(fallbackUrl) + ';end';
             }
             document.getElementById('friend-invite-code').textContent = code;
             document.getElementById('friend-invite-open').href = appLink;
@@ -485,6 +490,15 @@
                 if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, fail);
                 else fail();
             });
+            // Try the app straight away. If the page is still showing after a moment the app
+            // did not open (not installed), so go to /ung-dung. Leaving the page cancels it.
+            var fallbackTimer = setTimeout(function () {
+                if (!document.hidden) window.location.replace(fallbackUrl);
+            }, 2500);
+            var cancelFallback = function () { clearTimeout(fallbackTimer); };
+            document.addEventListener('visibilitychange', function () { if (document.hidden) cancelFallback(); });
+            window.addEventListener('pagehide', cancelFallback);
+            window.location.href = appLink;
         })();
     </script>
 </body>
