@@ -2,11 +2,17 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["M55WJF6HXG.tlife.app.saptet"],
+        "appIDs": [
+          "M55WJF6HXG.tlife.app.saptet"
+        ],
         "components": [
           {
             "/": "/oanquan/join/*",
             "comment": "Ô ăn quan online room invite"
+          },
+          {
+            "/": "/friends/*",
+            "comment": "Sắp Tết friend invite"
           }
         ]
       }
