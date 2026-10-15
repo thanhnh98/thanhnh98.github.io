@@ -9,11 +9,11 @@ test('Jekyll publishes .well-known for app links', () => {
   assert.match(read('_config.yml'), /include:\s*\n\s*-\s*\.well-known/);
 });
 
-test('apple-app-site-association only claims the Ô ăn quan invite path', () => {
+test('apple-app-site-association only claims the app invite paths', () => {
   const aasa = JSON.parse(read('.well-known/apple-app-site-association'));
   const [detail] = aasa.applinks.details;
   assert.deepEqual(detail.appIDs, ['M55WJF6HXG.tlife.app.saptet']);
-  assert.deepEqual(detail.components.map((c) => c['/']), ['/oanquan/join/*']);
+  assert.deepEqual(detail.components.map((c) => c['/']), ['/oanquan/join/*', '/friends/*']);
 });
 
 test('assetlinks.json verifies the release app and the debug build', () => {
@@ -31,10 +31,20 @@ test('assetlinks.json verifies the release app and the debug build', () => {
 test('404 page renders the room invite for /oanquan/join/<code>', () => {
   const html = read('404.html');
   assert.ok(html.includes('/^\\/oanquan\\/join\\/(\\d{6})\\/?$/'));
-  assert.match(html, /class="oaq-invite"/);
+  assert.match(html, /class="oaq-invite oaq-room"/);
   assert.match(html, /saptet:\/\/saptet\.vn\/\?page=o_an_quan&room=/);
   assert.match(html, /scheme=saptet;package=com\.thanh_nguyen\.tet_count_down/);
   assert.match(html, /play\.google\.com\/store\/apps\/details\?id=com\.thanh_nguyen\.tet_count_down/);
   assert.match(html, /apps\.apple\.com\/app\/id6743064990/);
   assert.match(html, /<meta name="robots" content="noindex/);
+});
+
+test('404 page renders the friend invite for /friends/<code>', () => {
+  const html = read('404.html');
+  assert.ok(html.includes('/^\\/friends\\/([A-Za-z2-9]{8})\\/?$/'));
+  assert.match(html, /class="oaq-invite friend-invite"/);
+  assert.match(html, /saptet:\/\/saptet\.vn\/\?page=friends&code=/);
+  assert.match(html, /intent:\/\/saptet\.vn\/\?page=friends&code=/);
+  // The room invite keeps its own card.
+  assert.match(html, /class="oaq-invite oaq-room"/);
 });

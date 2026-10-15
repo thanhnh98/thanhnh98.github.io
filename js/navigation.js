@@ -182,8 +182,8 @@ class Router {
         if (currentPath === '/qr-code' || currentPath === '/qr-code/') {
             return;
         }
-        // Ô ăn quan room invites are rendered by 404.html itself
-        if (currentPath.startsWith('/oanquan/')) {
+        // Ô ăn quan room invites and friend invites are rendered by 404.html itself
+        if (currentPath.startsWith('/oanquan/') || currentPath.startsWith('/friends/')) {
             return;
         }
         // Redirect to 404 page
