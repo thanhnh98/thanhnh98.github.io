@@ -13,7 +13,7 @@ test('apple-app-site-association only claims the app invite paths', () => {
   const aasa = JSON.parse(read('.well-known/apple-app-site-association'));
   const [detail] = aasa.applinks.details;
   assert.deepEqual(detail.appIDs, ['M55WJF6HXG.tlife.app.saptet']);
-  assert.deepEqual(detail.components.map((c) => c['/']), ['/oanquan/join/*', '/friends/*']);
+  assert.deepEqual(detail.components.map((c) => c['/']), ['/oanquan/join/*', '/friends/*', '/thiep/*']);
 });
 
 test('assetlinks.json verifies the release app and the debug build', () => {

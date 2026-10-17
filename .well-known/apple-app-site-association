@@ -13,6 +13,10 @@
           {
             "/": "/friends/*",
             "comment": "Sắp Tết friend invite"
+          },
+          {
+            "/": "/thiep/*",
+            "comment": "Sắp Tết wish card (thiệp chúc Tết)"
           }
         ]
       }
