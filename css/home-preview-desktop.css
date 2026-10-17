@@ -1,0 +1,216 @@
+/* Compact desktop dashboard for the temporary Home review. */
+@media (min-width: 1024px) {
+  body.home-preview { background: #f8e7cb; }
+  .preview-stage { background: linear-gradient(180deg, #ffe9b5 0, #fff5e0 68%, #fff0d1 100%); }
+  .preview-first-screen {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: 68px 132px 164px 38px 160px;
+    column-gap: 24px;
+    row-gap: 12px;
+    padding: 12px clamp(32px, 4vw, 56px) 0;
+  }
+
+  .preview-header {
+    position: relative;
+    grid-area: 1 / 1 / 2 / -1;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    height: 68px;
+    padding: 7px 13px 7px 9px;
+    border-radius: 18px;
+  }
+  .preview-brand img { width: 52px; height: 52px; }
+  .preview-brand strong { font-size: 24px; }
+  .preview-brand small { font-size: 12px; }
+  .preview-desktop-nav { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 1.8vw, 26px); margin: 0 12px; }
+  .preview-desktop-nav a { padding: 12px 3px; color: #763b32; font: 800 14px/1.15 Nunito, sans-serif; white-space: nowrap; text-decoration: none; transition: color .2s ease, transform .2s ease; }
+  .preview-desktop-nav a:hover, .preview-desktop-nav a:focus-visible { color: #bb0f3b; transform: translateY(-2px); }
+  .preview-icon-button { width: 45px; height: 45px; border-radius: 13px; }
+  .preview-icon-button svg { font-size: 23px; }
+  .preview-header-actions { gap: 8px; }
+  .preview-menu { top: 72px; right: 10px; }
+
+  .preview-hero {
+    grid-area: 2 / 1 / 4 / 2;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 2px solid #fff6dc;
+    border-radius: 22px;
+    box-shadow: 0 6px 20px #974d2230;
+  }
+  .preview-scene img { object-position: center 29%; }
+  .preview-hero-copy { top: 34px; left: 6%; width: 88%; }
+  .preview-hero-copy h1 span { font-size: clamp(30px, 2.8vw, 40px); line-height: .94; }
+  .preview-hero-copy h1 strong { margin-top: 7px; margin-left: 0; font-size: clamp(62px, 5.4vw, 78px); }
+  .preview-brush { width: 96px; height: 6px; margin-top: 7px; }
+  .preview-mascot-boy { width: clamp(130px, 11vw, 158px); left: -4px; bottom: -22px; }
+  .preview-mascot-girl { width: clamp(145px, 12vw, 174px); right: -4px; bottom: -13px; }
+
+  .preview-info {
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    height: 132px;
+    min-height: 0;
+    margin: 0;
+    padding: 8px 15px;
+    border-radius: 20px;
+  }
+  .preview-info h2 { margin: 0 0 3px; font-size: clamp(21px, 1.8vw, 25px); }
+  .preview-info .preview-inline-icon { width: 22px; height: 22px; }
+  .preview-info-date { min-height: 29px; padding: 0 0 3px; font-size: 15px; }
+  .preview-info-date .preview-inline-icon { width: 19px; height: 19px; }
+  body.home-preview .preview-party { min-height: 25px; padding: 2px 9px; font-size: 12px; }
+  .preview-info-today { min-height: 28px; padding: 2px 0; font-size: 15px; }
+  .preview-info p { margin: 4px 0 0; font-size: 15px; }
+
+  body.home-preview #countdown-timer {
+    grid-area: 3 / 2 / 4 / 3;
+    width: 100%;
+    max-width: none;
+    height: 164px;
+    gap: 10px;
+    margin: 0;
+  }
+  .preview-timer-card { height: 164px; padding-top: 12px; border-radius: 18px; }
+  .preview-timer-label { font-size: 21px; }
+  .preview-time-value { margin-top: 4px; font-size: clamp(47px, 4vw, 57px); }
+  .preview-timer-illustration.calendar { width: 56px; height: 56px; }
+  .preview-timer-illustration.lantern { width: 53px; height: 53px; }
+  .preview-timer-illustration.cat { width: 79px; height: 55px; }
+  .preview-timer-illustration.flower { width: 50px; height: 54px; }
+
+  .preview-greeting { grid-area: 4 / 1 / 5 / -1; width: 100%; max-width: none; height: 38px; margin: 0; font-size: 27px; }
+  .preview-quote { grid-area: 5 / 1 / 6 / 2; width: 100%; max-width: none; height: 160px; margin: 0; border-radius: 18px; }
+  .preview-quote-art img { object-position: center; }
+  .preview-quote span { margin-left: -3px; font-size: clamp(24px, 2.3vw, 32px); }
+  .preview-quote b { width: 40px; height: 40px; right: 13px; }
+  .preview-quote b svg { width: 20px; height: 20px; }
+  .preview-shortcuts { grid-area: 5 / 2 / 6 / 3; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: none; height: 160px; margin: 0 !important; }
+  body.home-preview .preview-shortcut { flex-direction: row; justify-content: flex-start; min-height: 0; height: 75px; gap: 10px; padding: 7px 9px; border: 1px solid #fff8ec; border-radius: 15px; background: #fffaf0d9 !important; box-shadow: 0 3px 10px #9b58271b; text-align: left; font-size: 14px; }
+  .preview-shortcut-icon { flex: none; width: 50px; height: 50px; padding: 5px; border-radius: 12px; }
+  .preview-shortcut-icon img { width: 37px; height: 37px; }
+
+  .preview-tasks { width: calc(100% - 2 * clamp(32px, 4vw, 56px)); max-width: none; margin: 16px auto 0; }
+  .preview-tasks-heading { height: 30px; min-height: 0; margin-bottom: 8px; }
+  .preview-tasks-heading h2 { font-size: 25px; }
+  .preview-tasks-heading h2 span { font-size: 29px; }
+  .preview-tasks-heading a { font-size: 15px; }
+  .preview-task-list { gap: 13px; }
+  .preview-task { height: 176px; border-radius: 15px; }
+  .preview-task img { height: 120px; }
+  .preview-task span { height: 54px; font-size: 16px; }
+  .preview-stage-bottom { height: 48px; font-size: 32px; }
+
+  /* Keep the existing floating fireworks control clear of the compact task row. */
+  body.home-preview #home-inline-controls .home-fireworks-trigger {
+    left: max(6px, calc((100vw - 1440px) / 2 + 6px));
+    bottom: 10px;
+    width: 44px;
+    height: 44px;
+    border-width: 2px;
+  }
+  body.home-preview #home-inline-controls .home-fireworks-icon,
+  body.home-preview #home-inline-controls .home-fireworks-trigger svg { width: 29px; height: 29px; }
+  body.home-preview #home-fireworks-trigger-label { display: none; }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .preview-first-screen { grid-template-rows: 68px minmax(132px, auto) 164px 38px minmax(160px, auto); column-gap: 18px; }
+  .preview-desktop-nav { gap: 10px; margin-inline: 7px; }
+  .preview-desktop-nav a { font-size: 12px; }
+  .preview-info { height: auto; min-height: 132px; }
+  .preview-info h2 { font-size: 20px; }
+  .preview-info-date, .preview-info-today, .preview-info p { font-size: 14px; }
+  .preview-shortcuts { gap: 8px; }
+  body.home-preview .preview-shortcut { gap: 6px; padding-inline: 6px; font-size: 13px; }
+  .preview-shortcut-icon { width: 43px; height: 43px; }
+  .preview-shortcut-icon img { width: 32px; height: 32px; }
+  .preview-task span { font-size: 14px; }
+  body.home-preview #home-inline-controls .home-fireworks-trigger { left: 5px; width: 34px; height: 34px; }
+  body.home-preview #home-inline-controls .home-fireworks-icon,
+  body.home-preview #home-inline-controls .home-fireworks-trigger svg { width: 23px; height: 23px; }
+}
+
+/* Fit the complete review design on the shorter desktop viewport used by laptops. */
+@media (min-width: 1200px) and (max-height: 820px) {
+  .preview-first-screen {
+    grid-template-rows: 60px 120px 132px 32px 136px;
+    column-gap: 20px;
+    row-gap: 10px;
+    padding-top: 10px;
+  }
+
+  .preview-header { height: 60px; padding-block: 5px; }
+  .preview-brand img { width: 46px; height: 46px; }
+  .preview-brand strong { font-size: 22px; }
+  .preview-brand small { font-size: 11px; }
+  .preview-icon-button { width: 44px; height: 44px; }
+  .preview-menu { top: 65px; }
+
+  .preview-hero-copy { top: 23px; }
+  .preview-hero-copy h1 span { font-size: clamp(29px, 2.6vw, 35px); }
+  .preview-hero-copy h1 strong { margin-top: 5px; font-size: clamp(61px, 5vw, 70px); }
+  .preview-brush { margin-top: 4px; }
+  .preview-mascot-boy { width: clamp(112px, 9vw, 135px); bottom: -18px; }
+  .preview-mascot-girl { width: clamp(124px, 10vw, 148px); bottom: -10px; }
+
+  .preview-info { height: 120px; padding-block: 6px; }
+  .preview-info h2 { font-size: clamp(20px, 1.7vw, 23px); }
+  .preview-info-date { min-height: 27px; }
+  .preview-info-today { min-height: 26px; }
+  .preview-info p { margin-top: 3px; }
+
+  body.home-preview #countdown-timer { height: 132px; gap: 9px; }
+  .preview-timer-card { height: 132px; padding-top: 8px; }
+  .preview-timer-label { font-size: 18px; }
+  .preview-time-value { margin-top: 1px; font-size: clamp(43px, 3.6vw, 50px); }
+  .preview-timer-illustration.calendar { width: 45px; height: 45px; }
+  .preview-timer-illustration.lantern { width: 43px; height: 43px; }
+  .preview-timer-illustration.cat { width: 64px; height: 45px; }
+  .preview-timer-illustration.flower { width: 41px; height: 44px; }
+
+  .preview-greeting { height: 32px; font-size: 25px; }
+  .preview-quote { height: 136px; }
+  .preview-quote span { margin-right: 52px; font-size: clamp(23px, 2.1vw, 29px); }
+  .preview-shortcuts { height: 136px; gap: 8px; }
+  body.home-preview .preview-shortcut { height: 64px; gap: 8px; padding: 5px 8px; }
+  .preview-shortcut-icon { width: 43px; height: 43px; }
+  .preview-shortcut-icon img { width: 32px; height: 32px; }
+
+  .preview-tasks { margin-top: 12px; }
+  .preview-tasks-heading { height: 28px; margin-bottom: 7px; }
+  .preview-tasks-heading h2 { font-size: 23px; }
+  .preview-tasks-heading h2 span { font-size: 26px; }
+  .preview-task { height: 146px; }
+  .preview-task img { height: 98px; }
+  .preview-task span { height: 46px; font-size: 15px; }
+  .preview-stage-bottom { height: 24px; }
+}
+
+@media (min-width: 1200px) and (max-height: 740px) {
+  .preview-first-screen {
+    grid-template-rows: 60px 116px 128px 32px 124px;
+    row-gap: 8px;
+    padding-top: 8px;
+  }
+  .preview-info { height: 116px; }
+  body.home-preview #countdown-timer, .preview-timer-card { height: 128px; }
+  .preview-quote, .preview-shortcuts { height: 124px; }
+  body.home-preview .preview-shortcut { height: 58px; }
+  .preview-shortcut-icon { width: 40px; height: 40px; }
+  .preview-shortcut-icon img { width: 30px; height: 30px; }
+  .preview-tasks { margin-top: 10px; }
+  .preview-task { height: 140px; }
+  .preview-task img { height: 96px; }
+  .preview-task span { height: 42px; }
+  .preview-stage-bottom { height: 20px; }
+}
