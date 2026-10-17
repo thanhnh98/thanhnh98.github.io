@@ -6,21 +6,22 @@ const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const thiep = require('../js/thiep.js');
 
-test('404 page renders a wish card for /thiep/<slug>', () => {
+test('404 page hands /thiep/<slug> to the app and offers the download', () => {
   const html = read('404.html');
   assert.ok(html.includes('/^\\/thiep\\/([A-Za-z2-9]{10})\\/?$/'));
   assert.match(html, /class="thiep-page"/);
-  assert.match(html, /id="thiep-envelope"/);
+  assert.match(html, /id="thiep-open-app"/);
+  assert.match(html, /apps\.apple\.com\/app\/id6743064990/);
+  assert.match(html, /play\.google\.com\/store\/apps\/details\?id=com\.thanh_nguyen\.tet_count_down/);
   assert.match(html, /<script src="\/js\/thiep\.js\?v=\d{8}"><\/script>/);
   assert.match(html, /<link rel="stylesheet" href="\/css\/thiep\.css\?v=\d{8}">/);
   assert.match(html, /<meta name="robots" content="noindex/);
 });
 
-test('the card fonts ship with the site', () => {
-  for (const font of ['thuphap4.otf', 'selender.otf', 'bep_semi_bold.ttf']) {
-    assert.ok(fs.existsSync(path.join(root, 'assets/fonts', font)), font);
-    assert.ok(read('css/thiep.css').includes('/assets/fonts/' + font), font);
-  }
+test('the website never shows the card itself', () => {
+  const js = read('js/thiep.js');
+  assert.doesNotMatch(js, /fetch\(|api\.saptet\.vn|public\/cards/);
+  assert.doesNotMatch(read('404.html'), /thiep-message/);
 });
 
 test('slugs are read from the path only when they are card slugs', () => {
@@ -31,34 +32,9 @@ test('slugs are read from the path only when they are card slugs', () => {
   assert.equal(thiep.slugFromPath('/friends/ABCDEFGH'), null);
 });
 
-test('an unknown background or font falls back to the defaults', () => {
-  assert.equal(thiep.resolveTheme('li_xi', 'modern').background.id, 'li_xi');
-  assert.equal(thiep.resolveTheme('li_xi', 'modern').fontFamily, 'ThiepBep');
-  assert.equal(thiep.resolveTheme('li_xi', 'modern').url, '/assets/images/thiep/li_xi.webp');
-  assert.equal(thiep.resolveTheme('from_the_future', 'wavy').background.id, 'mai_vang');
-  assert.equal(thiep.resolveTheme('x', 'wavy').fontId, 'calligraphy');
-});
-
-test('every card background ships with the site and keeps its text box on the card', () => {
-  const ids = thiep.BACKGROUNDS.map((b) => b.id);
-  assert.equal(ids[0], 'mai_vang', 'the apps fall back to mai vàng too');
-  assert.equal(new Set(ids).size, ids.length);
-  for (const b of thiep.BACKGROUNDS) {
-    assert.ok(fs.existsSync(path.join(root, 'assets/images/thiep', b.id + '.webp')), b.id);
-    const { x, y, w, h } = b.textBox;
-    assert.ok(x >= 0 && y >= 0 && x + w <= 1 && y + h <= 1, b.id);
-    assert.match(b.textColor + b.nameColor, /^#[0-9A-F]{6}#[0-9A-F]{6}$/i, b.id);
-  }
-});
-
-test('the message gets the largest size that fits', () => {
-  assert.equal(thiep.fitFontSize((px) => px <= 23.4, 12, 60), 23);
-  assert.equal(thiep.fitFontSize(() => false, 12, 60), 12, 'never below the minimum');
-});
-
-test('the app hand-off opens the card by slug, with the store as Android fallback', () => {
-  assert.equal(thiep.appLinks('Z5DSG6R2BQ', 'iPhone'), 'saptet://saptet.vn/?page=wish_card&slug=Z5DSG6R2BQ');
-  const android = thiep.appLinks('Z5DSG6R2BQ', 'Linux; Android 14');
+test('the app hand-off opens the card by slug, with Google Play as the Android fallback', () => {
+  assert.equal(thiep.appLink('Z5DSG6R2BQ', 'iPhone'), 'saptet://saptet.vn/?page=wish_card&slug=Z5DSG6R2BQ');
+  const android = thiep.appLink('Z5DSG6R2BQ', 'Linux; Android 14');
   assert.match(android, /^intent:\/\/saptet\.vn\/\?page=wish_card&slug=Z5DSG6R2BQ#Intent;scheme=saptet;package=com\.thanh_nguyen\.tet_count_down;/);
   assert.match(android, /S\.browser_fallback_url=https%3A%2F%2Fplay\.google\.com/);
 });

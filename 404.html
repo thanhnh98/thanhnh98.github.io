@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/colors.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="/css/thiep.css?v=20261017">
+    <link rel="stylesheet" href="/css/thiep.css?v=20261018">
     <style>
         body {
             margin: 0;
@@ -248,10 +248,10 @@
                 document.documentElement.classList.add('is-friend-invite');
                 document.title = 'Lời mời kết bạn · Mã ' + window.FRIEND_INVITE_CODE + ' | Sắp Tết';
             } else if ((match = window.location.pathname.match(/^\/thiep\/([A-Za-z2-9]{10})\/?$/))) {
-                // /thiep/<slug> is a Tết wish card sent from the apps (js/thiep.js).
+                // /thiep/<slug> is a card sent from the apps: handed to the app (js/thiep.js).
                 window.THIEP_SLUG = match[1].toUpperCase();
                 document.documentElement.classList.add('is-thiep');
-                document.title = 'Bạn nhận được thiệp chúc Tết 🧧 | Sắp Tết';
+                document.title = 'Bạn nhận được một tấm thiệp 💌 | Sắp Tết';
             } else if (/^\/oanquan(\/join)?\/?$/.test(window.location.pathname)) {
                 window.location.replace('/o-an-quan.html');
             }
@@ -304,38 +304,21 @@
         </div>
     </div>
 
-    <main class="thiep-page" aria-live="polite">
+    <main class="thiep-page">
         <div class="thiep-rays" aria-hidden="true"></div>
-        <p class="thiep-kicker">🧧 Sắp Tết · Thiệp chúc Tết</p>
-        <h1 class="thiep-title"><b id="thiep-from">Một người bạn</b><br>gửi bạn lời chúc Tết</h1>
-        <div class="thiep-stage" id="thiep-stage">
-            <div class="thiep-card" id="thiep-card" role="img" aria-label="Thiệp chúc Tết">
-                <div class="thiep-textbox" id="thiep-textbox">
-                    <p class="thiep-message" id="thiep-message"></p>
-                    <span class="thiep-sender" id="thiep-sender"></span>
-                </div>
-            </div>
-            <button type="button" class="thiep-envelope" id="thiep-envelope" aria-label="Mở phong bao để xem thiệp">
-                <span class="thiep-env-body"></span>
-                <span class="thiep-env-flap"></span>
-                <span class="thiep-seal" aria-hidden="true">Phúc</span>
-                <span class="thiep-env-from">Lì xì lời chúc</span>
-                <span class="thiep-tap">Chạm để mở</span>
-            </button>
+        <h1 class="thiep-title">Bạn nhận được một tấm thiệp 💌</h1>
+        <p class="thiep-note">Một người bạn vừa gửi lời chúc cho bạn trên Sắp Tết. Mở thiệp trong ứng dụng để xem nhé!</p>
+        <a class="thiep-envelope" id="thiep-envelope" href="/" aria-label="Mở thiệp trong ứng dụng Sắp Tết">
+            <span class="thiep-env-body"></span>
+            <span class="thiep-env-flap"></span>
+            <span class="thiep-seal" aria-hidden="true">💌</span>
+        </a>
+        <div class="thiep-actions">
+            <a class="thiep-primary" id="thiep-open-app" href="/">Mở thiệp trong ứng dụng</a>
+            <p class="thiep-hint">Chưa có ứng dụng? Tải Sắp Tết miễn phí để xem lời chúc:</p>
+            <a id="thiep-ios" href="https://apps.apple.com/app/id6743064990" target="_blank" rel="noopener">Tải trên App Store</a>
+            <a id="thiep-android" href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener">Tải trên Google Play</a>
         </div>
-        <div class="thiep-after" id="thiep-after" hidden>
-            <p>Chúc lại người gửi bằng một tấm thiệp thật xinh trong ứng dụng Sắp Tết nhé!</p>
-            <div class="thiep-actions">
-                <a class="thiep-primary" id="thiep-open-app" href="/">🧧 Mở Sắp Tết để chúc lại</a>
-                <a id="thiep-android" href="#" target="_blank" rel="noopener">Tải trên Google Play</a>
-                <a id="thiep-ios" href="#" target="_blank" rel="noopener">Tải trên App Store</a>
-            </div>
-        </div>
-        <div class="thiep-error" id="thiep-error" hidden>
-            <p id="thiep-error-text"></p>
-            <a href="/">Về trang chủ Sắp Tết</a>
-        </div>
-        <div class="thiep-confetti" id="thiep-confetti" aria-hidden="true"></div>
     </main>
 
     <div class="error-404">
@@ -541,6 +524,6 @@
             window.location.href = appLink;
         })();
     </script>
-    <script src="/js/thiep.js?v=20261017"></script>
+    <script src="/js/thiep.js?v=20261018"></script>
 </body>
 </html>

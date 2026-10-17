@@ -1,10 +1,6 @@
-/* Thiệp chúc Tết (saptet.vn/thiep/<slug>), rendered by 404.html + js/thiep.js. */
-@font-face { font-family: 'ThiepThuPhap'; src: url('/assets/fonts/thuphap4.otf') format('opentype'); font-display: swap; }
-@font-face { font-family: 'ThiepSelender'; src: url('/assets/fonts/selender.otf') format('opentype'); font-display: swap; }
-@font-face { font-family: 'ThiepBep'; src: url('/assets/fonts/bep_semi_bold.ttf') format('truetype'); font-display: swap; }
-
+/* Thiệp (saptet.vn/thiep/<slug>): hand-off page rendered by 404.html + js/thiep.js.
+   The card is only shown in the app; this page opens it there or offers the download. */
 :root {
-  --thiep-red: #b71c1c;
   --thiep-red-deep: #6d0a0a;
   --thiep-gold: #ffc940;
   --thiep-gold-soft: #ffe6a3;
@@ -19,7 +15,7 @@ html.is-thiep .thiep-page {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 96px 16px 48px;
+  padding: 104px 16px 48px;
   overflow: hidden;
   background: radial-gradient(120% 80% at 50% 35%, #c62828 0%, var(--thiep-red-deep) 70%);
   color: var(--thiep-ink);
@@ -27,10 +23,9 @@ html.is-thiep .thiep-page {
   box-sizing: border-box;
 }
 
-/* Slowly turning light rays behind the envelope. */
 .thiep-rays {
   position: absolute;
-  top: 38%;
+  top: 40%;
   left: 50%;
   width: 1400px;
   height: 1400px;
@@ -43,86 +38,32 @@ html.is-thiep .thiep-page {
   pointer-events: none;
 }
 
-.thiep-kicker {
-  position: relative;
-  margin: 0 0 4px;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  color: var(--thiep-gold-soft);
-}
-
 .thiep-title {
   position: relative;
-  margin: 0 0 20px;
-  font-size: 1.55rem;
+  margin: 0 0 6px;
+  font-size: 1.6rem;
   line-height: 1.3;
   color: #fff;
 }
-.thiep-title b { color: var(--thiep-gold); }
-
-.thiep-stage {
+.thiep-note {
   position: relative;
-  width: min(86vw, 360px);
-  aspect-ratio: 3 / 4;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.thiep-stage.is-ready { opacity: 1; }
-
-/* ------------------------------------------------------------ card */
-.thiep-card {
-  position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  background: #fff8e7 center / cover no-repeat;
-  box-shadow: 0 0 0 3px rgba(255, 201, 64, 0.85), 0 18px 40px rgba(0, 0, 0, 0.35);
-  transform: translateY(18%) scale(0.82);
-  opacity: 0;
-  transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.15) 0.35s, opacity 0.3s ease 0.35s;
-  z-index: 1;
-}
-.is-open .thiep-card { transform: none; opacity: 1; z-index: 3; }
-
-.thiep-textbox {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6em;
-  overflow: hidden;
-}
-.thiep-message {
-  margin: 0;
-  line-height: 1.45;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.thiep-sender {
-  font-family: 'ThiepBep', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
+  max-width: 340px;
+  margin: 0 0 28px;
+  color: var(--thiep-gold-soft);
+  line-height: 1.5;
 }
 
-/* --------------------------------------------------------- envelope */
+/* A sealed envelope: the card waits inside, in the app. */
 .thiep-envelope {
-  position: absolute;
-  left: 4%;
-  right: 4%;
-  top: 16%;
-  height: 62%;
-  border: 0;
-  padding: 0;
-  background: none;
-  cursor: pointer;
-  z-index: 2;
-  perspective: 900px;
+  position: relative;
+  display: block;
+  width: min(72vw, 280px);
+  aspect-ratio: 4 / 3;
+  margin-bottom: 36px;
   animation: thiep-wiggle 2.4s ease-in-out 1s infinite;
-  font-family: inherit;
+  text-decoration: none;
 }
 .thiep-envelope:focus-visible { outline: 3px solid var(--thiep-gold); outline-offset: 6px; border-radius: 12px; }
-.is-open .thiep-envelope { animation: thiep-drop 0.9s ease-in 0.45s forwards; cursor: default; }
-
 .thiep-env-body {
   position: absolute;
   inset: 0;
@@ -130,78 +71,38 @@ html.is-thiep .thiep-page {
   background: linear-gradient(160deg, #e53935, #b71c1c 60%, #8e0f0f);
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.4), inset 0 0 0 3px rgba(255, 201, 64, 0.55);
 }
-.thiep-env-body::after {
-  content: '';
-  position: absolute;
-  inset: 10px;
-  border: 1.5px dashed rgba(255, 201, 64, 0.5);
-  border-radius: 8px;
-}
 .thiep-env-flap {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 58%;
+  border-radius: 12px 12px 0 0;
   background: linear-gradient(180deg, #a51616, #7d0c0c);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  filter: drop-shadow(0 3px 0 rgba(255, 201, 64, 0.65));
-  transform-origin: top center;
-  transition: transform 0.55s ease-in;
-  z-index: 2;
 }
-.is-open .thiep-env-flap { transform: rotateX(180deg); }
-
 .thiep-seal {
   position: absolute;
-  top: 45%;
+  top: 58%;
   left: 50%;
-  width: 74px;
-  height: 74px;
-  margin: -37px 0 0 -37px;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #ffe08a, #f2b01e 60%, #c98a00);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 0 0 3px rgba(255, 255, 255, 0.35);
   display: grid;
   place-items: center;
-  font-family: 'ThiepThuPhap', serif;
-  font-size: 2.2rem;
-  color: #8e0f0f;
-  z-index: 3;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  font-size: 1.8rem;
 }
-.is-open .thiep-seal { transform: scale(0.2); opacity: 0; }
 
-.thiep-env-from {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 14%;
-  z-index: 3;
-  color: var(--thiep-gold-soft);
-  font-size: 1rem;
-}
-.thiep-env-from strong { display: block; font-size: 1.25rem; color: #fff; margin-top: 2px; }
-.thiep-tap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -46px;
-  color: var(--thiep-gold);
-  font-weight: 700;
-  animation: thiep-pulse 1.4s ease-in-out infinite;
-}
-.is-open .thiep-env-from, .is-open .thiep-tap { opacity: 0; transition: opacity 0.2s; }
-
-/* --------------------------------------------------------- after */
-.thiep-after {
+.thiep-actions {
   position: relative;
-  width: min(86vw, 360px);
-  margin-top: 24px;
-  animation: thiep-rise 0.5s ease both;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(86vw, 340px);
 }
-.thiep-after p { margin: 0 0 14px; color: var(--thiep-gold-soft); }
-.thiep-actions { display: flex; flex-direction: column; gap: 10px; }
 .thiep-actions a {
   display: block;
   padding: 0.9rem 1rem;
@@ -217,30 +118,8 @@ html.is-thiep .thiep-page {
   color: #6d0a0a;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
-.thiep-actions [hidden], .thiep-after[hidden], .thiep-error[hidden], .thiep-stage[hidden] { display: none; }
-
-.thiep-error {
-  position: relative;
-  max-width: 360px;
-  padding: 28px 20px;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.22);
-}
-.thiep-error a { color: var(--thiep-gold); font-weight: 700; }
-
-/* --------------------------------------------------------- confetti */
-.thiep-confetti { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
-.thiep-confetti i {
-  position: absolute;
-  top: -24px;
-  display: block;
-  opacity: 0.95;
-  animation-name: thiep-fall;
-  animation-timing-function: cubic-bezier(0.3, 0.6, 0.6, 1);
-  animation-fill-mode: forwards;
-}
-.thiep-confetti .spark { width: 8px; height: 14px; border-radius: 2px; }
-.thiep-confetti .petal { width: 14px; height: 14px; border-radius: 14px 0 14px 0; }
+.thiep-actions [hidden] { display: none; }
+.thiep-hint { margin: 14px 0 2px; font-size: 0.92rem; color: var(--thiep-gold-soft); }
 
 @keyframes thiep-spin { to { transform: rotate(360deg); } }
 @keyframes thiep-wiggle {
@@ -250,16 +129,7 @@ html.is-thiep .thiep-page {
   88% { transform: rotate(-2deg); }
   94% { transform: rotate(1deg); }
 }
-@keyframes thiep-pulse { 0%, 100% { opacity: 0.55; transform: scale(0.97); } 50% { opacity: 1; transform: scale(1.03); } }
-@keyframes thiep-drop { to { transform: translateY(120%); opacity: 0; } }
-@keyframes thiep-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-@keyframes thiep-fall {
-  0% { transform: translate(0, 0) rotate(0); }
-  100% { transform: translate(var(--drift, 0), 110vh) rotate(540deg); opacity: 0.6; }
-}
 
 @media (prefers-reduced-motion: reduce) {
-  .thiep-rays, .thiep-envelope, .thiep-tap { animation: none; }
-  .thiep-confetti { display: none; }
-  .thiep-card, .thiep-env-flap, .thiep-seal { transition: none; }
+  .thiep-rays, .thiep-envelope { animation: none; }
 }
