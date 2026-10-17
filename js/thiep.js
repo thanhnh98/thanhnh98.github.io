@@ -16,7 +16,7 @@
   var BACKGROUNDS = [
     { id: 'mai_vang', textColor: '#7A1414', nameColor: '#B8860B', textBox: { x: 0.12, y: 0.22, w: 0.76, h: 0.5 } },
     { id: 'dao_hong', textColor: '#7A1414', nameColor: '#B8860B', textBox: { x: 0.12, y: 0.28, w: 0.76, h: 0.52 } },
-    { id: 'den_long', textColor: '#FFF4D6', nameColor: '#FFD54F', textBox: { x: 0.12, y: 0.3, w: 0.76, h: 0.52 } },
+    { id: 'den_long', textColor: '#FFF4D6', nameColor: '#FFD54F', textBox: { x: 0.12, y: 0.38, w: 0.76, h: 0.5 } },
     { id: 'banh_chung', textColor: '#1E4D2B', nameColor: '#B8860B', textBox: { x: 0.12, y: 0.1, w: 0.76, h: 0.5 } },
     { id: 'cau_doi', textColor: '#7A1414', nameColor: '#B8860B', textBox: { x: 0.22, y: 0.16, w: 0.56, h: 0.58 } },
     { id: 'de_con', textColor: '#7A1414', nameColor: '#B8860B', textBox: { x: 0.14, y: 0.18, w: 0.72, h: 0.44 } },
