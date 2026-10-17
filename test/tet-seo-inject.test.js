@@ -102,3 +102,19 @@ test('homepage hero "today" card is pre-rendered with the same strings home-rete
   assert.match(html, /<a\b[^>]*id="nearest-event-link"[^>]*>/);
   assert.doesNotMatch(html, /id="nearest-event-link"[^>]* hidden>/);
 });
+
+test('homepage injection refreshes both desktop and mobile preview dates before deploy', () => {
+  const now = new Date('2026-12-01T09:00:00+07:00');
+  const payload = buildTetSeoPayload(now);
+  const { getHeroToday } = require('../js/home-retention.js');
+  const { EVENTS_DATA } = require('../data/events-data.js');
+  const { calculateLunarDate } = require('../js/lunar-calendar.js');
+  const today = getHeroToday(now, EVENTS_DATA, calculateLunarDate);
+  const source = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const html = injectTetSeo('index.html', source, payload);
+  const values = (pattern) => [...html.matchAll(pattern)].map((match) => match[1]);
+
+  assert.deepEqual(values(/<span id="today-date">([^<]*)<\/span>/g), [today.solarText, today.solarText]);
+  assert.deepEqual(values(/<span id="today-lunar"[^>]*>([^<]*)<\/span>/g), [`(${today.lunarText})`, `(${today.lunarText})`]);
+  assert.deepEqual(values(/<span data-seo="days-until-tet">([^<]*)<\/span>/g), [String(payload.daysUntilTet), String(payload.daysUntilTet)]);
+});

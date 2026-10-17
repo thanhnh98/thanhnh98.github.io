@@ -1,0 +1,34 @@
+/* The reviewed Home is active only below 700px on index.html. */
+@media (max-width: 699px) {
+  body.home-mobile-experiment #header-container,
+  body.home-mobile-experiment main > .countdown-section,
+  body.home-mobile-experiment main > .home-countdown-ad,
+  body.home-mobile-experiment main > .home-share-strip {
+    display: none;
+  }
+
+  /* The original Home styles target this ID; restore the review's four-card grid. */
+  body.home-mobile-experiment #countdown-timer.preview-timer {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    flex-wrap: initial;
+    width: calc(100% - 36px);
+    max-width: 980px;
+    gap: 5px;
+    margin: 16px auto 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  body.home-mobile-experiment #countdown-timer.preview-timer::before {
+    content: none;
+  }
+}
+
+@media (max-width: 375px) {
+  body.home-mobile-experiment #countdown-timer.preview-timer {
+    width: calc(100% - 20px);
+    gap: 4px;
+  }
+}

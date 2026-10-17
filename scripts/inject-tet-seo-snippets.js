@@ -20,11 +20,12 @@ function escapeHtml(value) {
 
 function replaceOrThrow(html, re, replacement, label) {
   if (!re.test(html)) throw new Error(`inject-tet-seo: ${label} not found`);
+  re.lastIndex = 0;
   return html.replace(re, replacement);
 }
 
 function setTextById(html, id, text) {
-  const re = new RegExp(`(<([a-z]+)\\b[^>]*\\bid="${id}"[^>]*>)[^<]*(</\\2>)`);
+  const re = new RegExp(`(<([a-z]+)\\b[^>]*\\bid="${id}"[^>]*>)[^<]*(</\\2>)`, 'g');
   return replaceOrThrow(html, re, `$1${escapeHtml(text)}$3`, `#${id}`);
 }
 
@@ -81,7 +82,7 @@ const TARGETS = {
     html = injectHeroToday(html, payload.now);
     return replaceOrThrow(
       html,
-      /(<span data-seo="days-until-tet">)[^<]*(<\/span>)/,
+      /(<span data-seo="days-until-tet">)[^<]*(<\/span>)/g,
       `$1${payload.daysUntilTet}$2`,
       'index.html days-until-tet',
     );
