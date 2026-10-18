@@ -49,7 +49,7 @@
 
 /* Bề rộng cố định: nếu co theo nội dung, thẻ đổi rộng khi web font tải xong và gây layout shift. */
 .countdown-info-card {
-  width: min(100%, 25rem);
+  width: min(100%, 29rem);
   max-width: 520px;
   margin: 0 auto;
   padding: 0.5rem 0.9rem;
@@ -803,6 +803,11 @@ body[data-home-manual-ads="off"] .home-countdown-ad { display: none; }
 .home-floating-app-cta:hover .home-floating-app-tooltip, .home-floating-app-cta:focus-visible .home-floating-app-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
 .home-toast { position: fixed; left: 50%; bottom: 1.25rem; z-index: 10020; transform: translateX(-50%); max-width: calc(100% - 2rem); padding: 0.7rem 1rem; border: 1px solid rgba(255,215,0,.5); border-radius: 999px; color: #fff; background: #7f1d1d; box-shadow: var(--home-shadow); font-size: 0.85rem; }
 .home-toast[hidden] { display: none; }
+
+/* Keep the lower corners clear where the desktop content reaches the viewport edges. */
+@media (min-width: 769px) and (max-width: 1359px) {
+  .home-fireworks-trigger, .home-floating-app-cta { display: none; }
+}
 
 @media (max-width: 900px) {
   .home-today-grid { grid-template-columns: 1fr 1fr; }

@@ -98,7 +98,7 @@ test('fireworks initializes only when the browser is idle', () => {
 
 test('hero info card has a fixed width so web font swaps do not shift it', () => {
   const css = read('css/home-retention.css');
-  assert.match(css, /\.countdown-info-card \{\n  width: min\(100%, 25rem\);/);
+  assert.match(css, /\.countdown-info-card \{\n  width: min\(100%, 29rem\);/);
   assert.match(css, /\.countdown-info-card \.countdown-info-title \{[^}]*white-space: nowrap/);
 });
 

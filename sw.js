@@ -176,9 +176,9 @@ self.addEventListener('fetch', event => {
   const isSameOrigin = requestUrl.origin === self.location.origin;
   const isHomePage = isSameOrigin && event.request.mode === 'navigate' &&
     (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html');
-  const isHeroStylesheet = isSameOrigin && event.request.destination === 'style' &&
-    requestUrl.pathname === '/css/home-preview.css';
-  if (isHomePage || isHeroStylesheet) {
+  const isHomeStylesheet = isSameOrigin && event.request.destination === 'style' &&
+    (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-retention.css');
+  if (isHomePage || isHomeStylesheet) {
     const cacheKey = isHomePage ? requestUrl.pathname : event.request;
     const networkResponse = fetch(event.request, { cache: isHomePage ? 'no-store' : 'no-cache' });
     event.waitUntil(networkResponse.then(response => {

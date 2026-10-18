@@ -62,17 +62,18 @@ test('homepage navigation falls back to its cached page while offline', async ()
   assert.deepEqual(result.writes, []);
 });
 
-test('hero stylesheet bypasses an old precache after its version changes', async () => {
-  const pathname = '/css/home-preview.css?v=20261019-mobile-hero';
-  const result = await loadRequest({
-    online: true,
-    pathname,
-    mode: 'no-cors',
-    destination: 'style',
-    cachedBody: 'framed hero',
-    freshBody: 'full-width hero'
-  });
-  assert.equal(result.body, 'full-width hero');
-  assert.equal(result.networkRequests, 1);
-  assert.deepEqual(result.writes, [{ request: `https://saptet.vn${pathname}`, body: 'full-width hero' }]);
+test('home stylesheets bypass an old precache after their versions change', async () => {
+  for (const pathname of ['/css/home-preview.css?v=20261019-mobile-hero', '/css/home-retention.css?v=20261019-desktop-home']) {
+    const result = await loadRequest({
+      online: true,
+      pathname,
+      mode: 'no-cors',
+      destination: 'style',
+      cachedBody: 'old layout',
+      freshBody: 'fixed layout'
+    });
+    assert.equal(result.body, 'fixed layout');
+    assert.equal(result.networkRequests, 1);
+    assert.deepEqual(result.writes, [{ request: `https://saptet.vn${pathname}`, body: 'fixed layout' }]);
+  }
 });
