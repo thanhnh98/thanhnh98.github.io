@@ -170,6 +170,30 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // The home page changes between releases and every day. A precache can contain
+  // an older page if the new worker installs while GitHub Pages is propagating.
+  const requestUrl = new URL(event.request.url);
+  const isSameOrigin = requestUrl.origin === self.location.origin;
+  const isHomePage = isSameOrigin && event.request.mode === 'navigate' &&
+    (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html');
+  const isHeroStylesheet = isSameOrigin && event.request.destination === 'style' &&
+    requestUrl.pathname === '/css/home-preview.css';
+  if (isHomePage || isHeroStylesheet) {
+    const cacheKey = isHomePage ? requestUrl.pathname : event.request;
+    const networkResponse = fetch(event.request, { cache: isHomePage ? 'no-store' : 'no-cache' });
+    event.waitUntil(networkResponse.then(response => {
+      if (response && response.status === 200 && response.type === 'basic') {
+        return caches.open(CACHE_NAME)
+          .then(cache => cache.put(cacheKey, response.clone()));
+      }
+    }).catch(() => {}));
+    event.respondWith(
+      networkResponse.catch(() => caches.match(event.request, { ignoreSearch: true })
+        .then(cached => cached || (isHomePage ? caches.match('/index.html') : undefined)))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request, { ignoreSearch: true })
       .then(response => {
