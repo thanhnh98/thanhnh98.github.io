@@ -1,0 +1,118 @@
+/* Static Tết accents for the desktop homepage. All decoration stays behind content. */
+@media (min-width: 1024px) {
+  body:not(.home-mobile-experiment) .countdown-section,
+  .countdown-section {
+    isolation: isolate;
+    background:
+      linear-gradient(rgba(255, 248, 237, .83), rgba(255, 248, 237, .83)),
+      url('../images/tet-background-pattern.svg') center / cover no-repeat,
+      #fff8ed;
+  }
+
+  .countdown-section::before,
+  .countdown-section::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 1.35rem;
+    width: clamp(72px, 7vw, 106px);
+    height: clamp(72px, 7vw, 106px);
+    background: url('../images/tet-corner-decoration.svg') center / contain no-repeat;
+    opacity: .42;
+    pointer-events: none;
+    animation: none;
+    z-index: 0;
+  }
+  .countdown-section::before { left: max(1.2rem, calc((100vw - 1440px) / 2)); }
+  .countdown-section::after { right: max(1.2rem, calc((100vw - 1440px) / 2)); transform: scaleX(-1); }
+  .countdown-section > .container { position: relative; z-index: 1; }
+  .countdown-section .floating-blossom {
+    display: block;
+    width: clamp(34px, 3.5vw, 52px);
+    height: clamp(34px, 3.5vw, 52px);
+    opacity: .54;
+    pointer-events: none;
+    animation: none;
+    z-index: 0;
+  }
+  .countdown-section .floating-blossom:nth-child(1) { top: 57%; left: max(3.5%, calc((100vw - 1300px) / 2)); }
+  .countdown-section .floating-blossom:nth-child(2) { top: 65%; right: max(3.5%, calc((100vw - 1300px) / 2)); }
+  .countdown-section .floating-blossom:nth-child(n + 3) { display: none; }
+
+  .home-desktop-tasks,
+  .home-game-entry-section,
+  .home-retention-section {
+    isolation: isolate;
+    box-shadow: inset 0 2px #af2a32, inset 0 5px #e8c06d;
+  }
+  .home-desktop-tasks { position: relative; overflow: hidden; }
+  .home-desktop-tasks::before,
+  .home-game-entry-section::after {
+    content: '';
+    position: absolute;
+    width: clamp(78px, 8vw, 120px);
+    height: clamp(78px, 8vw, 120px);
+    background: url('../images/tet-corner-decoration.svg') center / contain no-repeat;
+    opacity: .27;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .home-desktop-tasks::before { left: .8rem; top: .9rem; }
+  .home-game-entry-section::after { right: .8rem; bottom: .9rem; transform: rotate(180deg); }
+  .home-desktop-tasks > .container,
+  .home-game-entry-section > .container,
+  .home-retention-section > .container { position: relative; z-index: 1; }
+  .home-retention-section::before,
+  .home-retention-section::after { width: 116px; height: 116px; opacity: .34; z-index: 0; }
+
+  .home-quick-section {
+    background:
+      linear-gradient(rgba(255, 255, 255, .69), rgba(255, 255, 255, .69)),
+      url('../images/tet-background-pattern.svg') center / cover no-repeat,
+      #fff;
+  }
+
+  .home-app-showcase,
+  .home-discovery-section {
+    isolation: isolate;
+    background:
+      linear-gradient(rgba(255, 248, 237, .78), rgba(255, 248, 237, .78)),
+      url('../images/tet-background-pattern.svg') center / cover no-repeat,
+      #fff8ed;
+  }
+  .home-app-showcase::before,
+  .home-discovery-section::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: clamp(84px, 9vw, 138px);
+    height: clamp(84px, 9vw, 138px);
+    inset: auto 1rem 1rem auto;
+    background: url('../images/tet-corner-decoration.svg') center / contain no-repeat;
+    opacity: .32;
+    transform: rotate(180deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .home-app-showcase::before { inset: 1rem 1rem auto auto; transform: scaleX(-1); }
+  .home-discovery-section > .container { position: relative; z-index: 1; }
+
+  .home-seo-section {
+    isolation: isolate;
+    box-shadow: inset 0 1px #d6b56f;
+  }
+  .home-seo-section::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    bottom: .75rem;
+    width: 70px;
+    height: 70px;
+    background: url('../images/tet-corner-decoration.svg') center / contain no-repeat;
+    opacity: .18;
+    transform: rotate(180deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .home-seo-section > .container { position: relative; z-index: 1; }
+}

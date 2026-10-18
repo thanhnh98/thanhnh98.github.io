@@ -30,6 +30,7 @@ const urlsToCache = [
   '/css/colors.css',
   '/css/pwa.css',
   '/css/home-retention.css',
+  '/css/home-desktop-decor.css',
   '/css/style-preview.min.css',
   '/css/colors-preview.min.css',
   '/css/home-retention-preview.min.css',
@@ -177,7 +178,7 @@ self.addEventListener('fetch', event => {
   const isHomePage = isSameOrigin && event.request.mode === 'navigate' &&
     (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html');
   const isHomeStylesheet = isSameOrigin && event.request.destination === 'style' &&
-    (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-retention.css');
+    (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-retention.css' || requestUrl.pathname === '/css/home-desktop-decor.css');
   if (isHomePage || isHomeStylesheet) {
     const cacheKey = isHomePage ? requestUrl.pathname : event.request;
     const networkResponse = fetch(event.request, { cache: isHomePage ? 'no-store' : 'no-cache' });
