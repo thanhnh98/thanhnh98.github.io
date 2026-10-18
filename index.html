@@ -34,6 +34,15 @@
         <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home">
       `);
     </script>
+    <!-- Older service workers can still return the cached home stylesheet after this HTML updates. -->
+    <style>
+      @media (min-width: 769px) {
+        .countdown-info-card { width: min(100%, 29rem); }
+      }
+      @media (min-width: 769px) and (max-width: 1359px) {
+        .home-fireworks-trigger, .home-floating-app-cta { display: none; }
+      }
+    </style>
     <link rel="stylesheet" href="css/pwa.css">
     <noscript>
       <link rel="stylesheet" href="css/style.css" media="(max-width: 699px)">
