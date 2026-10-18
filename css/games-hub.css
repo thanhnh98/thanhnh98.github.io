@@ -1,10 +1,7 @@
 .games-hub-page {
   min-height: 100vh;
   color: #4d1725;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(255, 205, 70, .18), transparent 25%),
-    radial-gradient(circle at 88% 72%, rgba(206, 48, 70, .1), transparent 24%),
-    linear-gradient(145deg, #fff9e9 0%, #fff 54%, #ffebe2 100%);
+  background: var(--hero-paper, #fff8ed);
 }
 
 .games-hub-main {

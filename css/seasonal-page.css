@@ -15,15 +15,16 @@
     position: relative;
     overflow: hidden;
     padding: clamp(4rem, 8vw, 6rem) 0;
-    color: #fff;
-    background: radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--season-glow) 34%, transparent), transparent 22rem), linear-gradient(135deg, var(--season-accent-dark), var(--season-accent));
+    color: var(--hero-ink, #7b1e25);
+    background: var(--hero-paper, #fff8ed);
+    border-block: 1px solid var(--hero-rule, #d6b56f);
 }
 
 .seasonal-container { width: min(1040px, calc(100% - 2rem)); margin-inline: auto; }
 .seasonal-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(390px, 0.82fr); gap: clamp(2rem, 7vw, 5rem); align-items: center; }
-.seasonal-kicker { margin: 0 0 0.7rem; color: var(--season-glow); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
-.seasonal-hero h1 { margin: 0; color: #fff; font-size: clamp(2.7rem, 6vw, 4.8rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1.02; text-wrap: balance; }
-.seasonal-lead { max-width: 620px; margin: 1.1rem 0 0; color: rgba(255, 255, 255, 0.8); font-size: 1.05rem; line-height: 1.7; }
+.seasonal-kicker { margin: 0 0 0.7rem; color: var(--season-accent-dark); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+.seasonal-hero h1 { margin: 0; color: var(--hero-ink, #7b1e25); font-size: clamp(2.7rem, 6vw, 4.8rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1.02; text-wrap: balance; }
+.seasonal-lead { max-width: 620px; margin: 1.1rem 0 0; color: var(--hero-muted, #645047); font-size: 1.05rem; line-height: 1.7; }
 .seasonal-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
 
 .seasonal-actions a, .seasonal-actions button, .seasonal-share {
@@ -32,10 +33,10 @@
     justify-content: center;
     min-height: 49px;
     padding: 0.7rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--hero-rule, #d6b56f);
     border-radius: 13px;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--hero-ink, #7b1e25);
+    background: #fffdf7;
     font: inherit;
     font-weight: 850;
     text-decoration: none;
@@ -43,14 +44,15 @@
 }
 
 .seasonal-actions a:first-child { border-color: var(--season-glow); color: #3e2417; background: var(--season-glow); }
-.seasonal-countdown-card { padding: clamp(1.35rem, 4vw, 2rem); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 24px; background: rgba(255, 255, 255, 0.12); box-shadow: 0 24px 60px rgba(35, 14, 8, 0.22); backdrop-filter: blur(12px); }
-.seasonal-countdown-label { margin: 0; color: rgba(255, 255, 255, 0.72); font-weight: 800; }
+.seasonal-hero :is(a, button):focus-visible { outline: 3px solid var(--hero-ink, #7b1e25); outline-offset: 3px; }
+.seasonal-countdown-card { padding: clamp(1.35rem, 4vw, 2rem); border: 1px solid var(--hero-rule, #d6b56f); border-radius: 16px; background: #fffdf7; box-shadow: none; }
+.seasonal-countdown-label { margin: 0; color: var(--hero-muted, #645047); font-weight: 800; }
 .seasonal-countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; margin-top: 1rem; }
-.seasonal-countdown div { padding: 0.8rem 0.3rem; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 13px; background: rgba(25, 8, 4, 0.18); text-align: center; }
+.seasonal-countdown div { padding: 0.8rem 0.3rem; border: 1px solid var(--hero-rule, #d6b56f); border-radius: 10px; background: var(--hero-paper, #fff8ed); text-align: center; }
 .seasonal-countdown strong, .seasonal-countdown span { display: block; }
-.seasonal-countdown strong { color: var(--season-glow); font-size: clamp(1.35rem, 4vw, 1.9rem); }
-.seasonal-countdown span { color: rgba(255, 255, 255, 0.64); font-size: 0.67rem; }
-.seasonal-date { margin: 0.9rem 0 0; color: rgba(255, 255, 255, 0.78); text-align: center; }
+.seasonal-countdown strong { color: var(--season-accent-dark); font-size: clamp(1.35rem, 4vw, 1.9rem); }
+.seasonal-countdown span { color: var(--hero-muted, #645047); font-size: 0.67rem; }
+.seasonal-date { margin: 0.9rem 0 0; color: var(--hero-muted, #645047); text-align: center; }
 .seasonal-content { padding: clamp(3.5rem, 8vw, 6rem) 0; }
 .seasonal-heading { max-width: 720px; margin: 0 auto 2rem; text-align: center; }
 .seasonal-heading h2 { margin: 0; color: var(--season-ink); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; }

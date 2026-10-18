@@ -26,19 +26,19 @@
         <link rel="stylesheet" href="css/style-preview.min.css" media="print" onload="this.media='all'">
         <link rel="stylesheet" href="css/colors-preview.min.css" media="print" onload="this.media='all'">
         <link rel="stylesheet" href="css/home-retention-preview.min.css" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="css/home-preview.css?v=20261017-mobile-home">
-        <link rel="stylesheet" href="css/home-mobile-experiment.css?v=20261017">
+        <link rel="stylesheet" href="css/home-preview.css?v=20261018-paper-hero">
+        <link rel="stylesheet" href="css/home-mobile-experiment.css?v=20261018-desktop-tasks">
       ` : `
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/colors.css?v=20260830">
-        <link rel="stylesheet" href="css/home-retention.css?v=20261008-games-list">
+        <link rel="stylesheet" href="css/home-retention.css?v=20261018-paper-hero-2">
       `);
     </script>
     <link rel="stylesheet" href="css/pwa.css">
     <noscript>
       <link rel="stylesheet" href="css/style.css" media="(max-width: 699px)">
       <link rel="stylesheet" href="css/colors.css?v=20260830" media="(max-width: 699px)">
-      <link rel="stylesheet" href="css/home-retention.css?v=20261008-games-list" media="(max-width: 699px)">
+      <link rel="stylesheet" href="css/home-retention.css?v=20261018-paper-hero-2" media="(max-width: 699px)">
     </noscript>
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -143,6 +143,25 @@
         </div>
       </div>
 
+      <section class="home-desktop-tasks" aria-labelledby="home-desktop-tasks-title">
+        <div class="container home-compact-container">
+          <div class="home-desktop-tasks-heading">
+            <div>
+              <p class="home-section-kicker">Chuẩn bị Tết từng chút một</p>
+              <h2 id="home-desktop-tasks-title">Việc nên làm trước Tết</h2>
+            </div>
+            <a href="/huong-dan-tet.html">Xem hướng dẫn <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="home-desktop-tasks-grid">
+            <a class="home-desktop-task" href="/chuan-bi-li-xi.html"><img src="/assets/images/home-preview/task-lixi-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Chuẩn bị lì xì<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+            <a class="home-desktop-task" href="/tin-tuc/"><img src="/assets/images/home-preview/task-travel-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Lên kế hoạch du lịch<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+            <a class="home-desktop-task" href="/hoc-nau-banh-chung.html"><img src="/assets/images/home-preview/task-banh-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Học nấu bánh chưng<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+            <a class="home-desktop-task" href="/don-dep-nha-cua.html"><img src="/assets/images/home-preview/task-clean-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Dọn dẹp nhà cửa<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+            <a class="home-desktop-task" href="/mua-sam-tet.html"><img src="/assets/images/home-preview/task-shop-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Mua sắm Tết<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
+          </div>
+        </div>
+      </section>
+
       <!-- Inert on desktop. Mobile installs this reviewed Home before deferred scripts bind to its IDs. -->
       <template id="home-mobile-preview-template">
   <svg class="preview-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -222,13 +241,13 @@
       </div>
 
       <section class="preview-tasks" aria-labelledby="preview-tasks-title">
-        <div class="preview-tasks-heading"><h2 id="preview-tasks-title"><span aria-hidden="true">🔥</span> Việc nên làm trước Tết</h2><a href="/huong-dan-tet.html">Xem tất cả <svg><use href="#p-arrow"/></svg></a></div>
+        <div class="preview-tasks-heading"><h2 id="preview-tasks-title">Việc nên làm trước Tết</h2><a href="/huong-dan-tet.html">Xem hướng dẫn <svg><use href="#p-arrow"/></svg></a></div>
         <div class="preview-task-list">
-          <a href="/may-tinh-li-xi.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-lixi-photo-mobile.webp"><img src="/assets/images/home-preview/task-lixi-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Chuẩn bị<br>lì xì</span></a>
+          <a href="/chuan-bi-li-xi.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-lixi-photo-mobile.webp"><img src="/assets/images/home-preview/task-lixi-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Chuẩn bị<br>lì xì</span></a>
           <a href="/tin-tuc/" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-travel-photo-mobile.webp"><img src="/assets/images/home-preview/task-travel-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Lên kế hoạch<br>du lịch</span></a>
-          <a href="/huong-dan-tet.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-banh-photo-mobile.webp"><img src="/assets/images/home-preview/task-banh-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Học nấu<br>bánh chưng</span></a>
-          <a href="/huong-dan-tet.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-clean-photo-mobile.webp"><img src="/assets/images/home-preview/task-clean-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Dọn dẹp<br>nhà cửa</span></a>
-          <a href="/cua-hang.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-shop-photo-mobile.webp"><img src="/assets/images/home-preview/task-shop-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Mua sắm<br>Tết</span></a>
+          <a href="/hoc-nau-banh-chung.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-banh-photo-mobile.webp"><img src="/assets/images/home-preview/task-banh-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Học nấu<br>bánh chưng</span></a>
+          <a href="/don-dep-nha-cua.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-clean-photo-mobile.webp"><img src="/assets/images/home-preview/task-clean-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Dọn dẹp<br>nhà cửa</span></a>
+          <a href="/mua-sam-tet.html" class="preview-task"><picture><source media="(max-width: 699px)" srcset="/assets/images/home-preview/task-shop-photo-mobile.webp"><img src="/assets/images/home-preview/task-shop-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low"></picture><span>Mua sắm<br>Tết</span></a>
         </div>
       </section>
       <div class="preview-stage-bottom" aria-hidden="true"><span>✿</span><span>✿</span><span>✿</span></div>
@@ -294,7 +313,6 @@
       </section>
 
       <section id="hom-nay" class="home-retention-section" data-home-section="today" aria-labelledby="today-heading">
-        <div class="home-retention-deco" aria-hidden="true">🌸</div>
         <div class="container home-compact-container">
           <div class="home-section-heading">
             <span class="home-section-icon"><i data-lucide="sun" aria-hidden="true"></i></span>
@@ -342,7 +360,6 @@
       </section>
 
       <section id="kham-pha" class="home-discovery-section" data-home-section="discovery" aria-labelledby="discovery-heading">
-        <span class="home-shop-deco home-shop-deco--lantern home-shop-deco--L" aria-hidden="true">🏮</span><span class="home-shop-deco home-shop-deco--lantern home-shop-deco--R" aria-hidden="true">🏮</span>
         <div class="container home-compact-container">
           <div class="home-shop-heading">
             <div class="home-section-heading home-section-heading-light">

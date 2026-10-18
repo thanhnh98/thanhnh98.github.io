@@ -317,3 +317,20 @@
   .payday-confetti { display: none; }
   .payday-motion-ready .payday-reveal { opacity: 1; transform: none; }
 }
+
+/* Paper hero: the countdown remains live, while decorative shine stays quiet. */
+.payday-hero { min-height: 540px; color: var(--hero-ink, #7b1e25); background: var(--hero-paper, #fff8ed); border-block: 1px solid var(--hero-rule, #d6b56f); }
+.payday-hero::before,.payday-hero::after { content: none; animation: none; }
+.payday-hero-grid { min-height: 520px; }
+.payday-breadcrumb,.payday-lead,.payday-hero-actions span { color: var(--hero-muted, #645047); }
+.payday-hero .payday-eyebrow { color: #93621f; }
+.payday-hero h1 { color: var(--hero-ink, #7b1e25); background: none; -webkit-text-fill-color: currentColor; white-space: normal; animation: none; }
+.payday-target { color: var(--hero-ink, #7b1e25); }
+.payday-countdown > div { border: 1px solid var(--hero-rule, #d6b56f); background: #fffdf7; box-shadow: none; backdrop-filter: none; }
+.payday-countdown > div::after { content: none; }
+.payday-countdown > div:hover { background: #fffdf7; border-color: var(--hero-ink, #7b1e25); }
+.payday-countdown > div > span { color: var(--hero-muted, #645047); }
+.payday-today-message { color: var(--hero-ink, #7b1e25); background: #fffdf7; border-color: var(--hero-rule, #d6b56f); text-shadow: none; animation: none; }
+.payday-visual-glow,.payday-visual-orbit,.payday-visual-star { display: none; }
+.payday-visual img { filter: none; }
+@media (max-width: 850px) { .payday-hero-grid { min-height: auto; } }

@@ -17,10 +17,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         .event-detail-hero {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: var(--hero-paper, #fff8ed);
+            border-block: 1px solid var(--hero-rule, #d6b56f);
             padding: 2.5rem 1rem;
             text-align: center;
-            color: #fff;
+            color: var(--hero-ink, #7b1e25);
         }
         .event-detail-hero h1 {
             font-size: clamp(1.5rem, 4vw, 2rem);
@@ -39,12 +40,12 @@
             margin: 1.5rem 0;
         }
         .event-detail-countdown .countdown-unit {
-            background: rgba(255,255,255,0.2);
+            background: #fffdf7;
             padding: 1rem 1.25rem;
             border-radius: 12px;
             min-width: 70px;
             text-align: center;
-            border: 2px solid rgba(255,215,0,0.5);
+            border: 1px solid var(--hero-rule, #d6b56f);
         }
         .event-detail-countdown .countdown-value {
             display: block;

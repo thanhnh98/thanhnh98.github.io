@@ -7,16 +7,22 @@
 .editorial-refresh .guide-hero {
     min-height: 0;
     padding: clamp(3.75rem, 7vw, 5.5rem) 0;
-    color: #fff;
-    background: radial-gradient(circle at 82% 18%, rgba(255, 216, 102, 0.28), transparent 22rem), linear-gradient(135deg, #7c111d, #bd2833 62%, #df603a);
+    color: var(--hero-ink, #7b1e25);
+    background: var(--hero-paper, #fff8ed);
+    border-block: 1px solid var(--hero-rule, #d6b56f);
     animation: none;
     text-align: left;
+}
+
+.editorial-refresh :is(.countdown-hero, .article-hero, .guide-hero) :is(a, button):focus-visible {
+    outline: 3px solid var(--hero-ink, #7b1e25);
+    outline-offset: 3px;
 }
 
 .editorial-refresh .countdown-hero::before,
 .editorial-refresh .article-hero::before,
 .editorial-refresh .guide-hero::before {
-    opacity: 0.08;
+    opacity: 0;
 }
 
 .editorial-refresh .countdown-hero h1,
@@ -24,7 +30,7 @@
 .editorial-refresh .guide-hero h1 {
     max-width: 940px;
     margin: 0;
-    color: #fff;
+    color: var(--hero-ink, #7b1e25);
     font-size: clamp(2.6rem, 6vw, 4.5rem);
     font-weight: 900;
     letter-spacing: -0.05em;
@@ -38,7 +44,7 @@
 .editorial-refresh .guide-hero p {
     max-width: 740px;
     margin: 1rem 0 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--hero-muted, #645047);
     font-size: 1.05rem;
     line-height: 1.65;
 }
@@ -56,35 +62,38 @@
 .editorial-refresh .countdown-card {
     min-height: 170px;
     padding: 1.15rem;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid var(--hero-rule, #d6b56f);
     border-radius: 17px;
-    background: rgba(255, 255, 255, 0.12);
+    background: #fffdf7;
     box-shadow: none;
-    backdrop-filter: blur(10px);
+    backdrop-filter: none;
 }
 
+.editorial-refresh .countdown-card::before { content: none; }
+.editorial-refresh .countdown-card:hover { transform: none; box-shadow: none; }
+
 .editorial-refresh .countdown-card .value {
-    color: #ffde76 !important;
+    color: var(--hero-ink, #7b1e25) !important;
     text-shadow: none !important;
 }
 
 .editorial-refresh .countdown-card .icon,
 .editorial-refresh .countdown-card .label,
 .editorial-refresh .countdown-card .unit {
-    color: rgba(255, 255, 255, 0.88);
+    color: var(--hero-muted, #645047);
 }
 
 .editorial-refresh .countdown-card .icon svg {
-    color: #ffde76;
-    stroke: #ffde76;
+    color: var(--hero-ink, #7b1e25);
+    stroke: var(--hero-ink, #7b1e25);
 }
 
 .editorial-refresh .tet-date-simple {
     display: inline-flex;
     margin-top: 1.15rem;
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #ffdf7a;
-    background: rgba(54, 0, 7, 0.16);
+    border-color: var(--hero-rule, #d6b56f);
+    color: var(--hero-ink, #7b1e25);
+    background: #fffdf7;
 }
 
 .editorial-refresh main > .container:first-child {
@@ -147,3 +156,5 @@
         gap: 0.55rem;
     }
 }
+
+.editorial-refresh #don-dep-nha-cua, .editorial-refresh #goi-banh-chung { scroll-margin-top: 100px; }

@@ -36,17 +36,9 @@
     display: block;
     margin: 1.25rem auto 0;
     max-width: 20rem;
-    height: 3px;
+    height: 1px;
     border-radius: 999px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 215, 0, 0.35) 15%,
-        var(--color-secondary) 45%,
-        var(--color-text-accent) 55%,
-        rgba(255, 215, 0, 0.35) 85%,
-        transparent 100%
-    );
+    background: var(--hero-rule, #d6b56f);
     opacity: 0.95;
 }
 

@@ -68,7 +68,7 @@ for (const holiday of HOLIDAYS_EN) {
     assert.match(html, re(`<meta property="og:url" content="${canonical}">`));
     assert.match(html, /\/assets\/fonts\/fraunces-vietnamese\.woff2/);
     assert.doesNotMatch(html, /\{\{[A-Z_]+\}\}/);
-    assert.match(html, new RegExp(`class="hc-hero-bg" src="${holiday.visual.background}"`));
+    assert.doesNotMatch(html, /class="hc-hero-bg"/);
 
     const title = decode(html.match(/<title>([^<]+)<\/title>/)[1]);
     const description = decode(html.match(/<meta name="description" content="([^"]+)"/)[1]);

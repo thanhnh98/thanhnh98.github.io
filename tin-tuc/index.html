@@ -103,9 +103,9 @@
 
         .news-top {
             padding: clamp(1rem, 2.5vw, 1.5rem) 0;
-            background: linear-gradient(135deg, #fffdf8 0%, #fff9ed 50%, #fff 100%);
-            border-bottom: 1px solid rgba(139, 69, 19, 0.12);
-            box-shadow: 0 4px 24px rgba(139, 69, 19, 0.04);
+            background: var(--hero-paper, #fff8ed);
+            border-block: 1px solid var(--hero-rule, #d6b56f);
+            box-shadow: none;
             position: relative;
             overflow: hidden;
         }
@@ -126,7 +126,7 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: var(--hero-rule, #d6b56f);
             border-radius: 0 4px 4px 0;
         }
 

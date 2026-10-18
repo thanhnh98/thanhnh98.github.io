@@ -174,6 +174,27 @@ body.home-preview{margin:0;padding-top:0;overflow-x:hidden;background:#fff3dc;co
 }
 @media(prefers-reduced-motion:reduce){.home-preview *,.home-preview *:before,.home-preview *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.preview-petals{display:none}.preview-timer-card:active,.preview-timer-card.is-celebrating{scale:1;filter:none}.preview-timer-card.is-celebrating .preview-time-value,.preview-timer-card.is-celebrating .preview-timer-illustration{scale:1}}
 .home-preview.is-hidden .preview-petal,.home-preview.is-hidden .preview-mascot,.home-preview.is-hidden .preview-timer-illustration.lantern,.preview-hero.is-offscreen .preview-petal,.preview-hero.is-offscreen .preview-mascot{animation-play-state:paused}
+/* A framed Tết illustration replaces the full-bleed scene. */
+.preview-stage{background:#fff8ed;box-shadow:none}
+.preview-hero{background:#fff8ed;border-bottom:1px solid #d6b56f}
+.preview-hero:after{content:none}
+.preview-scene{inset:82px 12px 12px auto;width:39%;height:calc(100% - 94px);overflow:hidden;border:1px solid #d6b56f;border-radius:12px;transform:none;will-change:auto}
+.preview-scene img{object-position:center 34%}
+.preview-header{background:#fffdf7;border:1px solid #d6b56f;box-shadow:none}
+.preview-hero-copy{top:98px;left:16px;width:53%;text-align:left;text-shadow:none}
+.preview-hero-copy h1 span{font:800 clamp(16px,4.2vw,27px)/1.15 Nunito,sans-serif;transform:none}
+.preview-hero-copy h1 strong{margin:8px 0 0;color:#7b1e25;font:800 clamp(37px,11vw,58px)/1 Nunito,sans-serif;letter-spacing:-.05em;white-space:normal;transform:none;text-shadow:none}
+.preview-brush{width:58px;height:2px;margin:12px 0 0;background:#d6b56f;transform:none}
+.preview-mascot,.preview-petals{display:none}
+.preview-info{border:1px solid #d6b56f;background:#fffdf7;box-shadow:none}
+@media(min-width:700px){
+ .preview-scene{inset:132px clamp(24px,5vw,100px) 30px auto;width:42%;height:calc(100% - 162px);border-radius:16px}
+ .preview-hero-copy{top:clamp(170px,17vw,220px);left:clamp(32px,7vw,110px);width:43%}
+ .preview-hero-copy h1 span{font-size:clamp(28px,3vw,44px)}
+ .preview-hero-copy h1 strong{font-size:clamp(64px,7vw,96px);margin-top:14px}
+ .preview-brush{width:94px;height:2px;margin-top:20px}
+}
+@media(max-width:380px){.preview-hero-copy{left:12px;width:51%}.preview-hero-copy h1 strong{font-size:36px}.preview-scene{right:8px;width:40%}}
 /* The production countdown ID has a two-column mobile rule; the review uses four tiles. */
 body.home-preview #countdown-timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;width:calc(100% - 36px);max-width:980px;margin:16px auto 0;padding:0}
 @media(max-width:375px){body.home-preview #countdown-timer{width:calc(100% - 20px);gap:4px}}

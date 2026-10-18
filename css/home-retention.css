@@ -137,6 +137,57 @@
 .home-ad-space .adsbygoogle { width: 100%; height: 280px; }
 body[data-home-manual-ads="off"] .home-countdown-ad { display: none; }
 
+/* Desktop preparation shelf, paired with the compact task row on mobile. */
+.home-desktop-tasks {
+  padding: clamp(2.4rem, 4vw, 3.6rem) 0;
+  background: linear-gradient(180deg, #fffaf0, #fff4e4);
+}
+.home-desktop-tasks-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.3rem;
+}
+.home-desktop-tasks-heading h2 {
+  margin: .2rem 0 0;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+.home-desktop-tasks-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  padding: .65rem .9rem;
+  border-radius: 999px;
+  color: #8e2039;
+  font-weight: 900;
+  text-decoration: none;
+}
+.home-desktop-tasks-heading > a:hover { background: rgba(159, 18, 57, .08); }
+.home-desktop-tasks-heading > a svg { width: 17px; height: 17px; }
+.home-desktop-tasks-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.65rem, 1.5vw, 1rem); }
+.home-desktop-task {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #efd8c5;
+  border-radius: 18px;
+  color: #6e1930;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(105, 23, 44, .09);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.home-desktop-task:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(105, 23, 44, .16); }
+.home-desktop-task:focus-visible, .home-desktop-tasks-heading > a:focus-visible { outline: 3px solid #b91c1c; outline-offset: 3px; }
+.home-desktop-task img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.home-desktop-task span { display: flex; align-items: center; justify-content: space-between; gap: .4rem; min-height: 62px; padding: .7rem .8rem; font-size: clamp(.8rem, 1.3vw, .95rem); font-weight: 900; line-height: 1.3; }
+.home-desktop-task svg { flex: 0 0 17px; width: 17px; height: 17px; color: #b91c1c; }
+
 /* Compact game shelf: show the full game catalogue at a glance. */
 .home-game-entry-section {
   position: relative;
@@ -889,3 +940,41 @@ body[data-home-manual-ads="off"] .home-countdown-ad { display: none; }
   .home-fireworks-trigger.is-launching svg { animation: none; }
   .home-fireworks-reward-card, .home-fireworks-reward-rays { animation: none; }
 }
+
+/* Paper treatment for the home hero and repeated section banners. */
+body:not(.home-mobile-experiment) .countdown-section,.countdown-section { background:#fff8ed; border-block:1px solid #d6b56f; }
+@media (min-width: 700px) {
+  .countdown-section { height:auto; min-height:0; padding:clamp(2rem,4vw,3.5rem) 0 2rem; }
+  .countdown-section .container,.countdown-content-wrapper { height:auto; }
+  .countdown-content-wrapper { justify-content:flex-start; gap:clamp(.8rem,2vw,1.5rem); }
+  .countdown-section #countdown-timer .timer-box { min-height:clamp(124px,12vw,150px); padding:.9rem .75rem; }
+}
+.countdown-section::before,.countdown-section::after { content:none; }
+.countdown-section .floating-blossom,.countdown-section .star-bling,.countdown-section .floating-star { display:none; }
+.countdown-section h2,.countdown-section .countdown-hero-title { color:#7b1e25; background:none; -webkit-text-fill-color:currentColor; text-shadow:none; }
+.home-app-showcase,.home-discovery-section { color:#7b1e25; background:#fff8ed; border-block:1px solid #d6b56f; }
+.home-app-showcase::before,.home-app-sparkles,.home-app-demo-glow { display:none; }
+.home-app-eyebrow,.home-app-detail-link { color:#93621f; }
+.home-app-showcase h2 { color:#7b1e25; text-shadow:none; }
+.home-app-lead,.home-shop-heading-copy { color:#645047; }
+.home-app-feature-list li { color:#7b1e25; border-color:#d6b56f; background:#fffdf7; }
+.home-app-feature-list svg { color:#93621f; }
+.home-app-demo { border:1px solid #d6b56f; border-radius:16px; background:#fffdf7; }
+.home-section-heading-light h2 { color:#7b1e25; }
+.home-section-heading-light .home-section-kicker { color:#93621f; }
+.home-section-heading-light .home-section-icon { color:#7b1e25; background:#fffdf7; border:1px solid #d6b56f; }
+.home-shop-all-link,.home-shop-category-chip,.home-shop-more-chip { color:#7b1e25; background:#fffdf7; border-color:#d6b56f; backdrop-filter:none; }
+.home-shop-all-link:hover,.home-shop-category-chip:hover,.home-shop-more-chip:hover { color:#7b1e25; background:#f8ead4; }
+.home-shop-category-chip.is-active { color:#fffdf7; background:#7b1e25; border-color:#7b1e25; box-shadow:none; }
+.home-shop-showcase { border-color:#d6b56f; box-shadow:none; }
+.countdown-section .countdown-info-card { background:#fffdf7; border:1px solid #d6b56f; box-shadow:none; backdrop-filter:none; }
+.countdown-section .countdown-info-card::before { content:none; }
+.countdown-section .countdown-info-card:hover { box-shadow:none; }
+.countdown-section .countdown-info-card .countdown-info-title { color:#7b1e25; background:none; -webkit-text-fill-color:currentColor; text-shadow:none; }
+.countdown-section #countdown-timer .timer-box { color:#7b1e25; background:#fffdf7; border:1px solid #d6b56f; border-radius:14px; box-shadow:none; }
+.countdown-section #countdown-timer .timer-box::before,.countdown-section #countdown-timer .timer-box::after { content:none; }
+.countdown-section #countdown-timer .timer-box:hover { transform:none; border-color:#7b1e25; box-shadow:none; }
+.countdown-section #countdown-timer .time-value { color:#7b1e25; font-family:Nunito,sans-serif; text-shadow:none; animation:none; }
+.countdown-section #countdown-timer .time-label { color:#645047; font-family:Nunito,sans-serif; font-size:.9rem; letter-spacing:.08em; }
+.countdown-section .tet-greeting { color:#7b1e25; background:#fff8ed; border:0; border-top:1px solid #d6b56f; border-radius:0; box-shadow:none; backdrop-filter:none; animation:none; }
+.countdown-section .tet-greeting::before,.countdown-section .tet-greeting::after { content:none; }

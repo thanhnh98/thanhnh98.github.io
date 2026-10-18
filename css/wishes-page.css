@@ -1,0 +1,506 @@
+/* Lời chúc Tết: editorial wishes on the web, greeting cards in the app. */
+.wishes-page {
+    background: #fff8ed;
+    color: #49251f;
+    font-family: Nunito, sans-serif;
+}
+
+.wishes-page main { overflow: hidden; }
+.wishes-page .wishes-container,
+.wishes-page .wishes-section > .container { max-width: 1180px; }
+
+.wishes-hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0 6rem;
+    background: var(--hero-paper, #fff8ed);
+    color: var(--hero-ink, #7b1e25);
+    border-block: 1px solid var(--hero-rule, #d6b56f);
+}
+
+.wishes-hero::after {
+    position: absolute;
+    pointer-events: none;
+    content: '';
+}
+.wishes-hero::after {
+    inset: 14px;
+    border: 1px solid var(--hero-rule, #d6b56f);
+    border-radius: 24px;
+}
+.wishes-hero-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+}
+.wishes-eyebrow,
+.wishes-section-kicker {
+    margin: 0;
+    font-size: .75rem;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+.wishes-eyebrow { color: #93621f; }
+.wishes-flower-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: .45rem;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+    vertical-align: -.35rem;
+}
+.wishes-hero h1 {
+    max-width: 680px;
+    margin: 1.15rem 0 1.25rem;
+    color: var(--hero-ink, #7b1e25);
+    font-size: clamp(2.65rem, 4.8vw, 4.6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    text-wrap: balance;
+}
+.wishes-hero h1 span { display: block; color: #a33a2b; }
+.wishes-hero-lead {
+    max-width: 580px;
+    margin: 0;
+    color: var(--hero-muted, #645047);
+    font-size: clamp(1rem, 1.5vw, 1.13rem);
+    line-height: 1.75;
+}
+.wishes-hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+.wishes-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    min-height: 48px;
+    padding: .75rem 1.2rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: .92rem;
+    font-weight: 900;
+    text-align: center;
+    text-decoration: none;
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+.wishes-btn svg { width: 18px; height: 18px; }
+.wishes-btn-app-icon { flex: none; width: 22px; height: 22px; border-radius: 5px; object-fit: cover; }
+.wishes-btn:hover { transform: translateY(-2px); text-decoration: none; }
+.wishes-btn-primary {
+    color: #fffdf7;
+    background: var(--hero-ink, #7b1e25);
+    box-shadow: none;
+}
+.wishes-btn-primary:hover { color: #fffdf7; background: #5f1820; }
+.wishes-btn-secondary {
+    border-color: var(--hero-rule, #d6b56f);
+    color: var(--hero-ink, #7b1e25);
+    background: #fffdf7;
+}
+.wishes-btn-secondary:hover { color: var(--hero-ink, #7b1e25); background: #f8e9d5; }
+.wishes-hero-note {
+    display: flex;
+    align-items: flex-start;
+    gap: .55rem;
+    max-width: 560px;
+    margin: 1.5rem 0 0;
+    color: var(--hero-muted, #645047);
+    font-size: .84rem;
+    line-height: 1.55;
+}
+.wishes-hero-note svg { flex: 0 0 17px; width: 17px; height: 17px; margin-top: 2px; }
+
+/* Illustration only: sending a card always happens in the app. */
+.wishes-hero-visual {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    margin: 0;
+    padding: 1rem .5rem 0;
+}
+.wishes-hero-visual::before {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    width: min(90%, 460px);
+    aspect-ratio: 1;
+    border: 1px solid var(--hero-rule, #d6b56f);
+    border-radius: 50%;
+    box-shadow: none;
+    content: '';
+    transform: translateX(-50%);
+}
+.wishes-envelope-back {
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    width: min(82%, 390px);
+    aspect-ratio: 4 / 3;
+    border: 3px solid #efbf6e;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #db4d49, #8e1928 72%);
+    box-shadow: none;
+    transform: translateX(-50%);
+}
+.wishes-envelope-back::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(153deg, transparent 49%, rgba(255, 206, 116, .66) 49.5%, transparent 50.3%);
+    content: '';
+}
+.wishes-card-preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 356px);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 7px solid #f8d98f;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 50% 18%, #fffdf3 0, transparent 58%),
+        linear-gradient(150deg, #fff8e5, #fae8c3);
+    box-shadow: inset 0 0 0 2px rgba(132, 24, 35, .32);
+    color: #8f1c2b;
+    text-align: center;
+    transform: none;
+    animation: none;
+}
+.wishes-card-preview::before {
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(177, 42, 54, .36);
+    border-radius: 8px;
+    content: '';
+}
+.wishes-card-overline {
+    position: relative;
+    z-index: 1;
+    margin-top: 2.35rem;
+    font-size: .6rem;
+    font-weight: 900;
+    letter-spacing: .2em;
+}
+.wishes-card-year { position: relative; z-index: 1; margin-top: .3rem; color: #bf5331; font-size: .78rem; font-weight: 900; letter-spacing: .24em; }
+.wishes-card-flower {
+    position: absolute;
+    width: 84px;
+    height: 84px;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+    opacity: .8;
+}
+.wishes-card-flower-left { top: 34%; left: -23px; }
+.wishes-card-flower-right { right: -19px; bottom: 18%; transform: rotate(32deg); }
+.wishes-card-script {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.8rem, 4vw, 3.7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-shadow: 0 2px #fff9e8;
+}
+.wishes-card-divider {
+    position: relative;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    margin: 1rem 0 .65rem;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+}
+.wishes-card-message { position: relative; z-index: 1; font-size: .9rem; font-weight: 800; line-height: 1.6; }
+.wishes-card-seal {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin: auto 0 1.7rem;
+    border-radius: 50%;
+    color: #fff9e9;
+    background: #aa2031;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.wishes-hero-visual figcaption {
+    position: relative;
+    margin-top: 1.65rem;
+    padding: .46rem .85rem;
+    border: 1px solid var(--hero-rule, #d6b56f);
+    border-radius: 999px;
+    color: var(--hero-muted, #645047);
+    background: #fffdf7;
+    font-size: .74rem;
+    font-weight: 800;
+    text-align: center;
+}
+@keyframes wishes-card-float { 50% { transform: translateY(-7px) rotate(-4deg); } }
+
+.wishes-send-section { position: relative; z-index: 2; margin-top: -3.5rem; padding-bottom: 3rem; scroll-margin-top: 5rem; }
+.wishes-send-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) minmax(195px, 230px);
+    gap: clamp(1.1rem, 2.5vw, 2.4rem);
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    border: 1px solid #edcf9b;
+    border-top: 5px solid #e9a92f;
+    border-radius: 22px;
+    background: linear-gradient(125deg, #fffdf6, #fff2db);
+    box-shadow: 0 18px 45px rgba(89, 21, 23, .15);
+}
+.wishes-send-panel::after {
+    position: absolute;
+    right: -50px;
+    bottom: -90px;
+    width: 210px;
+    aspect-ratio: 1;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+    opacity: .15;
+    content: '';
+    pointer-events: none;
+}
+.wishes-send-mark {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #f1c86c;
+    border-radius: 16px;
+    object-fit: cover;
+}
+.wishes-send-copy { position: relative; z-index: 1; }
+.wishes-section-kicker { color: #ac6530; }
+.wishes-send-copy h2 { margin: .45rem 0 .55rem; color: #8e1a2b; font-size: clamp(1.55rem, 2.7vw, 2.25rem); line-height: 1.18; }
+.wishes-send-copy > p:not(.wishes-section-kicker) { max-width: 650px; margin: 0; color: #614039; font-size: .94rem; line-height: 1.65; }
+.wishes-send-copy .wishes-send-required {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    margin-top: .85rem !important;
+    color: #8e1a2b !important;
+    font-size: .84rem !important;
+    font-weight: 900;
+}
+.wishes-send-required svg { flex: 0 0 17px; width: 17px; height: 17px; }
+.wishes-store-actions { position: relative; z-index: 1; display: grid; gap: .6rem; }
+.wishes-store-link {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    min-height: 56px;
+    padding: .56rem .85rem;
+    border: 1px solid #eacda2;
+    border-radius: 12px;
+    color: #6e1a27;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: 0 5px 12px rgba(94, 25, 16, .08);
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.wishes-store-link:hover { color: #6e1a27; transform: translateY(-2px); box-shadow: 0 9px 18px rgba(94, 25, 16, .14); }
+.wishes-store-link img { flex: 0 0 34px; width: 34px; height: 34px; object-fit: contain; }
+.wishes-store-link span { display: flex; flex-direction: column; line-height: 1.1; }
+.wishes-store-link small { color: #765f54; font-size: .67rem; font-weight: 700; }
+.wishes-store-link strong { margin-top: .14rem; font-size: 1rem; font-weight: 900; }
+
+.wishes-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .6rem;
+    max-width: 1180px;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border: 1px solid #f0d9b9;
+    border-radius: 18px;
+    background: #fffdf8;
+    box-shadow: 0 8px 24px rgba(111, 35, 26, .06);
+}
+.wishes-tabs-label { margin-right: .6rem; color: #8d2331; font-size: .86rem; font-weight: 900; }
+.wishes-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: .5rem .92rem;
+    border: 1px solid #eacdab;
+    border-radius: 999px;
+    color: #86243a;
+    background: #fff8ed;
+    font-size: .86rem;
+    font-weight: 900;
+    text-decoration: none;
+    transition: background-color .2s ease, transform .2s ease;
+}
+.wishes-tab:hover { color: #75172c; background: #ffe8bf; transform: translateY(-2px); }
+.wishes-section { padding: 1.6rem 0 1.25rem; scroll-margin-top: 6rem; }
+.wishes-section h2 {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    margin: 0 0 1.2rem;
+    color: #8b1e2e;
+    font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+    line-height: 1.25;
+}
+.wishes-section h2::before {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+    content: '';
+}
+.wishes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.wish-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    overflow: hidden;
+    padding: 1.25rem 1.3rem 1rem;
+    border: 1px solid #eedbc5;
+    border-top: 3px solid #d7a351;
+    border-radius: 16px;
+    background: #fffefb;
+    box-shadow: 0 8px 22px rgba(112, 35, 27, .07);
+}
+.wish-card::before {
+    position: absolute;
+    top: -.45rem;
+    right: .75rem;
+    color: #eddfc7;
+    content: '“';
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    pointer-events: none;
+}
+.wish-card p { position: relative; flex: 1; margin: 0 0 1rem; color: #4d342d; font-size: .96rem; font-weight: 700; line-height: 1.66; }
+.copy-wish-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    min-height: 40px;
+    padding: .55rem .78rem;
+    border: 1px solid #edc8a9;
+    border-radius: 9px;
+    color: #9e2336;
+    background: #fff4e3;
+    font-family: inherit;
+    font-size: .82rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+.copy-wish-btn svg { width: 16px; height: 16px; }
+.copy-wish-btn:hover,
+.copy-wish-btn.is-copied { border-color: #a72235; color: #fff; background: #a72235; }
+
+.wishes-app-card,
+.wishes-related { max-width: 1180px; margin: 2rem auto 0; }
+.wishes-app-card {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2.1rem, 4vw, 3.5rem);
+    border: 1px solid #e5b969;
+    border-radius: 22px;
+    background: linear-gradient(130deg, #751222, #a51f33 65%, #701625);
+    box-shadow: 0 14px 30px rgba(97, 19, 30, .16);
+    color: #fff7e7;
+    text-align: center;
+}
+.wishes-app-flower {
+    position: absolute;
+    top: -5rem;
+    right: 1rem;
+    width: 250px;
+    height: 250px;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+    opacity: .13;
+    pointer-events: none;
+}
+.wishes-app-card .wishes-section-kicker { position: relative; color: #ffce73; }
+.wishes-app-card h2 { position: relative; margin: .5rem 0 .7rem; color: #ffdb8c; font-size: clamp(1.65rem, 3vw, 2.4rem); line-height: 1.2; }
+.wishes-app-card p:not(.wishes-section-kicker) { position: relative; max-width: 630px; margin: 0 auto 1.35rem; color: #fff1db; line-height: 1.6; }
+.wishes-app-card .wishes-btn { position: relative; }
+.wishes-related {
+    margin-bottom: 4rem;
+    padding: 1.5rem;
+    border: 1px solid #efdcc4;
+    border-radius: 18px;
+    background: #fffdf8;
+    text-align: center;
+}
+.wishes-related h2 { margin: 0 0 .9rem; color: #8b1e2e; font-size: 1.25rem; }
+.wishes-related-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .55rem; }
+.wishes-related-links a { padding: .55rem .78rem; border-radius: 9px; color: #8e2235; background: #fff2df; font-size: .84rem; font-weight: 900; text-decoration: none; }
+.wishes-related-links a:hover { color: #6d1425; background: #ffe2af; }
+
+.wishes-page .home-site-footer .home-compact-container::after {
+    width: 8rem;
+    height: 8rem;
+    background: url('/assets/images/wishes-apricot-blossom.webp') center / contain no-repeat;
+    content: '';
+}
+
+.wishes-page :is(a, button):focus-visible { outline: 3px solid #efb33d; outline-offset: 3px; }
+
+@media (max-width: 900px) {
+    .wishes-hero-shell { grid-template-columns: 1fr; gap: 2rem; }
+    .wishes-hero-copy { max-width: 720px; }
+    .wishes-hero-visual { justify-self: center; width: min(100%, 500px); }
+    .wishes-send-panel { grid-template-columns: 60px minmax(0, 1fr); }
+    .wishes-send-mark { width: 60px; height: 60px; }
+    .wishes-store-actions { grid-column: 2; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .wishes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+    .wishes-hero { padding: 2.7rem 0 5.7rem; }
+    .wishes-hero::after { inset: 8px; border-radius: 17px; }
+    .wishes-hero h1 { margin-top: .7rem; font-size: clamp(2.35rem, 10vw, 3.1rem); }
+    .wishes-hero-lead { font-size: .98rem; line-height: 1.62; }
+    .wishes-hero-actions { margin-top: 1.5rem; }
+    .wishes-btn { flex: 1 1 145px; padding-inline: .8rem; }
+    .wishes-hero-note { margin-top: 1.1rem; }
+    .wishes-hero-visual { padding-top: .4rem; }
+    .wishes-card-preview { width: min(76vw, 278px); border-width: 5px; }
+    .wishes-card-overline { margin-top: 1.7rem; font-size: .52rem; }
+    .wishes-card-script { font-size: 2.9rem; }
+    .wishes-card-divider { margin: .7rem 0 .4rem; }
+    .wishes-card-message { font-size: .78rem; }
+    .wishes-card-seal { width: 34px; height: 34px; margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .wishes-envelope-back { width: min(83vw, 300px); }
+    .wishes-hero-visual figcaption { margin-top: 1.1rem; font-size: .68rem; }
+    .wishes-send-section { margin-top: -4rem; padding-bottom: 2rem; }
+    .wishes-send-panel { grid-template-columns: 1fr; gap: .85rem; padding: 1.35rem; }
+    .wishes-send-mark { width: 52px; height: 52px; border-radius: 15px; }
+    .wishes-store-actions { grid-column: 1; grid-template-columns: 1fr; margin-top: .3rem; }
+    .wishes-tabs { justify-content: flex-start; gap: .45rem; margin-inline: 16px; }
+    .wishes-tabs-label { flex-basis: 100%; margin: 0 0 .2rem; }
+    .wishes-tab { flex: 1 1 auto; padding-inline: .6rem; }
+    .wishes-section { padding: 1.15rem 0; }
+    .wishes-section h2 { margin-bottom: .9rem; }
+    .wishes-grid { grid-template-columns: 1fr; gap: .75rem; }
+    .wish-card { min-height: 0; padding: 1.1rem; }
+    .wishes-app-card,
+    .wishes-related { margin-inline: 16px; }
+    .wishes-related { margin-bottom: 2.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wishes-page *,
+    .wishes-page *::before,
+    .wishes-page *::after { animation: none !important; transition: none !important; }
+}

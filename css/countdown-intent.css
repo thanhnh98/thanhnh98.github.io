@@ -23,10 +23,7 @@
     --intent-brown: #3f2a22;
     --intent-muted: #68433b;
     --intent-panel: #b91c1c;
-    background:
-        radial-gradient(circle at 12% 8%, rgba(255, 223, 230, 0.92) 0 12rem, transparent 12.2rem),
-        radial-gradient(circle at 88% 12%, rgba(229, 247, 232, 0.88) 0 11rem, transparent 11.2rem),
-        linear-gradient(180deg, var(--intent-cream) 0%, var(--intent-peach) 48%, #fffaf3 100%);
+    background: var(--hero-paper, #fff8ed);
 }
 
 .intent-page-deco {
@@ -34,10 +31,8 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background:
-        radial-gradient(circle at 8% 78%, rgba(255, 213, 79, 0.18) 0 8rem, transparent 8.2rem),
-        radial-gradient(circle at 92% 76%, rgba(196, 30, 30, 0.09) 0 9rem, transparent 9.2rem);
-    opacity: 1;
+    background: none;
+    opacity: 0;
 }
 
 .intent-page #main-content,
@@ -52,9 +47,9 @@
 }
 
 .intent-hero {
-    background: transparent;
+    background: var(--hero-paper, #fff8ed);
     color: var(--intent-brown);
-    border-bottom: none;
+    border-block: 1px solid var(--hero-rule, #d6b56f);
     padding: clamp(1.5rem, 3.5vw, 2.75rem) 0 clamp(1.75rem, 4vw, 2.5rem);
     position: relative;
     overflow: visible;

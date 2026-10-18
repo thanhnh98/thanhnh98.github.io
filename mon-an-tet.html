@@ -111,10 +111,11 @@
     
     <style>
         .food-hero {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: var(--hero-paper, #fff8ed);
+            border-block: 1px solid var(--hero-rule, #d6b56f);
             padding: 6rem 0 4rem;
             text-align: center;
-            color: white;
+            color: var(--hero-ink, #7b1e25);
             position: relative;
             overflow: hidden;
         }
@@ -127,7 +128,7 @@
             right: 0;
             bottom: 0;
             background: url('images/tet-background-pattern.svg') repeat;
-            opacity: 0.1;
+            opacity: 0;
             z-index: 1;
         }
         
@@ -140,7 +141,7 @@
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: none;
         }
         
         .food-hero p {
@@ -437,13 +438,11 @@
 
         .food-hero--compact {
             padding: 4.75rem 0 3rem;
-            background:
-                linear-gradient(135deg, rgba(128, 28, 23, 0.94), rgba(205, 69, 41, 0.9)),
-                url('images/tet-background-pattern.svg') repeat;
+            background: var(--hero-paper, #fff8ed);
         }
 
         .food-hero--compact::before {
-            opacity: 0.08;
+            opacity: 0;
         }
 
         .food-eyebrow {
@@ -451,9 +450,9 @@
             width: fit-content;
             margin: 0 auto 0.75rem;
             padding: 0.35rem 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.38);
+            border: 1px solid var(--hero-rule, #d6b56f);
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.12);
+            background: #fffdf7;
             font-size: 0.85rem !important;
             font-weight: 800;
             letter-spacing: 0;

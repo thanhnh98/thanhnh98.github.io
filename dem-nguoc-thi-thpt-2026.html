@@ -154,12 +154,9 @@
 
         .exam-hero {
             padding: 6.5rem 0 2.5rem;
-            background-image:
-                linear-gradient(135deg, rgba(220, 20, 60, 0.88) 0%, rgba(139, 0, 0, 0.9) 100%),
-                url("assets/images/thpt-2026-decor.png");
-            background-size: cover;
-            background-position: center 25%;
-            color: #fff;
+            background: var(--hero-paper, #fff8ed);
+            border-block: 1px solid var(--hero-rule, #d6b56f);
+            color: var(--hero-ink, #7b1e25);
             position: relative;
             overflow: hidden;
         }
@@ -168,7 +165,10 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 42%);
+            background: url("assets/images/thpt-2026-decor.png") center / cover no-repeat;
+            width: min(30vw, 320px);
+            left: auto;
+            opacity: 0.35;
             pointer-events: none;
         }
 

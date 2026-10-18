@@ -4,12 +4,11 @@
    HERO — compact, sản phẩm lên gần fold hơn
    ============================================= */
 .shop-hero {
-  background:
-    linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.95), rgba(var(--color-accent-primary-rgb), 0.88)),
-    url('../images/tet-background-pattern.svg') repeat;
+  background: var(--hero-paper, #fff8ed);
+  border-block: 1px solid var(--hero-rule, #d6b56f);
   padding: 1.25rem 0 1rem;
   text-align: left;
-  color: white;
+  color: var(--hero-ink, #7b1e25);
   position: relative;
   overflow: hidden;
 }
@@ -907,7 +906,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(var(--color-text-header-rgb), 0.72);
+  color: #93621f;
 }
 
 .shop-hero h1 {
@@ -921,7 +920,7 @@ body {
 
 .shop-hero p:not(.shop-kicker) {
   max-width: 680px;
-  color: rgba(var(--color-text-header-rgb), 0.88);
+  color: var(--hero-muted, #645047);
   font-size: clamp(0.8rem, 2vw, 0.92rem);
   line-height: 1.45;
   margin: 0;
