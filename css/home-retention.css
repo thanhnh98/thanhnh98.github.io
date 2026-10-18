@@ -809,6 +809,12 @@ body[data-home-manual-ads="off"] .home-countdown-ad { display: none; }
   .home-fireworks-trigger, .home-floating-app-cta { display: none; }
 }
 
+@media (min-width: 1024px) and (max-width: 1079px) {
+  header .container { gap: 1rem; }
+  header nav ul { gap: .25rem; }
+  header nav a { padding-inline: .65rem; }
+}
+
 @media (max-width: 900px) {
   .home-today-grid { grid-template-columns: 1fr 1fr; }
   .home-daily-card { grid-column: 1 / -1; }

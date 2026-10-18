@@ -31,7 +31,7 @@
       ` : `
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/colors.css?v=20260830">
-        <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home">
+        <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home-2">
       `);
     </script>
     <!-- Older service workers can still return the cached home stylesheet after this HTML updates. -->
@@ -42,12 +42,17 @@
       @media (min-width: 769px) and (max-width: 1359px) {
         .home-fireworks-trigger, .home-floating-app-cta { display: none; }
       }
+      @media (min-width: 1024px) and (max-width: 1079px) {
+        header .container { gap: 1rem; }
+        header nav ul { gap: .25rem; }
+        header nav a { padding-inline: .65rem; }
+      }
     </style>
     <link rel="stylesheet" href="css/pwa.css">
     <noscript>
       <link rel="stylesheet" href="css/style.css" media="(max-width: 699px)">
       <link rel="stylesheet" href="css/colors.css?v=20260830" media="(max-width: 699px)">
-      <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home" media="(max-width: 699px)">
+      <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home-2" media="(max-width: 699px)">
     </noscript>
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
