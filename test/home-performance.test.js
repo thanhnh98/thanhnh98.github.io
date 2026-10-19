@@ -65,7 +65,7 @@ test('homepage body scripts are deferred and web fonts do not block render', () 
   const fontSheets = [...head.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)].map((m) => m[0]).filter((tag) => tag.includes('fonts.googleapis.com'));
   assert.ok(fontSheets.length > 0);
   for (const tag of fontSheets) assert.match(tag, /media="print" onload="this\.media='all'"/, 'Google Fonts must load without blocking render');
-  assert.match(head, /rel="preload" as="image" href="\/assets\/images\/home-preview\/hero-mai-woodblock-desktop\.webp" media="\(min-width: 1024px\)"/);
+  assert.match(head, /rel="preload" as="image" href="images\/tet-background-pattern\.svg" media="\(min-width: 700px\)"/);
 });
 
 test('infinite hero animations stay on the compositor (transform/opacity only)', () => {
@@ -98,7 +98,7 @@ test('fireworks initializes only when the browser is idle', () => {
 
 test('hero info card has a fixed width so web font swaps do not shift it', () => {
   const css = read('css/home-retention.css');
-  assert.match(css, /\.countdown-info-card \{\n  width: min\(100%, 29rem\);/);
+  assert.match(css, /\.countdown-info-card \{\n  width: min\(100%, 25rem\);/);
   assert.match(css, /\.countdown-info-card \.countdown-info-title \{[^}]*white-space: nowrap/);
 });
 

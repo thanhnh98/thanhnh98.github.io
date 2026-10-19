@@ -30,8 +30,6 @@ const urlsToCache = [
   '/css/colors.css',
   '/css/pwa.css',
   '/css/home-retention.css',
-  '/css/home-desktop-decor.css',
-  '/css/home-desktop-cards.css',
   '/css/style-preview.min.css',
   '/css/colors-preview.min.css',
   '/css/home-retention-preview.min.css',
@@ -50,7 +48,6 @@ const urlsToCache = [
   '/js/vendor/lucide-subset.js',
   '/data/events-data.js',
   '/images/floating-peach-blossom.svg',
-  '/images/floating-apricot-blossom.svg',
   '/images/tet-background-pattern.svg',
   '/images/tet-corner-decoration.svg',
   '/assets/images/ic_app-208.webp',
@@ -63,8 +60,6 @@ const urlsToCache = [
   '/assets/images/home-preview/sleeping-cat.webp',
   '/assets/images/home-preview/countdown-flower.webp',
   '/assets/images/home-preview/quote-banner-mobile.webp',
-  '/assets/images/home-preview/quote-banner.webp',
-  '/assets/images/home-preview/hero-mai-woodblock-desktop.webp',
   '/assets/images/home-preview/shortcut-calendar.svg',
   '/assets/images/home-preview/shortcut-diary.svg',
   '/assets/images/home-preview/shortcut-games.svg',
@@ -182,7 +177,7 @@ self.addEventListener('fetch', event => {
   const isHomePage = isSameOrigin && event.request.mode === 'navigate' &&
     (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html');
   const isHomeStylesheet = isSameOrigin && event.request.destination === 'style' &&
-    (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-retention.css' || requestUrl.pathname === '/css/home-desktop-decor.css' || requestUrl.pathname === '/css/home-desktop-cards.css');
+    (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-retention.css');
   if (isHomePage || isHomeStylesheet) {
     const cacheKey = isHomePage ? requestUrl.pathname : event.request;
     const networkResponse = fetch(event.request, { cache: isHomePage ? 'no-store' : 'no-cache' });

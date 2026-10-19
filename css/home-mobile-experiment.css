@@ -7,10 +7,6 @@
     display: none;
   }
 
-  body.home-mobile-experiment main > .home-desktop-tasks {
-    display: none;
-  }
-
   /* The original Home styles target this ID; restore the review's four-card grid. */
   body.home-mobile-experiment #countdown-timer.preview-timer {
     position: relative;

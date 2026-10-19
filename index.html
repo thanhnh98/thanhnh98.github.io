@@ -17,8 +17,8 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap"></noscript>
-    <!-- Nền hero desktop nằm trong CSS nên được phát hiện muộn: preload sớm. -->
-    <link rel="preload" as="image" href="/assets/images/home-preview/hero-mai-woodblock-desktop.webp" media="(min-width: 1024px)" fetchpriority="high">
+    <!-- Nền hero (phần tử LCP) nằm trong CSS nên được phát hiện muộn: preload sớm. -->
+    <link rel="preload" as="image" href="images/tet-background-pattern.svg" media="(min-width: 700px)" fetchpriority="high">
     <link rel="preload" as="image" href="/assets/images/home-preview/hero-scene-mobile.webp" media="(max-width: 699px)" fetchpriority="high">
     <script>
       // Only request the stylesheet set used by this viewport. A nonmatching media link still downloads in Chrome.
@@ -31,30 +31,15 @@
       ` : `
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/colors.css?v=20260830">
-        <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home-2">
-        <link rel="stylesheet" href="css/home-desktop-decor.css?v=20261019-tet-hero-art">
-        <link rel="stylesheet" href="css/home-desktop-cards.css?v=20261019-mai-paper-cards">
+        <link rel="stylesheet" href="css/home-retention.css?v=20261017-mobile-home-desktop">
       `);
     </script>
-    <!-- Older service workers can still return the cached home stylesheet after this HTML updates. -->
-    <style>
-      @media (min-width: 769px) {
-        .countdown-info-card { width: min(100%, 29rem); }
-      }
-      @media (min-width: 769px) and (max-width: 1359px) {
-        .home-fireworks-trigger, .home-floating-app-cta { display: none; }
-      }
-      @media (min-width: 1024px) and (max-width: 1079px) {
-        header .container { gap: 1rem; }
-        header nav ul { gap: .25rem; }
-        header nav a { padding-inline: .65rem; }
-      }
-    </style>
+    <style>@media (max-width: 699px) { body.home-mobile-experiment .home-retention-deco, body.home-mobile-experiment .home-shop-deco--lantern { display: none; } }</style>
     <link rel="stylesheet" href="css/pwa.css">
     <noscript>
       <link rel="stylesheet" href="css/style.css" media="(max-width: 699px)">
       <link rel="stylesheet" href="css/colors.css?v=20260830" media="(max-width: 699px)">
-      <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home-2" media="(max-width: 699px)">
+      <link rel="stylesheet" href="css/home-retention.css?v=20261017-mobile-home-desktop" media="(max-width: 699px)">
     </noscript>
     <link rel="manifest" href="site.webmanifest">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -115,10 +100,10 @@
 
     <main>
       <section id="countdown" class="countdown-section" data-home-section="hero">
-        <img src="images/floating-apricot-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
-        <img src="images/floating-apricot-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
-        <img src="images/floating-apricot-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
-        <img src="images/floating-apricot-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
+        <img src="images/floating-peach-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
+        <img src="images/floating-peach-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
+        <img src="images/floating-peach-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
+        <img src="images/floating-peach-blossom.svg" alt="" class="floating-blossom" aria-hidden="true">
         <div class="star-bling"></div><div class="star-bling"></div><div class="star-bling"></div><div class="star-bling"></div><div class="star-bling"></div>
         <div class="star-bling"></div><div class="star-bling"></div><div class="star-bling"></div><div class="star-bling"></div><div class="star-bling"></div>
         <div class="floating-star"></div><div class="floating-star"></div><div class="floating-star"></div><div class="floating-star"></div>
@@ -158,25 +143,6 @@
           </div>
         </div>
       </div>
-
-      <section class="home-desktop-tasks" aria-labelledby="home-desktop-tasks-title">
-        <div class="container home-compact-container">
-          <div class="home-desktop-tasks-heading">
-            <div>
-              <p class="home-section-kicker">Chuẩn bị Tết từng chút một</p>
-              <h2 id="home-desktop-tasks-title">Việc nên làm trước Tết</h2>
-            </div>
-            <a href="/huong-dan-tet.html">Xem hướng dẫn <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-          </div>
-          <div class="home-desktop-tasks-grid">
-            <a class="home-desktop-task" href="/chuan-bi-li-xi.html"><img src="/assets/images/home-preview/task-lixi-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Chuẩn bị lì xì<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
-            <a class="home-desktop-task" href="/tin-tuc/"><img src="/assets/images/home-preview/task-travel-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Lên kế hoạch du lịch<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
-            <a class="home-desktop-task" href="/hoc-nau-banh-chung.html"><img src="/assets/images/home-preview/task-banh-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Học nấu bánh chưng<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
-            <a class="home-desktop-task" href="/don-dep-nha-cua.html"><img src="/assets/images/home-preview/task-clean-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Dọn dẹp nhà cửa<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
-            <a class="home-desktop-task" href="/mua-sam-tet.html"><img src="/assets/images/home-preview/task-shop-photo.webp" width="480" height="480" alt="" loading="lazy" decoding="async"><span>Mua sắm Tết<i data-lucide="arrow-right" aria-hidden="true"></i></span></a>
-          </div>
-        </div>
-      </section>
 
       <!-- Inert on desktop. Mobile installs this reviewed Home before deferred scripts bind to its IDs. -->
       <template id="home-mobile-preview-template">
@@ -329,6 +295,7 @@
       </section>
 
       <section id="hom-nay" class="home-retention-section" data-home-section="today" aria-labelledby="today-heading">
+        <div class="home-retention-deco" aria-hidden="true">🌸</div>
         <div class="container home-compact-container">
           <div class="home-section-heading">
             <span class="home-section-icon"><i data-lucide="sun" aria-hidden="true"></i></span>
@@ -376,6 +343,7 @@
       </section>
 
       <section id="kham-pha" class="home-discovery-section" data-home-section="discovery" aria-labelledby="discovery-heading">
+        <span class="home-shop-deco home-shop-deco--lantern home-shop-deco--L" aria-hidden="true">🏮</span><span class="home-shop-deco home-shop-deco--lantern home-shop-deco--R" aria-hidden="true">🏮</span>
         <div class="container home-compact-container">
           <div class="home-shop-heading">
             <div class="home-section-heading home-section-heading-light">
