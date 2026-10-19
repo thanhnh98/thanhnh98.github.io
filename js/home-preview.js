@@ -29,6 +29,10 @@
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !menu.hidden) { closeMenu(); menuButton.focus(); }
   });
+  menu.querySelector('.preview-menu-share')?.addEventListener('click', () => {
+    closeMenu();
+    document.getElementById('share-countdown-btn')?.click();
+  });
 
   const appDialog = document.getElementById('preview-app-dialog');
   const appDialogTitle = document.getElementById('preview-app-dialog-title');
@@ -50,6 +54,43 @@
   });
   appDialog.addEventListener('close', () => activeShortcut?.focus());
 
+  function bindMascotWishes(selector, messages) {
+    const mascot = document.querySelector(selector);
+    const bubble = mascot?.querySelector('.preview-mascot-wish');
+    if (!mascot || !bubble) return;
+    let pending = 0;
+    let showing = false;
+    let messageIndex = 0;
+    function showNext() {
+      if (showing || pending === 0) return;
+      pending -= 1;
+      showing = true;
+      bubble.textContent = messages[messageIndex % messages.length];
+      messageIndex += 1;
+      bubble.hidden = false;
+      requestAnimationFrame(() => requestAnimationFrame(() => bubble.classList.add('is-visible')));
+      setTimeout(() => {
+        bubble.classList.remove('is-visible');
+        setTimeout(() => {
+          bubble.hidden = true;
+          showing = false;
+          showNext();
+        }, 320);
+      }, 3000);
+    }
+    mascot.addEventListener('click', () => { pending += 1; showNext(); });
+  }
+  bindMascotWishes('.preview-mascot-boy', [
+    'Chúc bạn năm mới vui như Tết mỗi ngày!',
+    'Năm mới gặp nhiều may mắn nhé!',
+    'Chúc cả nhà luôn ấm áp và sum vầy!'
+  ]);
+  bindMascotWishes('.preview-mascot-girl', [
+    'Chúc bạn một mùa xuân thật rực rỡ!',
+    'Tết này luôn bình an và hạnh phúc nhé!',
+    'Mọi điều tốt lành sẽ đến với bạn!'
+  ]);
+
   // Keep the same data source and timezone as the production Home, including
   // the solar/lunar date after a Vietnam midnight without a page reload.
   let renderedDateKey = '';
@@ -59,12 +100,150 @@
     const dateKey = window.HomeRetention.getVietnamDateKey(now);
     if (dateKey === renderedDateKey) return;
     renderedDateKey = dateKey;
+    const quote = document.querySelector('[data-home-daily-quote]');
+    if (quote && window.HomeDailyQuote) quote.textContent = window.HomeDailyQuote.forDateKey(dateKey);
     const today = window.HomeRetention.getHeroToday(now, window.EVENTS_DATA, window.calculateLunarDate);
     document.getElementById('today-date').textContent = today.solarText;
     document.getElementById('today-lunar').textContent = today.lunarText ? '(' + today.lunarText + ')' : '(Xem lịch âm)';
   }
   syncToday();
   setInterval(syncToday, 30000);
+
+  const wishTrigger = document.querySelector('.preview-quote');
+  const wishDialog = document.getElementById('home-wish-dialog');
+  const wishImage = document.getElementById('home-wish-image');
+  const wishText = document.getElementById('home-wish-text');
+  const wishLink = document.getElementById('home-wish-link');
+  const wishDownload = document.getElementById('home-wish-download');
+  const wishStatus = document.getElementById('home-wish-status');
+  let currentWishId = null;
+  let currentWishFile = null;
+  let currentWishCountdown = 0;
+  let currentWishImageUrl = null;
+  let wishImageJob = 0;
+  let wishImageModulePromise = null;
+
+  function wishUrl(id) {
+    return 'https://saptet.vn/?loi-chuc=' + id;
+  }
+
+  function displayedCountdownDays() {
+    const days = Number.parseInt(document.getElementById('days')?.textContent || '', 10);
+    if (Number.isInteger(days) && days >= 0) return days;
+    return Math.max(0, Math.floor((new Date('2027-02-06T00:00:00+07:00').getTime() - Date.now()) / 86400000));
+  }
+
+  function loadWishImageModule() {
+    if (window.HomeWishShareImage) return Promise.resolve(window.HomeWishShareImage);
+    if (!wishImageModulePromise) wishImageModulePromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'js/home-wish-share-image.js?v=20261019-dynamic-countdown';
+      script.onload = () => window.HomeWishShareImage ? resolve(window.HomeWishShareImage) : reject(new Error('Wish image renderer unavailable'));
+      script.onerror = () => reject(new Error('Wish image renderer unavailable'));
+      document.head.appendChild(script);
+    }).catch((error) => { wishImageModulePromise = null; throw error; });
+    return wishImageModulePromise;
+  }
+
+  async function openWish(id) {
+    const message = window.HomeDailyQuote?.forId(id);
+    if (!message || !wishDialog) return;
+    const job = ++wishImageJob;
+    if (currentWishImageUrl) URL.revokeObjectURL(currentWishImageUrl);
+    currentWishImageUrl = null;
+    currentWishId = id;
+    currentWishFile = null;
+    wishText.textContent = message;
+    wishImage.src = 'assets/images/home-preview/quote-banner.webp';
+    wishImage.alt = 'Thiệp Tết với lời chúc: ' + message;
+    wishLink.href = wishUrl(id);
+    wishLink.textContent = wishUrl(id);
+    wishDownload.disabled = true;
+    wishStatus.textContent = 'Đang tạo ảnh lời chúc…';
+    if (!wishDialog.open) wishDialog.showModal();
+    try {
+      const imageModule = await loadWishImageModule();
+      const days = displayedCountdownDays();
+      const blob = await imageModule.render(message, days);
+      if (job !== wishImageJob) return;
+      currentWishCountdown = days;
+      currentWishFile = new File([blob], 'sap-tet-loi-chuc-' + id + '.png', { type: 'image/png' });
+      currentWishImageUrl = URL.createObjectURL(blob);
+      wishImage.src = currentWishImageUrl;
+      wishImage.alt = 'Thiệp Tết với lời chúc: ' + message + (days > 0 ? '. Tết chỉ còn ' + days + ' ngày.' : '');
+      wishDownload.disabled = false;
+      wishStatus.textContent = 'Ảnh đã sẵn sàng để chia sẻ hoặc tải xuống.';
+    } catch (error) {
+      if (job === wishImageJob) wishStatus.textContent = 'Chưa tạo được ảnh. Bạn vẫn có thể chia sẻ liên kết lời chúc.';
+    }
+  }
+
+  async function copyWishLink() {
+    const url = wishLink.href;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(url);
+    } catch (error) {
+      const input = document.createElement('textarea');
+      input.value = url;
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.select();
+      const copied = typeof document.execCommand === 'function' && document.execCommand('copy');
+      input.remove();
+      if (!copied) { wishStatus.textContent = 'Chưa sao chép được. Bạn có thể chọn liên kết bên trên.'; return; }
+    }
+    wishStatus.textContent = 'Đã sao chép liên kết lời chúc.';
+  }
+
+  wishTrigger?.addEventListener('click', () => {
+    const dateKey = renderedDateKey || window.HomeRetention?.getVietnamDateKey(new Date());
+    openWish(window.HomeDailyQuote?.idForDateKey(dateKey));
+  });
+  document.getElementById('home-wish-close')?.addEventListener('click', () => wishDialog.close());
+  wishDialog?.addEventListener('click', (event) => {
+    if (event.target !== wishDialog) return;
+    const rect = wishDialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) wishDialog.close();
+  });
+  wishDialog?.addEventListener('close', () => wishTrigger?.focus());
+  document.getElementById('home-wish-copy')?.addEventListener('click', copyWishLink);
+  wishDownload?.addEventListener('click', () => {
+    if (!currentWishImageUrl || !currentWishFile) return;
+    const link = document.createElement('a');
+    link.href = currentWishImageUrl;
+    link.download = currentWishFile.name;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
+  document.getElementById('home-wish-share')?.addEventListener('click', async () => {
+    if (currentWishId === null) return;
+    const url = wishUrl(currentWishId);
+    const message = wishText.textContent;
+    const caption = window.HomeWishShareImage?.countdownCaption(currentWishCountdown);
+    const shareText = [message, caption].filter(Boolean).join('\n');
+    if (!navigator.share) { await copyWishLink(); return; }
+    try {
+      const payload = { title: 'Lời chúc Tết 2027 | Sắp Tết', text: shareText, url };
+      if (currentWishFile && navigator.canShare?.({ files: [currentWishFile] })) {
+        payload.files = [currentWishFile];
+        payload.text = shareText + '\n' + url;
+        delete payload.url;
+      }
+      await navigator.share(payload);
+      wishStatus.textContent = 'Đã mở bảng chia sẻ lời chúc.';
+    } catch (error) {
+      if (error.name !== 'AbortError') await copyWishLink();
+    }
+  });
+  const sharedWish = new URLSearchParams(location.search).get('loi-chuc');
+  if (sharedWish && /^[0-6]$/.test(sharedWish)) {
+    const id = Number(sharedWish);
+    if (document.readyState === 'complete') openWish(id);
+    else document.addEventListener('DOMContentLoaded', () => openWish(id), { once: true });
+  }
 
   document.querySelectorAll('.preview-timer-card').forEach((card) => {
     let resetTimer;

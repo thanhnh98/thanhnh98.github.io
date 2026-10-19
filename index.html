@@ -17,8 +17,8 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap"></noscript>
-    <!-- Nền hero (phần tử LCP) nằm trong CSS nên được phát hiện muộn: preload sớm. -->
-    <link rel="preload" as="image" href="images/tet-background-pattern.svg" media="(min-width: 700px)" fetchpriority="high">
+    <!-- Preload the art-directed hero image for each viewport. -->
+    <link rel="preload" as="image" href="/assets/images/home-preview/hero-scene-desktop.webp" media="(min-width: 700px)" fetchpriority="high">
     <link rel="preload" as="image" href="/assets/images/home-preview/hero-scene-mobile.webp" media="(max-width: 699px)" fetchpriority="high">
     <script>
       // Only request the stylesheet set used by this viewport. A nonmatching media link still downloads in Chrome.
@@ -26,15 +26,23 @@
         <link rel="stylesheet" href="css/style-preview.min.css" media="print" onload="this.media='all'">
         <link rel="stylesheet" href="css/colors-preview.min.css" media="print" onload="this.media='all'">
         <link rel="stylesheet" href="css/home-retention-preview.min.css" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="css/home-preview.css?v=20261019-mobile-hero">
+        <link rel="stylesheet" href="css/home-preview.css?v=20261019-mascot-wishes">
         <link rel="stylesheet" href="css/home-mobile-experiment.css?v=20261018-desktop-tasks">
       ` : `
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/colors.css?v=20260830">
         <link rel="stylesheet" href="css/home-retention.css?v=20261017-mobile-home-desktop">
+        <link rel="stylesheet" href="css/home-preview.css?v=20261019-mascot-wishes">
+        <link rel="stylesheet" href="css/home-preview-desktop.css?v=20261019-mascot-wishes">
       `);
     </script>
-    <style>@media (max-width: 699px) { body.home-mobile-experiment .home-retention-deco, body.home-mobile-experiment .home-shop-deco--lantern { display: none; } }</style>
+    <style>
+      body.home-preview #header-container,
+      body.home-preview main > .countdown-section,
+      body.home-preview main > .home-countdown-ad,
+      body.home-preview main > .home-share-strip { display: none; }
+      @media (max-width: 699px) { body.home-mobile-experiment .home-retention-deco, body.home-mobile-experiment .home-shop-deco--lantern { display: none; } }
+    </style>
     <link rel="stylesheet" href="css/pwa.css">
     <noscript>
       <link rel="stylesheet" href="css/style.css" media="(max-width: 699px)">
@@ -80,9 +88,10 @@
   </head>
   <body data-home-manual-ads="off">
     <script>
-      // Keep desktop on the current Home; reload only when the viewport crosses the mobile breakpoint.
+      // The same hero markup serves mobile and desktop. Reload at the image breakpoint.
       window.homeMobileExperiment = matchMedia('(max-width: 699px)');
-      if (window.homeMobileExperiment.matches) document.body.classList.add('home-preview', 'home-mobile-experiment');
+      document.body.classList.add('home-preview');
+      if (window.homeMobileExperiment.matches) document.body.classList.add('home-mobile-experiment');
       if (window.homeMobileExperiment.addEventListener) {
         window.homeMobileExperiment.addEventListener('change', function () { location.reload(); });
       } else {
@@ -144,8 +153,8 @@
         </div>
       </div>
 
-      <!-- Inert on desktop. Mobile installs this reviewed Home before deferred scripts bind to its IDs. -->
-      <template id="home-mobile-preview-template">
+      <!-- Activate the shared Home before deferred scripts bind to its IDs. -->
+      <template id="home-preview-template">
   <svg class="preview-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <symbol id="p-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v4h14v-4"/></symbol>
     <symbol id="p-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.3"/><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="19" r="2.3"/><path d="m8 11 8-5m-8 7 8 5"/></symbol>
@@ -169,33 +178,34 @@
             <span><strong>Sắp Tết</strong><small>Đếm ngược Tết 2027</small></span>
           </a>
           <nav class="preview-desktop-nav" aria-label="Khám phá Sắp Tết">
-            <a href="/lich-van-nien.html">Lịch vạn niên</a>
-            <a href="/tro-choi-tet.html">Trò chơi Tết</a>
-            <a href="/loi-chuc-tet.html">Lời chúc</a>
-            <a href="/cua-hang.html">Cửa hàng</a>
+            <a href="/" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Trang chủ</span></a>
+            <a href="/tro-choi-tet.html"><i data-lucide="gamepad-2" aria-hidden="true"></i><span>Trò chơi</span></a>
+            <a href="/cua-hang.html"><i data-lucide="shopping-bag" aria-hidden="true"></i><span>Cửa hàng</span></a>
+            <a href="/lich-am-hom-nay.html"><i data-lucide="calendar-days" aria-hidden="true"></i><span>Lịch Âm</span></a>
+            <a href="/ung-dung.html"><i data-lucide="smartphone" aria-hidden="true"></i><span>Ứng dụng</span></a>
           </nav>
           <div class="preview-header-actions">
             <a class="preview-icon-button" id="preview-download" href="#app-intro" aria-label="Tải ứng dụng Sắp Tết"><svg><use href="#p-download"/></svg></a>
             <button class="preview-icon-button" id="share-countdown-btn" type="button" aria-label="Chia sẻ đếm ngược Tết"><svg><use href="#p-share"/></svg></button>
-            <button class="preview-icon-button" id="preview-menu-toggle" type="button" aria-label="Mở menu" aria-controls="preview-menu" aria-expanded="false"><svg><use href="#p-menu"/></svg></button>
+            <button class="preview-icon-button" id="preview-menu-toggle" type="button" aria-label="Mở menu" aria-controls="preview-menu" aria-expanded="false"><span class="preview-more-label">Thêm</span><svg><use href="#p-menu"/></svg></button>
           </div>
           <nav class="preview-menu" id="preview-menu" aria-label="Điều hướng chính" hidden>
-            <a href="/">Trang chủ hiện tại</a><a href="/lich-van-nien.html">Lịch vạn niên</a><a href="/tro-choi-tet.html">Trò chơi Tết</a><a href="/loi-chuc-tet.html">Lời chúc Tết</a><a href="/cua-hang.html">Cửa hàng Tết</a><a href="/ung-dung.html">Ứng dụng</a>
+            <a href="/">Trang chủ</a><a href="/lich-van-nien.html">Lịch vạn niên</a><a href="/tro-choi-tet.html">Trò chơi Tết</a><a href="/loi-chuc-tet.html">Lời chúc Tết</a><a href="/cua-hang.html">Cửa hàng Tết</a><a href="/ung-dung.html">Ứng dụng</a><button class="preview-menu-share" type="button">Chia sẻ đếm ngược</button>
           </nav>
         </header>
       <section class="preview-hero" id="countdown" aria-labelledby="preview-title">
-        <picture class="preview-scene" aria-hidden="true"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/hero-scene-mobile.webp"><img src="/assets/images/home-preview/hero-scene.webp" width="960" height="1200" alt="" fetchpriority="high" decoding="async"></picture>
+        <picture class="preview-scene" aria-hidden="true"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/hero-scene-mobile.webp"><img src="/assets/images/home-preview/hero-scene-desktop.webp" width="1672" height="941" alt="" fetchpriority="high" decoding="async"></picture>
         <div class="preview-hero-copy">
-          <div id="preview-title"><span>Còn bao nhiêu<br>ngày nữa đến</span><strong>Tết 2027?</strong></div>
+          <div id="preview-title"><span>Còn bao nhiêu <br>ngày nữa đến</span> <strong>Tết 2027?</strong></div>
           <span class="preview-brush" aria-hidden="true"></span>
         </div>
-        <picture class="preview-mascot preview-mascot-boy"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/mascot-boy-mobile.webp"><img src="/assets/images/home-preview/mascot-boy.webp" width="650" height="581" alt="" decoding="async" fetchpriority="low"></picture>
-        <picture class="preview-mascot preview-mascot-girl"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/mascot-girl-mobile.webp"><img src="/assets/images/home-preview/mascot-girl.webp" width="650" height="433" alt="" decoding="async" fetchpriority="low"></picture>
+        <button class="preview-mascot preview-mascot-boy" type="button" aria-label="Nhận lời chúc từ bé trai"><picture class="preview-mascot-art"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/mascot-boy-mobile.webp"><img src="/assets/images/home-preview/mascot-boy.webp" width="650" height="581" alt="" decoding="async" fetchpriority="low"></picture><span class="preview-mascot-wish" role="status" aria-live="polite" hidden></span></button>
+        <button class="preview-mascot preview-mascot-girl" type="button" aria-label="Nhận lời chúc từ bé gái"><picture class="preview-mascot-art"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/mascot-girl-mobile.webp"><img src="/assets/images/home-preview/mascot-girl.webp" width="650" height="433" alt="" decoding="async" fetchpriority="low"></picture><span class="preview-mascot-wish" role="status" aria-live="polite" hidden></span></button>
         <div class="preview-petals" aria-hidden="true"></div>
       </section>
 
       <section class="preview-info" aria-label="Đếm ngược Tết Nguyên Đán 2027">
-        <h2><svg class="preview-inline-icon"><use href="#p-spark"/></svg>Đếm ngược Tết Nguyên Đán Đinh Mùi</h2>
+        <h2>Đếm ngược Tết Nguyên Đán Đinh Mùi</h2>
         <div class="preview-info-date"><svg class="preview-inline-icon"><use href="#p-calendar"/></svg><span>Tết Nguyên Đán: <strong id="tet-date-solar">06/02/2027</strong></span><button type="button" class="preview-party" data-coming-soon="Đặt tiệc Năm Mới">▣&nbsp; Đặt tiệc Năm Mới</button><svg class="preview-chevron"><use href="#p-arrow"/></svg></div>
         <a class="preview-info-today" href="/lich-am-hom-nay.html"><strong>Hôm nay:</strong><span id="today-date">Thứ Hai, 19/10/2026</span><span id="today-lunar">(Âm lịch: 10/9/2026)</span></a>
         <p>Hôm nay còn <strong><span data-seo="days-until-tet">110</span> ngày</strong> nữa đến Tết Nguyên Đán 2027</p>
@@ -219,7 +229,7 @@
         <button type="button" data-preview-app-feature="Thầy Đồ 4.0" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-scholar.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Thầy Đồ<br>4.0</span></button>
       </nav>
 
-      <a class="preview-quote" href="/loi-chuc-tet.html" aria-label="Khám phá lời chúc Tết"><picture class="preview-quote-art" aria-hidden="true"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/quote-banner-mobile.webp"><img src="/assets/images/home-preview/quote-banner.webp" width="1280" height="427" alt="" decoding="async" fetchpriority="low"></picture><span>“Tết không chỉ là một ngày,<br>mà là cả một cảm giác...”</span><b aria-hidden="true"><svg><use href="#p-arrow"/></svg></b></a>
+      <button class="preview-quote" type="button" aria-haspopup="dialog" aria-controls="home-wish-dialog"><picture class="preview-quote-art" aria-hidden="true"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/quote-banner-mobile.webp"><img src="/assets/images/home-preview/quote-banner.webp" width="1280" height="427" alt="" decoding="async" fetchpriority="low"></picture><span class="preview-quote-text" data-home-daily-quote>“Chúc một mùa xuân ấm áp, mọi điều tốt lành đến bên bạn.”</span></button>
       </div>
 
       <section class="preview-tasks" aria-labelledby="preview-tasks-title">
@@ -247,20 +257,19 @@
     </dialog>
       </template>
       <script>
-        if (window.homeMobileExperiment.matches) {
+        {
           var oldHero = document.querySelector('main > .countdown-section');
           if (oldHero) {
-            var mobileHome = document.getElementById('home-mobile-preview-template').content.cloneNode(true);
-            // Activate semantics only for the version shown on mobile.
-            var title = mobileHome.querySelector('#preview-title');
+            var home = document.getElementById('home-preview-template').content.cloneNode(true);
+            var title = home.querySelector('#preview-title');
             var heading = document.createElement('h1');
             heading.id = title.id;
             heading.innerHTML = title.innerHTML;
             title.replaceWith(heading);
-            var download = mobileHome.querySelector('#preview-download');
+            var download = home.querySelector('#preview-download');
             download.setAttribute('data-home-smart-app', '');
             download.setAttribute('data-home-smart-app-source', 'header');
-            oldHero.before(mobileHome);
+            oldHero.before(home);
             oldHero.remove();
             document.getElementById('home-countdown-ad')?.remove();
             document.querySelector('.home-share-strip')?.remove();
@@ -496,12 +505,16 @@
       <img id="countdown-share-preview" alt="Ảnh thông tin và bộ đếm ngày đến Tết" hidden>
       <div class="countdown-share-actions"><button id="countdown-share-image" type="button" disabled>Chia sẻ ảnh</button><button id="countdown-download-image" type="button" disabled>Tải xuống</button></div>
     </dialog>
+    <dialog id="home-wish-dialog" class="home-wish-dialog" aria-labelledby="home-wish-title">
+      <div class="home-wish-dialog-header"><div><p>GỬI LỜI CHÚC ĐẾN BẠN BÈ</p><h2 id="home-wish-title">Chia sẻ lời chúc Tết</h2></div><button id="home-wish-close" type="button" aria-label="Đóng lời chúc">×</button></div>
+      <img id="home-wish-image" class="home-wish-image" width="1280" height="427" alt="Ảnh lời chúc Tết">
+      <p id="home-wish-text" class="home-wish-text"></p>
+      <div class="home-wish-link-row"><a id="home-wish-link" href="https://saptet.vn/" target="_blank" rel="noopener noreferrer">https://saptet.vn/</a><button id="home-wish-copy" type="button">Sao chép link</button></div>
+      <div class="home-wish-actions"><button id="home-wish-download" type="button" disabled>Tải ảnh xuống</button><button id="home-wish-share" type="button">Chia sẻ lời chúc</button></div>
+      <p id="home-wish-status" class="home-wish-status" role="status" aria-live="polite"></p>
+      <a class="home-wish-more" href="/loi-chuc-tet.html">Xem thêm lời chúc Tết</a>
+    </dialog>
     <script src="js/vendor/lucide-subset.js?v=20260925" defer></script>
-    <script>
-      if (!window.homeMobileExperiment.matches) {
-        document.write('<script src="js/header-loader.js?v=20261008-home-games" defer></' + 'script>');
-      }
-    </script>
     <script src="js/analytics.js" defer></script>
     <script src="js/home-ads.js?v=20261007" defer></script>
     <script src="js/lunar-calendar.js" defer></script>
@@ -510,7 +523,8 @@
     <script src="js/home-retention.js?v=20261008-games-list" defer></script>
     <script src="js/home-shop-preview.js?v=20260828" defer></script>
     <script src="js/home-fireworks.js?v=20260925" defer></script>
-    <script src="js/home-preview.js?v=20261017" defer></script>
+    <script src="js/home-daily-quote.js?v=20261019-wish-share" defer></script>
+    <script src="js/home-preview.js?v=20261019-mascot-wishes" defer></script>
     <script>document.addEventListener('DOMContentLoaded', function () { if (window.lucide) window.lucide.createIcons(); });</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {
