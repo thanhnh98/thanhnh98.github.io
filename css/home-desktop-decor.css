@@ -4,8 +4,8 @@
   .countdown-section {
     isolation: isolate;
     background:
-      linear-gradient(rgba(255, 248, 237, .83), rgba(255, 248, 237, .83)),
-      url('../images/tet-background-pattern.svg') center / cover no-repeat,
+      linear-gradient(90deg, rgba(255, 248, 237, .58), rgba(255, 248, 237, .88) 27%, rgba(255, 248, 237, .88) 73%, rgba(255, 248, 237, .58)),
+      url('../assets/images/home-preview/quote-banner.webp') center / cover no-repeat,
       #fff8ed;
   }
 

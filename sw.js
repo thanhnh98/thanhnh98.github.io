@@ -61,6 +61,7 @@ const urlsToCache = [
   '/assets/images/home-preview/sleeping-cat.webp',
   '/assets/images/home-preview/countdown-flower.webp',
   '/assets/images/home-preview/quote-banner-mobile.webp',
+  '/assets/images/home-preview/quote-banner.webp',
   '/assets/images/home-preview/shortcut-calendar.svg',
   '/assets/images/home-preview/shortcut-diary.svg',
   '/assets/images/home-preview/shortcut-games.svg',

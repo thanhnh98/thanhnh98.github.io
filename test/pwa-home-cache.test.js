@@ -63,7 +63,7 @@ test('homepage navigation falls back to its cached page while offline', async ()
 });
 
 test('home stylesheets bypass an old precache after their versions change', async () => {
-  for (const pathname of ['/css/home-preview.css?v=20261019-mobile-hero', '/css/home-retention.css?v=20261019-desktop-home-2', '/css/home-desktop-decor.css?v=20261019-tet-decor']) {
+  for (const pathname of ['/css/home-preview.css?v=20261019-mobile-hero', '/css/home-retention.css?v=20261019-desktop-home-2', '/css/home-desktop-decor.css?v=20261019-tet-hero-art']) {
     const result = await loadRequest({
       online: true,
       pathname,

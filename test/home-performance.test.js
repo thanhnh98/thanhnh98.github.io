@@ -65,7 +65,7 @@ test('homepage body scripts are deferred and web fonts do not block render', () 
   const fontSheets = [...head.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)].map((m) => m[0]).filter((tag) => tag.includes('fonts.googleapis.com'));
   assert.ok(fontSheets.length > 0);
   for (const tag of fontSheets) assert.match(tag, /media="print" onload="this\.media='all'"/, 'Google Fonts must load without blocking render');
-  assert.match(head, /rel="preload" as="image" href="images\/tet-background-pattern\.svg"/);
+  assert.match(head, /rel="preload" as="image" href="\/assets\/images\/home-preview\/quote-banner\.webp" media="\(min-width: 1024px\)"/);
 });
 
 test('infinite hero animations stay on the compositor (transform/opacity only)', () => {

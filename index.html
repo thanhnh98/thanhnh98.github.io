@@ -17,8 +17,8 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&amp;family=Nunito:wght@400;600;700;800&amp;family=Lobster&amp;display=swap"></noscript>
-    <!-- Nền hero (phần tử LCP) nằm trong CSS nên được phát hiện muộn: preload sớm. -->
-    <link rel="preload" as="image" href="images/tet-background-pattern.svg" media="(min-width: 700px)" fetchpriority="high">
+    <!-- Nền hero desktop nằm trong CSS nên được phát hiện muộn: preload sớm. -->
+    <link rel="preload" as="image" href="/assets/images/home-preview/quote-banner.webp" media="(min-width: 1024px)" fetchpriority="high">
     <link rel="preload" as="image" href="/assets/images/home-preview/hero-scene-mobile.webp" media="(max-width: 699px)" fetchpriority="high">
     <script>
       // Only request the stylesheet set used by this viewport. A nonmatching media link still downloads in Chrome.
@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/colors.css?v=20260830">
         <link rel="stylesheet" href="css/home-retention.css?v=20261019-desktop-home-2">
-        <link rel="stylesheet" href="css/home-desktop-decor.css?v=20261019-tet-decor">
+        <link rel="stylesheet" href="css/home-desktop-decor.css?v=20261019-tet-hero-art">
       `);
     </script>
     <!-- Older service workers can still return the cached home stylesheet after this HTML updates. -->
