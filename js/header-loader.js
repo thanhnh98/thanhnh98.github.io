@@ -25,7 +25,7 @@ class HeaderLoader {
             (filename === 'index.html' && path.includes('/qr-code'))
         ) {
             return 'qrcode';
-        } else if (filename === 'cua-hang.html') {
+        } else if (filename === 'cua-hang.html' || normalizedPath === '/cua-hang') {
             return 'cua-hang';
         } else if (filename === 'ung-dung.html' || normalizedPath === '/ung-dung') {
             return 'app';
@@ -170,8 +170,10 @@ class HeaderLoader {
         const navLinks = document.querySelectorAll('nav a[data-page]');
         navLinks.forEach(link => {
             link.classList.remove('active');
+            link.removeAttribute('aria-current');
             if (link.dataset.page === this.currentPage) {
                 link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
             }
         });
     }

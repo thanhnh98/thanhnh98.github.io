@@ -89,6 +89,8 @@ function makeDocument() {
     'shop-highlight-track': new FakeElement('div'),
     'shop-highlight-section': new FakeElement('section'),
     'shop-result-count': new FakeElement('p'),
+    'shop-load-more': new FakeElement('button'),
+    'shop-clear-filters': new FakeElement('button'),
   };
 
   return {
@@ -275,4 +277,48 @@ test('shop category filter includes products whose secondary category belongs to
   categorySelect.onchange();
 
   assert.equal(document._ids['shop-grid'].children.length, 1);
+});
+
+test('large shop catalog loads in batches and resets when filters change', async () => {
+  const source = fs.readFileSync(path.join(root, 'js/shop.js'), 'utf8');
+  const data = JSON.parse(fs.readFileSync(path.join(root, 'data/aff/products'), 'utf8'));
+  const document = makeDocument();
+  const context = {
+    console,
+    document,
+    navigator: {},
+    requestAnimationFrame: (fn) => fn(),
+    setTimeout: (fn) => fn(),
+    window: {
+      document,
+      location: { pathname: '/cua-hang.html', search: '', hash: '', origin: 'https://saptet.vn' },
+      history: { replaceState() {} },
+      lucide: { createIcons() {} },
+    },
+    fetch: async () => ({ ok: true, text: async () => JSON.stringify(data) }),
+  };
+
+  vm.runInNewContext(source, context, { filename: 'js/shop.js' });
+  await new Promise((resolve) => setImmediate(resolve));
+
+  const grid = document._ids['shop-grid'];
+  const more = document._ids['shop-load-more'];
+  const clear = document._ids['shop-clear-filters'];
+  const search = document._ids['shop-search'];
+  assert.equal(grid.children.length, 24);
+  assert.equal(more.hidden, false);
+
+  more.eventListeners.click();
+  assert.equal(grid.children.length, 48);
+
+  search.value = 'khong-co-san-pham-nay';
+  search.eventListeners.input();
+  assert.equal(grid.children.length, 0);
+  assert.equal(more.hidden, true);
+  assert.equal(clear.hidden, false);
+
+  clear.eventListeners.click();
+  assert.equal(search.value, '');
+  assert.equal(grid.children.length, 24);
+  assert.equal(clear.hidden, true);
 });
