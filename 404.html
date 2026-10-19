@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/colors.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/css/thiep.css?v=20261021">
     <style>
         body {
             margin: 0;
@@ -246,6 +247,11 @@
                 window.FRIEND_INVITE_CODE = match[1].toUpperCase();
                 document.documentElement.classList.add('is-friend-invite');
                 document.title = 'Lời mời kết bạn · Mã ' + window.FRIEND_INVITE_CODE + ' | Sắp Tết';
+            } else if ((match = window.location.pathname.match(/^\/thiep\/([A-Za-z2-9]{10})\/?$/))) {
+                // /thiep/<slug> is a card sent from the apps: handed to the app (js/thiep.js).
+                window.THIEP_SLUG = match[1].toUpperCase();
+                document.documentElement.classList.add('is-thiep');
+                document.title = 'Bạn nhận được một tấm thiệp Tết | Sắp Tết';
             } else if (/^\/oanquan(\/join)?\/?$/.test(window.location.pathname)) {
                 window.location.replace('/o-an-quan.html');
             }
@@ -298,6 +304,31 @@
         </div>
     </div>
 
+    <main class="thiep-page">
+        <section class="thiep-panel" aria-labelledby="thiep-title">
+            <a class="thiep-envelope" id="thiep-envelope" href="/" aria-label="Mở thiệp trong ứng dụng Sắp Tết">
+                <img src="/assets/images/thiep-envelope-flat.png" alt="" width="1536" height="1024">
+            </a>
+            <div class="thiep-content">
+                <p class="thiep-kicker">Một lời chúc dành cho bạn</p>
+                <h1 class="thiep-title" id="thiep-title">Bạn nhận được một tấm thiệp Tết</h1>
+                <p class="thiep-note">Một người bạn đã gửi lời chúc cho bạn trên Sắp Tết.</p>
+                <p class="thiep-app-note">Nội dung thiệp chỉ xem được trong ứng dụng.</p>
+                <div class="thiep-actions">
+                    <a class="thiep-primary" id="thiep-open-app" href="/">Mở thiệp trong Sắp Tết</a>
+                    <div class="thiep-download-intro">
+                        <img src="/assets/images/ic_app-208.webp" alt="Biểu tượng ứng dụng Sắp Tết" width="44" height="44">
+                        <p class="thiep-hint">Chưa có ứng dụng?<br>Tải Sắp Tết để xem thiệp:</p>
+                    </div>
+                    <div class="thiep-store-links">
+                        <a id="thiep-ios" href="https://apps.apple.com/app/id6743064990" target="_blank" rel="noopener">Tải trên App Store</a>
+                        <a id="thiep-android" href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener">Tải trên Google Play</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <div class="error-404">
         <div class="tet-decoration">🧧</div>
         <div class="tet-decoration">🎋</div>
@@ -337,7 +368,7 @@
     
     <!-- Scripts -->
     <script src="/js/header-loader.js"></script>
-    <script src="/js/navigation.js?v=20261014"></script>
+    <script src="/js/navigation.js?v=20261017"></script>
     <script src="/js/footer.js"></script>
     <script>
         // Load header and initialize navigation
@@ -501,5 +532,6 @@
             window.location.href = appLink;
         })();
     </script>
+    <script src="/js/thiep.js?v=20261018"></script>
 </body>
 </html>

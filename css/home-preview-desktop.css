@@ -1,216 +1,318 @@
-/* Compact desktop dashboard for the temporary Home review. */
-@media (min-width: 1024px) {
-  body.home-preview { background: #f8e7cb; }
-  .preview-stage { background: linear-gradient(180deg, #ffe9b5 0, #fff5e0 68%, #fff0d1 100%); }
-  .preview-first-screen {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    grid-template-rows: 68px 132px 164px 38px 160px;
-    column-gap: 24px;
-    row-gap: 12px;
-    padding: 12px clamp(32px, 4vw, 56px) 0;
+/* The desktop and tablet presentation of the shared mobile Home markup. */
+@media (min-width: 700px) {
+  body.home-preview { background: #fff6e8; }
+  body.home-preview .preview-stage {
+    width: 100%;
+    max-width: none;
+    overflow: visible;
+    background: #fff6e8;
+    box-shadow: none;
   }
-
-  .preview-header {
+  body.home-preview .preview-first-screen {
     position: relative;
-    grid-area: 1 / 1 / 2 / -1;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: max(930px, 100svh);
+    padding: 24px 24px 44px;
+    overflow: hidden;
+    background: #fff6e8;
+  }
+  body.home-preview .preview-first-screen::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 auto;
+    height: 100svh;
+    pointer-events: none;
+    background: url('/assets/images/home-preview/hero-scene-desktop.webp') center top / cover no-repeat;
+    opacity: .62;
+    mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
+  }
+  body.home-preview .preview-header {
+    position: relative;
     top: auto;
     left: auto;
     right: auto;
-    width: 100%;
-    height: 68px;
-    padding: 7px 13px 7px 9px;
-    border-radius: 18px;
-  }
-  .preview-brand img { width: 52px; height: 52px; }
-  .preview-brand strong { font-size: 24px; }
-  .preview-brand small { font-size: 12px; }
-  .preview-desktop-nav { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 1.8vw, 26px); margin: 0 12px; }
-  .preview-desktop-nav a { padding: 12px 3px; color: #763b32; font: 800 14px/1.15 Nunito, sans-serif; white-space: nowrap; text-decoration: none; transition: color .2s ease, transform .2s ease; }
-  .preview-desktop-nav a:hover, .preview-desktop-nav a:focus-visible { color: #bb0f3b; transform: translateY(-2px); }
-  .preview-icon-button { width: 45px; height: 45px; border-radius: 13px; }
-  .preview-icon-button svg { font-size: 23px; }
-  .preview-header-actions { gap: 8px; }
-  .preview-menu { top: 72px; right: 10px; }
-
-  .preview-hero {
-    grid-area: 2 / 1 / 4 / 2;
-    width: 100%;
-    height: 100%;
+    flex: 0 0 auto;
+    width: min(1280px, 100%);
+    height: 74px;
     margin: 0;
-    border: 2px solid #fff6dc;
-    border-radius: 22px;
-    box-shadow: 0 6px 20px #974d2230;
+    padding: 7px 13px 7px 36px;
+    border: 1px solid #ffffffd9;
+    border-radius: 19px;
+    background: #fffaf0ef;
+    box-shadow: 0 9px 25px #6b351f24, inset 0 1px #fff;
+    backdrop-filter: blur(12px);
   }
-  .preview-scene img { object-position: center 29%; }
-  .preview-hero-copy { top: 34px; left: 6%; width: 88%; }
-  .preview-hero-copy h1 span { font-size: clamp(30px, 2.8vw, 40px); line-height: .94; }
-  .preview-hero-copy h1 strong { margin-top: 7px; margin-left: 0; font-size: clamp(62px, 5.4vw, 78px); }
-  .preview-brush { width: 96px; height: 6px; margin-top: 7px; }
-  .preview-mascot-boy { width: clamp(130px, 11vw, 158px); left: -4px; bottom: -22px; }
-  .preview-mascot-girl { width: clamp(145px, 12vw, 174px); right: -4px; bottom: -13px; }
-
-  .preview-info {
-    grid-area: 2 / 2 / 3 / 3;
+  body.home-preview .preview-brand { gap: 17px; }
+  body.home-preview .preview-brand img { width: 59px; height: 59px; border-radius: 14px; }
+  body.home-preview .preview-brand strong { font-size: 27px; color: #b50932; }
+  body.home-preview .preview-brand small { font-size: 14px; color: #827974; }
+  body.home-preview .preview-desktop-nav {
     display: flex;
-    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(8px, 1.35vw, 24px);
+    min-width: 0;
+    margin: 0 13px 0 20px;
+  }
+  body.home-preview .preview-desktop-nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 51px;
+    padding: 10px 3px;
+    color: #9e1231;
+    white-space: nowrap;
+    text-decoration: none;
+    font: 800 14px/1.15 Nunito, sans-serif;
+  }
+  body.home-preview .preview-desktop-nav a:hover,
+  body.home-preview .preview-desktop-nav a:focus-visible { color: #d11627; }
+  body.home-preview .preview-desktop-nav a[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #c20f32;
+  }
+  body.home-preview .preview-desktop-nav svg { flex: 0 0 20px; width: 20px; height: 20px; stroke-width: 1.9; }
+  body.home-preview .preview-header-actions { gap: 0; }
+  body.home-preview #preview-download,
+  body.home-preview #share-countdown-btn { display: none; }
+  body.home-preview #preview-menu-toggle {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: none;
-    height: 132px;
-    min-height: 0;
+    gap: 8px;
+    width: 82px;
+    height: 43px;
+    border: 1px solid #f5ddd8;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 2px 9px #a75e3612;
+    color: #a21632;
+    font: 800 14px/1 Nunito, sans-serif;
+  }
+  body.home-preview .preview-more-label { display: inline; }
+  body.home-preview #preview-menu-toggle svg { display: none; }
+  body.home-preview #preview-menu-toggle::after { content: '⌄'; font-size: 18px; line-height: .7; transform: translateY(-2px); }
+  body.home-preview .preview-menu { top: 67px; right: 2px; }
+
+  body.home-preview .preview-hero {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(1400px, 100%);
+    height: 245px;
     margin: 0;
-    padding: 8px 15px;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  body.home-preview .preview-hero::after,
+  body.home-preview .preview-scene { display: none; }
+  body.home-preview .preview-hero-copy {
+    top: 35px;
+    left: 50%;
+    width: min(940px, 100%);
+    transform: translateX(-50%);
+    color: #5b201b;
+    text-shadow: 0 2px 4px #fff9;
+  }
+  body.home-preview .preview-hero-copy h1 span {
+    font: 700 clamp(36px, 3.6vw, 56px)/1 'Dancing Script', cursive;
+    white-space: nowrap;
+  }
+  body.home-preview .preview-hero-copy h1 span br { display: none; }
+  body.home-preview .preview-hero-copy h1 strong {
+    margin: 5px 0 0;
+    color: #d21116;
+    font: 700 clamp(75px, 6.5vw, 101px)/.94 PreviewThuPhap, 'Dancing Script', cursive;
+    letter-spacing: -2px;
+    text-shadow: 0 4px 4px #93140a36;
+  }
+  body.home-preview .preview-brush { width: 160px; height: 8px; margin-top: 8px; }
+  body.home-preview .preview-mascot-boy { left: 2%; bottom: -350px; width: clamp(265px, 22vw, 345px); }
+  body.home-preview .preview-mascot-girl { right: 0; bottom: -350px; width: clamp(300px, 25vw, 385px); }
+
+  body.home-preview .preview-info {
+    flex: 0 0 auto;
+    width: min(550px, 100%);
+    max-width: none;
+    min-height: 174px;
+    margin: 0;
+    padding: 10px 20px 12px;
+    border-radius: 24px;
+    background: #fffaf0f2;
+  }
+  body.home-preview .preview-info h2 { margin-bottom: 3px; font-size: 25px; }
+  body.home-preview .preview-info .preview-inline-icon { width: 22px; height: 22px; }
+  body.home-preview .preview-info-date { min-height: 33px; font-size: 15px; }
+  body.home-preview .preview-info-today { min-height: 37px; font-size: 14px; }
+  body.home-preview .preview-info p { margin-top: 7px; font-size: 15px; }
+  body.home-preview .preview-info .preview-party,
+  body.home-preview .preview-info .preview-chevron { display: none; }
+  body.home-preview #countdown-timer.preview-timer {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    width: min(676px, 100%);
+    max-width: none;
+    height: 178px;
+    margin: 18px auto 0;
+    padding: 0;
+  }
+  body.home-preview .preview-timer-card { height: 178px; padding-top: 13px; border-radius: 21px; }
+  body.home-preview .preview-timer-label { font-size: 23px; }
+  body.home-preview .preview-time-value { margin-top: 3px; font-size: clamp(55px, 4vw, 63px); }
+  body.home-preview .preview-timer-illustration.calendar { width: 58px; height: 58px; }
+  body.home-preview .preview-timer-illustration.lantern { width: 55px; height: 55px; }
+  body.home-preview .preview-timer-illustration.cat { width: 85px; height: 59px; }
+  body.home-preview .preview-timer-illustration.flower { width: 53px; height: 57px; }
+  body.home-preview .preview-greeting {
+    flex: 0 0 auto;
+    width: min(700px, 100%);
+    max-width: none;
+    height: 52px;
+    margin: 13px auto 0;
+    color: #c71228;
+    font-size: 29px;
+  }
+  body.home-preview .preview-shortcuts {
+    order: 2;
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 17px;
+    width: min(932px, 100%);
+    max-width: none;
+    margin: max(28px, calc(100svh - 920px)) auto 0 !important;
+    padding: 0;
+  }
+  body.home-preview .preview-shortcut {
+    box-sizing: border-box;
+    min-height: 118px;
+    gap: 4px;
+    padding: 9px 7px 7px;
+    border: 2px solid #fff;
     border-radius: 20px;
+    background: #ffe8dde8 !important;
+    box-shadow: 0 5px 14px #945d3035, inset 0 1px #fff;
+    font-size: 14px;
+    line-height: 1.1;
   }
-  .preview-info h2 { margin: 0 0 3px; font-size: clamp(21px, 1.8vw, 25px); }
-  .preview-info .preview-inline-icon { width: 22px; height: 22px; }
-  .preview-info-date { min-height: 29px; padding: 0 0 3px; font-size: 15px; }
-  .preview-info-date .preview-inline-icon { width: 19px; height: 19px; }
-  body.home-preview .preview-party { min-height: 25px; padding: 2px 9px; font-size: 12px; }
-  .preview-info-today { min-height: 28px; padding: 2px 0; font-size: 15px; }
-  .preview-info p { margin: 4px 0 0; font-size: 15px; }
-
-  body.home-preview #countdown-timer {
-    grid-area: 3 / 2 / 4 / 3;
+  body.home-preview .preview-shortcut-icon {
     width: 100%;
+    height: 62px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+  body.home-preview .preview-shortcut-icon img { width: 52px; height: 52px; }
+  body.home-preview .preview-shortcut > span:last-child {
+    display: grid;
+    place-items: center;
+    min-height: 32px;
+  }
+  body.home-preview .preview-quote {
+    order: 1;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    width: min(1060px, 100%);
     max-width: none;
-    height: 164px;
-    gap: 10px;
-    margin: 0;
+    height: 154px;
+    margin: 14px auto 0;
+    border: 1px solid #f3d2a0;
+    border-radius: 18px;
+    background: #fff0d5;
+    box-shadow: 0 5px 17px #9f4e342b, inset 0 1px #fff;
   }
-  .preview-timer-card { height: 164px; padding-top: 12px; border-radius: 18px; }
-  .preview-timer-label { font-size: 21px; }
-  .preview-time-value { margin-top: 4px; font-size: clamp(47px, 4vw, 57px); }
-  .preview-timer-illustration.calendar { width: 56px; height: 56px; }
-  .preview-timer-illustration.lantern { width: 53px; height: 53px; }
-  .preview-timer-illustration.cat { width: 79px; height: 55px; }
-  .preview-timer-illustration.flower { width: 50px; height: 54px; }
-
-  .preview-greeting { grid-area: 4 / 1 / 5 / -1; width: 100%; max-width: none; height: 38px; margin: 0; font-size: 27px; }
-  .preview-quote { grid-area: 5 / 1 / 6 / 2; width: 100%; max-width: none; height: 160px; margin: 0; border-radius: 18px; }
-  .preview-quote-art img { object-position: center; }
-  .preview-quote span { margin-left: -3px; font-size: clamp(24px, 2.3vw, 32px); }
-  .preview-quote b { width: 40px; height: 40px; right: 13px; }
-  .preview-quote b svg { width: 20px; height: 20px; }
-  .preview-shortcuts { grid-area: 5 / 2 / 6 / 3; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: none; height: 160px; margin: 0 !important; }
-  body.home-preview .preview-shortcut { flex-direction: row; justify-content: flex-start; min-height: 0; height: 75px; gap: 10px; padding: 7px 9px; border: 1px solid #fff8ec; border-radius: 15px; background: #fffaf0d9 !important; box-shadow: 0 3px 10px #9b58271b; text-align: left; font-size: 14px; }
-  .preview-shortcut-icon { flex: none; width: 50px; height: 50px; padding: 5px; border-radius: 12px; }
-  .preview-shortcut-icon img { width: 37px; height: 37px; }
-
-  .preview-tasks { width: calc(100% - 2 * clamp(32px, 4vw, 56px)); max-width: none; margin: 16px auto 0; }
-  .preview-tasks-heading { height: 30px; min-height: 0; margin-bottom: 8px; }
-  .preview-tasks-heading h2 { font-size: 25px; }
-  .preview-tasks-heading h2 span { font-size: 29px; }
-  .preview-tasks-heading a { font-size: 15px; }
-  .preview-task-list { gap: 13px; }
-  .preview-task { height: 176px; border-radius: 15px; }
-  .preview-task img { height: 120px; }
-  .preview-task span { height: 54px; font-size: 16px; }
-  .preview-stage-bottom { height: 48px; font-size: 32px; }
-
-  /* Keep the existing floating fireworks control clear of the compact task row. */
-  body.home-preview #home-inline-controls .home-fireworks-trigger {
-    left: max(6px, calc((100vw - 1440px) / 2 + 6px));
-    bottom: 10px;
-    width: 44px;
-    height: 44px;
-    border-width: 2px;
+  body.home-preview .preview-quote::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent 12%, #fff7e4ad 24%, #fff7e4ad 58%, transparent 75%);
   }
-  body.home-preview #home-inline-controls .home-fireworks-icon,
-  body.home-preview #home-inline-controls .home-fireworks-trigger svg { width: 29px; height: 29px; }
-  body.home-preview #home-fireworks-trigger-label { display: none; }
+  body.home-preview .preview-quote-text {
+    width: 52%;
+    margin: 0 0 0 21%;
+    color: #98272e;
+    font-size: 30px;
+    line-height: 1.1;
+    transform: none;
+    text-shadow: 0 1px #fff, 0 2px 4px #fff9;
+  }
+  body.home-preview .preview-tasks { width: min(1200px, calc(100% - 48px)); max-width: none; margin: 36px auto 56px; }
+  body.home-preview .preview-tasks-heading { margin-bottom: 14px; }
+  body.home-preview .preview-tasks-heading h2 { font-size: 29px; }
+  body.home-preview .preview-tasks-heading a { font-size: 16px; }
+  body.home-preview .preview-task-list { gap: 14px; }
+  body.home-preview .preview-task { height: 226px; border-radius: 17px; }
+  body.home-preview .preview-task img { height: 155px; }
+  body.home-preview .preview-task span { height: 69px; font-size: 17px; }
+  body.home-preview .preview-stage-bottom { display: none; }
+  body.home-preview .home-compact-container { max-width: 1200px; }
+  body.home-preview .home-game-entry-section,
+  body.home-preview .home-retention-section,
+  body.home-preview .home-quick-section,
+  body.home-preview .home-seo-section { background-color: #fff7ea; }
+  body.home-preview .home-floating-app-cta { display: none; }
 }
 
-@media (min-width: 1024px) and (max-width: 1199px) {
-  .preview-first-screen { grid-template-rows: 68px minmax(132px, auto) 164px 38px minmax(160px, auto); column-gap: 18px; }
-  .preview-desktop-nav { gap: 10px; margin-inline: 7px; }
-  .preview-desktop-nav a { font-size: 12px; }
-  .preview-info { height: auto; min-height: 132px; }
-  .preview-info h2 { font-size: 20px; }
-  .preview-info-date, .preview-info-today, .preview-info p { font-size: 14px; }
-  .preview-shortcuts { gap: 8px; }
-  body.home-preview .preview-shortcut { gap: 6px; padding-inline: 6px; font-size: 13px; }
-  .preview-shortcut-icon { width: 43px; height: 43px; }
-  .preview-shortcut-icon img { width: 32px; height: 32px; }
-  .preview-task span { font-size: 14px; }
-  body.home-preview #home-inline-controls .home-fireworks-trigger { left: 5px; width: 34px; height: 34px; }
-  body.home-preview #home-inline-controls .home-fireworks-icon,
-  body.home-preview #home-inline-controls .home-fireworks-trigger svg { width: 23px; height: 23px; }
+@media (min-width: 700px) and (max-width: 1099px) {
+  body.home-preview .preview-first-screen { min-height: 0; padding: 16px 22px 36px; }
+  body.home-preview .preview-header { height: 68px; padding-left: 17px; }
+  body.home-preview .preview-brand img { width: 52px; height: 52px; }
+  body.home-preview .preview-brand strong { font-size: 24px; }
+  body.home-preview .preview-brand small { font-size: 12px; }
+  body.home-preview .preview-desktop-nav { display: none; }
+  body.home-preview .preview-header-actions { margin-left: auto; }
+  body.home-preview .preview-hero { height: 215px; }
+  body.home-preview .preview-hero-copy { top: 29px; }
+  body.home-preview .preview-hero-copy h1 span { font-size: clamp(34px, 4.6vw, 46px); }
+  body.home-preview .preview-hero-copy h1 strong { font-size: clamp(67px, 8vw, 82px); }
+  body.home-preview .preview-mascot-boy { left: 0; bottom: -28px; width: clamp(155px, 19vw, 205px); }
+  body.home-preview .preview-mascot-girl { right: 0; bottom: -26px; width: clamp(170px, 21vw, 225px); }
+  body.home-preview .preview-info { width: min(590px, 100%); }
+  body.home-preview #countdown-timer.preview-timer { width: min(650px, 100%); height: 165px; }
+  body.home-preview .preview-timer-card { height: 165px; }
+  body.home-preview .preview-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(590px, 100%); row-gap: 14px; margin-top: max(28px, calc(100svh - 840px)) !important; }
+  body.home-preview .preview-shortcut { min-height: 118px; }
+  body.home-preview .preview-quote { width: min(590px, 100%); height: 148px; margin-top: 20px; }
+  body.home-preview .preview-quote-text { width: 55%; margin-left: 16%; font-size: 23px; }
+  body.home-preview .preview-task { height: 184px; }
+  body.home-preview .preview-task img { height: 126px; }
+  body.home-preview .preview-task span { height: 56px; font-size: 14px; }
 }
 
-/* Fit the complete review design on the shorter desktop viewport used by laptops. */
-@media (min-width: 1200px) and (max-height: 820px) {
-  .preview-first-screen {
-    grid-template-rows: 60px 120px 132px 32px 136px;
-    column-gap: 20px;
-    row-gap: 10px;
-    padding-top: 10px;
-  }
-
-  .preview-header { height: 60px; padding-block: 5px; }
-  .preview-brand img { width: 46px; height: 46px; }
-  .preview-brand strong { font-size: 22px; }
-  .preview-brand small { font-size: 11px; }
-  .preview-icon-button { width: 44px; height: 44px; }
-  .preview-menu { top: 65px; }
-
-  .preview-hero-copy { top: 23px; }
-  .preview-hero-copy h1 span { font-size: clamp(29px, 2.6vw, 35px); }
-  .preview-hero-copy h1 strong { margin-top: 5px; font-size: clamp(61px, 5vw, 70px); }
-  .preview-brush { margin-top: 4px; }
-  .preview-mascot-boy { width: clamp(112px, 9vw, 135px); bottom: -18px; }
-  .preview-mascot-girl { width: clamp(124px, 10vw, 148px); bottom: -10px; }
-
-  .preview-info { height: 120px; padding-block: 6px; }
-  .preview-info h2 { font-size: clamp(20px, 1.7vw, 23px); }
-  .preview-info-date { min-height: 27px; }
-  .preview-info-today { min-height: 26px; }
-  .preview-info p { margin-top: 3px; }
-
-  body.home-preview #countdown-timer { height: 132px; gap: 9px; }
-  .preview-timer-card { height: 132px; padding-top: 8px; }
-  .preview-timer-label { font-size: 18px; }
-  .preview-time-value { margin-top: 1px; font-size: clamp(43px, 3.6vw, 50px); }
-  .preview-timer-illustration.calendar { width: 45px; height: 45px; }
-  .preview-timer-illustration.lantern { width: 43px; height: 43px; }
-  .preview-timer-illustration.cat { width: 64px; height: 45px; }
-  .preview-timer-illustration.flower { width: 41px; height: 44px; }
-
-  .preview-greeting { height: 32px; font-size: 25px; }
-  .preview-quote { height: 136px; }
-  .preview-quote span { margin-right: 52px; font-size: clamp(23px, 2.1vw, 29px); }
-  .preview-shortcuts { height: 136px; gap: 8px; }
-  body.home-preview .preview-shortcut { height: 64px; gap: 8px; padding: 5px 8px; }
-  .preview-shortcut-icon { width: 43px; height: 43px; }
-  .preview-shortcut-icon img { width: 32px; height: 32px; }
-
-  .preview-tasks { margin-top: 12px; }
-  .preview-tasks-heading { height: 28px; margin-bottom: 7px; }
-  .preview-tasks-heading h2 { font-size: 23px; }
-  .preview-tasks-heading h2 span { font-size: 26px; }
-  .preview-task { height: 146px; }
-  .preview-task img { height: 98px; }
-  .preview-task span { height: 46px; font-size: 15px; }
-  .preview-stage-bottom { height: 24px; }
-}
-
-@media (min-width: 1200px) and (max-height: 740px) {
-  .preview-first-screen {
-    grid-template-rows: 60px 116px 128px 32px 124px;
-    row-gap: 8px;
-    padding-top: 8px;
-  }
-  .preview-info { height: 116px; }
-  body.home-preview #countdown-timer, .preview-timer-card { height: 128px; }
-  .preview-quote, .preview-shortcuts { height: 124px; }
-  body.home-preview .preview-shortcut { height: 58px; }
-  .preview-shortcut-icon { width: 40px; height: 40px; }
-  .preview-shortcut-icon img { width: 30px; height: 30px; }
-  .preview-tasks { margin-top: 10px; }
-  .preview-task { height: 140px; }
-  .preview-task img { height: 96px; }
-  .preview-task span { height: 42px; }
-  .preview-stage-bottom { height: 20px; }
+@media (min-width: 700px) and (max-width: 799px) {
+  body.home-preview .preview-first-screen { padding-inline: 16px; }
+  body.home-preview .preview-hero-copy { top: 34px; width: 72%; }
+  body.home-preview .preview-hero-copy h1 span { white-space: normal; line-height: .93; }
+  body.home-preview .preview-hero-copy h1 span br { display: initial; }
+  body.home-preview .preview-hero-copy h1 strong { margin-top: 8px; font-size: 65px; }
+  body.home-preview .preview-info { min-height: 166px; padding-inline: 14px; }
+  body.home-preview .preview-info h2 { font-size: 22px; }
+  body.home-preview .preview-info-date,
+  body.home-preview .preview-info-today,
+  body.home-preview .preview-info p { font-size: 13px; }
+  body.home-preview #countdown-timer.preview-timer { gap: 8px; height: 150px; }
+  body.home-preview .preview-timer-card { height: 150px; }
+  body.home-preview .preview-time-value { font-size: 52px; }
+  body.home-preview .preview-greeting { font-size: 25px; }
+  body.home-preview .preview-tasks { width: calc(100% - 32px); }
+  body.home-preview .preview-task-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

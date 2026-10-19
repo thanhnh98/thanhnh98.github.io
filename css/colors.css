@@ -9,6 +9,11 @@
     --brand-muted: #805b50;
     --brand-border: rgba(185, 28, 28, 0.16);
     --brand-shadow: 0 16px 42px rgba(124, 45, 18, 0.11);
+    /* Quiet paper treatment for page heroes and large section headings. */
+    --hero-paper: #fff8ed;
+    --hero-ink: #7b1e25;
+    --hero-muted: #645047;
+    --hero-rule: #d6b56f;
 
     /* Primary Tết Colors - Enhanced Vibrancy */
     --color-primary: #E60026; /* More vibrant red */

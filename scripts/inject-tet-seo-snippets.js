@@ -11,6 +11,7 @@ const { buildTetSeoPayload } = require('./lib/tet-seo-dates');
 const { getHeroToday } = require('../js/home-retention.js');
 const { EVENTS_DATA } = require('../data/events-data.js');
 const { calculateLunarDate } = require('../js/lunar-calendar.js');
+const { forDateKey: quoteForDateKey } = require('../js/home-daily-quote.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -80,6 +81,12 @@ const TARGETS = {
     html = setMetaDescription(html, payload.metaDescriptionHome, 'index.html');
     html = setHomepageWebPageSchema(html, payload);
     html = injectHeroToday(html, payload.now);
+    html = replaceOrThrow(
+      html,
+      /(<span[^>]*data-home-daily-quote[^>]*>)[^<]*(<\/span>)/,
+      `$1${escapeHtml(quoteForDateKey(payload.todayDate.split('/').reverse().join('-')))}$2`,
+      'index.html daily quote',
+    );
     return replaceOrThrow(
       html,
       /(<span data-seo="days-until-tet">)[^<]*(<\/span>)/g,
@@ -108,17 +115,33 @@ function injectTetSeo(file, html, payload) {
   return TARGETS[file](html, payload);
 }
 
+function updateHomepageSitemapLastmod(xml, payload) {
+  const isoDate = payload.todayDate.split('/').reverse().join('-');
+  return replaceOrThrow(
+    xml,
+    /(<loc>https:\/\/saptet\.vn\/<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/,
+    `$1${isoDate}$2`,
+    'sitemap homepage lastmod',
+  );
+}
+
 function main() {
   const payload = buildTetSeoPayload();
   for (const file of Object.keys(TARGETS)) {
     const filePath = path.join(ROOT, file);
     fs.writeFileSync(filePath, injectTetSeo(file, fs.readFileSync(filePath, 'utf8'), payload), 'utf8');
   }
+  const sitemapPath = path.join(ROOT, 'sitemap.xml');
+  fs.writeFileSync(
+    sitemapPath,
+    updateHomepageSitemapLastmod(fs.readFileSync(sitemapPath, 'utf8'), payload),
+    'utf8',
+  );
   console.log(
-    `inject-tet-seo: updated ${Object.keys(TARGETS).length} file(s); daysUntilTet=${payload.daysUntilTet} (VN ${payload.todayDate})`
+    `inject-tet-seo: updated ${Object.keys(TARGETS).length + 1} file(s); daysUntilTet=${payload.daysUntilTet} (VN ${payload.todayDate})`
   );
 }
 
 if (require.main === module) main();
 
-module.exports = { TARGETS, injectTetSeo };
+module.exports = { TARGETS, injectTetSeo, updateHomepageSitemapLastmod };

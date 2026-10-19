@@ -99,10 +99,11 @@
 
     <style>
         .blog-hero {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-            padding: 6rem 0 4rem;
+            background: var(--hero-paper, #fff8ed);
+            border-block: 1px solid var(--hero-rule, #d6b56f);
+            padding: clamp(2.5rem, 5vw, 4rem) 0;
             text-align: center;
-            color: white;
+            color: var(--hero-ink, #7b1e25);
             position: relative;
             overflow: hidden;
         }
@@ -115,7 +116,7 @@
             right: 0;
             bottom: 0;
             background: url('images/tet-background-pattern.svg') repeat;
-            opacity: 0.1;
+            opacity: 0;
             z-index: 1;
         }
 
@@ -128,7 +129,7 @@
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: none;
         }
 
         .blog-hero p {
@@ -283,7 +284,7 @@
     <main>
         <section class="blog-hero">
             <div class="container">
-                <h1>📚 Blog Tết</h1>
+                <h1>Blog Tết</h1>
                 <p>Khám phá sâu sắc về văn hóa Tết Việt Nam qua các bài viết chuyên sâu</p>
             </div>
         </section>

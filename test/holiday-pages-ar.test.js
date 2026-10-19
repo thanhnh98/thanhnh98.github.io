@@ -49,7 +49,7 @@ for (const [slug, ar] of Object.entries(HOLIDAYS_AR)) {
     assert.match(source, /<meta name="robots" content="index, follow, max-image-preview:large">/);
     assert.match(html, /<meta property="og:locale" content="ar_AR">/);
     assert.match(html, /family=Noto\+Sans\+Arabic/);
-    assert.match(html, new RegExp(`class="hc-hero-bg" src="${holiday.visual.background}"`));
+    assert.doesNotMatch(html, /class="hc-hero-bg"/);
     assert.match(html, new RegExp(`class="hc-hero-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true"`));
     assert.doesNotMatch(html, /class="hc-kicker"|عالمي · بتوقيتك المحلي|السعودية · بتوقيت مكة المكرمة/);
     assert.match(html, /النشأة والمجتمعات التي تحيي المناسبة/);

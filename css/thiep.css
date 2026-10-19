@@ -1,0 +1,238 @@
+/* /thiep/<slug> is an invitation to open the greeting card in Sắp Tết. */
+html.is-thiep body { padding-top: 74px; }
+.thiep-page { display: none; }
+html.is-thiep .error-404 { display: none; }
+
+html.is-thiep .thiep-page {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 74px);
+  min-height: calc(100svh - 74px);
+  padding: 32px 20px 48px;
+  background: #fff9e6;
+  color: #7c1d1d;
+  overflow: hidden;
+}
+
+html.is-thiep .thiep-page::before,
+html.is-thiep .thiep-page::after {
+  position: absolute;
+  width: clamp(220px, 22vw, 320px);
+  aspect-ratio: 3 / 2;
+  background: url('/assets/images/thiep-apricot-branch.png') center / contain no-repeat;
+  content: "";
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+html.is-thiep .thiep-page::before { top: 56px; left: -64px; transform: rotate(-8deg); }
+html.is-thiep .thiep-page::after { right: -64px; bottom: 48px; transform: rotate(172deg); }
+
+.thiep-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  width: min(100%, 900px);
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid #dfb96f;
+  border-radius: 20px;
+  background: #fffdf6;
+  animation: thiep-arrive 650ms ease-out both;
+}
+
+.thiep-envelope {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 260px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.thiep-envelope::before,
+.thiep-envelope::after {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid #d6a64e;
+  content: "";
+  pointer-events: none;
+  animation: thiep-sparkle 3.6s ease-in-out infinite;
+}
+
+.thiep-envelope::before { top: 22%; left: 8%; }
+.thiep-envelope::after { right: 9%; bottom: 20%; animation-delay: -1.8s; }
+
+.thiep-envelope img {
+  display: block;
+  width: min(100%, 360px);
+  height: auto;
+  animation: thiep-float 4.2s ease-in-out infinite;
+  transition: filter 200ms ease;
+}
+
+.thiep-envelope:hover img { filter: saturate(1.12); }
+
+.thiep-content { min-width: 0; }
+
+.thiep-kicker {
+  margin: 0 0 12px;
+  color: #9a6420;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.thiep-title {
+  margin: 0 0 16px;
+  color: #7c1d1d;
+  font-size: clamp(1.85rem, 2.6vw, 2.4rem);
+  line-height: 1.22;
+}
+
+.thiep-note,
+.thiep-app-note {
+  margin: 0;
+  color: #5b3732;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.thiep-app-note {
+  margin-top: 8px;
+  font-weight: 700;
+  color: #7c1d1d;
+}
+
+.thiep-actions { margin-top: 28px; }
+
+.thiep-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 11px 16px;
+  border: 1px solid #b27633;
+  border-radius: 10px;
+  color: #7c1d1d;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.thiep-actions .thiep-primary {
+  border-color: #9d1f1f;
+  background: #9d1f1f;
+  color: #fffdf6;
+}
+
+.thiep-actions a:hover { background: #fff2d7; transform: translateY(-2px); }
+.thiep-actions .thiep-primary:hover { background: #801717; }
+.thiep-actions a:active { transform: translateY(0); }
+
+.thiep-envelope:focus-visible,
+.thiep-actions a:focus-visible {
+  outline: 3px solid #a5681f;
+  outline-offset: 4px;
+}
+
+.thiep-download-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 12px;
+}
+
+.thiep-download-intro img {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+}
+
+.thiep-hint {
+  margin: 0;
+  color: #5b3732;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.thiep-store-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.thiep-store-links [hidden] { display: none; }
+
+@keyframes thiep-arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes thiep-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes thiep-sparkle {
+  0%, 100% { opacity: 0.25; transform: rotate(45deg) scale(0.75); }
+  50% { opacity: 0.9; transform: translateY(-4px) rotate(45deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thiep-panel,
+  .thiep-envelope img,
+  .thiep-envelope::before,
+  .thiep-envelope::after { animation: none; }
+
+  .thiep-envelope img,
+  .thiep-actions a { transition: none; }
+}
+
+@media (max-width: 700px) {
+  html.is-thiep .thiep-page { padding: 20px 16px 36px; }
+  html.is-thiep .thiep-page::before,
+  html.is-thiep .thiep-page::after { display: none; }
+
+  .thiep-panel {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  .thiep-panel::before {
+    position: absolute;
+    width: 170px;
+    aspect-ratio: 3 / 2;
+    background: url('/assets/images/thiep-apricot-branch.png') center / contain no-repeat;
+    content: "";
+    opacity: 0.28;
+    pointer-events: none;
+  }
+
+  .thiep-panel::before { top: -28px; right: -22px; }
+  .thiep-panel > * { position: relative; z-index: 1; }
+
+  .thiep-envelope {
+    min-height: 0;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .thiep-title { font-size: clamp(1.65rem, 7vw, 2rem); }
+}
+
+@media (max-width: 440px) {
+  .thiep-store-links { grid-template-columns: 1fr; }
+}

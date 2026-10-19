@@ -41,15 +41,16 @@
     <style>
         /* Hero Section */
         .hero-detail {
-            background: linear-gradient(135deg, var(--primary-color, #667eea) 0%, var(--secondary-color, #764ba2) 100%);
-            color: white;
+            background: var(--hero-paper, #fff8ed);
+            border-block: 1px solid var(--hero-rule, #d6b56f);
+            color: var(--hero-ink, #7b1e25);
             padding: 80px 0 60px;
             margin-top: -80px;
             padding-top: 160px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: background 0.3s ease;
+            transition: none;
         }
         
         .hero-detail::before {
@@ -60,7 +61,7 @@
             right: 0;
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23pattern)"/></svg>') repeat;
-            opacity: 0.3;
+            opacity: 0;
         }
         
         .hero-content {
@@ -74,7 +75,7 @@
         .hero-detail h1 {
             font-size: 3.5em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: none;
         }
         
         .hero-detail .subtitle {

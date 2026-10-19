@@ -29,18 +29,16 @@
     min-height: 650px;
     overflow: hidden;
     padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 5vw, 4rem);
-    color: #fff;
-    background:
-        radial-gradient(circle at 82% 20%, rgba(255, 216, 94, 0.28), transparent 24rem),
-        radial-gradient(circle at 8% 84%, rgba(255, 173, 92, 0.18), transparent 22rem),
-        linear-gradient(135deg, #790d1d 0%, #b4172c 52%, #d43830 100%);
+    color: var(--hero-ink, #7b1e25);
+    background: var(--hero-paper, #fff8ed);
+    border-block: 1px solid var(--hero-rule, #d6b56f);
 }
 
 .app-landing-hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    opacity: 0.26;
+    opacity: 0;
     background-image:
         radial-gradient(circle, rgba(255, 231, 146, 0.75) 1px, transparent 1.5px),
         radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1.5px);
@@ -53,7 +51,7 @@
 .app-hero-flower {
     position: absolute;
     width: clamp(180px, 22vw, 330px);
-    opacity: 0.12;
+    opacity: 0.18;
     pointer-events: none;
 }
 
@@ -82,10 +80,10 @@
     gap: 0.45rem;
     margin: 0 0 1.15rem;
     padding: 0.45rem 0.75rem;
-    border: 1px solid rgba(255, 227, 107, 0.38);
+    border: 1px solid var(--hero-rule, #d6b56f);
     border-radius: 999px;
-    color: #ffe995;
-    background: rgba(70, 0, 10, 0.2);
+    color: #93621f;
+    background: #fffdf7;
     font-size: 0.76rem;
     font-weight: 900;
     letter-spacing: 0.06em;
@@ -100,20 +98,20 @@
 .app-hero-copy h1 {
     max-width: 660px;
     margin: 0;
-    color: #fff;
+    color: var(--hero-ink, #7b1e25);
     font-family: var(--font-body);
     font-size: clamp(2.65rem, 5.8vw, 5rem);
     font-weight: 900;
     letter-spacing: -0.055em;
     line-height: 0.98;
     text-wrap: balance;
-    text-shadow: 0 6px 28px rgba(64, 0, 9, 0.22);
+    text-shadow: none;
 }
 
 .app-hero-copy h1 span {
     display: block;
     margin-top: 0.2em;
-    color: var(--app-gold);
+    color: #a33a2b;
     font-family: var(--font-heading);
     font-size: 0.64em;
     font-weight: 700;
@@ -124,7 +122,7 @@
 .app-hero-lead {
     max-width: 560px;
     margin: 1.4rem 0 0;
-    color: rgba(255, 255, 255, 0.86);
+    color: var(--hero-muted, #645047);
     font-size: clamp(1rem, 1.6vw, 1.14rem);
     line-height: 1.7;
 }
@@ -141,10 +139,10 @@
     align-items: center;
     gap: 0.35rem;
     padding: 0.42rem 0.66rem;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--hero-rule, #d6b56f);
     border-radius: 999px;
-    color: rgba(255, 255, 255, 0.88);
-    background: rgba(255, 255, 255, 0.09);
+    color: var(--hero-ink, #7b1e25);
+    background: #fffdf7;
     font-size: 0.76rem;
     font-weight: 750;
 }
@@ -152,7 +150,7 @@
 .app-proof-chip svg {
     width: 0.95rem;
     height: 0.95rem;
-    color: var(--app-gold);
+    color: #93621f;
 }
 
 .app-store-actions {
@@ -219,7 +217,7 @@
     align-items: center;
     gap: 0.4rem;
     margin: 0.9rem 0 0;
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--hero-muted, #645047);
     font-size: 0.74rem;
 }
 
@@ -238,12 +236,11 @@
     content: "";
     position: absolute;
     inset: 12% 2% 7%;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 42% 58% 44% 56% / 53% 42% 58% 47%;
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 30px 90px rgba(62, 0, 9, 0.28);
-    backdrop-filter: blur(2px);
-    transform: rotate(-4deg);
+    border: 1px solid var(--hero-rule, #d6b56f);
+    border-radius: 18px;
+    background: #fffdf7;
+    box-shadow: none;
+    transform: none;
 }
 
 .app-phone {

@@ -9,7 +9,8 @@ const {
 } = require('../scripts/lib/tet-seo-dates');
 const fs = require('node:fs');
 const path = require('node:path');
-const { TARGETS, injectTetSeo } = require('../scripts/inject-tet-seo-snippets');
+const { TARGETS, injectTetSeo, updateHomepageSitemapLastmod } = require('../scripts/inject-tet-seo-snippets');
+const { forDateKey: quoteForDateKey, forId: quoteForId, idForDateKey: quoteIdForDateKey } = require('../js/home-daily-quote');
 
 const root = path.resolve(__dirname, '..');
 
@@ -66,6 +67,40 @@ test('homepage injection keeps title, snippet and WebPage schema aligned', () =>
   assert.match(html, new RegExp(`meta name="description" content="${payload.metaDescriptionHome}"`));
   assert.equal(webpage.name, payload.titleHome.replace(' | Sắp Tết', ''));
   assert.equal(webpage.description, payload.metaDescriptionHome);
+});
+
+test('homepage sitemap lastmod follows the refreshed Vietnam date', () => {
+  const payload = buildTetSeoPayload(new Date('2026-10-19T17:15:00Z'));
+  const source = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  const updated = updateHomepageSitemapLastmod(source, payload);
+
+  assert.match(updated, /<loc>https:\/\/saptet\.vn\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
+  assert.equal(updateHomepageSitemapLastmod(updated, payload), updated);
+  assert.match(updated, /<loc>https:\/\/saptet\.vn\/con-bao-nhieu-ngay-nua-den-tet\/<\/loc>\s*<lastmod>2026-05-19<\/lastmod>/);
+});
+
+test('daily homepage quote changes with the Vietnam date and is pre-rendered', () => {
+  const first = quoteForDateKey('2026-10-19');
+  const next = quoteForDateKey('2026-10-20');
+  assert.notEqual(first, next);
+  assert.equal(quoteForDateKey('2026-10-19'), first);
+
+  const payload = buildTetSeoPayload(new Date('2026-10-19T17:15:00Z'));
+  const source = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const html = injectTetSeo('index.html', source, payload);
+  assert.ok(html.includes(`<span class="preview-quote-text" data-home-daily-quote>${next}</span>`));
+});
+
+test('daily quotes have stable share ids and a live countdown caption', () => {
+  for (let id = 0; id < 7; id += 1) {
+    assert.ok(quoteForId(id));
+  }
+  const dateKey = '2026-10-19';
+  assert.equal(quoteForId(quoteIdForDateKey(dateKey)), quoteForDateKey(dateKey));
+  assert.equal(quoteForId(7), null);
+  const { countdownCaption } = require('../js/home-wish-share-image');
+  assert.equal(countdownCaption(110), 'Tết chỉ còn 110 ngày');
+  assert.equal(countdownCaption(0), '');
 });
 
 test('inject is idempotent and pre-renders the real day count', () => {

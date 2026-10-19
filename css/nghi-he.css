@@ -26,10 +26,9 @@ body.summer-page {
     position: relative;
     overflow: hidden;
     padding: clamp(5.25rem, 9vw, 7.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
-    color: #fff;
-    background:
-        radial-gradient(circle at 12% 14%, rgba(255, 213, 72, 0.52), transparent 18rem),
-        linear-gradient(135deg, var(--summer-sky-dark), var(--summer-sky));
+    color: var(--hero-ink, #7b1e25);
+    background: var(--hero-paper, #fff8ed);
+    border-block: 1px solid var(--hero-rule, #d6b56f);
 }
 
 .summer-hero::after {
@@ -40,18 +39,18 @@ body.summer-page {
     height: 25rem;
     border: 4rem solid rgba(255, 255, 255, 0.07);
     border-radius: 50%;
-    content: "";
+    content: none;
 }
 
 .summer-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-.summer-kicker { margin: 0 0 0.75rem; color: var(--summer-sun); font-size: 0.82rem; font-weight: 900; letter-spacing: 0.11em; text-transform: uppercase; }
-.summer-hero h1 { max-width: 700px; margin: 0; color: #fff; font-size: clamp(2.65rem, 6.5vw, 5.2rem); font-weight: 900; letter-spacing: -0.055em; line-height: 0.98; text-wrap: balance; }
-.summer-lead { max-width: 640px; margin: 1.15rem 0 0; color: rgba(255, 255, 255, 0.88); font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.7; }
-.summer-disclaimer { display: flex; gap: 0.6rem; align-items: flex-start; max-width: 620px; margin: 1.25rem 0 0; padding: 0.85rem 1rem; border: 1px solid rgba(255, 255, 255, 0.23); border-radius: 14px; background: rgba(4, 50, 79, 0.25); color: rgba(255, 255, 255, 0.86); font-size: 0.9rem; line-height: 1.55; }
-.summer-disclaimer svg { flex: 0 0 auto; width: 20px; height: 20px; color: var(--summer-sun); }
+.summer-kicker { margin: 0 0 0.75rem; color: var(--summer-sky-dark); font-size: 0.82rem; font-weight: 900; letter-spacing: 0.11em; text-transform: uppercase; }
+.summer-hero h1 { max-width: 700px; margin: 0; color: var(--hero-ink, #7b1e25); font-size: clamp(2.65rem, 6.5vw, 5.2rem); font-weight: 900; letter-spacing: -0.055em; line-height: 0.98; text-wrap: balance; }
+.summer-lead { max-width: 640px; margin: 1.15rem 0 0; color: var(--hero-muted, #645047); font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.7; }
+.summer-disclaimer { display: flex; gap: 0.6rem; align-items: flex-start; max-width: 620px; margin: 1.25rem 0 0; padding: 0.85rem 1rem; border: 1px solid var(--hero-rule, #d6b56f); border-radius: 10px; background: #fffdf7; color: var(--hero-muted, #645047); font-size: 0.9rem; line-height: 1.55; }
+.summer-disclaimer svg { flex: 0 0 auto; width: 20px; height: 20px; color: var(--summer-sky-dark); }
 
 .summer-visual { position: relative; }
-.summer-visual img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border: 5px solid rgba(255, 255, 255, 0.32); border-radius: 28px; object-fit: cover; box-shadow: 0 28px 70px rgba(2, 39, 65, 0.36); }
+.summer-visual img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border: 1px solid var(--hero-rule, #d6b56f); border-radius: 14px; object-fit: cover; box-shadow: none; }
 .summer-countdown-card { position: relative; z-index: 2; width: min(94%, 580px); margin: -3.2rem auto 0; padding: 1.15rem; border: 1px solid rgba(255, 255, 255, 0.38); border-radius: 22px; background: rgba(5, 64, 99, 0.86); box-shadow: 0 18px 45px rgba(2, 39, 65, 0.3); backdrop-filter: blur(14px); }
 .summer-status { margin: 0; color: #fff; font-size: 1.05rem; font-weight: 900; text-align: center; }
 .summer-countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.55rem; margin-top: 0.85rem; }

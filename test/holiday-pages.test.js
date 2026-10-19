@@ -78,11 +78,11 @@ for (const holiday of HOLIDAYS_EN) {
     // Hero chỉ dành cho đếm ngược; nội dung SEO nằm ở các section bên dưới.
     const hero = html.slice(html.indexOf('<section class="hc-hero"'), html.indexOf('<section class="hc-section" id="details">'));
     assert.match(hero, /class="hc-timer"/);
-    assert.match(hero, new RegExp(`<img class="hc-hero-bg" src="${holiday.visual.background}" alt="" aria-hidden="true" width="1600" height="1000" fetchpriority="high" decoding="async">`));
     assert.match(hero, new RegExp(`<img class="hc-hero-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="68" height="68" decoding="async">`));
+    assert.doesNotMatch(hero, /class="hc-hero-bg"/, 'large hero photos should not cover the paper heading');
     assert.doesNotMatch(hero, /class="hc-kicker"/, 'hero should not label a geographic scope');
     const englishBody = html.slice(0, html.indexOf('<template'));
-    assert.equal((englishBody.match(/<img class="hc-hero-bg" src="\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp"/g) || []).length, 1, 'detail page loads only its own hero background');
+    assert.doesNotMatch(englishBody, /class="hc-hero-bg"/, 'detail page should not load a hidden hero photo');
     assert.match(hero, /data-hc-share/);
     assert.match(html, /<dialog class="hc-share-dialog" data-hc-share-dialog/);
     assert.match(html, /<canvas data-hc-share-canvas width="1200" height="1500" role="img"/);
@@ -129,8 +129,8 @@ test('hub lists every holiday and every page is in the sitemap', () => {
   const hub = read('countdowns.html');
   const sitemap = read('sitemap.xml');
   assert.equal(langData(hub).en.url, 'https://saptet.vn/countdowns');
-  assert.match(hub, /<img class="hc-hero-bg" src="\/assets\/images\/holiday-countdowns\/countdowns-hero\.webp" alt="" aria-hidden="true" width="1600" height="1000" fetchpriority="high"/);
-  assert.equal((hub.slice(0, hub.indexOf('<template')).match(/\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp/g) || []).length, 1, 'hub loads only its own hero background');
+  assert.match(hub, /<img class="hc-hub-art" src="\/assets\/images\/holiday-countdowns\/countdowns-hero\.webp" alt="" aria-hidden="true"/);
+  assert.equal((hub.slice(0, hub.indexOf('<template')).match(/\/assets\/images\/holiday-countdowns\/[a-z0-9-]+-hero\.webp/g) || []).length, 1, 'hub loads only its contained illustration');
   assert.match(sitemap, /<loc>https:\/\/saptet\.vn\/countdowns<\/loc>/);
   for (const holiday of HOLIDAYS_EN) {
     assert.match(hub, new RegExp(`href="/${holiday.slug}"`));
@@ -324,8 +324,8 @@ test('countdown pages use flat palettes, per-holiday motion and respect reduced 
   assert.ok(kinds.size >= 8, 'holidays should not all share the same motion');
   const sources = [read('data/holidays-en.js'), read('data/holidays-ar.js'), read('js/holiday-countdown.js'), read('scripts/render-holiday-og.js')].join('\n');
   assert.doesNotMatch(sources, /🎃|🪔|🦃|🕎|🎄|🎆|🧧|🌙|💘|🕌|🐣|💦|🌐|⏳/, 'holiday UI and metadata must not depend on emoji');
-  assert.match(css, /@keyframes hc-hero-drift/);
-  assert.match(css, /\.hc-hero\.is-page-hidden \.hc-hero-bg/);
+  assert.doesNotMatch(css, /@keyframes hc-hero-drift/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
 
 test('palette text colors meet WCAG AA contrast on paper and surface backgrounds', () => {

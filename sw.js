@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1792222831189-6d5d771';
+const CACHE_NAME = 'sap-tet-v1.0.1792434933800-ffb853b';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
@@ -34,6 +34,7 @@ const urlsToCache = [
   '/css/colors-preview.min.css',
   '/css/home-retention-preview.min.css',
   '/css/home-preview.css',
+  '/css/home-preview-desktop.css',
   '/css/home-mobile-experiment.css',
   '/components/header.html',
   '/js/header-loader.js',
@@ -44,6 +45,8 @@ const urlsToCache = [
   '/js/home-share-image.js',
   '/js/home-shop-preview.js',
   '/js/home-fireworks.js',
+  '/js/home-daily-quote.js',
+  '/js/home-wish-share-image.js',
   '/js/home-preview.js',
   '/js/vendor/lucide-subset.js',
   '/data/events-data.js',
@@ -53,13 +56,17 @@ const urlsToCache = [
   '/assets/images/ic_app-208.webp',
   '/assets/fonts/thuphap4-home-preview.woff2',
   '/assets/images/home-preview/hero-scene-mobile.webp',
+  '/assets/images/home-preview/hero-scene-desktop.webp',
   '/assets/images/home-preview/mascot-boy-mobile.webp',
   '/assets/images/home-preview/mascot-girl-mobile.webp',
+  '/assets/images/home-preview/mascot-boy.webp',
+  '/assets/images/home-preview/mascot-girl.webp',
   '/assets/images/home-preview/countdown-calendar.webp',
   '/assets/images/home-preview/countdown-lantern.webp',
   '/assets/images/home-preview/sleeping-cat.webp',
   '/assets/images/home-preview/countdown-flower.webp',
   '/assets/images/home-preview/quote-banner-mobile.webp',
+  '/assets/images/home-preview/quote-banner.webp',
   '/assets/images/home-preview/shortcut-calendar.svg',
   '/assets/images/home-preview/shortcut-diary.svg',
   '/assets/images/home-preview/shortcut-games.svg',
@@ -166,6 +173,30 @@ self.addEventListener('fetch', event => {
             headers: { 'Content-Type': 'text/html' }
           });
         })
+    );
+    return;
+  }
+
+  // The home page changes between releases and every day. A precache can contain
+  // an older page if the new worker installs while GitHub Pages is propagating.
+  const requestUrl = new URL(event.request.url);
+  const isSameOrigin = requestUrl.origin === self.location.origin;
+  const isHomePage = isSameOrigin && event.request.mode === 'navigate' &&
+    (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html');
+  const isHomeStylesheet = isSameOrigin && event.request.destination === 'style' &&
+    (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-preview-desktop.css' || requestUrl.pathname === '/css/home-retention.css');
+  if (isHomePage || isHomeStylesheet) {
+    const cacheKey = isHomePage ? requestUrl.pathname : event.request;
+    const networkResponse = fetch(event.request, { cache: isHomePage ? 'no-store' : 'no-cache' });
+    event.waitUntil(networkResponse.then(response => {
+      if (response && response.status === 200 && response.type === 'basic') {
+        return caches.open(CACHE_NAME)
+          .then(cache => cache.put(cacheKey, response.clone()));
+      }
+    }).catch(() => {}));
+    event.respondWith(
+      networkResponse.catch(() => caches.match(event.request, { ignoreSearch: true })
+        .then(cached => cached || (isHomePage ? caches.match('/index.html') : undefined)))
     );
     return;
   }

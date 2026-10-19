@@ -11,6 +11,7 @@ const CLARITY_PROJECT = 'rw42vujbmw';
 const NOT_A_PAGE = new Set([
     'footer.html',
     'demo-preview.html',
+    'home-preview.html',
     'test-calculator.html',
     path.join('components', 'header.html'),
     path.join('components', 'ads-banner.html'),

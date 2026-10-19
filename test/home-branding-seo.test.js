@@ -183,7 +183,9 @@ test('loi chuc tet page is indexable and supports the wishes CTA', () => {
   const sitemap = read('sitemap.xml');
 
   assert.match(html, /<link rel="canonical" href="https:\/\/saptet\.vn\/loi-chuc-tet\.html">/);
-  assert.match(html, /<h1>Lời chúc Tết 2027 hay, ngắn gọn và ý nghĩa<\/h1>/);
+  const heading = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/);
+  assert.ok(heading);
+  assert.equal(heading[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(), 'Lời chúc Tết 2027 hay, ngắn gọn và ý nghĩa');
   assert.match(html, /class="copy-wish-btn"/);
   assert.match(header, /href="\/loi-chuc-tet\.html" data-page="loi-chuc"/);
   assert.match(loader, /filename === 'loi-chuc-tet\.html'/);
