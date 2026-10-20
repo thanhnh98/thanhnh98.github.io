@@ -504,6 +504,8 @@
       <p id="home-wish-status" class="home-wish-status" role="status" aria-live="polite"></p>
       <a class="home-wish-more" href="/loi-chuc-tet.html">Xem thêm lời chúc Tết</a>
     </dialog>
+    <!-- A cached older home script expects these elements during its first load after an update. -->
+    <dialog id="preview-app-dialog" hidden aria-hidden="true"><button id="preview-app-dialog-close" type="button" hidden></button><span id="preview-app-dialog-title" hidden></span><img id="preview-app-dialog-image" alt="" hidden></dialog>
     <script src="js/vendor/lucide-subset.js?v=20260925" defer></script>
     <script src="js/analytics.js" defer></script>
     <script src="js/home-ads.js?v=20261007" defer></script>
@@ -515,6 +517,25 @@
     <script src="js/home-fireworks.js?v=20260925" defer></script>
     <script src="js/home-daily-quote.js?v=20261019-wish-share" defer></script>
     <script src="js/home-preview.js?v=20261020-home-shortcuts" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const shortcut = document.querySelector('[data-preview-wish-shortcut]');
+        const quote = document.querySelector('.preview-quote');
+        const dialog = document.getElementById('home-wish-dialog');
+        if (!shortcut || !quote || !dialog) return;
+        let usedFallback = false;
+        shortcut.addEventListener('click', function () {
+          if (dialog.open) return;
+          usedFallback = true;
+          quote.click();
+        });
+        dialog.addEventListener('close', function () {
+          if (!usedFallback) return;
+          usedFallback = false;
+          shortcut.focus();
+        });
+      });
+    </script>
     <script>document.addEventListener('DOMContentLoaded', function () { if (window.lucide) window.lucide.createIcons(); });</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {
