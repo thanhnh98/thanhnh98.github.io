@@ -35,24 +35,26 @@
   });
 
   const appDialog = document.getElementById('preview-app-dialog');
-  const appDialogTitle = document.getElementById('preview-app-dialog-title');
-  const appDialogImage = document.getElementById('preview-app-dialog-image');
-  let activeShortcut = null;
-  document.querySelectorAll('[data-preview-app-feature]').forEach((shortcut) => {
-    shortcut.addEventListener('click', () => {
-      activeShortcut = shortcut;
-      appDialogTitle.textContent = shortcut.dataset.previewAppFeature + ' trên ứng dụng Sắp Tết';
-      appDialogImage.src = shortcut.querySelector('img').getAttribute('src');
-      appDialog.showModal();
+  if (appDialog) {
+    const appDialogTitle = document.getElementById('preview-app-dialog-title');
+    const appDialogImage = document.getElementById('preview-app-dialog-image');
+    let activeShortcut = null;
+    document.querySelectorAll('[data-preview-app-feature]').forEach((shortcut) => {
+      shortcut.addEventListener('click', () => {
+        activeShortcut = shortcut;
+        appDialogTitle.textContent = shortcut.dataset.previewAppFeature + ' trên ứng dụng Sắp Tết';
+        appDialogImage.src = shortcut.querySelector('img').getAttribute('src');
+        appDialog.showModal();
+      });
     });
-  });
-  document.getElementById('preview-app-dialog-close').addEventListener('click', () => appDialog.close());
-  appDialog.addEventListener('click', (event) => {
-    if (event.target !== appDialog) return;
-    const rect = appDialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) appDialog.close();
-  });
-  appDialog.addEventListener('close', () => activeShortcut?.focus());
+    document.getElementById('preview-app-dialog-close').addEventListener('click', () => appDialog.close());
+    appDialog.addEventListener('click', (event) => {
+      if (event.target !== appDialog) return;
+      const rect = appDialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) appDialog.close();
+    });
+    appDialog.addEventListener('close', () => activeShortcut?.focus());
+  }
 
   function bindMascotWishes(selector, messages) {
     const mascot = document.querySelector(selector);
@@ -110,6 +112,8 @@
   setInterval(syncToday, 30000);
 
   const wishTrigger = document.querySelector('.preview-quote');
+  const wishShortcut = document.querySelector('[data-preview-wish-shortcut]');
+  let wishReturnFocus = wishTrigger;
   const wishDialog = document.getElementById('home-wish-dialog');
   const wishImage = document.getElementById('home-wish-image');
   const wishText = document.getElementById('home-wish-text');
@@ -197,17 +201,20 @@
     wishStatus.textContent = 'Đã sao chép liên kết lời chúc.';
   }
 
-  wishTrigger?.addEventListener('click', () => {
+  function openDailyWish(trigger) {
     const dateKey = renderedDateKey || window.HomeRetention?.getVietnamDateKey(new Date());
+    wishReturnFocus = trigger;
     openWish(window.HomeDailyQuote?.idForDateKey(dateKey));
-  });
+  }
+  wishTrigger?.addEventListener('click', () => openDailyWish(wishTrigger));
+  wishShortcut?.addEventListener('click', () => openDailyWish(wishShortcut));
   document.getElementById('home-wish-close')?.addEventListener('click', () => wishDialog.close());
   wishDialog?.addEventListener('click', (event) => {
     if (event.target !== wishDialog) return;
     const rect = wishDialog.getBoundingClientRect();
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) wishDialog.close();
   });
-  wishDialog?.addEventListener('close', () => wishTrigger?.focus());
+  wishDialog?.addEventListener('close', () => (wishReturnFocus?.isConnected ? wishReturnFocus : wishTrigger)?.focus());
   document.getElementById('home-wish-copy')?.addEventListener('click', copyWishLink);
   wishDownload?.addEventListener('click', () => {
     if (!currentWishImageUrl || !currentWishFile) return;

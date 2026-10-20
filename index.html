@@ -26,13 +26,13 @@
         <link rel="stylesheet" href="css/style-preview.min.css" media="print" onload="this.media='all'">
         <link rel="stylesheet" href="css/colors-preview.min.css" media="print" onload="this.media='all'">
         <link rel="stylesheet" href="css/home-retention-preview.min.css" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="css/home-preview.css?v=20261019-mascot-wishes">
+        <link rel="stylesheet" href="css/home-preview.css?v=20261020-home-shortcuts">
         <link rel="stylesheet" href="css/home-mobile-experiment.css?v=20261018-desktop-tasks">
       ` : `
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/colors.css?v=20260830">
         <link rel="stylesheet" href="css/home-retention.css?v=20261017-mobile-home-desktop">
-        <link rel="stylesheet" href="css/home-preview.css?v=20261019-mascot-wishes">
+        <link rel="stylesheet" href="css/home-preview.css?v=20261020-home-shortcuts">
         <link rel="stylesheet" href="css/home-preview-desktop.css?v=20261019-mascot-wishes">
       `);
     </script>
@@ -222,12 +222,12 @@
       <p class="preview-greeting">Chúc Mừng Năm Mới – Vạn Sự Như Ý!</p>
 
       <nav class="preview-shortcuts" aria-label="Tiện ích Tết">
-        <button type="button" data-preview-app-feature="Lịch vạn niên" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-calendar.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Lịch<br>vạn niên</span></button>
-        <button type="button" data-preview-app-feature="Nhật ký Tết" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-diary.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Nhật ký<br>Tết</span></button>
-        <button type="button" data-preview-app-feature="Trò chơi Tết" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-games.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Trò chơi<br>Tết</span></button>
-        <button type="button" data-preview-app-feature="Mã quà tặng" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-gifts.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Mã quà tặng</span></button>
-        <button type="button" data-preview-app-feature="Ảnh Tết" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-photos.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Ảnh Tết</span></button>
-        <button type="button" data-preview-app-feature="Thầy Đồ 4.0" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-scholar.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Thầy Đồ<br>4.0</span></button>
+        <a href="/lich-van-nien.html" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-calendar.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Lịch<br>vạn niên</span></a>
+        <a href="#hom-nay" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-diary.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Hôm<br>nay</span></a>
+        <a href="#tro-choi-tet" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-games.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Trò chơi<br>Tết</span></a>
+        <a href="/may-tinh-li-xi.html" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-gifts.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Máy tính<br>lì xì</span></a>
+        <button type="button" class="preview-shortcut" data-preview-wish-shortcut aria-haspopup="dialog" aria-controls="home-wish-dialog"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-photos.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Ảnh<br>lời chúc</span></button>
+        <a href="/loi-chuc-tet.html" class="preview-shortcut"><span class="preview-shortcut-icon"><img src="/assets/images/home-preview/shortcut-scholar.svg" width="64" height="64" alt="" decoding="async" fetchpriority="low"></span><span>Lời chúc<br>Tết</span></a>
       </nav>
 
       <button class="preview-quote" type="button" aria-haspopup="dialog" aria-controls="home-wish-dialog"><picture class="preview-quote-art" aria-hidden="true"><source media="(max-width: 699px)" srcset="/assets/images/home-preview/quote-banner-mobile.webp"><img src="/assets/images/home-preview/quote-banner.webp" width="1280" height="427" alt="" decoding="async" fetchpriority="low"></picture><span class="preview-quote-text" data-home-daily-quote>“Hoa đào nở trước hiên nhà, niềm vui nở trong lòng ta.”</span></button>
@@ -245,17 +245,6 @@
       </section>
       <div class="preview-stage-bottom" aria-hidden="true"><span>✿</span><span>✿</span><span>✿</span></div>
     </div>
-    <dialog id="preview-app-dialog" class="preview-app-dialog" aria-labelledby="preview-app-dialog-title" aria-describedby="preview-app-dialog-description">
-      <button id="preview-app-dialog-close" class="preview-app-dialog-close" type="button" aria-label="Đóng">×</button>
-      <div class="preview-app-dialog-art"><img id="preview-app-dialog-image" src="/assets/images/home-preview/shortcut-calendar.svg" width="64" height="64" alt="" fetchpriority="low"></div>
-      <p class="preview-app-dialog-kicker">TIỆN ÍCH TRÊN ĐIỆN THOẠI</p>
-      <h2 id="preview-app-dialog-title">Xem trên ứng dụng Sắp Tết</h2>
-      <p id="preview-app-dialog-description">Tải Sắp Tết để khám phá tiện ích Tết trên điện thoại.</p>
-      <div class="preview-app-dialog-actions">
-        <a href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener noreferrer">Tải trên Google Play</a>
-        <a href="https://apps.apple.com/gb/app/s%E1%BA%AFp-t%E1%BA%BFt-%C4%91%E1%BA%BFm-ng%C6%B0%E1%BB%A3c-t%E1%BA%BFt-2027/id6743064990?platform=iphone" target="_blank" rel="noopener noreferrer">Tải trên App Store</a>
-      </div>
-    </dialog>
       </template>
       <script>
         {
@@ -525,7 +514,7 @@
     <script src="js/home-shop-preview.js?v=20260828" defer></script>
     <script src="js/home-fireworks.js?v=20260925" defer></script>
     <script src="js/home-daily-quote.js?v=20261019-wish-share" defer></script>
-    <script src="js/home-preview.js?v=20261019-mascot-wishes" defer></script>
+    <script src="js/home-preview.js?v=20261020-home-shortcuts" defer></script>
     <script>document.addEventListener('DOMContentLoaded', function () { if (window.lucide) window.lucide.createIcons(); });</script>
     <script type="module">
       if (location.hostname === 'saptet.vn' || location.hostname === 'www.saptet.vn') {

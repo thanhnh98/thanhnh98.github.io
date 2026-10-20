@@ -148,7 +148,7 @@ body.home-preview{margin:0;padding-top:0;overflow-x:hidden;background:#fff3dc;co
 .preview-stage-bottom:before{content:'';position:absolute;inset:16px -10% -10px;background:#ffd878a8;border-radius:50% 50% 0 0;transform:rotate(-2deg)}
 .preview-stage-bottom span{position:relative;z-index:1}
 .preview-stage-bottom span:nth-child(2){font-size:19px;transform:translateY(-6px)}
-.home-preview .home-game-entry-section{padding-top:2.6rem}
+.home-preview .home-game-entry-section{padding-top:2.6rem;scroll-margin-top:76px}
 .home-preview .home-game-card-art picture{display:block;width:100%;height:100%}
 /* Reserve measured mobile heights for shared sections that begin well below the fold. */
 @media(max-width:699px){
