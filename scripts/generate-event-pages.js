@@ -13,6 +13,10 @@ const PUBLISHED_AT = '2026-09-04';
 const { EVENTS_DATA } = require(path.join(ROOT, 'data/events-data.js'));
 const { EVENTS_CONTENT } = require(path.join(ROOT, 'data/events-content.js'));
 const { lunarToSolar } = require(path.join(ROOT, 'js/lunar-calendar.js'));
+const occasionCatalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/occasion-gifts.json'), 'utf8'));
+const occasionProducts = new Map(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/aff/products'), 'utf8')).data.products
+  .filter((product) => product.editorialId)
+  .map((product) => [product.editorialId, product]));
 
 function read(file) {
   return fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -154,6 +158,28 @@ function cardHtml(item) {
               <span class="events-card-arrow" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
             </a>
           </article>`;
+}
+
+function giftSectionHtml(event) {
+  const collection = occasionCatalog.collections[event.id];
+  if (!collection || collection.type === 'none') return '';
+  if (!Array.isArray(collection.productIds) || collection.productIds.length !== 10) {
+    throw new Error(`Occasion ${event.id} must have exactly 10 products`);
+  }
+  const featured = collection.productIds.slice(0, 4).map((id) => {
+    const product = occasionProducts.get(id);
+    if (!product) throw new Error(`Missing occasion product ${id}`);
+    const name = product.occasionName || product.name;
+    return `<a class="event-gift-card" href="${escapeHtml(product.url)}" target="_blank" rel="noopener noreferrer nofollow" aria-label="Xem ${escapeHtml(name)} trên Shopee">
+              <span class="event-gift-image"><img src="${escapeHtml(product.thumbnail)}" alt="" loading="lazy"></span>
+              <strong>${escapeHtml(name)}</strong><span class="event-gift-platform">Xem trên Shopee <span aria-hidden="true">↗</span></span>
+            </a>`;
+  }).join('');
+  return `        <section class="event-gifts" aria-labelledby="event-gifts-title">
+          <div class="event-gifts-heading"><div><p class="event-gifts-kicker">${collection.type === 'prepare' ? 'Sắm sửa theo dịp' : 'Quà theo dịp'}</p><h2 id="event-gifts-title">${escapeHtml(collection.title)}</h2><p>${escapeHtml(collection.intro)}</p></div><span class="event-gifts-count">10 món được chọn</span></div>
+          <div class="event-gift-grid">${featured}</div>
+          <div class="event-gifts-footer"><p>Giá và tình trạng hàng được xác nhận trên Shopee khi mở sản phẩm.</p><a href="/cua-hang.html?occasion=${encodeURIComponent(event.slug)}">Xem đủ 10 món &amp; tạo giỏ gợi ý <span aria-hidden="true">→</span></a></div>
+        </section>`;
 }
 
 function nextEventHtml(item) {
@@ -321,6 +347,11 @@ function generateDetail(item, index, items) {
     event,
     occurrence: occurrence.dateKey,
     content,
+    occasion: occasionCatalog.collections[event.id],
+    occasionProducts: (occasionCatalog.collections[event.id].productIds || []).slice(0, 4).map((id) => {
+      const product = occasionProducts.get(id);
+      return product && [product.occasionName, product.thumbnail, product.url];
+    }),
     faq,
     template,
     eventsAssetVersion: EVENTS_ASSET_VERSION,
@@ -357,6 +388,7 @@ function generateDetail(item, index, items) {
     WHEN_CONTENT: whenContent,
     CONTEXT: escapeHtml(content.context),
     ACTIVITIES: content.activities.map((activity) => `<li>${escapeHtml(activity)}</li>`).join(''),
+    GIFT_SECTION: giftSectionHtml(event),
     TIP: escapeHtml(content.tip),
     FAQ: faq.map((item) => `<details><summary>${escapeHtml(item.question)}</summary><p${item.liveDate ? ` data-event-answer data-date="${item.liveDate}" data-event-name="${escapeHtml(event.name)}"` : ''}>${escapeHtml(item.answer)}</p></details>`).join(''),
     RELATED: related,

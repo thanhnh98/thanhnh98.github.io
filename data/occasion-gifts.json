@@ -1,0 +1,510 @@
+{
+  "version": 1,
+  "collections": {
+    "lunar-tet-nguyen-dan": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Tết Nguyên Đán",
+      "intro": "Món cho mâm trà, góc nhà và lời chúc đầu năm.",
+      "productIds": [
+        "og-025",
+        "og-026",
+        "og-033",
+        "og-034",
+        "og-035",
+        "og-036",
+        "og-037",
+        "og-041",
+        "og-042",
+        "og-081"
+      ]
+    },
+    "lunar-via-than-tai": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Ngày vía Thần Tài",
+      "intro": "Sắp xếp bàn thờ và những món dùng khi chuẩn bị lễ tại nhà.",
+      "productIds": [
+        "og-025",
+        "og-033",
+        "og-037",
+        "og-038",
+        "og-041",
+        "og-042",
+        "og-066",
+        "og-069",
+        "og-070",
+        "og-090"
+      ]
+    },
+    "lunar-tet-nguyen-tieu": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Tết Nguyên Tiêu (Rằm tháng Giêng)",
+      "intro": "Chuẩn bị không gian sum họp, trà và món nhẹ cho đêm rằm.",
+      "productIds": [
+        "og-033",
+        "og-037",
+        "og-038",
+        "og-041",
+        "og-042",
+        "og-061",
+        "og-065",
+        "og-068",
+        "og-069",
+        "og-070"
+      ]
+    },
+    "lunar-tet-han-thuc": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Tết Hàn Thực",
+      "intro": "Dụng cụ bếp và nguyên liệu cơ bản để cùng nhau làm bánh, bày mâm.",
+      "productIds": [
+        "og-045",
+        "og-046",
+        "og-047",
+        "og-048",
+        "og-051",
+        "og-058",
+        "og-059",
+        "og-064",
+        "og-083",
+        "og-086"
+      ]
+    },
+    "lunar-gio-to-hung-vuong": {
+      "type": "none"
+    },
+    "lunar-tet-doan-ngo": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Tết Đoan Ngọ",
+      "intro": "Sắp mâm trái cây, đồ uống và vài món nhẹ cho buổi sáng Đoan Ngọ.",
+      "productIds": [
+        "og-033",
+        "og-038",
+        "og-041",
+        "og-042",
+        "og-046",
+        "og-059",
+        "og-065",
+        "og-067",
+        "og-071",
+        "og-072"
+      ]
+    },
+    "lunar-vu-lan": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Rằm tháng Bảy – Vu Lan",
+      "intro": "Những món nhỏ để quan tâm cha mẹ, ông bà trong mùa Vu Lan.",
+      "productIds": [
+        "og-003",
+        "og-006",
+        "og-007",
+        "og-033",
+        "og-038",
+        "og-042",
+        "og-065",
+        "og-070",
+        "og-076",
+        "og-089"
+      ]
+    },
+    "lunar-tet-trung-thu": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Tết Trung Thu",
+      "intro": "Bánh, trà và món quà nhỏ cho buổi tối đoàn viên.",
+      "productIds": [
+        "og-087",
+        "og-033",
+        "og-035",
+        "og-036",
+        "og-042",
+        "og-046",
+        "og-052",
+        "og-059",
+        "og-061",
+        "og-074"
+      ]
+    },
+    "lunar-tet-trung-cuu": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Tết Trùng Cửu",
+      "intro": "Trà, bánh và những món dùng được hằng ngày để hỏi thăm người lớn tuổi.",
+      "productIds": [
+        "og-003",
+        "og-007",
+        "og-033",
+        "og-042",
+        "og-062",
+        "og-063",
+        "og-065",
+        "og-070",
+        "og-076",
+        "og-089"
+      ]
+    },
+    "lunar-tet-ha-nguyen": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Tết Hạ Nguyên",
+      "intro": "Gợi ý chuẩn bị mâm cơm, trà và góc nhà trong ngày rằm.",
+      "productIds": [
+        "og-033",
+        "og-038",
+        "og-041",
+        "og-042",
+        "og-046",
+        "og-059",
+        "og-065",
+        "og-066",
+        "og-070",
+        "og-090"
+      ]
+    },
+    "lunar-ong-cong-ong-tao": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Ông Công Ông Táo",
+      "intro": "Dọn bếp, chuẩn bị mâm cơm và đồ bày lễ cuối năm.",
+      "productIds": [
+        "og-033",
+        "og-041",
+        "og-045",
+        "og-047",
+        "og-048",
+        "og-051",
+        "og-058",
+        "og-066",
+        "og-084",
+        "og-085"
+      ]
+    },
+    "lunar-that-tich": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Thất Tịch",
+      "intro": "Món quà ngọt ngào để gửi lời thương vào Thất Tịch.",
+      "productIds": [
+        "og-016",
+        "og-017",
+        "og-018",
+        "og-020",
+        "og-021",
+        "og-022",
+        "og-024",
+        "og-056",
+        "og-073",
+        "og-092"
+      ]
+    },
+    "solar-tet-duong-lich": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Tết Dương lịch",
+      "intro": "Quà khởi đầu năm mới cho người thân, bạn bè và đồng nghiệp.",
+      "productIds": [
+        "og-003",
+        "og-006",
+        "og-013",
+        "og-025",
+        "og-033",
+        "og-042",
+        "og-053",
+        "og-075",
+        "og-081",
+        "og-088"
+      ]
+    },
+    "solar-thanh-lap-dang": {
+      "type": "none"
+    },
+    "solar-thay-thuoc-viet-nam": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày Thầy thuốc Việt Nam",
+      "intro": "Món quà thiết thực gửi lời cảm ơn người làm nghề y.",
+      "productIds": [
+        "og-003",
+        "og-006",
+        "og-008",
+        "og-013",
+        "og-033",
+        "og-042",
+        "og-055",
+        "og-065",
+        "og-070",
+        "og-088"
+      ]
+    },
+    "solar-quoc-te-phu-nu": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Quốc tế Phụ nữ",
+      "intro": "Một món nhỏ vừa đẹp vừa hữu ích để nói lời trân trọng.",
+      "productIds": [
+        "og-006",
+        "og-015",
+        "og-017",
+        "og-030",
+        "og-032",
+        "og-033",
+        "og-044",
+        "og-054",
+        "og-073",
+        "og-094"
+      ]
+    },
+    "solar-thanh-lap-doan": {
+      "type": "none"
+    },
+    "solar-giai-phong-mien-nam": {
+      "type": "none"
+    },
+    "solar-quoc-te-lao-dong": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Quốc tế Lao động",
+      "intro": "Quà động viên đồng nghiệp và người thân sau những ngày bận rộn.",
+      "productIds": [
+        "og-003",
+        "og-006",
+        "og-007",
+        "og-013",
+        "og-029",
+        "og-053",
+        "og-055",
+        "og-076",
+        "og-080",
+        "og-088"
+      ]
+    },
+    "solar-dien-bien-phu": {
+      "type": "none"
+    },
+    "solar-sinh-nhat-ho-chi-minh": {
+      "type": "none"
+    },
+    "solar-quoc-te-thieu-nhi": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Quốc tế Thiếu nhi",
+      "intro": "Đồ dùng vui nhộn và thiết thực cho các bé.",
+      "productIds": [
+        "og-002",
+        "og-004",
+        "og-027",
+        "og-029",
+        "og-031",
+        "og-039",
+        "og-043",
+        "og-050",
+        "og-052",
+        "og-093"
+      ]
+    },
+    "solar-gia-dinh-viet-nam": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày Gia đình Việt Nam",
+      "intro": "Những món giúp cả nhà thêm thời gian bên nhau.",
+      "productIds": [
+        "og-001",
+        "og-033",
+        "og-039",
+        "og-040",
+        "og-042",
+        "og-046",
+        "og-047",
+        "og-056",
+        "og-059",
+        "og-083"
+      ]
+    },
+    "solar-thuong-binh-liet-si": {
+      "type": "none"
+    },
+    "solar-cach-mang-thang-tam": {
+      "type": "none"
+    },
+    "solar-quoc-khanh-viet-nam": {
+      "type": "none"
+    },
+    "solar-giai-phong-thu-do": {
+      "type": "none"
+    },
+    "solar-doanh-nhan-viet-nam": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày Doanh nhân Việt Nam",
+      "intro": "Quà gọn gàng, lịch sự cho đối tác và người làm kinh doanh.",
+      "productIds": [
+        "og-001",
+        "og-003",
+        "og-006",
+        "og-009",
+        "og-013",
+        "og-033",
+        "og-042",
+        "og-075",
+        "og-088",
+        "og-094"
+      ]
+    },
+    "solar-phu-nu-viet-nam": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày Phụ nữ Việt Nam",
+      "intro": "Món quà ấm áp cho mẹ, bạn đời, bạn bè và đồng nghiệp nữ.",
+      "productIds": [
+        "og-006",
+        "og-015",
+        "og-017",
+        "og-030",
+        "og-032",
+        "og-033",
+        "og-044",
+        "og-054",
+        "og-073",
+        "og-094"
+      ]
+    },
+    "solar-nha-giao-viet-nam": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày Nhà giáo Việt Nam",
+      "intro": "Quà cảm ơn thầy cô, ưu tiên món đẹp và dùng được mỗi ngày.",
+      "productIds": [
+        "og-001",
+        "og-002",
+        "og-003",
+        "og-005",
+        "og-006",
+        "og-008",
+        "og-033",
+        "og-042",
+        "og-053",
+        "og-088"
+      ]
+    },
+    "solar-quan-doi-nhan-dan": {
+      "type": "none"
+    },
+    "solar-valentine": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Valentine",
+      "intro": "Chọn một món dễ thương để dành tặng người mình yêu.",
+      "productIds": [
+        "og-016",
+        "og-017",
+        "og-018",
+        "og-019",
+        "og-020",
+        "og-021",
+        "og-022",
+        "og-023",
+        "og-024",
+        "og-056"
+      ]
+    },
+    "solar-quoc-te-hanh-phuc": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Quốc tế Hạnh phúc",
+      "intro": "Món quà giản dị để chia sẻ niềm vui với người gần gũi.",
+      "productIds": [
+        "og-006",
+        "og-017",
+        "og-033",
+        "og-042",
+        "og-046",
+        "og-056",
+        "og-059",
+        "og-061",
+        "og-073",
+        "og-092"
+      ]
+    },
+    "solar-nuoc-the-gioi": {
+      "type": "none"
+    },
+    "solar-trai-dat": {
+      "type": "none"
+    },
+    "solar-moi-truong-the-gioi": {
+      "type": "none"
+    },
+    "solar-aids-the-gioi": {
+      "type": "none"
+    },
+    "solar-giang-sinh": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Giáng Sinh",
+      "intro": "Quà mùa lễ hội để trao tay trong buổi gặp gỡ cuối năm.",
+      "productIds": [
+        "og-006",
+        "og-007",
+        "og-017",
+        "og-028",
+        "og-033",
+        "og-042",
+        "og-056",
+        "og-057",
+        "og-060",
+        "og-073"
+      ]
+    },
+    "solar-quoc-te-nam-gioi": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày Quốc tế Nam giới",
+      "intro": "Món quà phù hợp sở thích và công việc hằng ngày.",
+      "productIds": [
+        "og-003",
+        "og-009",
+        "og-013",
+        "og-014",
+        "og-029",
+        "og-049",
+        "og-075",
+        "og-077",
+        "og-079",
+        "og-091"
+      ]
+    },
+    "solar-black-friday": {
+      "type": "prepare",
+      "title": "Gợi ý sắm sửa cho Black Friday",
+      "intro": "Mười món đáng cân nhắc khi săn ưu đãi; xem giá thực tế trên sàn.",
+      "productIds": [
+        "og-009",
+        "og-010",
+        "og-011",
+        "og-012",
+        "og-029",
+        "og-049",
+        "og-050",
+        "og-078",
+        "og-082",
+        "og-083"
+      ]
+    },
+    "solar-ngay-cua-me": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày của Mẹ",
+      "intro": "Món quà để mẹ thư giãn và dùng trong sinh hoạt thường ngày.",
+      "productIds": [
+        "og-006",
+        "og-007",
+        "og-032",
+        "og-033",
+        "og-038",
+        "og-042",
+        "og-054",
+        "og-065",
+        "og-076",
+        "og-089"
+      ]
+    },
+    "solar-ngay-cua-cha": {
+      "type": "gift",
+      "title": "Giỏ quà gợi ý cho Ngày của Cha",
+      "intro": "Một món thiết thực để gửi lời cảm ơn cha.",
+      "productIds": [
+        "og-003",
+        "og-009",
+        "og-013",
+        "og-014",
+        "og-029",
+        "og-042",
+        "og-053",
+        "og-075",
+        "og-076",
+        "og-079"
+      ]
+    }
+  },
+  "lastLinkChecked": "2026-10-23"
+}

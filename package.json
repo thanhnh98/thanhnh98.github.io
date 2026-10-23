@@ -22,7 +22,8 @@
     "inject-seasonal-seo": "node scripts/inject-seasonal-seo-snippets.js",
     "inject-lunar-today": "node scripts/inject-lunar-today.js",
     "predeploy": "npm run build:tet-runner && npm run update-version",
-    "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
+    "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master",
+    "check:occasion-links": "node scripts/check-occasion-links.js"
   },
   "keywords": [
     "tet",
