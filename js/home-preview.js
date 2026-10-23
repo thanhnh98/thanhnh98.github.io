@@ -35,24 +35,26 @@
   });
 
   const appDialog = document.getElementById('preview-app-dialog');
-  const appDialogTitle = document.getElementById('preview-app-dialog-title');
-  const appDialogImage = document.getElementById('preview-app-dialog-image');
-  let activeShortcut = null;
-  document.querySelectorAll('[data-preview-app-feature]').forEach((shortcut) => {
-    shortcut.addEventListener('click', () => {
-      activeShortcut = shortcut;
-      appDialogTitle.textContent = shortcut.dataset.previewAppFeature + ' trên ứng dụng Sắp Tết';
-      appDialogImage.src = shortcut.querySelector('img').getAttribute('src');
-      appDialog.showModal();
+  if (appDialog) {
+    const appDialogTitle = document.getElementById('preview-app-dialog-title');
+    const appDialogImage = document.getElementById('preview-app-dialog-image');
+    let activeShortcut = null;
+    document.querySelectorAll('[data-preview-app-feature]').forEach((shortcut) => {
+      shortcut.addEventListener('click', () => {
+        activeShortcut = shortcut;
+        appDialogTitle.textContent = shortcut.dataset.previewAppFeature + ' trên ứng dụng Sắp Tết';
+        appDialogImage.src = shortcut.querySelector('img').getAttribute('src');
+        appDialog.showModal();
+      });
     });
-  });
-  document.getElementById('preview-app-dialog-close').addEventListener('click', () => appDialog.close());
-  appDialog.addEventListener('click', (event) => {
-    if (event.target !== appDialog) return;
-    const rect = appDialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) appDialog.close();
-  });
-  appDialog.addEventListener('close', () => activeShortcut?.focus());
+    document.getElementById('preview-app-dialog-close').addEventListener('click', () => appDialog.close());
+    appDialog.addEventListener('click', (event) => {
+      if (event.target !== appDialog) return;
+      const rect = appDialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) appDialog.close();
+    });
+    appDialog.addEventListener('close', () => activeShortcut?.focus());
+  }
 
   function bindMascotWishes(selector, messages) {
     const mascot = document.querySelector(selector);
@@ -74,7 +76,7 @@
         setTimeout(() => {
           bubble.hidden = true;
           showing = false;
-          showNext();
+          setTimeout(showNext, 40);
         }, 320);
       }, 3000);
     }
@@ -110,6 +112,8 @@
   setInterval(syncToday, 30000);
 
   const wishTrigger = document.querySelector('.preview-quote');
+  const wishShortcut = document.querySelector('[data-preview-wish-shortcut]');
+  let wishReturnFocus = wishTrigger;
   const wishDialog = document.getElementById('home-wish-dialog');
   const wishImage = document.getElementById('home-wish-image');
   const wishText = document.getElementById('home-wish-text');
@@ -119,9 +123,11 @@
   let currentWishId = null;
   let currentWishFile = null;
   let currentWishCountdown = 0;
+  let currentWishBeforeTet = false;
   let currentWishImageUrl = null;
   let wishImageJob = 0;
   let wishImageModulePromise = null;
+  const tetStartTime = new Date('2027-02-06T00:00:00+07:00').getTime();
 
   function wishUrl(id) {
     return 'https://saptet.vn/?loi-chuc=' + id;
@@ -130,7 +136,7 @@
   function displayedCountdownDays() {
     const days = Number.parseInt(document.getElementById('days')?.textContent || '', 10);
     if (Number.isInteger(days) && days >= 0) return days;
-    return Math.max(0, Math.floor((new Date('2027-02-06T00:00:00+07:00').getTime() - Date.now()) / 86400000));
+    return Math.max(0, Math.floor((tetStartTime - Date.now()) / 86400000));
   }
 
   function loadWishImageModule() {
@@ -164,19 +170,27 @@
     try {
       const imageModule = await loadWishImageModule();
       const days = displayedCountdownDays();
-      const blob = await imageModule.render(message, days);
+      const beforeTet = Date.now() < tetStartTime;
+      const blob = await imageModule.render(message, days, beforeTet);
       if (job !== wishImageJob) return;
       currentWishCountdown = days;
+      currentWishBeforeTet = beforeTet;
       currentWishFile = new File([blob], 'sap-tet-loi-chuc-' + id + '.png', { type: 'image/png' });
       currentWishImageUrl = URL.createObjectURL(blob);
       wishImage.src = currentWishImageUrl;
-      wishImage.alt = 'Thiệp Tết với lời chúc: ' + message + (days > 0 ? '. Tết chỉ còn ' + days + ' ngày.' : '');
+      const caption = imageModule.countdownCaption(days, beforeTet);
+      wishImage.alt = 'Thiệp Tết với lời chúc: ' + message + (caption ? '. ' + caption + '.' : '');
       wishDownload.disabled = false;
       wishStatus.textContent = 'Ảnh đã sẵn sàng để chia sẻ hoặc tải xuống.';
     } catch (error) {
       if (job === wishImageJob) wishStatus.textContent = 'Chưa tạo được ảnh. Bạn vẫn có thể chia sẻ liên kết lời chúc.';
     }
   }
+
+  setInterval(() => {
+    if (!wishDialog?.open || !currentWishFile || currentWishId === null) return;
+    if (currentWishCountdown !== displayedCountdownDays() || currentWishBeforeTet !== (Date.now() < tetStartTime)) openWish(currentWishId);
+  }, 1000);
 
   async function copyWishLink() {
     const url = wishLink.href;
@@ -197,17 +211,20 @@
     wishStatus.textContent = 'Đã sao chép liên kết lời chúc.';
   }
 
-  wishTrigger?.addEventListener('click', () => {
+  function openDailyWish(trigger) {
     const dateKey = renderedDateKey || window.HomeRetention?.getVietnamDateKey(new Date());
+    wishReturnFocus = trigger;
     openWish(window.HomeDailyQuote?.idForDateKey(dateKey));
-  });
+  }
+  wishTrigger?.addEventListener('click', () => openDailyWish(wishTrigger));
+  wishShortcut?.addEventListener('click', () => openDailyWish(wishShortcut));
   document.getElementById('home-wish-close')?.addEventListener('click', () => wishDialog.close());
   wishDialog?.addEventListener('click', (event) => {
     if (event.target !== wishDialog) return;
     const rect = wishDialog.getBoundingClientRect();
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) wishDialog.close();
   });
-  wishDialog?.addEventListener('close', () => wishTrigger?.focus());
+  wishDialog?.addEventListener('close', () => (wishReturnFocus?.isConnected ? wishReturnFocus : wishTrigger)?.focus());
   document.getElementById('home-wish-copy')?.addEventListener('click', copyWishLink);
   wishDownload?.addEventListener('click', () => {
     if (!currentWishImageUrl || !currentWishFile) return;
@@ -222,7 +239,7 @@
     if (currentWishId === null) return;
     const url = wishUrl(currentWishId);
     const message = wishText.textContent;
-    const caption = window.HomeWishShareImage?.countdownCaption(currentWishCountdown);
+    const caption = window.HomeWishShareImage?.countdownCaption(currentWishCountdown, currentWishBeforeTet);
     const shareText = [message, caption].filter(Boolean).join('\n');
     if (!navigator.share) { await copyWishLink(); return; }
     try {

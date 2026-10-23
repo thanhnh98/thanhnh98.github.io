@@ -1,11 +1,14 @@
 /**
  * Phiên bản tiếng Việt cho các trang đếm ngược ngày lễ thế giới.
  * Khóa = slug trong data/holidays-en.js (ngày, múi giờ, màu, hình dùng chung từ bản tiếng Anh).
- * Hiển thị tại https://saptet.vn/<slug>?lang=vi (cùng file <slug>.html với bản tiếng Anh), hub /countdowns?lang=vi. Chạy `npm run generate-holidays`.
+ * Hiển thị tại https://saptet.vn/<slug>?lang=vi (cùng file <slug>.html với bản tiếng Anh),
+ * riêng Halloween có trang tiếng Việt render sẵn tại /sap-halloween/. Hub: /countdowns?lang=vi.
+ * Chạy `npm run generate-holidays`.
  *
  * zoneLabel chỉ có ở sự kiện scope 'national'. dateNote với sự kiện moonDisclaimer phải nhắc "trăng lưỡi liềm".
  * seeAlso (tuỳ chọn): liên kết sang trang tiếng Việt sẵn có trên saptet.vn cho cùng dịp lễ.
- * H1 = name (không thêm "Sắp"). sapSlug = URL alias ASCII /sap-<tên-việt>/ → redirect noindex về /<slug>?lang=vi.
+ * H1 = name (không thêm "Sắp"). sapSlug = URL alias ASCII /sap-<tên-việt>/;
+ * riêng /sap-halloween/ là trang chính, các alias còn lại redirect noindex.
  */
 const HOLIDAYS_VI = {
   'halloween': {
@@ -19,6 +22,7 @@ const HOLIDAYS_VI = {
       'sắp halloween',
       'sắp đến halloween',
       'đếm ngược halloween',
+      'còn mấy ngày nữa đến halloween',
       'còn bao nhiêu ngày nữa đến halloween',
       'halloween 2026 vào ngày nào',
       'halloween là ngày mấy',
@@ -330,7 +334,6 @@ const HOLIDAYS_VI = {
       { q: 'Nước nào đón Giáng sinh sớm nhất?', a: 'Quần đảo Line của Kiribati (UTC+14) chạm mốc nửa đêm đầu tiên, tiếp theo là New Zealand. Samoa thuộc Mỹ và đảo Baker nằm trong số những nơi đón muộn nhất.' }
     ],
     wikipedia: 'https://vi.wikipedia.org/wiki/Giáng_sinh',
-    seeAlso: { href: '/noel.html', label: 'Xem thêm: trang đếm ngược Noel của Sắp Tết' },
   },
   'new-year': {
     name: 'Năm mới',

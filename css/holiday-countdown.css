@@ -330,6 +330,13 @@ html.hc-lang-pending body { visibility: hidden; }
 
 .hc-info p { margin: 0; }
 
+.hc-info-answer {
+    margin-bottom: 0.6rem !important;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
 .hc-info-date {
     font-family: var(--hc-display);
     font-size: 1.3rem;

@@ -4,7 +4,10 @@
  */
 
 const TET_2027 = new Date('2027-02-06T00:00:00+07:00');
+// Ngày 29 Tết để trả lời "còn mấy ngày đến đêm giao thừa" theo ngày lịch.
 const GIAO_THUA_2027 = new Date('2027-02-05T00:00:00+07:00');
+// Thời khắc kết thúc đêm 29 Tết, dùng cho đồng hồ đếm ngược theo giây.
+const GIAO_THUA_INSTANT_2027 = TET_2027;
 
 const VN_WEEKDAYS = [
   'Chủ Nhật',
@@ -95,7 +98,7 @@ function buildTetSeoPayload(now = new Date()) {
       daysUntilTetAnswer: `Đồng hồ ở đầu trang hiển thị số ngày, giờ và phút còn lại đến 00:00 ngày 06/02/2027 theo giờ Việt Nam. Số ngày được cập nhật realtime để bạn không phải tự tính lại.`,
       tetDateAnswer:
         'Tết Nguyên Đán 2027 là Thứ Bảy, ngày 6 tháng 2 năm 2027 dương lịch (mùng 1 tháng Giêng năm Đinh Mùi).',
-      giaoThuaAnswer: `Giao thừa 2027 là đêm 30 Tết, ngày ${giaoThuaDate} dương lịch. Bạn có thể mở trang đếm ngược giao thừa để xem số ngày và giờ còn lại theo thời gian thực.`,
+      giaoThuaAnswer: `Giao thừa 2027 là đêm 29 Tết, ngày ${giaoThuaDate} dương lịch. Thời khắc chuyển sang mùng 1 là 00:00 ngày 06/02/2027 theo giờ Việt Nam.`,
       zodiacAnswer: 'Tết 2027 là năm Đinh Mùi – năm con Dê theo 12 con giáp Việt Nam.',
       whyChangesAnswer:
         'Số ngày giảm dần khi thời gian tiến gần hơn tới mùng 1 Tết (06/02/2027). Đồng hồ trên trang tự cập nhật theo giờ Việt Nam để câu trả lời luôn khớp thời điểm bạn mở trang.',
@@ -103,7 +106,7 @@ function buildTetSeoPayload(now = new Date()) {
     metaDescriptionLanding:
       'Xem còn bao nhiêu ngày nữa đến Tết Nguyên Đán 2027 với đồng hồ đếm ngược realtime theo giờ Việt Nam, kèm ngày Tết, giao thừa và FAQ nhanh.',
     metaDescriptionHome: `Còn ${daysUntilTet} ngày nữa đến Tết Nguyên Đán 2027, vào ${tetWeekday} ${tetDate}. Xem đồng hồ đếm ngược theo giờ Việt Nam và lịch Tết.`,
-    metaDescriptionGiaoThua: `Hôm nay còn ${daysUntilGiaoThua} ngày nữa đến đêm giao thừa 2027 (30 Tết, ${giaoThuaDate}). Đếm ngược từng giây đến 00:00 mùng 1 Tết Đinh Mùi theo giờ Việt Nam.`,
+    metaDescriptionGiaoThua: `Hôm nay còn ${daysUntilGiaoThua} ngày nữa đến đêm giao thừa 2027 (29 Tết, ${giaoThuaDate}). Đếm ngược từng giây đến 00:00 mùng 1 Tết Đinh Mùi theo giờ Việt Nam.`,
     titleLanding: 'Còn Bao Nhiêu Ngày Nữa Đến Tết 2027? | Sắp Tết',
     titleHome: 'Còn Bao Nhiêu Ngày Nữa Đến Tết 2027? | Sắp Tết',
   };
@@ -112,8 +115,10 @@ function buildTetSeoPayload(now = new Date()) {
 module.exports = {
   TET_2027,
   GIAO_THUA_2027,
+  GIAO_THUA_INSTANT_2027,
   buildTetSeoPayload,
   calendarDaysUntil,
   daysUntil,
   getVietnamNow,
+  vnDateKey,
 };

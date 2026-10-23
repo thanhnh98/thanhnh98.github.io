@@ -66,7 +66,7 @@ test('workday adjustment moves forward through weekends and official holiday per
   assert.equal(weekend.adjusted, true);
 
   const tet = payday.salaryDateForMonth(2027, 2, { mode: 'fixed-day', value: 5, moveToNextWorkday: true });
-  assert.equal(tet.date.toISOString(), '2027-02-14T17:00:00.000Z');
+  assert.equal(tet.date.toISOString(), '2027-02-10T17:00:00.000Z');
   assert.match(tet.adjustmentReason, /Tết Nguyên Đán/);
   assert.equal(tet.estimated, false);
 });
@@ -90,6 +90,7 @@ test('workday adjustment marks years without an official calendar as estimated',
 test('official holiday data distinguishes published and estimated years', () => {
   assert.equal(holidays.getCalendarStatus(2027).status, 'official');
   assert.equal(holidays.getHoliday(2027, 2, 10).name, 'Tết Nguyên Đán');
+  assert.equal(holidays.getHoliday(2027, 2, 11), null);
   assert.equal(holidays.getCalendarStatus(2028).status, 'estimated');
   assert.equal(holidays.getHoliday(2028, 9, 2).status, 'estimated');
 });

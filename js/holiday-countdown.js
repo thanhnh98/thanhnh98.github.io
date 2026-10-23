@@ -228,7 +228,26 @@
             setDigits(root, '[data-hc-unit="minutes"]', pad(parts.minutes));
             setDigits(root, '[data-hc-unit="seconds"]', pad(parts.seconds));
             setText(document, '[data-hc-year]', year);
-            setText(root, '[data-hc-date]', formatDateTime(T, occ.start, zone, false) + (config.expected ? T.expected : ''));
+            var whenDate = formatDateTime(T, occ.start, zone, false);
+            setText(root, '[data-hc-date]', whenDate + (config.expected ? T.expected : ''));
+            if (root.querySelector('[data-hc-countdown-answer]')) {
+                var calendarDays = calendarDaysUntil(occ, now, zone);
+                var countdownAnswer = occ.live
+                    ? config.name + ' ' + year + ' is happening now. The countdown will switch to the next ' + config.name + ' automatically.'
+                    : 'There are ' + dayLabel(T, calendarDays) + ' until ' + config.name + ' ' + year + '. The live countdown updates every second.';
+                setText(root, '[data-hc-countdown-answer]', countdownAnswer);
+                var whenPlace = config.scope === 'national' ? ' (' + config.zoneLabel + ' time)' : '';
+                var whenAnswer = occ.live
+                    ? config.name + ' ' + year + ' is happening now. It began on ' + whenDate + '.'
+                    : config.name + ' ' + year + ' is ' + (config.expected ? 'expected ' : '') + 'on ' + whenDate + whenPlace + '. That is ' + dayLabel(T, calendarDays) + ' from today.';
+                setText(root, '[data-hc-when-answer]', whenAnswer);
+                var titles = [
+                    'How Many Days Until ' + config.name + '? ' + year + ' Countdown',
+                    'How Many Days Until ' + config.name + '?'
+                ];
+                var title = titles.find(function (candidate) { return candidate.length <= 60; }) || titles[titles.length - 1];
+                if (document.title !== title) document.title = title;
+            }
             if (T.hijriLocale) {
                 setText(root, '[data-hc-hijri]', format(T.hijriLocale, occ.start, { timeZone: zone, day: 'numeric', month: 'long', year: 'numeric' }));
             }

@@ -105,7 +105,7 @@ const TARGETS = {
     return replaceOrThrow(
       html,
       /(<p data-seo="giao-thua-days">)[^<]*(<\/p>)/,
-      `$1Hôm nay còn ${payload.daysUntilGiaoThua} ngày nữa đến đêm giao thừa (30 Tết, ${payload.giaoThuaDate}).$2`,
+      `$1Hôm nay còn ${payload.daysUntilGiaoThua} ngày nữa đến đêm giao thừa (29 Tết, ${payload.giaoThuaDate}).$2`,
       'giao-thua days line',
     );
   },

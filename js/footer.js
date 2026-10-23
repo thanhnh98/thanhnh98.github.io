@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const footerContainer = document.getElementById('footer-container');
     if (!footerContainer) return;
 
+    if (!document.querySelector('link[href="/css/footer-compact.css"]')) {
+        const footerStyles = document.createElement('link');
+        footerStyles.rel = 'stylesheet';
+        footerStyles.href = '/css/footer-compact.css';
+        document.head.appendChild(footerStyles);
+    }
+
     const fallbackFooter = `
         <footer id="footer" class="home-site-footer">
             <div class="home-footer-ribbon" aria-hidden="true"></div>
@@ -24,13 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="/tro-choi-tet.html">Trò chơi Tết</a>
                         <a href="/images-metadata/">Thông số ảnh</a>
                     </nav>
-                    <nav class="home-footer-links" aria-label="Khám phá Sắp Tết">
-                        <h2>Khám phá</h2>
-                        <a href="/tin-tuc/">Blog Sắp Tết</a>
-                        <a href="/cua-hang.html">Cửa hàng Tết</a>
-                        <a href="/su-kien-quan-trong.html">Sự kiện quan trọng</a>
-                        <a href="/ung-dung.html">Giới thiệu ứng dụng</a>
-                    </nav>
+                    <nav class="home-footer-links" aria-label="Khám phá Sắp Tết"><h2>Khám phá</h2><a href="/tin-tuc/">Blog Sắp Tết</a><a href="/cua-hang.html">Cửa hàng Tết</a><a href="/su-kien-quan-trong.html">Sự kiện quan trọng</a><a href="/ung-dung.html">Giới thiệu ứng dụng</a><a href="/when-is-tet-in-vietnam/" hreflang="en" lang="en">When is Tet in Vietnam?</a></nav>
                     <div class="home-footer-community">
                         <h2>Kết nối</h2>
                         <p>Theo dõi Sắp Tết để nhận nội dung và cập nhật mới.</p>
@@ -41,9 +42,28 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </div>
                 </div>
+                <details class="home-footer-sap-group" open>
+                    <summary><span>Sắp X</span><small>14 trang đếm ngược</small></summary>
+                    <nav class="home-footer-sap-links" aria-label="Các trang Sắp X">
+                        <a href="/">Sắp Tết</a>
+                        <a href="/sap-co-luong/">Sắp Có Lương</a>
+                        <a href="/sap-halloween/">Sắp Halloween</a>
+                        <a href="/diwali?lang=vi">Sắp Diwali</a>
+                        <a href="/thanksgiving?lang=vi">Sắp Lễ Tạ ơn</a>
+                        <a href="/hanukkah?lang=vi">Sắp Hanukkah</a>
+                        <a href="/noel.html">Sắp Giáng sinh</a>
+                        <a href="/new-year?lang=vi">Sắp Năm mới</a>
+                        <a href="/chinese-new-year?lang=vi">Sắp Tết Trung Quốc</a>
+                        <a href="/ramadan?lang=vi">Sắp Ramadan</a>
+                        <a href="/valentines-day?lang=vi">Sắp Valentine</a>
+                        <a href="/eid-al-fitr?lang=vi">Sắp Eid al-Fitr</a>
+                        <a href="/easter?lang=vi">Sắp Lễ Phục sinh</a>
+                        <a href="/songkran?lang=vi">Sắp Songkran</a>
+                    </nav>
+                </details>
                 <div class="home-footer-bottom">
                     <span>© 2026 Sắp Tết · Phát triển bởi <a class="home-footer-tlife" href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span>
-                    <nav aria-label="Pháp lý"><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
+                    <nav aria-label="Pháp lý"><a href="?lang=en" hreflang="en" lang="en" data-site-lang-toggle>English</a><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
                 </div>
             </div>
         </footer>`;
@@ -74,6 +94,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function finishFooterRender(html) {
         footerContainer.innerHTML = html;
+        const englishEquivalent = {
+            '/noel.html': '/christmas',
+            '/tet-2027-la-ngay-nao/': '/when-is-tet-in-vietnam/'
+        }[window.location.pathname];
+        if (englishEquivalent && new URLSearchParams(window.location.search).get('lang') !== 'en') {
+            footerContainer.querySelector('[data-site-lang-toggle]')?.setAttribute('href', englishEquivalent);
+        }
         renderIcons();
 
         const appCta = footerContainer.querySelector('[data-footer-app-cta]');

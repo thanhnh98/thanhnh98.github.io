@@ -14,6 +14,7 @@ const decode = (text) => text.replace(/&#39;/g, "'").replace(/&quot;/g, '"').rep
 // Ký tự có dấu riêng của tiếng Việt (ă, â, đ, ơ, ư, ạ…ỹ).
 const VIETNAMESE = /[ăâđêôơưĂÂĐÊÔƠƯẠ-ỹ]/;
 const re = (text) => new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+const viHref = (slug) => slug === 'halloween' ? '/sap-halloween/' : slug === 'christmas' ? '/noel.html' : `/${slug}?lang=vi`;
 
 function graphOf(html) {
   return [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
@@ -56,11 +57,12 @@ test('Vietnamese data covers every holiday with the same structure as the Englis
 for (const holiday of HOLIDAYS_EN) {
   const { slug } = holiday;
   const vi = HOLIDAYS_VI[slug];
-  const file = `${slug}.html?lang=vi`;
-  const canonical = `https://saptet.vn/${slug}?lang=vi`;
+  const file = slug === 'halloween' ? 'sap-halloween/index.html' : `${slug}.html?lang=vi`;
+  const canonical = `https://saptet.vn${viHref(slug)}`;
 
   test(`${file} is an indexable Vietnamese countdown page`, () => {
-    const { html, head, source } = langVariant(`${slug}.html`, 'vi');
+    const { html: queryHtml, head, source } = langVariant(`${slug}.html`, 'vi');
+    const html = slug === 'halloween' ? read('sap-halloween/index.html') : queryHtml;
     assert.equal(head.url, canonical);
     assert.equal(head.dir, null);
     assert.match(source, /<meta name="robots" content="index, follow, max-image-preview:large">/);
@@ -73,8 +75,12 @@ for (const holiday of HOLIDAYS_EN) {
     const title = decode(html.match(/<title>([^<]+)<\/title>/)[1]);
     const description = decode(html.match(/<meta name="description" content="([^"]+)"/)[1]);
     assert.ok(title.length <= 60, `title length ${title.length}: ${title}`);
-    assert.ok(title.startsWith(`${vi.name} 20`), `title leads with the name + year: ${title}`);
-    assert.match(title, /còn bao nhiêu ngày nữa\?/i, `title keeps the question: ${title}`);
+    if (slug === 'halloween') {
+      assert.match(title, /^Còn mấy ngày nữa đến Halloween 20\d{2}\?/);
+    } else {
+      assert.ok(title.startsWith(`${vi.name} 20`), `title leads with the name + year: ${title}`);
+      assert.match(title, /còn bao nhiêu ngày nữa\?/i, `title keeps the question: ${title}`);
+    }
     assert.ok(description.length >= 100 && description.length <= 160, `description length ${description.length}`);
     // Landing chỉ hiển thị tên sự kiện, không còn "Sắp <tên>".
     assert.match(html, new RegExp(`<h1 id="hc-title" class="hc-title">${vi.name} <span data-hc-year>\\d{4}</span></h1>`));
@@ -106,14 +112,14 @@ for (const holiday of HOLIDAYS_EN) {
     assert.deepEqual(config.dates.length > 1, true);
   });
 
-  for (const stubFile of [`${vi.sapSlug}/index.html`, `vi/${slug}.html`]) {
-    test(`${stubFile} is a noindex redirect to /${slug}?lang=vi`, () => {
+  for (const stubFile of slug === 'halloween' ? [`vi/${slug}.html`] : [`${vi.sapSlug}/index.html`, `vi/${slug}.html`]) {
+    test(`${stubFile} is a noindex redirect to ${viHref(slug)}`, () => {
       const stub = read(stubFile);
       assert.match(stub, /<html lang="vi">/);
       assert.match(stub, re(`<link rel="canonical" href="${canonical}" />`));
-      assert.match(stub, re(`<meta http-equiv="refresh" content="0;url=/${slug}?lang=vi" />`));
+      assert.match(stub, re(`<meta http-equiv="refresh" content="0;url=${viHref(slug)}" />`));
       assert.match(stub, /<meta name="robots" content="noindex, follow" \/>/);
-      assert.match(stub, re(`location.replace("/${slug}?lang=vi" + location.hash)`));
+      assert.match(stub, re(`location.replace("${viHref(slug)}" + location.hash)`));
       assert.ok(stub.includes(vi.name), 'stub names the holiday');
       assert.ok(!stub.includes('Sắp '), 'no "Sắp" in the stub');
       assert.ok(stub.length < 1500, 'stays a small redirect stub');
@@ -122,12 +128,13 @@ for (const holiday of HOLIDAYS_EN) {
   }
 
   test(`${file} pairs with its English page through hreflang and structured data`, () => {
-    const { html, source: english } = langVariant(`${slug}.html`, 'vi');
+    const { html: queryHtml, source: english } = langVariant(`${slug}.html`, 'vi');
+    const html = slug === 'halloween' ? read('sap-halloween/index.html') : queryHtml;
     assert.match(english, re(`hreflang="en" href="https://saptet.vn/${slug}">`));
     assert.match(english, re(`hreflang="vi" href="${canonical}">`));
     assert.match(english, re(`hreflang="x-default" href="https://saptet.vn/${slug}">`));
     if (HOLIDAYS_AR[slug]) assert.match(english, re(`hreflang="ar" href="https://saptet.vn/${slug}?lang=ar">`));
-    assert.match(english, re(`<a href="/${slug}?lang=vi" hreflang="vi" lang="vi">Tiếng Việt</a>`));
+    assert.match(english, re(`<a href="${viHref(slug)}" hreflang="vi" lang="vi">Tiếng Việt</a>`));
     assert.match(html, re(`<a href="/${slug}" hreflang="en" lang="en">English</a>`));
     assert.doesNotMatch(html, /href="\/vi\//, 'no links to the legacy /vi/ paths');
 
@@ -151,6 +158,24 @@ for (const holiday of HOLIDAYS_EN) {
   });
 }
 
+test('Halloween serves indexable Vietnamese HTML without a language swap', () => {
+  const html = read('sap-halloween/index.html');
+  const canonical = 'https://saptet.vn/sap-halloween/';
+  assert.match(html, /^<!DOCTYPE html>\n<html lang="vi">/);
+  assert.match(html, re(`<link rel="canonical" href="${canonical}">`));
+  assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large">/);
+  assert.doesNotMatch(html, /http-equiv="refresh"|id="hc-lang-data"|data-hc-lang/);
+  assert.match(html, /<title>Còn mấy ngày nữa đến Halloween 20\d{2}\? Đếm ngược<\/title>/);
+  assert.match(html, /<h2>Còn mấy ngày nữa đến Halloween <span data-hc-year>20\d{2}<\/span>\?<\/h2>/);
+  assert.match(html, /<meta name="keywords" content="[^"]*còn mấy ngày nữa đến halloween/);
+  assert.match(html, /<script id="holiday-config" type="application\/json">/);
+  const page = graphOf(html).find((node) => node['@type'] === 'WebPage');
+  assert.equal(page.url, canonical);
+  assert.equal(page.inLanguage, 'vi');
+  assert.match(read('sitemap.xml'), re(`<loc>${canonical}</loc>`));
+  assert.doesNotMatch(read('sitemap.xml'), /<loc>https:\/\/saptet\.vn\/halloween\?lang=vi<\/loc>/);
+});
+
 test('Vietnamese hub lists every holiday by category and localizes card labels', () => {
   const { html: hub, head, source } = langVariant('countdowns.html', 'vi');
   assert.equal(head.url, 'https://saptet.vn/countdowns?lang=vi');
@@ -160,7 +185,7 @@ test('Vietnamese hub lists every holiday by category and localizes card labels',
     const section = hub.split(`<section class="hc-section hc-category" id="${category.id}"`)[1].split('</section>')[0];
     assert.ok(decode(section).includes(HOLIDAY_CATEGORIES_VI[category.id].title));
     for (const holiday of HOLIDAYS_EN.filter((item) => item.category === category.id)) {
-      assert.match(section, re(`href="/${holiday.slug}?lang=vi"`));
+      assert.match(section, re(`href="${viHref(holiday.slug)}"`));
     }
   }
   const config = JSON.parse(hub.match(/<script id="holiday-config" type="application\/json">([\s\S]*?)<\/script>/)[1]);
@@ -172,7 +197,6 @@ test('Vietnamese hub lists every holiday by category and localizes card labels',
 
 // Menu "More / Xem thêm": mọi trang đều có lối tắt tới toàn bộ danh mục, mục đầu tiên quay về trang tất cả.
 const enHref = (slug) => `/${slug}`;
-const viHref = (slug) => `/${slug}?lang=vi`;
 const MENU_PAGES = [
   ...HOLIDAYS_EN.map((holiday) => ({ file: `${holiday.slug}.html`, lang: 'en', href: enHref, label: 'More', all: 'All countdowns', current: enHref(holiday.slug) })),
   { file: 'countdowns.html', lang: 'en', href: enHref, label: 'More', all: 'All countdowns', current: '/countdowns' },

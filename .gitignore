@@ -25,6 +25,7 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+data/site-vi-en.json.tmp
 
 # Optional: Uncomment nếu không muốn commit version files
 # .version

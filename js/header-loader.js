@@ -87,6 +87,14 @@ class HeaderLoader {
                 document.body.insertAdjacentHTML('afterbegin', headerHTML);
             }
 
+            const englishEquivalent = {
+                '/noel.html': '/christmas',
+                '/tet-2027-la-ngay-nao/': '/when-is-tet-in-vietnam/'
+            }[window.location.pathname];
+            if (englishEquivalent && new URLSearchParams(window.location.search).get('lang') !== 'en') {
+                document.querySelector('#header-container [data-site-lang-toggle]')?.setAttribute('href', englishEquivalent);
+            }
+
             // Set active state
             if (document.getElementById('countdown-share-dialog')) {
                 const menu = document.querySelector('.mobile-menu-toggle');
@@ -337,6 +345,12 @@ class HeaderLoader {
 }
 
 // Initialize header loader when DOM is ready
+if (new URLSearchParams(window.location.search).get('lang') === 'en') {
+    const siteLanguageScript = document.createElement('script');
+    siteLanguageScript.src = '/js/site-language.js';
+    document.head.appendChild(siteLanguageScript);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const headerLoader = new HeaderLoader();
     headerLoader.loadHeader();

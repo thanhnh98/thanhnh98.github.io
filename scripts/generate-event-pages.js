@@ -109,6 +109,12 @@ function countdownLabel(days) {
   return `Còn ${days} ngày`;
 }
 
+function teacherCountdownAnswer(occurrence) {
+  const date = formatDateShort(occurrence.dateKey);
+  if (occurrence.daysUntil === 0) return `Hôm nay là Ngày Nhà giáo Việt Nam ${occurrence.year}, ngày ${date}.`;
+  return `Còn ${occurrence.daysUntil} ngày nữa đến Ngày Nhà giáo Việt Nam ${occurrence.year}, ${formatDateLong(occurrence.dateKey).split(',')[0]}, ngày ${date}.`;
+}
+
 function badgeHtml(event, occurrence) {
   const badges = [
     `<span class="events-badge${event.category === 'lunar' ? ' events-badge--lunar' : ''}">${calendarLabel(event)}</span>`,
@@ -228,11 +234,15 @@ function makeFaq(event, occurrence, content) {
     ? `${event.name} được đánh dấu là ngày nghỉ lễ chính thức. Lịch nghỉ, nghỉ bù hoặc hoán đổi ngày làm việc cần đối chiếu thông báo áp dụng cho từng năm.`
     : `${event.name} không được đánh dấu là ngày nghỉ lễ chính thức trong danh mục này. Lịch làm việc của từng cơ quan, trường học hoặc doanh nghiệp có thể khác nhau.`;
   const activityAnswer = `Bạn có thể ${content.activities.map((item) => item.charAt(0).toLowerCase() + item.slice(1)).join('; ')}.`;
-  return [
+  const faq = [
     { question: `${event.name} lần tới là ngày nào?`, answer: dateAnswer },
     { question: `${event.name} có được nghỉ không?`, answer: holidayAnswer },
     { question: `Nên làm gì vào ${event.name}?`, answer: activityAnswer },
   ];
+  if (event.id === 'solar-nha-giao-viet-nam') {
+    faq.unshift({ question: `Còn bao nhiêu ngày nữa đến 20/11/${occurrence.year}?`, answer: teacherCountdownAnswer(occurrence), liveDate: occurrence.dateKey });
+  }
+  return faq;
 }
 
 function relatedItems(currentIndex, items) {
@@ -240,9 +250,8 @@ function relatedItems(currentIndex, items) {
   return items.slice(Math.max(0, currentIndex - 3), currentIndex);
 }
 
-function detailSchema(event, occurrence, modified, description) {
+function detailSchema(event, occurrence, modified, description, headline) {
   const canonical = eventUrl(event);
-  const headline = `${event.name} ${occurrence.year} là ngày nào?`;
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -289,7 +298,11 @@ function generateDetail(item, index, items) {
   const content = EVENTS_CONTENT.getEventContent(event.id);
   const faq = makeFaq(event, occurrence, content);
   const canonical = eventUrl(event);
-  const description = compact(`${event.name} ${occurrence.year} diễn ra ngày ${formatDateShort(occurrence.dateKey)}. Xem đếm ngược, ý nghĩa, hoạt động gợi ý và thông tin ngày nghỉ.`, 158);
+  const teacherPage = event.id === 'solar-nha-giao-viet-nam';
+  const headline = teacherPage ? `Còn bao nhiêu ngày nữa đến 20/11/${occurrence.year}?` : `${event.name} ${occurrence.year} là ngày nào?`;
+  const description = compact(teacherPage
+    ? `${teacherCountdownAnswer(occurrence)} Xem đếm ngược và ý nghĩa ngày 20/11.`
+    : `${event.name} ${occurrence.year} diễn ra ngày ${formatDateShort(occurrence.dateKey)}. Xem đếm ngược, ý nghĩa, hoạt động gợi ý và thông tin ngày nghỉ.`, 158);
   const target = `su-kien/${event.slug}/index.html`;
   const template = read('templates/event-detail.html');
   const nextSignature = signature({
@@ -309,17 +322,17 @@ function generateDetail(item, index, items) {
               <span>${formatDateShort(relatedOccurrence.dateKey)} · ${calendarLabel(relatedEvent)}</span>
               <strong>${escapeHtml(relatedEvent.name)}</strong>
             </a>`).join('');
-  const html = replaceTokens(template, {
-    TITLE: escapeHtml(`${event.name} ${occurrence.year} là ngày nào? Ý nghĩa & đếm ngược | Sắp Tết`),
+  let html = replaceTokens(template, {
+    TITLE: escapeHtml(teacherPage ? `${headline} | Sắp Tết` : `${headline} Ý nghĩa & đếm ngược | Sắp Tết`),
     META_DESCRIPTION: escapeHtml(description),
     CANONICAL: canonical,
-    OG_TITLE: escapeHtml(`${event.name} ${occurrence.year} là ngày nào? | Sắp Tết`),
+    OG_TITLE: escapeHtml(`${headline} | Sắp Tết`),
     ASSET_VERSION: EVENTS_ASSET_VERSION,
     SIGNATURE: nextSignature,
-    SCHEMA: JSON.stringify(detailSchema(event, occurrence, modified, description), null, 2).replace(/</g, '\\u003c'),
+    SCHEMA: JSON.stringify(detailSchema(event, occurrence, modified, description, headline), null, 2).replace(/</g, '\\u003c'),
     EVENT_NAME: escapeHtml(event.name),
     CATEGORY_LABEL: escapeHtml(categoryLabel(event)),
-    H1: escapeHtml(`${event.name} ${occurrence.year} là ngày nào?`),
+    H1: escapeHtml(headline),
     DESCRIPTION: escapeHtml(event.description),
     BADGES: badgeHtml(event, occurrence),
     DATE_LONG: escapeHtml(formatDateLong(occurrence.dateKey)),
@@ -330,12 +343,17 @@ function generateDetail(item, index, items) {
     CONTEXT: escapeHtml(content.context),
     ACTIVITIES: content.activities.map((activity) => `<li>${escapeHtml(activity)}</li>`).join(''),
     TIP: escapeHtml(content.tip),
-    FAQ: faq.map((item) => `<details><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join(''),
+    FAQ: faq.map((item) => `<details><summary>${escapeHtml(item.question)}</summary><p${item.liveDate ? ` data-event-answer data-date="${item.liveDate}"` : ''}>${escapeHtml(item.answer)}</p></details>`).join(''),
     RELATED: related,
     DATE_SHORT: formatDateShort(occurrence.dateKey),
     CALENDAR_TYPE: calendarLabel(event),
     HOLIDAY_ROW: isHoliday(event) ? '<div><dt>Ngày nghỉ lễ</dt><dd>Có</dd></div>' : '',
   });
+  if (teacherPage) {
+    const lead = `<p class="event-article-lead">${escapeHtml(event.description)}</p>`;
+    if (!html.includes(lead)) throw new Error('Teacher event lead not found');
+    html = html.replace(lead, `${lead}\n        <p class="event-article-lead" data-event-answer data-date="${occurrence.dateKey}">${escapeHtml(teacherCountdownAnswer(occurrence))}</p>`);
+  }
   write(target, html);
   return { event, lastmod: modified };
 }
@@ -370,4 +388,6 @@ function main() {
   console.log(`generate-event-pages: wrote hub and ${details.length} event pages`);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { teacherCountdownAnswer };

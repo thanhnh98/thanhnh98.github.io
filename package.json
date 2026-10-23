@@ -17,6 +17,8 @@
     "generate-holidays": "node scripts/generate-holiday-pages.js",
     "render-holiday-og": "node scripts/render-holiday-og.js",
     "inject-tet-seo": "node scripts/inject-tet-seo-snippets.js",
+    "inject-tet-english-seo": "node scripts/inject-tet-english-seo.js",
+    "inject-seasonal-seo": "node scripts/inject-seasonal-seo-snippets.js",
     "inject-lunar-today": "node scripts/inject-lunar-today.js",
     "predeploy": "npm run build:tet-runner && npm run update-version",
     "deploy": "git add sw.js .version .last_build_id && git commit -m 'chore: update version for deployment' && git push origin master"
