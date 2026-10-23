@@ -11,13 +11,14 @@
     { id: 'lunar-via-than-tai', lunarMonth: 1, lunarDay: 10, name: 'Ngày vía Thần Tài', lunarLabel: 'Mùng 10 tháng Giêng (10/1)', description: 'Ngày vía Thần Tài theo tín ngưỡng dân gian. Nhiều gia đình và cơ sở kinh doanh làm lễ cầu tài lộc, may mắn đầu năm.', type: 'major' },
     { id: 'lunar-tet-nguyen-tieu', lunarMonth: 1, lunarDay: 15, name: 'Tết Nguyên Tiêu (Rằm tháng Giêng)', lunarLabel: 'Rằm tháng Giêng (15/1)', description: 'Ngày Rằm đầu tiên của năm âm lịch. Nhiều gia đình đi lễ chùa, thắp hương và cầu bình an đầu năm.', type: 'major' },
     { id: 'lunar-tet-han-thuc', lunarMonth: 3, lunarDay: 3, name: 'Tết Hàn Thực', lunarLabel: '3/3 âm lịch', description: 'Trong ngày Tết Hàn Thực, người Việt thường làm bánh trôi, bánh chay để dâng cúng tổ tiên và tưởng nhớ nguồn cội.', type: 'major' },
-    { id: 'lunar-gio-to-hung-vuong', lunarMonth: 3, lunarDay: 10, name: 'Giỗ Tổ Hùng Vương', lunarLabel: '10/3 âm lịch', description: 'Ngày tưởng niệm các Vua Hùng, những người có công dựng nước. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'major', isNationalHoliday: true },
+    { id: 'lunar-gio-to-hung-vuong', lunarMonth: 3, lunarDay: 10, name: 'Giỗ Tổ Hùng Vương', countdownQuery: 'Giỗ Tổ Hùng Vương', lunarLabel: '10/3 âm lịch', description: 'Ngày tưởng niệm các Vua Hùng, những người có công dựng nước. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'major', isNationalHoliday: true },
     { id: 'lunar-tet-doan-ngo', lunarMonth: 5, lunarDay: 5, name: 'Tết Đoan Ngọ', lunarLabel: '5/5 âm lịch', description: 'Tết Đoan Ngọ, còn được dân gian gọi là Tết diệt sâu bọ. Tùy vùng miền, các gia đình dùng cơm rượu nếp, trái cây và những món ăn truyền thống.', type: 'major' },
     { id: 'lunar-vu-lan', lunarMonth: 7, lunarDay: 15, name: 'Rằm tháng Bảy – Vu Lan', lunarLabel: 'Rằm tháng Bảy (15/7)', description: 'Ngày lễ Vu Lan gắn với truyền thống báo hiếu, tưởng nhớ cha mẹ, tổ tiên và những người đã khuất.', type: 'major' },
-    { id: 'lunar-tet-trung-thu', lunarMonth: 8, lunarDay: 15, name: 'Tết Trung Thu', lunarLabel: 'Rằm tháng Tám (15/8)', description: 'Tết thiếu nhi truyền thống với các hoạt động rước đèn, phá cỗ, múa lân và sum họp gia đình.', type: 'major' },
+    { id: 'lunar-tet-trung-thu', lunarMonth: 8, lunarDay: 15, name: 'Tết Trung Thu', countdownQuery: 'Trung Thu', lunarLabel: 'Rằm tháng Tám (15/8)', description: 'Tết thiếu nhi truyền thống với các hoạt động rước đèn, phá cỗ, múa lân và sum họp gia đình.', type: 'major' },
     { id: 'lunar-tet-trung-cuu', lunarMonth: 9, lunarDay: 9, name: 'Tết Trùng Cửu', lunarLabel: '9/9 âm lịch', description: 'Một tiết lễ truyền thống trong văn hóa Á Đông, gắn với ý nghĩa cầu sức khỏe, bình an và trường thọ.', type: 'major' },
     { id: 'lunar-tet-ha-nguyen', lunarMonth: 10, lunarDay: 15, name: 'Tết Hạ Nguyên', lunarLabel: 'Rằm tháng Mười (15/10)', description: 'Một ngày lễ truyền thống cuối vụ mùa, thường gắn với việc tạ ơn và tưởng nhớ tổ tiên.', type: 'major' },
-    { id: 'lunar-ong-cong-ong-tao', lunarMonth: 12, lunarDay: 23, name: 'Ông Công Ông Táo', lunarLabel: '23 tháng Chạp (23/12)', description: 'Theo tín ngưỡng dân gian, đây là ngày tiễn Táo Quân về trời. Nhiều gia đình chuẩn bị lễ cúng và dọn dẹp bếp để đón năm mới.', type: 'major' }
+    { id: 'lunar-ong-cong-ong-tao', lunarMonth: 12, lunarDay: 23, name: 'Ông Công Ông Táo', countdownQuery: 'Ông Công Ông Táo', lunarLabel: '23 tháng Chạp (23/12)', description: 'Theo tín ngưỡng dân gian, đây là ngày tiễn Táo Quân về trời. Nhiều gia đình chuẩn bị lễ cúng và dọn dẹp bếp để đón năm mới.', type: 'major' },
+    { id: 'lunar-that-tich', lunarMonth: 7, lunarDay: 7, name: 'Thất Tịch', englishName: 'Qixi Festival', countdownQuery: 'Thất Tịch', lunarLabel: '7/7 âm lịch', description: 'Ngày Thất Tịch gắn với câu chuyện Ngưu Lang và Chức Nữ. Ngày dương lịch thay đổi theo từng năm.', type: 'major' }
   ];
 
   /** Sự kiện theo DƯƠNG LỊCH – Ngày lễ, kỷ niệm lớn Việt Nam (month, day – cố định hàng năm) */
@@ -25,21 +26,21 @@
     { id: 'solar-tet-duong-lich', month: 1, day: 1, name: 'Tết Dương lịch', description: 'Ngày đầu năm mới theo dương lịch. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
     { id: 'solar-thanh-lap-dang', month: 2, day: 3, name: 'Ngày thành lập Đảng Cộng sản Việt Nam', description: 'Kỷ niệm ngày thành lập Đảng Cộng sản Việt Nam (3/2/1930).', type: 'national' },
     { id: 'solar-thay-thuoc-viet-nam', month: 2, day: 27, name: 'Ngày Thầy thuốc Việt Nam', description: 'Ngày tôn vinh đội ngũ thầy thuốc và những người làm công tác y tế Việt Nam, được kỷ niệm hằng năm vào ngày 27/2.', type: 'national' },
-    { id: 'solar-quoc-te-phu-nu', month: 3, day: 8, name: 'Quốc tế Phụ nữ', description: 'Ngày Quốc tế Phụ nữ 8/3, tôn vinh những đóng góp và thúc đẩy quyền bình đẳng của phụ nữ.', type: 'national' },
+    { id: 'solar-quoc-te-phu-nu', month: 3, day: 8, name: 'Quốc tế Phụ nữ', countdownQuery: '8/3', description: 'Ngày Quốc tế Phụ nữ 8/3, tôn vinh những đóng góp và thúc đẩy quyền bình đẳng của phụ nữ.', type: 'national' },
     { id: 'solar-thanh-lap-doan', month: 3, day: 26, name: 'Ngày thành lập Đoàn TNCS Hồ Chí Minh', description: 'Kỷ niệm ngày thành lập Đoàn Thanh niên Cộng sản Hồ Chí Minh (26/3/1931).', type: 'national' },
-    { id: 'solar-giai-phong-mien-nam', month: 4, day: 30, name: 'Ngày Giải phóng miền Nam', description: 'Ngày Chiến thắng 30/4, kỷ niệm sự kiện thống nhất đất nước năm 1975. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
-    { id: 'solar-quoc-te-lao-dong', month: 5, day: 1, name: 'Quốc tế Lao động', description: 'Ngày Quốc tế Lao động 1/5, tôn vinh người lao động trên toàn thế giới. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
+    { id: 'solar-giai-phong-mien-nam', month: 4, day: 30, name: 'Ngày Giải phóng miền Nam', countdownQuery: '30/4', description: 'Ngày Chiến thắng 30/4, kỷ niệm sự kiện thống nhất đất nước năm 1975. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
+    { id: 'solar-quoc-te-lao-dong', month: 5, day: 1, name: 'Quốc tế Lao động', countdownQuery: '1/5', description: 'Ngày Quốc tế Lao động 1/5, tôn vinh người lao động trên toàn thế giới. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
     { id: 'solar-dien-bien-phu', month: 5, day: 7, name: 'Chiến thắng Điện Biên Phủ', description: 'Kỷ niệm Chiến thắng Điện Biên Phủ ngày 7/5/1954.', type: 'national' },
     { id: 'solar-sinh-nhat-ho-chi-minh', month: 5, day: 19, name: 'Ngày sinh Chủ tịch Hồ Chí Minh', description: 'Kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh (19/5/1890).', type: 'national' },
     { id: 'solar-quoc-te-thieu-nhi', month: 6, day: 1, name: 'Quốc tế Thiếu nhi', description: 'Ngày Quốc tế Thiếu nhi 1/6, dịp dành sự quan tâm và tổ chức các hoạt động cho trẻ em.', type: 'national' },
     { id: 'solar-gia-dinh-viet-nam', month: 6, day: 28, name: 'Ngày Gia đình Việt Nam', description: 'Ngày Gia đình Việt Nam 28/6, đề cao trách nhiệm xây dựng gia đình no ấm, tiến bộ, hạnh phúc và bền vững.', type: 'national' },
     { id: 'solar-thuong-binh-liet-si', month: 7, day: 27, name: 'Ngày Thương binh – Liệt sĩ', description: 'Ngày tưởng niệm và tri ân thương binh, liệt sĩ, người có công với cách mạng, được kỷ niệm từ năm 1947.', type: 'national' },
     { id: 'solar-cach-mang-thang-tam', month: 8, day: 19, name: 'Cách mạng Tháng Tám', description: 'Kỷ niệm thắng lợi của Cách mạng Tháng Tám ngày 19/8/1945.', type: 'national' },
-    { id: 'solar-quoc-khanh-viet-nam', month: 9, day: 2, name: 'Quốc khánh Việt Nam', description: 'Kỷ niệm ngày Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập 2/9/1945. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
+    { id: 'solar-quoc-khanh-viet-nam', month: 9, day: 2, name: 'Quốc khánh Việt Nam', countdownQuery: 'Quốc khánh 2/9', description: 'Kỷ niệm ngày Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập 2/9/1945. Đây là ngày nghỉ lễ chính thức tại Việt Nam.', type: 'national', isHoliday: true },
     { id: 'solar-giai-phong-thu-do', month: 10, day: 10, name: 'Giải phóng Thủ đô', description: 'Kỷ niệm ngày tiếp quản và giải phóng Thủ đô Hà Nội (10/10/1954).', type: 'national' },
     { id: 'solar-doanh-nhan-viet-nam', month: 10, day: 13, name: 'Ngày Doanh nhân Việt Nam', description: 'Ngày Doanh nhân Việt Nam 13/10, ghi nhận vai trò và những đóng góp của đội ngũ doanh nhân đối với đất nước.', type: 'national' },
-    { id: 'solar-phu-nu-viet-nam', month: 10, day: 20, name: 'Ngày Phụ nữ Việt Nam', description: 'Ngày Phụ nữ Việt Nam 20/10, tôn vinh những đóng góp của phụ nữ Việt Nam trong gia đình và xã hội.', type: 'national' },
-    { id: 'solar-nha-giao-viet-nam', month: 11, day: 20, name: 'Ngày Nhà giáo Việt Nam', description: 'Ngày Nhà giáo Việt Nam 20/11, dịp tôn vinh các nhà giáo và truyền thống hiếu học.', type: 'national' },
+    { id: 'solar-phu-nu-viet-nam', month: 10, day: 20, name: 'Ngày Phụ nữ Việt Nam', countdownQuery: '20/10', description: 'Ngày Phụ nữ Việt Nam 20/10, tôn vinh những đóng góp của phụ nữ Việt Nam trong gia đình và xã hội.', type: 'national' },
+    { id: 'solar-nha-giao-viet-nam', month: 11, day: 20, name: 'Ngày Nhà giáo Việt Nam', countdownQuery: '20/11', description: 'Ngày Nhà giáo Việt Nam 20/11, dịp tôn vinh các nhà giáo và truyền thống hiếu học.', type: 'national' },
     { id: 'solar-quan-doi-nhan-dan', month: 12, day: 22, name: 'Ngày thành lập Quân đội Nhân dân Việt Nam', description: 'Kỷ niệm ngày thành lập Quân đội Nhân dân Việt Nam (22/12/1944).', type: 'national' }
   ];
 
@@ -51,7 +52,11 @@
     { id: 'solar-trai-dat', month: 4, day: 22, name: 'Ngày Trái Đất', description: 'Ngày Trái Đất 22/4 kêu gọi bảo vệ môi trường và chung tay xây dựng một hành tinh bền vững.', type: 'international' },
     { id: 'solar-moi-truong-the-gioi', month: 6, day: 5, name: 'Ngày Môi trường Thế giới', description: 'Ngày Môi trường Thế giới 5/6 do Liên Hợp Quốc phát động nhằm nâng cao nhận thức và hành động vì môi trường.', type: 'international' },
     { id: 'solar-aids-the-gioi', month: 12, day: 1, name: 'Ngày Thế giới phòng chống AIDS', description: 'Ngày Thế giới phòng chống AIDS 1/12 nhằm nâng cao nhận thức, tưởng nhớ những người đã mất và thúc đẩy phòng ngừa, điều trị HIV/AIDS.', type: 'international' },
-    { id: 'solar-giang-sinh', month: 12, day: 25, name: 'Giáng Sinh', description: 'Lễ Giáng Sinh 25/12 là ngày lễ quan trọng của Kitô giáo và cũng là dịp văn hóa được đón nhận tại nhiều nơi trên thế giới.', type: 'international' }
+    { id: 'solar-giang-sinh', month: 12, day: 25, name: 'Giáng Sinh', description: 'Lễ Giáng Sinh 25/12 là ngày lễ quan trọng của Kitô giáo và cũng là dịp văn hóa được đón nhận tại nhiều nơi trên thế giới.', type: 'international' },
+    { id: 'solar-quoc-te-nam-gioi', month: 11, day: 19, name: 'Ngày Quốc tế Nam giới', englishName: "International Men's Day", countdownQuery: '19/11', description: 'Ngày Quốc tế Nam giới diễn ra vào 19/11, là dịp quan tâm đến sức khỏe nam giới và ghi nhận những đóng góp tích cực trong gia đình, cộng đồng.', type: 'international' },
+    { id: 'solar-black-friday', month: 11, nthWeekday: { weekday: 5, nth: 4 }, name: 'Black Friday', englishName: 'Black Friday', countdownQuery: 'Black Friday', description: 'Black Friday là thứ Sáu sau Lễ Tạ ơn của Mỹ, tức thứ Sáu thứ tư trong tháng 11. Chương trình khuyến mãi có thể bắt đầu sớm tùy cửa hàng.', type: 'international' },
+    { id: 'solar-ngay-cua-me', month: 5, nthWeekday: { weekday: 0, nth: 2 }, name: 'Ngày của Mẹ', englishName: "Mother's Day", countdownQuery: 'Ngày của Mẹ', description: 'Ngày của Mẹ thường được nhắc tới tại Việt Nam theo mốc Chủ Nhật thứ hai của tháng 5; ngày dương lịch thay đổi hằng năm.', type: 'international' },
+    { id: 'solar-ngay-cua-cha', month: 6, nthWeekday: { weekday: 0, nth: 3 }, name: 'Ngày của Cha', englishName: "Father's Day", countdownQuery: 'Ngày của Cha', description: 'Ngày của Cha thường được nhắc tới tại Việt Nam theo mốc Chủ Nhật thứ ba của tháng 6; ngày dương lịch thay đổi hằng năm.', type: 'international' }
   ];
 
   function getCategory(event) {
@@ -112,6 +117,15 @@
     return Math.round((toUtc - fromUtc) / 86400000);
   }
 
+  function solarDateKey(event, year) {
+    var day = event.day;
+    if (event.nthWeekday) {
+      var firstWeekday = new Date(Date.UTC(year, event.month - 1, 1)).getUTCDay();
+      day = 1 + ((event.nthWeekday.weekday - firstWeekday + 7) % 7) + (event.nthWeekday.nth - 1) * 7;
+    }
+    return year + '-' + String(event.month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+  }
+
   function getNextOccurrence(event, options) {
     var opts = options || {};
     var todayKey = opts.todayKey || getVietnamTodayKey(opts.now);
@@ -119,9 +133,9 @@
     var occurrenceKey = '';
 
     if (typeof event.month === 'number') {
-      occurrenceKey = todayParts.year + '-' + String(event.month).padStart(2, '0') + '-' + String(event.day).padStart(2, '0');
+      occurrenceKey = solarDateKey(event, todayParts.year);
       if (occurrenceKey < todayKey) {
-        occurrenceKey = (todayParts.year + 1) + '-' + String(event.month).padStart(2, '0') + '-' + String(event.day).padStart(2, '0');
+        occurrenceKey = solarDateKey(event, todayParts.year + 1);
       }
     } else {
       var converter = opts.lunarToSolar || (typeof lunarToSolar === 'function' ? lunarToSolar : null);
@@ -168,10 +182,11 @@
   }
 
   /** Map solar "month-day" -> events (để tra theo ngày dương, 1 key có thể nhiều sự kiện) */
-  function getSolarEventMap() {
+  function getSolarEventMap(year) {
     var map = {};
     SOLAR_EVENTS_VIETNAM.concat(SOLAR_EVENTS_INTERNATIONAL).forEach(function (ev) {
-      var key = ev.month + '-' + ev.day;
+      var dateParts = partsFromKey(solarDateKey(ev, year || Number(getVietnamTodayKey().slice(0, 4))));
+      var key = dateParts.month + '-' + dateParts.day;
       if (!map[key]) map[key] = [];
       map[key].push(ev);
     });
@@ -186,6 +201,7 @@
     getEventBySlug: getEventBySlug,
     getVietnamTodayKey: getVietnamTodayKey,
     getNextOccurrence: getNextOccurrence,
+    getSolarDateKey: solarDateKey,
     getUpcomingEvents: getUpcomingEvents,
     getLunarEventMap: getLunarEventMap,
     getSolarEventMap: getSolarEventMap

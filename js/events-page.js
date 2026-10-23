@@ -31,21 +31,71 @@
     return 'Còn ' + days + ' ngày';
   }
 
+  function formatDate(dateKey) {
+    var parts = dateKey.split('-').map(Number);
+    return String(parts[2]).padStart(2, '0') + '/' + String(parts[1]).padStart(2, '0') + '/' + parts[0];
+  }
+
+  function formatDateLong(dateKey) {
+    var parts = dateKey.split('-').map(Number);
+    var weekday = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'][new Date(Date.UTC(parts[0], parts[1] - 1, parts[2])).getUTCDay()];
+    return weekday + ', ' + parts[2] + ' tháng ' + parts[1] + ', ' + parts[0];
+  }
+
+  function formatDateLongEnglish(dateKey) {
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    }).format(new Date(dateKey + 'T00:00:00Z'));
+  }
+
+  function activeDate(element) {
+    var slug = element.getAttribute('data-event-slug');
+    if (slug && window.EVENTS_DATA) {
+      var event = window.EVENTS_DATA.getEventBySlug(slug);
+      var occurrence = event && window.EVENTS_DATA.getNextOccurrence(event, {
+        todayKey: vietnamTodayKey(),
+        lunarToSolar: typeof lunarToSolar === 'function' ? lunarToSolar : null
+      });
+      if (occurrence) return occurrence.dateKey;
+    }
+    return element.getAttribute('data-date');
+  }
+
   function updateCountdowns() {
+    var pageEvent = null;
     document.querySelectorAll('[data-event-countdown][data-date]').forEach(function (element) {
-      element.textContent = countdownLabel(element.getAttribute('data-date'));
+      var dateKey = activeDate(element);
+      var slug = element.getAttribute('data-event-slug');
+      pageEvent = slug && window.EVENTS_DATA ? window.EVENTS_DATA.getEventBySlug(slug) : null;
+      var english = new URLSearchParams(window.location.search).get('lang') === 'en' && pageEvent && pageEvent.englishName;
+      var days = daysBetween(vietnamTodayKey(), dateKey);
+      if (english) document.title = 'How many days until ' + pageEvent.englishName + ' ' + dateKey.slice(0, 4) + '? | Sắp Tết';
+      element.textContent = english ? (days === 0 ? 'Today' : days === 1 ? 'Tomorrow' : days + ' days left') : countdownLabel(dateKey);
+      var dateLong = document.querySelector('[data-event-date-long]');
+      if (dateLong) dateLong.textContent = english ? formatDateLongEnglish(dateKey) : formatDateLong(dateKey);
+      document.querySelectorAll('[data-event-answer]').forEach(function (answer) {
+        answer.setAttribute('data-date', dateKey);
+      });
     });
     document.querySelectorAll('[data-event-answer][data-date]').forEach(function (element) {
       var dateKey = element.getAttribute('data-date');
       var days = daysBetween(vietnamTodayKey(), dateKey);
       var parts = dateKey.split('-').map(Number);
-      var date = String(parts[2]).padStart(2, '0') + '/' + String(parts[1]).padStart(2, '0') + '/' + parts[0];
-      var weekday = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'][new Date(Date.UTC(parts[0], parts[1] - 1, parts[2])).getUTCDay()];
+      var date = formatDate(dateKey);
+      var weekday = formatDateLong(dateKey).split(',')[0];
+      var name = element.getAttribute('data-event-name') || 'Sự kiện';
+      var english = new URLSearchParams(window.location.search).get('lang') === 'en' && pageEvent && pageEvent.englishName;
+      if (english) {
+        element.textContent = days === 0
+          ? 'Today is ' + pageEvent.englishName + ' ' + parts[0] + ' (' + date + ').'
+          : days + ' days until ' + pageEvent.englishName + ' ' + parts[0] + ', ' + formatDateLongEnglish(dateKey) + '.';
+        return;
+      }
       element.textContent = days < 0
-        ? 'Ngày Nhà giáo Việt Nam ' + parts[0] + ' đã qua. Trang sẽ cập nhật lần diễn ra tiếp theo.'
+        ? name + ' ' + parts[0] + ' đã qua. Trang sẽ cập nhật lần diễn ra tiếp theo.'
         : days === 0
-          ? 'Hôm nay là Ngày Nhà giáo Việt Nam ' + parts[0] + ', ngày ' + date + '.'
-          : 'Còn ' + days + ' ngày nữa đến Ngày Nhà giáo Việt Nam ' + parts[0] + ', ' + weekday + ', ngày ' + date + '.';
+          ? 'Hôm nay là ' + name + ' ' + parts[0] + ', ngày ' + date + '.'
+          : 'Còn ' + days + ' ngày nữa đến ' + name + ' ' + parts[0] + ', ' + weekday + ', ngày ' + date + '.';
     });
   }
 

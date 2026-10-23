@@ -230,7 +230,7 @@
   function getEventsForDate(date, eventsData, calculateLunarDate) {
     var events = [];
     if (!eventsData) return events;
-    var solar = eventsData.getSolarEventMap?.()[String(date.getMonth() + 1) + '-' + String(date.getDate())] || [];
+    var solar = eventsData.getSolarEventMap?.(date.getFullYear())[String(date.getMonth() + 1) + '-' + String(date.getDate())] || [];
     solar.forEach(function (item) {
       if (!events.some(function (event) { return event.name === item.name; })) events.push(item);
     });

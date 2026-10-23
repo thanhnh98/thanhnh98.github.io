@@ -53,10 +53,12 @@
       if (!Array.isArray(arr)) return;
       arr.forEach(function (e) {
         ev = e;
-        d = new Date(year, ev.month - 1, ev.day);
+        var parts = window.EVENTS_DATA.getSolarDateKey(ev, year).split('-').map(Number);
+        d = new Date(parts[0], parts[1] - 1, parts[2]);
         d.setHours(0, 0, 0, 0);
         list.push({ date: d, name: ev.name, isLunar: false });
-        d = new Date(year + 1, ev.month - 1, ev.day);
+        parts = window.EVENTS_DATA.getSolarDateKey(ev, year + 1).split('-').map(Number);
+        d = new Date(parts[0], parts[1] - 1, parts[2]);
         d.setHours(0, 0, 0, 0);
         list.push({ date: d, name: ev.name, isLunar: false });
       });

@@ -49,8 +49,12 @@
 
 @media (max-width: 420px) {
   .home-footer-sap-group summary { flex-wrap: wrap; }
-  .home-footer-sap-links { gap: .2rem; }
-  .home-footer-sap-links a { padding-inline: .25rem; }
+  .home-footer-sap-links { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .2rem; }
+  .home-footer-sap-links a { padding: .35rem .2rem; font-size: .76rem; line-height: 1.35; }
+}
+
+@media (max-width: 350px) {
+  .home-footer-sap-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {

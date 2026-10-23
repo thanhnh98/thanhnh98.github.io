@@ -149,8 +149,17 @@
     }).observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['href', 'alt', 'title', 'placeholder', 'aria-label'] });
   }
 
-  fetch('/data/site-vi-en.json').then(function (response) {
-    if (!response.ok) throw new Error('English translations unavailable');
-    return response.json();
-  }).then(function (data) { dictionary = data; start(); }).catch(function (error) { console.warn(error); });
+  function fetchDictionary(url) {
+    return fetch(url).then(function (response) {
+      if (!response.ok) throw new Error('English translations unavailable: ' + url);
+      return response.json();
+    });
+  }
+  Promise.all([
+    fetchDictionary('/data/site-vi-en.json'),
+    fetchDictionary('/data/site-vi-en-events.json')
+  ]).then(function (dictionaries) {
+    dictionary = Object.assign({}, dictionaries[0], dictionaries[1]);
+    start();
+  }).catch(function (error) { console.warn(error); });
 })();

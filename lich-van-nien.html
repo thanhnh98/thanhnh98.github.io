@@ -2387,7 +2387,7 @@
     <script src="js/lunar-calendar.js"></script>
     <script src="js/lunar-almanac.js?v=20260919"></script>
     <script src="js/trung-thu-calculator.js"></script>
-    <script src="data/events-data.js"></script>
+    <script src="data/events-data.js?v=20261023-events"></script>
     <script>
         // Tên các tháng
         const monthNames = [
@@ -2792,7 +2792,7 @@
                 [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
                     if (!list) return;
                     list.forEach(function (ev) {
-                        const key = year + '-' + String(ev.month).padStart(2, '0') + '-' + String(ev.day).padStart(2, '0');
+                        const key = EVENTS_DATA.getSolarDateKey(ev, year);
                         if (!fixedHolidays[key]) {
                             fixedHolidays[key] = {
                                 name: ev.name,
@@ -3037,10 +3037,12 @@
             [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
                 if (!list) return;
                 list.forEach(function (ev) {
-                    let d = new Date(year, ev.month - 1, ev.day);
+                    let parts = EVENTS_DATA.getSolarDateKey(ev, year).split('-').map(Number);
+                    let d = new Date(parts[0], parts[1] - 1, parts[2]);
                     d.setHours(0, 0, 0, 0);
                     if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: null });
-                    d = new Date(year + 1, ev.month - 1, ev.day);
+                    parts = EVENTS_DATA.getSolarDateKey(ev, year + 1).split('-').map(Number);
+                    d = new Date(parts[0], parts[1] - 1, parts[2]);
                     d.setHours(0, 0, 0, 0);
                     if (d >= today) items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: null });
                 });
@@ -3078,7 +3080,8 @@
             [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
                 if (!list) return;
                 list.forEach(function (ev) {
-                    const d = new Date(year, ev.month - 1, ev.day);
+                    const parts = EVENTS_DATA.getSolarDateKey(ev, year).split('-').map(Number);
+                    const d = new Date(parts[0], parts[1] - 1, parts[2]);
                     d.setHours(0, 0, 0, 0);
                     items.push({ date: d, id: ev.id, slug: ev.slug, name: ev.name, lunar: null });
                 });
