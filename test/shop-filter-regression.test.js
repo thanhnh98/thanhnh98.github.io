@@ -322,3 +322,31 @@ test('large shop catalog loads in batches and resets when filters change', async
   assert.equal(grid.children.length, 24);
   assert.equal(clear.hidden, true);
 });
+
+test('changing store filters preserves a selected occasion in the URL', async () => {
+  const source = fs.readFileSync(path.join(root, 'js/shop.js'), 'utf8');
+  const fixture = JSON.parse(fs.readFileSync(path.join(root, 'data/aff/products'), 'utf8'));
+  const document = makeDocument();
+  const replacements = [];
+  const context = {
+    console,
+    document,
+    navigator: {},
+    requestAnimationFrame: (fn) => fn(),
+    setTimeout: (fn) => fn(),
+    window: {
+      document,
+      location: { pathname: '/cua-hang.html', search: '?occasion=nha-giao-viet-nam&group=food-drink', hash: '', origin: 'https://saptet.vn' },
+      history: { replaceState: (_state, _title, url) => replacements.push(url) },
+      lucide: { createIcons() {} },
+    },
+    fetch: async () => ({ ok: true, text: async () => JSON.stringify(fixture) }),
+  };
+  vm.runInNewContext(source, context, { filename: 'js/shop.js' });
+  await new Promise((resolve) => setImmediate(resolve));
+  const technology = document._ids['shop-groups'].children.find(child => child.dataset.group === 'tech-accessories');
+  assert.ok(technology);
+  technology.eventListeners.click({ clientX: 0, clientY: 0 });
+  assert.ok(replacements.at(-1).includes('occasion=nha-giao-viet-nam'));
+  assert.ok(replacements.at(-1).includes('group=tech-accessories'));
+});

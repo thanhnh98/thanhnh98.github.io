@@ -602,6 +602,12 @@
         <xhtml:link rel="alternate" hreflang="vi" href="https://saptet.vn/songkran?lang=vi"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://saptet.vn/songkran"/>
     </url>
+    <url>
+        <loc>https://saptet.vn/sap-san-sale/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.76</priority>
+    </url>
     <!-- Event detail pages -->
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-nam-gioi/</loc>
@@ -854,11 +860,5 @@
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
-    </url>
-    <url>
-        <loc>https://saptet.vn/sap-san-sale/</loc>
-        <lastmod>2026-10-23</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.76</priority>
     </url>
 </urlset>

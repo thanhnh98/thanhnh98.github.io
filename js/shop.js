@@ -882,12 +882,13 @@
 
   function updateUrlFilters(group, category) {
     if (typeof window === 'undefined' || !window.history || !window.location) return;
-    var base = window.location.pathname || '/cua-hang.html';
-    var params = [];
+    var params = (window.location.search || '').replace(/^\?/, '').split('&').filter(Boolean).filter(function (part) {
+      return !/^(group|category)=/i.test(part);
+    });
     if (group && group !== ALL_GROUP) params.push('group=' + encodeURIComponent(group));
     if (category && category !== ALL_CATEGORY) params.push('category=' + encodeURIComponent(category));
-    var url = params.length ? base + '?' + params.join('&') : base;
-    if (window.location.pathname + window.location.search !== url) {
+    var url = (window.location.pathname || '/cua-hang.html') + (params.length ? '?' + params.join('&') : '') + (window.location.hash || '');
+    if (window.location.pathname + window.location.search + window.location.hash !== url) {
       window.history.replaceState({ group: group, category: category }, '', url);
     }
   }
