@@ -8934,6 +8934,25 @@
         "priceVnd": 159000,
         "priceCheckedAt": "2026-10-14",
         "sourceType": "Shopee public listing"
+      },
+      {
+        "id": "28105543730",
+        "shopId": "182185339",
+        "thumbnail": "https://down-bs-vn.img.susercontent.com/vn-11134211-820l4-micmcihqexok35.webp",
+        "images": [],
+        "name": "Quà tặng bút ký MONTAGUT khắc tên, hộp và thiệp tặng thầy cô 20/11",
+        "description": "Bút ký khắc tên MONTAGUT full box, kèm túi và thiệp; sản phẩm được xem trên Shopee Affiliate ngày 24/10/2026.",
+        "type": "shopee",
+        "group": "learning-office",
+        "category": [
+          "stationery"
+        ],
+        "coinBonus": 10,
+        "buyText": "Xem sản phẩm",
+        "url": "https://s.shopee.vn/1BO9step1",
+        "editorialId": "og-095",
+        "occasionName": "Bút ký khắc tên tặng thầy cô",
+        "sourceType": "Shopee Affiliate"
       }
     ],
     "groups": [
