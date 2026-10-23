@@ -1,5 +1,5 @@
 /**
- * Sinh trang tổng hợp và 37 trang sự kiện tĩnh cho GitHub Pages.
+ * Sinh trang tổng hợp và các trang sự kiện tĩnh cho GitHub Pages.
  * Chạy: node scripts/generate-event-pages.js
  */
 const crypto = require('node:crypto');
@@ -80,6 +80,12 @@ function formatDateLong(dateKey) {
   return `${weekday}, ${day} tháng ${month}, ${year}`;
 }
 
+function formatDateLongEnglish(dateKey) {
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  }).format(new Date(`${dateKey}T00:00:00Z`));
+}
+
 function lunarLabel(event) {
   const label = event.lunarLabel || `${event.lunarDay}/${event.lunarMonth}`;
   return /âm lịch/i.test(label) ? label : `${label} âm lịch`;
@@ -109,10 +115,16 @@ function countdownLabel(days) {
   return `Còn ${days} ngày`;
 }
 
-function teacherCountdownAnswer(occurrence) {
+function countdownAnswer(event, occurrence) {
   const date = formatDateShort(occurrence.dateKey);
-  if (occurrence.daysUntil === 0) return `Hôm nay là Ngày Nhà giáo Việt Nam ${occurrence.year}, ngày ${date}.`;
-  return `Còn ${occurrence.daysUntil} ngày nữa đến Ngày Nhà giáo Việt Nam ${occurrence.year}, ${formatDateLong(occurrence.dateKey).split(',')[0]}, ngày ${date}.`;
+  if (occurrence.daysUntil === 0) return `Hôm nay là ${event.name} ${occurrence.year}, ngày ${date}.`;
+  return `Còn ${occurrence.daysUntil} ngày nữa đến ${event.name} ${occurrence.year}, ${formatDateLong(occurrence.dateKey).split(',')[0]}, ngày ${date}.`;
+}
+
+function countdownQuestion(event, occurrence) {
+  const query = event.countdownQuery;
+  const separator = /^\d{1,2}\/\d{1,2}$/.test(query) ? '/' : ' ';
+  return `Còn bao nhiêu ngày nữa đến ${query}${separator}${occurrence.year}?`;
 }
 
 function badgeHtml(event, occurrence) {
@@ -170,7 +182,7 @@ function hubSchema(items, modified) {
         '@id': `${HUB_URL}#webpage`,
         url: HUB_URL,
         name: `Lịch sự kiện sắp tới ${dateParts(items[0].occurrence.dateKey).year}`,
-        description: 'Tra cứu 37 ngày lễ và sự kiện sắp tới tại Việt Nam theo âm lịch và dương lịch.',
+        description: `Tra cứu ${items.length} ngày lễ và sự kiện sắp tới tại Việt Nam theo âm lịch và dương lịch.`,
         inLanguage: 'vi-VN',
         dateModified: modified,
         isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
@@ -229,7 +241,7 @@ function generateHub(items) {
 function makeFaq(event, occurrence, content) {
   const dateAnswer = event.category === 'lunar'
     ? `${event.name} lần tới rơi vào ${formatDateLong(occurrence.dateKey)}, tương ứng ${lunarLabel(event)}. Ngày dương sẽ thay đổi theo từng năm.`
-    : `${event.name} diễn ra vào ${formatDateShort(occurrence.dateKey)}. Đây là ngày dương lịch cố định hằng năm.`;
+    : `${event.name} diễn ra vào ${formatDateShort(occurrence.dateKey)}. ${event.nthWeekday ? 'Ngày dương lịch thay đổi theo từng năm.' : 'Đây là ngày dương lịch cố định hằng năm.'}`;
   const holidayAnswer = isHoliday(event)
     ? `${event.name} được đánh dấu là ngày nghỉ lễ chính thức. Lịch nghỉ, nghỉ bù hoặc hoán đổi ngày làm việc cần đối chiếu thông báo áp dụng cho từng năm.`
     : `${event.name} không được đánh dấu là ngày nghỉ lễ chính thức trong danh mục này. Lịch làm việc của từng cơ quan, trường học hoặc doanh nghiệp có thể khác nhau.`;
@@ -239,8 +251,8 @@ function makeFaq(event, occurrence, content) {
     { question: `${event.name} có được nghỉ không?`, answer: holidayAnswer },
     { question: `Nên làm gì vào ${event.name}?`, answer: activityAnswer },
   ];
-  if (event.id === 'solar-nha-giao-viet-nam') {
-    faq.unshift({ question: `Còn bao nhiêu ngày nữa đến 20/11/${occurrence.year}?`, answer: teacherCountdownAnswer(occurrence), liveDate: occurrence.dateKey });
+  if (event.countdownQuery) {
+    faq.unshift({ question: countdownQuestion(event, occurrence), answer: countdownAnswer(event, occurrence), liveDate: occurrence.dateKey });
   }
   return faq;
 }
@@ -298,10 +310,10 @@ function generateDetail(item, index, items) {
   const content = EVENTS_CONTENT.getEventContent(event.id);
   const faq = makeFaq(event, occurrence, content);
   const canonical = eventUrl(event);
-  const teacherPage = event.id === 'solar-nha-giao-viet-nam';
-  const headline = teacherPage ? `Còn bao nhiêu ngày nữa đến 20/11/${occurrence.year}?` : `${event.name} ${occurrence.year} là ngày nào?`;
-  const description = compact(teacherPage
-    ? `${teacherCountdownAnswer(occurrence)} Xem đếm ngược và ý nghĩa ngày 20/11.`
+  const countdownPage = !!event.countdownQuery;
+  const headline = countdownPage ? countdownQuestion(event, occurrence) : `${event.name} ${occurrence.year} là ngày nào?`;
+  const description = compact(countdownPage
+    ? `${countdownAnswer(event, occurrence)} Xem đếm ngược, ngày diễn ra và ý nghĩa ${event.name}.`
     : `${event.name} ${occurrence.year} diễn ra ngày ${formatDateShort(occurrence.dateKey)}. Xem đếm ngược, ý nghĩa, hoạt động gợi ý và thông tin ngày nghỉ.`, 158);
   const target = `su-kien/${event.slug}/index.html`;
   const template = read('templates/event-detail.html');
@@ -315,15 +327,17 @@ function generateDetail(item, index, items) {
   });
   const modified = currentLastmod(target, nextSignature);
   const whenContent = event.category === 'lunar'
-    ? `<p><strong>${escapeHtml(lunarLabel(event))}</strong> lần tới tương ứng <strong>${formatDateShort(occurrence.dateKey)}</strong> dương lịch. Vì là ngày âm, mốc dương lịch sẽ thay đổi qua từng năm.</p><p>Trang này luôn ưu tiên lần diễn ra gần nhất tính theo múi giờ Việt Nam, giúp bạn lên kế hoạch mà không phải dò lại ngày đã qua.</p>`
-    : `<p><strong>${escapeHtml(event.name)}</strong> được ghi nhận vào ngày <strong>${String(event.day).padStart(2, '0')}/${String(event.month).padStart(2, '0')}</strong> dương lịch hằng năm. Lần tiếp theo là <strong>${formatDateLong(occurrence.dateKey)}</strong>.</p><p>Trạng thái đếm ngược được tính theo ngày tại Việt Nam và tự cập nhật khi bạn mở trang.</p>`;
+    ? `<p${event.englishName ? ` data-en="${escapeHtml(`${event.englishName} falls on lunar ${event.lunarDay}/${event.lunarMonth}. The next occurrence is ${formatDateShort(occurrence.dateKey)} (Gregorian). Its Gregorian date changes every year.`)}"` : ''}><strong>${escapeHtml(lunarLabel(event))}</strong> lần tới tương ứng <strong>${formatDateShort(occurrence.dateKey)}</strong> dương lịch. Vì là ngày âm, mốc dương lịch sẽ thay đổi qua từng năm.</p><p${event.englishName ? ' data-en="This page shows the next occurrence in Vietnam time so you can plan ahead."' : ''}>Trang này luôn ưu tiên lần diễn ra gần nhất tính theo múi giờ Việt Nam, giúp bạn lên kế hoạch mà không phải dò lại ngày đã qua.</p>`
+    : event.nthWeekday
+      ? `<p><strong>${escapeHtml(event.name)}</strong> là <strong${event.englishName ? ` data-en="${event.id === 'solar-black-friday' ? 'the fourth Friday in November' : event.id === 'solar-ngay-cua-me' ? 'the second Sunday in May' : 'the third Sunday in June'}"` : ''}>${event.nthWeekday.nth === 4 ? 'thứ Sáu thứ tư tháng 11' : `Chủ Nhật thứ ${event.nthWeekday.nth} tháng ${event.month}`}</strong> hằng năm. Lần tiếp theo là <strong${event.englishName ? ` data-en="${escapeHtml(formatDateLongEnglish(occurrence.dateKey))}"` : ''}>${formatDateLong(occurrence.dateKey)}</strong>; ngày dương lịch thay đổi theo từng năm.</p><p>Đếm ngược tính theo ngày tại Việt Nam.${event.id === 'solar-black-friday' ? ' Thời điểm khuyến mãi của từng cửa hàng có thể khác ngày trên lịch.' : ''}</p>`
+      : `<p><strong>${escapeHtml(event.name)}</strong> được ghi nhận vào ngày <strong>${String(event.day).padStart(2, '0')}/${String(event.month).padStart(2, '0')}</strong> dương lịch hằng năm. Lần tiếp theo là <strong${event.englishName ? ` data-en="${escapeHtml(formatDateLongEnglish(occurrence.dateKey))}"` : ''}>${formatDateLong(occurrence.dateKey)}</strong>.</p><p>Trạng thái đếm ngược được tính theo ngày tại Việt Nam và tự cập nhật khi bạn mở trang.</p>`;
   const related = relatedItems(index, items).map(({ event: relatedEvent, occurrence: relatedOccurrence }) => `
             <a class="event-related-card" href="/su-kien/${relatedEvent.slug}/">
               <span>${formatDateShort(relatedOccurrence.dateKey)} · ${calendarLabel(relatedEvent)}</span>
               <strong>${escapeHtml(relatedEvent.name)}</strong>
             </a>`).join('');
   let html = replaceTokens(template, {
-    TITLE: escapeHtml(teacherPage ? `${headline} | Sắp Tết` : `${headline} Ý nghĩa & đếm ngược | Sắp Tết`),
+    TITLE: escapeHtml(countdownPage ? `${headline} | Sắp Tết` : `${headline} Ý nghĩa & đếm ngược | Sắp Tết`),
     META_DESCRIPTION: escapeHtml(description),
     CANONICAL: canonical,
     OG_TITLE: escapeHtml(`${headline} | Sắp Tết`),
@@ -331,28 +345,29 @@ function generateDetail(item, index, items) {
     SIGNATURE: nextSignature,
     SCHEMA: JSON.stringify(detailSchema(event, occurrence, modified, description, headline), null, 2).replace(/</g, '\\u003c'),
     EVENT_NAME: escapeHtml(event.name),
+    EVENT_SLUG: escapeHtml(event.slug),
     CATEGORY_LABEL: escapeHtml(categoryLabel(event)),
     H1: escapeHtml(headline),
     DESCRIPTION: escapeHtml(event.description),
     BADGES: badgeHtml(event, occurrence),
     DATE_LONG: escapeHtml(formatDateLong(occurrence.dateKey)),
-    CALENDAR_NOTE: escapeHtml(event.category === 'lunar' ? lunarLabel(event) : 'Ngày dương lịch cố định hằng năm'),
+    CALENDAR_NOTE: escapeHtml(event.category === 'lunar' ? lunarLabel(event) : event.nthWeekday ? 'Ngày dương lịch thay đổi hằng năm' : 'Ngày dương lịch cố định hằng năm'),
     DATE_KEY: occurrence.dateKey,
     COUNTDOWN: escapeHtml(countdownLabel(occurrence.daysUntil)),
     WHEN_CONTENT: whenContent,
     CONTEXT: escapeHtml(content.context),
     ACTIVITIES: content.activities.map((activity) => `<li>${escapeHtml(activity)}</li>`).join(''),
     TIP: escapeHtml(content.tip),
-    FAQ: faq.map((item) => `<details><summary>${escapeHtml(item.question)}</summary><p${item.liveDate ? ` data-event-answer data-date="${item.liveDate}"` : ''}>${escapeHtml(item.answer)}</p></details>`).join(''),
+    FAQ: faq.map((item) => `<details><summary>${escapeHtml(item.question)}</summary><p${item.liveDate ? ` data-event-answer data-date="${item.liveDate}" data-event-name="${escapeHtml(event.name)}"` : ''}>${escapeHtml(item.answer)}</p></details>`).join(''),
     RELATED: related,
     DATE_SHORT: formatDateShort(occurrence.dateKey),
     CALENDAR_TYPE: calendarLabel(event),
-    HOLIDAY_ROW: isHoliday(event) ? '<div><dt>Ngày nghỉ lễ</dt><dd>Có</dd></div>' : '',
+    HOLIDAY_ROW: isHoliday(event) ? '            <div><dt>Ngày nghỉ lễ</dt><dd>Có</dd></div>' : '',
   });
-  if (teacherPage) {
+  if (countdownPage) {
     const lead = `<p class="event-article-lead">${escapeHtml(event.description)}</p>`;
-    if (!html.includes(lead)) throw new Error('Teacher event lead not found');
-    html = html.replace(lead, `${lead}\n        <p class="event-article-lead" data-event-answer data-date="${occurrence.dateKey}">${escapeHtml(teacherCountdownAnswer(occurrence))}</p>`);
+    if (!html.includes(lead)) throw new Error('Event lead not found');
+    html = html.replace(lead, `${lead}\n        <p class="event-article-lead" data-event-answer data-date="${occurrence.dateKey}" data-event-name="${escapeHtml(event.name)}">${escapeHtml(countdownAnswer(event, occurrence))}</p>`);
   }
   write(target, html);
   return { event, lastmod: modified };
@@ -381,7 +396,7 @@ function updateSitemap(details, hubLastmod) {
 
 function main() {
   const items = EVENTS_DATA.getUpcomingEvents({ lunarToSolar });
-  if (items.length !== 37) throw new Error(`Expected 37 upcoming events, received ${items.length}`);
+  if (items.length !== EVENTS_DATA.getAllEvents().length) throw new Error('Some event dates could not be generated');
   const hubLastmod = generateHub(items);
   const details = items.map((item, index) => generateDetail(item, index, items));
   updateSitemap(details, hubLastmod);
@@ -390,4 +405,7 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { teacherCountdownAnswer };
+module.exports = {
+  countdownAnswer,
+  teacherCountdownAnswer: (occurrence) => countdownAnswer({ name: 'Ngày Nhà giáo Việt Nam' }, occurrence),
+};

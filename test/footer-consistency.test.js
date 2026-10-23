@@ -39,6 +39,21 @@ test('Explore footer links to every Vietnamese Sắp page', () => {
     const expected = [
         ['/', 'Sắp Tết'],
         ['/sap-co-luong/', 'Sắp Có Lương'],
+        ['/sap-san-sale/', 'Sắp Săn Sale'],
+        ['/su-kien/nha-giao-viet-nam/', 'Sắp 20/11'],
+        ['/su-kien/quoc-te-nam-gioi/', 'Sắp 19/11'],
+        ['/su-kien/black-friday/', 'Sắp Black Friday'],
+        ['/su-kien/tet-trung-thu/', 'Sắp Trung Thu'],
+        ['/su-kien/quoc-te-phu-nu/', 'Sắp 8/3'],
+        ['/su-kien/phu-nu-viet-nam/', 'Sắp 20/10'],
+        ['/su-kien/quoc-khanh-viet-nam/', 'Sắp Quốc khánh'],
+        ['/su-kien/giai-phong-mien-nam/', 'Sắp 30/4'],
+        ['/su-kien/quoc-te-lao-dong/', 'Sắp 1/5'],
+        ['/su-kien/gio-to-hung-vuong/', 'Sắp Giỗ Tổ'],
+        ['/su-kien/ong-cong-ong-tao/', 'Sắp Ông Công Ông Táo'],
+        ['/su-kien/ngay-cua-me/', 'Sắp Ngày của Mẹ'],
+        ['/su-kien/ngay-cua-cha/', 'Sắp Ngày của Cha'],
+        ['/su-kien/that-tich/', 'Sắp Thất Tịch'],
         ...HOLIDAYS_EN.map(({ slug }) => [
             slug === 'halloween' ? '/sap-halloween/' : slug === 'christmas' ? '/noel.html' : `/${slug}?lang=vi`,
             `Sắp ${HOLIDAYS_VI[slug].name}`,
@@ -52,9 +67,11 @@ test('Explore footer links to every Vietnamese Sắp page', () => {
         assert.ok(explore, `${file}: missing Explore footer`);
         assert.match(explore, /When is Tet in Vietnam\?/);
         assert.ok(sapPages, `${file}: missing Sắp X section`);
-        assert.match(sapPages, /<summary><span>Sắp X<\/span>/);
+        assert.match(sapPages, /<summary><span[^>]*>Sắp X<\/span>/);
         for (const [href, label] of expected) {
-            assert.ok(sapPages.includes(`<a href="${href}">${label}</a>`), `${file}: missing ${label}`);
+            const link = [...sapPages.matchAll(/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+                .find(([, linkHref, linkLabel]) => linkHref === href && linkLabel === label);
+            assert.ok(link, `${file}: missing ${label}`);
         }
     }
 });

@@ -14,6 +14,7 @@
     "update-version": "node scripts/update-version.js",
     "generate-tin-tuc-clean-urls": "node scripts/generate-tin-tuc-clean-urls.js",
     "generate-events": "node scripts/generate-event-pages.js",
+    "generate-sale": "node scripts/generate-sale-page.js",
     "generate-holidays": "node scripts/generate-holiday-pages.js",
     "render-holiday-og": "node scripts/render-holiday-og.js",
     "inject-tet-seo": "node scripts/inject-tet-seo-snippets.js",

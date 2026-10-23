@@ -347,7 +347,7 @@ class HeaderLoader {
 // Initialize header loader when DOM is ready
 if (new URLSearchParams(window.location.search).get('lang') === 'en') {
     const siteLanguageScript = document.createElement('script');
-    siteLanguageScript.src = '/js/site-language.js';
+    siteLanguageScript.src = '/js/site-language.js?v=20261023-events';
     document.head.appendChild(siteLanguageScript);
 }
 

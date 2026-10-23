@@ -29,10 +29,14 @@ test('substantial Vietnamese pages expose English through the shared mode or a n
 test('English reading mode retains native English routes and selected Vietnamese terminology', () => {
   const mode = read('js/site-language.js');
   const dictionary = JSON.parse(read('data/site-vi-en.json'));
+  const eventDictionary = JSON.parse(read('data/site-vi-en-events.json'));
   assert.match(mode, /new MutationObserver/);
   assert.match(mode, /'\/noel\.html': '\/christmas'/);
   assert.match(mode, /'\/tet-2027-la-ngay-nao\/': '\/when-is-tet-in-vietnam\/'/);
   assert.equal(dictionary['Ngày Nhà giáo Việt Nam'], "Vietnamese Teachers' Day");
   assert.equal(dictionary['Máy tính lì xì'], 'Lucky money calculator');
   assert.equal(dictionary['Sắp X'], 'Sắp X');
+  assert.match(mode, /site-vi-en-events\.json/);
+  assert.equal(eventDictionary['Ngày của Mẹ'], "Mother's Day");
+  assert.equal(eventDictionary['Thất Tịch'], 'Qixi Festival');
 });

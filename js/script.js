@@ -335,7 +335,7 @@ function getHolidayInfoForHome(date) {
         [EVENTS_DATA.SOLAR_EVENTS_VIETNAM, EVENTS_DATA.SOLAR_EVENTS_INTERNATIONAL].forEach(function (list) {
             if (!list) return;
             list.forEach(function (ev) {
-                const key = year + '-' + String(ev.month).padStart(2, '0') + '-' + String(ev.day).padStart(2, '0');
+                const key = EVENTS_DATA.getSolarDateKey(ev, year);
                 if (!fixedHolidays[key]) fixedHolidays[key] = { name: ev.name, type: ev.type || 'national', description: ev.description };
             });
         });

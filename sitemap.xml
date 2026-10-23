@@ -604,6 +604,12 @@
     </url>
     <!-- Event detail pages -->
     <url>
+        <loc>https://saptet.vn/su-kien/quoc-te-nam-gioi/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
         <loc>https://saptet.vn/su-kien/nha-giao-viet-nam/</loc>
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
@@ -611,6 +617,12 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/tet-ha-nguyen/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/su-kien/black-friday/</loc>
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
@@ -742,6 +754,12 @@
         <priority>0.72</priority>
     </url>
     <url>
+        <loc>https://saptet.vn/su-kien/ngay-cua-me/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
         <loc>https://saptet.vn/su-kien/sinh-nhat-ho-chi-minh/</loc>
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
@@ -766,6 +784,12 @@
         <priority>0.72</priority>
     </url>
     <url>
+        <loc>https://saptet.vn/su-kien/ngay-cua-cha/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
         <loc>https://saptet.vn/su-kien/gia-dinh-viet-nam/</loc>
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
@@ -773,6 +797,12 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/thuong-binh-liet-si/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/su-kien/that-tich/</loc>
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
@@ -824,5 +854,11 @@
         <lastmod>2026-10-23</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
+    </url>
+    <url>
+        <loc>https://saptet.vn/sap-san-sale/</loc>
+        <lastmod>2026-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.76</priority>
     </url>
 </urlset>

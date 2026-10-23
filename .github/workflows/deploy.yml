@@ -47,6 +47,9 @@ jobs:
       - name: Refresh Vietnamese Noel countdown
         run: npm run inject-seasonal-seo
 
+      - name: Refresh event and sale countdown pages
+        run: npm run generate-events && npm run generate-sale
+
       # Mỗi lần deploy dùng cache name mới, buộc Service Worker và web
       # assets được refresh mà không cần tạo commit rác trên master.
       - name: Force-update Service Worker cache version

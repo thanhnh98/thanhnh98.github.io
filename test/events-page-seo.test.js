@@ -43,8 +43,8 @@ test('event hero isolates shared header decoration and keeps AA contrast', () =>
 
 test('all events expose unique clean slugs and editorial content', () => {
   const events = EVENTS_DATA.getAllEvents();
-  assert.equal(events.length, 37);
-  assert.equal(new Set(events.map((event) => event.slug)).size, 37);
+  assert.equal(events.length, 42);
+  assert.equal(new Set(events.map((event) => event.slug)).size, 42);
 
   for (const event of events) {
     assert.match(event.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
@@ -57,7 +57,7 @@ test('all events expose unique clean slugs and editorial content', () => {
 
 test('upcoming occurrence logic rolls passed dates forward in Vietnam time', () => {
   const events = EVENTS_DATA.getUpcomingEvents({ todayKey: '2026-09-04', lunarToSolar });
-  assert.equal(events.length, 37);
+  assert.equal(events.length, 42);
   assert.equal(events[0].event.id, 'lunar-tet-trung-thu');
   assert.equal(events[0].occurrence.dateKey, '2026-09-25');
 
@@ -73,7 +73,7 @@ test('event hub is static-first, searchable and links every event page', () => {
   assert.match(html, /class="events-filter-panel"/);
   assert.match(html, /data-events-search/);
   assert.match(html, /data-events-filter="holiday"/);
-  assert.equal((html.match(/data-event-card/g) || []).length, 37);
+  assert.equal((html.match(/data-event-card/g) || []).length, 42);
 
   for (const event of EVENTS_DATA.getAllEvents()) {
     assert.match(html, new RegExp(`href="/su-kien/${event.slug}/"`));
@@ -91,7 +91,7 @@ test('event hub is static-first, searchable and links every event page', () => {
   assert.match(localRouteHtml, /<link rel="canonical" href="https:\/\/saptet\.vn\/su-kien-quan-trong\.html">/);
 });
 
-test('all 37 event pages are indexable, self-canonical articles', () => {
+test('all 42 event pages are indexable, self-canonical articles', () => {
   for (const event of EVENTS_DATA.getAllEvents()) {
     const file = `su-kien/${event.slug}/index.html`;
     assert.ok(fs.existsSync(path.join(root, file)), `missing ${file}`);
@@ -114,7 +114,7 @@ test('all 37 event pages are indexable, self-canonical articles', () => {
 test('sitemap includes clean event URLs and drops generic detail utility', () => {
   const sitemap = read('sitemap.xml');
   assert.doesNotMatch(sitemap, /https:\/\/saptet\.vn\/chi-tiet-su-kien\.html/);
-  assert.equal((sitemap.match(/<loc>https:\/\/saptet\.vn\/su-kien\//g) || []).length, 37);
+  assert.equal((sitemap.match(/<loc>https:\/\/saptet\.vn\/su-kien\//g) || []).length, 42);
   for (const event of EVENTS_DATA.getAllEvents()) {
     const canonical = `https://saptet.vn/su-kien/${event.slug}/`;
     const html = read(`su-kien/${event.slug}/index.html`);

@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const footerContainer = document.getElementById('footer-container');
     if (!footerContainer) return;
 
-    if (!document.querySelector('link[href="/css/footer-compact.css"]')) {
+    if (!document.querySelector('link[href*="footer-compact.css"]')) {
         const footerStyles = document.createElement('link');
         footerStyles.rel = 'stylesheet';
-        footerStyles.href = '/css/footer-compact.css';
+        footerStyles.href = '/css/footer-compact.css?v=20261023-sale';
         document.head.appendChild(footerStyles);
     }
 
@@ -43,22 +43,37 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 <details class="home-footer-sap-group" open>
-                    <summary><span>Sắp X</span><small>14 trang đếm ngược</small></summary>
+                    <summary><span data-en="Upcoming events">Sắp X</span><small data-en="29 countdown pages">29 trang đếm ngược</small></summary>
                     <nav class="home-footer-sap-links" aria-label="Các trang Sắp X">
-                        <a href="/">Sắp Tết</a>
-                        <a href="/sap-co-luong/">Sắp Có Lương</a>
-                        <a href="/sap-halloween/">Sắp Halloween</a>
-                        <a href="/diwali?lang=vi">Sắp Diwali</a>
-                        <a href="/thanksgiving?lang=vi">Sắp Lễ Tạ ơn</a>
-                        <a href="/hanukkah?lang=vi">Sắp Hanukkah</a>
-                        <a href="/noel.html">Sắp Giáng sinh</a>
-                        <a href="/new-year?lang=vi">Sắp Năm mới</a>
-                        <a href="/chinese-new-year?lang=vi">Sắp Tết Trung Quốc</a>
-                        <a href="/ramadan?lang=vi">Sắp Ramadan</a>
-                        <a href="/valentines-day?lang=vi">Sắp Valentine</a>
-                        <a href="/eid-al-fitr?lang=vi">Sắp Eid al-Fitr</a>
-                        <a href="/easter?lang=vi">Sắp Lễ Phục sinh</a>
-                        <a href="/songkran?lang=vi">Sắp Songkran</a>
+                        <a href="/" data-en="Tet countdown">Sắp Tết</a>
+                        <a href="/sap-co-luong/" data-en="Payday countdown">Sắp Có Lương</a>
+                        <a href="/sap-san-sale/" data-en="Sale countdown">Sắp Săn Sale</a>
+                        <a href="/su-kien/nha-giao-viet-nam/" data-en="Teachers' Day countdown">Sắp 20/11</a>
+                        <a href="/su-kien/quoc-te-nam-gioi/" data-en="International Men's Day countdown">Sắp 19/11</a>
+                        <a href="/su-kien/black-friday/" data-en="Black Friday countdown">Sắp Black Friday</a>
+                        <a href="/su-kien/tet-trung-thu/" data-en="Mid-Autumn Festival countdown">Sắp Trung Thu</a>
+                        <a href="/su-kien/quoc-te-phu-nu/" data-en="International Women's Day countdown">Sắp 8/3</a>
+                        <a href="/su-kien/phu-nu-viet-nam/" data-en="Vietnamese Women's Day countdown">Sắp 20/10</a>
+                        <a href="/su-kien/quoc-khanh-viet-nam/" data-en="Vietnam National Day countdown">Sắp Quốc khánh</a>
+                        <a href="/su-kien/giai-phong-mien-nam/" data-en="Reunification Day countdown">Sắp 30/4</a>
+                        <a href="/su-kien/quoc-te-lao-dong/" data-en="Labour Day countdown">Sắp 1/5</a>
+                        <a href="/su-kien/gio-to-hung-vuong/" data-en="Hung Kings Commemoration countdown">Sắp Giỗ Tổ</a>
+                        <a href="/su-kien/ong-cong-ong-tao/" data-en="Kitchen Gods Day countdown">Sắp Ông Công Ông Táo</a>
+                        <a href="/su-kien/ngay-cua-me/" data-en="Mother's Day countdown">Sắp Ngày của Mẹ</a>
+                        <a href="/su-kien/ngay-cua-cha/" data-en="Father's Day countdown">Sắp Ngày của Cha</a>
+                        <a href="/su-kien/that-tich/" data-en="Qixi Festival countdown">Sắp Thất Tịch</a>
+                        <a href="/sap-halloween/" data-en="Halloween countdown">Sắp Halloween</a>
+                        <a href="/diwali?lang=vi" data-en="Diwali countdown">Sắp Diwali</a>
+                        <a href="/thanksgiving?lang=vi" data-en="Thanksgiving countdown">Sắp Lễ Tạ ơn</a>
+                        <a href="/hanukkah?lang=vi" data-en="Hanukkah countdown">Sắp Hanukkah</a>
+                        <a href="/noel.html" data-en="Christmas countdown">Sắp Giáng sinh</a>
+                        <a href="/new-year?lang=vi" data-en="New Year countdown">Sắp Năm mới</a>
+                        <a href="/chinese-new-year?lang=vi" data-en="Chinese New Year countdown">Sắp Tết Trung Quốc</a>
+                        <a href="/ramadan?lang=vi" data-en="Ramadan countdown">Sắp Ramadan</a>
+                        <a href="/valentines-day?lang=vi" data-en="Valentine's Day countdown">Sắp Valentine</a>
+                        <a href="/eid-al-fitr?lang=vi" data-en="Eid al-Fitr countdown">Sắp Eid al-Fitr</a>
+                        <a href="/easter?lang=vi" data-en="Easter countdown">Sắp Lễ Phục sinh</a>
+                        <a href="/songkran?lang=vi" data-en="Songkran countdown">Sắp Songkran</a>
                     </nav>
                 </details>
                 <div class="home-footer-bottom">

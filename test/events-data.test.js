@@ -15,7 +15,7 @@ function loadEventsData() {
     return context.EVENTS_DATA;
 }
 
-test('event catalog contains 37 unique, classified events', () => {
+test('event catalog contains 42 unique, classified events', () => {
     const data = loadEventsData();
     const allEvents = [
         ...data.LUNAR_EVENTS,
@@ -23,11 +23,11 @@ test('event catalog contains 37 unique, classified events', () => {
         ...data.SOLAR_EVENTS_INTERNATIONAL,
     ];
 
-    assert.equal(data.LUNAR_EVENTS.length, 11);
+    assert.equal(data.LUNAR_EVENTS.length, 12);
     assert.equal(data.SOLAR_EVENTS_VIETNAM.length, 19);
-    assert.equal(data.SOLAR_EVENTS_INTERNATIONAL.length, 7);
-    assert.equal(allEvents.length, 37);
-    assert.equal(new Set(allEvents.map((event) => event.id)).size, 37);
+    assert.equal(data.SOLAR_EVENTS_INTERNATIONAL.length, 11);
+    assert.equal(allEvents.length, 42);
+    assert.equal(new Set(allEvents.map((event) => event.id)).size, 42);
 
     const labourDayEvents = data.SOLAR_EVENTS_VIETNAM
         .concat(data.SOLAR_EVENTS_INTERNATIONAL)

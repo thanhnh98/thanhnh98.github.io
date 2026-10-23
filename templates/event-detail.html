@@ -59,9 +59,9 @@
       </div>
       <div class="event-article-date-card">
         <p class="event-article-date-card-label">Lần diễn ra tiếp theo</p>
-        <strong>{{DATE_LONG}}</strong>
+        <strong data-event-date-long>{{DATE_LONG}}</strong>
         <p>{{CALENDAR_NOTE}}</p>
-        <p class="event-article-countdown" data-event-countdown data-date="{{DATE_KEY}}">{{COUNTDOWN}}</p>
+        <p class="event-article-countdown" data-event-countdown data-event-slug="{{EVENT_SLUG}}" data-date="{{DATE_KEY}}">{{COUNTDOWN}}</p>
       </div>
     </div>
   </header>
@@ -103,7 +103,7 @@
             <div><dt>Ngày dương</dt><dd>{{DATE_SHORT}}</dd></div>
             <div><dt>Loại lịch</dt><dd>{{CALENDAR_TYPE}}</dd></div>
             <div><dt>Phân loại</dt><dd>{{CATEGORY_LABEL}}</dd></div>
-            {{HOLIDAY_ROW}}
+{{HOLIDAY_ROW}}
           </dl>
         </section>
         <section class="event-article-aside-card">
@@ -121,8 +121,9 @@
   <script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
   <script src="/js/header-loader.js?v=events-20260904"></script>
   <script src="/js/icons.js"></script>
-  <script src="/data/events-data.js"></script>
-  <script src="/js/events-page.js"></script>
+  <script src="/js/lunar-calendar.js"></script>
+  <script src="/data/events-data.js?v=20261023-events"></script>
+  <script src="/js/events-page.js?v=20261023-events2"></script>
   <script src="/js/footer.js"></script>
 </body>
 </html>
