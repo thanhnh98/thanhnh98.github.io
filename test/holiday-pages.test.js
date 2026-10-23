@@ -6,7 +6,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const { HOLIDAYS_EN } = require('../data/holidays-en.js');
-const { resolveDates, easterSunday, nthWeekday } = require('../scripts/generate-holiday-pages.js');
+const { resolveDates, easterSunday, nthWeekday, buildItem, titleFor, descriptionFor, makeFaq } = require('../scripts/generate-holiday-pages.js');
 const { langData, langVariant } = require('./helpers/holiday-lang.js');
 
 function jsonLd(html) {
@@ -63,6 +63,27 @@ test('rule-based dates are computed correctly', () => {
   assert.ok(resolveDates(christmas, 2026).includes('2031-12-25'));
 });
 
+test('countdown and date answers follow the next occurrence before, during and after New Year', () => {
+  const holiday = HOLIDAYS_EN.find((entry) => entry.slug === 'new-year');
+  const cases = [
+    ['2026-12-31T12:00:00Z', '2027', false],
+    ['2027-01-01T12:00:00Z', '2027', true],
+    ['2027-01-02T00:00:00Z', '2028', false],
+  ];
+  for (const [instant, year, live] of cases) {
+    const item = buildItem(holiday, Date.parse(instant));
+    assert.equal(item.occurrence.dateKey.slice(0, 4), year);
+    assert.equal(item.occurrence.live, live);
+    assert.ok(titleFor(holiday, year).startsWith('How Many Days Until New Year?'));
+    assert.ok(descriptionFor(item).startsWith('How many days until New Year?'));
+    const [countdownQuestion, dateQuestion] = makeFaq(item);
+    assert.equal(countdownQuestion.q, 'How many days until New Year?');
+    assert.ok(countdownQuestion.a.includes(year));
+    assert.equal(dateQuestion.q, 'When is New Year?');
+    assert.ok(dateQuestion.a.includes(year));
+  }
+});
+
 for (const holiday of HOLIDAYS_EN) {
   test(`${holiday.slug}.html is an indexable English countdown page`, () => {
     const html = read(`${holiday.slug}.html`);
@@ -73,7 +94,18 @@ for (const holiday of HOLIDAYS_EN) {
     assert.equal(langData(html).en.url, canonical);
     assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large">/);
     assert.match(html, /<meta property="og:locale" content="en_US">/);
-    assert.match(html, new RegExp(`<title>${holiday.name.replace(/'/g, '&#39;')} Countdown \\d{4}: How Many Days`));
+    const englishBody = html.slice(0, html.indexOf('<template'));
+    const title = decode(html.match(/<title>([^<]+)<\/title>/)[1]);
+    const description = decode(html.match(/<meta name="description" content="([^"]+)"/)[1]);
+    const keywords = decode(html.match(/<meta name="keywords" content="([^"]+)"/)[1]);
+    assert.ok(title.startsWith(`How Many Days Until ${holiday.name}?`), `${holiday.slug}: countdown query should lead the title`);
+    assert.ok(description.startsWith(`How many days until ${holiday.name}?`), `${holiday.slug}: countdown query should lead the description`);
+    assert.ok(keywords.startsWith(`how many days until ${holiday.name.toLowerCase()}`), `${holiday.slug}: countdown keyword should lead`);
+    assert.ok(keywords.includes(`when is ${holiday.name.toLowerCase()}`), `${holiday.slug}: missing date query keyword`);
+    assert.ok(decode(englishBody).includes(`<h1 id="hc-title" class="hc-title">How many days until ${holiday.name}?</h1>`));
+    assert.ok(decode(englishBody).includes(`<h3>When is ${holiday.name}?</h3>`));
+    const heroAnswer = decode(englishBody.match(/<p class="hc-info-answer" data-hc-countdown-answer>([^<]+)<\/p>/)[1]);
+    const dateAnswer = decode(englishBody.match(/<p class="hc-answer" data-hc-when-answer>([^<]+)<\/p>/)[1]);
     assert.match(html, /data-hc-unit="seconds"/);
     // Hero chỉ dành cho đếm ngược; nội dung SEO nằm ở các section bên dưới.
     const hero = html.slice(html.indexOf('<section class="hc-hero"'), html.indexOf('<section class="hc-section" id="details">'));
@@ -81,7 +113,6 @@ for (const holiday of HOLIDAYS_EN) {
     assert.match(hero, new RegExp(`<img class="hc-hero-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true" width="68" height="68" decoding="async">`));
     assert.doesNotMatch(hero, /class="hc-hero-bg"/, 'large hero photos should not cover the paper heading');
     assert.doesNotMatch(hero, /class="hc-kicker"/, 'hero should not label a geographic scope');
-    const englishBody = html.slice(0, html.indexOf('<template'));
     assert.doesNotMatch(englishBody, /class="hc-hero-bg"/, 'detail page should not load a hidden hero photo');
     assert.match(hero, /data-hc-share/);
     assert.match(html, /<dialog class="hc-share-dialog" data-hc-share-dialog/);
@@ -112,6 +143,10 @@ for (const holiday of HOLIDAYS_EN) {
     assert.ok(types.includes('WebPage') && types.includes('FAQPage') && types.includes('BreadcrumbList'));
     assert.ok(!types.includes('Event'), 'countdown pages must not use Event schema');
     const faq = graph.find((node) => node['@type'] === 'FAQPage');
+    assert.equal(faq.mainEntity[0].name, `How many days until ${holiday.name}?`);
+    assert.equal(faq.mainEntity[0].acceptedAnswer.text, heroAnswer);
+    assert.equal(faq.mainEntity[1].name, `When is ${holiday.name}?`);
+    assert.equal(faq.mainEntity[1].acceptedAnswer.text, dateAnswer);
     const visibleQuestions = [...englishBody.matchAll(/<summary>([^<]+)<\/summary>/g)].map((match) => match[1].replace(/&#39;/g, '\''));
     assert.deepEqual(faq.mainEntity.map((entry) => entry.name), visibleQuestions, 'FAQ schema matches visible FAQ');
 
@@ -134,6 +169,7 @@ test('hub lists every holiday and every page is in the sitemap', () => {
   assert.match(sitemap, /<loc>https:\/\/saptet\.vn\/countdowns<\/loc>/);
   for (const holiday of HOLIDAYS_EN) {
     assert.match(hub, new RegExp(`href="/${holiday.slug}"`));
+    assert.ok(decode(hub).includes(`<strong>How many days until ${holiday.name}?</strong>`), `${holiday.slug}: descriptive hub link`);
     assert.match(hub, new RegExp(`class="hc-mini-mark" src="${holiday.visual.icon}" alt="" aria-hidden="true"`));
     assert.match(sitemap, new RegExp(`<loc>https://saptet\\.vn/${holiday.slug}</loc>`));
   }
@@ -153,10 +189,10 @@ test('share-image renderer captures the click-time countdown and offers share pl
   assert.match(source, /downloadBlob\(latestBlob, latestFileName\)/);
 });
 
-test('Christmas pairs with /christmas?lang=vi; noel.html no longer claims to be its alternate', () => {
+test('Christmas pairs with the canonical Vietnamese Noel page', () => {
   const christmas = read('christmas.html');
-  assert.match(christmas, /hreflang="vi" href="https:\/\/saptet\.vn\/christmas\?lang=vi"/);
-  assert.doesNotMatch(read('noel.html'), /hreflang="(en|x-default)" href="https:\/\/saptet\.vn\/christmas"/);
+  assert.match(christmas, /hreflang="vi" href="https:\/\/saptet\.vn\/noel\.html"/);
+  assert.match(read('noel.html'), /hreflang="en" href="https:\/\/saptet\.vn\/christmas"/);
   assert.match(langVariant('christmas.html', 'vi').body, /<a href="\/noel\.html">/, 'Vietnamese Christmas page links to the existing Noel page');
 });
 

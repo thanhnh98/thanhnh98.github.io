@@ -246,7 +246,7 @@
                 // /friends/<code> is a friend invite shared from the apps' "Bạn bè" tab.
                 window.FRIEND_INVITE_CODE = match[1].toUpperCase();
                 document.documentElement.classList.add('is-friend-invite');
-                document.title = 'Lời mời kết bạn · Mã ' + window.FRIEND_INVITE_CODE + ' | Sắp Tết';
+                document.title = 'Lời mời theo dõi · Mã ' + window.FRIEND_INVITE_CODE + ' | Sắp Tết';
             } else if ((match = window.location.pathname.match(/^\/thiep\/([A-Za-z2-9]{10})\/?$/))) {
                 // /thiep/<slug> is a card sent from the apps: handed to the app (js/thiep.js).
                 window.THIEP_SLUG = match[1].toUpperCase();
@@ -290,13 +290,13 @@
     <div class="oaq-invite friend-invite">
         <div class="oaq-invite-card">
             <img class="oaq-invite-icon" src="/assets/images/ic_app-208.webp" alt="Sắp Tết" width="72" height="72">
-            <h1 class="oaq-invite-title">Bạn được mời kết bạn trên Sắp Tết</h1>
-            <div>Mã kết bạn</div>
+            <h1 class="oaq-invite-title">Bạn được mời theo dõi nhau trên Sắp Tết</h1>
+            <div>Mã theo dõi</div>
             <div class="oaq-invite-code" id="friend-invite-code">--------</div>
-            <p class="oaq-invite-note">Mở ứng dụng Sắp Tết để gửi lời mời kết bạn, rồi hú nhau đón Tết và thách đấu Ô ăn quan.</p>
+            <p class="oaq-invite-note">Mở ứng dụng Sắp Tết để theo dõi nhau, rồi hú nhau đón Tết và thách đấu Ô ăn quan.</p>
             <div class="oaq-invite-actions">
                 <a class="oaq-invite-open" id="friend-invite-open" href="/">Mở trong ứng dụng</a>
-                <button type="button" id="friend-invite-copy">Sao chép mã kết bạn</button>
+                <button type="button" id="friend-invite-copy">Sao chép mã theo dõi</button>
                 <a id="friend-invite-android" href="https://play.google.com/store/apps/details?id=com.thanh_nguyen.tet_count_down" target="_blank" rel="noopener">Tải trên Google Play</a>
                 <a id="friend-invite-ios" href="https://apps.apple.com/app/id6743064990" target="_blank" rel="noopener">Tải trên App Store</a>
             </div>
@@ -517,7 +517,7 @@
             document.getElementById('friend-invite-copy').addEventListener('click', function () {
                 var button = this;
                 var done = function () { button.textContent = 'Đã sao chép ' + code; };
-                var fail = function () { button.textContent = 'Mã kết bạn: ' + code; };
+                var fail = function () { button.textContent = 'Mã theo dõi: ' + code; };
                 if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, fail);
                 else fail();
             });

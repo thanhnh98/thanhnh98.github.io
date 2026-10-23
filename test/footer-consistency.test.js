@@ -5,6 +5,8 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
+const { HOLIDAYS_EN } = require('../data/holidays-en.js');
+const { HOLIDAYS_VI } = require('../data/holidays-vi.js');
 
 test('shared footer carries the homepage footer structure and navigation', () => {
     const homepage = read('index.html');
@@ -31,6 +33,30 @@ test('shared footer carries the homepage footer structure and navigation', () =>
     assert.match(shared, /Phát triển bởi <a class="home-footer-tlife" href="https:\/\/tlife\.io\.vn"[^>]*>TLife<\/a>/);
     assert.match(homepage, /Phát triển bởi <a class="home-footer-tlife" href="https:\/\/tlife\.io\.vn"[^>]*>TLife<\/a>/);
     assert.match(sharedStyles, /\.home-footer-tlife[^}]*font-weight:\s*700/);
+});
+
+test('Explore footer links to every Vietnamese Sắp page', () => {
+    const expected = [
+        ['/', 'Sắp Tết'],
+        ['/sap-co-luong/', 'Sắp Có Lương'],
+        ...HOLIDAYS_EN.map(({ slug }) => [
+            slug === 'halloween' ? '/sap-halloween/' : slug === 'christmas' ? '/noel.html' : `/${slug}?lang=vi`,
+            `Sắp ${HOLIDAYS_VI[slug].name}`,
+        ]),
+    ];
+
+    for (const file of ['footer.html', 'js/footer.js', 'index.html', 'home-preview.html']) {
+        const content = read(file);
+        const explore = content.match(/<nav class="home-footer-links" aria-label="Khám phá Sắp Tết">([\s\S]*?)<\/nav>/)?.[1];
+        const sapPages = content.match(/<details class="home-footer-sap-group" open>([\s\S]*?)<\/details>/)?.[1];
+        assert.ok(explore, `${file}: missing Explore footer`);
+        assert.match(explore, /When is Tet in Vietnam\?/);
+        assert.ok(sapPages, `${file}: missing Sắp X section`);
+        assert.match(sapPages, /<summary><span>Sắp X<\/span>/);
+        for (const [href, label] of expected) {
+            assert.ok(sapPages.includes(`<a href="${href}">${label}</a>`), `${file}: missing ${label}`);
+        }
+    }
 });
 
 test('every page with a shared footer container loads the footer component', () => {

@@ -56,9 +56,10 @@
 {{SKY}}
       <div class="hc-hero-inner hc-container">
         <img class="hc-hero-mark" src="{{HERO_ICON}}" alt="" aria-hidden="true" width="68" height="68" decoding="async">
-        <h1 id="hc-title" class="hc-title">{{NAME}} Countdown <span data-hc-year>{{YEAR}}</span></h1>
+        <h1 id="hc-title" class="hc-title">How many days until {{NAME}}?</h1>
 
         <div class="hc-info">
+          <p class="hc-info-answer" data-hc-countdown-answer>{{COUNTDOWN_ANSWER}}</p>
           <p class="hc-info-date" data-hc-date>{{DATE_LONG}}</p>
           <p class="hc-info-target" data-hc-target>{{TARGET_TEXT}}</p>
           <p class="hc-info-local" data-hc-local></p>
@@ -88,8 +89,10 @@
       <div class="hc-container hc-grid">
         <article class="hc-panel">
           <h2>How many days until {{NAME}} <span data-hc-year>{{YEAR}}</span>?</h2>
-          <p class="hc-answer">{{ANSWER}}</p>
+          <p class="hc-answer">{{COUNTDOWN_ANSWER}}</p>
 {{DATE_NOTE}}
+          <h3>When is {{NAME}}?</h3>
+          <p class="hc-answer" data-hc-when-answer>{{ANSWER}}</p>
           <h3>{{NAME}} dates</h3>
           <table class="hc-table">
             <thead><tr><th scope="col">Year</th><th scope="col">Date</th><th scope="col">Day</th></tr></thead>

@@ -19,10 +19,11 @@
     },
     2027: {
       status: 'official',
-      source: 'https://vpcp.chinhphu.vn/van-ban-ban-hanh/174505.htm',
+      source: 'https://baochinhphu.vn/nghi-tet-am-lich-2027-keo-dai-7-ngay-nghi-quoc-khanh-4-ngay-102261010095648278.htm',
       periods: [
         ['2027-01-01', '2027-01-01', 'Tết Dương lịch'],
-        ['2027-02-05', '2027-02-14', 'Tết Nguyên Đán'],
+        // Lịch công chức, viên chức. Doanh nghiệp có thể chọn phương án 5 ngày khác.
+        ['2027-02-04', '2027-02-10', 'Tết Nguyên Đán'],
         ['2027-04-16', '2027-04-16', 'Giỗ Tổ Hùng Vương'],
         ['2027-04-30', '2027-05-03', 'Ngày 30/4 và Quốc tế Lao động'],
         ['2027-09-02', '2027-09-05', 'Quốc khánh']

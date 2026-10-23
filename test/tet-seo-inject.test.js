@@ -3,6 +3,7 @@ const test = require('node:test');
 const {
   TET_2027,
   GIAO_THUA_2027,
+  GIAO_THUA_INSTANT_2027,
   buildTetSeoPayload,
   calendarDaysUntil,
   daysUntil,
@@ -24,6 +25,18 @@ test('giao thua is one day before tet in day count', () => {
   const toTet = daysUntil(TET_2027, ref);
   const toGiaoThua = daysUntil(GIAO_THUA_2027, ref);
   assert.equal(toTet - toGiaoThua, 1);
+});
+
+test('2027 giao thua is the night of 29 Tet and ends at midnight on 6 February', () => {
+  assert.equal(GIAO_THUA_INSTANT_2027.getTime(), TET_2027.getTime());
+  assert.equal(calendarDaysUntil('2027-02-05', new Date('2027-02-04T23:00:00+07:00')), 1);
+  assert.equal(calendarDaysUntil('2027-02-05', new Date('2027-02-05T23:00:00+07:00')), 0);
+  assert.equal(calendarDaysUntil('2027-02-05', new Date('2027-02-06T00:01:00+07:00')), 0);
+  const payload = buildTetSeoPayload(new Date('2027-02-04T23:00:00+07:00'));
+  assert.match(payload.faq.giaoThuaAnswer, /đêm 29 Tết, ngày 05\/02\/2027/);
+  assert.match(payload.metaDescriptionGiaoThua, /29 Tết/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, 'con-bao-nhieu-ngay-nua-den-tet/index.html'), 'utf8'), /đêm 30 Tết/);
+  assert.match(fs.readFileSync(path.join(root, 'con-bao-nhieu-ngay-nua-den-giao-thua/index.html'), 'utf8'), /data-target="2027-02-06T00:00:00\+07:00"/);
 });
 
 test('buildTetSeoPayload keeps landing SEO copy evergreen', () => {
@@ -100,7 +113,8 @@ test('daily quotes have stable share ids and a live countdown caption', () => {
   assert.equal(quoteForId(7), null);
   const { countdownCaption } = require('../js/home-wish-share-image');
   assert.equal(countdownCaption(110), 'Tết chỉ còn 110 ngày');
-  assert.equal(countdownCaption(0), '');
+  assert.equal(countdownCaption(0, true), 'Tết chỉ còn 0 ngày');
+  assert.equal(countdownCaption(0, false), '');
 });
 
 test('inject is idempotent and pre-renders the real day count', () => {

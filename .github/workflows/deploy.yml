@@ -41,6 +41,12 @@ jobs:
       - name: Inject Tết SEO snippets (VN timezone)
         run: npm run inject-tet-seo
 
+      - name: Refresh English Tet answer
+        run: npm run inject-tet-english-seo
+
+      - name: Refresh Vietnamese Noel countdown
+        run: npm run inject-seasonal-seo
+
       # Mỗi lần deploy dùng cache name mới, buộc Service Worker và web
       # assets được refresh mà không cần tạo commit rác trên master.
       - name: Force-update Service Worker cache version

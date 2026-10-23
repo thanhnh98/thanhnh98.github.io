@@ -1,0 +1,19 @@
+.tet-english-page { color: #392220; padding-top: 0; }
+.tet-en-header { background: #fffaf3; border-bottom: 1px solid #e8d7cc; }
+.tet-en-header-inner, .tet-en-footer .intent-container { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+.tet-en-header-inner { min-height: 76px; }
+.tet-en-brand { display: inline-flex; align-items: center; gap: .65rem; color: #9f1239; font-size: 1.35rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.tet-en-header nav, .tet-en-footer nav { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.3rem; }
+.tet-en-header nav { position: static; visibility: visible; opacity: 1; transform: none; flex-direction: row; width: auto; max-height: none; margin: 0; padding: 0; overflow: visible; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.tet-en-header nav a { display: inline-flex; width: auto; padding: .25rem 0; }
+.tet-en-header nav a, .tet-en-footer a { color: #60363a; font-weight: 700; text-decoration: none; }
+.tet-en-header nav a:hover, .tet-en-header nav a:focus-visible, .tet-en-footer a:hover, .tet-en-footer a:focus-visible { text-decoration: underline; }
+.tet-en-header nav [aria-current="page"] { color: #a01336; }
+.tet-en-zone { font-size: .9rem; margin: .85rem 0 0; }
+.tet-en-footer { background: #fffaf3; border-top: 1px solid #e8d7cc; padding: 1.5rem 0; }
+.tet-english-page .intent-content a:not(.intent-button) { text-decoration: underline; }
+@media (max-width: 700px) {
+  .tet-en-header-inner { align-items: flex-start; flex-direction: column; padding-block: 1rem; }
+  .tet-en-header nav { gap: .5rem 1rem; font-size: .9rem; }
+  .tet-en-footer .intent-container { align-items: flex-start; flex-direction: column; }
+}

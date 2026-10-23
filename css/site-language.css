@@ -1,0 +1,13 @@
+.site-language-note {
+  box-sizing: border-box;
+  max-width: 72rem;
+  margin: .75rem auto;
+  padding: .55rem 1rem;
+  color: #4f372b;
+  background: #fff8e7;
+  border: 1px solid #e7d7a5;
+  border-radius: .5rem;
+  font: 600 .82rem/1.45 system-ui, sans-serif;
+}
+.site-language-note a { color: #8e1639; text-decoration: underline; }
+@media (max-width: 767px) { .site-language-note { margin-inline: 1rem; } }

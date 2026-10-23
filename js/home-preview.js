@@ -76,7 +76,7 @@
         setTimeout(() => {
           bubble.hidden = true;
           showing = false;
-          showNext();
+          setTimeout(showNext, 40);
         }, 320);
       }, 3000);
     }
@@ -123,9 +123,11 @@
   let currentWishId = null;
   let currentWishFile = null;
   let currentWishCountdown = 0;
+  let currentWishBeforeTet = false;
   let currentWishImageUrl = null;
   let wishImageJob = 0;
   let wishImageModulePromise = null;
+  const tetStartTime = new Date('2027-02-06T00:00:00+07:00').getTime();
 
   function wishUrl(id) {
     return 'https://saptet.vn/?loi-chuc=' + id;
@@ -134,7 +136,7 @@
   function displayedCountdownDays() {
     const days = Number.parseInt(document.getElementById('days')?.textContent || '', 10);
     if (Number.isInteger(days) && days >= 0) return days;
-    return Math.max(0, Math.floor((new Date('2027-02-06T00:00:00+07:00').getTime() - Date.now()) / 86400000));
+    return Math.max(0, Math.floor((tetStartTime - Date.now()) / 86400000));
   }
 
   function loadWishImageModule() {
@@ -168,19 +170,27 @@
     try {
       const imageModule = await loadWishImageModule();
       const days = displayedCountdownDays();
-      const blob = await imageModule.render(message, days);
+      const beforeTet = Date.now() < tetStartTime;
+      const blob = await imageModule.render(message, days, beforeTet);
       if (job !== wishImageJob) return;
       currentWishCountdown = days;
+      currentWishBeforeTet = beforeTet;
       currentWishFile = new File([blob], 'sap-tet-loi-chuc-' + id + '.png', { type: 'image/png' });
       currentWishImageUrl = URL.createObjectURL(blob);
       wishImage.src = currentWishImageUrl;
-      wishImage.alt = 'Thiệp Tết với lời chúc: ' + message + (days > 0 ? '. Tết chỉ còn ' + days + ' ngày.' : '');
+      const caption = imageModule.countdownCaption(days, beforeTet);
+      wishImage.alt = 'Thiệp Tết với lời chúc: ' + message + (caption ? '. ' + caption + '.' : '');
       wishDownload.disabled = false;
       wishStatus.textContent = 'Ảnh đã sẵn sàng để chia sẻ hoặc tải xuống.';
     } catch (error) {
       if (job === wishImageJob) wishStatus.textContent = 'Chưa tạo được ảnh. Bạn vẫn có thể chia sẻ liên kết lời chúc.';
     }
   }
+
+  setInterval(() => {
+    if (!wishDialog?.open || !currentWishFile || currentWishId === null) return;
+    if (currentWishCountdown !== displayedCountdownDays() || currentWishBeforeTet !== (Date.now() < tetStartTime)) openWish(currentWishId);
+  }, 1000);
 
   async function copyWishLink() {
     const url = wishLink.href;
@@ -229,7 +239,7 @@
     if (currentWishId === null) return;
     const url = wishUrl(currentWishId);
     const message = wishText.textContent;
-    const caption = window.HomeWishShareImage?.countdownCaption(currentWishCountdown);
+    const caption = window.HomeWishShareImage?.countdownCaption(currentWishCountdown, currentWishBeforeTet);
     const shareText = [message, caption].filter(Boolean).join('\n');
     if (!navigator.share) { await copyWishLink(); return; }
     try {

@@ -1,0 +1,65 @@
+.home-footer-sap-group {
+  margin-top: 1.55rem;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .06);
+}
+
+.home-footer-sap-group summary {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .85rem 1rem;
+  color: #ffe36b;
+  cursor: pointer;
+  font-size: .84rem;
+  font-weight: 800;
+  list-style: none;
+}
+
+.home-footer-sap-group summary::-webkit-details-marker { display: none; }
+.home-footer-sap-group summary small { color: rgba(255, 255, 255, .68); font-size: .76rem; font-weight: 500; }
+.home-footer-sap-group summary::after { content: '+'; margin-left: auto; color: #fff; font-size: 1.2rem; line-height: 1; }
+.home-footer-sap-group[open] summary::after { content: '−'; }
+.home-footer-sap-group summary:focus-visible { outline: 2px solid #ffe36b; outline-offset: 3px; border-radius: 12px; }
+
+.home-footer-sap-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .35rem .8rem;
+  padding: 0 1rem 1rem;
+}
+
+.home-footer-sap-links a {
+  display: block;
+  padding: .42rem .55rem;
+  border-radius: 7px;
+  color: rgba(255, 255, 255, .82);
+  font-size: .82rem;
+  text-decoration: none;
+}
+
+.home-footer-sap-links a:hover,
+.home-footer-sap-links a:focus-visible { color: #fff; background: rgba(255, 255, 255, .13); }
+.home-footer-sap-group + .home-footer-bottom { margin-top: 1.55rem; }
+
+@media (max-width: 768px) {
+  .home-footer-sap-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 420px) {
+  .home-footer-sap-group summary { flex-wrap: wrap; }
+  .home-footer-sap-links { gap: .2rem; }
+  .home-footer-sap-links a { padding-inline: .25rem; }
+}
+
+@media (max-width: 560px) {
+  .home-site-footer .home-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+  }
+  .home-site-footer .home-footer-brand,
+  .home-site-footer .home-footer-community { grid-column: 1 / -1; }
+  .home-site-footer .home-footer-links { min-width: 0; }
+  .home-site-footer .home-footer-links a { line-height: 1.4; }
+}

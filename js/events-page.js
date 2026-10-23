@@ -35,6 +35,18 @@
     document.querySelectorAll('[data-event-countdown][data-date]').forEach(function (element) {
       element.textContent = countdownLabel(element.getAttribute('data-date'));
     });
+    document.querySelectorAll('[data-event-answer][data-date]').forEach(function (element) {
+      var dateKey = element.getAttribute('data-date');
+      var days = daysBetween(vietnamTodayKey(), dateKey);
+      var parts = dateKey.split('-').map(Number);
+      var date = String(parts[2]).padStart(2, '0') + '/' + String(parts[1]).padStart(2, '0') + '/' + parts[0];
+      var weekday = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'][new Date(Date.UTC(parts[0], parts[1] - 1, parts[2])).getUTCDay()];
+      element.textContent = days < 0
+        ? 'Ngày Nhà giáo Việt Nam ' + parts[0] + ' đã qua. Trang sẽ cập nhật lần diễn ra tiếp theo.'
+        : days === 0
+          ? 'Hôm nay là Ngày Nhà giáo Việt Nam ' + parts[0] + ', ngày ' + date + '.'
+          : 'Còn ' + days + ' ngày nữa đến Ngày Nhà giáo Việt Nam ' + parts[0] + ', ' + weekday + ', ngày ' + date + '.';
+    });
   }
 
   function initExplorer() {
@@ -142,6 +154,7 @@
 
   function init() {
     updateCountdowns();
+    window.setInterval(updateCountdowns, 60000);
     initExplorer();
     if (window.lucide && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons();
