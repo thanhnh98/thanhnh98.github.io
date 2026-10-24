@@ -48,7 +48,7 @@ test('daily retention cards have distinct functional color identities', () => {
 });
 
 test('daily retention items use the full card as their interaction area', () => {
-  assert.match(indexPage, /<a class="home-tet-card home-date-card" href="\/lich-am-hom-nay\.html"/);
+  assert.match(indexPage, /<a class="home-tet-card home-date-card" href="\/lich-am-hom-nay"/);
   assert.match(indexPage, /id="today-nearest-event-link" class="home-tet-card home-event-card"/);
   assert.match(indexPage, /id="home-daily-card"[^>]+data-home-card-action="#daily-action"/);
 });

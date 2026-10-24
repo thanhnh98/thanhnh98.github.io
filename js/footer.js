@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     <nav class="home-footer-links" aria-label="Tiện ích Sắp Tết">
                         <h2>Tiện ích</h2>
-                        <a href="/lich-am-hom-nay.html">Lịch âm hôm nay</a>
+                        <a href="/lich-am-hom-nay">Lịch âm hôm nay</a>
                         <a href="/loi-chuc-tet.html">Lời chúc Tết</a>
                         <a href="/may-tinh-li-xi.html">Máy tính lì xì</a>
                         <a href="/tro-choi-tet.html">Trò chơi Tết</a>

@@ -5,14 +5,13 @@
   'use strict';
 
   var almanac = window.LunarAlmanac;
-  if (!almanac) return;
+  var getVietnamToday = window.VietnamDate && window.VietnamDate.getVietnamToday;
+  if (!almanac || !getVietnamToday) return;
 
   var DISCLAIMER_TEXT = almanac.DISCLAIMER_TEXT;
   var SHORT_DISCLAIMER = ' Thông tin theo quan niệm dân gian, chỉ để tham khảo.';
-  var SITE_SUFFIX = ' | Sắp Tết 2027';
-
-  var currentCalendarDate = new Date();
-  var selectedDate = new Date();
+  var currentCalendarDate = getVietnamToday();
+  var selectedDate = getVietnamToday();
 
   function $(id) { return document.getElementById(id); }
   function setText(id, value) { var el = $(id); if (el) el.textContent = value; }
@@ -32,7 +31,8 @@
 
   function updateDateDetails(date) {
     var a = almanac.getAlmanac(date);
-    var isToday = sameDay(date, new Date());
+    var today = getVietnamToday();
+    var isToday = sameDay(date, today);
     var isGood = a.star.status === 'hoang-dao';
     var statusLabel = isGood ? 'Hoàng Đạo' : 'Hắc Đạo';
 
@@ -69,12 +69,13 @@
     setText('faq-hours-text', a.luckyHours.good.map(function (h) { return h.chi; }).join(', '));
     setText('faq-status-text', statusLabel.toLowerCase() + ' (sao ' + a.star.star + ', trực ' + a.truc.name + ')');
 
-    var solarText = formatSolar(date);
-    var titlePrefix = isToday ? 'Lịch Âm Hôm Nay Ngày ' + solarText : 'Lịch Âm Ngày ' + solarText;
-    document.title = titlePrefix + ' - Xem Lịch Âm Dương, Giờ Hoàng Đạo' + SITE_SUFFIX;
+    // The URL always describes today's date, even when a visitor explores another day.
+    var todayAlmanac = isToday ? a : almanac.getAlmanac(today);
+    var solarText = formatSolar(today);
+    document.title = 'Lịch âm hôm nay ' + solarText + ' | Ngày âm, giờ tốt';
     var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', (isToday ? 'Lịch âm hôm nay ' : 'Lịch âm ngày ') + solarText + ': ngày ' + lunarLabel(a) + ', ngày ' + a.canChi.day.can + ' ' + a.canChi.day.chi + ', giờ hoàng đạo ' + a.luckyHours.good.map(function (h) { return h.chi; }).join(', ') + ', hướng xuất hành, tuổi xung, việc nên làm.' + SHORT_DISCLAIMER);
+      metaDesc.setAttribute('content', 'Lịch âm hôm nay ' + solarText + ' là ngày ' + lunarLabel(todayAlmanac) + ' năm ' + todayAlmanac.canChi.year.can + ' ' + todayAlmanac.canChi.year.chi + '. Xem can chi, giờ hoàng đạo, tiết khí và đổi lịch âm dương theo múi giờ Việt Nam.');
     }
 
     var faqSchemaEl = $('faq-schema');
@@ -86,17 +87,17 @@
           {
             '@type': 'Question',
             name: 'Hôm nay ngày bao nhiêu âm lịch?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Ngày ' + solarText + ' dương lịch là ngày ' + lunarLabel(a) + ' âm lịch, ngày ' + a.canChi.day.can + ' ' + a.canChi.day.chi + ', tháng ' + a.canChi.month.can + ' ' + a.canChi.month.chi + ', năm ' + a.canChi.year.can + ' ' + a.canChi.year.chi + '.' }
+            acceptedAnswer: { '@type': 'Answer', text: 'Ngày ' + solarText + ' dương lịch là ngày ' + lunarLabel(todayAlmanac) + ' âm lịch, ngày ' + todayAlmanac.canChi.day.can + ' ' + todayAlmanac.canChi.day.chi + ', tháng ' + todayAlmanac.canChi.month.can + ' ' + todayAlmanac.canChi.month.chi + ', năm ' + todayAlmanac.canChi.year.can + ' ' + todayAlmanac.canChi.year.chi + '.' }
           },
           {
             '@type': 'Question',
             name: 'Giờ hoàng đạo hôm nay là những giờ nào?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Theo lịch can chi, các giờ hoàng đạo ngày ' + solarText + ' gồm: ' + hourList(a.luckyHours.good) + '.' + SHORT_DISCLAIMER }
+            acceptedAnswer: { '@type': 'Answer', text: 'Theo lịch can chi, các giờ hoàng đạo ngày ' + solarText + ' gồm: ' + hourList(todayAlmanac.luckyHours.good) + '.' + SHORT_DISCLAIMER }
           },
           {
             '@type': 'Question',
             name: 'Ngày hôm nay tốt hay xấu và nên làm việc gì?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Theo lịch dân gian, ngày ' + solarText + ' là ngày ' + statusLabel.toLowerCase() + ' (sao ' + a.star.star + ', trực ' + a.truc.name + '). Việc thường được cho là hợp: ' + a.truc.nen.join(', ') + '. Việc thường được kiêng: ' + a.truc.kieng.join(', ') + '. ' + DISCLAIMER_TEXT }
+            acceptedAnswer: { '@type': 'Answer', text: 'Theo lịch dân gian, ngày ' + solarText + ' là ngày ' + (todayAlmanac.star.status === 'hoang-dao' ? 'hoàng đạo' : 'hắc đạo') + ' (sao ' + todayAlmanac.star.star + ', trực ' + todayAlmanac.truc.name + '). Việc thường được cho là hợp: ' + todayAlmanac.truc.nen.join(', ') + '. Việc thường được kiêng: ' + todayAlmanac.truc.kieng.join(', ') + '. ' + DISCLAIMER_TEXT }
           }
         ]
       }, null, 2);
@@ -135,7 +136,7 @@
     var firstWeekday = new Date(year, month, 1).getDay();
     var daysInMonth = new Date(year, month + 1, 0).getDate();
     var prevMonthDays = new Date(year, month, 0).getDate();
-    var today = new Date();
+    var today = getVietnamToday();
 
     for (var i = firstWeekday - 1; i >= 0; i -= 1) {
       grid.appendChild(makeDayCell(new Date(year, month - 1, prevMonthDays - i), 'other-month'));
@@ -235,7 +236,8 @@
       share.addEventListener('click', async function () {
         var a = almanac.getAlmanac(selectedDate);
         var text = 'Lịch âm ' + formatSolar(selectedDate) + ': ' + lunarLabel(a) + ', ngày ' + a.canChi.day.can + ' ' + a.canChi.day.chi + '. Giờ hoàng đạo: ' + a.luckyHours.good.map(function (h) { return h.chi; }).join(', ') + '.';
-        var url = window.location.origin + window.location.pathname;
+        var canonical = document.querySelector('link[rel="canonical"]');
+        var url = canonical ? canonical.href : window.location.origin + '/lich-am-hom-nay';
         track('lunar_keep_action', { type: 'share' });
         if (navigator.share) {
           try { await navigator.share({ title: document.title, text: text, url: url }); return; } catch (error) { if (error && error.name === 'AbortError') return; }
@@ -261,7 +263,7 @@
   }
 
   function init() {
-    var today = new Date();
+    var today = getVietnamToday();
     selectedDate = new Date(today);
     currentCalendarDate = new Date(today.getFullYear(), today.getMonth(), 1);
     var solarInput = $('convert-solar-date');
@@ -280,7 +282,7 @@
       currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
       generateMonthCalendar(currentCalendarDate);
     });
-    $('today-btn').addEventListener('click', function () { selectDate(new Date(), false); });
+    $('today-btn').addEventListener('click', function () { selectDate(getVietnamToday(), false); });
 
     bindConverter();
     bindKeepActions();

@@ -8,26 +8,29 @@
 const fs = require('fs');
 const path = require('path');
 const almanac = require('../js/lunar-almanac.js');
+const { getVietnamToday } = require('../js/vietnam-date.js');
 
 const ROOT = path.join(__dirname, '..');
 const TARGET = path.join(ROOT, 'lich-am-hom-nay.html');
+const SITEMAP = path.join(ROOT, 'sitemap.xml');
 const SHORT_DISCLAIMER = ' Thông tin theo quan niệm dân gian, chỉ để tham khảo.';
-const SITE_SUFFIX = ' | Sắp Tết 2027';
 
 function escapeHtml(value) {
   return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-function getVietnamToday(now) {
-  const parts = {};
-  new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: '2-digit', day: '2-digit' })
-    .formatToParts(now || new Date())
-    .forEach((part) => { if (part.type !== 'literal') parts[part.type] = Number(part.value); });
-  return new Date(parts.year, parts.month - 1, parts.day);
-}
-
 function formatSolar(date) {
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+}
+
+function formatIsoDate(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
+function updateLunarSitemapLastmod(xml, date) {
+  const marker = /(<loc>https:\/\/saptet\.vn\/lich-am-hom-nay<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/;
+  if (!marker.test(xml)) throw new Error('inject-lunar-today: sitemap lunar URL not found');
+  return xml.replace(marker, (_, prefix, suffix) => prefix + formatIsoDate(date) + suffix);
 }
 
 function hourList(list) {
@@ -90,6 +93,7 @@ function injectLunarToday(html, date) {
   out = setElementText(out, 'bloc-lunar-day', a.lunar.day === 1 ? 'Mùng 1' : String(a.lunar.day));
   out = setElementText(out, 'bloc-lunar-month', `Tháng ${a.lunarMonthName}${a.lunar.isLeapMonth ? ' (nhuận)' : ''} Âm Lịch`);
   out = setElementText(out, 'bloc-canchi', `Ngày ${a.canChi.day.can} ${a.canChi.day.chi}`);
+  out = setElementText(out, 'month-title-display', `Tháng ${a.solar.month} năm ${a.solar.year}`);
 
   // Details
   out = setElementText(out, 'detail-canchi', `Ngày ${a.canChi.day.can} ${a.canChi.day.chi}, Tháng ${a.canChi.month.can} ${a.canChi.month.chi}, Năm ${a.canChi.year.can} ${a.canChi.year.chi}`);
@@ -113,8 +117,8 @@ function injectLunarToday(html, date) {
   out = setElementText(out, 'faq-status-text', `${statusLabel.toLowerCase()} (sao ${a.star.star}, trực ${a.truc.name})`);
 
   // Title + meta description
-  out = out.replace(/<title>[^<]*<\/title>/, `<title>Lịch Âm Hôm Nay Ngày ${solarText} - Xem Lịch Âm Dương, Giờ Hoàng Đạo${SITE_SUFFIX}</title>`);
-  const metaDescription = `Lịch âm hôm nay ${solarText}: ngày ${lunarLabel(a)}, ngày ${a.canChi.day.can} ${a.canChi.day.chi}, giờ hoàng đạo ${goodChis}, hướng xuất hành, tuổi xung, việc nên làm.${SHORT_DISCLAIMER}`;
+  out = out.replace(/<title>[^<]*<\/title>/, `<title>Lịch âm hôm nay ${solarText} | Ngày âm, giờ tốt</title>`);
+  const metaDescription = `Lịch âm hôm nay ${solarText} là ngày ${lunarLabel(a)} năm ${a.canChi.year.can} ${a.canChi.year.chi}. Xem can chi, giờ hoàng đạo, tiết khí và đổi lịch âm dương theo múi giờ Việt Nam.`;
   out = out.replace(/(<meta name="description" content=")[^"]*(")/, `$1${escapeHtml(metaDescription)}$2`);
 
   // FAQ JSON-LD
@@ -130,16 +134,19 @@ function main() {
   const today = getVietnamToday();
   const html = fs.readFileSync(TARGET, 'utf8');
   const out = injectLunarToday(html, today);
+  const sitemap = fs.readFileSync(SITEMAP, 'utf8');
+  const updatedSitemap = updateLunarSitemapLastmod(sitemap, today);
   if (out !== html) {
     fs.writeFileSync(TARGET, out, 'utf8');
     console.log(`inject-lunar-today: updated for ${formatSolar(today)}`);
   } else {
     console.log('inject-lunar-today: no change');
   }
+  if (updatedSitemap !== sitemap) fs.writeFileSync(SITEMAP, updatedSitemap, 'utf8');
 }
 
 if (require.main === module) {
   main();
 }
 
-module.exports = { injectLunarToday, getVietnamToday };
+module.exports = { injectLunarToday, getVietnamToday, updateLunarSitemapLastmod };

@@ -62,6 +62,18 @@ test('homepage navigation falls back to its cached page while offline', async ()
   assert.deepEqual(result.writes, []);
 });
 
+test('both lunar URLs fetch a fresh daily page and cache it for offline visits', async () => {
+  for (const pathname of ['/lich-am-hom-nay', '/lich-am-hom-nay.html']) {
+    const online = await loadRequest({ online: true, pathname, cachedBody: 'yesterday', freshBody: 'today' });
+    assert.equal(online.body, 'today');
+    assert.equal(online.networkRequests, 1);
+    assert.deepEqual(online.writes, [{ request: pathname, body: 'today' }]);
+
+    const offline = await loadRequest({ online: false, pathname, cachedBody: 'yesterday' });
+    assert.equal(offline.body, 'yesterday');
+  }
+});
+
 test('home stylesheets bypass an old precache after their versions change', async () => {
   for (const pathname of ['/css/home-preview.css?v=20261019-mobile-hero', '/css/home-retention.css?v=20261017-mobile-home-desktop']) {
     const result = await loadRequest({

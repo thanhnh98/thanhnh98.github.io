@@ -60,7 +60,7 @@
             "name": "Lịch âm dương",
             "short_name": "Lịch",
             "description": "Xem lịch âm dương Việt Nam",
-            "url": "/lich-am-hom-nay.html",
+            "url": "/lich-am-hom-nay",
             "icons": [
                 {
                     "src": "android-chrome-192x192.png",
