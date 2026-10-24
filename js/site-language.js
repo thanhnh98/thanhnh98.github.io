@@ -63,8 +63,10 @@
       original.searchParams.delete('lang');
       var returnHref = original.pathname + original.search + original.hash;
       if (anchor.getAttribute('href') !== returnHref) anchor.setAttribute('href', returnHref);
-      var label = anchor.querySelector('span') || anchor;
+      var label = anchor.querySelector('.site-lang-label') || anchor;
       if (label.textContent !== 'Tiếng Việt') label.textContent = 'Tiếng Việt';
+      var flag = anchor.querySelector('.site-lang-flag');
+      if (flag && flag.textContent !== '🇻🇳') flag.textContent = '🇻🇳';
       if (anchor.getAttribute('hreflang') !== 'vi') anchor.setAttribute('hreflang', 'vi');
       if (anchor.getAttribute('lang') !== 'vi') anchor.setAttribute('lang', 'vi');
       return;

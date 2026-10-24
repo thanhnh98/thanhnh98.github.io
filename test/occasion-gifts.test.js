@@ -76,6 +76,24 @@ test('generated event pages show four featured gifts and a matching store link o
   }
 });
 
+test('occasion shopping links on countdown and Tet pages select a published shop tab', () => {
+  const links = [
+    ['noel.html', 'giang-sinh'],
+    ['con-bao-nhieu-ngay-nua-den-tet/index.html', 'tet-nguyen-dan'],
+    ['index.html', 'tet-nguyen-dan'],
+    ['home-preview.html', 'tet-nguyen-dan'],
+    ['mua-sam-tet.html', 'tet-nguyen-dan'],
+    ['su-kien/quoc-te-phu-nu/index.html', 'quoc-te-phu-nu'],
+  ];
+  for (const [file, slug] of links) {
+    const event = events.find(item => item.slug === slug);
+    assert.ok(event, `${file}: unknown occasion ${slug}`);
+    assert.equal(catalog.collections[event.id].productIds.length, 10, `${file}: unpublished occasion`);
+    const html = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.ok(html.includes(`href="/cua-hang.html?occasion=${slug}"`), `${file}: wrong shop link`);
+  }
+});
+
 test('store loads the occasion catalog before the existing product filters', () => {
   const html = fs.readFileSync(path.join(root, 'cua-hang.html'), 'utf8');
   assert.ok(html.indexOf('id="occasion-discovery"') < html.indexOf('class="shop-controls"'));

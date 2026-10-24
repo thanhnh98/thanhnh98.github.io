@@ -284,6 +284,13 @@ header nav a {
     transition: all 0.3s ease;
 }
 
+.site-lang-flag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
 header nav a:hover {
     background: #fee2e2;
     border-color: rgba(185, 28, 28, 0.16);
