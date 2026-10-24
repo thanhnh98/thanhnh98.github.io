@@ -20,7 +20,7 @@
   });
 
   var discoverySuggestions = [
-    { title: 'Xem lịch âm hôm nay', description: 'Tra cứu ngày âm, giờ hoàng đạo và việc nên làm trong ngày.', href: '/lich-am-hom-nay.html', action: 'Xem lịch hôm nay' },
+    { title: 'Xem lịch âm hôm nay', description: 'Tra cứu ngày âm, giờ hoàng đạo và việc nên làm trong ngày.', href: '/lich-am-hom-nay', action: 'Xem lịch hôm nay' },
     { title: 'Chuẩn bị một lời chúc', description: 'Lưu sẵn một câu chúc ấm áp để gửi tới người thân khi Tết đến.', href: '/loi-chuc-tet.html', action: 'Chọn lời chúc' },
     { title: 'Khám phá một món Tết', description: 'Mỗi vùng miền có một hương vị riêng cho mâm cơm sum họp.', href: '/mon-an-tet.html', action: 'Xem món Tết' },
     { title: 'Chơi một ván nối chữ', description: 'Một thử thách ngắn để thư giãn và làm nóng không khí Tết.', href: '/noi-chu.html', action: 'Chơi ngay' },
@@ -49,7 +49,7 @@
     { title: 'Mùng 3 · Gìn giữ nếp nhà', description: 'Cùng gia đình chia sẻ một món ăn, câu chuyện hoặc trò chơi truyền thống.', href: '/tro-choi-tet.html', action: 'Chơi cùng nhau' },
     { title: 'Mùng 4 · Du xuân nhẹ nhàng', description: 'Chọn một điểm đến gần và giữ nhịp nghỉ ngơi thoải mái cho cả nhà.', href: '/tin-tuc/', action: 'Xem gợi ý' },
     { title: 'Mùng 5 · Khai mở điều mới', description: 'Viết xuống một điều nhỏ bạn muốn duy trì trong năm Đinh Mùi.', href: '/tin-tuc/', action: 'Đọc bài mới' },
-    { title: 'Mùng 6 · Sắp lại nhịp sống', description: 'Chuẩn bị lịch làm việc và giữ lại một chút không khí Tết cho tuần mới.', href: '/lich-am-hom-nay.html', action: 'Xem lịch' },
+    { title: 'Mùng 6 · Sắp lại nhịp sống', description: 'Chuẩn bị lịch làm việc và giữ lại một chút không khí Tết cho tuần mới.', href: '/lich-am-hom-nay', action: 'Xem lịch' },
     { title: 'Mùng 7 · Khép tuần đầu năm', description: 'Nhìn lại những khoảnh khắc vui và gửi thêm một lời cảm ơn chân thành.', href: '/loi-chuc-tet.html', action: 'Chọn lời nhắn' }
   ];
 

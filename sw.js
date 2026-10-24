@@ -1,6 +1,6 @@
 // Service Worker for Sắp Tết PWA
 // Version được tự động update bởi scripts/update-version.js khi deploy
-const CACHE_NAME = 'sap-tet-v1.0.1792813288864-1a19597';
+const CACHE_NAME = 'sap-tet-v1.0.1792849544235-3a78dba';
 
 // Invalid subdomains list
 const INVALID_SUBDOMAINS = [
@@ -187,11 +187,13 @@ self.addEventListener('fetch', event => {
   const isSameOrigin = requestUrl.origin === self.location.origin;
   const isHomePage = isSameOrigin && event.request.mode === 'navigate' &&
     (requestUrl.pathname === '/' || requestUrl.pathname === '/index.html');
+  const isLunarTodayPage = isSameOrigin && event.request.mode === 'navigate' &&
+    (requestUrl.pathname === '/lich-am-hom-nay' || requestUrl.pathname === '/lich-am-hom-nay.html');
   const isHomeStylesheet = isSameOrigin && event.request.destination === 'style' &&
     (requestUrl.pathname === '/css/home-preview.css' || requestUrl.pathname === '/css/home-preview-desktop.css' || requestUrl.pathname === '/css/home-retention.css');
-  if (isHomePage || isHomeStylesheet) {
-    const cacheKey = isHomePage ? requestUrl.pathname : event.request;
-    const networkResponse = fetch(event.request, { cache: isHomePage ? 'no-store' : 'no-cache' });
+  if (isHomePage || isLunarTodayPage || isHomeStylesheet) {
+    const cacheKey = isHomePage || isLunarTodayPage ? requestUrl.pathname : event.request;
+    const networkResponse = fetch(event.request, { cache: isHomePage || isLunarTodayPage ? 'no-store' : 'no-cache' });
     event.waitUntil(networkResponse.then(response => {
       if (response && response.status === 200 && response.type === 'basic') {
         return caches.open(CACHE_NAME)

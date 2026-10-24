@@ -46,6 +46,6 @@ Nếu CTR nhóm truy vấn chính không tăng ít nhất 20% ở ngày 14, th�
 ## Giới hạn thử nghiệm
 
 - Không đổi URL hoặc canonical trang chủ trong 14 ngày đầu.
-- Không chỉnh title `/lich-van-nien.html` cho đến khi có dữ liệu truy vấn riêng; tránh cạnh tranh với `/lich-am-hom-nay.html`.
+- Không chỉnh title `/lich-van-nien.html` cho đến khi có dữ liệu truy vấn riêng; tránh cạnh tranh với `/lich-am-hom-nay`.
 - Chưa redirect các trang đếm ngược phụ. Sau ngày 28 mới cân nhắc hợp nhất nếu chúng vẫn không có impression riêng.
 - Workflow `seo-daily-update.yml` chịu trách nhiệm cập nhật số ngày trong HTML hằng ngày.

@@ -82,7 +82,7 @@ test('homepage keeps three crawlable FAQs and useful internal links', () => {
   const html = read('index.html');
 
   assert.equal((html.match(/<details\b[^>]*class="home-faq-item"/g) || []).length, 3);
-  assert.match(html, /href="\/lich-am-hom-nay\.html"/);
+  assert.match(html, /href="\/lich-am-hom-nay"/);
   assert.match(html, /href="\/loi-chuc-tet\.html"/);
   assert.match(html, /href="\/may-tinh-li-xi\.html"/);
   assert.match(html, /href="\/tro-choi-tet\.html"/);
@@ -120,7 +120,7 @@ test('web app manifest reinforces the same brand entity', () => {
 
   assert.equal(manifest.name, 'Sắp Tết - Đếm ngược Tết 2027');
   assert.equal(manifest.short_name, 'Sắp Tết');
-  assert.equal(manifest.shortcuts.find((item) => item.short_name === 'Lịch').url, '/lich-am-hom-nay.html');
+  assert.equal(manifest.shortcuts.find((item) => item.short_name === 'Lịch').url, '/lich-am-hom-nay');
 });
 
 test('intent landing page has self-canonical, FAQ visible and FAQPage schema', () => {

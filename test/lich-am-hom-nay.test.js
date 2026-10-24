@@ -86,6 +86,21 @@ test('page carries idempotent markers for the daily pre-render', () => {
   assert.match(page, /<!-- LUNAR_TODAY:END -->/);
 });
 
+test('page uses one clean canonical URL throughout its head', () => {
+  const head = page.slice(0, page.indexOf('</head>'));
+  assert.match(head, /<link rel="canonical" href="https:\/\/saptet\.vn\/lich-am-hom-nay">/);
+  assert.doesNotMatch(head, /https:\/\/saptet\.vn\/lich-am-hom-nay\.html/);
+});
+
+test('visible headings descend one level at a time', () => {
+  const body = page.slice(page.indexOf('<body'));
+  const levels = [...body.matchAll(/<h([1-6])(?:\s|>)/g)].map((match) => Number(match[1]));
+  assert.equal(levels[0], 1);
+  for (let i = 1; i < levels.length; i += 1) {
+    assert.ok(levels[i] <= levels[i - 1] + 1, `heading skips from H${levels[i - 1]} to H${levels[i]}`);
+  }
+});
+
 test('month picker lives in the left column next to the bloc so selection binds to the details beside it', () => {
   const blocContainer = page.match(/<div class="bloc-container">[\s\S]*?<!-- Right: /)?.[0] || '';
   assert.match(blocContainer, /id="calendar-grid"/);
