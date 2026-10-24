@@ -18,7 +18,7 @@ test('shopping carousel sits directly after the daily retention section', () => 
 test('shopping section exposes filters, manual controls and a full-shop chip', () => {
   assert.equal((indexPage.match(/data-home-shop-category=/g) || []).length, 4);
   assert.match(indexPage, /data-home-shop-category="all"[^>]+aria-pressed="true"/);
-  assert.match(indexPage, /class="home-shop-more-chip" href="\/cua-hang\.html"/);
+  assert.match(indexPage, /class="home-shop-more-chip" href="\/cua-hang\.html(?:\?[^"]*)?"/);
   assert.match(indexPage, /data-home-shop-prev/);
   assert.match(indexPage, /data-home-shop-next/);
   assert.match(indexPage, /id="home-shop-slider"[^>]+tabindex="0"/);

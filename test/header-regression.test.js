@@ -15,6 +15,18 @@ test('shared header exposes accessible expandable navigation controls', () => {
   assert.match(header, /id="nav-secondary-menu"/);
 });
 
+test('More navigation keeps the flagged language choice last', () => {
+  const header = read('components/header.html');
+  const secondary = header.match(/<ul class="nav-secondary"[^>]*>([\s\S]*?)<\/ul>/)?.[1] || '';
+  assert.match(secondary, /class="site-lang-flag" aria-hidden="true">🇬🇧<\/span>/);
+  assert.match(secondary, /<li><a href="\?lang=en"[\s\S]*?<\/a><\/li>\s*$/);
+
+  const homeMenu = read('index.html').match(/<nav class="preview-menu"[^>]*>([\s\S]*?)<\/nav>/)?.[1] || '';
+  assert.match(homeMenu, /data-site-lang-toggle>[\s\S]*?🇬🇧[\s\S]*?<\/a>\s*$/);
+  assert.equal(JSON.parse(read('data/site-vi-en.json'))['Thêm'], 'More');
+  assert.match(read('js/site-language.js'), /flag\.textContent = '🇻🇳'/);
+});
+
 test('mobile navigation uses one open state across CSS and JavaScript', () => {
   const navigation = read('js/navigation.js');
   const loader = read('js/header-loader.js');
