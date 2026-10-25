@@ -121,3 +121,39 @@ test('page is indexable at its own canonical and hearts are decorative and motio
   const keyframe = css.match(/@keyframes wedding-heart-fall\{[^]*?\}\}/)?.[0] || '';
   assert.doesNotMatch(keyframe, /\b(left|top|width|height|box-shadow|filter)\s*:/);
 });
+
+test('wedding dialogs are centered and the photo helper sentence is removed', () => {
+  const html = read('sap-cuoi/index.html');
+  const css = read('css/sap-cuoi.css');
+  assert.match(css, /\.wedding-dialog\{[^}]*inset:0;margin:auto/);
+  assert.match(css, /\.wedding-dialog\{[^}]*overflow-y:auto/);
+  assert.doesNotMatch(html, /Ảnh JPG, PNG hoặc WebP tối đa 8 MB/);
+  assert.doesNotMatch(css, /\.wedding-photo-help/);
+  assert.match(read('js/sap-cuoi.js'), /MAX_PHOTO_BYTES = 8000000/);
+});
+
+test('wedding guide pages have distinct search metadata, article schema and working hub links', () => {
+  const slugs = ['chuan-bi-dam-cuoi', 'cach-do-size-nhan', 'cong-thuc-to-tinh'];
+  const hub = read('sap-cuoi/index.html');
+  const sitemap = read('sitemap.xml');
+  const titles = new Set();
+  for (const slug of slugs) {
+    const url = `https://saptet.vn/sap-cuoi/${slug}/`;
+    const html = read(`sap-cuoi/${slug}/index.html`);
+    const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+    assert.ok(title);
+    assert.ok(!titles.has(title));
+    titles.add(title);
+    assert.match(html, new RegExp(`<link rel="canonical" href="${url}"`));
+    assert.match(html, new RegExp(`<meta property="og:url" content="${url}"`));
+    assert.match(sitemap, new RegExp(`<loc>${url}</loc>`));
+    assert.match(hub, new RegExp(`href="/sap-cuoi/${slug}/"`));
+    assert.equal((html.match(/<h1\b/g) || []).length, 1);
+    const graph = JSON.parse(html.match(/<script type="application\/ld\+json">\s*([^]*?)\s*<\/script>/)?.[1] || '{}')['@graph'];
+    assert.ok(graph?.some(item => item['@type'] === 'Article' && item.mainEntityOfPage === url));
+    assert.ok(graph?.some(item => item['@type'] === 'BreadcrumbList'));
+  }
+  assert.match(read('sap-cuoi/cach-do-size-nhan/index.html'), /www\.pnj\.com\.vn\/blog\/huong-dan-do-size-kich-co-nhan/);
+  assert.match(read('sap-cuoi/chuan-bi-dam-cuoi/index.html'), /sáu tháng|sáu tháng trước/i);
+  assert.match(read('sap-cuoi/cong-thuc-to-tinh/index.html'), /kỷ niệm chung/);
+});
