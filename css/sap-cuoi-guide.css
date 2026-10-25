@@ -1,0 +1,29 @@
+.wedding-guide-page{background:#fffaf6}
+.wedding-article-hero{padding:146px 0 64px;background:radial-gradient(circle at 82% 15%,#fffdf8,#f7e7e5 65%,#f3dedc);border-bottom:1px solid #ead2cd}
+.wedding-article-hero .wedding-breadcrumb{margin:0 0 36px;flex-wrap:wrap}
+.wedding-article-kicker{display:block;margin-bottom:15px;color:#a34858;font-size:.77rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.wedding-article-hero h1{max-width:900px;margin:0 0 19px;color:#76384a;font-size:clamp(2.65rem,5.8vw,5.2rem);line-height:1.1}
+.wedding-article-hero p{max-width:740px;color:#745560;font-size:clamp(1.08rem,2vw,1.35rem);line-height:1.6;margin:0}
+.wedding-article-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:70px;align-items:start;padding-block:74px 100px}
+.wedding-article{max-width:780px;font-size:1.04rem;line-height:1.8;color:#614651}
+.wedding-article .wedding-answer{margin:0 0 35px;padding:23px 26px;border-left:4px solid #b55161;border-radius:0 17px 17px 0;background:#fff0ed;color:#6f3d4b;font-size:1.14rem;font-weight:700}
+.wedding-article h2{margin:52px 0 15px;color:#773c4e;font-size:clamp(1.8rem,3vw,2.55rem);line-height:1.2}
+.wedding-article h3{margin:29px 0 8px;color:#864457;font-size:1.4rem;line-height:1.3}
+.wedding-article p,.wedding-article ul,.wedding-article ol{margin:0 0 18px}
+.wedding-article ul,.wedding-article ol{padding-left:1.3em}
+.wedding-article li+li{margin-top:8px}
+.wedding-article a{color:#9b354d;text-underline-offset:3px}
+.wedding-article-note{margin:26px 0;padding:22px 25px;border-radius:18px;background:#f7eeeb;border:1px solid #ead8d2}
+.wedding-article-note p:last-child{margin-bottom:0}
+.wedding-example{margin:22px 0;padding:24px 27px;border-radius:18px;background:#fff4ed;border:1px solid #efd9cb;color:#703f4d;font-family:WeddingFraunces,Georgia,serif;font-size:1.23rem;line-height:1.65}
+.wedding-article-cta{margin-top:55px;padding:30px;border-radius:23px;background:#f5e5e3}
+.wedding-article-cta h2{margin:0 0 12px;font-size:2rem}
+.wedding-article-cta p{margin-bottom:20px}
+.wedding-article-aside{position:sticky;top:100px;padding:22px;border:1px solid #ead8d2;border-radius:20px;background:#fff5f1}
+.wedding-article-aside strong{display:block;margin-bottom:14px;color:#783c4c}
+.wedding-article-aside a{display:block;padding:9px 0;color:#8d4153;text-decoration:none;border-top:1px solid #eeded9}
+.wedding-article-aside a:hover{text-decoration:underline}
+.wedding-more-guides{padding:66px 0 95px;border-top:1px solid #ebd7d2}
+.wedding-more-guides h2{margin:0 0 24px;color:#693746;font-size:clamp(2rem,4vw,3.4rem)}
+@media(max-width:900px){.wedding-article-layout{grid-template-columns:1fr;gap:30px}.wedding-article-aside{position:static;grid-row:1}.wedding-article-aside a{display:inline-block;margin-right:18px}.wedding-article-hero{padding-top:125px}}
+@media(max-width:600px){.wedding-article-hero{padding:105px 0 45px}.wedding-article-hero .wedding-breadcrumb{margin-bottom:24px}.wedding-article-layout{padding-block:45px 72px}.wedding-article{font-size:1rem}.wedding-article .wedding-answer,.wedding-article-note,.wedding-example{padding:19px}.wedding-article h2{margin-top:42px}.wedding-more-guides{padding:55px 0 75px}}
