@@ -1,0 +1,185 @@
+@font-face{font-family:WeddingFraunces;src:url('/assets/fonts/fraunces-vietnamese.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
+@font-face{font-family:WeddingGilroy;src:url('/assets/fonts/gilroy_normal.otf') format('opentype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:WeddingGilroy;src:url('/assets/fonts/gilroy_bold.otf') format('opentype');font-style:normal;font-weight:700;font-display:swap}
+.wedding-page{--w-ink:#54343d;--w-deep:#852d3f;--w-red:#aa3d50;--w-muted:#795f68;--w-paper:#fffaf6;--w-blush:#f9eeec;--w-gold:#bb8955;margin:0;background:var(--w-paper);color:var(--w-ink);font-family:WeddingGilroy,Arial,sans-serif}
+.wedding-page *,.wedding-page *::before,.wedding-page *::after{box-sizing:border-box}
+.wedding-page [hidden]{display:none!important}
+.wedding-page h1,.wedding-page h2,.wedding-page h3,.wedding-page p{margin-top:0}
+.wedding-page h1,.wedding-page h2{font-family:WeddingFraunces,Georgia,serif;font-weight:650;letter-spacing:-.045em}
+.wedding-page button,.wedding-page input,.wedding-page select{font:inherit}
+.wedding-page button,.wedding-page a,.wedding-import-label{touch-action:manipulation}
+.wedding-page :focus-visible{outline:3px solid #c36573;outline-offset:3px}
+.wedding-wrap{width:min(1160px,calc(100% - 48px));margin-inline:auto}
+.wedding-hero{position:relative;isolation:isolate;overflow:hidden;min-height:690px;background:radial-gradient(circle at 75% 36%,#fff9f3 0,#f9e9e6 45%,#f4dfdf 100%);border-bottom:1px solid #ebd3d0}
+.wedding-hero::before{content:"";position:absolute;inset:16px;border:1px solid rgba(177,105,105,.17);border-radius:230px 230px 22px 22px;pointer-events:none}
+.wedding-hero-glow{position:absolute;width:510px;height:510px;right:-90px;top:-120px;border-radius:50%;background:#fff;opacity:.28;pointer-events:none}
+.wedding-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);align-items:center;min-height:690px;gap:24px;padding-block:62px 44px}
+.wedding-hero-copy{position:relative;z-index:2;padding:24px 0 46px}
+.wedding-breadcrumb{display:flex;gap:10px;align-items:center;margin-bottom:60px;color:#8f6c72;font-size:.84rem}
+.wedding-breadcrumb a{color:inherit;text-decoration:none}
+.wedding-breadcrumb a:hover{text-decoration:underline}
+.wedding-kicker,.wedding-mini-kicker{text-transform:uppercase;letter-spacing:.15em;font-size:.76rem;font-weight:700;color:var(--w-red)}
+.wedding-kicker{margin-bottom:14px}
+.wedding-kicker span{margin-right:8px;color:var(--w-gold)}
+.wedding-hero .wedding-hero-label{margin-bottom:17px;font-family:WeddingGilroy,Arial,sans-serif;font-size:.88rem;font-weight:700;line-height:1.4;letter-spacing:.22em;text-transform:uppercase;color:#a74d5c}
+.wedding-hero-label span{margin-right:9px;color:#c29562}
+.wedding-couple-names{max-width:680px;margin-bottom:21px;font-family:WeddingFraunces,Georgia,serif;font-size:clamp(3.7rem,5.8vw,6.3rem);font-weight:650;line-height:1.07;letter-spacing:-.05em;color:#823347;text-shadow:0 2px 0 rgba(255,255,255,.7);overflow-wrap:anywhere}
+.wedding-couple-names.is-placeholder{font-size:clamp(3.1rem,4.8vw,5.2rem)}
+.wedding-couple-names.has-two{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:.06em}
+.wedding-name-ampersand{padding-inline:.06em;font-style:italic;font-weight:450;color:#bf9262;white-space:nowrap}
+.wedding-hero-lead{max-width:620px;font-family:WeddingFraunces,Georgia,serif;font-size:clamp(1.25rem,2vw,1.75rem);line-height:1.32;color:#70404c;margin-bottom:25px}
+.wedding-timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:610px;margin-bottom:20px}
+.wedding-timer>div{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:99px;padding:12px 5px;border:1px solid #e6c8c2;border-radius:20px;background:rgba(255,252,248,.83);box-shadow:0 12px 26px rgba(115,56,67,.07)}
+.wedding-timer strong{font-family:WeddingFraunces,Georgia,serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:#8f3548;font-variant-numeric:tabular-nums}
+.wedding-timer span{margin-top:7px;color:#8c6770;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.wedding-after{display:inline-block;margin-bottom:14px;padding:14px 18px;border-radius:16px;background:#fff8f1;color:#8e3548;font-weight:700}
+.wedding-date{display:flex;align-items:center;gap:10px;margin-bottom:22px;color:#77525b;font-weight:700}
+.wedding-date svg{width:19px;height:19px;color:#a84a5d}
+.wedding-hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.wedding-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:11px 21px;border-radius:999px;border:1px solid transparent;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .2s ease,background-color .2s ease,border-color .2s ease}
+.wedding-button:hover{transform:translateY(-2px)}
+.wedding-button svg{width:18px;height:18px}
+.wedding-button-primary{background:#a83e51;color:#fff;box-shadow:0 9px 18px rgba(154,56,73,.15)}
+.wedding-button-primary:hover{background:#8f3144}
+.wedding-button-light{background:#fff8f5;color:#923a4e;border-color:#dcb8b5}
+.wedding-button-light:hover{background:#fff}
+.wedding-local-note{display:flex;align-items:center;gap:8px;margin:0;color:#80646a;font-size:.79rem}
+.wedding-local-note svg{width:15px;height:15px}
+.wedding-hero-art{position:relative;z-index:1;align-self:center;justify-self:end;width:min(100%,525px);filter:drop-shadow(0 20px 28px rgba(112,55,68,.1));animation:wedding-art-float 7s ease-in-out infinite}
+.wedding-hero-art img{display:block;width:100%;height:auto}
+.wedding-hero-visual{position:relative;z-index:1;align-self:center;justify-self:end;width:min(100%,525px);text-align:center}
+.wedding-hero-visual .wedding-hero-art{width:100%}
+.wedding-photo-frame{position:relative;width:min(78%,410px);aspect-ratio:4/5;margin:30px auto 15px;padding:10px;overflow:hidden;border:2px solid #d3a06e;border-radius:48% 48% 25px 25px;background:#fff9f4;box-shadow:0 25px 50px rgba(104,55,65,.18)}
+.wedding-photo-frame::after{content:"";position:absolute;inset:5px;border:1px solid rgba(255,255,255,.75);border-radius:inherit;pointer-events:none}
+.wedding-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:48% 48% 17px 17px}
+.wedding-photo-controls{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:3px}
+.wedding-photo-controls button,.wedding-photo-upload{border:0;background:none;color:#963e50;font:inherit;font-size:.83rem;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.wedding-photo-upload{position:relative}
+.wedding-photo-upload input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.wedding-photo-upload:focus-within{outline:3px solid #c36573;outline-offset:4px}
+.wedding-photo-help{margin:7px 0 0;color:#94747a;font-size:.72rem}
+.wedding-hero-bottom{position:absolute;bottom:0;left:0;right:0;height:9px;background:linear-gradient(90deg,#b04c5a,#d5a877,#b04c5a);opacity:.65}
+.wedding-hearts{position:absolute;z-index:0;inset:0;pointer-events:none;overflow:hidden}
+.wedding-hearts span{position:absolute;top:-30px;left:var(--x);width:var(--size);height:var(--size);background:#c96074;opacity:0;transform:rotate(45deg);animation:wedding-heart-fall var(--duration) linear var(--delay) infinite;will-change:transform,opacity}
+.wedding-hearts span:nth-child(3n){background:#e7a2a9}
+.wedding-hearts span:nth-child(4n){background:#d6ab75}
+.wedding-hearts span::before,.wedding-hearts span::after{content:"";position:absolute;width:100%;height:100%;border-radius:50%;background:inherit}
+.wedding-hearts span::before{top:-50%;left:0}
+.wedding-hearts span::after{top:0;left:-50%}
+.wedding-hero.is-offscreen .wedding-hearts span,.wedding-hero.is-page-hidden .wedding-hearts span,.wedding-hero.is-offscreen .wedding-hero-art,.wedding-hero.is-page-hidden .wedding-hero-art{animation-play-state:paused}
+@keyframes wedding-heart-fall{0%{opacity:0;transform:translate3d(0,-25px,0) rotate(45deg)}10%{opacity:.43}85%{opacity:.43}100%{opacity:0;transform:translate3d(var(--drift),1100px,0) rotate(65deg)}}
+@keyframes wedding-art-float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+.wedding-message{margin:20px 0 0;padding:12px 16px;border-radius:12px;background:#fff1df;color:#724231;border:1px solid #ead1ac}
+.wedding-intro{display:grid;grid-template-columns:1fr .68fr;align-items:end;gap:70px;padding-block:102px 88px}
+.wedding-intro h2,.wedding-section-heading h2,.wedding-section-data h2,.wedding-faq h2{font-size:clamp(2.2rem,4.3vw,4.3rem);line-height:1.13;color:#663745;margin:12px 0 0}
+.wedding-intro p{font-size:1.06rem;line-height:1.78;color:var(--w-muted);margin-bottom:5px}
+.wedding-section{padding-block:80px 100px}
+.wedding-section-checklist{background:#f8edeb}
+.wedding-section-budget{background:#fffbf7}
+.wedding-section-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:42px}
+.wedding-section-heading p{margin:16px 0 0;color:var(--w-muted);line-height:1.6}
+.wedding-section-flower{font-size:4.6rem;color:#c99b83;opacity:.65}
+.wedding-empty{padding:34px;border:1px dashed #d9b7b2;border-radius:20px;color:#795d64;background:rgba(255,255,255,.58)}
+.wedding-empty p{margin-bottom:12px}
+.wedding-text-button{padding:0;border:0;background:none;color:#a63e51;font-weight:700;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.wedding-checklist-top{display:grid;grid-template-columns:auto minmax(150px,300px);align-items:center;gap:22px;padding:25px 28px;border-radius:24px;background:#fffaf7;border:1px solid #ead8d3}
+.wedding-checklist-top strong{color:#81374a;font-size:1.2rem}
+.wedding-checklist-top p{margin:7px 0 0;color:var(--w-muted);font-size:.88rem}
+.wedding-progress-track{height:12px;border-radius:999px;background:#efdcd8;overflow:hidden}
+.wedding-progress-track span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ae4a5b,#d9a878);transition:width .3s ease}
+.wedding-category-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:16px}
+.wedding-stat-card{display:grid;gap:7px;padding:17px 18px;border:1px solid #ead8d3;border-radius:18px;background:#fffaf7}
+.wedding-stat-card strong{font-size:.84rem;line-height:1.3;color:#743a4b}
+.wedding-stat-card>span{font-size:.88rem;font-weight:700;color:#97606d}
+.wedding-stat-card small{font-size:.74rem;color:#947b7f}
+.wedding-stat-track{height:7px;border-radius:99px;background:#f0dedb;overflow:hidden}
+.wedding-stat-track span{display:block;height:100%;border-radius:inherit;background:#b85d6c;transition:width .3s ease}
+.wedding-priority{margin-top:22px;padding:24px 28px;border:1px solid #e6d3c6;border-radius:20px;background:#fff7ed}
+.wedding-priority ul{display:flex;gap:10px;flex-wrap:wrap;padding:0;margin:13px 0 0;list-style:none}
+.wedding-priority li{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid #efdfd3;font-size:.85rem;color:#735561}
+.wedding-task-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:25px}
+.wedding-task-group{padding:24px;border-radius:24px;background:#fffdfb;border:1px solid #ead8d3;box-shadow:0 10px 25px rgba(102,53,63,.035)}
+.wedding-task-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:17px;border-bottom:1px solid #f1e5df}
+.wedding-task-group h3,.wedding-inline-form h3,.wedding-budget-list-head h3{font-family:WeddingFraunces,Georgia,serif;font-size:1.42rem;color:#743a4b;margin:0}
+.wedding-task-group-head span{font-size:.78rem;color:#997881;text-align:right}
+.wedding-task{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid #f3e9e4}
+.wedding-task:last-child{border-bottom:0}
+.wedding-task label{display:flex;align-items:flex-start;gap:12px;flex:1;cursor:pointer}
+.wedding-task input{appearance:none;width:21px;height:21px;flex:0 0 21px;margin:1px 0 0;border:2px solid #d1a8a5;border-radius:7px;background:#fff;cursor:pointer}
+.wedding-task input:checked{background:#ab4e5e;border-color:#ab4e5e;box-shadow:inset 0 0 0 4px #fff}
+.wedding-task-copy{display:flex;flex-direction:column;gap:5px}
+.wedding-task-copy strong{font-weight:700;font-size:.92rem;color:#62454b}
+.wedding-task-copy small{color:#9c7b80;font-size:.76rem}
+.wedding-task.is-done .wedding-task-copy strong{text-decoration:line-through;color:#a28e90}
+.wedding-row-actions{display:flex;gap:8px;flex-shrink:0}
+.wedding-row-actions button{padding:4px 3px;background:none;border:0;color:#a44a5b;font-size:.78rem;font-weight:700;cursor:pointer}
+.wedding-row-actions button:hover{text-decoration:underline}
+.wedding-inline-form{display:grid;grid-template-columns:1.3fr repeat(2,minmax(0,1fr)) auto;align-items:end;gap:15px;margin-top:26px;padding:27px;border-radius:24px;background:#fff8f5;border:1px solid #ead3cf}
+.wedding-inline-form h3{margin-top:8px}
+.wedding-page label:not(.wedding-import-label){font-size:.86rem;font-weight:700;color:#71505b}
+.wedding-page input:not([type=checkbox]):not([type=file]):not([type=hidden]),.wedding-page select{display:block;width:100%;min-height:46px;margin-top:9px;padding:10px 13px;border:1px solid #d8bdb8;border-radius:11px;background:#fff;color:#50343e}
+.wedding-page input::placeholder{color:#b0979b}
+.wedding-budget-limit-form{padding:27px 30px;border:1px solid #ead8cf;border-radius:23px;background:#fcf1ed}
+.wedding-budget-limit-form label{display:block;margin-bottom:13px}
+.wedding-budget-limit-form>div{display:flex;align-items:center;gap:12px}
+.wedding-budget-limit-form input{margin:0!important;max-width:350px;font-size:1.15rem!important;font-weight:700!important}
+.wedding-budget-limit-form span{color:#99757a;font-weight:700}
+.wedding-budget-limit-form button{margin-left:auto}
+.wedding-budget-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-block:24px 54px}
+.wedding-budget-summary>div{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:118px;padding:21px;border-radius:20px;background:#fff;border:1px solid #eadbd6;box-shadow:0 8px 18px rgba(104,62,69,.035)}
+.wedding-budget-summary span{font-size:.82rem;color:#8e7377}
+.wedding-budget-summary strong{font-size:clamp(1.08rem,2vw,1.55rem);font-variant-numeric:tabular-nums;color:#6f3e4c;overflow-wrap:anywhere}
+.wedding-budget-summary .wedding-budget-remaining{background:#8b394a;border-color:#8b394a}
+.wedding-budget-remaining span,.wedding-budget-remaining strong{color:#fff}
+.wedding-budget-remaining strong.is-over{color:#ffe2a5}
+.wedding-budget-list-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.wedding-budget-list-head span{color:#9a7b7d;font-size:.85rem}
+.wedding-budget-list{display:grid;gap:9px}
+.wedding-expense{display:grid;grid-template-columns:1fr 1fr auto;align-items:center;gap:20px;padding:16px 20px;border:1px solid #ecded7;border-radius:16px;background:#fff}
+.wedding-expense-copy,.wedding-expense-amounts{display:flex;flex-direction:column;gap:5px}
+.wedding-expense-copy strong,.wedding-expense-amounts strong{color:#633e49}
+.wedding-expense-copy small,.wedding-expense-amounts span{font-size:.8rem;color:#9a7a7d}
+.wedding-expense-form{grid-template-columns:1.2fr 1.1fr .8fr .8fr .8fr auto}
+.wedding-expense-form>div:first-child{grid-column:1/-1}
+.wedding-section-data{padding-block:72px;background:#f5e5e3;border-block:1px solid #e7d0cd}
+.wedding-data-grid{display:grid;grid-template-columns:1fr .75fr;align-items:center;gap:70px}
+.wedding-section-data p{max-width:530px;line-height:1.7;color:#785a62;margin:18px 0 0}
+.wedding-data-actions{display:flex;flex-wrap:wrap;gap:11px;align-items:center}
+.wedding-import-label{position:relative;cursor:pointer}
+.wedding-import-label input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.wedding-import-label:focus-within{outline:3px solid #c36573;outline-offset:3px}
+.wedding-delete{margin-left:5px}
+.wedding-faq{padding-block:92px 110px}
+.wedding-faq h2{margin-bottom:30px}
+.wedding-faq details{max-width:850px;padding:18px 4px;border-bottom:1px solid #e8d8d4}
+.wedding-faq summary{font-weight:700;cursor:pointer;color:#724452}
+.wedding-faq details p{line-height:1.65;color:var(--w-muted);margin:12px 0 3px}
+.wedding-dialog{border:0;border-radius:28px;padding:0;width:min(570px,calc(100% - 24px));max-height:min(90vh,760px);background:#fffaf6;color:var(--w-ink);box-shadow:0 25px 90px rgba(51,24,30,.3)}
+.wedding-dialog::backdrop{background:rgba(63,31,41,.56);backdrop-filter:blur(4px)}
+.wedding-dialog-card{position:relative;padding:42px}
+.wedding-dialog-close{position:absolute;top:18px;right:20px;background:none;border:0;color:#965767;font-size:2rem;cursor:pointer;line-height:1}
+.wedding-dialog h2{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:12px 0}
+.wedding-dialog p{line-height:1.6;color:var(--w-muted)}
+.wedding-dialog-names,.wedding-dialog-date{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:19px}
+.wedding-dialog label{display:block}
+.wedding-dialog label span{color:#b34053}
+.wedding-form-help{font-size:.8rem;margin:15px 0 22px}
+.wedding-share-dialog{width:min(620px,calc(100% - 24px));overflow-y:auto}
+.wedding-share-card{padding:34px}
+.wedding-share-card h2{margin-bottom:8px}
+.wedding-share-card>p{font-size:.9rem;margin-bottom:15px}
+.wedding-share-preview{display:grid;place-items:center;min-height:160px;max-height:50vh;padding:14px;border:1px solid #e4c9c3;border-radius:20px;background:linear-gradient(145deg,#f9e7e5,#fff8f1);overflow:auto}
+.wedding-share-preview img{display:block;width:min(100%,330px);height:auto;max-height:46vh;object-fit:contain;box-shadow:0 12px 25px rgba(96,48,57,.18)}
+.wedding-share-preview p{margin:20px;text-align:center;color:#8b6170}
+.wedding-share-privacy{padding:12px 15px;border:1px solid #e5d2c8;border-radius:13px;background:#fff5ec;color:#73525d}
+.wedding-share-privacy strong{color:#86394a}
+.wedding-share-feedback{color:#873f4e;font-weight:700}
+.wedding-share-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.wedding-share-actions .wedding-button:disabled{opacity:.5;cursor:wait}
+@media(max-width:1000px){.wedding-hero-grid{grid-template-columns:1.05fr .8fr}.wedding-hero-art{width:100%}.wedding-inline-form{grid-template-columns:1fr 1fr}.wedding-inline-form>div:first-child{grid-column:1/-1}.wedding-inline-form button{align-self:end}.wedding-expense-form{grid-template-columns:repeat(2,minmax(0,1fr))}.wedding-expense-form>div:first-child{grid-column:1/-1}}
+@media(max-width:1000px){.wedding-category-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.wedding-wrap{width:min(100% - 32px,600px)}.wedding-hero{min-height:auto}.wedding-hero::before{inset:10px;border-radius:160px 160px 16px 16px}.wedding-hero-grid{display:flex;flex-direction:column;gap:0;padding-block:20px 33px;min-height:auto}.wedding-hero-copy{width:100%;padding:0}.wedding-breadcrumb{margin-bottom:45px}.wedding-hero h1{font-size:clamp(4.1rem,17vw,6.6rem)}.wedding-hero-lead{font-size:1.42rem}.wedding-hero-art{width:min(390px,90%);align-self:center;justify-self:center;margin-top:10px}.wedding-hearts span:nth-child(n+7){display:none}.wedding-intro,.wedding-data-grid{grid-template-columns:1fr;gap:20px}.wedding-intro{padding-block:65px}.wedding-section{padding-block:64px}.wedding-task-groups{grid-template-columns:1fr}.wedding-budget-summary{grid-template-columns:repeat(2,1fr);margin-bottom:38px}.wedding-expense{grid-template-columns:1fr auto}.wedding-expense-amounts{grid-column:1}.wedding-expense .wedding-row-actions{grid-column:2;grid-row:1/3}.wedding-section-data{padding-block:62px}.wedding-faq{padding-block:70px}.wedding-section-flower{display:none}}
+@media(max-width:760px){.wedding-couple-names.has-two{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.13em;row-gap:0;align-items:baseline}.wedding-couple-names.has-two>.wedding-person:first-child{grid-column:1/-1}.wedding-couple-names.has-two>.wedding-name-ampersand{grid-column:1;grid-row:2}.wedding-couple-names.has-two>.wedding-person:last-child{grid-column:2;grid-row:2}.wedding-share-card{padding:30px 22px}.wedding-share-actions .wedding-button{flex:1}}
+@media(max-width:520px){.wedding-breadcrumb{margin-bottom:34px}.wedding-hero h1{font-size:4.3rem}.wedding-hero-lead{font-size:1.26rem}.wedding-timer{gap:5px}.wedding-timer>div{min-height:77px;border-radius:13px;padding:8px 2px}.wedding-timer strong{font-size:1.8rem}.wedding-timer span{font-size:.62rem}.wedding-hero-actions{gap:8px}.wedding-hero-actions .wedding-button{width:100%}.wedding-hero-art{width:min(310px,85%)}.wedding-intro h2,.wedding-section-heading h2,.wedding-section-data h2,.wedding-faq h2{font-size:2.5rem}.wedding-section-heading{margin-bottom:28px}.wedding-checklist-top{grid-template-columns:1fr;padding:20px}.wedding-task-group{padding:18px}.wedding-task-group-head{display:block}.wedding-task-group-head span{display:block;margin-top:4px;text-align:left}.wedding-inline-form,.wedding-expense-form{grid-template-columns:1fr;padding:20px}.wedding-inline-form>div:first-child,.wedding-expense-form>div:first-child{grid-column:auto}.wedding-inline-form button{width:100%}.wedding-budget-limit-form{padding:20px}.wedding-budget-limit-form>div{flex-wrap:wrap}.wedding-budget-limit-form input{flex:1;min-width:130px}.wedding-budget-limit-form button{width:100%;margin:4px 0 0}.wedding-budget-summary{gap:8px}.wedding-budget-summary>div{padding:15px;min-height:102px}.wedding-budget-summary strong{font-size:1.07rem}.wedding-expense{padding:15px}.wedding-dialog-card{padding:32px 21px}.wedding-dialog-names,.wedding-dialog-date{grid-template-columns:1fr}.wedding-data-actions .wedding-button{width:100%}.wedding-delete{margin-top:10px}}
+@media(max-width:520px){.wedding-hero-visual{width:100%;margin-top:5px}.wedding-photo-frame{width:min(75%,260px);margin-top:15px}.wedding-category-stats{gap:8px}.wedding-stat-card{padding:13px}}
+@media(prefers-reduced-motion:reduce){.wedding-hearts{display:none}.wedding-hero-art{animation:none}.wedding-button,.wedding-progress-track span,.wedding-stat-track span{transition:none}.wedding-button:hover{transform:none}}

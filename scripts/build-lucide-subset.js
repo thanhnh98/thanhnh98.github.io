@@ -20,6 +20,8 @@ const ICONS = [
   'arrow-right', 'bell-ring', 'briefcase', 'calendar-days', 'calendar-heart', 'check', 'chevron-left', 'chevron-right',
   'download', 'gamepad-2', 'gift', 'grid-2x2', 'layout-dashboard', 'layout-grid', 'mail', 'mail-open',
   'info', 'message-circle', 'moon', 'party-popper', 'repeat-2', 'share-2', 'shopping-bag', 'smartphone', 'sparkles', 'store', 'sun', 'wallet',
+  // sap-cuoi/index.html
+  'heart-handshake', 'lock-keyhole', 'upload',
   // components/header.html
   'book-open', 'calendar', 'chevron-down', 'globe', 'newspaper', 'qr-code', 'timer', 'users', 'utensils-crossed',
 ];

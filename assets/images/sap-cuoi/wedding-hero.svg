@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="760" viewBox="0 0 720 760" role="img" aria-labelledby="title desc">
+  <title id="title">Vòm hoa ngày cưới và đôi nhẫn</title>
+  <desc id="desc">Vòm hoa hồng phấn, dải lụa đỏ và hai chiếc nhẫn vàng giao nhau trên nền kem.</desc>
+  <defs>
+    <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#fffaf4"/><stop offset="1" stop-color="#f9e9e5"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3c8"/><stop offset=".28" stop-color="#d6a95a"/><stop offset=".6" stop-color="#ffe6a5"/><stop offset="1" stop-color="#ad7536"/></linearGradient>
+    <linearGradient id="ribbon" x2="1" y2="1"><stop stop-color="#b74355"/><stop offset=".55" stop-color="#d87480"/><stop offset="1" stop-color="#963340"/></linearGradient>
+    <radialGradient id="blush"><stop stop-color="#fff"/><stop offset="1" stop-color="#f5c7cb"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#85394b" flood-opacity=".16"/></filter>
+    <g id="flower"><circle r="28" fill="#f1aab0"/><ellipse rx="21" ry="31" cy="-17" fill="url(#blush)"/><ellipse rx="21" ry="31" cy="17" fill="url(#blush)"/><ellipse rx="31" ry="21" cx="-17" fill="url(#blush)"/><ellipse rx="31" ry="21" cx="17" fill="url(#blush)"/><circle r="12" fill="#e6b971"/><circle r="5" fill="#fff5cd"/></g>
+    <g id="leaf"><path d="M0 0C25-31 50-24 54-52C17-47 8-28 0 0Z" fill="#8a9a79"/><path d="M0 0C-12-38-38-44-48-68C-57-36-33-11 0 0Z" fill="#a8b79b"/></g>
+  </defs>
+  <ellipse cx="360" cy="697" rx="237" ry="38" fill="#e5bcc0" opacity=".4"/>
+  <path d="M82 652V311C82 158 206 52 360 52S638 158 638 311V652Z" fill="url(#paper)" stroke="#ead3c4" stroke-width="3" filter="url(#shadow)"/>
+  <path d="M126 618V317C126 191 225 100 360 100S594 191 594 317V618" fill="none" stroke="#e3bd83" stroke-width="5"/>
+  <path d="M150 612V317C150 202 242 126 360 126S570 202 570 317V612" fill="none" stroke="#f1d5bd" stroke-width="2" stroke-dasharray="2 8"/>
+  <path d="M133 307C88 347 120 423 173 452C201 465 211 494 191 520C118 512 83 450 92 386C96 357 110 330 133 307Z" fill="url(#ribbon)" opacity=".9"/>
+  <path d="M587 307C632 347 600 423 547 452C519 465 509 494 529 520C602 512 637 450 628 386C624 357 610 330 587 307Z" fill="url(#ribbon)" opacity=".9"/>
+  <path d="M125 244C171 146 250 100 360 98C470 100 549 146 595 244" fill="none" stroke="#839771" stroke-width="18" stroke-linecap="round"/>
+  <g transform="translate(130 238) rotate(-24)"><use href="#leaf"/></g><g transform="translate(191 157) rotate(16)"><use href="#leaf"/></g><g transform="translate(266 113) rotate(40)"><use href="#leaf"/></g><g transform="translate(454 113) rotate(65)"><use href="#leaf"/></g><g transform="translate(529 157) rotate(93)"><use href="#leaf"/></g><g transform="translate(590 238) rotate(118)"><use href="#leaf"/></g>
+  <g transform="translate(177 170) scale(1.05)"><use href="#flower"/></g><g transform="translate(279 99) scale(.78)"><use href="#flower"/></g><g transform="translate(360 77) scale(.9)"><use href="#flower"/></g><g transform="translate(441 99) scale(.78)"><use href="#flower"/></g><g transform="translate(543 170) scale(1.05)"><use href="#flower"/></g>
+  <g fill="#fff3df" opacity=".86"><circle cx="232" cy="196" r="7"/><circle cx="305" cy="152" r="5"/><circle cx="488" cy="195" r="7"/><circle cx="416" cy="154" r="5"/></g>
+  <path d="M285 303C311 281 338 279 360 306C382 279 409 281 435 303C443 350 403 376 360 414C317 376 277 350 285 303Z" fill="#eed4cf" opacity=".48"/>
+  <path d="M285 480C319 454 351 444 386 470C411 487 439 486 460 466" fill="none" stroke="#c45462" stroke-width="18" stroke-linecap="round" opacity=".8"/>
+  <path d="M285 480C316 477 343 489 363 511C387 533 419 529 452 505" fill="none" stroke="#f4bdc2" stroke-width="12" stroke-linecap="round"/>
+  <g filter="url(#shadow)" fill="none" stroke="url(#gold)" stroke-width="21"><circle cx="323" cy="407" r="68"/><circle cx="397" cy="407" r="68"/></g>
+  <path d="M282 365L302 345L324 354L345 344L366 365L325 392Z" fill="#fffaf0" stroke="#d4ab6b" stroke-width="5"/><path d="M309 352L325 383L339 351" fill="none" stroke="#e2c99f" stroke-width="3"/>
+  <circle cx="360" cy="581" r="3" fill="#d6aa77"/><circle cx="345" cy="581" r="2" fill="#d6aa77"/><circle cx="375" cy="581" r="2" fill="#d6aa77"/>
+  <path d="M296 596H424" stroke="#d6aa77" stroke-width="2"/>
+</svg>
