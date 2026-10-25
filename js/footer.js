@@ -43,10 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 <details class="home-footer-sap-group" open>
-                    <summary><span data-en="Upcoming events">Sắp X</span><small data-en="29 countdown pages">29 trang đếm ngược</small></summary>
+                    <summary><span data-en="Upcoming events">Sắp X</span><small data-en="30 countdown pages">30 trang đếm ngược</small></summary>
                     <nav class="home-footer-sap-links" aria-label="Các trang Sắp X">
                         <a href="/" data-en="Tet countdown">Sắp Tết</a>
                         <a href="/sap-co-luong/" data-en="Payday countdown">Sắp Có Lương</a>
+                        <a href="/sap-cuoi/" data-en="Wedding countdown">Sắp Cưới</a>
                         <a href="/sap-san-sale/" data-en="Sale countdown">Sắp Săn Sale</a>
                         <a href="/su-kien/nha-giao-viet-nam/" data-en="Teachers' Day countdown">Sắp 20/11</a>
                         <a href="/su-kien/quoc-te-nam-gioi/" data-en="International Men's Day countdown">Sắp 19/11</a>

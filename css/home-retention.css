@@ -396,7 +396,8 @@ body[data-home-manual-ads="off"] .home-countdown-ad { display: none; }
     #fff;
 }
 
-.home-quick-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
+.home-quick-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+@media (min-width: 769px) and (max-width: 1050px) { .home-quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .home-quick-card {
   min-width: 0;
   min-height: 165px;

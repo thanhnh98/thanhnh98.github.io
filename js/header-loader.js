@@ -39,6 +39,8 @@ class HeaderLoader {
             return 'summer';
         } else if (normalizedPath === '/sap-co-luong') {
             return 'payday';
+        } else if (normalizedPath === '/sap-cuoi') {
+            return 'wedding';
         } else if (
             filename === 'tin-tuc.html' ||
             normalizedPath === '/tin-tuc' ||
