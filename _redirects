@@ -1,126 +1,30 @@
-# Canonical URL redirects (fix "Page with redirect" / duplicate URLs for Google)
-# http → https, index.html → /
-http://saptet.vn/* https://saptet.vn/:splat 301!
-https://saptet.vn/index.html https://saptet.vn/ 301!
+# Cloudflare static-assets redirects (GitHub Pages ignores this file).
+# Chỉ dùng path tương đối: redirect cấp domain (http → https, www → non-www)
+# cấu hình trong Cloudflare dashboard (Always Use HTTPS + Redirect Rules).
+# Không thêm rule "/x → /x.html": html_handling mặc định của Cloudflare
+# tự 307 /x.html → /x nên sẽ tạo vòng lặp redirect.
+/index.html / 301
 
-# GitHub Pages redirects for comprehensive subdomain handling
-# Redirect all invalid subdomains to main site
-
-# Common invalid subdomains - redirect to 404 page
-https://webmail.saptet.vn/* https://saptet.vn/404.html 301!
-http://webmail.saptet.vn/* https://saptet.vn/404.html 301!
-https://mail.saptet.vn/* https://saptet.vn/ 301!
-http://mail.saptet.vn/* https://saptet.vn/ 301!
-https://admin.saptet.vn/* https://saptet.vn/ 301!
-http://admin.saptet.vn/* https://saptet.vn/ 301!
-https://ftp.saptet.vn/* https://saptet.vn/ 301!
-http://ftp.saptet.vn/* https://saptet.vn/ 301!
-https://cpanel.saptet.vn/* https://saptet.vn/ 301!
-http://cpanel.saptet.vn/* https://saptet.vn/ 301!
-https://whm.saptet.vn/* https://saptet.vn/ 301!
-http://whm.saptet.vn/* https://saptet.vn/ 301!
-https://blog.saptet.vn/* https://saptet.vn/ 301!
-http://blog.saptet.vn/* https://saptet.vn/ 301!
-https://shop.saptet.vn/* https://saptet.vn/ 301!
-http://shop.saptet.vn/* https://saptet.vn/ 301!
-https://store.saptet.vn/* https://saptet.vn/ 301!
-http://store.saptet.vn/* https://saptet.vn/ 301!
-https://api.saptet.vn/* https://saptet.vn/ 301!
-http://api.saptet.vn/* https://saptet.vn/ 301!
-https://app.saptet.vn/* https://saptet.vn/ 301!
-http://app.saptet.vn/* https://saptet.vn/ 301!
-https://dev.saptet.vn/* https://saptet.vn/ 301!
-http://dev.saptet.vn/* https://saptet.vn/ 301!
-https://test.saptet.vn/* https://saptet.vn/ 301!
-http://test.saptet.vn/* https://saptet.vn/ 301!
-https://staging.saptet.vn/* https://saptet.vn/ 301!
-http://staging.saptet.vn/* https://saptet.vn/ 301!
-https://beta.saptet.vn/* https://saptet.vn/ 301!
-http://beta.saptet.vn/* https://saptet.vn/ 301!
-https://alpha.saptet.vn/* https://saptet.vn/ 301!
-http://alpha.saptet.vn/* https://saptet.vn/ 301!
-https://demo.saptet.vn/* https://saptet.vn/ 301!
-http://demo.saptet.vn/* https://saptet.vn/ 301!
-https://support.saptet.vn/* https://saptet.vn/ 301!
-http://support.saptet.vn/* https://saptet.vn/ 301!
-https://help.saptet.vn/* https://saptet.vn/ 301!
-http://help.saptet.vn/* https://saptet.vn/ 301!
-https://docs.saptet.vn/* https://saptet.vn/ 301!
-http://docs.saptet.vn/* https://saptet.vn/ 301!
-https://cdn.saptet.vn/* https://saptet.vn/ 301!
-http://cdn.saptet.vn/* https://saptet.vn/ 301!
-https://static.saptet.vn/* https://saptet.vn/ 301!
-http://static.saptet.vn/* https://saptet.vn/ 301!
-https://assets.saptet.vn/* https://saptet.vn/ 301!
-http://assets.saptet.vn/* https://saptet.vn/ 301!
-https://img.saptet.vn/* https://saptet.vn/ 301!
-http://img.saptet.vn/* https://saptet.vn/ 301!
-https://images.saptet.vn/* https://saptet.vn/ 301!
-http://images.saptet.vn/* https://saptet.vn/ 301!
-https://files.saptet.vn/* https://saptet.vn/ 301!
-http://files.saptet.vn/* https://saptet.vn/ 301!
-https://download.saptet.vn/* https://saptet.vn/ 301!
-http://download.saptet.vn/* https://saptet.vn/ 301!
-https://upload.saptet.vn/* https://saptet.vn/ 301!
-http://upload.saptet.vn/* https://saptet.vn/ 301!
-https://secure.saptet.vn/* https://saptet.vn/ 301!
-http://secure.saptet.vn/* https://saptet.vn/ 301!
-https://ssl.saptet.vn/* https://saptet.vn/ 301!
-http://ssl.saptet.vn/* https://saptet.vn/ 301!
-https://vpn.saptet.vn/* https://saptet.vn/ 301!
-http://vpn.saptet.vn/* https://saptet.vn/ 301!
-https://remote.saptet.vn/* https://saptet.vn/ 301!
-http://remote.saptet.vn/* https://saptet.vn/ 301!
-https://server.saptet.vn/* https://saptet.vn/ 301!
-http://server.saptet.vn/* https://saptet.vn/ 301!
-https://db.saptet.vn/* https://saptet.vn/ 301!
-http://db.saptet.vn/* https://saptet.vn/ 301!
-https://database.saptet.vn/* https://saptet.vn/ 301!
-http://database.saptet.vn/* https://saptet.vn/ 301!
-https://mysql.saptet.vn/* https://saptet.vn/ 301!
-http://mysql.saptet.vn/* https://saptet.vn/ 301!
-https://phpmyadmin.saptet.vn/* https://saptet.vn/ 301!
-http://phpmyadmin.saptet.vn/* https://saptet.vn/ 301!
-
-# Redirect www to non-www
-https://www.saptet.vn/* https://saptet.vn/:splat 301!
-http://www.saptet.vn/* https://saptet.vn/:splat 301!
-
-# Clean URLs → .html (so only one URL is canonical; reduces "Alternate page with proper canonical tag")
-/cua-hang /cua-hang.html 301!
-/mon-an-tet /mon-an-tet.html 301!
-# GitHub Pages không đọc _redirects (chỉ Netlify/Cloudflare…). URL không đuôi .html dùng
+# GitHub Pages không đọc _redirects. URL không đuôi .html dùng
 # tin-tuc/<slug>/index.html — sinh bằng: npm run generate-tin-tuc-clean-urls
-/tin-tuc /tin-tuc/ 301!
-/tin-tuc/index.html /tin-tuc/ 301!
-/tai-ung-dung /tai-ung-dung.html 301!
-/tai-ung-dung/ /tai-ung-dung.html 301!
-/tin-tuc/:slug /tin-tuc/:slug.html 301!
-/blog /tin-tuc/ 301!
-/blog/ /tin-tuc/ 301!
-/blog.html /tin-tuc/ 301!
-/news /tin-tuc/index.html 301!
-/news/ /tin-tuc/index.html 301!
-/con-bao-lau-nua-den-tet /con-bao-lau-nua-den-tet.html 301!
-# Trang tạo QR: URL sạch /qr-code (rewrite 200 giữ địa chỉ); alias cũ → /qr-code
-/qr-code /qr-code/index.html 200!
-/qr-code/ /qr-code/index.html 200!
-/qrcode.html /qr-code 301!
-/qrcode /qr-code 301!
-/ung-dung /ung-dung.html 301!
-/lich-van-nien /lich-van-nien.html 301!
-/lich-am-hom-nay.html /lich-am-hom-nay 301!
-/su-kien-quan-trong /su-kien-quan-trong.html 301!
+/tin-tuc /tin-tuc/ 301
+/tin-tuc/index.html /tin-tuc/ 301
+/blog /tin-tuc/ 301
+/blog/ /tin-tuc/ 301
+/blog.html /tin-tuc/ 301
+/news /tin-tuc/ 301
+/news/ /tin-tuc/ 301
+
+# Trang tạo QR: alias cũ → /qr-code/
+/qrcode.html /qr-code/ 301
+/qrcode /qr-code/ 301
+/lich-am-hom-nay.html /lich-am-hom-nay 301
 
 # Lịch âm dương = Lịch vạn niên (cùng 1 trang)
-/lich-am-duong /lich-van-nien.html 301!
-/lich-am-duong.html /lich-van-nien.html 301!
+/lich-am-duong /lich-van-nien.html 301
+/lich-am-duong.html /lich-van-nien.html 301
 
 # Alias URL sai thư mục → trang đúng
-/tin-tuc/cua-hang.html /cua-hang.html 301!
-/lich-tet-2026.html /lich-tet-2027.html 301!
-/lich-nghi-tet-2026.html /lich-nghi-tet-2027.html 301!
-
-# Handle common 404s
-/404 /404.html 404!
-/not-found /404.html 404!
+/tin-tuc/cua-hang.html /cua-hang.html 301
+/lich-tet-2026.html /lich-tet-2027.html 301
+/lich-nghi-tet-2026.html /lich-nghi-tet-2027.html 301
