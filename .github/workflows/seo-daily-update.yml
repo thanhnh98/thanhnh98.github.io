@@ -13,9 +13,17 @@ permissions:
 jobs:
   update-seo-snippets:
     runs-on: ubuntu-latest
+    # master: GitHub Pages (deploy.yml). production: Cloudflare build theo mỗi push.
+    # Generator chạy theo ngày nên hai nhánh sinh ra cùng nội dung, merge không conflict.
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [master, production]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -54,13 +62,18 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "chore(seo): refresh Tết day-count and lunar snippets [skip ci]"
-          git push
+          # Không gắn [skip ci] cho production: Cloudflare có thể bỏ qua build của commit đó.
+          if [ "${{ matrix.branch }}" = "master" ]; then
+            git commit -m "chore(seo): refresh Tết day-count and lunar snippets [skip ci]"
+          else
+            git commit -m "chore(seo): refresh Tết day-count and lunar snippets"
+          fi
+          git push origin "HEAD:${{ matrix.branch }}"
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       # GITHUB_TOKEN pushes do not start push-triggered workflows; dispatch explicitly.
       - name: Publish refreshed pages
-        if: steps.commit.outputs.changed == 'true'
+        if: matrix.branch == 'master' && steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

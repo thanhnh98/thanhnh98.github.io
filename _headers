@@ -1,0 +1,32 @@
+# Cloudflare static-assets headers (GitHub Pages bỏ qua file này).
+# Mặc định Cloudflare gửi "public, max-age=0, must-revalidate" + ETag cho mọi file.
+# Các rule cùng khớp sẽ gộp header; trùng tên thì nối bằng dấu phẩy, nên mỗi path
+# chỉ nên khớp đúng một rule Cache-Control.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Service worker phải luôn được kiểm tra bản mới (CACHE_NAME đổi mỗi lần deploy).
+/sw.js
+  Cache-Control: no-cache
+
+# Apple chỉ chấp nhận AASA dạng JSON; file không có đuôi nên phải khai báo type.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
+# Font tự host không đổi nội dung theo thời gian.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Ảnh có thể bị thay cùng tên → cache 7 ngày, sau đó dùng bản cũ trong lúc tải lại.
+/assets/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# CSS/JS dùng ?v=YYYYMMDD bump tay, có khi quên → chỉ cache 1 ngày.
+/css/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

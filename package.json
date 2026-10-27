@@ -6,6 +6,7 @@
   "scripts": {
     "build:tet-runner": "esbuild js/tet-runner-three.js --bundle --format=esm --minify --outfile=js/tet-runner-three.bundle.js",
     "build:icons": "node scripts/build-lucide-subset.js",
+    "build:cloudflare": "npm run build:tet-runner && npm run generate-tin-tuc-clean-urls && npm run inject-tet-seo && npm run inject-tet-english-seo && npm run inject-seasonal-seo && npm run generate-events && npm run generate-sale && npm run inject-lunar-today && npm run update-version",
     "crawl": "node crawl-tet-articles.js",
     "crawl:dev": "node --inspect crawl-tet-articles.js",
     "install-deps": "npm install",

@@ -1,0 +1,45 @@
+# Cú pháp .gitignore. Những file này KHÔNG được upload lên Cloudflare (không public trên saptet.vn).
+# Dấu / đầu dòng = chỉ khớp ở thư mục gốc. Đừng thêm .well-known (universal link / app link).
+
+# Git, dependencies, rác hệ điều hành
+/.git
+node_modules
+.DS_Store
+
+# Cấu hình agent / CI / tooling
+/.agents
+/.cursor
+/.github
+/.playwright-mcp
+/.shared
+/.trae
+/.wrangler
+/.gitignore
+/.htaccess
+/.assetsignore
+/.version
+/.last_build_id
+/_config.yml
+/CNAME
+/wrangler.jsonc
+/package.json
+/package-lock.json
+/skills-lock.json
+
+# Tài liệu nội bộ (kể cả README trong thư mục con)
+*.md
+/docs
+
+# Script build/codegen, template generator, test
+/scripts
+/templates
+/test
+/deploy.sh
+/run.sh
+/auto-update-blog.js
+/crawl-tet-articles.js
+/debug-vnexpress.js
+/demo-crawler.js
+/demo-results.json
+/test-july-lunar.js
+/test-vn-lunar.js

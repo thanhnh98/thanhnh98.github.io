@@ -1,0 +1,15 @@
+// Cloudflare Workers static assets cho saptet.vn (chỉ phục vụ file tĩnh, không có Worker script).
+// Build command (dashboard): npm ci && npm run build:cloudflare — deploy command: npx wrangler deploy.
+// File nào không được upload: xem .assetsignore. Redirect: _redirects. Header/cache: _headers.
+{
+  "name": "thanhnh98-github-io",
+  "compatibility_date": "2026-10-27",
+  "assets": {
+    "directory": ".",
+    // /x.html → /x và /x/index.html → /x/ (mặc định của Cloudflare).
+    "html_handling": "auto-trailing-slash",
+    // Đường dẫn không có file → 404.html gần nhất (status 404), giống GitHub Pages.
+    // 404.html cũng là nơi xử lý universal link /friends/*, /thiep/*, /oanquan/join/*.
+    "not_found_handling": "404-page"
+  }
+}
