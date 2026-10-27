@@ -3,7 +3,7 @@
     <!-- Homepage - Highest Priority -->
     <url>
         <loc>https://saptet.vn/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -101,7 +101,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/lich-am-hom-nay</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
@@ -629,13 +629,13 @@
     <!-- Event detail pages -->
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-nam-gioi/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/nha-giao-viet-nam/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -647,7 +647,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/black-friday/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -677,7 +677,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/ong-cong-ong-tao/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -719,7 +719,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-phu-nu/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -749,7 +749,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/gio-to-hung-vuong/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -761,13 +761,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/giai-phong-mien-nam/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-lao-dong/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -779,7 +779,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/ngay-cua-me/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -809,7 +809,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/ngay-cua-cha/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -827,7 +827,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/that-tich/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -845,13 +845,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/quoc-khanh-viet-nam/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/tet-trung-thu/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -875,13 +875,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/phu-nu-viet-nam/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/sap-san-sale/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-10-28</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.76</priority>
     </url>
