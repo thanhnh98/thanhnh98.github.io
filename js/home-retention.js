@@ -189,6 +189,10 @@
     if (element) element.textContent = value;
   }
 
+  function formatCountdownDays(days) {
+    return String(days).padStart(2, '0');
+  }
+
   function trackReturnVisit(params) {
     window.webAnalytics?.trackEvent('home_return_visit', params);
   }
@@ -214,7 +218,7 @@
     var seconds = Math.floor((difference % 60000) / 1000);
     var calendarDays = Math.max(0, daysBetweenKeys(getVietnamDateKey(now), TET_DATE_KEY));
 
-    setText('days', String(days).padStart(3, '0'));
+    setText('days', formatCountdownDays(days));
     setText('hours', String(hours).padStart(2, '0'));
     setText('minutes', String(minutes).padStart(2, '0'));
     setText('seconds', String(seconds).padStart(2, '0'));
@@ -563,6 +567,7 @@
     getDailyContent: getDailyContent,
     getHeroToday: getHeroToday,
     daysBetweenKeys: daysBetweenKeys,
-    detectAppPlatform: detectAppPlatform
+    detectAppPlatform: detectAppPlatform,
+    formatCountdownDays: formatCountdownDays
   };
 });

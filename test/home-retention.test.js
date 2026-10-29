@@ -21,6 +21,14 @@ test('retention module exposes pure state and phase helpers', () => {
   assert.equal(typeof homeRetention.getVietnamDateKey, 'function');
 });
 
+test('countdown days use two digits below 100 without truncating larger values', () => {
+  const { formatCountdownDays } = require(modulePath);
+
+  assert.equal(formatCountdownDays(7), '07');
+  assert.equal(formatCountdownDays(99), '99');
+  assert.equal(formatCountdownDays(100), '100');
+});
+
 test('same Vietnam calendar day only increments streak once', () => {
   const homeRetention = require(modulePath);
   const storage = createStorage();
