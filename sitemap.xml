@@ -329,6 +329,20 @@
         <priority>0.8</priority>
     </url>
 
+    <url>
+        <loc>https://saptet.vn/tin-tuc/cham-mai-don-tet-trong-ung-dung-sap-tet.html</loc>
+        <lastmod>2026-11-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://saptet.vn/tin-tuc/photobooth-tet-trong-ung-dung-sap-tet.html</loc>
+        <lastmod>2026-11-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- Seasonal Pages - Medium Priority -->
     <url>
         <loc>https://saptet.vn/trung-thu.html</loc>
