@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </details>
                 <div class="home-footer-bottom">
                     <span>© 2026 Sắp Tết · Phát triển bởi <a class="home-footer-tlife" href="https://tlife.io.vn" target="_blank" rel="noopener noreferrer">TLife</a></span>
-                    <nav aria-label="Pháp lý"><a href="?lang=en" hreflang="en" lang="en" data-site-lang-toggle>English</a><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
+                    <nav aria-label="Pháp lý"><a href="?lang=en" hreflang="en" lang="en" data-site-lang-toggle>English</a><a href="/privacy-policy/vi/">Chính sách bảo mật</a><a href="/user-privacy-choices/">Lựa chọn quyền riêng tư</a><a href="/terms-of-use/vi/">Điều khoản sử dụng</a><a href="/support">Hỗ trợ</a></nav>
                 </div>
             </div>
         </footer>`;
