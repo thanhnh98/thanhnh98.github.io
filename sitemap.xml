@@ -3,7 +3,7 @@
     <!-- Homepage - Highest Priority -->
     <url>
         <loc>https://saptet.vn/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -113,7 +113,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/lich-am-hom-nay</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.95</priority>
     </url>
@@ -402,7 +402,7 @@
     <!-- Holiday countdown pages (EN) -->
     <url>
         <loc>https://saptet.vn/countdowns</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/countdowns"/>
@@ -411,7 +411,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/countdowns?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/countdowns"/>
@@ -420,7 +420,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/halloween</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/halloween"/>
@@ -429,7 +429,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/sap-halloween/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/halloween"/>
@@ -438,7 +438,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/diwali</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/diwali"/>
@@ -447,7 +447,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/diwali?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/diwali"/>
@@ -456,7 +456,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/thanksgiving</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/thanksgiving"/>
@@ -465,7 +465,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/thanksgiving?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/thanksgiving"/>
@@ -474,7 +474,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/hanukkah</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/hanukkah"/>
@@ -483,7 +483,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/hanukkah?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/hanukkah"/>
@@ -492,7 +492,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/christmas</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/christmas"/>
@@ -501,7 +501,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/noel.html</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/christmas"/>
@@ -510,7 +510,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/new-year</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/new-year"/>
@@ -519,7 +519,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/new-year?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/new-year"/>
@@ -528,7 +528,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/chinese-new-year</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/chinese-new-year"/>
@@ -537,7 +537,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/chinese-new-year?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/chinese-new-year"/>
@@ -546,7 +546,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/ramadan</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/ramadan"/>
@@ -556,7 +556,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/ramadan?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/ramadan"/>
@@ -566,7 +566,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/ramadan?lang=ar</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/ramadan"/>
@@ -576,7 +576,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/valentines-day</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/valentines-day"/>
@@ -585,7 +585,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/valentines-day?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/valentines-day"/>
@@ -594,7 +594,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/eid-al-fitr</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/eid-al-fitr"/>
@@ -604,7 +604,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/eid-al-fitr?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/eid-al-fitr"/>
@@ -614,7 +614,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/eid-al-fitr?lang=ar</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/eid-al-fitr"/>
@@ -624,7 +624,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/easter</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/easter"/>
@@ -633,7 +633,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/easter?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/easter"/>
@@ -642,7 +642,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/songkran</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/songkran"/>
@@ -651,7 +651,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/songkran?lang=vi</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://saptet.vn/songkran"/>
@@ -661,13 +661,13 @@
     <!-- Event detail pages -->
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-nam-gioi/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/nha-giao-viet-nam/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -679,7 +679,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/black-friday/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -709,7 +709,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/ong-cong-ong-tao/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -751,7 +751,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-phu-nu/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -781,7 +781,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/gio-to-hung-vuong/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -793,13 +793,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/giai-phong-mien-nam/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/quoc-te-lao-dong/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -811,7 +811,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/ngay-cua-me/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -841,7 +841,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/ngay-cua-cha/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -859,7 +859,7 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/that-tich/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -877,13 +877,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/quoc-khanh-viet-nam/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/tet-trung-thu/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
@@ -907,13 +907,13 @@
     </url>
     <url>
         <loc>https://saptet.vn/su-kien/phu-nu-viet-nam/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.72</priority>
     </url>
     <url>
         <loc>https://saptet.vn/sap-san-sale/</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.76</priority>
     </url>
