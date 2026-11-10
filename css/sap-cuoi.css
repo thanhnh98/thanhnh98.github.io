@@ -45,6 +45,15 @@
 .wedding-button-light:hover{background:#fff}
 .wedding-local-note{display:flex;align-items:center;gap:8px;margin:0;color:#80646a;font-size:.79rem}
 .wedding-local-note svg{width:15px;height:15px}
+.wedding-store-downloads{margin-top:24px}
+.wedding-store-downloads>p{margin:0 0 10px;color:#70404c;font-size:.85rem;font-weight:700}
+.wedding-store-links{display:flex;flex-wrap:wrap;gap:10px}
+.wedding-store-link{display:inline-flex;align-items:center;gap:10px;min-width:168px;min-height:58px;padding:8px 14px;border:1px solid #dcb8b5;border-radius:14px;background:#fffaf7;box-shadow:0 8px 18px rgba(115,56,67,.08);color:#6e3342;text-decoration:none;transition:transform .2s ease,background-color .2s ease}
+.wedding-store-link:hover{transform:translateY(-2px);background:#fff}
+.wedding-store-link img{display:block;width:30px;height:30px;object-fit:contain}
+.wedding-store-link span{display:grid;line-height:1.15}
+.wedding-store-link small{font-size:.7rem;font-weight:400}
+.wedding-store-link strong{font-size:1rem}
 .wedding-hero-art{position:relative;z-index:1;align-self:center;justify-self:end;width:min(100%,525px);filter:drop-shadow(0 20px 28px rgba(112,55,68,.1));animation:wedding-art-float 7s ease-in-out infinite}
 .wedding-hero-art img{display:block;width:100%;height:auto}
 .wedding-hero-visual{position:relative;z-index:1;align-self:center;justify-self:end;width:min(100%,525px);text-align:center}
