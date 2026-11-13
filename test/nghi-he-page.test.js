@@ -81,8 +81,8 @@ test('summer page contains age-specific activities, supervision labels and optim
     }
 
     assert.ok($('.summer-supervision').length >= 8);
-    assert.equal($('img[src$=".webp"][width][height]').length, 2);
-    assert.equal($('img[loading="lazy"]').length, 1);
+    assert.equal($('img[src$=".webp"][width][height]').length, 5);
+    assert.equal($('img[loading="lazy"]').length, 4);
     assert.doesNotMatch(html, /<style\b|style="/);
 
     assert.ok(fs.existsSync(path.join(root, 'assets/images/nghi-he/hoc-sinh-vui-choi-nghi-he.webp')));
@@ -94,4 +94,25 @@ test('summer page is discoverable from navigation and sitemap', () => {
     assert.match(read('components/header.html'), /href="\/nghi-he\/"/);
     assert.match(read('js/header-loader.js'), /normalizedPath === '\/nghi-he'[\s\S]*return 'summer'/);
     assert.match(read('sitemap.xml'), /<loc>https:\/\/saptet\.vn\/nghi-he\/<\/loc>/);
+});
+
+test('summer page partner banner links Lam Art kids class from in-content, once, labelled', () => {
+    const $ = cheerio.load(read('nghi-he/index.html'));
+    const banner = $('aside.summer-partner');
+    assert.equal(banner.length, 1);
+    assert.equal(banner.prev('#hoat-dong-tieu-hoc').length, 1, 'banner sits after the tiểu học activities');
+    assert.match(banner.find('.summer-partner-label').text(), /Đối tác/);
+    const home = banner.find('.summer-partner-body > p a[href="https://lamartsaigon.com/vi"]');
+    assert.equal(home.length, 1, 'in-text brand link goes to the Lam Art homepage');
+    assert.equal(home.text().trim(), 'Lam Art Saigon');
+    assert.equal(banner.find('a.summer-partner-cta[href="https://lamartsaigon.com/vi/courses/ve-mau-nuoc-cho-be"]').length, 1);
+    banner.find('a').each((_, a) => assert.equal($(a).attr('rel'), 'noopener'));
+    assert.equal($('a[href*="lamartsaigon.com"]').length, 2, 'no other Lam Art links on the page');
+    const photos = banner.find('img');
+    assert.equal(photos.length, 3, 'class photo + two student artworks');
+    photos.each((_, img) => {
+        assert.ok($(img).attr('alt'), 'partner photos need alt text');
+        assert.ok(fs.existsSync(path.join(root, $(img).attr('src'))), `${$(img).attr('src')} missing`);
+    });
+    assert.match(banner.find('figcaption').text(), /Lam Art Saigon/);
 });
