@@ -96,6 +96,26 @@ body.summer-page {
 .summer-supervision { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.8rem; color: #8b3a26; font-size: 0.77rem; font-weight: 900; }
 .summer-supervision svg { width: 16px; height: 16px; }
 
+
+.summer-partner { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(1.25rem, 4vw, 2.75rem); align-items: center; margin-top: 2.6rem; padding: clamp(1rem, 2.4vw, 1.5rem); border: 1px solid #f3d3c4; border-radius: 26px; background: #fff8f3; box-shadow: 0 18px 44px rgba(196, 71, 42, 0.12); }
+.summer-partner-media { position: relative; margin: 0 0 2.6rem; }
+.summer-partner-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 18px; object-fit: cover; }
+.summer-partner-works { position: absolute; right: -0.5rem; bottom: -2.6rem; display: flex; gap: 0.6rem; }
+.summer-partner-works img { display: block; width: clamp(104px, 12vw, 150px); height: auto; aspect-ratio: 4 / 3; border: 5px solid #fff; border-radius: 12px; object-fit: cover; box-shadow: 0 10px 24px rgba(24, 54, 73, 0.22); }
+.summer-partner-works img:first-child { transform: rotate(-4deg); }
+.summer-partner-works img:last-child { transform: rotate(3deg) translateY(-0.6rem); }
+.summer-partner-media figcaption { position: absolute; left: 0.75rem; top: 0.75rem; padding: 0.25rem 0.55rem; border-radius: 999px; color: #fff; background: rgba(24, 54, 73, 0.62); font-size: 0.68rem; font-weight: 800; }
+.summer-partner-body { padding: 0.5rem clamp(0rem, 1.5vw, 1rem) 0.5rem 0; }
+.summer-page .summer-partner-label { margin: 0 0 0.5rem; color: #b13e24; font-size: 0.74rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+.summer-partner h3 { margin: 0; color: var(--summer-ink); font-size: clamp(1.35rem, 2.8vw, 1.85rem); letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance; }
+.summer-partner-body > p:not(.summer-partner-label) { margin: 0.7rem 0 0; color: var(--summer-muted); font-size: 0.97rem; line-height: 1.7; }
+.summer-partner-body a:not(.summer-partner-cta) { color: #b13e24; font-weight: 800; }
+.summer-partner-facts { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.summer-partner-facts li { padding: 0.32rem 0.7rem; border-radius: 999px; color: #8b3a26; background: #fde3d8; font-size: 0.78rem; font-weight: 900; }
+.summer-partner-cta { display: inline-flex; min-height: 48px; align-items: center; gap: 0.45rem; margin-top: 1.25rem; padding: 0.75rem 1.25rem; border-radius: 999px; color: #fff; background: #c4472a; font-weight: 900; text-decoration: none; }
+.summer-partner-cta:hover, .summer-partner-cta:focus-visible { background: #a2432b; }
+.summer-partner-cta svg { width: 18px; height: 18px; }
+
 .summer-safety-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .summer-safety-item { padding: 1.2rem; border-top: 4px solid var(--summer-sun); border-radius: 0 0 16px 16px; background: #fff; box-shadow: 0 10px 28px rgba(19, 91, 129, 0.07); }
 .summer-safety-item strong { display: block; color: var(--summer-sky-dark); }
@@ -115,6 +135,8 @@ body.summer-page {
     .summer-visual { max-width: 720px; margin-inline: auto; }
     .summer-info-grid, .summer-activity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .summer-safety-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .summer-partner { grid-template-columns: 1fr; }
+    .summer-partner-body { padding: 0 0.5rem 0.5rem; }
 }
 
 @media (max-width: 620px) {
@@ -127,6 +149,8 @@ body.summer-page {
     .summer-countdown div { padding-inline: 0.1rem; }
     .summer-info-grid, .summer-activity-grid, .summer-safety-grid { grid-template-columns: 1fr; }
     .summer-age-nav { display: grid; grid-template-columns: 1fr; }
+    .summer-partner-works { right: 0.25rem; }
+    .summer-partner-cta { display: flex; justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {

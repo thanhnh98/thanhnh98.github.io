@@ -49,6 +49,7 @@ test('Explore footer links to every Vietnamese Sắp page', () => {
         ['/su-kien/quoc-khanh-viet-nam/', 'Sắp Quốc khánh'],
         ['/su-kien/giai-phong-mien-nam/', 'Sắp 30/4'],
         ['/su-kien/quoc-te-lao-dong/', 'Sắp 1/5'],
+        ['/nghi-he/', 'Sắp Nghỉ Hè'],
         ['/su-kien/gio-to-hung-vuong/', 'Sắp Giỗ Tổ'],
         ['/su-kien/ong-cong-ong-tao/', 'Sắp Ông Công Ông Táo'],
         ['/su-kien/ngay-cua-me/', 'Sắp Ngày của Mẹ'],
